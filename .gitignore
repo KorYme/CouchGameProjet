@@ -121,3 +121,6 @@ WwiseUnityIntegration_*_Src.zip
 # Assets/Plugins/Editor/Jetbrains.meta
 # Assets/Plugins/Editor/Jetbrains/
 # .idea
+PlatiniumProject/PlatiniumProject_WwiseProject/GeneratedSoundBanks/Windows/
+
+PlatiniumProject/PlatiniumProject_WwiseProject/Originals/SFX/

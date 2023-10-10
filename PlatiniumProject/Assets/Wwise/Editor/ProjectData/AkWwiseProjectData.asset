@@ -66,8 +66,22 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: fcad22c92dc0e14fa128631e71d420c7
     GuidInternal: 
-    m_lastTime: -8585046803554177999
-    List: []
+    m_lastTime: -8585046783238037420
+    List:
+    - name: MainSoundBank
+      guid: 5c38a21811cff94f87722faf85bbcd05
+      id: 534561221
+      PathAndIcons:
+      - ElementName: SoundBanks
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: fcad22c92dc0e14fa128631e71d420c7
+      - ElementName: MainSoundBank
+        ObjectType: 7
+        guid: 5c38a21811cff94f87722faf85bbcd05
+      Path: SoundBanks\Default Work Unit\MainSoundBank
   EventWwu:
   - PhysicalPath: Events\Default Work Unit.wwu
     PathAndIcons:
@@ -80,8 +94,25 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 12a18cfa2d74024aab561723c2caf146
     GuidInternal: 
-    m_lastTime: -8585046803553659387
-    List: []
+    m_lastTime: -8585046783106939797
+    List:
+    - name: PlayMusic
+      guid: 143df7d88607b04481beaa6463bb88f2
+      id: 417627684
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 12a18cfa2d74024aab561723c2caf146
+      - ElementName: PlayMusic
+        ObjectType: 3
+        guid: 143df7d88607b04481beaa6463bb88f2
+      Path: Events\Default Work Unit\PlayMusic
+      maxAttenuation: 0
+      maxDuration: 611.63684
+      minDuration: 611.63684
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     PathAndIcons:
@@ -139,7 +170,7 @@ MonoBehaviour:
     m_lastTime: -8585046803553958557
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 
+  ExpandedWaapiItemIds: 0600000007000000090000000a000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0
