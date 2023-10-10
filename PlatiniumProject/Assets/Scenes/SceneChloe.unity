@@ -991,7 +991,6 @@ MonoBehaviour:
   - {fileID: 2006356539}
   - {fileID: 1219416197}
   _indexText: {fileID: 1426035257}
-  _cooldownDuration: 0.5
 --- !u!1 &1537065763
 GameObject:
   m_ObjectHideFlags: 0
