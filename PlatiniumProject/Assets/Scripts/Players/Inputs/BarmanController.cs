@@ -7,6 +7,7 @@ using static UnityEngine.InputSystem.InputAction;
 public class BarmanController : MonoBehaviour
 {
     PlayerInput _playerInput;
+    BarmanMovement _barmanMovement;
     InputAction[] _inputBindings;
     int[] _currentInputs;
     [SerializeField] TextMeshProUGUI[] _texts;
@@ -16,6 +17,7 @@ public class BarmanController : MonoBehaviour
     public void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
+        _barmanMovement = GetComponent<BarmanMovement>();
         _index = 0;
     }
     private void Start()
@@ -50,7 +52,7 @@ public class BarmanController : MonoBehaviour
         return playerInput == _inputBindings[0].controls[_currentInputs[_index]].name;
     }
     public void HandleQTE(CallbackContext context) {
-        if (context.performed && _index < _currentInputs.Length)
+        if (context.performed && _index < _currentInputs.Length && _barmanMovement.IsInputDuringBeatTime())
         {
             if (ComparePlayerInputToExpectedInput(context.control.name))
             {

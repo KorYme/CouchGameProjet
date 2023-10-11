@@ -72,11 +72,15 @@ public class BarmanMovement : MonoBehaviour
         }
     }
 
+    public bool IsInputDuringBeatTime()
+    {
+        return _timer < _timeBeatAccepted / 2f || _timer > _timeBetweenBeat - _timeBeatAccepted / 2f;
+    }
     public void OnMovementInput(CallbackContext context)
     {
         if (context.started)
         {
-            if (_timer < _timeBeatAccepted /2f || _timer > _timeBetweenBeat - _timeBeatAccepted / 2f)
+            if (IsInputDuringBeatTime())
             {
                 float value = context.ReadValue<float>();
                 ChangeIndexToReach(value);
