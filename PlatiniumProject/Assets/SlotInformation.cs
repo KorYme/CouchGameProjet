@@ -6,4 +6,6 @@ public class SlotInformation : MonoBehaviour
 {
     public GameObject Occupant { get; set; }
     public SlotInformation Next { get; set; }
+    
+    public Vector2 Id { get; set; }
 }
