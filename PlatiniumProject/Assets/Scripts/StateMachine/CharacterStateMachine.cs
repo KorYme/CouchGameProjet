@@ -25,25 +25,29 @@ public class CharacterStateMachine : MonoBehaviour
         IdleState,
         MoveToState,
     };
-
+    
+    #region Propreties
     private CharacterState StartState => IdleState;
     public CharacterState CurrentState { get; private set; }
     public CharacterState PreviousState { get; private set; }
     public Transform MoveToLocation { get; set; }
     public CharacterData CharacterDataObject => _characterData;
-    public SlotInformation[] CurrentTransitQueue { get; private set; }
+    public SlotInformation[] CurrentTransitQueue { get; set; }
     public SlotInformation CurrentSlot { get; set; }
+    public int CurrentBeatAmount { get; set; }
+    public Vector2 CurrentChekerBoardId { get; set; }
     public CharacterObjective CharacterCurrentObjective { get; set; } = CharacterObjective.Bouncer;
-
+    #endregion
 
     private void Awake()
     {
         InitAllState();
-        CurrentTransitQueue = qt.Transit;
     }
 
     private void Start()
     {
+        CurrentTransitQueue = qt.Transit;
+        CurrentSlot = CurrentTransitQueue[0];
         ChangeState(StartState);
     }
 

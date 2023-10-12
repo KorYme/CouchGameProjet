@@ -6,21 +6,9 @@ public class CharacterStateMoveTo : CharacterState
 {
     public override void EnterState()
     {
-        throw new System.NotImplementedException();
+        StateMachine.transform.position = StateMachine.MoveToLocation.position;
+        StateMachine.MoveToLocation = null;
+        StateMachine.ChangeState(StateMachine.IdleState);
     }
 
-    public override void UpdateState()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void ExitState()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void OnBeat()
-    {
-        throw new System.NotImplementedException();
-    }
 }
