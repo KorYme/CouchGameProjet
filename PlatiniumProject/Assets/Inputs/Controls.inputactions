@@ -116,7 +116,7 @@
                 {
                     "name": "",
                     "id": "ae9a1eaf-4d8e-408a-b381-4d71489a79c2",
-                    "path": "<Keyboard>/1",
+                    "path": "<Keyboard>/numpad1",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -127,7 +127,7 @@
                 {
                     "name": "",
                     "id": "e0e38632-ccb5-4222-807f-23d8aad4200c",
-                    "path": "<Keyboard>/2",
+                    "path": "<Keyboard>/numpad2",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -138,7 +138,7 @@
                 {
                     "name": "",
                     "id": "6c7349c7-c836-40b0-aa8f-24afe707ed5b",
-                    "path": "<Keyboard>/3",
+                    "path": "<Keyboard>/numpad3",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -149,7 +149,7 @@
                 {
                     "name": "",
                     "id": "8c72f619-8329-4867-990b-2417379deb26",
-                    "path": "<Keyboard>/4",
+                    "path": "<Keyboard>/numpad4",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -160,7 +160,7 @@
                 {
                     "name": "",
                     "id": "462ff227-eeb2-469b-b894-c4c0b4c0a41d",
-                    "path": "<Keyboard>/6",
+                    "path": "<Keyboard>/numpad5",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -171,7 +171,7 @@
                 {
                     "name": "",
                     "id": "e10d950b-ebe1-40b7-b202-65f1855e2e98",
-                    "path": "<Keyboard>/7",
+                    "path": "<Keyboard>/numpad6",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -182,7 +182,7 @@
                 {
                     "name": "",
                     "id": "96b6b8f7-8cfb-4340-b9ab-df949b6a52b7",
-                    "path": "<Keyboard>/8",
+                    "path": "<Keyboard>/numpad7",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -193,7 +193,7 @@
                 {
                     "name": "",
                     "id": "01ddbc83-dc79-43ec-be57-fa5d58963d78",
-                    "path": "<Keyboard>/9",
+                    "path": "<Keyboard>/numpad8",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
