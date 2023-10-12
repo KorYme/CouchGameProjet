@@ -4,13 +4,16 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class BarmanMovement : MonoBehaviour
 {
-    [SerializeField] Transform[] _barmanPositions;
+    [SerializeField] BarmanPosition[] _barmanPositions;
     [SerializeField,Range(0f,1f)] float _inputAcceptanceThreshold = 0.1f;
     int _indexPosition;
     [SerializeField] float _timeBetweenBeat = 1f;
     [SerializeField] float _timeBeatAccepted = 0.1f;
     float _timer = 0f;
     [SerializeField] SpriteRenderer _renderer;
+
+    public int IndexPosition { get => _indexPosition;}
+    public BarmanPosition[] BarmanPositions { get => _barmanPositions;}
 
     private void Awake()
     {
@@ -49,7 +52,7 @@ public class BarmanMovement : MonoBehaviour
 
     public void MoveBarmanToIndex()
     {
-        transform.position = _barmanPositions[_indexPosition].position;
+        transform.position = _barmanPositions[_indexPosition].transform.position;
     }
 
     void ChangeIndexToReach(float value)
