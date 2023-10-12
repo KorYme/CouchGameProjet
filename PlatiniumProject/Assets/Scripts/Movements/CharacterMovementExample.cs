@@ -18,7 +18,7 @@ public class CharacterMovementExample : EntityMovement
         Vector2 dir = Vector2.right;
         while (true)
         {
-            MoveTo(dir);
+            MoveToPosition(dir);
             yield return new WaitWhile(() => IsMoving);
             yield return new WaitForSeconds(_timeToWait);
             dir = new Vector2(-dir.y, dir.x);

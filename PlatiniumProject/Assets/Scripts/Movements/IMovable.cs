@@ -8,5 +8,5 @@ public interface IMovable
     public float MovementDuration { get; }
     public int SpeedMultiplier { get; }
     public AnimationCurve MovementCurve { get; }
-    public void MoveTo(Vector3 positionToGo);
+    public void MoveToPosition(Vector3 position);
 }
