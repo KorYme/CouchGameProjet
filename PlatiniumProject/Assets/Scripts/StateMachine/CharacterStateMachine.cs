@@ -15,15 +15,20 @@ public class CharacterStateMachine : MonoBehaviour
         Leave
     }
     [SerializeField] private CharacterData _characterData;
+    public IMovable CharacterMove { get; private set; }
     public QueueTest qt;
     public Action fakeBeat;
     
     public CharacterState IdleState { get; } = new CharacterStateIdle();
     public CharacterState MoveToState { get; } = new CharacterStateMoveTo();
+    public CharacterState BouncerCheckState { get; } = new CharacterCheckByBouncerState();
+    public CharacterState DieState { get; } = new CharacterDieState();
     private CharacterState[] _allState => new CharacterState[]
     {
         IdleState,
         MoveToState,
+        BouncerCheckState,
+        DieState
     };
     
     #region Propreties
@@ -42,6 +47,7 @@ public class CharacterStateMachine : MonoBehaviour
     private void Awake()
     {
         InitAllState();
+        CharacterMove = GetComponent<IMovable>();
     }
 
     private void Start()
