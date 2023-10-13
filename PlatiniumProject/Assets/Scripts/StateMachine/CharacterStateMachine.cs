@@ -9,6 +9,7 @@ public class CharacterStateMachine : MonoBehaviour
     public enum CharacterObjective
     {
         None,
+        
         Bouncer,
         BarTender,
         DanceFloor,
@@ -85,6 +86,11 @@ public class CharacterStateMachine : MonoBehaviour
         {
             cs.InitState(this);
         }
+    }
+
+    public void DestroySelf()
+    {
+        Destroy(gameObject);
     }
     
 }
