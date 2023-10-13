@@ -21,6 +21,7 @@ public class QueueTest : MonoBehaviour
 
     public SlotInformation[] Transit => _transitQueue;
     public SlotInformation[,] Bouncer => list;
+    public List<CharacterStateMachine> RoamQueue { get; set; } = new List<CharacterStateMachine>();
     public Transform CircleOrigin => _circleOrigin;
     public float CircleRadius => _circleRadius;
 

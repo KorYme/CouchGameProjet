@@ -74,7 +74,7 @@ public class WaitingLineBar : MonoBehaviour
     public void AddToWaitingLine(GameObject character)
     {
         CharacterStateMachine stateMachine = character.GetComponent<CharacterStateMachine>();
-        stateMachine.MoveToLocation = transform;
+        stateMachine.MoveToLocation = transform.position + Vector3.up;
         stateMachine.ChangeState(stateMachine.MoveToState);
         _waitingCharactersList.Add(character);
         if (_waitingCharactersList.Count == 0)

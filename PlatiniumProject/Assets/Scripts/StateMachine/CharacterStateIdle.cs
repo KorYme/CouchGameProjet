@@ -42,10 +42,8 @@ public class CharacterStateIdle : CharacterState
 
                 if (StateMachine.CurrentMovementInBouncer > StateMachine.CharacterDataObject.movementAmountInQueue)
                 {
-                    Vector2 destination = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * Random.Range(0f, StateMachine.qt.CircleRadius);
-                    StateMachine.MoveToLocation = StateMachine.qt.CircleOrigin.position + (Vector3) destination;
                     StateMachine.CurrentSlot.Occupant = null;
-                    StateMachine.ChangeState(StateMachine.MoveToState);
+                    StateMachine.ChangeState(StateMachine.RoamState);
                     return;
                 }
                 if (StateMachine.CurrentTransitQueue != null && StateMachine.CurrentSlot == StateMachine.CurrentTransitQueue[^1])

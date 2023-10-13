@@ -19,17 +19,22 @@ public class CharacterStateMachine : MonoBehaviour
     public IMovable CharacterMove { get; private set; }
     public QueueTest qt;
     public Action fakeBeat;
+    WaitingLineBar[] _waitingLines;
     
     public CharacterState IdleState { get; } = new CharacterStateIdle();
     public CharacterState MoveToState { get; } = new CharacterStateMoveTo();
     public CharacterState BouncerCheckState { get; } = new CharacterCheckByBouncerState();
     public CharacterState DieState { get; } = new CharacterDieState();
+    public CharacterState RoamState { get; } = new CharacterStateRoam();
+    public CharacterState BarManQueueState { get; } = new CharacterStateBarmanQueue();
     private CharacterState[] _allState => new CharacterState[]
     {
         IdleState,
         MoveToState,
         BouncerCheckState,
-        DieState
+        DieState,
+        RoamState,
+        BarManQueueState
     };
     
     #region Propreties
@@ -55,6 +60,7 @@ public class CharacterStateMachine : MonoBehaviour
 
     private void Start()
     {
+        _waitingLines = FindObjectsOfType<WaitingLineBar>();
         CurrentTransitQueue = qt.Transit;
         CurrentSlot = CurrentTransitQueue[0];
         ChangeState(StartState);
@@ -66,6 +72,23 @@ public class CharacterStateMachine : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             fakeBeat?.Invoke();
+        }
+    }
+    public void ChooseWaitingLine()
+    {
+        if (_waitingLines.Length > 0) 
+        {
+            int indexLine = 0;
+            int nbCharactersInLine = _waitingLines[0].NbCharactersWaiting;
+            
+            for (int i = 1; i < _waitingLines.Length; i++)
+            {
+                if (nbCharactersInLine > _waitingLines[i].NbCharactersWaiting) {
+                    nbCharactersInLine = _waitingLines[i].NbCharactersWaiting;
+                    indexLine = i;
+                }
+            }
+            _waitingLines[indexLine].AddToWaitingLine(gameObject);
         }
     }
 
