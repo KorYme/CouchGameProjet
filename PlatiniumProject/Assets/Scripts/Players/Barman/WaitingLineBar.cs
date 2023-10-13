@@ -52,6 +52,10 @@ public class WaitingLineBar : MonoBehaviour
         if (_waitingCharactersList.Count > 0)
         {
             GetRandomDrink();
+            for (int i = 0;i < _waitingCharactersList.Count; i++)
+            {
+                _waitingCharactersList[i].GetComponent<CharacterStateMachine>().CharacterMove.MoveToPosition(transform.position + Vector3.left * (i + 1));
+            }
         } else
         {
             _currentDrink = -1;
@@ -74,8 +78,7 @@ public class WaitingLineBar : MonoBehaviour
     public void AddToWaitingLine(GameObject character)
     {
         CharacterStateMachine stateMachine = character.GetComponent<CharacterStateMachine>();
-        stateMachine.MoveToLocation = transform.position + Vector3.up;
-        stateMachine.ChangeState(stateMachine.MoveToState);
+        stateMachine.CharacterMove.MoveToPosition(transform.position + Vector3.left * (_waitingCharactersList.Count + 1));
         if (_waitingCharactersList.Count == 0)
         {
             GetRandomDrink();
