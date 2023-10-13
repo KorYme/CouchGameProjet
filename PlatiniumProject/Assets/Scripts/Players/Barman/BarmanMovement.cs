@@ -12,6 +12,9 @@ public class BarmanMovement : MonoBehaviour
     float _timer = 0f;
     [SerializeField] SpriteRenderer _renderer;
 
+
+    [SerializeField] BeatManager _beatManager;
+
     public int IndexPosition { get => _indexPosition;}
     public BarmanPosition[] BarmanPositions { get => _barmanPositions;}
 
@@ -26,8 +29,26 @@ public class BarmanMovement : MonoBehaviour
 
     private void Start()
     {
+        _renderer.color = _beatManager.IsInsideBeat ? Color.red : Color.blue;
+        //StartCoroutine(CoroutineBeat());
+        _beatManager.OnBeatStartEvent.AddListener(ChangeColorToRed);
+        _beatManager.OnBeatEndEvent.AddListener(ChangeColorToBlue);
+    }
+
+    private void OnDestroy()
+    {
+        _beatManager.OnBeatStartEvent.RemoveListener(ChangeColorToRed);
+        _beatManager.OnBeatEndEvent.RemoveListener(ChangeColorToBlue);
+    }
+
+    public void ChangeColorToRed()
+    {
         _renderer.color = Color.red;
-        StartCoroutine(CoroutineBeat());
+    }
+        
+    public void ChangeColorToBlue()
+    {
+        _renderer.color = Color.blue;
     }
 
     IEnumerator CoroutineBeat()
@@ -78,7 +99,8 @@ public class BarmanMovement : MonoBehaviour
 
     public bool IsInputDuringBeatTime()
     {
-        return _timer < _timeBeatAccepted / 2f || _timer > _timeBetweenBeat - (_timeBeatAccepted / 2f);
+        return _beatManager.IsInsideBeat;
+        //return _timer < _timeBeatAccepted / 2f || _timer > _timeBetweenBeat - (_timeBeatAccepted / 2f);
     }
     public void OnMovementInput(CallbackContext context)
     {

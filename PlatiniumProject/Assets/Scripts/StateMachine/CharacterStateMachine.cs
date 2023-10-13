@@ -16,6 +16,7 @@ public class CharacterStateMachine : MonoBehaviour
         Leave
     }
     [SerializeField] private CharacterData _characterData;
+    BeatManager _beatManager;
     public IMovable CharacterMove { get; private set; }
     public QueueTest qt;
     public Action fakeBeat;
@@ -54,6 +55,7 @@ public class CharacterStateMachine : MonoBehaviour
     private void Awake()
     {
         InitAllState();
+        _beatManager = FindObjectOfType<BeatManager>();
         qt = FindObjectOfType<QueueTest>();
         CharacterMove = GetComponent<IMovable>();
     }
@@ -97,11 +99,11 @@ public class CharacterStateMachine : MonoBehaviour
         CurrentState?.ExitState();
         if (CurrentState != null)
         {
-            fakeBeat -= CurrentState.OnBeat;
+            _beatManager.OnBeatEvent.RemoveListener(CurrentState.OnBeat);
         }
         PreviousState = CurrentState;
         CurrentState = state;
-        fakeBeat += CurrentState.OnBeat;
+        _beatManager.OnBeatEvent.AddListener(CurrentState.OnBeat);
         CurrentState?.EnterState();
     }
     
@@ -117,5 +119,4 @@ public class CharacterStateMachine : MonoBehaviour
     {
         Destroy(gameObject);
     }
-    
 }
