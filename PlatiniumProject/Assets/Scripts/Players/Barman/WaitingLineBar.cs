@@ -16,6 +16,7 @@ public class WaitingLineBar : MonoBehaviour
     [SerializeField] TextMeshProUGUI _indexText;
     [SerializeField] DrinkList _drinkList;
     List<GameObject> _waitingCharactersList;
+
     public int NbCharactersWaiting { get => _waitingCharactersList.Count; } 
 
     public int CurrentDrink { get => _currentDrink;}
@@ -44,10 +45,25 @@ public class WaitingLineBar : MonoBehaviour
 
     void OnDrinkComplete()
     {
-        CharacterStateMachine stateMachine = _waitingCharactersList[0].GetComponent<CharacterStateMachine>();
-        stateMachine.ChangeState(stateMachine.DieState);
+        CharacterStateMachine stateMachine = _waitingCharactersList[0]?.GetComponent<CharacterStateMachine>();
+        if (stateMachine != null)
+            stateMachine.ChangeState(stateMachine.DieState);
         _waitingCharactersList.RemoveAt(0);
-        GetRandomDrink();
+        if (_waitingCharactersList.Count > 0)
+        {
+            GetRandomDrink();
+        } else
+        {
+            _currentDrink = -1;
+        }
+        if (_currentDrink >= 0)
+        {
+            _indexText.text = _index + "/4 " + (Drink)_currentDrink;
+        }
+        else
+        {
+            _indexText.text = _index + "/4 ";
+        }
         _index = 0;
     }
     public bool ComparePlayerInputToExpectedInput(string playerInput)
@@ -61,7 +77,10 @@ public class WaitingLineBar : MonoBehaviour
         stateMachine.MoveToLocation = transform;
         stateMachine.ChangeState(stateMachine.MoveToState);
         _waitingCharactersList.Add(character);
-        GetRandomDrink();
+        if (_waitingCharactersList.Count == 0)
+        {
+            GetRandomDrink();
+        }
         if (_currentDrink >= 0)
         {
             _indexText.text = _index + "/4 " + (Drink)_currentDrink;
