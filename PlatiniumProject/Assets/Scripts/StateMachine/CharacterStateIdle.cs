@@ -25,9 +25,11 @@ public class CharacterStateIdle : CharacterState
         Debug.Log("BeatAction");
         if (StateMachine.CurrentTransitQueue != null && StateMachine.CurrentSlot != StateMachine.qt.Transit[^1] && StateMachine.CurrentSlot.Next.Occupant == null )
         {
-            StateMachine.MoveToLocation = StateMachine.CurrentSlot.Next.transform;
+            StateMachine.CurrentSlot.Occupant = null;
+            StateMachine.MoveToLocation = StateMachine.CurrentSlot.Next.transform.position;
             StateMachine.ChangeState(StateMachine.MoveToState);
             StateMachine.CurrentSlot = StateMachine.CurrentSlot.Next;
+            StateMachine.CurrentSlot.Occupant = StateMachine.gameObject;
                 
             return;
         }
@@ -37,12 +39,24 @@ public class CharacterStateIdle : CharacterState
             case CharacterStateMachine.CharacterObjective.None:
                 break;
             case CharacterStateMachine.CharacterObjective.Bouncer:
+
+                if (StateMachine.CurrentMovementInBouncer > StateMachine.CharacterDataObject.movementAmountInQueue)
+                {
+                    Vector2 destination = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * Random.Range(0f, StateMachine.qt.CircleRadius);
+                    StateMachine.MoveToLocation = StateMachine.qt.CircleOrigin.position + (Vector3) destination;
+                    StateMachine.CurrentSlot.Occupant = null;
+                    StateMachine.ChangeState(StateMachine.MoveToState);
+                    return;
+                }
                 if (StateMachine.CurrentTransitQueue != null && StateMachine.CurrentSlot == StateMachine.CurrentTransitQueue[^1])
                 {
                     StateMachine.CurrentTransitQueue = null;
-                    StateMachine.MoveToLocation = StateMachine.qt.Bouncer[0,0].transform;
+                    StateMachine.MoveToLocation = StateMachine.qt.Bouncer[0,0].transform.position;
+                    StateMachine.CurrentSlot.Occupant = null;
                     StateMachine.ChangeState(StateMachine.MoveToState);
                     StateMachine.CurrentChekerBoardId = Vector2.zero;
+                    StateMachine.CurrentMovementInBouncer++;
+                    StateMachine.CurrentSlot.Occupant = StateMachine.gameObject;
                     return;
                 }
                 else
@@ -62,9 +76,12 @@ public class CharacterStateIdle : CharacterState
                         return;
                     
                     SlotInformation choicedSlot = availableSlots[Random.Range(0, availableSlots.Count)];
-                    StateMachine.MoveToLocation = choicedSlot.transform;
+                    StateMachine.MoveToLocation = choicedSlot.transform.position;
+                    StateMachine.CurrentSlot.Occupant = null;
                     StateMachine.ChangeState(StateMachine.MoveToState);
                     StateMachine.CurrentChekerBoardId = choicedSlot.Id;
+                    StateMachine.CurrentMovementInBouncer++;
+                    StateMachine.CurrentSlot.Occupant = StateMachine.gameObject;
                     return;
                 }
                 

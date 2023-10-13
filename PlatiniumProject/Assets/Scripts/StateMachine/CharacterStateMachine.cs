@@ -36,18 +36,20 @@ public class CharacterStateMachine : MonoBehaviour
     private CharacterState StartState => IdleState;
     public CharacterState CurrentState { get; private set; }
     public CharacterState PreviousState { get; private set; }
-    public Transform MoveToLocation { get; set; }
+    public Vector3 MoveToLocation { get; set; }
     public CharacterData CharacterDataObject => _characterData;
     public SlotInformation[] CurrentTransitQueue { get; set; }
     public SlotInformation CurrentSlot { get; set; }
     public int CurrentBeatAmount { get; set; }
     public Vector2 CurrentChekerBoardId { get; set; }
     public CharacterObjective CharacterCurrentObjective { get; set; } = CharacterObjective.Bouncer;
+    public int CurrentMovementInBouncer { get; set; }
     #endregion
 
     private void Awake()
     {
         InitAllState();
+        qt = FindObjectOfType<QueueTest>();
         CharacterMove = GetComponent<IMovable>();
     }
 

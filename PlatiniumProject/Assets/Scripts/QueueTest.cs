@@ -12,10 +12,17 @@ public class QueueTest : MonoBehaviour
     [SerializeField] private int _arrayHorizontalLength;
     [SerializeField] private SlotInformation[] _slotList;
     [SerializeField] private SlotInformation[] _transitQueue;
+    
+    [Header("Barman")]
+    [SerializeField] private Transform _circleOrigin;
+    [SerializeField] private float _circleRadius;
+    
     private SlotInformation[,] list;
 
     public SlotInformation[] Transit => _transitQueue;
     public SlotInformation[,] Bouncer => list;
+    public Transform CircleOrigin => _circleOrigin;
+    public float CircleRadius => _circleRadius;
 
     private void Start()
     {
@@ -49,7 +56,12 @@ public class QueueTest : MonoBehaviour
             return null;
         return Bouncer[(int)id.x, (int)id.y];
     }
-    
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(_circleOrigin.transform.position, _circleRadius);
+    }
 }
 
 
