@@ -4,11 +4,12 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
 
 public class WaitingLineBar : MonoBehaviour
 {
     [SerializeField] PlayerInput _playerInput;
-    int _currentDrink;
+    int _currentDrink = -1;
     int _index;
     InputAction[] _inputBindings;
 
@@ -27,7 +28,13 @@ public class WaitingLineBar : MonoBehaviour
     {
         _waitingCharactersList = new List<GameObject>();
        _inputBindings = _playerInput.actions.ToArray();
-        _indexText.text = _index + "/4 " + (Drink)_currentDrink;
+        if (_currentDrink >= 0)
+        {
+            _indexText.text = _index + "/4 " + (Drink)_currentDrink;
+        } else
+        {
+            _indexText.text = _index + "/4 ";
+        }
     }
 
     void GetRandomDrink()
@@ -37,6 +44,8 @@ public class WaitingLineBar : MonoBehaviour
 
     void OnDrinkComplete()
     {
+        CharacterStateMachine stateMachine = _waitingCharactersList[0].GetComponent<CharacterStateMachine>();
+        stateMachine.ChangeState(stateMachine.DieState);
         _waitingCharactersList.RemoveAt(0);
         GetRandomDrink();
         _index = 0;
@@ -48,27 +57,48 @@ public class WaitingLineBar : MonoBehaviour
 
     public void AddToWaitingLine(GameObject character)
     {
-        //character.GetComponent<CharacterStateMachine>
+        CharacterStateMachine stateMachine = character.GetComponent<CharacterStateMachine>();
+        stateMachine.MoveToLocation = transform;
+        stateMachine.ChangeState(stateMachine.MoveToState);
         _waitingCharactersList.Add(character);
+        GetRandomDrink();
+        if (_currentDrink >= 0)
+        {
+            _indexText.text = _index + "/4 " + (Drink)_currentDrink;
+        }
+        else
+        {
+            _indexText.text = _index + "/4 ";
+        }
     }
 
     public void CheckInputFromLine(string control)
     {
-        if(_index < _drinkList.DrinksRecipe[_currentDrink].Length)
+        if (_currentDrink >= 0)
         {
-            if (ComparePlayerInputToExpectedInput(control))
+            if (_index < _drinkList.DrinksRecipe[_currentDrink].Length)
             {
-                _index++;
-                if (_index > 3)
+                if (ComparePlayerInputToExpectedInput(control))
                 {
-                    OnDrinkComplete();
+                    _index++;
+                    if (_index > 3)
+                    {
+                        OnDrinkComplete();
+                    }
+                }
+                else
+                {
+                    _index = 0;
+                }
+                if (_currentDrink >= 0)
+                {
+                    _indexText.text = _index + "/4 " + (Drink)_currentDrink;
+                }
+                else
+                {
+                    _indexText.text = _index + "/4 ";
                 }
             }
-            else
-            {
-                _index = 0;
-            }
-            _indexText.text = _index + "/4 "+ (Drink)_currentDrink;
         }
     }
 }
