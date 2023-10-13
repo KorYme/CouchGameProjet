@@ -76,11 +76,11 @@ public class WaitingLineBar : MonoBehaviour
         CharacterStateMachine stateMachine = character.GetComponent<CharacterStateMachine>();
         stateMachine.MoveToLocation = transform.position + Vector3.up;
         stateMachine.ChangeState(stateMachine.MoveToState);
-        _waitingCharactersList.Add(character);
         if (_waitingCharactersList.Count == 0)
         {
             GetRandomDrink();
         }
+        _waitingCharactersList.Add(character);
         if (_currentDrink >= 0)
         {
             _indexText.text = _index + "/4 " + (Drink)_currentDrink;

@@ -25,6 +25,7 @@ public class CharacterStateRoam : CharacterState
     {
         if (StateMachine.qt.RoamQueue[0] == StateMachine)
         {
+            StateMachine.qt.RoamQueue.Remove(StateMachine);
             StateMachine.ChooseWaitingLine();
             StateMachine.ChangeState(StateMachine.BarManQueueState);
         }
