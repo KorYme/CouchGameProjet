@@ -14,6 +14,8 @@ public class WaitingLineBar : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI _indexText;
     [SerializeField] DrinkList _drinkList;
+    List<GameObject> _waitingCharactersList;
+    public int NbCharactersWaiting { get => _waitingCharactersList.Count; } 
 
     public int CurrentDrink { get => _currentDrink;}
 
@@ -23,8 +25,8 @@ public class WaitingLineBar : MonoBehaviour
     }
     private void Start()
     {
-        _inputBindings = _playerInput.actions.ToArray();
-        GetRandomDrink();
+        _waitingCharactersList = new List<GameObject>();
+       _inputBindings = _playerInput.actions.ToArray();
         _indexText.text = _index + "/4 " + (Drink)_currentDrink;
     }
 
@@ -33,10 +35,21 @@ public class WaitingLineBar : MonoBehaviour
         _currentDrink = Random.Range(0, 3);
     }
 
-
+    void OnDrinkComplete()
+    {
+        _waitingCharactersList.RemoveAt(0);
+        GetRandomDrink();
+        _index = 0;
+    }
     public bool ComparePlayerInputToExpectedInput(string playerInput)
     {
         return playerInput == _inputBindings[0].controls[_drinkList.DrinksRecipe[_currentDrink][_index]].name;
+    }
+
+    public void AddToWaitingLine(GameObject character)
+    {
+        //character.GetComponent<CharacterStateMachine>
+        _waitingCharactersList.Add(character);
     }
 
     public void CheckInputFromLine(string control)
@@ -48,8 +61,7 @@ public class WaitingLineBar : MonoBehaviour
                 _index++;
                 if (_index > 3)
                 {
-                    GetRandomDrink();
-                    _index = 0;
+                    OnDrinkComplete();
                 }
             }
             else
