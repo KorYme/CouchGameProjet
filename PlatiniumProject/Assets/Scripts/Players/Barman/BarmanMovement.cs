@@ -57,15 +57,16 @@ public class BarmanMovement : MonoBehaviour
 
     void ChangeIndexToReach(float value)
     {
-        if (value > 1f - _inputAcceptanceThreshold)
+        if (value > 0f)
         {
+            
             if (_indexPosition < _barmanPositions.Length - 1)
             {
                 _indexPosition++;
             }
             MoveBarmanToIndex();
         }
-        else if (value < -1f + _inputAcceptanceThreshold)
+        else if (value < 0f)
         {
             if (_indexPosition > 0)
             {
@@ -77,7 +78,7 @@ public class BarmanMovement : MonoBehaviour
 
     public bool IsInputDuringBeatTime()
     {
-        return _timer < _timeBeatAccepted / 2f || _timer > _timeBetweenBeat - _timeBeatAccepted / 2f;
+        return _timer < _timeBeatAccepted / 2f || _timer > _timeBetweenBeat - (_timeBeatAccepted / 2f);
     }
     public void OnMovementInput(CallbackContext context)
     {
