@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eca7773dbc7f5b47878b382f321f62e, type: 3}
+  m_Name: GoogleDriveSettings
+  m_EditorClassIdentifier: 
+  genericClientCredentials:
+    client_id: 584665715819-of5n91otmit24coe9vnohdhafa4pkiqh.apps.googleusercontent.com
+    project_id: test-project-tool
+    auth_uri: https://accounts.google.com/o/oauth2/auth
+    token_uri: https://oauth2.googleapis.com/token
+    auth_provider_x509_cert_url: https://www.googleapis.com/oauth2/v1/certs
+    client_secret: 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
+    redirect_uris:
+    - http://localhost
+    - https://drive.google.com
+  uriSchemeClientCredentials:
+    clientId: 584665715819-of5n91otmit24coe9vnohdhafa4pkiqh.apps.googleusercontent.com
+    reversedClientId: 
+    plistVersion: 
+    bundleId: 
+  accessScopes:
+  - https://www.googleapis.com/auth/drive
+  - https://www.googleapis.com/auth/drive.appdata
+  loopbackUri: http://localhost
+  loopbackResponseHtml: <html><h1>Please return to the app.</h1></html>
+  accessTokenPrefsKey: GoogleDriveAccessToken
+  refreshTokenPrefsKey: GoogleDriveRefreshToken

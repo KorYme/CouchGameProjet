@@ -3,10 +3,9 @@
 	<InteractiveMusic>
 		<WorkUnit Name="Default Work Unit" ID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}" PersistMode="Standalone">
 			<ChildrenList>
-				<MusicSegment Name="60 BPM Metronome" ID="{6528EDCD-2AB9-4D4D-A390-D10DF5BF7750}" ShortID="678747538">
+				<MusicSegment Name="60 BPM Metronome" ID="{E8E62256-2EDA-4A8A-8EC2-C9911386DB10}" ShortID="745505087">
 					<PropertyList>
 						<Property Name="EndPosition" Type="Real64" Value="611636.833333333"/>
-						<Property Name="GridOffsetPreset" Type="int16" Value="1"/>
 						<Property Name="Tempo" Type="Real64" Value="60"/>
 					</PropertyList>
 					<ReferenceList>
@@ -18,14 +17,14 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<MusicTrack Name="60 BPM Metronome" ID="{FE0CE87C-16F3-485E-BD6F-4B7A26290ACE}" ShortID="611242790">
+						<MusicTrack Name="60 BPM Metronome" ID="{68052057-056F-44E5-B256-6BAF007CA201}" ShortID="947051503">
 							<ReferenceList>
 								<Reference Name="OutputBus">
 									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="60 BPM Metronome" ID="{46285DDE-11ED-4672-9E30-AC21B44109C6}">
+								<AudioFileSource Name="60 BPM Metronome" ID="{D6726B5E-7949-4946-BCF0-91755C792F9D}">
 									<Language>SFX</Language>
 									<AudioFile>60 BPM Metronome.wav</AudioFile>
 									<MediaIDList>
@@ -34,7 +33,7 @@
 								</AudioFileSource>
 							</ChildrenList>
 							<TransitionList>
-								<MusicTransition Name="Root" ID="{C9E3759C-7DD9-4902-870F-42DB1C800E9D}">
+								<MusicTransition Name="Root" ID="{1815AB97-1FDA-4A11-845C-EE2B1642E946}">
 									<PropertyList>
 										<Property Name="IsFolder" Type="bool" Value="True"/>
 									</PropertyList>
@@ -45,18 +44,18 @@
 								<ObjectList Name="Sequences">
 									<Reference>
 										<Local>
-											<MusicTrackSequence Name="" ID="{A3734E36-C09D-4837-884E-CF822E2BBA93}">
+											<MusicTrackSequence Name="" ID="{FC408BB3-2087-4711-95BC-2456892BB4B4}">
 												<ObjectLists>
 													<ObjectList Name="Clips">
 														<Reference>
 															<Local>
-																<MusicClip Name="60 BPM Metronome" ID="{B792BFB8-F16E-42E0-A24A-0F4AFDC52007}">
+																<MusicClip Name="60 BPM Metronome" ID="{D5F027AA-663E-4C16-9137-E2BC0D220F76}">
 																	<PropertyList>
 																		<Property Name="EndTrimOffset" Type="Real64" Value="611636.833333333"/>
 																		<Property Name="FadeInMode" Type="int16" Value="0"/>
 																		<Property Name="FadeOutMode" Type="int16" Value="0"/>
 																	</PropertyList>
-																	<AudioSourceRef Name="60 BPM Metronome" ID="{46285DDE-11ED-4672-9E30-AC21B44109C6}"/>
+																	<AudioSourceRef Name="60 BPM Metronome" ID="{D6726B5E-7949-4946-BCF0-91755C792F9D}"/>
 																</MusicClip>
 															</Local>
 														</Reference>
@@ -73,12 +72,12 @@
 						<ObjectList Name="Cues">
 							<Reference>
 								<Local>
-									<MusicCue Name="Entry Cue" ID="{4F7593C9-AAAB-4B4E-9BD8-B60D044C9CA6}"/>
+									<MusicCue Name="Entry Cue" ID="{F19ACDB7-C577-4329-98AB-B72E9A26B0C0}"/>
 								</Local>
 							</Reference>
 							<Reference>
 								<Local>
-									<MusicCue Name="Exit Cue" ID="{15C4033B-59CF-418C-985F-8EF1D9114D5B}">
+									<MusicCue Name="Exit Cue" ID="{9397DBEE-5ABA-45FC-9D56-7AAC8E228DEC}">
 										<PropertyList>
 											<Property Name="CueType" Type="int16" Value="1"/>
 											<Property Name="TimeMs" Type="Real64" Value="611636.833333333"/>
