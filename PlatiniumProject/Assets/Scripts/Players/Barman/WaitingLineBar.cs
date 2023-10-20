@@ -16,6 +16,7 @@ public class WaitingLineBar : MonoBehaviour
     [SerializeField] TextMeshProUGUI _indexText;
     [SerializeField] DrinkList _drinkList;
     List<GameObject> _waitingCharactersList;
+
     public int NbCharactersWaiting { get => _waitingCharactersList.Count; } 
 
     public int CurrentDrink { get => _currentDrink;}
@@ -44,10 +45,29 @@ public class WaitingLineBar : MonoBehaviour
 
     void OnDrinkComplete()
     {
-        CharacterStateMachine stateMachine = _waitingCharactersList[0].GetComponent<CharacterStateMachine>();
-        stateMachine.ChangeState(stateMachine.DieState);
+        CharacterStateMachine stateMachine = _waitingCharactersList[0]?.GetComponent<CharacterStateMachine>();
+        if (stateMachine != null)
+            stateMachine.ChangeState(stateMachine.DieState);
         _waitingCharactersList.RemoveAt(0);
-        GetRandomDrink();
+        if (_waitingCharactersList.Count > 0)
+        {
+            GetRandomDrink();
+            for (int i = 0;i < _waitingCharactersList.Count; i++)
+            {
+                _waitingCharactersList[i].GetComponent<CharacterStateMachine>().CharacterMove.MoveToPosition(transform.position + Vector3.left * (i + 1));
+            }
+        } else
+        {
+            _currentDrink = -1;
+        }
+        if (_currentDrink >= 0)
+        {
+            _indexText.text = _index + "/4 " + (Drink)_currentDrink;
+        }
+        else
+        {
+            _indexText.text = _index + "/4 ";
+        }
         _index = 0;
     }
     public bool ComparePlayerInputToExpectedInput(string playerInput)
@@ -58,10 +78,12 @@ public class WaitingLineBar : MonoBehaviour
     public void AddToWaitingLine(GameObject character)
     {
         CharacterStateMachine stateMachine = character.GetComponent<CharacterStateMachine>();
-        stateMachine.MoveToLocation = transform;
-        stateMachine.ChangeState(stateMachine.MoveToState);
+        stateMachine.CharacterMove.MoveToPosition(transform.position + Vector3.left * (_waitingCharactersList.Count + 1));
+        if (_waitingCharactersList.Count == 0)
+        {
+            GetRandomDrink();
+        }
         _waitingCharactersList.Add(character);
-        GetRandomDrink();
         if (_currentDrink >= 0)
         {
             _indexText.text = _index + "/4 " + (Drink)_currentDrink;

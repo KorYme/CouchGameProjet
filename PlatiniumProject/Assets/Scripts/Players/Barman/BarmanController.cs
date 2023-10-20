@@ -6,7 +6,6 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class BarmanController : MonoBehaviour
 {
-
     BarmanMovement _barmanMovement;
 
     public void Awake()
