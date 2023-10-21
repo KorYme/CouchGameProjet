@@ -6,16 +6,19 @@ using UnityEngine.Events;
 
 public class BeatManager : MonoBehaviour, ITimingable
 {
-    [Header("References"),Space]
+    [Header("References"), Space]
     [SerializeField] AK.Wwise.Event _beatWwiseEvent;
+
+    [Header("Parameters"),Space]
+    [SerializeField, Range(0, 1000), Tooltip("This time window will be divised per two, \nOne before and one after the beat")] 
+    int _timingWindowInMilliseconds = 250;
+    [SerializeField, Range(-1000, 1000), Tooltip("Offset of the beat to apply \nUse only if it is a necessity")]
+    int _beatOffsetInMilliseconds = 0;
 
     [Header("Events"), Space]
     [SerializeField] UnityEvent _onBeatEvent;
     [SerializeField] UnityEvent _onBeatStartEvent;
     [SerializeField] UnityEvent _onBeatEndEvent;
-
-    [Header("Parameters"), Space]
-    [SerializeField] int _timingWindowInMilliseconds;
 
     DateTime _lastBeatTime;
     int _beatDurationInMilliseconds;
@@ -38,8 +41,8 @@ public class BeatManager : MonoBehaviour, ITimingable
 
     private void BeatCallBack(object in_cookie, AkCallbackType in_type, AkCallbackInfo in_info)
     {
-        _lastBeatTime = DateTime.Now;
-        if (_beatCoroutine != null)
+        _lastBeatTime = DateTime.Now + TimeSpan.FromMilliseconds(_beatOffsetInMilliseconds);
+        if (_beatCoroutine == null)
         {
             _beatCoroutine = StartCoroutine(BeatCoroutine());
         }
