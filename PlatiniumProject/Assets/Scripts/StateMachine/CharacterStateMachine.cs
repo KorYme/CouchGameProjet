@@ -9,7 +9,6 @@ public class CharacterStateMachine : MonoBehaviour
     public enum CharacterObjective
     {
         None,
-        
         Bouncer,
         BarTender,
         DanceFloor,
@@ -99,11 +98,13 @@ public class CharacterStateMachine : MonoBehaviour
         CurrentState?.ExitState();
         if (CurrentState != null)
         {
-            _beatManager.OnBeatEvent.RemoveListener(CurrentState.OnBeat);
+            //_beatManager.OnBeatEvent.RemoveListener(CurrentState.OnBeat);
+            fakeBeat -= CurrentState.OnBeat;
         }
         PreviousState = CurrentState;
         CurrentState = state;
-        _beatManager.OnBeatEvent.AddListener(CurrentState.OnBeat);
+        fakeBeat += CurrentState.OnBeat;
+        //_beatManager.OnBeatEvent.AddListener(CurrentState.OnBeat);
         CurrentState?.EnterState();
     }
     

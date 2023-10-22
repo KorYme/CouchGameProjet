@@ -7,7 +7,6 @@ using Random = UnityEngine.Random;
 public class CharacterStateIdle : CharacterState
 {
     List<SlotInformation> availableSlots;
-    Vector2[] direction = new Vector2[4] { Vector2.down, Vector2.up, Vector2.left, Vector2.right };
     public override void OnBeat()
     {
         StateMachine.CurrentBeatAmount++;
@@ -59,17 +58,17 @@ public class CharacterStateIdle : CharacterState
                 }
                 else
                 {
-                    availableSlots = new List<SlotInformation>();
-                    for (int i = 0; i < 4; ++i)
-                    {
-                        SlotInformation slot =
-                            StateMachine.qt.GetSlot(StateMachine.CurrentChekerBoardId + direction[i]);
-
-                        if (slot != null)
-                        {
-                            availableSlots.Add(slot);
-                        }
-                    }
+                    // availableSlots = new List<SlotInformation>();
+                    // for (int i = 0; i < 4; ++i)
+                    // {
+                    //     SlotInformation slot =
+                    //         StateMachine.qt.GetSlot(StateMachine.CurrentChekerBoardId + direction[i]);
+                    //
+                    //     if (slot != null)
+                    //     {
+                    //         availableSlots.Add(slot);
+                    //     }
+                    // }
                     if(availableSlots.Count <= 0)
                         return;
                     
