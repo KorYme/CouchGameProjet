@@ -8,11 +8,11 @@ using UnityEngine;
 public class TransitQueue : MonoBehaviour
 {
     [SerializeField] private GameObject _slot;
-    public List<SlotInformation> Slots { get; private set; } = new List<SlotInformation>();
+    public List<SlotInformation> Slots  = new List<SlotInformation>();
 
     public void AddSlot(Vector3 position)
     {
-        GameObject go = Instantiate(_slot, position, quaternion.identity, transform);
+        GameObject go = Instantiate(_slot, new Vector3(position.x, position.y, 0), quaternion.identity, transform);
         Slots.Add(go.GetComponent<SlotInformation>());
     }
 
@@ -24,6 +24,14 @@ public class TransitQueue : MonoBehaviour
         }
         Slots.Clear();
     }
-    
+
+    private void Awake()
+    {
+        for(int i = 0; i < Slots.Count - 1; i++)
+        {
+            Slots[i].Next = Slots[i + 1];
+        }
+    }
+
 
 }

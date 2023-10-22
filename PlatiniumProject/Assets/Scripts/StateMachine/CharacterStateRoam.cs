@@ -6,9 +6,9 @@ public class CharacterStateRoam : CharacterState
 {
     public override void EnterState()
     {
-        Vector2 destination = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * Random.Range(0f, StateMachine.qt.CircleRadius);
-        StateMachine.CharacterMove.MoveToPosition(StateMachine.qt.CircleOrigin.position + (Vector3) destination);
-        StateMachine.qt.RoamQueue.Add(StateMachine);
+        Vector2 destination = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * Random.Range(0f, StateMachine.AreaManager.CircleRadius);
+        StateMachine.CharacterMove.MoveToPosition(StateMachine.AreaManager.CircleOrigin.position + (Vector3) destination);
+        StateMachine.AreaManager.RoamQueue.Add(StateMachine);
     }
 
     public override void OnBeat()
@@ -23,16 +23,16 @@ public class CharacterStateRoam : CharacterState
 
     private void BeatAction()
     {
-        if (StateMachine.qt.RoamQueue[0] == StateMachine)
+        if (StateMachine.AreaManager.RoamQueue[0] == StateMachine)
         {
-            StateMachine.qt.RoamQueue.Remove(StateMachine);
+            StateMachine.AreaManager.RoamQueue.Remove(StateMachine);
             StateMachine.ChooseWaitingLine();
             StateMachine.ChangeState(StateMachine.BarManQueueState);
         }
         else
         {
-            Vector2 destination = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * Random.Range(0f, StateMachine.qt.CircleRadius);
-            StateMachine.CharacterMove.MoveToPosition(StateMachine.qt.CircleOrigin.position + (Vector3) destination);
+            Vector2 destination = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * Random.Range(0f, StateMachine.AreaManager.CircleRadius);
+            StateMachine.CharacterMove.MoveToPosition(StateMachine.AreaManager.CircleOrigin.position + (Vector3) destination);
         }
     }
 }

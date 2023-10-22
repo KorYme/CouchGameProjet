@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CheckerBoard : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class CheckerBoard : MonoBehaviour
         }
     }
 
-    public List<SlotInformation> Board { get; private set; } = new List<SlotInformation>();
+    public List<SlotInformation> Board;
 
     public void Delete()
     {
@@ -39,7 +40,8 @@ public class CheckerBoard : MonoBehaviour
                 DestroyImmediate(v.gameObject);
             }
         }
-        Board.Clear();
+        Debug.Log("dsfsfsdf");
+        Board?.Clear();
         Board = new List<SlotInformation>();
     }
 
@@ -86,9 +88,20 @@ public class CheckerBoard : MonoBehaviour
         }
     }
 
-    public SlotInformation GetNextBouncerSlot()
+
+    public SlotInformation GetNextBouncerSlot(SlotInformation currentSlot)
     {
-        
-        return null;
+        List<SlotInformation> availableSlot = new List<SlotInformation>();
+        foreach(SlotInformation slot in currentSlot.Neighbours)
+        {
+            if(slot != null && slot.Occupant == null)
+            {
+                availableSlot.Add(slot);
+            }
+        }
+
+        if (availableSlot.Count <= 0) return null;
+
+        return availableSlot[Random.Range(0, availableSlot.Count)];
     }
 }
