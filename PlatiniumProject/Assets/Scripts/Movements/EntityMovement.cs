@@ -11,6 +11,7 @@ public abstract class EntityMovement : MonoBehaviour, IMovable, IBounceable
     [Header("References")]
     [SerializeField] Transform _transformToModify;
 
+    //USELESS A REVOIR 
     public float MovementDuration => _movementData.MovementDuration;
     public int SpeedMultiplier => _movementData.SpeedMultiplier;
     public AnimationCurve MovementCurve => _movementData.MovementCurve;
@@ -23,7 +24,19 @@ public abstract class EntityMovement : MonoBehaviour, IMovable, IBounceable
     Coroutine _movementCoroutine;
     public bool IsMoving => _movementCoroutine != null; 
     public bool IsBouncing => _movementCoroutine != null;
+    public bool HasAlreadyMovedThisBeat { get; protected set; }
 
+    private void OnEnable()
+    {
+        Globals.BeatTiming.OnBeatStartEvent.AddListener(AllowNewInput);
+    }
+
+    private void OnDestroy()
+    {
+        Globals.BeatTiming.OnBeatStartEvent.RemoveListener(AllowNewInput);
+    }
+
+    private void AllowNewInput() => HasAlreadyMovedThisBeat = false;
 
     protected virtual IEnumerator MovementCoroutine(Vector3 positionToGo)
     {
@@ -43,5 +56,10 @@ public abstract class EntityMovement : MonoBehaviour, IMovable, IBounceable
         _movementCoroutine = null;
     }
 
-    public void MoveToPosition(Vector3 position) => _movementCoroutine = StartCoroutine(MovementCoroutine(position));
+    public void MoveToPosition(Vector3 position)
+    {
+        if (HasAlreadyMovedThisBeat) return;
+        _movementCoroutine = StartCoroutine(MovementCoroutine(position));
+        HasAlreadyMovedThisBeat = true;
+    }
 }
