@@ -6,13 +6,13 @@ public class BarmanMovement : MonoBehaviour
 {
     PlayerInputController _controller;
     [SerializeField] BarmanPosition[] _barmanPositions;
-    [SerializeField,Range(0f,1f)] float _inputAcceptanceThreshold = 0.1f;
+    //[SerializeField,Range(0f,1f)] float _inputAcceptanceThreshold = 0.1f;
     int _indexPosition;
     [SerializeField] float _timeBetweenBeat = 1f;
     [SerializeField] float _timeBeatAccepted = 0.1f;
     float _timer = 0f;
     [SerializeField] SpriteRenderer _renderer;
-
+    bool _inputRefreshed = true;
 
     [SerializeField] BeatManager _beatManager;
 
@@ -30,16 +30,16 @@ public class BarmanMovement : MonoBehaviour
 
     private void Start()
     {
-        //_renderer.color = _beatManager.IsInsideBeat ? Color.red : Color.blue;
+        _renderer.color = _beatManager.IsInsideBeat ? Color.red : Color.blue;
         //StartCoroutine(CoroutineBeat());
-        //_beatManager.OnBeatStartEvent.AddListener(ChangeColorToRed);
-        //_beatManager.OnBeatEndEvent.AddListener(ChangeColorToBlue);
+        _beatManager.OnBeatStartEvent.AddListener(ChangeColorToRed);
+        _beatManager.OnBeatEndEvent.AddListener(ChangeColorToBlue);
     }
 
     private void OnDestroy()
     {
-        //_beatManager.OnBeatStartEvent.RemoveListener(ChangeColorToRed);
-        //_beatManager.OnBeatEndEvent.RemoveListener(ChangeColorToBlue);
+        _beatManager.OnBeatStartEvent.RemoveListener(ChangeColorToRed);
+        _beatManager.OnBeatEndEvent.RemoveListener(ChangeColorToBlue);
     }
 
     public void ChangeColorToRed()
@@ -107,15 +107,33 @@ public class BarmanMovement : MonoBehaviour
     {
         if (_controller == null)
         {
-            _controller = Players.PlayersController[(int)PlayerRole.Barman];
+            SetupController();
+        }
+        if (!IsInputDuringBeatTime())
+        {
+            _inputRefreshed = true;
         }
     }
-    private void FixedUpdate()
+
+    private void SetupController()
     {
-        if (_controller != null && _controller.MoveVector != Vector2.zero)
+        _controller = Players.PlayersController[(int)PlayerRole.Barman];
+        if (_controller != null)
         {
-            float value = _controller.MoveVector.y;
-            ChangeIndexToReach(value);
+            _controller.OnAxisMoveStarted += OnInputMove;
+        }
+    }
+
+    void OnInputMove()
+    {
+        if (_controller != null)
+        {
+            if (_inputRefreshed && IsInputDuringBeatTime())
+            {
+                _inputRefreshed = false;
+                float value = _controller.MoveVector.y;
+                ChangeIndexToReach(value);
+            }
         }
     }
 }

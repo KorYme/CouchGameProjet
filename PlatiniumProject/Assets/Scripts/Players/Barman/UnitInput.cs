@@ -9,8 +9,4 @@ public class UnitInput : SODrinkInputs
     //Hold
     public bool checkHold = false;
     public int nbBeatHoldDuration = 2;
-    //Rotation
-    public bool checkRotation = false;
-    public float angleRotation = 90f;
-    public float angleRotationAcceptance = 10f;
 }

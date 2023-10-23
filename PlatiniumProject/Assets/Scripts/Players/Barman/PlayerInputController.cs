@@ -1,17 +1,24 @@
 using Rewired;
 using Rewired.Demos;
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerInputController : MonoBehaviour
 {
     [SerializeField]int gamePlayerId = 0;
-    protected Rewired.Player player { get { return PlayerInputsAssigner.GetRewiredPlayer(gamePlayerId); } }
+    private Rewired.Player player { get { return PlayerInputsAssigner.GetRewiredPlayer(gamePlayerId); } }
     private bool _isRegistered = false;
 
-    #region Inputs
+    #region InputsMovement
     public Vector2 MoveVector {  get; private set; } = Vector2.zero;
-    public float DurationAction1Down { get; private set; } = 0f;
+    public bool OnMoveDown { get; private set; } = false;
+    private bool _isMoveDownRefreshed = true;
+    public Vector2 MoveDirection {  get; private set; } = Vector2.zero;
+    public event Action OnAxisMoveStarted;
     #endregion
+
+    public float DurationAction1Down { get; private set; } = 0f;
 
     void Update()
     {
@@ -28,7 +35,23 @@ public class PlayerInputController : MonoBehaviour
     private void GetInputs()
     {
         MoveVector = new Vector2(player.GetAxis(RewiredConsts.Action.MOVE_HORIZONTAL), player.GetAxis(RewiredConsts.Action.MOVE_VERTICAL));
-        Debug.Log(MoveVector);
+        
+        if (_isMoveDownRefreshed && !OnMoveDown && MoveVector != Vector2.zero)
+        {
+            OnMoveDown = true;
+            OnAxisMoveStarted?.Invoke();
+            _isMoveDownRefreshed = false;
+        } else
+        {
+            if (!_isMoveDownRefreshed && OnMoveDown)
+            {
+                OnMoveDown = false;
+            }
+        }
+        if (MoveVector == Vector2.zero)
+        {
+            _isMoveDownRefreshed = true;
+        }
         DurationAction1Down = (float)player.GetButtonTimePressed(RewiredConsts.Action.ACTION1);
     }
 }
