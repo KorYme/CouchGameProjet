@@ -4,5 +4,5 @@ using UnityEngine;
 
 public static class Globals
 {
-    public static ITimingable BeatTiming = null;
+    public static ITimingable BeatTimer = null;
 }

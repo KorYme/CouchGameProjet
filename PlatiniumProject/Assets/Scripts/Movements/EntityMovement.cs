@@ -15,7 +15,7 @@ public abstract class EntityMovement : MonoBehaviour, IMovable, IBounceable
     public float MovementDuration => _movementData.MovementDuration;
     public int SpeedMultiplier => _movementData.SpeedMultiplier;
     public AnimationCurve MovementCurve => _movementData.MovementCurve;
-
+    //ENCORE USELESS A REVOIR
     public AnimationCurve BounceCurve => _movementData.BounceCurve;
     public float BounceMultiplier => _movementData.BounceMultiplier;
     public Vector2 BounceFactors => _movementData.BounceFactors;
@@ -28,14 +28,15 @@ public abstract class EntityMovement : MonoBehaviour, IMovable, IBounceable
 
 
 
-    private void OnEnable()
+    protected virtual void Start()
     {
-        Globals.BeatTiming.OnBeatStartEvent.AddListener(AllowNewInput);
+        HasAlreadyMovedThisBeat = false;
+        Globals.BeatTimer.OnBeatStartEvent.AddListener(AllowNewInput);
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
-        Globals.BeatTiming.OnBeatStartEvent.RemoveListener(AllowNewInput);
+        Globals.BeatTimer.OnBeatStartEvent.RemoveListener(AllowNewInput);
     }
 
     private void AllowNewInput() => HasAlreadyMovedThisBeat = false;
@@ -60,6 +61,7 @@ public abstract class EntityMovement : MonoBehaviour, IMovable, IBounceable
 
     public void MoveToPosition(Vector3 position)
     {
+        Debug.Log($"{name} - {HasAlreadyMovedThisBeat}");
         if (HasAlreadyMovedThisBeat || IsMoving) return;
         _movementCoroutine = StartCoroutine(MovementCoroutine(position));
         HasAlreadyMovedThisBeat = true;
