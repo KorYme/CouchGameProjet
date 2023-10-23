@@ -1,6 +1,0 @@
-Event	ID	Name			Wwise Object Path	Notes
-	417627684	PlayMusic			\Default Work Unit\PlayMusic	
-
-In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	216734859	60 BPM Metronome	C:\GIT\CouchGameProjet\PlatiniumProject\PlatiniumProject_WwiseProject\.cache\Mac\SFX\60 BPM Metronome_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\60 BPM Metronome\60 BPM Metronome		0
-

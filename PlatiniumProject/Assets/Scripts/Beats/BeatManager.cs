@@ -1,45 +1,51 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class BeatManager : MonoBehaviour, ITimingable
 {
-    [Header("References"),Space]
+    [Header("References"), Space]
     [SerializeField] AK.Wwise.Event _beatWwiseEvent;
+
+    [Header("Parameters"),Space]
+    [SerializeField, Range(0, 1000), Tooltip("This time window will be divised per two, \nOne before and one after the beat")] 
+    int _timingWindowInMilliseconds = 250;
+    [SerializeField, Range(-1000, 1000), Tooltip("Offset of the beat to apply \nUse only if it is a necessity")]
+    int _beatOffsetInMilliseconds = 0;
 
     [Header("Events"), Space]
     [SerializeField] UnityEvent _onBeatEvent;
     [SerializeField] UnityEvent _onBeatStartEvent;
     [SerializeField] UnityEvent _onBeatEndEvent;
+
+    DateTime _lastBeatTime;
+    int _beatDurationInMilliseconds;
+    Coroutine _beatCoroutine;
+
+
     public UnityEvent OnBeatEvent => _onBeatEvent;
     public UnityEvent OnBeatStartEvent => _onBeatStartEvent;
     public UnityEvent OnBeatEndEvent => _onBeatEndEvent;
 
-    [Header("Parameters"), Space]
-    [SerializeField] int _timingWindowInMilliseconds;
-
-    int _beatDurationInMilliseconds;
-    int _timerInMilliseconds;
-
-    public bool IsInsideBeat { get; private set; }
+    public bool IsInsideBeat => (DateTime.Now - _lastBeatTime).TotalMilliseconds < _timingWindowInMilliseconds / 2f 
+        || (DateTime.Now - _lastBeatTime).TotalMilliseconds > _beatDurationInMilliseconds - _timingWindowInMilliseconds / 2f;
 
 
     private void Start()
     {
         _beatDurationInMilliseconds = 1000;
-        _timerInMilliseconds = 0;
-        IsInsideBeat = true;
-        StartCoroutine(BeatCoroutine());
         _beatWwiseEvent.Post(gameObject, (uint)AkCallbackType.AK_MusicSyncBeat, BeatCallBack);
     }
 
     private void BeatCallBack(object in_cookie, AkCallbackType in_type, AkCallbackInfo in_info)
     {
-        _timerInMilliseconds = 0;
+        _lastBeatTime = DateTime.Now + TimeSpan.FromMilliseconds(_beatOffsetInMilliseconds);
+        if (_beatCoroutine == null)
+        {
+            _beatCoroutine = StartCoroutine(BeatCoroutine());
+        }
         switch (in_info)
         {
             case AkMusicSyncCallbackInfo info:
@@ -55,24 +61,10 @@ public class BeatManager : MonoBehaviour, ITimingable
     {
         while (true)
         {
-            _timerInMilliseconds += 20;
-            if (IsInsideBeat)
-            {
-                if (_timerInMilliseconds >= _timingWindowInMilliseconds / 2 && _beatDurationInMilliseconds - _timerInMilliseconds > _timingWindowInMilliseconds / 2)
-                {
-                    IsInsideBeat = false;
-                    _onBeatEndEvent?.Invoke();
-                }
-            }
-            else
-            {
-                if (_beatDurationInMilliseconds - _timerInMilliseconds <= _timingWindowInMilliseconds / 2)
-                {
-                    IsInsideBeat = true;
-                    _onBeatStartEvent?.Invoke();
-                }
-            }
-            yield return new WaitForFixedUpdate();
+            yield return new WaitWhile(() => IsInsideBeat);
+            _onBeatEndEvent?.Invoke();
+            yield return new WaitUntil(() => IsInsideBeat);
+            _onBeatStartEvent?.Invoke();
         }
     }
 }
