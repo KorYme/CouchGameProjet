@@ -34,7 +34,7 @@ public class QueueTest : MonoBehaviour
             for(int j = 0; j < _slotList.Length / _arrayHorizontalLength; ++j)
             {
                 list[i,j] = _slotList[index];
-                list[i, j].Id = new Vector2(i, j);
+                //list[i, j].Id = new Vector2(i, j);
                 index++;
             }
         }
@@ -58,11 +58,7 @@ public class QueueTest : MonoBehaviour
         return Bouncer[(int)id.x, (int)id.y];
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(_circleOrigin.transform.position, _circleRadius);
-    }
+
 }
 
 

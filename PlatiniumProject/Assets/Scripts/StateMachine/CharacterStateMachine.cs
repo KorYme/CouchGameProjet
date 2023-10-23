@@ -9,7 +9,6 @@ public class CharacterStateMachine : MonoBehaviour
     public enum CharacterObjective
     {
         None,
-        
         Bouncer,
         BarTender,
         DanceFloor,
@@ -18,11 +17,12 @@ public class CharacterStateMachine : MonoBehaviour
     [SerializeField] private CharacterData _characterData;
     BeatManager _beatManager;
     public IMovable CharacterMove { get; private set; }
-    public QueueTest qt;
+    public AreaManager AreaManager { get; private set; }
     public Action fakeBeat;
     WaitingLineBar[] _waitingLines;
     
-    public CharacterState IdleState { get; } = new CharacterStateIdle();
+    public CharacterState IdleTransitState { get; } = new CharacterStateIdleTransit();
+    public CharacterState IdleBouncerState { get; } = new CharacterStateIdleBouncer();
     public CharacterState MoveToState { get; } = new CharacterStateMoveTo();
     public CharacterState BouncerCheckState { get; } = new CharacterCheckByBouncerState();
     public CharacterState DieState { get; } = new CharacterDieState();
@@ -30,7 +30,8 @@ public class CharacterStateMachine : MonoBehaviour
     public CharacterState BarManQueueState { get; } = new CharacterStateBarmanQueue();
     private CharacterState[] _allState => new CharacterState[]
     {
-        IdleState,
+        IdleTransitState,
+        IdleBouncerState,
         MoveToState,
         BouncerCheckState,
         DieState,
@@ -39,16 +40,14 @@ public class CharacterStateMachine : MonoBehaviour
     };
     
     #region Propreties
-    private CharacterState StartState => IdleState;
+    private CharacterState StartState => IdleTransitState;
     public CharacterState CurrentState { get; private set; }
     public CharacterState PreviousState { get; private set; }
+    public CharacterState NextState { get; set; }
     public Vector3 MoveToLocation { get; set; }
     public CharacterData CharacterDataObject => _characterData;
-    public SlotInformation[] CurrentTransitQueue { get; set; }
     public SlotInformation CurrentSlot { get; set; }
     public int CurrentBeatAmount { get; set; }
-    public Vector2 CurrentChekerBoardId { get; set; }
-    public CharacterObjective CharacterCurrentObjective { get; set; } = CharacterObjective.Bouncer;
     public int CurrentMovementInBouncer { get; set; }
     #endregion
 
@@ -56,15 +55,14 @@ public class CharacterStateMachine : MonoBehaviour
     {
         InitAllState();
         _beatManager = FindObjectOfType<BeatManager>();
-        qt = FindObjectOfType<QueueTest>();
+        AreaManager = FindObjectOfType<AreaManager>();
         CharacterMove = GetComponent<IMovable>();
     }
 
     private void Start()
     {
         _waitingLines = FindObjectsOfType<WaitingLineBar>();
-        CurrentTransitQueue = qt.Transit;
-        CurrentSlot = CurrentTransitQueue[0];
+        CurrentSlot = AreaManager.BouncerTransit.Slots[0];
         ChangeState(StartState);
     }
 
@@ -99,11 +97,13 @@ public class CharacterStateMachine : MonoBehaviour
         CurrentState?.ExitState();
         if (CurrentState != null)
         {
-            _beatManager.OnBeatEvent.RemoveListener(CurrentState.OnBeat);
+            //_beatManager.OnBeatEvent.RemoveListener(CurrentState.OnBeat);
+            fakeBeat -= CurrentState.OnBeat;
         }
         PreviousState = CurrentState;
         CurrentState = state;
-        _beatManager.OnBeatEvent.AddListener(CurrentState.OnBeat);
+        fakeBeat += CurrentState.OnBeat;
+        //_beatManager.OnBeatEvent.AddListener(CurrentState.OnBeat);
         CurrentState?.EnterState();
     }
     
