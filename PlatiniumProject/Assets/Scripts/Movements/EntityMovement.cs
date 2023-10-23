@@ -24,7 +24,9 @@ public abstract class EntityMovement : MonoBehaviour, IMovable, IBounceable
     Coroutine _movementCoroutine;
     public bool IsMoving => _movementCoroutine != null; 
     public bool IsBouncing => _movementCoroutine != null;
-    public bool HasAlreadyMovedThisBeat { get; protected set; }
+    public bool HasAlreadyMovedThisBeat { get; protected set; } = false;
+
+
 
     private void OnEnable()
     {
@@ -58,7 +60,7 @@ public abstract class EntityMovement : MonoBehaviour, IMovable, IBounceable
 
     public void MoveToPosition(Vector3 position)
     {
-        if (HasAlreadyMovedThisBeat) return;
+        if (HasAlreadyMovedThisBeat || IsMoving) return;
         _movementCoroutine = StartCoroutine(MovementCoroutine(position));
         HasAlreadyMovedThisBeat = true;
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,4 +12,5 @@ public interface ITimingable
     public UnityEvent OnBeatEvent { get; }
     public UnityEvent OnBeatStartEvent { get; }
     public UnityEvent OnBeatEndEvent { get; }
+    public UnityEvent<float> OnBeatPercentIncreased { get; }
 }

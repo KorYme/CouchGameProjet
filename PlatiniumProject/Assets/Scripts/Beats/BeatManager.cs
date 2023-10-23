@@ -26,6 +26,8 @@ public class BeatManager : MonoBehaviour, ITimingable
     UnityEvent _onBeatStartEvent;
     [SerializeField, Tooltip("This event is called on the first frame an input cannot be received anymore")] 
     UnityEvent _onBeatEndEvent;
+    [SerializeField, Tooltip("This event is called each frame and returns a float between 0 and 1 representing the percent time spent between the last beat and the next one")]
+    UnityEvent<float> _onBeatPercentIncreased;
 
 
     int _beatDurationInMilliseconds;
@@ -36,10 +38,13 @@ public class BeatManager : MonoBehaviour, ITimingable
     #region PROPERTIES
     public bool IsInsideBeat => (DateTime.Now - _lastBeatTime).TotalMilliseconds < (_timingWindowPercentAfterBeat * _beatDurationInMilliseconds)
         || (DateTime.Now - _lastBeatTime).TotalMilliseconds > _beatDurationInMilliseconds - (_timingWindowPercentBeforeBeat * _beatDurationInMilliseconds); // Modulo ?
+    public int BeatDurationInMilliseconds => _beatDurationInMilliseconds;
     public UnityEvent OnBeatEvent => _onBeatEvent;
     public UnityEvent OnBeatStartEvent => _onBeatStartEvent;
     public UnityEvent OnBeatEndEvent => _onBeatEndEvent;
-    public int BeatDurationInMilliseconds => _beatDurationInMilliseconds;
+    public UnityEvent<float> OnBeatPercentIncreased => _onBeatPercentIncreased;
+
+    float _PercentBeatTime => (float)(DateTime.Now - _lastBeatTime).TotalMilliseconds / _beatDurationInMilliseconds;
     #endregion
 
     #region PROCEDURES
@@ -52,6 +57,7 @@ public class BeatManager : MonoBehaviour, ITimingable
     {
         _beatDurationInMilliseconds = 1000;
         yield return null;
+        _onBeatPercentIncreased.AddListener(x => print(x));
         _beatWwiseEvent.Post(gameObject, (uint)AkCallbackType.AK_MusicSyncBeat, BeatCallBack);
     }
 
@@ -70,17 +76,26 @@ public class BeatManager : MonoBehaviour, ITimingable
             default:
                 break;
         }
-        _onBeatEvent?.Invoke();
+        OnBeatEvent?.Invoke();
     }
 
     IEnumerator BeatCoroutine()
     {
+        
         while (true)
         {
-            yield return new WaitWhile(() => IsInsideBeat);
-            _onBeatEndEvent?.Invoke();
-            yield return new WaitWhile(() => !IsInsideBeat);
-            _onBeatStartEvent?.Invoke();
+            while (IsInsideBeat)
+            {
+                yield return null;
+                OnBeatPercentIncreased?.Invoke(_PercentBeatTime);
+            }
+            OnBeatEndEvent?.Invoke();
+            while (!IsInsideBeat)
+            {
+                yield return null;
+                OnBeatPercentIncreased?.Invoke(_PercentBeatTime);
+            }
+            OnBeatStartEvent?.Invoke();
         }
     }
     #endregion
