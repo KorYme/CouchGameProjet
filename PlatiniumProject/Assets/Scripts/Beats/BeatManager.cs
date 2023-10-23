@@ -43,6 +43,11 @@ public class BeatManager : MonoBehaviour, ITimingable
     #endregion
 
     #region PROCEDURES
+    private void Awake()
+    {
+        Globals.BeatTiming = this;
+    }
+
     private IEnumerator Start()
     {
         _beatDurationInMilliseconds = 1000;
