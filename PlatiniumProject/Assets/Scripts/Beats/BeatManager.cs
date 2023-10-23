@@ -8,15 +8,15 @@ public class BeatManager : MonoBehaviour, ITimingable
 {
     #region FIELDS
     [Header("References"), Space]
-    [SerializeField] AK.Wwise.Event _beatWwiseEvent;
+    [SerializeField, Tooltip("Wwise play event to launch the sound and the beat\nDon't need to be modified by GDs")] AK.Wwise.Event _beatWwiseEvent;
 
 
     [Header("Parameters"), Space]
     [SerializeField, Range(0f, .5f), Tooltip("Timing window before the beat which allows input")]
-    float _timingWindowPercentBeforeBeat = .1f;
+    float _timingBeforeBeat = .1f;
 
     [SerializeField, Range(0f, .5f), Tooltip("Timing window after the beat which allows input")]
-    float _timingWindowPercentAfterBeat = .3f;
+    float _timingAfterBeat = .3f;
 
 
     [Header("Events"), Space]
@@ -36,8 +36,8 @@ public class BeatManager : MonoBehaviour, ITimingable
     #endregion
 
     #region PROPERTIES
-    public bool IsInsideBeat => (DateTime.Now - _lastBeatTime).TotalMilliseconds < (_timingWindowPercentAfterBeat * _beatDurationInMilliseconds)
-        || (DateTime.Now - _lastBeatTime).TotalMilliseconds > _beatDurationInMilliseconds - (_timingWindowPercentBeforeBeat * _beatDurationInMilliseconds); // Modulo ?
+    public bool IsInsideBeat => (DateTime.Now - _lastBeatTime).TotalMilliseconds < (_timingAfterBeat * _beatDurationInMilliseconds)
+        || (DateTime.Now - _lastBeatTime).TotalMilliseconds > _beatDurationInMilliseconds - (_timingBeforeBeat * _beatDurationInMilliseconds); // Modulo ?
     public int BeatDurationInMilliseconds => _beatDurationInMilliseconds;
     public UnityEvent OnBeatEvent => _onBeatEvent;
     public UnityEvent OnBeatStartEvent => _onBeatStartEvent;
@@ -50,14 +50,13 @@ public class BeatManager : MonoBehaviour, ITimingable
     #region PROCEDURES
     private void Awake()
     {
-        Globals.BeatTiming = this;
+        Globals.BeatTimer = this;
     }
 
     private IEnumerator Start()
     {
         _beatDurationInMilliseconds = 1000;
         yield return null;
-        _onBeatPercentIncreased.AddListener(x => print(x));
         _beatWwiseEvent.Post(gameObject, (uint)AkCallbackType.AK_MusicSyncBeat, BeatCallBack);
     }
 

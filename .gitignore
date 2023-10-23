@@ -126,3 +126,5 @@ PlatiniumProject/PlatiniumProject_WwiseProject/GeneratedSoundBanks/
 *.wav
 
 PlatiniumProject/Assets/Wwise/Editor/ProjectData/AkWwiseProjectData.asset
+
+PlatiniumProject/Assets/WwiseSettings.xml
