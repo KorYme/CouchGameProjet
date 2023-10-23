@@ -13,20 +13,10 @@ public class CheckerBoard : MonoBehaviour
     [SerializeField] protected float _verticalSpacing;
     [SerializeField] protected GameObject _slot;
 
-    private int boardLength
-    {
-        get
-        {
-            return _boardDimension.x * _boardDimension.y;
-        }
-    }
-    int[] Directions
-    {
-        get
-        {
-            return new int[4] { 1, -1, _boardDimension.x, -_boardDimension.x };
-        }
-    }
+    public Vector2Int BoardDimension => _boardDimension;
+    public int BoardLength => _boardDimension.x * _boardDimension.y;
+    int[] Directions => new int[4] { 1, -1, _boardDimension.x, -_boardDimension.x };
+
 
     public List<SlotInformation> Board;
 
@@ -50,7 +40,7 @@ public class CheckerBoard : MonoBehaviour
         Delete();   
         
         int j = 0;
-        for (int i = 0; i < boardLength; ++i)
+        for (int i = 0; i < BoardLength; ++i)
         {
             if (i % _boardDimension.x == 0)
             {
@@ -68,14 +58,14 @@ public class CheckerBoard : MonoBehaviour
 
     private void SetNeighbours()
     {
-        for (int i = 0; i < boardLength; ++i)
+        for (int i = 0; i < BoardLength; ++i)
         {
             SlotInformation slot = Board[i];
 
             for (int k = 0; k < Directions.Length; k++)
             {
                 slot.Neighbours[k] = null;
-                if (i + Directions[k] <= boardLength - 1 && i + Directions[k] >= 0)
+                if (i + Directions[k] <= BoardLength - 1 && i + Directions[k] >= 0)
                 {
                     slot.Neighbours[k] = Board[i + Directions[k]];
                 }
