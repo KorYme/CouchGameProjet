@@ -4,6 +4,6 @@ public class CharacterStateDancing : CharacterState
 {
     public override void OnBeat()
     {
-        StateMachine.GetComponent<SpriteRenderer>().color = Random.ColorHSV();
+        StateMachine.GetComponentInChildren<SpriteRenderer>().color = Random.ColorHSV();
     }
 }

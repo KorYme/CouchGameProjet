@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
@@ -49,11 +50,15 @@ public class WaitingLineBar : MonoBehaviour
         CharacterStateMachine stateMachine = _waitingCharactersList[0];
         if (stateMachine != null)
         {
+            Debug.Log(("ssdsd"));
             stateMachine.CurrentSlot = stateMachine.AreaManager.DjBoard.GetRandomAvailableSlot();
+            EditorGUIUtility.PingObject(stateMachine.CurrentSlot.gameObject);
             stateMachine.MoveToLocation = stateMachine.CurrentSlot.transform.position;
-        
-            stateMachine.ChangeState(stateMachine.MoveToState);
+            
+            Debug.Log(stateMachine.MoveToLocation);
             stateMachine.NextState = stateMachine.DancingState;
+            stateMachine.ChangeState(stateMachine.MoveToState);
+
         }
         _waitingCharactersList.RemoveAt(0);
         if (_waitingCharactersList.Count > 0)
