@@ -8,19 +8,19 @@ public class RecipesWindow : EditorWindow
     List<QTESequence> _drinks;
     QTESequence _selectedQTE = null;
     bool _temporaryQTE = false;
-    SerializedObject _serializedObject;
-    SerializedProperty _propertyName;
-    int index = 0;
-    bool _showList = true;
-    #region ListOptions
+    int _indexNewSequence = 0;//Used to have different names for file sequences
+    bool _showListInputs = true;
+    
+    #region ListOptionsKeys
+    //Used for the display of the rewired keys
     private string[] _buttonInputOptions = null;
     const string NAME_ACTION = nameof(UnitInput.ActionIndex);
+
+    SerializedObject _serializedObject;
+    SerializedProperty _propertyName;
     #endregion
-    #region Selected
-    int _selectedIndexInputButton = 0;
-    int _selectedIndexInputType = 0;
-    #endregion
-    GUIStyle style;
+
+    GUIStyle _styleButtonAddQTE;
 
     [MenuItem("Tools/QTEWindow")]
     static void InitWindow()
@@ -32,7 +32,7 @@ public class RecipesWindow : EditorWindow
     private void Awake()
     {
         LoadQTE();
-        style = new GUIStyle()
+        _styleButtonAddQTE = new GUIStyle()
         {
             fontStyle = FontStyle.Bold,
             alignment = TextAnchor.MiddleCenter,
@@ -59,7 +59,7 @@ public class RecipesWindow : EditorWindow
                 _drinks.Add(AssetDatabase.LoadAssetAtPath<QTESequence>(assetPath));
             }
         }
-        index = _drinks.Count;
+        _indexNewSequence = _drinks.Count;
     }
 
     void DrawSideBar()
@@ -75,7 +75,7 @@ public class RecipesWindow : EditorWindow
                 }
             }
         }
-        if (GUILayout.Button("Add QTE", style))
+        if (GUILayout.Button("Add QTE", _styleButtonAddQTE))
         {
             _selectedQTE = CreateInstance<QTESequence>();
             _temporaryQTE = true;
@@ -84,7 +84,7 @@ public class RecipesWindow : EditorWindow
 
     void SaveQTEFile()
     {
-        _selectedQTE.Index = index;
+        _selectedQTE.Index = _indexNewSequence;
         if (!AssetDatabase.IsValidFolder("Assets/ScriptableObjects"))
         {
             AssetDatabase.CreateFolder("Assets", "ScriptableObjects");
@@ -98,8 +98,9 @@ public class RecipesWindow : EditorWindow
             AssetDatabase.CreateAsset(_selectedQTE.ListSubHandlers[i], $"Assets/ScriptableObjects/QTE/QTEInput{_selectedQTE.Index}_{i}.asset");
         }
         AssetDatabase.CreateAsset(_selectedQTE, $"Assets/ScriptableObjects/QTE/QTE{_selectedQTE.Index}.asset");
+
         AssetDatabase.SaveAssets();
-        index++;
+        _indexNewSequence++;
         LoadQTE();
     }
 
@@ -109,14 +110,19 @@ public class RecipesWindow : EditorWindow
         AssetDatabase.SaveAssets();
     }
 
-    void RemoveUnitAtIndex( int indexUnit)
+    void RemoveUnitAtIndex(int indexUnit)
     {
         if (AssetDatabase.IsValidFolder("Assets/ScriptableObjects") && AssetDatabase.IsValidFolder("Assets/ScriptableObjects/QTE"))
         {
-            Debug.Log($"Assets/ScriptableObjects/QTE/QTE{_drinks.Count}_{indexUnit}.asset");
-            AssetDatabase.DeleteAsset($"Assets/ScriptableObjects/QTE/QTE{_drinks.Count}_{indexUnit}.asset");
+            if (AssetDatabase.DeleteAsset($"Assets/ScriptableObjects/QTE/QTE{_selectedQTE.Index}_{indexUnit}.asset"))
+            {
+                Debug.Log("File has been deleted.");
+            }else
+            {
+                Debug.Log("File not found");
+            }
         }
-        
+        AssetDatabase.SaveAssets();
     }
     private void OnGUI()
     {
@@ -158,6 +164,15 @@ public class RecipesWindow : EditorWindow
         }
         GUILayout.EndVertical();
         GUILayout.EndHorizontal();
+        if (GUI.changed)
+        {
+            EditorUtility.SetDirty(_selectedQTE);
+            for (int i = 0; i < _selectedQTE.ListSubHandlers.Count; i++)
+            {
+                EditorUtility.SetDirty(_selectedQTE.ListSubHandlers[i]);
+            }
+            AssetDatabase.SaveAssets();
+        }
     }
 
     private void DrawInput(UnitInput input)
@@ -191,8 +206,8 @@ public class RecipesWindow : EditorWindow
     {
         if (_selectedQTE.ListSubHandlers.Count > 0)
         {
-            _showList = EditorGUILayout.Foldout(_showList, "List of inputs");
-            if (_showList)
+            _showListInputs = EditorGUILayout.Foldout(_showListInputs, "List of inputs");
+            if (_showListInputs)
             {
                 for (int i = 0; i < _selectedQTE.ListSubHandlers.Count; i++)
                 {
@@ -210,8 +225,6 @@ public class RecipesWindow : EditorWindow
             UnitInput unit = CreateInstance<UnitInput>();
             unit.Index = _selectedQTE.ListSubHandlers.Count;
             _selectedQTE.ListSubHandlers.Add(unit);
-            _serializedObject = new SerializedObject(unit);
-            _propertyName = _serializedObject.FindProperty(NAME_ACTION);
             if (!_temporaryQTE)
             {
                 SaveQTEUnitInputFile(_selectedQTE.Index, unit.Index);
