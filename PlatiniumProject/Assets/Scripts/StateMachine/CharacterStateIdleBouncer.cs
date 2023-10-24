@@ -28,7 +28,7 @@ public class CharacterStateIdleBouncer : CharacterState
             StateMachine.MoveToLocation = newSlot.transform.position;
             StateMachine.CurrentSlot = newSlot;
             StateMachine.CurrentMovementInBouncer++;
-            StateMachine.CurrentSlot.Occupant = StateMachine.gameObject;
+            StateMachine.CurrentSlot.Occupant = StateMachine;
 
             StateMachine.ChangeState(StateMachine.MoveToState);
         }
