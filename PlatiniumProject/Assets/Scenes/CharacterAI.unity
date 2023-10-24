@@ -4328,25 +4328,11 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1 &1292951989 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7340047238265229073, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
+--- !u!4 &1292951991 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4017106879461392871, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
   m_PrefabInstance: {fileID: 7995805132037063310}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1292951990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1292951989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1611ab4a2152a31448f261ed9748aacc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _areaManager: {fileID: 1447075046}
-  _beatManager: {fileID: 929442422}
 --- !u!1 &1300797233
 GameObject:
   m_ObjectHideFlags: 0
@@ -7073,11 +7059,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4017106879461392871, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.02
+      value: -0.82
       objectReference: {fileID: 0}
     - target: {fileID: 4017106879461392871, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.76
+      value: -2.93
       objectReference: {fileID: 0}
     - target: {fileID: 4017106879461392871, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7111,25 +7097,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7056813333780234165, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.49
-      objectReference: {fileID: 0}
-    - target: {fileID: 7056813333780234165, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.26
-      objectReference: {fileID: 0}
     - target: {fileID: 7340047238265229073, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
       propertyPath: m_Name
       value: Bouncer
       objectReference: {fileID: 0}
+    - target: {fileID: 8203250582693646274, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
+      propertyPath: _areaManager
+      value: 
+      objectReference: {fileID: 1447075046}
+    - target: {fileID: 8203250582693646274, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
+      propertyPath: _beatManager
+      value: 
+      objectReference: {fileID: 929442422}
+    - target: {fileID: 8203250582693646274, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
+      propertyPath: _movementData
+      value: 
+      objectReference: {fileID: 11400000, guid: c205aac937c5b25478495ab06937bc4d, type: 2}
+    - target: {fileID: 8203250582693646274, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
+      propertyPath: _transformToModify
+      value: 
+      objectReference: {fileID: 1292951991}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7340047238265229073, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1292951990}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
