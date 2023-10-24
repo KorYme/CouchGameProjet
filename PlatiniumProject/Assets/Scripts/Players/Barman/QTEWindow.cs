@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class RecipesWindow : EditorWindow
+public class QTEWindow : EditorWindow
 {
     List<QTESequence> _drinks;
     QTESequence _selectedQTE = null;
@@ -25,7 +25,7 @@ public class RecipesWindow : EditorWindow
     [MenuItem("Tools/QTEWindow")]
     static void InitWindow()
     {
-        RecipesWindow window = GetWindow<RecipesWindow>();
+        QTEWindow window = GetWindow<QTEWindow>();
         window.titleContent = new GUIContent("Tool QTE inputs");
         window.Show();
     }
@@ -114,7 +114,7 @@ public class RecipesWindow : EditorWindow
     {
         if (AssetDatabase.IsValidFolder("Assets/ScriptableObjects") && AssetDatabase.IsValidFolder("Assets/ScriptableObjects/QTE"))
         {
-            if (AssetDatabase.DeleteAsset($"Assets/ScriptableObjects/QTE/QTE{_selectedQTE.Index}_{indexUnit}.asset"))
+            if (AssetDatabase.DeleteAsset($"Assets/ScriptableObjects/QTE/QTEInput{_selectedQTE.Index}_{indexUnit}.asset"))
             {
                 Debug.Log("File has been deleted.");
             }else
