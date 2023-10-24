@@ -6,12 +6,11 @@ using UnityEngine;
 public class MovementData : ScriptableObject
 {
     [Header("Movement Parameters")]
-    public float MovementDuration = .2f;
-    public int SpeedMultiplier = 1;
-    public AnimationCurve MovementCurve = new AnimationCurve(new(0f, 0f), new(1f, 1f));
+    public float MovementDurationPercent = .2f;
+    [Tooltip("This curve represents the movement of the objects on which it is applied\nIt needs to start at (0,0) and ends at (1,0)")] public AnimationCurve MovementCurve = new AnimationCurve(new(0f, 0f), new(1f, 1f));
 
     [Header("Bounce Parameters")]
-    public AnimationCurve BounceCurve = new AnimationCurve(new(0f, 0f), new(0.5f, 1f), new(1f, 0f));
-    public float BounceMultiplier = 1;
-    public Vector2 BounceFactors = new Vector2(2, -0.5f);
+    [Tooltip("This curve needs to start at (0,0) and ends at (1,0)")] public AnimationCurve BounceCurve = new AnimationCurve(new(0f, 0f), new(0.5f, 1f), new(1f, 0f));
+    [Range(-1f,10f)] public float BounceMultiplierX = 1;
+    [Range(-1f,10f)] public float BounceMultiplierY = 1;
 }

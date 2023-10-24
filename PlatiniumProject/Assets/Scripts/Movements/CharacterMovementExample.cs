@@ -27,6 +27,6 @@ public class CharacterMovementExample : EntityMovement
 
     public override void MoveToPosition(Vector3 position)
     {
-
+         base.MoveToPosition(position);
     }
 }
