@@ -32,18 +32,31 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
+        SpawnATikTak();
+    }
+
+    void SpawnATikTak()
+    {
         GameObject go = Instantiate(character, FirstSlot.transform.position, Quaternion.identity);
         CharacterStateMachine stateMachine = go.GetComponent<CharacterStateMachine>();
-        FirstSlot.Occupant = go.GetComponent<CharacterStateMachine>();
+        FirstSlot.Occupant = stateMachine;
+        if (startPoint == STARTPOINT.DJ_DANCE_FLOOR)
+        {
+            StartCoroutine(WaitForFirstState(stateMachine));
+        }
+    }
+
+    IEnumerator WaitForFirstState(CharacterStateMachine stateMachine)
+    {
+        yield return new WaitUntil(()=> stateMachine.CurrentState != null);
         stateMachine.ChangeState(stateMachine.DancingState);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && areaManager.BouncerTransit.Slots[0].Occupant == null)
+        if (Input.GetKeyDown(KeyCode.Return) && FirstSlot.Occupant == null)
         {
-            GameObject go = Instantiate(character, areaManager.BouncerTransit.Slots[0].transform.position, Quaternion.identity);
-            areaManager.BouncerTransit.Slots[0].Occupant = go.GetComponent<CharacterStateMachine>();
+            SpawnATikTak();
         }
     }
 }
