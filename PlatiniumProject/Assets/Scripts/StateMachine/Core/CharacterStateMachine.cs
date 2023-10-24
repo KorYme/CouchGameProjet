@@ -6,21 +6,14 @@ using UnityEngine.PlayerLoop;
 
 public class CharacterStateMachine : MonoBehaviour
 {
-    public enum CharacterObjective
-    {
-        None,
-        Bouncer,
-        BarTender,
-        DanceFloor,
-        Leave
-    }
     [SerializeField] private CharacterData _characterData;
     BeatManager _beatManager;
     public IMovable CharacterMove { get; private set; }
     public AreaManager AreaManager { get; private set; }
     public Action fakeBeat;
-    WaitingLineBar[] _waitingLines;
+    public WaitingLineBar[] WaitingLines { get; private set; }
     
+    #region States
     public CharacterState IdleTransitState { get; } = new CharacterStateIdleTransit();
     public CharacterState IdleBouncerState { get; } = new CharacterStateIdleBouncer();
     public CharacterState MoveToState { get; } = new CharacterStateMoveTo();
@@ -28,6 +21,9 @@ public class CharacterStateMachine : MonoBehaviour
     public CharacterState DieState { get; } = new CharacterDieState();
     public CharacterState RoamState { get; } = new CharacterStateRoam();
     public CharacterState BarManQueueState { get; } = new CharacterStateBarmanQueue();
+    public CharacterState BarManAtBar { get; } = new CharacterStateAtBar();
+    public CharacterState DancingState { get; } = new CharacterStateDancing();
+    #endregion
     private CharacterState[] _allState => new CharacterState[]
     {
         IdleTransitState,
@@ -36,7 +32,9 @@ public class CharacterStateMachine : MonoBehaviour
         BouncerCheckState,
         DieState,
         RoamState,
-        BarManQueueState
+        BarManQueueState,
+        BarManAtBar,
+        DancingState
     };
     
     #region Propreties
@@ -45,6 +43,7 @@ public class CharacterStateMachine : MonoBehaviour
     public CharacterState PreviousState { get; private set; }
     public CharacterState NextState { get; set; }
     public Vector3 MoveToLocation { get; set; }
+    public WaitingLineBar CurrentWaitingLine { get; set; }
     public CharacterData CharacterDataObject => _characterData;
     public SlotInformation CurrentSlot { get; set; }
     public int CurrentBeatAmount { get; set; }
@@ -61,7 +60,7 @@ public class CharacterStateMachine : MonoBehaviour
 
     private void Start()
     {
-        _waitingLines = FindObjectsOfType<WaitingLineBar>();
+        WaitingLines = FindObjectsOfType<WaitingLineBar>();
         CurrentSlot = AreaManager.BouncerTransit.Slots[0];
         ChangeState(StartState);
     }
@@ -74,36 +73,19 @@ public class CharacterStateMachine : MonoBehaviour
             fakeBeat?.Invoke();
         }
     }
-    public void ChooseWaitingLine()
-    {
-        if (_waitingLines.Length > 0) 
-        {
-            int indexLine = 0;
-            int nbCharactersInLine = _waitingLines[0].NbCharactersWaiting;
-            
-            for (int i = 1; i < _waitingLines.Length; i++)
-            {
-                if (nbCharactersInLine > _waitingLines[i].NbCharactersWaiting) {
-                    nbCharactersInLine = _waitingLines[i].NbCharactersWaiting;
-                    indexLine = i;
-                }
-            }
-            _waitingLines[indexLine].AddToWaitingLine(gameObject);
-        }
-    }
 
     public void ChangeState(CharacterState state)
     {
         CurrentState?.ExitState();
         if (CurrentState != null)
         {
-            //_beatManager.OnBeatEvent.RemoveListener(CurrentState.OnBeat);
+            _beatManager.OnBeatEvent.RemoveListener(CurrentState.OnBeat);
             fakeBeat -= CurrentState.OnBeat;
         }
         PreviousState = CurrentState;
         CurrentState = state;
         fakeBeat += CurrentState.OnBeat;
-        //_beatManager.OnBeatEvent.AddListener(CurrentState.OnBeat);
+        _beatManager.OnBeatEvent.AddListener(CurrentState.OnBeat);
         CurrentState?.EnterState();
     }
     

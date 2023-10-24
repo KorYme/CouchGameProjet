@@ -20,6 +20,7 @@ public class CharacterStateIdleBouncer : CharacterState
         else
         {
             SlotInformation newSlot = StateMachine.AreaManager.BouncerBoard.GetNextBouncerSlot(StateMachine.CurrentSlot);
+            StateMachine.CurrentMovementInBouncer++;
 
             if (newSlot == null)
                 return;
@@ -27,7 +28,6 @@ public class CharacterStateIdleBouncer : CharacterState
             StateMachine.CurrentSlot.Occupant = null;
             StateMachine.MoveToLocation = newSlot.transform.position;
             StateMachine.CurrentSlot = newSlot;
-            StateMachine.CurrentMovementInBouncer++;
             StateMachine.CurrentSlot.Occupant = StateMachine;
 
             StateMachine.ChangeState(StateMachine.MoveToState);

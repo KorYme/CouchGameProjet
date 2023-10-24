@@ -12,13 +12,18 @@ public class CheckerBoard : MonoBehaviour
     [SerializeField] protected float _horizontalSpacing;
     [SerializeField] protected float _verticalSpacing;
     [SerializeField] protected GameObject _slot;
-
     public Vector2Int BoardDimension => _boardDimension;
     public int BoardLength => _boardDimension.x * _boardDimension.y;
     int[] Directions => new int[4] { 1, -1, _boardDimension.x, -_boardDimension.x };
+    public List <SlotInformation> AvailableSlots { get; private set; } = new List<SlotInformation>();
 
 
     public List<SlotInformation> Board;
+
+    private void Awake()
+    {
+        SetAvailableSlots();
+    }
 
     public void Delete()
     {
@@ -93,5 +98,28 @@ public class CheckerBoard : MonoBehaviour
         if (availableSlot.Count <= 0) return null;
 
         return availableSlot[Random.Range(0, availableSlot.Count)];
+    }
+
+    public void SetAvailableSlots()
+    {
+        foreach (var v in Board)
+        {
+            if (v.Occupant == null)
+            {
+                AvailableSlots.Add(v);
+            }
+        }
+    }
+
+    public void AddAvailableSlot(SlotInformation slot)
+    {
+        AvailableSlots.Add(slot);
+    }
+    
+    public SlotInformation GetRandomAvailableSlot()
+    {
+        SlotInformation result = AvailableSlots[Random.Range(0, Board.Count)];
+        AvailableSlots.Remove(result);
+        return result;
     }
 }
