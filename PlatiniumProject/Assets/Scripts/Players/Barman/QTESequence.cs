@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public enum InputStatus
 {
     PRESS,
-    HOLD,
-    ROTATION
+    HOLD
 }
 
 public enum InputsSequence
@@ -14,9 +14,18 @@ public enum InputsSequence
     SIMULTANEOUS
 }
 
-[Serializable]
-public class QTESequence: SODrinkInputs
+public enum Difficulty
 {
-    public List<SODrinkInputs> _listSubHandlers = new List<SODrinkInputs>();
-    public InputsSequence _sequenceType;
+    NORMAL,
+    SPECIAL
+}
+
+[Serializable]
+public class QTESequence : ScriptableObject
+{
+    public int Index;
+    public PlayerRole PlayerRole;
+    public Difficulty Difficulty;
+    public InputsSequence SequenceType;
+    public List<UnitInput> ListSubHandlers = new List<UnitInput>();
 }
