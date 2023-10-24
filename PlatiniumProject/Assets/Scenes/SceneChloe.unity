@@ -1305,6 +1305,8 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: c22cd34a7118d6544a37279f46b72383, type: 2}
+  _timingWindowPercentBeforeBeat: 0.1
+  _timingWindowPercentAfterBeat: 0.3
   _onBeatEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1314,7 +1316,6 @@ MonoBehaviour:
   _onBeatEndEvent:
     m_PersistentCalls:
       m_Calls: []
-  _timingWindowInMilliseconds: 400
 --- !u!114 &728370624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2659,7 +2660,7 @@ MonoBehaviour:
   _timeBetweenBeat: 1
   _timeBeatAccepted: 0.4
   _renderer: {fileID: 497142336}
-  _beatManager: {fileID: 728370623}
+  _beatManager: {fileID: 0}
 --- !u!114 &1444240521
 MonoBehaviour:
   m_ObjectHideFlags: 0

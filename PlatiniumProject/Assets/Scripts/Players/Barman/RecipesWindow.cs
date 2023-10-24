@@ -1,3 +1,4 @@
+using Rewired;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -5,38 +6,42 @@ using UnityEngine;
 public class RecipesWindow : EditorWindow
 {
     List<QTESequence> _drinks;
-    QTESequence _selectedDrink = null;
-    QTESequence SOObject;
+    QTESequence _selectedQTE = null;
+    bool _temporaryQTE = false;
+    SerializedObject _serializedObject;
+    SerializedProperty _propertyName;
     int index = 0;
+    bool _showList = true;
     #region ListOptions
-    static readonly string[] _buttonInputOptions = { "A","B", "X", "Y"};
-    static readonly string[] _inputTypeOptions = { "Press", "Hold"};
-    static readonly string[] _inputSerieOptions = { "Simultaneous", "Sequential"};
+    private string[] _buttonInputOptions = null;
+    const string NAME_ACTION = nameof(UnitInput.ActionIndex);
     #endregion
-
     #region Selected
     int _selectedIndexInputButton = 0;
     int _selectedIndexInputType = 0;
     #endregion
+    GUIStyle style;
 
-    //bool showAngleRotation = false;
-    float angleRotation = 0f;
-    int durationHold = 2;
-
-    [MenuItem("Tools/RecipesWindow")]
+    [MenuItem("Tools/QTEWindow")]
     static void InitWindow()
     {
         RecipesWindow window = GetWindow<RecipesWindow>();
-        window.titleContent = new GUIContent("Tool recipes inputs");
+        window.titleContent = new GUIContent("Tool QTE inputs");
         window.Show();
     }
     private void Awake()
     {
-        LoadDrinks();
+        LoadQTE();
+        style = new GUIStyle()
+        {
+            fontStyle = FontStyle.Bold,
+            alignment = TextAnchor.MiddleCenter,
+            normal = new GUIStyleState() { background = Texture2D.whiteTexture }
+        };
     }
-    void LoadDrinks()
+
+    void LoadQTE()
     {
-        //EditorGUILayout.PropertyField
         if (_drinks == null)
         {
             _drinks = new List<QTESequence>();
@@ -63,56 +68,155 @@ public class RecipesWindow : EditorWindow
         {
             for (int i = 0; i < _drinks.Count; i++)
             {
-                if (GUILayout.Button($"Drink {i+1}", GUILayout.Width(200)))
+                if (GUILayout.Button($"QTE {i + 1}"))
                 {
-                    _selectedDrink = _drinks[i];
+                    _selectedQTE = _drinks[i];
+                    _temporaryQTE = false;
+                }
+            }
+        }
+        if (GUILayout.Button("Add QTE", style))
+        {
+            _selectedQTE = CreateInstance<QTESequence>();
+            _temporaryQTE = true;
+        }
+    }
+
+    void SaveQTEFile()
+    {
+        _selectedQTE.Index = index;
+        if (!AssetDatabase.IsValidFolder("Assets/ScriptableObjects"))
+        {
+            AssetDatabase.CreateFolder("Assets", "ScriptableObjects");
+        }
+        if (!AssetDatabase.IsValidFolder("Assets/ScriptableObjects/QTE"))
+        {
+            AssetDatabase.CreateFolder("Assets/ScriptableObjects", "QTE");
+        }
+        for (int i = 0; i < _selectedQTE.ListSubHandlers.Count; i++)
+        {
+            AssetDatabase.CreateAsset(_selectedQTE.ListSubHandlers[i], $"Assets/ScriptableObjects/QTE/QTEInput{_selectedQTE.Index}_{i}.asset");
+        }
+        AssetDatabase.CreateAsset(_selectedQTE, $"Assets/ScriptableObjects/QTE/QTE{_selectedQTE.Index}.asset");
+        AssetDatabase.SaveAssets();
+        index++;
+        LoadQTE();
+    }
+
+    void SaveQTEUnitInputFile(int indexQTE ,int indexUnit)
+    {
+        AssetDatabase.CreateAsset(_selectedQTE.ListSubHandlers[indexUnit], $"Assets/ScriptableObjects/QTE/QTEInput{indexQTE}_{indexUnit}.asset");
+        AssetDatabase.SaveAssets();
+    }
+
+    void RemoveUnitAtIndex( int indexUnit)
+    {
+        if (AssetDatabase.IsValidFolder("Assets/ScriptableObjects") && AssetDatabase.IsValidFolder("Assets/ScriptableObjects/QTE"))
+        {
+            Debug.Log($"Assets/ScriptableObjects/QTE/QTE{_drinks.Count}_{indexUnit}.asset");
+            AssetDatabase.DeleteAsset($"Assets/ScriptableObjects/QTE/QTE{_drinks.Count}_{indexUnit}.asset");
+        }
+        
+    }
+    private void OnGUI()
+    {
+        if (_buttonInputOptions == null && ReInput.isReady)
+        {
+            _buttonInputOptions = new string[ReInput.mapping.Actions.Count];
+            for (int i = 0; i < _buttonInputOptions.Length; i++)
+            {
+                _buttonInputOptions[ReInput.mapping.Actions[i].id] = ReInput.mapping.Actions[i].name;
+            }
+        }
+        GUILayout.BeginHorizontal();
+
+        GUILayout.BeginVertical(EditorStyles.helpBox);
+        DrawSideBar();
+        GUILayout.EndVertical();
+
+        GUILayout.BeginVertical();
+
+        if (_selectedQTE != null)
+        {
+            GUILayout.BeginHorizontal();
+            _selectedQTE.Difficulty = (Difficulty)EditorGUILayout.EnumPopup("Difficulty ", _selectedQTE.Difficulty);
+            _selectedQTE.SequenceType = (InputsSequence) EditorGUILayout.EnumPopup("Sequence ", _selectedQTE.SequenceType);
+            _selectedQTE.PlayerRole = (PlayerRole) EditorGUILayout.EnumPopup("Role ", _selectedQTE.PlayerRole);
+            GUILayout.EndHorizontal();
+
+            DrawListInputs();
+            if (_temporaryQTE && GUILayout.Button("Save QTE"))
+            {
+                SaveQTEFile();
+                _temporaryQTE = false;
+            }
+        }
+        else
+        {
+            GUILayout.Label("Select a QTE or add a new one");
+            GUILayout.Label("PLEASE FOR THE INCOMING BUILD CHOOSE SEQUENCE AND PRESS");
+        }
+        GUILayout.EndVertical();
+        GUILayout.EndHorizontal();
+    }
+
+    private void DrawInput(UnitInput input)
+    {
+        GUILayout.BeginHorizontal();
+        GUILayout.BeginVertical(EditorStyles.helpBox);
+
+        if (_propertyName != null)
+        {
+            _serializedObject.Update();
+            EditorGUILayout.PropertyField(_propertyName, true); // draw property with its children
+            _serializedObject.ApplyModifiedProperties();
+            input.IsInputPositive = EditorGUILayout.Toggle("Input has positive value",input.IsInputPositive);
+        }
+        input.Status = (InputStatus) EditorGUILayout.EnumPopup("Input type", input.Status);
+        if (input.Status == InputStatus.HOLD)
+        {
+            input.NbBeatHoldDuration = EditorGUILayout.IntField("Duration hold", input.NbBeatHoldDuration);
+        }
+
+        GUILayout.EndVertical();
+        if (GUILayout.Button("Delete"))
+        {
+            RemoveUnitAtIndex(input.Index);
+            _selectedQTE.ListSubHandlers.Remove(input);
+        }
+        GUILayout.EndHorizontal();
+    }
+
+    private void DrawListInputs()
+    {
+        if (_selectedQTE.ListSubHandlers.Count > 0)
+        {
+            _showList = EditorGUILayout.Foldout(_showList, "List of inputs");
+            if (_showList)
+            {
+                for (int i = 0; i < _selectedQTE.ListSubHandlers.Count; i++)
+                {
+                    _serializedObject = new SerializedObject(_selectedQTE.ListSubHandlers[i]);
+                    _propertyName = _serializedObject.FindProperty(NAME_ACTION);
+                    DrawInput(_selectedQTE.ListSubHandlers[i]);
+                    //Debug.Log($"i {i} index {_selectedQTE.Index} {_selectedQTE.ListSubHandlers[i].Index}");
                 }
             }
         }
         
-    }
-
-    void CreateDrinkFile()
-    {
-
-    }
-    private void OnGUI()
-    {
-        GUILayout.BeginHorizontal();
-        GUILayout.BeginVertical("Drinks", GUILayout.ExpandWidth(false));
-        DrawSideBar();
-        GUILayout.EndVertical();
-        GUILayout.BeginVertical();
-        _selectedIndexInputButton = EditorGUILayout.Popup("Button input", _selectedIndexInputButton, _buttonInputOptions);
-        _selectedIndexInputType = EditorGUILayout.Popup("Input type", _selectedIndexInputType, _inputTypeOptions);
-        //EditorGUILayout.Toggle("Show Button", showAngleRotation);
-        if (_inputTypeOptions[_selectedIndexInputType] == "Hold")
+        if (GUILayout.Button("Add an input"))
         {
-            durationHold = EditorGUILayout.IntField("Duration hold", durationHold);
-        }
-        angleRotation = EditorGUILayout.Slider("Angle rotation",angleRotation, 0, 360);
-        if (GUILayout.Button("Save Drink")){
-            SOObject = CreateInstance<QTESequence>();//new DrinkHandler();
-            SOObject._sequenceType = InputsSequence.SEQUENCE;
-            UnitInput unit = CreateInstance<UnitInput>(); //new UnitInput();
-            unit.status = (InputStatus)_selectedIndexInputType;
-            unit.actionIndex = _selectedIndexInputButton;
-            SOObject._listSubHandlers.Add(unit);
-            if (!AssetDatabase.IsValidFolder("Assets/ScriptableObjects"))
+            
+            UnitInput unit = CreateInstance<UnitInput>();
+            unit.Index = _selectedQTE.ListSubHandlers.Count;
+            _selectedQTE.ListSubHandlers.Add(unit);
+            _serializedObject = new SerializedObject(unit);
+            _propertyName = _serializedObject.FindProperty(NAME_ACTION);
+            if (!_temporaryQTE)
             {
-                AssetDatabase.CreateFolder("Assets", "ScriptableObjects");
+                SaveQTEUnitInputFile(_selectedQTE.Index, unit.Index);
             }
-            if (!AssetDatabase.IsValidFolder("Assets/ScriptableObjects/Drinks"))
-            {
-                AssetDatabase.CreateFolder("Assets/ScriptableObjects", "Drinks");
-            }
-            AssetDatabase.CreateAsset(unit, $"Assets/ScriptableObjects/Drinks/DrinkIngredient{index}.asset");
-            AssetDatabase.CreateAsset(SOObject, $"Assets/ScriptableObjects/Drinks/Drink{index}.asset");
-            AssetDatabase.SaveAssets();
-            index++;
-            LoadDrinks();
+            
         }
-        GUILayout.EndVertical();
-        GUILayout.EndHorizontal();
     }
 }
