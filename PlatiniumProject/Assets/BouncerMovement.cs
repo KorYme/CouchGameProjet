@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class BouncerMovement : EntityMovement
+public class BouncerMovement : PlayerMovement
 {
     public enum BouncerState
     {
@@ -19,8 +19,9 @@ public class BouncerMovement : EntityMovement
 
     private SlotInformation _currentSlot;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _movement = GetComponent<IMovable>();
         _currentSlot = _areaManager.BouncerBoard.Board[_areaManager.BouncerBoard.BoardDimension.x * Mathf.Max(1,_areaManager.BouncerBoard.BoardDimension.y / 2 + _areaManager.BouncerBoard.BoardDimension.y % 2) -1];
         transform.position = _currentSlot.transform.position;

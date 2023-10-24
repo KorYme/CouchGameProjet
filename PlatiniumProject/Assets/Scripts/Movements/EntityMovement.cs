@@ -26,8 +26,6 @@ public abstract class EntityMovement : MonoBehaviour, IMovable, IBounceable
     public bool IsBouncing => _movementCoroutine != null;
     public bool HasAlreadyMovedThisBeat { get; protected set; } = false;
 
-
-
     protected virtual void Start()
     {
         HasAlreadyMovedThisBeat = false;
@@ -59,11 +57,11 @@ public abstract class EntityMovement : MonoBehaviour, IMovable, IBounceable
         _movementCoroutine = null;
     }
 
-    public void MoveToPosition(Vector3 position)
-    {
-        Debug.Log($"{name} - {HasAlreadyMovedThisBeat}");
-        if (HasAlreadyMovedThisBeat || IsMoving) return;
-        _movementCoroutine = StartCoroutine(MovementCoroutine(position));
-        HasAlreadyMovedThisBeat = true;
-    }
+    public abstract void MoveToPosition(Vector3 position);
+    //{
+    //    Debug.Log($"{name} - {HasAlreadyMovedThisBeat}");
+    //    if (HasAlreadyMovedThisBeat || IsMoving) return;
+    //    _movementCoroutine = StartCoroutine(MovementCoroutine(position));
+    //    HasAlreadyMovedThisBeat = true;
+    //}
 }
