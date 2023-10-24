@@ -63,7 +63,7 @@ public class BouncerMovement : EntityMovement
 
     public void Move(int index)
     {
-        _currentSlot.Occupant = null;
+        _currentSlot.PlayerOccupant = null;
         _movement.MoveToPosition(_currentSlot.Neighbours[index].transform.position);
         _currentSlot = _currentSlot.Neighbours[index];
         _currentSlot.PlayerOccupant = this;
