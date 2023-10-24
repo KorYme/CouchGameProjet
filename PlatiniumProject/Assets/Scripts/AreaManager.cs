@@ -12,7 +12,11 @@ public class AreaManager : MonoBehaviour
     [SerializeField] private Transform _circleOrigin;
     [SerializeField] private float _circleRadius;
 
+    [Header("DJ")] 
+    [SerializeField] private CheckerBoard _djBoard;
+
     public CheckerBoard BouncerBoard => _bouncerBoard;
+    public CheckerBoard DjBoard => _djBoard;
     public TransitQueue BouncerTransit => _bouncerTransit;
 
     public Transform CircleOrigin => _circleOrigin;
