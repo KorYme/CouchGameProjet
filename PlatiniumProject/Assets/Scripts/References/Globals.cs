@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IBounceable
+public static class Globals
 {
-    public bool IsBouncing { get; }
+    public static ITimingable BeatTimer = null;
 }

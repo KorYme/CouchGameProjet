@@ -5,8 +5,6 @@ using UnityEngine;
 public interface IMovable
 {
     public bool IsMoving { get; }
-    public float MovementDuration { get; }
-    public int SpeedMultiplier { get; }
-    public AnimationCurve MovementCurve { get; }
+    public bool HasAlreadyMovedThisBeat { get; }
     public void MoveToPosition(Vector3 position);
 }

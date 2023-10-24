@@ -12,16 +12,15 @@ public class SpawnManager : MonoBehaviour
     private void Start()
     {
         GameObject go = Instantiate(character, areaManager.BouncerTransit.Slots[0].transform.position, quaternion.identity);
-        areaManager.BouncerTransit.Slots[0].Occupant = go;
+        areaManager.BouncerTransit.Slots[0].Occupant = go.GetComponent<CharacterStateMachine>();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return) && areaManager.BouncerTransit.Slots[0].Occupant == null)
         {
-            Debug.Log("sdsdf");
             GameObject go = Instantiate(character, areaManager.BouncerTransit.Slots[0].transform.position, quaternion.identity);
-            areaManager.BouncerTransit.Slots[0].Occupant = go;
+            areaManager.BouncerTransit.Slots[0].Occupant = go.GetComponent<CharacterStateMachine>();
         }
     }
 }
