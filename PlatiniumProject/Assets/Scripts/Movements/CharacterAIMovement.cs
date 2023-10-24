@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class CharacterAIMovement : EntityMovement
 {
-
+    public override void MoveToPosition(Vector3 position)
+    {
+        
+    }
 }

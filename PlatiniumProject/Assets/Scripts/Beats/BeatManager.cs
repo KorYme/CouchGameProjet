@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,7 +9,8 @@ public class BeatManager : MonoBehaviour, ITimingable
 {
     #region FIELDS
     [Header("References"), Space]
-    [SerializeField, Tooltip("Wwise play event to launch the sound and the beat\nDon't need to be modified by GDs")] AK.Wwise.Event _beatWwiseEvent;
+    [SerializeField, Tooltip("Wwise play event to launch the sound and the beat\nDon't need to be modified by GDs")] 
+    AK.Wwise.Event _beatWwiseEvent;
 
 
     [Header("Parameters"), Space]

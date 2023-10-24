@@ -24,4 +24,9 @@ public class CharacterMovementExample : EntityMovement
         MoveToPosition((Vector2)transform.position + direction);
         direction = new Vector2(-direction.y, direction.x);
     }
+
+    public override void MoveToPosition(Vector3 position)
+    {
+
+    }
 }
