@@ -5,23 +5,28 @@ using UnityEngine;
 
 public class CharacterMovementExample : EntityMovement
 {
-    [Header("Example parameters")]
-    [SerializeField] float _timeToWait = 1f;
-    //TEST
-    void Start()
+    Vector2 direction = Vector2.right;
+
+    protected override void Start()
     {
-        StartCoroutine(TestMovement());
+        base.Start();
+        Globals.BeatTimer.OnBeatEvent.AddListener(Test);
     }
 
-    IEnumerator TestMovement()
+    protected override void OnDestroy()
     {
-        Vector2 dir = Vector2.right;
-        while (true)
-        {
-            MoveToPosition(dir);
-            yield return new WaitWhile(() => IsMoving);
-            yield return new WaitForSeconds(_timeToWait);
-            dir = new Vector2(-dir.y, dir.x);
-        }
+        base.OnDestroy();
+        Globals.BeatTimer.OnBeatEvent.RemoveListener(Test);
+    }
+
+    void Test()
+    {
+        MoveToPosition((Vector2)transform.position + direction);
+        direction = new Vector2(-direction.y, direction.x);
+    }
+
+    public override void MoveToPosition(Vector3 position)
+    {
+         base.MoveToPosition(position);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,9 @@ using UnityEngine.Rendering;
 public interface ITimingable
 {
     public bool IsInsideBeat { get; }
+    public int BeatDurationInMilliseconds { get; }
     public UnityEvent OnBeatEvent { get; }
     public UnityEvent OnBeatStartEvent { get; }
     public UnityEvent OnBeatEndEvent { get; }
+    public UnityEvent<float> OnBeatPercentIncreased { get; }
 }

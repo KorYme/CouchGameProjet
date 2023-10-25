@@ -1,17 +1,17 @@
 using System.Collections;
 using UnityEngine;
-using static UnityEngine.InputSystem.InputAction;
 
 public class BarmanMovement : MonoBehaviour
 {
+    PlayerInputController _controller;
     [SerializeField] BarmanPosition[] _barmanPositions;
-    [SerializeField,Range(0f,1f)] float _inputAcceptanceThreshold = 0.1f;
+    //[SerializeField,Range(0f,1f)] float _inputAcceptanceThreshold = 0.1f;
     int _indexPosition;
     [SerializeField] float _timeBetweenBeat = 1f;
     [SerializeField] float _timeBeatAccepted = 0.1f;
     float _timer = 0f;
     [SerializeField] SpriteRenderer _renderer;
-
+    bool _inputRefreshed = true;
 
     [SerializeField] BeatManager _beatManager;
 
@@ -102,13 +102,35 @@ public class BarmanMovement : MonoBehaviour
         return _beatManager.IsInsideBeat;
         //return _timer < _timeBeatAccepted / 2f || _timer > _timeBetweenBeat - (_timeBeatAccepted / 2f);
     }
-    public void OnMovementInput(CallbackContext context)
+    private void Update()
     {
-        if (context.started)
+        if (_controller == null)
         {
-            if (IsInputDuringBeatTime())
+            SetupController();
+        }
+        if (!IsInputDuringBeatTime())
+        {
+            _inputRefreshed = true;
+        }
+    }
+
+    private void SetupController()
+    {
+        _controller = Players.PlayersController[(int)PlayerRole.Barman];
+        if (_controller != null)
+        {
+            _controller.OnAxisMoveStarted += OnInputMove;
+        }
+    }
+
+    void OnInputMove()
+    {
+        if (_controller != null)
+        {
+            if (_inputRefreshed && IsInputDuringBeatTime())
             {
-                float value = context.ReadValue<float>();
+                _inputRefreshed = false;
+                float value = _controller.MoveVector.y;
                 ChangeIndexToReach(value);
             }
         }
