@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -121,7 +122,10 @@ public class CheckerBoard : MonoBehaviour
     
     public SlotInformation GetRandomAvailableSlot()
     {
-        SlotInformation result = AvailableSlots[Random.Range(0, Board.Count)];
+        if (AvailableSlots.Count <= 0)
+            return null;
+        
+        SlotInformation result = AvailableSlots[Random.Range(0, AvailableSlots.Count)];
         AvailableSlots.Remove(result);
         return result;
     }
@@ -136,7 +140,13 @@ public class CheckerBoard : MonoBehaviour
                 j++;
             }
             SlotInformation slot = Board[i];
-            slot.gameObject.name = $"X: {i % _boardDimension.x}, Y:{j - 1}";
+            string name = "";
+            gameObject.name.ToList().ForEach( x=> {
+                if (x == char.ToUpper(x))
+                {
+                    name += x;
+                } });
+            slot.gameObject.name = $"{name}: X: {i % _boardDimension.x}, Y: {j - 1}";
 
         }
             
