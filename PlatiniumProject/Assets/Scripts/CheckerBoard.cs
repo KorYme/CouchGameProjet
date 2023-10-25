@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -36,11 +35,11 @@ public class CheckerBoard : MonoBehaviour
                 DestroyImmediate(v.gameObject);
             }
         }
-        Debug.Log("dsfsfsdf");
         Board?.Clear();
         Board = new List<SlotInformation>();
     }
 
+#if UNITY_EDITOR
     public void UpdateData()
     {
         Delete();   
@@ -52,16 +51,18 @@ public class CheckerBoard : MonoBehaviour
             {
                 j++;
             }
-            GameObject go = Instantiate(_slot,
-                transform.position + new Vector3(_horizontalSpacing * (i % _boardDimension.x),
-                    _verticalSpacing * -(j - 1 % _boardDimension.y), 0), quaternion.identity, transform);
-            
+            GameObject go = UnityEditor.PrefabUtility.InstantiatePrefab(_slot) as GameObject;
+            go.transform.position = transform.position + new Vector3(_horizontalSpacing * (i % _boardDimension.x),
+                    _verticalSpacing * -(j - 1 % _boardDimension.y), 0);
+            go.transform.rotation = Quaternion.identity;
+            go.transform.parent = transform;
             Board.Add(go.GetComponent<SlotInformation>());
         }
 
         RenameSlots();
         SetNeighbours();
     }
+#endif
 
     private void SetNeighbours()
     {

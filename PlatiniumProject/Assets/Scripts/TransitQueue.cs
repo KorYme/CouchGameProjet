@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,12 +9,16 @@ public class TransitQueue : MonoBehaviour
     [SerializeField] private GameObject _slot;
     public List<SlotInformation> Slots  = new List<SlotInformation>();
 
+#if UNITY_EDITOR
     public void AddSlot(Vector3 position)
     {
-        GameObject go = Instantiate(_slot, new Vector3(position.x, position.y, 0), quaternion.identity, transform);
+        GameObject go = UnityEditor.PrefabUtility.InstantiatePrefab(_slot) as GameObject;
+        go.transform.position = new Vector3(position.x, position.y, 0);
+        go.transform.rotation = Quaternion.identity;
+        go.transform.parent = transform;
         Slots.Add(go.GetComponent<SlotInformation>());
     }
-
+#endif
     public void DeleteAll()
     {
         foreach (var v in Slots)
