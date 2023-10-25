@@ -1,5 +1,6 @@
 using Rewired;
 using System;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -20,6 +21,7 @@ public class PlayerInputController : MonoBehaviour
     #region InputsActions
     public bool IsAction1Pressed { get; private set; } = false;
     #endregion
+
     public float DurationAction1Down { get; private set; } = 0f;
 
     void Update()
@@ -31,13 +33,14 @@ public class PlayerInputController : MonoBehaviour
             _isRegistered = true;
             Players.AddPlayerToList(this, (int) PlayerInputsAssigner.GetRolePlayer(gamePlayerId));
         }
+        player.AddInputEventDelegate(x=> print(x.player.name), UpdateLoopType.Update, RewiredConsts.Action.AXISX);
         GetInputs();
     }
 
     private void GetInputs()
     {
         MoveVector = new Vector2(player.GetAxis(RewiredConsts.Action.MOVE_HORIZONTAL), player.GetAxis(RewiredConsts.Action.MOVE_VERTICAL));
-        
+
         if (_isMoveDownRefreshed && !OnMoveDown && MoveVector != Vector2.zero)
         {
             OnMoveDown = true;
@@ -53,6 +56,7 @@ public class PlayerInputController : MonoBehaviour
         if (MoveVector == Vector2.zero)
         {
             _isMoveDownRefreshed = true;
+            string test = "Hey";
         }
         DurationAction1Down = (float)player.GetButtonTimePressed(RewiredConsts.Action.ACTION1);
         IsAction1Pressed = player.GetButton(RewiredConsts.Action.ACTION1);
