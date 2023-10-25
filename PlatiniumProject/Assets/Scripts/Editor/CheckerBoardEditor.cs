@@ -17,6 +17,10 @@ public class CheckerBoardEditor : Editor
         if (GUILayout.Button("Delete"))
         {
             checkerBoard.Delete();
+        } 
+        if (GUILayout.Button("Rename"))
+        {
+            checkerBoard.RenameSlots();
         }
     }
 }
