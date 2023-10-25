@@ -64,15 +64,49 @@ public class BouncerMovement : PlayerMovement
 
     public void Move(int index)
     {
-        _currentSlot.PlayerOccupant = null;
-        _movement.MoveToPosition(_currentSlot.Neighbours[index].transform.position);
-        _currentSlot = _currentSlot.Neighbours[index];
-        _currentSlot.PlayerOccupant = this;
-
-        if (_currentSlot.Occupant != null)
+        if (_currentSlot.Neighbours[index].Occupant != null)
         {
             currentState = BouncerState.Checking;
-            _currentSlot.Occupant.ChangeState(_currentSlot.Occupant.BouncerCheckState);
+            _currentSlot.Neighbours[index].Occupant.ChangeState( _currentSlot.Neighbours[index].Occupant.BouncerCheckState);
+            
+            _currentSlot.PlayerOccupant = null;
+            _movement.MoveToPosition(_currentSlot.Neighbours[index].transform.position + new Vector3(_areaManager.BouncerBoard.HorizontalSpacing/2,0,0));
+            _currentSlot = _currentSlot.Neighbours[index];
+            _currentSlot.PlayerOccupant = this;
+            StartCoroutine(TestCheck());
+        }
+        else
+        {
+            _currentSlot.PlayerOccupant = null;
+            _movement.MoveToPosition(_currentSlot.Neighbours[index].transform.position);
+            _currentSlot = _currentSlot.Neighbours[index];
+            _currentSlot.PlayerOccupant = this;
+        }
+        
+    }
+
+    IEnumerator TestCheck()
+    {
+        while (true)
+        {
+            if (Input.GetKeyDown(KeyCode.Y))
+            {
+                CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
+                chara.BouncerAction(true);
+                currentState = BouncerState.Moving;
+                transform.position = _currentSlot.transform.position;
+                yield break;
+            }
+
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
+                chara.BouncerAction(false);
+                currentState = BouncerState.Moving;
+                transform.position = _currentSlot.transform.position;
+                yield break;
+            }
+            yield return null;
         }
     }
 }

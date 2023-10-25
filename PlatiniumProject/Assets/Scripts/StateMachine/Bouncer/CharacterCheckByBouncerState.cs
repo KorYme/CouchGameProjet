@@ -5,9 +5,16 @@ using UnityEngine;
 
 public class CharacterCheckByBouncerState : CharacterState
 {
+        public override void OnBeat()
+        {
+                
+        }
+
         public override void EnterState()
         {
-                StateMachine.CharacterMove.MoveToPosition(StateMachine.transform.position + new Vector3(-StateMachine.AreaManager.BouncerBoard.HorizontalSpacing / 2f,0,0));
+                StateMachine.transform.position +=
+                        new Vector3(-StateMachine.AreaManager.BouncerBoard.HorizontalSpacing / 2f, 0, 0);
+                //StateMachine.CharacterMove.MoveToPosition(StateMachine.transform.position + new Vector3(-StateMachine.AreaManager.BouncerBoard.HorizontalSpacing / 2f,0,0));
         }
 
         public void BouncerAction(bool canEnter)
