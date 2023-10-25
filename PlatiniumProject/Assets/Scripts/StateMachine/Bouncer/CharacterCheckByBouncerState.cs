@@ -7,18 +7,28 @@ public class CharacterCheckByBouncerState : CharacterState
 {
         public override void OnBeat()
         {
-                //Bounce
+                
+        }
+
+        public override void EnterState()
+        {
+                StateMachine.transform.position +=
+                        new Vector3(-StateMachine.AreaManager.BouncerBoard.HorizontalSpacing / 2f, 0, 0);
+                //StateMachine.CharacterMove.MoveToPosition(StateMachine.transform.position + new Vector3(-StateMachine.AreaManager.BouncerBoard.HorizontalSpacing / 2f,0,0));
         }
 
         public void BouncerAction(bool canEnter)
         {
                 if (canEnter)
                 {
-                        //StateMachine.ChangeState(StateMachine.MoveToState());
+                        StateMachine.CurrentSlot.Occupant = null;
+                        StateMachine.ChangeState(StateMachine.RoamState);
+                        StateMachine.NextState = StateMachine.BarManQueueState;
                 }
                 else
                 {
-                        //StateMachine.ChangeState();
+                        StateMachine.CurrentSlot.Occupant = null;
+                        StateMachine.ChangeState(StateMachine.DieState);
                 }
         }
 }

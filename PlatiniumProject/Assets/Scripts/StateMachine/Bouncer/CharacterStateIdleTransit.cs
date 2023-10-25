@@ -10,7 +10,7 @@ public class CharacterStateIdleTransit : CharacterState
 
     public override void BeatAction()
     {
-        if (StateMachine.CurrentSlot == StateMachine.AreaManager.BouncerTransit.Slots[^1] && StateMachine.AreaManager.BouncerBoard.Board[0].Occupant == null)
+        if (StateMachine.CurrentSlot == StateMachine.AreaManager.BouncerTransit.Slots[^1] && StateMachine.AreaManager.BouncerBoard.Board[0].Occupant == null && StateMachine.AreaManager.BouncerBoard.Board[0].PlayerOccupant == null)
         {
             StateMachine.CurrentSlot.Occupant = null;
             StateMachine.MoveToLocation = StateMachine.AreaManager.BouncerBoard.Board[0].transform.position;

@@ -15,6 +15,7 @@ public class CheckerBoard : MonoBehaviour
     public Vector2Int BoardDimension => _boardDimension;
     public int BoardLength => _boardDimension.x * _boardDimension.y;
     int[] Directions => new int[4] { 1, -1, _boardDimension.x, -_boardDimension.x };
+    public float HorizontalSpacing => _horizontalSpacing;
     public List <SlotInformation> AvailableSlots { get; private set; } = new List<SlotInformation>();
 
 
@@ -57,7 +58,8 @@ public class CheckerBoard : MonoBehaviour
             
             Board.Add(go.GetComponent<SlotInformation>());
         }
-        
+
+        RenameSlots();
         SetNeighbours();
     }
 
@@ -121,5 +123,21 @@ public class CheckerBoard : MonoBehaviour
         SlotInformation result = AvailableSlots[Random.Range(0, Board.Count)];
         AvailableSlots.Remove(result);
         return result;
+    }
+
+    public void RenameSlots()
+    {
+        int j = 0;
+        for (int i = 0; i < BoardLength; ++i)
+        {
+            if (i % _boardDimension.x == 0)
+            {
+                j++;
+            }
+            SlotInformation slot = Board[i];
+            slot.gameObject.name = $"X: {i % _boardDimension.x}, Y:{j - 1}";
+
+        }
+            
     }
 }
