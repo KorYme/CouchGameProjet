@@ -94,7 +94,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2764838264077394712}
   - component: {fileID: 1473623265515723792}
-  - component: {fileID: 4193779549208878458}
   - component: {fileID: 5115288593331536716}
   - component: {fileID: 672007605793595462}
   - component: {fileID: 7338074514793002079}
@@ -148,7 +147,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4193779549208878458}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BarmanController, Assembly-CSharp
         m_MethodName: HandleQTE
         m_Mode: 0
@@ -191,18 +190,6 @@ MonoBehaviour:
   m_DefaultActionMap: Barman
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &4193779549208878458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6110243176272634959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7ee2d539b435a0488db41e33b88cf34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5115288593331536716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,3 +237,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _role: 0
   _playerController: {fileID: 672007605793595462}
+  _beatManager: {fileID: 0}

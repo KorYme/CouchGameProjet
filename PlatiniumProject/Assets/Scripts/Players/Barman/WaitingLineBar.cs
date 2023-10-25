@@ -1,37 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.TextCore.Text;
 
-public class WaitingLineBar : MonoBehaviour
+public class WaitingLineBar : MonoBehaviour,IQTEable
 {
-    //[SerializeField] PlayerInput _playerInput;
     [SerializeField] QTEHandler _qteHandler;
-    int _currentDrink = -1;
 
     [SerializeField] TextMeshProUGUI _indexText;
-    //[SerializeField] DrinkList _drinkList;
     List<CharacterStateMachine> _waitingCharactersList;
 
     public int NbCharactersWaiting { get => _waitingCharactersList.Count; } 
-
-    public int CurrentDrink { get => _currentDrink;}
-
 
     private void Start()
     {
         _waitingCharactersList = new List<CharacterStateMachine>();
         if (_qteHandler != null)
         {
-            _qteHandler.OnSequenceComplete += OnDrinkComplete;
-            _qteHandler.OnInputCorrect += OnInputCorrect;
+            _qteHandler.RegisterQTEable(this);
         }
-        _indexText.text = _qteHandler.DisplayQTE();
     }
 
     private void OnInputCorrect()
@@ -67,9 +55,6 @@ public class WaitingLineBar : MonoBehaviour
                 _waitingCharactersList[i].CharacterMove.MoveToPosition(transform.position + Vector3.left * (i + 1));
             }
             _waitingCharactersList[0].ChangeState(_waitingCharactersList[0].BarManAtBar);
-        } else
-        {
-            _currentDrink = -1;
         }
     }
 
@@ -86,22 +71,38 @@ public class WaitingLineBar : MonoBehaviour
                  _waitingCharactersList[i].CharacterMove.MoveToPosition(transform.position + Vector3.left * (i + 1));
              }
              _waitingCharactersList[0].ChangeState(_waitingCharactersList[0].BarManAtBar);
-         } else
-         {
-             _currentDrink = -1;
          }
      }
 
     public void AddToWaitingLine(CharacterStateMachine character)
     {
-        _indexText.text = _qteHandler.DisplayQTE();
         character.CharacterMove.MoveToPosition(transform.position + Vector3.left * (_waitingCharactersList.Count + 1));
-        if (_waitingCharactersList.Count == 0)
+        if (_waitingCharactersList.Count == 0) //If first person in line
         {
             GetRandomDrink();
             character.ChangeState(character.BarManAtBar);
         }
         _waitingCharactersList.Add(character);
-        
+        _indexText.text = _qteHandler.DisplayQTE();
+    }
+
+    IEnumerator StartRoutineSimultaneous()
+    {
+        yield return null;
+    }
+
+    void IQTEable.OnQTEStarted(QTESequence sequence)
+    {
+        _indexText.text = _qteHandler.DisplayQTE();
+    }
+
+    void IQTEable.OnQTEComplete()
+    {
+        OnDrinkComplete();
+    }
+
+    void IQTEable.OnQTECorrectInput()
+    {
+        OnInputCorrect();
     }
 }

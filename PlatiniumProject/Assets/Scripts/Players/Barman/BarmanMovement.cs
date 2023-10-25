@@ -125,8 +125,10 @@ public class BarmanMovement : MonoBehaviour
 
     void OnInputMove()
     {
+        Debug.Log(_controller != null);
         if (_controller != null)
         {
+            //Debug.Log($"{_controller.MoveVector.y} {IsInputDuringBeatTime()}");
             if (_inputRefreshed && IsInputDuringBeatTime())
             {
                 _inputRefreshed = false;
