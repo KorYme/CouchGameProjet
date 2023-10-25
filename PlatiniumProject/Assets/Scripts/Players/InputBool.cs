@@ -4,9 +4,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputBool : InputClass, IBoolInputable
+public class InputBool : InputClass
 {
+    public InputBool(int actionID) : base(actionID)
+    {
+        OnInputStart += OnInputChange;
+        OnInputEnd += OnInputChange;
+    }
+
     public bool InputValue { get; private set; }
+
+    public override bool IsPerformed => InputValue;
 
     public override void InputCallback(InputActionEventData data)
     {
@@ -14,7 +22,6 @@ public class InputBool : InputClass, IBoolInputable
         {
             case InputActionEventType.ButtonJustPressed:
                 InputValue = true;
-                _firstInputTime = DateTime.Now;
                 OnInputStart?.Invoke();
                 break;
             case InputActionEventType.ButtonJustReleased:

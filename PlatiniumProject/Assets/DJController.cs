@@ -6,9 +6,12 @@ using UnityEngine;
 public class DJController : MonoBehaviour
 {
     [SerializeField] List<SlotInformation> _shapesLight;
+    PlayerInputController _djInputController;
 
     readonly Color Red = Color.red;
     readonly Color Green = new Color(0f, 1f, 1f / 18f);
+
+    Coroutine _movementCoroutine;
 
     public enum Direction
     {
@@ -18,9 +21,13 @@ public class DJController : MonoBehaviour
         Up = 3,
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
         UpdateLightTiles(_shapesLight);
+        yield return new WaitUntil(()=> Players.PlayersController[(int)PlayerRole.Bouncer] != null);
+        Debug.Log("Initialisé");
+        _djInputController = Players.PlayersController[(int)PlayerRole.DJ];
+        _djInputController.LeftJoystick.OnInputStart += () => Debug.Log("DEBUG");
     }
 
     public void MoveLightShape(Direction direction)
@@ -45,26 +52,6 @@ public class DJController : MonoBehaviour
         {
             slot.IsEnlighted = true;
             slot.GetComponent<SpriteRenderer>().color = Red;
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            MoveLightShape(Direction.Right);
-        }        
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            MoveLightShape(Direction.Left);
-        }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            MoveLightShape(Direction.Up);
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            MoveLightShape(Direction.Down);
         }
     }
 }
