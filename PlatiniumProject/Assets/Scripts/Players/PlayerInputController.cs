@@ -17,6 +17,9 @@ public class PlayerInputController : MonoBehaviour
     public event Action OnAxisMoveStarted;
     #endregion
 
+    #region InputsActions
+    public bool IsAction1Pressed { get; private set; } = false;
+    #endregion
     public float DurationAction1Down { get; private set; } = 0f;
 
     void Update()
@@ -52,5 +55,11 @@ public class PlayerInputController : MonoBehaviour
             _isMoveDownRefreshed = true;
         }
         DurationAction1Down = (float)player.GetButtonTimePressed(RewiredConsts.Action.ACTION1);
+        IsAction1Pressed = player.GetButton(RewiredConsts.Action.ACTION1);
+    }
+
+    public bool GetInput(int inputId)
+    {
+        return player.GetButtonDown(inputId);
     }
 }
