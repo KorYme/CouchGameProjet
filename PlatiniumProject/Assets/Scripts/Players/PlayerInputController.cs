@@ -58,8 +58,13 @@ public class PlayerInputController : MonoBehaviour
         IsAction1Pressed = player.GetButton(RewiredConsts.Action.ACTION1);
     }
 
-    public bool GetInput(int inputId)
+    public bool GetInput(UnitInput input)
     {
-        return player.GetButtonDown(inputId);
+        
+        return player.GetButtonDown(input.ActionIndex);
+    }
+    public bool GetInputHold(UnitInput input)
+    {
+        return player.GetButtonLongPress(input.ActionIndex);
     }
 }

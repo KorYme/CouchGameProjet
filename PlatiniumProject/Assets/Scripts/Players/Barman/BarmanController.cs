@@ -13,11 +13,11 @@ public class BarmanController : MonoBehaviour
         _barmanMovement = GetComponent<BarmanMovement>();
     }
 
-    /*public void HandleQTE(CallbackContext context)
+    public void HandleQTE(CallbackContext context)
     {
         if (context.performed && _barmanMovement.IsInputDuringBeatTime())
         {
             _barmanMovement.BarmanPositions[_barmanMovement.IndexPosition].WaitingLine.CheckInputFromLine(context.control.name);
         }
-    }*/
+    }
 }

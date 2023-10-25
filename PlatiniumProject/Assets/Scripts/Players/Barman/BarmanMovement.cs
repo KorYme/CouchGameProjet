@@ -26,7 +26,7 @@ public class BarmanMovement : MonoBehaviour
             MoveBarmanToIndex();
         }
     }
-
+    
     private void Start()
     {
         _renderer.color = _beatManager.IsInsideBeat ? Color.red : Color.blue;
