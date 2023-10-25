@@ -92,12 +92,11 @@ public class PlayerInputController : MonoBehaviour
 
     public bool GetInput(UnitInput input)
     {
-        
-        return player.GetButtonDown(input.ActionIndex);
+        return player == null ? false : player.GetButtonDown(input.ActionIndex);
     }
     public bool GetInputHold(UnitInput input)
     {
-        return player.GetButtonLongPress(input.ActionIndex);
+        return player == null ? false : player.GetButtonLongPress(input.ActionIndex);
     }
 
     public InputClass GetInputClassWithID(int ActionID) => _allInputClasses.FirstOrDefault(x => x.ActionID == ActionID);

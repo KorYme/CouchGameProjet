@@ -157,8 +157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -108, y: 102}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -112.999985, y: 176}
+  m_SizeDelta: {x: 565.961, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &12215223
 MonoBehaviour:
@@ -599,7 +599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &361727380
 RectTransform:
   m_ObjectHideFlags: 0
@@ -669,9 +669,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e6d4b6d06dfa34a8a0dca8ae4684b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerInput: {fileID: 1444240518}
+  _qteHandler: {fileID: 6524610380492720196}
   _indexText: {fileID: 12215223}
-  _drinkList: {fileID: 173076276}
 --- !u!114 &406477526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -764,8 +763,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -108, y: 6}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -112.999985, y: 80.00001}
+  m_SizeDelta: {x: 565.961, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &562822606
 MonoBehaviour:
@@ -1491,9 +1490,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e6d4b6d06dfa34a8a0dca8ae4684b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerInput: {fileID: 1444240518}
+  _qteHandler: {fileID: 6524610380492720196}
   _indexText: {fileID: 1426035257}
-  _drinkList: {fileID: 173076276}
 --- !u!1 &1162377981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1539,9 +1537,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e6d4b6d06dfa34a8a0dca8ae4684b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerInput: {fileID: 1444240518}
+  _qteHandler: {fileID: 6524610380492720196}
   _indexText: {fileID: 562822606}
-  _drinkList: {fileID: 173076276}
 --- !u!114 &1162377984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1571,7 +1568,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1210919858
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2166,8 +2163,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -108, y: -93}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -113, y: -19}
+  m_SizeDelta: {x: 565.961, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1426035257
 MonoBehaviour:
@@ -2314,7 +2311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -3003,7 +3000,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1880068109
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3438,6 +3435,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 137556889911350516, guid: c521e6c354ebf354d9a8f49e0cc47eed, type: 3}
+      propertyPath: _userData.actions.Array.data[2]._name
+      value: Action1
+      objectReference: {fileID: 0}
+    - target: {fileID: 137556889911350516, guid: c521e6c354ebf354d9a8f49e0cc47eed, type: 3}
+      propertyPath: _userData.actions.Array.data[2]._descriptiveName
+      value: ButtonDown
+      objectReference: {fileID: 0}
+    - target: {fileID: 137556889911350516, guid: c521e6c354ebf354d9a8f49e0cc47eed, type: 3}
+      propertyPath: _userData.actions.Array.data[3]._descriptiveName
+      value: ButtonLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 137556889911350516, guid: c521e6c354ebf354d9a8f49e0cc47eed, type: 3}
+      propertyPath: _userData.actions.Array.data[4]._descriptiveName
+      value: ButtonRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 137556889911350516, guid: c521e6c354ebf354d9a8f49e0cc47eed, type: 3}
+      propertyPath: _userData.actions.Array.data[5]._descriptiveName
+      value: ButtonUp
+      objectReference: {fileID: 0}
     - target: {fileID: 1059430416358908833, guid: c521e6c354ebf354d9a8f49e0cc47eed, type: 3}
       propertyPath: m_Name
       value: Rewired Input Manager
@@ -3555,11 +3572,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barman
       objectReference: {fileID: 0}
+    - target: {fileID: 7338074514793002079, guid: 7c529a488a751df4a9749ebcbee0ced4, type: 3}
+      propertyPath: _beatManager
+      value: 
+      objectReference: {fileID: 1430631879}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c529a488a751df4a9749ebcbee0ced4, type: 3}
+--- !u!114 &6524610380492720196 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7338074514793002079, guid: 7c529a488a751df4a9749ebcbee0ced4, type: 3}
+  m_PrefabInstance: {fileID: 6524610380492720195}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b9d9b51482de34cbea1169054abc08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

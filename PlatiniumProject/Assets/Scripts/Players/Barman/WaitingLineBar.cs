@@ -10,52 +10,50 @@ using UnityEngine.TextCore.Text;
 
 public class WaitingLineBar : MonoBehaviour
 {
-    [SerializeField] PlayerInput _playerInput;
+    //[SerializeField] PlayerInput _playerInput;
+    [SerializeField] QTEHandler _qteHandler;
     int _currentDrink = -1;
-    int _index;
-    InputAction[] _inputBindings;
 
     [SerializeField] TextMeshProUGUI _indexText;
-    [SerializeField] DrinkList _drinkList;
+    //[SerializeField] DrinkList _drinkList;
     List<CharacterStateMachine> _waitingCharactersList;
 
     public int NbCharactersWaiting { get => _waitingCharactersList.Count; } 
 
     public int CurrentDrink { get => _currentDrink;}
 
-    public void Awake()
-    {
-        _index = 0;
-    }
+
     private void Start()
     {
         _waitingCharactersList = new List<CharacterStateMachine>();
-       _inputBindings = _playerInput.actions.ToArray();
-        if (_currentDrink >= 0)
+        if (_qteHandler != null)
         {
-            _indexText.text = _index + "/4 " + (Drink)_currentDrink;
-        } else
-        {
-            _indexText.text = _index + "/4 ";
+            _qteHandler.OnSequenceComplete += OnDrinkComplete;
+            _qteHandler.OnInputCorrect += OnInputCorrect;
         }
+        _indexText.text = _qteHandler.DisplayQTE();
+    }
+
+    private void OnInputCorrect()
+    {
+        _indexText.text = _qteHandler.DisplayQTE();
     }
 
     void GetRandomDrink()
     {
-        _currentDrink = Random.Range(0, 3);
+        _qteHandler.GetRandomQTE();
     }
 
      void OnDrinkComplete()
     {
+        _indexText.text = _qteHandler.DisplayQTE();
         CharacterStateMachine stateMachine = _waitingCharactersList[0];
         if (stateMachine != null)
         {
-            Debug.Log(("ssdsd"));
             stateMachine.CurrentSlot = stateMachine.AreaManager.DjBoard.GetRandomAvailableSlot();
             EditorGUIUtility.PingObject(stateMachine.CurrentSlot.gameObject);
             stateMachine.MoveToLocation = stateMachine.CurrentSlot.transform.position;
             
-            Debug.Log(stateMachine.MoveToLocation);
             stateMachine.NextState = stateMachine.DancingState;
             stateMachine.ChangeState(stateMachine.MoveToState);
 
@@ -73,19 +71,12 @@ public class WaitingLineBar : MonoBehaviour
         {
             _currentDrink = -1;
         }
-        if (_currentDrink >= 0)
-        {
-            _indexText.text = _index + "/4 " + (Drink)_currentDrink;
-        }
-        else
-        {
-            _indexText.text = _index + "/4 ";
-        }
-        _index = 0;
     }
 
      public void OnFailDrink()
      {
+        _indexText.text = _qteHandler.DisplayQTE();
+        _qteHandler.StopCoroutine();
          _waitingCharactersList.RemoveAt(0);
          if (_waitingCharactersList.Count > 0)
          {
@@ -99,23 +90,11 @@ public class WaitingLineBar : MonoBehaviour
          {
              _currentDrink = -1;
          }
-         if (_currentDrink >= 0)
-         {
-             _indexText.text = _index + "/4 " + (Drink)_currentDrink;
-         }
-         else
-         {
-             _indexText.text = _index + "/4 ";
-         }
-         _index = 0;
      }
-    public bool ComparePlayerInputToExpectedInput(string playerInput)
-    {
-        return playerInput == _inputBindings[0].controls[_drinkList.DrinksRecipe[_currentDrink][_index]].name;
-    }
 
     public void AddToWaitingLine(CharacterStateMachine character)
     {
+        _indexText.text = _qteHandler.DisplayQTE();
         character.CharacterMove.MoveToPosition(transform.position + Vector3.left * (_waitingCharactersList.Count + 1));
         if (_waitingCharactersList.Count == 0)
         {
@@ -123,43 +102,6 @@ public class WaitingLineBar : MonoBehaviour
             character.ChangeState(character.BarManAtBar);
         }
         _waitingCharactersList.Add(character);
-        if (_currentDrink >= 0)
-        {
-            _indexText.text = _index + "/4 " + (Drink)_currentDrink;
-        }
-        else
-        {
-            _indexText.text = _index + "/4 ";
-        }
-    }
-
-    public void CheckInputFromLine(string control)
-    {
-        if (_currentDrink >= 0)
-        {
-            if (_index < _drinkList.DrinksRecipe[_currentDrink].Length)
-            {
-                if (ComparePlayerInputToExpectedInput(control))
-                {
-                    _index++;
-                    if (_index > 3)
-                    {
-                        OnDrinkComplete();
-                    }
-                }
-                else
-                {
-                    _index = 0;
-                }
-                if (_currentDrink >= 0)
-                {
-                    _indexText.text = _index + "/4 " + (Drink)_currentDrink;
-                }
-                else
-                {
-                    _indexText.text = _index + "/4 ";
-                }
-            }
-        }
+        
     }
 }
