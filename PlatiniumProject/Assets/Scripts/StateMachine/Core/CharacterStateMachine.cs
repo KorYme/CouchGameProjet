@@ -7,6 +7,7 @@ using UnityEngine.PlayerLoop;
 public class CharacterStateMachine : MonoBehaviour
 {
     [SerializeField] private CharacterData _characterData;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
     BeatManager _beatManager;
     public IMovable CharacterMove { get; private set; }
     public AreaManager AreaManager { get; private set; }
@@ -45,6 +46,7 @@ public class CharacterStateMachine : MonoBehaviour
     public Vector3 MoveToLocation { get; set; }
     public WaitingLineBar CurrentWaitingLine { get; set; }
     public CharacterData CharacterDataObject => _characterData;
+    public SpriteRenderer SpriteRenderer => _spriteRenderer;
     public SlotInformation CurrentSlot { get; set; }
     public int CurrentBeatAmount { get; set; }
     public int CurrentMovementInBouncer { get; set; }

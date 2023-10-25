@@ -37,19 +37,24 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnATikTak()
     {
-        GameObject go = Instantiate(character, FirstSlot.transform.position, Quaternion.identity);
+        SlotInformation slot = FirstSlot;
+        GameObject go = Instantiate(character, slot.transform.position, Quaternion.identity);
         CharacterStateMachine stateMachine = go.GetComponent<CharacterStateMachine>();
         FirstSlot.Occupant = stateMachine;
         if (startPoint == STARTPOINT.DJ_DANCE_FLOOR)
         {
-            StartCoroutine(WaitForFirstState(stateMachine));
+            StartCoroutine(WaitForFirstState(stateMachine, slot));
         }
     }
 
-    IEnumerator WaitForFirstState(CharacterStateMachine stateMachine)
+    IEnumerator WaitForFirstState(CharacterStateMachine stateMachine, SlotInformation slot)
     {
         yield return new WaitUntil(()=> stateMachine.CurrentState != null);
         stateMachine.ChangeState(stateMachine.DancingState);
+        stateMachine.CurrentSlot.Occupant = null;
+        stateMachine.CurrentSlot = slot;
+        stateMachine.CurrentSlot.Occupant = stateMachine;
+        
     }
 
     void Update()

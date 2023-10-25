@@ -7,6 +7,6 @@ public class CharacterDieState : CharacterState
 {
     public override void EnterState()
     {
-        StateMachine.GetComponentInChildren<SpriteRenderer>().DOColor(Vector4.zero, 1.5f).SetEase(Ease.InCubic).OnComplete(() => StateMachine.DestroySelf());
+        StateMachine.SpriteRenderer.DOColor(Vector4.zero, 1.5f).SetEase(Ease.InCubic).OnComplete(() => StateMachine.DestroySelf());
     }
 }
