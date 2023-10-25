@@ -8,5 +8,7 @@ public class SlotInformation : MonoBehaviour
     public BouncerMovement PlayerOccupant { get; set; }
     public SlotInformation Next { get; set; }
     public int Id { get; set; }
-    public SlotInformation[] Neighbours = new SlotInformation[4]{null, null,null, null};
+    public SlotInformation[] Neighbours = new SlotInformation[4] {null, null,null, null};
+
+    public bool IsEnlighted { get; set; } = false;
 }

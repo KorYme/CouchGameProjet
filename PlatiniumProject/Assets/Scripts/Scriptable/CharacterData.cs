@@ -13,4 +13,9 @@ public class CharacterData : ScriptableObject
     [Tooltip("Currently decrementing on beat")]
     public int maxSatisafactionBar;
 
+    [Header("DJ")]
+    [Tooltip("Max value of satisfaction when the character is on the dancefloor")]
+    public int maxSatisafactionDJ;
+    public int decrementationValueOnFloor;
+    public int incrementationValueOnFloor;
 }
