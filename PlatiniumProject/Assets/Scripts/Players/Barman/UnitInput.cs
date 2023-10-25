@@ -1,12 +1,17 @@
+using Rewired;
 using System;
+using UnityEngine;
 
 [Serializable]
-public class UnitInput : SODrinkInputs
+public class UnitInput : ScriptableObject
 {
-    public int actionIndex; //Input action index
-                            //Press
-    public InputStatus status;
+    public int Index;
+    [ActionIdProperty(typeof(RewiredConsts.Action))]
+    public int ActionIndex = 0; //Input action index
+    public bool IsInputPositive = true;
+    //Press
+    public InputStatus Status = InputStatus.PRESS;
     //Hold
-    public bool checkHold = false;
-    public int nbBeatHoldDuration = 2;
+    public bool CheckHold = false;
+    public int NbBeatHoldDuration = 2;
 }
