@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class BarmanMovement : MonoBehaviour
 {
@@ -100,7 +101,6 @@ public class BarmanMovement : MonoBehaviour
     public bool IsInputDuringBeatTime()
     {
         return _beatManager.IsInsideBeat;
-        //return _timer < _timeBeatAccepted / 2f || _timer > _timeBetweenBeat - (_timeBeatAccepted / 2f);
     }
     private void Update()
     {
@@ -117,9 +117,10 @@ public class BarmanMovement : MonoBehaviour
     private void SetupController()
     {
         _controller = Players.PlayersController[(int)PlayerRole.Barman];
+
         if (_controller != null)
         {
-            _controller.OnAxisMoveStarted += OnInputMove;
+            _controller.LeftJoystick.OnInputStart += OnInputMove;
         }
     }
 
@@ -127,12 +128,9 @@ public class BarmanMovement : MonoBehaviour
     {
         if (_controller != null)
         {
-            if (_inputRefreshed && IsInputDuringBeatTime())
-            {
-                _inputRefreshed = false;
-                float value = _controller.MoveVector.y;
-                ChangeIndexToReach(value);
-            }
+            float value = _controller.LeftJoystick.InputValue.y;
+            ChangeIndexToReach(value);
         }
+
     }
 }
