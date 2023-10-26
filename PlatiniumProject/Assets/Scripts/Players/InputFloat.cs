@@ -42,4 +42,24 @@ public class InputFloat : InputClass
             InputValue = tmp;
         }
     }
+
+    public void InputCallbackForced(Player player)
+    {
+        InputDuration = player.GetAxisTimeActive(ActionID);
+        float tmp = player.GetAxis(ActionID);
+        if (!IsPerformed && tmp != 0f)
+        {
+            _inputValue = tmp;
+            OnInputStart?.Invoke();
+        }
+        else if (IsPerformed && tmp == 0f)
+        {
+            _inputValue = tmp;
+            OnInputEnd?.Invoke();
+        }
+        else
+        {
+            _inputValue = tmp;
+        }
+    }
 }

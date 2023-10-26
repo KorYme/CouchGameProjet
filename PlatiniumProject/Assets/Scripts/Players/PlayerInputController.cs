@@ -77,11 +77,13 @@ public class PlayerInputController : MonoBehaviour
     {
         _allInputClasses.ForEach(inputClass =>
         {
+            
             newPlayer.AddInputEventDelegate(inputClass.InputCallback, UpdateLoopType.Update, inputClass.ActionID);
             switch (inputClass)
         {
                 case InputVector2 inputVector2:
                     Debug.Log("Add Vector2 delegate");
+                    inputVector2.Player = newPlayer;
                     newPlayer.AddInputEventDelegate(inputVector2.InputCallbackSecondAction, UpdateLoopType.Update, inputVector2.SecondActionID);
                     break;
                 default:
