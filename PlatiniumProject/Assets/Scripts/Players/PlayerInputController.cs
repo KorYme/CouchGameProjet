@@ -79,6 +79,7 @@ public class PlayerInputController : MonoBehaviour
             switch (inputClass)
             {
                 case InputVector2 inputVector2:
+                    Debug.Log("Add Vector2 delegate");
                     newPlayer.AddInputEventDelegate(inputVector2.InputCallbackSecondAction, UpdateLoopType.Update, inputVector2.SecondActionID);
                     break;
                 default:
@@ -86,17 +87,6 @@ public class PlayerInputController : MonoBehaviour
             }
         });
     }
-
-    //void Update()
-    //{
-    //    if (!ReInput.isReady) return; // Exit if Rewired isn't ready. This would only happen during a script recompile in the editor.
-    //    if (player == null) return;
-    //    if (!_isRegistered)
-    //    {
-    //        _isRegistered = true;
-    //        Players.AddPlayerToList(this, (int) PlayerInputsAssigner.GetRolePlayer(gamePlayerId));
-    //    }   
-    //}
 
     public bool GetInput(UnitInput input)
     {
@@ -106,4 +96,6 @@ public class PlayerInputController : MonoBehaviour
     {
         return player.GetButtonLongPress(input.ActionIndex);
     }
+
+    public InputClass GetInputClassWithID(int ActionID) => _allInputClasses.FirstOrDefault(x => x.ActionID == ActionID);
 }

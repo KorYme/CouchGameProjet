@@ -27,6 +27,7 @@ public class InputFloat : InputClass
 
     public override void InputCallback(InputActionEventData data)
     {
+        InputDuration = data.GetAxisTimeActive();
         switch (data.eventType)
         {
             case InputActionEventType.AxisActive:

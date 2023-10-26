@@ -18,6 +18,7 @@ public class InputBool : InputClass
 
     public override void InputCallback(InputActionEventData data)
     {
+        InputDuration = data.GetButtonTimePressed();
         switch (data.eventType)
         {
             case InputActionEventType.ButtonJustPressed:

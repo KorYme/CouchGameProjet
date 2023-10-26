@@ -13,6 +13,8 @@ public class InputVector2 : InputClass
 
     public Vector2 InputValue => new Vector2(_inputValueX.InputValue, _inputValueY.InputValue);
 
+    public override double InputDuration => Math.Max(_inputValueX.InputDuration, _inputValueY.InputDuration);
+
     public InputVector2(int actionID, int secondActionID) : base(actionID)
     {
         SecondActionID = secondActionID;
