@@ -80,7 +80,7 @@ public class SpawnManager : MonoBehaviour
 
     public void PullACharacter()
     {
-        if (_availableCharcters.Count <= 0 || areaManager.BouncerTransit.Slots[0].Occupant == null)
+        if (_availableCharcters.Count <= 0 || areaManager.BouncerTransit.Slots[0].Occupant != null)
         {
             Debug.LogError(_availableCharcters.Count <= 0?"No more pullable character" : "First Slot Occuped");
             return;
@@ -89,7 +89,7 @@ public class SpawnManager : MonoBehaviour
         chara.CurrentSlot = areaManager.BouncerTransit.Slots[0];
         chara.CurrentSlot.Occupant = chara;
         _availableCharcters.Remove(chara);
-        chara.PullCharacter(chara.IdleBouncerState);
+        chara.PullCharacter();
     }
 
     public void ReInsertCharacterInPull(CharacterStateMachine chara)

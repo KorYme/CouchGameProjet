@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using Random = UnityEngine.Random;
@@ -9,7 +10,8 @@ public class CharacterStateMachine : MonoBehaviour
 {
     [SerializeField] private CharacterData _characterData;
     [SerializeField] private SpriteRenderer _spriteRenderer;
-    BeatManager _beatManager;
+    private SpawnManager _spawnManager;
+    private BeatManager _beatManager;
     public IMovable CharacterMove { get; private set; }
     public AreaManager AreaManager { get; private set; }
     public WaitingLineBar[] WaitingLines { get; private set; }
@@ -56,6 +58,7 @@ public class CharacterStateMachine : MonoBehaviour
     {
         InitAllState();
         _beatManager = FindObjectOfType<BeatManager>();
+        _spawnManager = FindObjectOfType<SpawnManager>();
         AreaManager = FindObjectOfType<AreaManager>();
         WaitingLines = FindObjectsOfType<WaitingLineBar>();
         CharacterMove = GetComponent<IMovable>();
@@ -66,11 +69,9 @@ public class CharacterStateMachine : MonoBehaviour
         if (startState == null)
         {
             SlotInformation firstQueueSlot = AreaManager.BouncerTransit.Slots[0];
-                
-            if (firstQueueSlot != null)
-                return;
-                
             CurrentSlot = firstQueueSlot;
+            EditorGUIUtility.PingObject(gameObject);
+            Debug.Log("zzezz");
             transform.position = firstQueueSlot.transform.position;
             ChangeState(IdleTransitState);
             return;
@@ -128,7 +129,10 @@ public class CharacterStateMachine : MonoBehaviour
         }
         PreviousState = CurrentState;
         CurrentState = state;
-        _beatManager.OnBeatEvent.AddListener(CurrentState.OnBeat);
+        if (CurrentState != null)
+        {
+            _beatManager.OnBeatEvent.AddListener(CurrentState.OnBeat);
+        }
         CurrentState?.EnterState();
     }
     
@@ -140,8 +144,10 @@ public class CharacterStateMachine : MonoBehaviour
         }
     }
 
-    public void DestroySelf()
+    public void GoBackInPull()
     {
-        Destroy(gameObject);
+        _spawnManager.ReInsertCharacterInPull(this);
+        ChangeState(null);
+        _spriteRenderer.color = Color.white;
     }
 }

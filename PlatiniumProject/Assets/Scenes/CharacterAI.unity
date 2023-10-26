@@ -1147,13 +1147,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b5e9bce36e0b864188fb6b896ca89ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectsToPoolNumber: 50
+  _objectsToPoolNumber: 25
   _poolingSpawn: {fileID: 1019943543}
   areaManager: {fileID: 1447075046}
   _pnj: {fileID: 1307051827475980772, guid: 9aa80bdd6c04ef14e810ca8a1f7f5597, type: 3}
-  _baseClientInBouncer: 3
-  _baseClientInBarMan: 3
-  _baseClientInDj: 3
+  _baseClientInBouncer: 5
+  _baseClientInBarMan: 10
+  _baseClientInDj: 10
 --- !u!1001 &166136551
 PrefabInstance:
   m_ObjectHideFlags: 0
