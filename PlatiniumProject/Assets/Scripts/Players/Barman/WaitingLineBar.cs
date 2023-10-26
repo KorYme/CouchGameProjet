@@ -34,7 +34,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
 
      void OnDrinkComplete()
     {
-        _indexText.text = _qteHandler.DisplayQTE();
+        _indexText.text = string.Empty;
         CharacterStateMachine stateMachine = _waitingCharactersList[0];
         if (stateMachine != null)
         {
@@ -55,6 +55,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
                 _waitingCharactersList[i].CharacterMove.MoveToPosition(transform.position + Vector3.left * (i + 1));
             }
             _waitingCharactersList[0].ChangeState(_waitingCharactersList[0].BarManAtBar);
+            _indexText.text = _qteHandler.DisplayQTE();
         }
     }
 
