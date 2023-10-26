@@ -24,12 +24,12 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
 
     private void OnInputCorrect()
     {
-        _indexText.text = _qteHandler.DisplayQTE();
+        _indexText.text = _qteHandler.GetQTEString();
     }
 
     void GetRandomDrink()
     {
-        _qteHandler.GetRandomQTE();
+        _qteHandler.StartRandomQTE();
     }
 
      void OnDrinkComplete()
@@ -55,13 +55,13 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
                 _waitingCharactersList[i].CharacterMove.MoveToPosition(transform.position + Vector3.left * (i + 1));
             }
             _waitingCharactersList[0].ChangeState(_waitingCharactersList[0].BarManAtBar);
-            _indexText.text = _qteHandler.DisplayQTE();
+            _indexText.text = _qteHandler.GetQTEString();
         }
     }
 
      public void OnFailDrink()
      {
-        _indexText.text = _qteHandler.DisplayQTE();
+        _indexText.text = _qteHandler.GetQTEString();
         _qteHandler.StopCoroutine();
          _waitingCharactersList.RemoveAt(0);
          if (_waitingCharactersList.Count > 0)
@@ -84,7 +84,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             character.ChangeState(character.BarManAtBar);
         }
         _waitingCharactersList.Add(character);
-        _indexText.text = _qteHandler.DisplayQTE();
+        _indexText.text = _qteHandler.GetQTEString();
     }
 
     IEnumerator StartRoutineSimultaneous()
@@ -94,7 +94,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
 
     void IQTEable.OnQTEStarted(QTESequence sequence)
     {
-        _indexText.text = _qteHandler.DisplayQTE();
+        _indexText.text = _qteHandler.GetQTEString();
     }
 
     void IQTEable.OnQTEComplete()

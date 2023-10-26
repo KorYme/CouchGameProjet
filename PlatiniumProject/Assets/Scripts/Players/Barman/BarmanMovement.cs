@@ -22,6 +22,8 @@ public class BarmanMovement : MonoBehaviour
     private void Awake()
     {
         _indexPosition = 0;
+        DeactivateAllQTE();
+        ActivateCurrentQTE();
         if (_barmanPositions.Length > 0)
         {
             MoveBarmanToIndex();
@@ -79,7 +81,7 @@ public class BarmanMovement : MonoBehaviour
 
     void ChangeIndexToReach(float value)
     {
-        DeactivateQTE();
+        DeactivateCurrentQTE();
         if (value > 0f)
         {
             if (_indexPosition < _barmanPositions.Length - 1)
@@ -87,7 +89,7 @@ public class BarmanMovement : MonoBehaviour
                 _indexPosition++;
             }
             MoveBarmanToIndex();
-            ActivateQTE();
+            ActivateCurrentQTE();
         }
         else if (value < 0f)
         {
@@ -96,7 +98,7 @@ public class BarmanMovement : MonoBehaviour
                 _indexPosition--;
             }
             MoveBarmanToIndex();
-            ActivateQTE();
+            ActivateCurrentQTE();
         }
     }
 
@@ -132,13 +134,21 @@ public class BarmanMovement : MonoBehaviour
 
     }
 
-    void ActivateQTE()
+    void ActivateCurrentQTE()
     {
         _barmanPositions[_indexPosition].WaitingLine.PauseQTE(false);
     }
     
-    void DeactivateQTE()
+    void DeactivateCurrentQTE()
     {
         _barmanPositions[_indexPosition].WaitingLine.PauseQTE(true);
+    }
+
+    void DeactivateAllQTE()
+    {
+        for (int i = 0; i < _barmanPositions.Length; i++)
+        {
+            _barmanPositions[i].WaitingLine.PauseQTE(true);
+        }
     }
 }
