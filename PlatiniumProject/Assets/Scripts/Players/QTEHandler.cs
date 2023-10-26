@@ -13,6 +13,7 @@ public class QTEHandler : MonoBehaviour
     [SerializeField] BeatManager _beatManager;
     private Coroutine _coroutineQTE;
     IQTEable _QTEable;
+    bool _isPlaying = true;
 
     private void Update()
     {
@@ -49,6 +50,11 @@ public class QTEHandler : MonoBehaviour
         }
     }
     
+    public void PauseQTE(bool value)
+    {
+        _isPlaying = !value;
+    }
+
     public void StopCoroutine()
     {
         StopCoroutine(_coroutineQTE);
@@ -100,7 +106,7 @@ public class QTEHandler : MonoBehaviour
         UnitInput input = _currentQTESequence.ListSubHandlers[_indexInSequence];
         while (_indexInSequence < _currentQTESequence.ListSubHandlers.Count)
         {
-            
+            yield return new WaitUntil(() => _isPlaying);
             if (_beatManager.IsInsideBeat)
             {
                 if (CheckInput(input))

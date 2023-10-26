@@ -8,8 +8,8 @@ using UnityEngine;
 
 public class PlayerInputController : MonoBehaviour
 {
-    [SerializeField] int gamePlayerId = 0;
-    private Rewired.Player player { get { return PlayerInputsAssigner.GetRewiredPlayer(gamePlayerId); } }
+    [SerializeField] PlayerRole _gamePlayerRole;
+    private Rewired.Player player { get { return PlayerInputsAssigner.GetRewiredPlayer((int)_gamePlayerRole); } }
     public Rewired.Player newPlayer { get; private set; } 
     private bool _isRegistered = false;
 
@@ -63,12 +63,12 @@ public class PlayerInputController : MonoBehaviour
     {
         yield return new WaitUntil(() => ReInput.isReady && player != null);
         Debug.Log("Rewired ready");
-        newPlayer = PlayerInputsAssigner.GetRewiredPlayer(gamePlayerId);
+        newPlayer = PlayerInputsAssigner.GetRewiredPlayer((int)_gamePlayerRole);
 
         if (newPlayer != null)
         {
             _isRegistered = true;
-            Players.AddPlayerToList(this, (int) PlayerInputsAssigner.GetRolePlayer(gamePlayerId));
+            Players.AddPlayerToList(this, (int) PlayerInputsAssigner.GetRolePlayer((int)_gamePlayerRole));
             SetUpAllInputClasses();
         }
     }
