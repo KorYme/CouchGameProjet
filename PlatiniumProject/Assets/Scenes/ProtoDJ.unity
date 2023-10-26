@@ -1081,9 +1081,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b5e9bce36e0b864188fb6b896ca89ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _objectsToPoolNumber: 0
+  _poolingSpawn: {fileID: 0}
   areaManager: {fileID: 1447075046}
-  character: {fileID: 1307051827475980772, guid: 9aa80bdd6c04ef14e810ca8a1f7f5597, type: 3}
-  startPoint: 1
+  _pnj: {fileID: 0}
+  _baseClientInBouncer: 0
+  _baseClientInBarMan: 0
+  _baseClientInDj: 0
 --- !u!1001 &166848551
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3449,6 +3453,7 @@ MonoBehaviour:
   - {fileID: 37642915}
   - {fileID: 417921760}
   - {fileID: 1564633290}
+  _inputDistance: 0.4
 --- !u!114 &485262152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6819,9 +6824,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e6d4b6d06dfa34a8a0dca8ae4684b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerInput: {fileID: 388563236}
+  _qteHandler: {fileID: 0}
   _indexText: {fileID: 586086694}
-  _drinkList: {fileID: 1860742073}
 --- !u!114 &893417089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10508,9 +10512,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e6d4b6d06dfa34a8a0dca8ae4684b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerInput: {fileID: 388563236}
+  _qteHandler: {fileID: 0}
   _indexText: {fileID: 1859698757}
-  _drinkList: {fileID: 1860742073}
 --- !u!114 &1420301702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12908,9 +12911,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e6d4b6d06dfa34a8a0dca8ae4684b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerInput: {fileID: 388563236}
+  _qteHandler: {fileID: 0}
   _indexText: {fileID: 1840172587}
-  _drinkList: {fileID: 1860742073}
 --- !u!114 &1737356116
 MonoBehaviour:
   m_ObjectHideFlags: 0

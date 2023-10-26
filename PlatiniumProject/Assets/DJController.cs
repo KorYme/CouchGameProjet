@@ -2,17 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class DJController : MonoBehaviour
 {
-    [SerializeField] List<SlotInformation> _shapesLight;
-    PlayerInputController _djInputController;
-
-    bool _areInputsSetUp = false;
-
-    readonly Color Red = Color.red;
-    readonly Color Green = new Color(0f, 1f, 1f / 18f);
     public enum Direction
     {
         Right = 0,
@@ -21,30 +15,44 @@ public class DJController : MonoBehaviour
         Up = 3,
     }
 
+    [SerializeField] List<SlotInformation> _shapesLight;
+    [SerializeField, Range(0f, 1f)] float _inputDistance = .4f;
+
+    /// <summary>
+    /// If rotate clockwise then 1 else -1 
+    /// </summary>
+    int _rotationOrientation = 0;
+    int _directionChecked = 0;
+    Vector2 _lastDirection = Vector2.zero;
+    PlayerInputController _djInputController;
+    bool _areInputsSetUp = false;
+
+    readonly Color Red = Color.red;
+    readonly Color Green = new Color(0f, 1f, 1f / 18f);
+    
+
+    //TO CHECK
     private IEnumerator Start()
     {
         UpdateLightTiles(_shapesLight);
         _areInputsSetUp = false;
-        yield return new WaitUntil(()=> Players.PlayersController[(int)PlayerRole.Bouncer] != null);
+        yield return new WaitUntil(()=> Players.PlayersController[(int)PlayerRole.DJ] != null);
         Debug.Log("Initialisé");
         _djInputController = Players.PlayersController[(int)PlayerRole.DJ];
         _djInputController.LeftJoystick.OnInputStart += () => Debug.Log("DEBUG");
 
         SetUpInputs();
     }
-
+    //TO COMPLETE
     private void SetUpInputs()
     {
-        _djInputController.RightJoystick.OnInputStart += () =>
+        _djInputController.RightJoystick.OnInputChange += () =>
         {
-            if (_djInputController.RightJoystick.InputValue != Vector2.zero)
-            {
-                MoveLightShape(GetDirectionFromVector(_djInputController.LeftJoystick.InputValue));
-            }
+            GetDirection();
         };
         _areInputsSetUp = true;
     }
-
+    //TO COMPLETE
     private void OnDestroy()
     {
         if (_areInputsSetUp)
@@ -52,8 +60,99 @@ public class DJController : MonoBehaviour
 
         }
     }
+    //DONE
+    public void MoveLightShape(Direction direction)
+    {
+        if (_shapesLight.TrueForAll(x => x.Neighbours[(int)direction] != null))
+        {
+            List<SlotInformation> newList = new();
+            _shapesLight.ForEach(x => newList.Add(x.Neighbours[(int)direction]));
+            UpdateLightTiles(newList);
+            _shapesLight = newList;
+        }
+    }
+    //DONE
+    private void UpdateLightTiles(List<SlotInformation> newSlots)
+    {
+        foreach (SlotInformation slot in _shapesLight)
+        {
+            slot.GetComponent<SpriteRenderer>().color = Green;
+            slot.IsEnlighted = false;
+        }
+        foreach (SlotInformation slot in newSlots)
+        {
+            slot.IsEnlighted = true;
+            slot.GetComponent<SpriteRenderer>().color = Red;
+        }
+    }
 
-    Direction GetDirectionFromVector(Vector2 vector)
+    private void GetDirection()
+    {
+        Vector2 closestPoint = GetClosestUnitVectorFromVector(_djInputController.LeftJoystick.InputValue);
+        if (_lastDirection == closestPoint) return;
+        if (closestPoint == Vector2.zero)
+        {
+            _lastDirection = closestPoint;
+            _rotationOrientation = 0;
+            _directionChecked = 0;
+            return;
+        }
+        if (closestPoint == -_lastDirection)
+        {
+            //Cas quasi impossible mais on sait jamais, si le joueur est ultra rapide
+            _lastDirection = closestPoint;
+            _rotationOrientation = 0;
+            _directionChecked = 1;
+            return;
+        }
+        if (_rotationOrientation == 0)
+        {
+            if (_lastDirection != Vector2.zero)
+            {
+                _rotationOrientation = (new Vector2(_lastDirection.y, -_lastDirection.x) == closestPoint) ? 1 : -1;
+            }
+        }
+        else if (new Vector2(_lastDirection.y, -_lastDirection.x) * _rotationOrientation != closestPoint)
+        {
+            _rotationOrientation = 0;
+            _directionChecked = 0;
+        }     
+        _lastDirection = closestPoint;
+        _directionChecked++;
+        if (_directionChecked >= 4)
+        {
+            //Faire bouger la piste de danse avec _rotationOrientation et de l'axe défini par le joystick utilisé
+            //Switch de debug
+            switch (_rotationOrientation)
+            {
+                case 1:
+                    Debug.Log("Tour effectué dans le sens des aiguilles d'une montre");
+                    break;
+                case -1:
+                    Debug.Log("Tour effectué dans le sens contraire des aiguilles d'une montre");
+                    break;
+                default:
+                    break;
+            }
+            _directionChecked = 1;
+            _rotationOrientation = 0;
+        }
+    }
+
+    private Vector2 GetClosestUnitVectorFromVector(Vector2 vector)
+    {
+        if (vector.magnitude < _inputDistance) return Vector2.zero;
+        if (Mathf.Abs(vector.x) > Mathf.Abs(vector.y))
+        {
+            return new Vector2(Mathf.Sign(vector.x), 0f);
+        }
+        else
+        {
+            return new Vector2(0f, Mathf.Sign(vector.y));
+        }
+    }
+
+    private Direction GetClosestDirectionFromVector(Vector2 vector)
     {
         if (Mathf.Abs(vector.x) > Mathf.Abs(vector.y))
         {
@@ -79,28 +178,20 @@ public class DJController : MonoBehaviour
         }
     }
 
-    public void MoveLightShape(Direction direction)
+    private Vector2 GetVectorFromDirection(Direction direction)
     {
-        if (_shapesLight.TrueForAll(x => x.Neighbours[(int)direction] != null))
+        switch (direction)
         {
-            List<SlotInformation> newList = new();
-            _shapesLight.ForEach(x => newList.Add(x.Neighbours[(int)direction]));
-            UpdateLightTiles(newList);
-            _shapesLight = newList;
-        }
-    }
-
-    private void UpdateLightTiles(List<SlotInformation> newSlots)
-    {
-        foreach (SlotInformation slot in _shapesLight)
-        {
-            slot.GetComponent<SpriteRenderer>().color = Green;
-            slot.IsEnlighted = false;
-        }
-        foreach (SlotInformation slot in newSlots)
-        {
-            slot.IsEnlighted = true;
-            slot.GetComponent<SpriteRenderer>().color = Red;
+            case Direction.Right:
+                return Vector2.right;
+            case Direction.Left:
+                return Vector2.left;
+            case Direction.Down:
+                return Vector2.down;
+            case Direction.Up:
+                return Vector2.up;
+            default:
+                return Vector2.zero;
         }
     }
 }
