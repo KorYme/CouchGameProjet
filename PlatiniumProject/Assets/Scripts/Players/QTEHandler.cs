@@ -24,14 +24,14 @@ public class QTEHandler : MonoBehaviour
     }
     private void SetupController()
     {
-        _playerController = Players.PlayersController[(int)PlayerRole.Barman];
+        _playerController = Players.PlayersController[(int)_role];
     }
     public void RegisterQTEable(IQTEable QTEable)
     {
         _QTEable = QTEable;
     }
 
-    public void GetRandomQTE()
+    public void StartRandomQTE()
     {
         if (_coroutineQTE != null)
         {
@@ -66,7 +66,7 @@ public class QTEHandler : MonoBehaviour
         
     }
 
-    public string DisplayQTE()
+    public string GetQTEString()
     {
         if (_currentQTESequence != null)
         {
@@ -81,6 +81,8 @@ public class QTEHandler : MonoBehaviour
                 }
             }
             str.Append(_indexInSequence.ToString());
+            str.Append(" ");
+            str.Append(_currentQTESequence.ListSubHandlers.Count);
             return str.ToString();
         }
         return String.Empty;
@@ -116,12 +118,10 @@ public class QTEHandler : MonoBehaviour
                 if (CheckInput(input))
                 {
                     _indexInSequence++;
-                    if (_indexInSequence < _currentQTESequence.ListSubHandlers.Count) 
-                    {
-                        input = _currentQTESequence.ListSubHandlers[_indexInSequence];
-                    }
+
                     if (_indexInSequence < _currentQTESequence.ListSubHandlers.Count) //Sequence finished
                     {
+                        input = _currentQTESequence.ListSubHandlers[_indexInSequence];
                         if (_QTEable != null)
                         {
                             _QTEable.OnQTECorrectInput();
