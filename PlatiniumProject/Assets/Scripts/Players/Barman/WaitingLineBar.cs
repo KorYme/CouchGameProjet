@@ -105,4 +105,8 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     {
         OnInputCorrect();
     }
+
+    public void PauseQTE(bool value) { 
+        _qteHandler.PauseQTE(value);
+    }
 }
