@@ -39,7 +39,6 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
         if (stateMachine != null)
         {
             stateMachine.CurrentSlot = stateMachine.AreaManager.DjBoard.GetRandomAvailableSlot();
-            EditorGUIUtility.PingObject(stateMachine.CurrentSlot.gameObject);
             stateMachine.MoveToLocation = stateMachine.CurrentSlot.transform.position;
             
             stateMachine.NextState = stateMachine.DancingState;
