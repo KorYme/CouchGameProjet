@@ -134,11 +134,11 @@ public class BarmanMovement : MonoBehaviour
 
     void ActivateQTE()
     {
-        _barmanPositions[_indexPosition].WaitingLine.PauseQTE(true);
+        _barmanPositions[_indexPosition].WaitingLine.PauseQTE(false);
     }
     
     void DeactivateQTE()
     {
-        _barmanPositions[_indexPosition].WaitingLine.PauseQTE(false);
+        _barmanPositions[_indexPosition].WaitingLine.PauseQTE(true);
     }
 }

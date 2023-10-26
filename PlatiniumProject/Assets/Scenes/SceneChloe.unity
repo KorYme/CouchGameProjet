@@ -289,50 +289,6 @@ Transform:
   - {fileID: 650384265}
   m_Father: {fileID: 638091330}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &550163677
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 550163679}
-  - component: {fileID: 550163678}
-  m_Layer: 0
-  m_Name: QTELoader
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &550163678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 550163677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4735391014c845c4285a89a424a3ac14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &550163679
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 550163677}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &562822604
 GameObject:
   m_ObjectHideFlags: 0
@@ -1231,6 +1187,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43b8848140f1758428d3b77851546651, type: 3}
+--- !u!1001 &393103489808954446
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 329835257027329715, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 329835257027329715, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 329835257027329715, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 329835257027329715, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 329835257027329715, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 329835257027329715, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 329835257027329715, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 329835257027329715, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 329835257027329715, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 329835257027329715, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3723472432764999321, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
+      propertyPath: m_Name
+      value: QTELoader
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
 --- !u!1001 &1119209342627222561
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1446,4 +1459,4 @@ SceneRoots:
   - {fileID: 1430064963}
   - {fileID: 1119209342627222561}
   - {fileID: 1591248963}
-  - {fileID: 550163679}
+  - {fileID: 393103489808954446}

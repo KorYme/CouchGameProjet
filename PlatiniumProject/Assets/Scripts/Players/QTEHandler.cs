@@ -135,6 +135,5 @@ public class QTEHandler : MonoBehaviour
         {
             _QTEable.OnQTEComplete();
         }
-        _currentQTESequence = null;
     }
 }
