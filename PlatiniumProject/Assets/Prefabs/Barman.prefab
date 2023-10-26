@@ -96,7 +96,6 @@ GameObject:
   - component: {fileID: 1473623265515723792}
   - component: {fileID: 5115288593331536716}
   - component: {fileID: 672007605793595462}
-  - component: {fileID: 7338074514793002079}
   m_Layer: 0
   m_Name: Barman
   m_TagString: Untagged
@@ -223,18 +222,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamePlayerId: 0
---- !u!114 &7338074514793002079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6110243176272634959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6b9d9b51482de34cbea1169054abc08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _role: 0
-  _playerController: {fileID: 672007605793595462}
-  _beatManager: {fileID: 0}

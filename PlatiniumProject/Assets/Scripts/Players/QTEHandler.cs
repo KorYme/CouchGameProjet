@@ -1,21 +1,30 @@
 using Rewired;
-using RewiredConsts;
 using System;
 using System.Collections;
 using System.Text;
 using UnityEngine;
-using UnityEngine.Windows;
 
 public class QTEHandler : MonoBehaviour
 {
     [SerializeField] PlayerRole _role;
-    [SerializeField] PlayerInputController _playerController;
+    PlayerInputController _playerController;
     int _indexInSequence = 0;
     QTESequence _currentQTESequence;
     [SerializeField] BeatManager _beatManager;
     private Coroutine _coroutineQTE;
     IQTEable _QTEable;
 
+    private void Update()
+    {
+        if (_playerController == null)
+        {
+            SetupController();
+        }
+    }
+    private void SetupController()
+    {
+        _playerController = Players.PlayersController[(int)PlayerRole.Barman];
+    }
     public void RegisterQTEable(IQTEable QTEable)
     {
         _QTEable = QTEable;
@@ -69,6 +78,10 @@ public class QTEHandler : MonoBehaviour
 
     bool CheckInput(UnitInput input)
     {
+        if (_playerController == null) 
+        {
+            return false;
+        }
         bool isInputCorrect = false;
         switch (input.Status)
         {
