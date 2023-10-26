@@ -48,7 +48,7 @@ public class PlayerInputsAssigner : MonoBehaviour {
             return null;
         }
         for(int i = 0; i < instance.playerMap.Count; i++) {
-            if(instance.playerMap[i].gamePlayerId == gamePlayerId) return ReInput.players.GetPlayer(instance.playerMap[gamePlayerId].rewiredPlayerId);
+            if((int)instance.playerMap[i].gamePlayerId == gamePlayerId) return ReInput.players.GetPlayer(instance.playerMap[gamePlayerId].rewiredPlayerId);
         }
         return null;
     }
@@ -108,7 +108,7 @@ public class PlayerInputsAssigner : MonoBehaviour {
 
         // Add the Rewired Player as the next open game player slot
         playerMap.Add(new PlayerMap(rewiredPlayerId, gamePlayerId,ControlsType.Joystick,_playerRoles[gamePlayerId]));
-        Debug.Log("Added Rewired Player id " + rewiredPlayerId + " to game player " + gamePlayerId);
+        Debug.Log("Added Rewired Player id " + rewiredPlayerId + " to game player " + gamePlayerId + " "+ _playerRoles[gamePlayerId]);
     }
 
 

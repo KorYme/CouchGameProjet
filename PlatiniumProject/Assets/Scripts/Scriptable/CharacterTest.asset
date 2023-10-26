@@ -15,6 +15,6 @@ MonoBehaviour:
   movementAmountInQueue: 2
   beatAmountUnitlAction: 2
   maxSatisafactionBar: 90
-  maxSatisafactionDJ: 50
+  maxSatisafactionDJ: 10
   decrementationValueOnFloor: 2
   incrementationValueOnFloor: 5

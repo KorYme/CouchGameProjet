@@ -1,12 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
-    public AreaManager areaManager;
-    public GameObject character;
-    public STARTPOINT startPoint;
+    [SerializeField] private int _objectsToPoolNumber;
+    [SerializeField] private Transform _poolingSpawn;
+    [SerializeField] private AreaManager areaManager;
+    [SerializeField] GameObject _pnj;
+
+    [Header("Bouncer")]
+    [SerializeField] private int _baseClientInBouncer;
+    [Header("BarMan")]
+    [SerializeField] private int _baseClientInBarMan;
+    [Header("Dj")]
+    [SerializeField] private int _baseClientInDj;
+    private CharacterStateMachine[] _characterList;
+    private List<CharacterStateMachine> _availableCharcters = new List<CharacterStateMachine>();
+    
+    
 
     public enum STARTPOINT
     {
@@ -14,54 +28,103 @@ public class SpawnManager : MonoBehaviour
         DJ_DANCE_FLOOR,
     }
 
-    SlotInformation FirstSlot
+    private void Awake()
     {
-        get
+        _characterList = new CharacterStateMachine[_objectsToPoolNumber];
+        for (int i = 0; i < _objectsToPoolNumber; ++i)
         {
-            switch (startPoint)
-            {
-                case STARTPOINT.BOUNCER_QUEUE:
-                    return areaManager.BouncerTransit.Slots[0];
-                case STARTPOINT.DJ_DANCE_FLOOR:
-                    return areaManager.DjBoard.AvailableSlots[Random.Range(0, areaManager.DjBoard.AvailableSlots.Count)];
-                default:
-                    return areaManager.BouncerTransit.Slots[0];
-            }
+            GameObject go = Instantiate(_pnj, _poolingSpawn.position, Quaternion.identity);
+            go.transform.position += new Vector3(1f, 0f, 0f) * i;
+            CharacterStateMachine stateMachine = go.GetComponent<CharacterStateMachine>();
+            _characterList[i] = stateMachine;
+            _availableCharcters.Add(stateMachine);
         }
     }
 
     private void Start()
     {
-        SpawnATikTak();
-    }
-
-    void SpawnATikTak()
-    {
-        SlotInformation slot = FirstSlot;
-        GameObject go = Instantiate(character, slot.transform.position, Quaternion.identity);
-        CharacterStateMachine stateMachine = go.GetComponent<CharacterStateMachine>();
-        FirstSlot.Occupant = stateMachine;
-        if (startPoint == STARTPOINT.DJ_DANCE_FLOOR)
+        for (int i = 0; i < _baseClientInBouncer; ++i)
         {
-            StartCoroutine(WaitForFirstState(stateMachine, slot));
+            if (_availableCharcters.Count <= 0)
+            {
+                Debug.LogError("No more pullable character");
+                return;
+            }
+            CharacterStateMachine chara = _availableCharcters[0];
+            _availableCharcters.Remove(chara);
+            chara.PullCharacter(chara.IdleTransitState);
+        }
+        for (int i = 0; i < _baseClientInBarMan; ++i)
+        {
+            if (_availableCharcters.Count <= 0)
+            {
+                Debug.LogError("No more pullable character");
+                return;
+            }
+            CharacterStateMachine chara = _availableCharcters[0];
+            _availableCharcters.Remove(chara);
+            chara.PullCharacter(chara.RoamState);
+        }
+        for (int i = 0; i < _baseClientInDj; ++i)
+        {
+            if (_availableCharcters.Count <= 0)
+            {
+                Debug.LogError("No more pullable character");
+                return;
+            }
+            CharacterStateMachine chara = _availableCharcters[0];
+            _availableCharcters.Remove(chara);
+            chara.PullCharacter(chara.DancingState);
         }
     }
 
-    IEnumerator WaitForFirstState(CharacterStateMachine stateMachine, SlotInformation slot)
+    public void PullACharacter()
     {
-        yield return new WaitUntil(()=> stateMachine.CurrentState != null);
-        stateMachine.ChangeState(stateMachine.DancingState);
-        stateMachine.CurrentSlot.Occupant = null;
-        stateMachine.CurrentSlot = slot;
-        stateMachine.CurrentSlot.Occupant = stateMachine;
-        
+        if (_availableCharcters.Count <= 0 || areaManager.BouncerTransit.Slots[0].Occupant != null)
+        {
+            Debug.LogError(_availableCharcters.Count <= 0?"No more pullable character" : "First Slot Occuped");
+            return;
+        }
+        CharacterStateMachine chara = _availableCharcters[0];
+        chara.CurrentSlot = areaManager.BouncerTransit.Slots[0];
+        chara.CurrentSlot.Occupant = chara;
+        _availableCharcters.Remove(chara);
+        chara.PullCharacter();
     }
+
+    public void ReInsertCharacterInPull(CharacterStateMachine chara)
+    {
+        _availableCharcters.Add(chara);
+        chara.transform.position = _poolingSpawn.transform.position;
+    }
+
+    // void SpawnATikTak()
+    // {
+    //     SlotInformation slot = FirstSlot;
+    //     GameObject go = Instantiate(character, slot.transform.position, Quaternion.identity);
+    //     CharacterStateMachine stateMachine = go.GetComponent<CharacterStateMachine>();
+    //     FirstSlot.Occupant = stateMachine;
+    //     if (startPoint == STARTPOINT.DJ_DANCE_FLOOR)
+    //     {
+    //         StartCoroutine(WaitForFirstState(stateMachine, slot));
+    //     }
+    // }
+    //
+    // IEnumerator WaitForFirstState(CharacterStateMachine stateMachine, SlotInformation slot)
+    // {
+    //     yield return new WaitUntil(()=> stateMachine.CurrentState != null);
+    //     stateMachine.ChangeState(stateMachine.DancingState);
+    //     stateMachine.CurrentSlot.Occupant = null;
+    //     stateMachine.CurrentSlot = slot;
+    //     stateMachine.CurrentSlot.Occupant = stateMachine;
+    //     
+    // }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && FirstSlot.Occupant == null)
+        if (Input.GetKeyDown(KeyCode.Return))
         {
-            SpawnATikTak();
+            PullACharacter();
         }
     }
 }

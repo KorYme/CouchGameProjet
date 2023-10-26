@@ -19,7 +19,7 @@ public class InputFloat : InputClass
         {
             if (value != _inputValue)
             {
-                value = _inputValue;
+                _inputValue = value;
                 OnInputChange?.Invoke();
             }
         }
@@ -28,24 +28,18 @@ public class InputFloat : InputClass
     public override void InputCallback(InputActionEventData data)
     {
         InputDuration = data.GetAxisTimeActive();
-        switch (data.eventType)
+        float tmp = data.GetAxis();
+        if (!IsPerformed && tmp != 0f)
         {
-            case InputActionEventType.AxisActive:
-                if (InputValue == 0f)
-                {
-                    OnInputStart?.Invoke();
-                }
-                InputValue = data.GetAxis();
-                break;
-            case InputActionEventType.AxisInactive:
-                if (InputValue != 0f)
-                {
-                    OnInputEnd?.Invoke();
-                    InputValue = 0f;
-                }
-                break;
-            default:
-                break;
+            InputValue = tmp;
+            OnInputStart?.Invoke();
+        } else if (IsPerformed && tmp == 0f)
+        {
+            InputValue = tmp;
+            OnInputEnd?.Invoke();
+        } else
+        {
+            InputValue = tmp;
         }
     }
 }
