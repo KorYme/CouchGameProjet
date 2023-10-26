@@ -66,9 +66,11 @@ public class PlayerInputController : MonoBehaviour
         newPlayer = PlayerInputsAssigner.GetRewiredPlayer(gamePlayerId);
         if (newPlayer != null)
         {
+            _isRegistered = true;
             Players.AddPlayerToList(this, (int) PlayerInputsAssigner.GetRolePlayer(gamePlayerId));
             SetUpAllInputClasses();
         }
+        GetInputs();
     }
 
     void SetUpAllInputClasses()
@@ -77,19 +79,20 @@ public class PlayerInputController : MonoBehaviour
         {
             newPlayer.AddInputEventDelegate(inputClass.InputCallback, UpdateLoopType.Update, inputClass.ActionID);
             switch (inputClass)
-            {
+        {
                 case InputVector2 inputVector2:
                     Debug.Log("Add Vector2 delegate");
                     newPlayer.AddInputEventDelegate(inputVector2.InputCallbackSecondAction, UpdateLoopType.Update, inputVector2.SecondActionID);
                     break;
                 default:
                     break;
-            }
+        }
         });
     }
 
     public bool GetInput(UnitInput input)
     {
+        
         return player.GetButtonDown(input.ActionIndex);
     }
     public bool GetInputHold(UnitInput input)
