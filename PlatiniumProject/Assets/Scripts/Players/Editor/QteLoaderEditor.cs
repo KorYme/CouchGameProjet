@@ -8,11 +8,14 @@ public class QteLoaderEditor : Editor
 {
     public override void OnInspectorGUI()
     {
+        serializedObject.Update();
         QTELoader qteLoader = (QTELoader)target;
-        DrawDefaultInspector();
+        base.OnInspectorGUI();
         if (GUILayout.Button("LoadQte"))
         {
             qteLoader.LoadQTE();
         }
+        serializedObject.ApplyModifiedProperties();
+        EditorUtility.SetDirty(target);
     }
 }

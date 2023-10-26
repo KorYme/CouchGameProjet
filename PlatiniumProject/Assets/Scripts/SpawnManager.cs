@@ -47,7 +47,7 @@ public class SpawnManager : MonoBehaviour
         {
             if (_availableCharcters.Count <= 0)
             {
-                Debug.LogError("No more pullable character");
+                Debug.LogWarning("No more pullable character");
                 return;
             }
             CharacterStateMachine chara = _availableCharcters[0];
@@ -58,7 +58,7 @@ public class SpawnManager : MonoBehaviour
         {
             if (_availableCharcters.Count <= 0)
             {
-                Debug.LogError("No more pullable character");
+                Debug.LogWarning("No more pullable character");
                 return;
             }
             CharacterStateMachine chara = _availableCharcters[0];
@@ -69,7 +69,7 @@ public class SpawnManager : MonoBehaviour
         {
             if (_availableCharcters.Count <= 0)
             {
-                Debug.LogError("No more pullable character");
+                Debug.LogWarning("No more pullable character");
                 return;
             }
             CharacterStateMachine chara = _availableCharcters[0];
@@ -82,7 +82,7 @@ public class SpawnManager : MonoBehaviour
     {
         if (_availableCharcters.Count <= 0 || areaManager.BouncerTransit.Slots[0].Occupant != null)
         {
-            Debug.LogError(_availableCharcters.Count <= 0?"No more pullable character" : "First Slot Occuped");
+            Debug.LogWarning(_availableCharcters.Count <= 0?"No more pullable character" : "First Slot Occuped");
             return;
         }
         CharacterStateMachine chara = _availableCharcters[0];

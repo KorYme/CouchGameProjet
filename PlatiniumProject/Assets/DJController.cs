@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
-using UnityEditorInternal;
 using UnityEngine;
 
 public enum Direction
@@ -14,7 +13,6 @@ public enum Direction
 }
 public class DJController : MonoBehaviour
 {
-
     [SerializeField] List<SlotInformation> _shapesLight;
     [SerializeField, Range(0f, 1f)] float _inputDistance = .4f;
     [SerializeField] Direction _rightJoystickClockwise = Direction.Down;

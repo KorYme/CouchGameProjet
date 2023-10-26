@@ -3044,7 +3044,7 @@ MonoBehaviour:
   - {fileID: 37642915}
   - {fileID: 417921760}
   - {fileID: 1564633290}
-  _inputDistance: 0.4
+  _inputDistance: 0.5
   _rightJoystickClockwise: 2
   _rightJoystickAntiClockwise: 3
   _leftJoystickClockwise: 0
@@ -4111,6 +4111,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: QTELoader
       objectReference: {fileID: 0}
+    - target: {fileID: 7029082207090183600, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
+      propertyPath: _listQTE.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029082207090183600, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
+      propertyPath: _listQTE.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 437d34eab1623844a975acc122aed1ab, type: 2}
+    - target: {fileID: 7029082207090183600, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
+      propertyPath: _listQTE.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: a6f3c62810165a748be09c4bb79971d9, type: 2}
+    - target: {fileID: 7029082207090183600, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
+      propertyPath: _listQTE.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2f5dab6c82f84944db6232bfce323435, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4439,6 +4455,14 @@ PrefabInstance:
       propertyPath: _beatManager
       value: 
       objectReference: {fileID: 374432593}
+    - target: {fileID: 5115288593331536716, guid: 7c529a488a751df4a9749ebcbee0ced4, type: 3}
+      propertyPath: _movementData
+      value: 
+      objectReference: {fileID: 11400000, guid: c205aac937c5b25478495ab06937bc4d, type: 2}
+    - target: {fileID: 5115288593331536716, guid: 7c529a488a751df4a9749ebcbee0ced4, type: 3}
+      propertyPath: _transformToModify
+      value: 
+      objectReference: {fileID: 694513511}
     - target: {fileID: 5115288593331536716, guid: 7c529a488a751df4a9749ebcbee0ced4, type: 3}
       propertyPath: _barmanPositions.Array.data[0]
       value: 
@@ -7664,11 +7688,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4714637834579531949, guid: c521e6c354ebf354d9a8f49e0cc47eed, type: 3}
       propertyPath: _playerRoles.Array.data[1]
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4714637834579531949, guid: c521e6c354ebf354d9a8f49e0cc47eed, type: 3}
       propertyPath: _playerRoles.Array.data[2]
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8160778979726971435, guid: c521e6c354ebf354d9a8f49e0cc47eed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13821,6 +13845,10 @@ PrefabInstance:
       propertyPath: _movementData
       value: 
       objectReference: {fileID: 11400000, guid: c205aac937c5b25478495ab06937bc4d, type: 2}
+    - target: {fileID: 8203250582693646274, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
+      propertyPath: _inputDistance
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8203250582693646274, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
       propertyPath: _transformToModify
       value: 

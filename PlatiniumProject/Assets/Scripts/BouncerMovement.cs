@@ -13,7 +13,7 @@ public class BouncerMovement : PlayerMovement
     }
     [SerializeField] private AreaManager _areaManager;
     [SerializeField] private BeatManager _beatManager;
-    private PlayerInputController _inputControler;
+    private PlayerInputController _inputController;
 
     private IMovable _movement;
     private BouncerState currentState = BouncerState.Moving;
@@ -24,25 +24,26 @@ public class BouncerMovement : PlayerMovement
     protected IEnumerator Start()
     {
         yield return new WaitUntil(() => Players.PlayersController[(int)PlayerRole.Bouncer] != null);
-        _inputControler = Players.PlayersController[(int)PlayerRole.Bouncer];
-        _inputControler.LeftJoystick.OnInputChange += OnInputMove;
+        _inputController = Players.PlayersController[(int)PlayerRole.Bouncer];
 
         _movement = GetComponent<IMovable>();
         _currentSlot = _areaManager.BouncerBoard.Board[_areaManager.BouncerBoard.BoardDimension.x
             * Mathf.Max(1,_areaManager.BouncerBoard.BoardDimension.y / 2 + _areaManager.BouncerBoard.BoardDimension.y % 2) -1];
         _currentSlot.PlayerOccupant = this;
         transform.position = _currentSlot.transform.position;
+        _inputController.LeftJoystick.OnInputChange += OnInputMove;
         Debug.Log("Bouncer Initialisé");
     }
 
     private void OnInputMove()
     {
-        Vector2 dir = GetClosestUnitVectorFromVector(_inputControler.LeftJoystick.InputValue);
-        if (_inputControler != null && dir != Vector2.zero)
+        Vector2 dir = GetClosestUnitVectorFromVector(_inputController.LeftJoystick.InputValue);
+        if (_inputController != null && dir != Vector2.zero)
         {
             Move((int)GetClosestDirectionFromVector(dir));
         }
     }
+
     public void Move(int index)
     {
         if (_currentSlot.Neighbours[index] == null)
@@ -50,23 +51,25 @@ public class BouncerMovement : PlayerMovement
 
         if (_currentSlot.Neighbours[index].Occupant != null)
         {
-            Debug.Log("WTF");
-            currentState = BouncerState.Checking;
-            _currentSlot.Neighbours[index].Occupant.ChangeState(_currentSlot.Neighbours[index].Occupant.BouncerCheckState);
+            if (_movement.MoveToPosition(_currentSlot.Neighbours[index].transform.position + new Vector3(_areaManager.BouncerBoard.HorizontalSpacing / 2, 0, 0)))
+            {
+                currentState = BouncerState.Checking;
+                _currentSlot.Neighbours[index].Occupant.ChangeState(_currentSlot.Neighbours[index].Occupant.BouncerCheckState);
 
-            _currentSlot.PlayerOccupant = null;
-            _movement.MoveToPosition(_currentSlot.Neighbours[index].transform.position + new Vector3(_areaManager.BouncerBoard.HorizontalSpacing / 2, 0, 0));
-            _currentSlot = _currentSlot.Neighbours[index];
-            _currentSlot.PlayerOccupant = this;
-            StartCoroutine(TestCheck());
+                _currentSlot.PlayerOccupant = null;
+                _currentSlot = _currentSlot.Neighbours[index];
+                _currentSlot.PlayerOccupant = this;
+                StartCoroutine(TestCheck());
+            }
         }
         else
         {
-            Debug.Log("OK");
-            _currentSlot.PlayerOccupant = null;
-            _movement.MoveToPosition(_currentSlot.Neighbours[index].transform.position);
-            _currentSlot = _currentSlot.Neighbours[index];
-            _currentSlot.PlayerOccupant = this;
+            if (_movement.MoveToPosition(_currentSlot.Neighbours[index].transform.position))
+            {
+                _currentSlot.PlayerOccupant = null;
+                _currentSlot = _currentSlot.Neighbours[index];
+                _currentSlot.PlayerOccupant = this;
+            }
         }
 
     }

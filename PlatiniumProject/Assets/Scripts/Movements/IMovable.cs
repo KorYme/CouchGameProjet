@@ -6,5 +6,5 @@ public interface IMovable
 {
     public bool IsMoving { get; }
     public bool HasAlreadyMovedThisBeat { get; }
-    public void MoveToPosition(Vector3 position);
+    public bool MoveToPosition(Vector3 position);
 }

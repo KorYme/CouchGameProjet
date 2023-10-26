@@ -49,11 +49,12 @@ public class EntityMovement : MonoBehaviour, IMovable, IBounceable
         _movementCoroutine = null;
     }
 
-    public virtual void MoveToPosition(Vector3 position)
+    public virtual bool MoveToPosition(Vector3 position)
     {
-        //Debug.Log($"{name} - {HasAlreadyMovedThisBeat}");
-        if (HasAlreadyMovedThisBeat || IsMoving) return;
+        //Debug.Log($"{name} - {HasAlreadyMovedThisBeat}"); 
+        if (/*HasAlreadyMovedThisBeat ||*/ IsMoving) return false;
         _movementCoroutine = StartCoroutine(MovementCoroutine(position));
         HasAlreadyMovedThisBeat = true;
+        return true;
     }
 }
