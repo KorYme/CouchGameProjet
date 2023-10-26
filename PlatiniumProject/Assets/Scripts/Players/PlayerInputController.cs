@@ -61,16 +61,16 @@ public class PlayerInputController : MonoBehaviour
 
     IEnumerator SetUpRewiredCoroutine()
     {
-        yield return new WaitUntil(() => ReInput.isReady);
+        yield return new WaitUntil(() => ReInput.isReady && player != null);
         Debug.Log("Rewired ready");
         newPlayer = PlayerInputsAssigner.GetRewiredPlayer(gamePlayerId);
+
         if (newPlayer != null)
         {
             _isRegistered = true;
             Players.AddPlayerToList(this, (int) PlayerInputsAssigner.GetRolePlayer(gamePlayerId));
             SetUpAllInputClasses();
         }
-        GetInputs();
     }
 
     void SetUpAllInputClasses()

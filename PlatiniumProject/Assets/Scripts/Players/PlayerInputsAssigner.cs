@@ -48,7 +48,7 @@ public class PlayerInputsAssigner : MonoBehaviour {
             return null;
         }
         for(int i = 0; i < instance.playerMap.Count; i++) {
-            if((int)instance.playerMap[i].role == gamePlayerId) return ReInput.players.GetPlayer(instance.playerMap[gamePlayerId].rewiredPlayerId);
+            if((int)instance.playerMap[i].gamePlayerId == gamePlayerId) return ReInput.players.GetPlayer(instance.playerMap[gamePlayerId].rewiredPlayerId);
         }
         return null;
     }
