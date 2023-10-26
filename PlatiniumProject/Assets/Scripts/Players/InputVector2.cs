@@ -17,6 +17,7 @@ public class InputVector2 : InputClass
 
     public InputVector2(int actionID, int secondActionID) : base(actionID)
     {
+        
         SecondActionID = secondActionID;
         _inputValueX = new InputFloat(actionID);
         _inputValueY = new InputFloat(secondActionID);
