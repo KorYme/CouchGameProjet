@@ -70,8 +70,6 @@ public class CharacterStateMachine : MonoBehaviour
         {
             SlotInformation firstQueueSlot = AreaManager.BouncerTransit.Slots[0];
             CurrentSlot = firstQueueSlot;
-            EditorGUIUtility.PingObject(gameObject);
-            Debug.Log("zzezz");
             transform.position = firstQueueSlot.transform.position;
             ChangeState(IdleTransitState);
             return;

@@ -52,7 +52,6 @@ public class WaitingLineBar : MonoBehaviour
         {
             Debug.Log(("ssdsd"));
             stateMachine.CurrentSlot = stateMachine.AreaManager.DjBoard.GetRandomAvailableSlot();
-            EditorGUIUtility.PingObject(stateMachine.CurrentSlot.gameObject);
             stateMachine.MoveToLocation = stateMachine.CurrentSlot.transform.position;
             
             Debug.Log(stateMachine.MoveToLocation);

@@ -6,8 +6,9 @@ using UnityEngine;
 public class QTELoader : MonoBehaviour
 {
     public static QTELoader Instance { get; private set; }
-    private static List<QTESequence> _listQTE = new List<QTESequence>();
-    public ReadOnlyCollection<QTESequence> ListQTE { get; private set; } = new ReadOnlyCollection<QTESequence>(_listQTE);
+    [SerializeField] private static List<QTESequence> _listQTE = new List<QTESequence>();
+     List<QTESequence> ListQTE => _listQTE;
+    
 
     private void Awake()
     {
@@ -21,9 +22,9 @@ public class QTELoader : MonoBehaviour
         {
             Instance = this;
         }
-        LoadQTE();
     }
-    void LoadQTE()
+    #if UNITY_EDITOR
+    public void LoadQTE()
     {
         string[] fileGuids = AssetDatabase.FindAssets("t:" + typeof(QTESequence));
         if (fileGuids.Length > 0)
@@ -35,6 +36,7 @@ public class QTELoader : MonoBehaviour
             }
         }
     }
+    #endif
 
     public QTESequence GetRandomQTE(PlayerRole role = PlayerRole.None)
     {

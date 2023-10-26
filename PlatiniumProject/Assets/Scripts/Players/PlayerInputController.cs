@@ -70,7 +70,6 @@ public class PlayerInputController : MonoBehaviour
             Players.AddPlayerToList(this, (int) PlayerInputsAssigner.GetRolePlayer(gamePlayerId));
             SetUpAllInputClasses();
         }
-        GetInputs();
     }
 
     void SetUpAllInputClasses()
