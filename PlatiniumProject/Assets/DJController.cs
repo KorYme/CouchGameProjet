@@ -5,15 +5,15 @@ using System.Data.Common;
 using UnityEditorInternal;
 using UnityEngine;
 
+public enum Direction
+{
+    Right = 0,
+    Left = 1,
+    Down = 2,
+    Up = 3,
+}
 public class DJController : MonoBehaviour
 {
-    public enum Direction
-    {
-        Right = 0,
-        Left = 1,
-        Down = 2,
-        Up = 3,
-    }
 
     [SerializeField] List<SlotInformation> _shapesLight;
     [SerializeField, Range(0f, 1f)] float _inputDistance = .4f;

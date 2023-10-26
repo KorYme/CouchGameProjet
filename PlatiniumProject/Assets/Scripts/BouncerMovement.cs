@@ -13,77 +13,101 @@ public class BouncerMovement : PlayerMovement
     }
     [SerializeField] private AreaManager _areaManager;
     [SerializeField] private BeatManager _beatManager;
+    private PlayerInputController _inputControler;
 
     private IMovable _movement;
     private BouncerState currentState = BouncerState.Moving;
 
     private SlotInformation _currentSlot;
+    [SerializeField, Range(0f, 1f)] private float _inputDistance;
 
-    protected override void Start()
+    protected IEnumerator Start()
     {
-        base.Start();
+        yield return new WaitUntil(() => Players.PlayersController[(int)PlayerRole.Bouncer] != null);
+        _inputControler = Players.PlayersController[(int)PlayerRole.Bouncer];
+        _inputControler.LeftJoystick.OnInputChange += OnInputMove;
+
         _movement = GetComponent<IMovable>();
-        _currentSlot = _areaManager.BouncerBoard.Board[_areaManager.BouncerBoard.BoardDimension.x * Mathf.Max(1,_areaManager.BouncerBoard.BoardDimension.y / 2 + _areaManager.BouncerBoard.BoardDimension.y % 2) -1];
+        _currentSlot = _areaManager.BouncerBoard.Board[_areaManager.BouncerBoard.BoardDimension.x
+            * Mathf.Max(1,_areaManager.BouncerBoard.BoardDimension.y / 2 + _areaManager.BouncerBoard.BoardDimension.y % 2) -1];
+        _currentSlot.PlayerOccupant = this;
         transform.position = _currentSlot.transform.position;
+        Debug.Log("Bouncer Initialisé");
     }
 
-    private void Update()
+    private void OnInputMove()
     {
-        if(Input.inputString == "" || _movement.IsMoving || currentState == BouncerState.Checking)
-            return;
-
-        var keyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), Input.inputString.ToUpper());
-        switch (keyCode)
+        Vector2 dir = GetClosestUnitVectorFromVector(_inputControler.LeftJoystick.InputValue);
+        if (_inputControler != null && dir != Vector2.zero)
         {
-            case KeyCode.Z:
-                if (_currentSlot.Neighbours[3] != null)
-                {
-                    Move(3);
-                }
-                break;
-            case KeyCode.S:
-                if (_currentSlot.Neighbours[2] != null)
-                {
-                    Move(2);
-                }
-                break;
-            case KeyCode.Q:
-                if (_currentSlot.Neighbours[1] != null)
-                {
-                    Move(1);
-                }
-                break;
-            case KeyCode.D:
-                if (_currentSlot.Neighbours[0] != null)
-                {
-                    Move(0);
-                }
-                break;
+            Move((int)GetClosestDirectionFromVector(dir));
         }
     }
-
     public void Move(int index)
     {
+        if (_currentSlot.Neighbours[index] == null)
+            return;
+
         if (_currentSlot.Neighbours[index].Occupant != null)
         {
+            Debug.Log("WTF");
             currentState = BouncerState.Checking;
-            _currentSlot.Neighbours[index].Occupant.ChangeState( _currentSlot.Neighbours[index].Occupant.BouncerCheckState);
-            
+            _currentSlot.Neighbours[index].Occupant.ChangeState(_currentSlot.Neighbours[index].Occupant.BouncerCheckState);
+
             _currentSlot.PlayerOccupant = null;
-            _movement.MoveToPosition(_currentSlot.Neighbours[index].transform.position + new Vector3(_areaManager.BouncerBoard.HorizontalSpacing/2,0,0));
+            _movement.MoveToPosition(_currentSlot.Neighbours[index].transform.position + new Vector3(_areaManager.BouncerBoard.HorizontalSpacing / 2, 0, 0));
             _currentSlot = _currentSlot.Neighbours[index];
             _currentSlot.PlayerOccupant = this;
             StartCoroutine(TestCheck());
         }
         else
         {
+            Debug.Log("OK");
             _currentSlot.PlayerOccupant = null;
             _movement.MoveToPosition(_currentSlot.Neighbours[index].transform.position);
             _currentSlot = _currentSlot.Neighbours[index];
             _currentSlot.PlayerOccupant = this;
         }
-        
+
     }
+    private Vector2 GetClosestUnitVectorFromVector(Vector2 vector)
+    {
+        if (vector.magnitude < _inputDistance) return Vector2.zero;
+        if (Mathf.Abs(vector.x) > Mathf.Abs(vector.y))
+        {
+            return new Vector2(Mathf.Sign(vector.x), 0f);
+        }
+        else
+        {
+            return new Vector2(0f, Mathf.Sign(vector.y));
+        }
+    }
+    private Direction GetClosestDirectionFromVector(Vector2 vector)
+    {
+        if (Mathf.Abs(vector.x) > Mathf.Abs(vector.y))
+        {
+            if (vector.x > 0)
+            {
+                return Direction.Right;
+            }
+            else
+            {
+                return Direction.Left;
+            }
+        }
+        else
+        {
+            if (vector.y > 0)
+            {
+                return Direction.Up;
+            }
+            else
+            {
+                return Direction.Down;
+            }
+        }
+    }
+
 
     IEnumerator TestCheck()
     {
