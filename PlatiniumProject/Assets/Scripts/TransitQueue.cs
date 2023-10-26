@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class TransitQueue : MonoBehaviour
 {
@@ -36,5 +37,18 @@ public class TransitQueue : MonoBehaviour
         }
     }
 
+    public SlotInformation GetRandomSlotInQueue()
+    {
+        List<SlotInformation> availableSlots = new List<SlotInformation>();
+        foreach (var s in Slots)
+        {
+            if(s.Occupant == null)
+                availableSlots.Add(s);
+        }
 
+        if (availableSlots.Count <= 0)
+            return null;
+
+        return availableSlots[Random.Range(0, availableSlots.Count)];
+    }
 }

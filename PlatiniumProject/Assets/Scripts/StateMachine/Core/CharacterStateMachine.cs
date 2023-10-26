@@ -1,17 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using Random = UnityEngine.Random;
 
 public class CharacterStateMachine : MonoBehaviour
 {
     [SerializeField] private CharacterData _characterData;
     [SerializeField] private SpriteRenderer _spriteRenderer;
-    BeatManager _beatManager;
+    private SpawnManager _spawnManager;
+    private BeatManager _beatManager;
     public IMovable CharacterMove { get; private set; }
     public AreaManager AreaManager { get; private set; }
-    public Action fakeBeat;
     public WaitingLineBar[] WaitingLines { get; private set; }
     
     #region States
@@ -56,24 +58,66 @@ public class CharacterStateMachine : MonoBehaviour
     {
         InitAllState();
         _beatManager = FindObjectOfType<BeatManager>();
+        _spawnManager = FindObjectOfType<SpawnManager>();
         AreaManager = FindObjectOfType<AreaManager>();
+        WaitingLines = FindObjectsOfType<WaitingLineBar>();
         CharacterMove = GetComponent<IMovable>();
     }
 
-    private void Start()
+    public void PullCharacter(CharacterState startState = null)
     {
-        WaitingLines = FindObjectsOfType<WaitingLineBar>();
-        CurrentSlot = AreaManager.BouncerTransit.Slots[0];
-        ChangeState(StartState);
+        if (startState == null)
+        {
+            SlotInformation firstQueueSlot = AreaManager.BouncerTransit.Slots[0];
+            CurrentSlot = firstQueueSlot;
+            EditorGUIUtility.PingObject(gameObject);
+            Debug.Log("zzezz");
+            transform.position = firstQueueSlot.transform.position;
+            ChangeState(IdleTransitState);
+            return;
+        }
+        
+        switch (startState)
+        {
+            case CharacterStateDancing characterStateDancing:
+                SlotInformation slotDanceFloor = AreaManager.DjBoard.GetRandomAvailableSlot();
+
+                if (slotDanceFloor == null)
+                    return;
+
+                CurrentSlot = slotDanceFloor;
+                CurrentSlot.Occupant = this;
+                transform.position = slotDanceFloor.transform.position;
+                ChangeState(DancingState);
+                break;
+            
+            case CharacterStateIdleTransit characterStateIdleTransit:
+                SlotInformation slotQueue = AreaManager.BouncerTransit.GetRandomSlotInQueue();
+                
+                if (slotQueue == null)
+                    return;
+                
+                CurrentSlot = slotQueue;
+                CurrentSlot.Occupant = this;
+                transform.position = slotQueue.transform.position;
+                ChangeState(IdleTransitState);
+                break;
+            
+            case CharacterStateRoam characterStateRoam:
+                Vector2 destination = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * Random.Range(0f, AreaManager.CircleRadius);
+                transform.position = destination;
+                ChangeState(RoamState);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(startState));
+        }
+        // CurrentSlot = AreaManager.BouncerTransit.Slots[0];
+        // ChangeState(StartState);
     }
 
     private void Update()
     {
         CurrentState?.UpdateState();
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            fakeBeat?.Invoke();
-        }
     }
 
     public void ChangeState(CharacterState state)
@@ -82,12 +126,13 @@ public class CharacterStateMachine : MonoBehaviour
         if (CurrentState != null)
         {
             _beatManager.OnBeatEvent.RemoveListener(CurrentState.OnBeat);
-            fakeBeat -= CurrentState.OnBeat;
         }
         PreviousState = CurrentState;
         CurrentState = state;
-        fakeBeat += CurrentState.OnBeat;
-        _beatManager.OnBeatEvent.AddListener(CurrentState.OnBeat);
+        if (CurrentState != null)
+        {
+            _beatManager.OnBeatEvent.AddListener(CurrentState.OnBeat);
+        }
         CurrentState?.EnterState();
     }
     
@@ -99,8 +144,10 @@ public class CharacterStateMachine : MonoBehaviour
         }
     }
 
-    public void DestroySelf()
+    public void GoBackInPull()
     {
-        Destroy(gameObject);
+        _spawnManager.ReInsertCharacterInPull(this);
+        ChangeState(null);
+        _spriteRenderer.color = Color.white;
     }
 }
