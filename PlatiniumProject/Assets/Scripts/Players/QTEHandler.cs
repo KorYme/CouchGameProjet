@@ -33,6 +33,10 @@ public class QTEHandler : MonoBehaviour
 
     public void GetRandomQTE()
     {
+        if (_coroutineQTE != null)
+        {
+            StopCoroutine();
+        }
         _currentQTESequence = QTELoader.Instance.GetRandomQTE(_role);
         _indexInSequence = 0;
         if (_QTEable != null)
