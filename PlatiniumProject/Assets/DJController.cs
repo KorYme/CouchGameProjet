@@ -17,6 +17,10 @@ public class DJController : MonoBehaviour
 
     [SerializeField] List<SlotInformation> _shapesLight;
     [SerializeField, Range(0f, 1f)] float _inputDistance = .4f;
+    [SerializeField] Direction _rightJoystickClockwise = Direction.Down;
+    [SerializeField] Direction _rightJoystickAntiClockwise = Direction.Up;
+    [SerializeField] Direction _leftJoystickClockwise = Direction.Right;
+    [SerializeField] Direction _leftJoystickAntiClockwise = Direction.Left;
 
     /// <summary>
     /// If rotate clockwise then 1 else -1 
@@ -37,27 +41,37 @@ public class DJController : MonoBehaviour
         UpdateLightTiles(_shapesLight);
         _areInputsSetUp = false;
         yield return new WaitUntil(()=> Players.PlayersController[(int)PlayerRole.DJ] != null);
-        Debug.Log("Initialisé");
         _djInputController = Players.PlayersController[(int)PlayerRole.DJ];
-        _djInputController.LeftJoystick.OnInputStart += () => Debug.Log("DEBUG");
-
         SetUpInputs();
+        Debug.Log("DJ Initialisé");
     }
-    //TO COMPLETE
+
+    //TO COMPLETE WITH OTHER INPUTS
     private void SetUpInputs()
     {
+        _djInputController.LeftJoystick.OnInputChange += () =>
+        {
+            GetDirection(_djInputController.LeftJoystick, _leftJoystickClockwise, _leftJoystickAntiClockwise);
+        };
         _djInputController.RightJoystick.OnInputChange += () =>
         {
-            GetDirection();
+            GetDirection(_djInputController.RightJoystick, _rightJoystickClockwise, _rightJoystickAntiClockwise);
         };
         _areInputsSetUp = true;
     }
-    //TO COMPLETE
+    //TO COMPLETE WITH SETUPINPUTS
     private void OnDestroy()
     {
         if (_areInputsSetUp)
         {
-
+            _djInputController.LeftJoystick.OnInputChange -= () =>
+            {
+                GetDirection(_djInputController.LeftJoystick, _leftJoystickClockwise, _leftJoystickAntiClockwise);
+            };
+            _djInputController.RightJoystick.OnInputChange -= () =>
+            {
+                GetDirection(_djInputController.RightJoystick, _rightJoystickClockwise, _rightJoystickAntiClockwise);
+            };
         }
     }
     //DONE
@@ -86,9 +100,10 @@ public class DJController : MonoBehaviour
         }
     }
 
-    private void GetDirection()
+    private void GetDirection(InputVector2 vectorInput, Direction clockwiseDirection, Direction antiClockwiseDirection)
     {
-        Vector2 closestPoint = GetClosestUnitVectorFromVector(_djInputController.LeftJoystick.InputValue);
+        Vector2 closestPoint = GetClosestUnitVectorFromVector(vectorInput.InputValue);
+        Debug.Log(closestPoint);
         if (_lastDirection == closestPoint) return;
         if (closestPoint == Vector2.zero)
         {
@@ -114,22 +129,23 @@ public class DJController : MonoBehaviour
         }
         else if (new Vector2(_lastDirection.y, -_lastDirection.x) * _rotationOrientation != closestPoint)
         {
-            _rotationOrientation = 0;
-            _directionChecked = 0;
+            _rotationOrientation *= -1;
+            _directionChecked = 1;
         }     
         _lastDirection = closestPoint;
         _directionChecked++;
+        Debug.Log($"Quart effectué, Position actuelle - {_lastDirection}");
         if (_directionChecked >= 4)
         {
-            //Faire bouger la piste de danse avec _rotationOrientation et de l'axe défini par le joystick utilisé
-            //Switch de debug
             switch (_rotationOrientation)
             {
                 case 1:
-                    Debug.Log("Tour effectué dans le sens des aiguilles d'une montre");
+                    //Clockwise
+                    MoveLightShape(clockwiseDirection);
                     break;
                 case -1:
-                    Debug.Log("Tour effectué dans le sens contraire des aiguilles d'une montre");
+                    //AntiClockwise
+                    MoveLightShape(antiClockwiseDirection);
                     break;
                 default:
                     break;
