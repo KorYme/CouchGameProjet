@@ -67,6 +67,7 @@ public class QTEHandler : MonoBehaviour
         {
             StopCoroutine(_coroutineQTE);
             _coroutineQTE = null;
+            _currentQTESequence = null;
         }
     }
 
@@ -141,5 +142,6 @@ public class QTEHandler : MonoBehaviour
         {
             reciever.OnQTEComplete();
         }
+        _currentQTESequence = null;
     }
 }

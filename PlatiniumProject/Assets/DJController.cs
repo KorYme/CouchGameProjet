@@ -44,10 +44,11 @@ public class DJController : MonoBehaviour,IQTEable
 
     public void OnQTEComplete()
     {
-        if (CheckNbPlayersInLight() > 0)
+        if (NbPlayersInLight() > 0)
         {
             _qteHandler.StartRandomQTE();
         }
+        _QTEDisplay.text = _qteHandler.GetQTEString();
     }
 
     public void OnQTECorrectInput()
@@ -71,14 +72,14 @@ public class DJController : MonoBehaviour,IQTEable
     //TO CHECK
     private IEnumerator Start()
     {
-        UpdateLightTiles(_shapesLight);
         _qteHandler = GetComponent<QTEHandler>();
-        _QTEDisplay.text = ""; 
+        UpdateLightTiles(_shapesLight);
         if (_qteHandler != null )
         {
             _qteHandler.RegisterQTEable(this);
         }
         _areInputsSetUp = false;
+        _QTEDisplay.text = _qteHandler.GetQTEString();
         yield return new WaitUntil(()=> Players.PlayersController[(int)PlayerRole.DJ] != null);
         _djInputController = Players.PlayersController[(int)PlayerRole.DJ];
         SetUpInputs();
@@ -126,25 +127,37 @@ public class DJController : MonoBehaviour,IQTEable
             _shapesLight.ForEach(x => newList.Add(x.Neighbours[(int)direction]));
             UpdateLightTiles(newList);
             _shapesLight = newList;
-            if (CheckNbPlayersInLight() > 0)
-            {
-                _qteHandler.StartRandomQTE();
-            } else
-            {
-                _qteHandler.StopCoroutine();
-            }
+            UpdateQTE();
         }
+    }
+
+    private void UpdateQTE()
+    {
+        if (NbPlayersInLight() > 0)
+        {
+            _qteHandler.StartRandomQTE();
+        }
+        else
+        {
+            _qteHandler.StopCoroutine();
+        }
+        _QTEDisplay.text = _qteHandler.GetQTEString();
     }
     //DONE
     private void UpdateLightTiles(List<SlotInformation> newSlots)
     {
         foreach (SlotInformation slot in _shapesLight)
         {
+            if (slot.IsEnlighted)
+            {
+                slot.OnOccupantChanges -= DeactivateQTE;
+            }
             slot.GetComponent<SpriteRenderer>().color = Green;
             slot.IsEnlighted = false;
         }
         foreach (SlotInformation slot in newSlots)
         {
+            slot.OnOccupantChanges += DeactivateQTE;
             slot.IsEnlighted = true;
             slot.GetComponent<SpriteRenderer>().color = Red;
         }
@@ -261,7 +274,7 @@ public class DJController : MonoBehaviour,IQTEable
         }
     }
     //Return the number of players
-    private int CheckNbPlayersInLight()
+    private int NbPlayersInLight()
     {
         int nbPlayers = 0;
         foreach (SlotInformation information in _shapesLight)
@@ -274,5 +287,8 @@ public class DJController : MonoBehaviour,IQTEable
         return nbPlayers;
     }
 
-    
+    private void DeactivateQTE()
+    {
+        UpdateQTE();
+    }
 }

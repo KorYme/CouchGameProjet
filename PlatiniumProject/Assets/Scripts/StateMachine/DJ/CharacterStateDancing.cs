@@ -15,7 +15,8 @@ public class CharacterStateDancing : CharacterState
         /*currentSatisfaction = StateMachine.CurrentSlot.IsEnlighted ?
             Mathf.Clamp(_currentSatisfaction + StateMachine.CharacterDataObject.incrementationValueOnFloor, 0, StateMachine.CharacterDataObject.maxSatisafactionDJ) :
             Mathf.Clamp(_currentSatisfaction - StateMachine.CharacterDataObject.decrementationValueOnFloor, 0, StateMachine.CharacterDataObject.maxSatisafactionDJ);*/
-        _currentSatisfaction = Mathf.Clamp(_currentSatisfaction - StateMachine.CharacterDataObject.decrementationValueOnFloor, 0, StateMachine.CharacterDataObject.maxSatisafactionDJ);
+        if (!StateMachine.CurrentSlot.IsEnlighted)
+            _currentSatisfaction = Mathf.Clamp(_currentSatisfaction - StateMachine.CharacterDataObject.decrementationValueOnFloor, 0, StateMachine.CharacterDataObject.maxSatisafactionDJ);
         
         if (_currentSatisfaction <= 0)
         {
@@ -28,7 +29,7 @@ public class CharacterStateDancing : CharacterState
         if (StateMachine.CurrentSlot.IsEnlighted)
         {
             _currentSatisfaction = Mathf.Clamp(_currentSatisfaction + StateMachine.CharacterDataObject.incrementationValueOnFloor, 0, StateMachine.CharacterDataObject.maxSatisafactionDJ);
-            Debug.Log($"{_currentSatisfaction} {StateMachine.name}");
+            //Debug.Log($"{_currentSatisfaction} {StateMachine.name}");
         }
     }
 }

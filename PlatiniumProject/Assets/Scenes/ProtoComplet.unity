@@ -3581,7 +3581,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 0.040426865, g: 0.6037736, b: 0, a: 1}
+  m_fontColor: {r: 0, g: 0.9627173, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -9378,12 +9378,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1479394194}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -10.533477, y: -1.2364857, z: 8.935964}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1690403859}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1517275997
 PrefabInstance:
@@ -10802,6 +10802,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1479394197}
   - {fileID: 1292951991}
   - {fileID: 694513511}
   - {fileID: 485262150}
@@ -12015,7 +12016,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 0.040426865, g: 0.6037736, b: 0, a: 1}
+  m_fontColor: {r: 0, g: 0.9627173, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -12141,7 +12142,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 0.040426865, g: 0.6037736, b: 0, a: 1}
+  m_fontColor: {r: 0, g: 0.9627173, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -13941,6 +13942,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1654303374}
     - target: {fileID: 6512650024551535539, guid: de8a1a06ec295c34ca39912836976177, type: 3}
+      propertyPath: _shapesLight.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512650024551535539, guid: de8a1a06ec295c34ca39912836976177, type: 3}
       propertyPath: _shapesLight.Array.data[0]
       value: 
       objectReference: {fileID: 1319576509}
@@ -13956,6 +13961,34 @@ PrefabInstance:
       propertyPath: _shapesLight.Array.data[3]
       value: 
       objectReference: {fileID: 37642915}
+    - target: {fileID: 6512650024551535539, guid: de8a1a06ec295c34ca39912836976177, type: 3}
+      propertyPath: _shapesLight.Array.data[4]
+      value: 
+      objectReference: {fileID: 813873407}
+    - target: {fileID: 6512650024551535539, guid: de8a1a06ec295c34ca39912836976177, type: 3}
+      propertyPath: _shapesLight.Array.data[5]
+      value: 
+      objectReference: {fileID: 291093395}
+    - target: {fileID: 6512650024551535539, guid: de8a1a06ec295c34ca39912836976177, type: 3}
+      propertyPath: _shapesLight.Array.data[6]
+      value: 
+      objectReference: {fileID: 1256902995}
+    - target: {fileID: 6512650024551535539, guid: de8a1a06ec295c34ca39912836976177, type: 3}
+      propertyPath: _shapesLight.Array.data[7]
+      value: 
+      objectReference: {fileID: 1398074399}
+    - target: {fileID: 6512650024551535539, guid: de8a1a06ec295c34ca39912836976177, type: 3}
+      propertyPath: _shapesLight.Array.data[8]
+      value: 
+      objectReference: {fileID: 224442948}
+    - target: {fileID: 6512650024551535539, guid: de8a1a06ec295c34ca39912836976177, type: 3}
+      propertyPath: _shapesLight.Array.data[9]
+      value: 
+      objectReference: {fileID: 61061852}
+    - target: {fileID: 6512650024551535539, guid: de8a1a06ec295c34ca39912836976177, type: 3}
+      propertyPath: _shapesLight.Array.data[10]
+      value: 
+      objectReference: {fileID: 1219116725}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13971,7 +14004,6 @@ SceneRoots:
   - {fileID: 1447075047}
   - {fileID: 1890044079}
   - {fileID: 1287508250}
-  - {fileID: 1479394197}
   - {fileID: 1690403859}
   - {fileID: 374432592}
   - {fileID: 644838419}
