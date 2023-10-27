@@ -1,10 +1,10 @@
 using Rewired;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem.XInput;
 
 public class QTEHandler : MonoBehaviour
 {
@@ -13,7 +13,7 @@ public class QTEHandler : MonoBehaviour
     int _indexInSequence = 0;
     QTESequence _currentQTESequence;
     private Coroutine _coroutineQTE;
-    IQTEable _QTEable;
+    List<IQTEable> _QTEables = new List<IQTEable>();
     bool _isPlaying = true;
     [SerializeField] float _holdDuration = .5f;
 
@@ -25,7 +25,12 @@ public class QTEHandler : MonoBehaviour
 
     public void RegisterQTEable(IQTEable QTEable)
     {
-        _QTEable = QTEable;
+        _QTEables.Add(QTEable);
+    }
+
+    public void UnregisterQTEable(IQTEable QTEable)
+    {
+        _QTEables.Remove(QTEable);
     }
 
     public void StartRandomQTE()
@@ -36,9 +41,9 @@ public class QTEHandler : MonoBehaviour
         }
         _currentQTESequence = QTELoader.Instance.GetRandomQTE(_role);
         _indexInSequence = 0;
-        if (_QTEable != null)
+        foreach(IQTEable reciever in _QTEables)
         {
-            _QTEable.OnQTEStarted(_currentQTESequence);
+            reciever.OnQTEStarted(_currentQTESequence);
         }
         switch (_currentQTESequence.SequenceType)
         {
@@ -58,9 +63,11 @@ public class QTEHandler : MonoBehaviour
 
     public void StopCoroutine()
     {
-        StopCoroutine(_coroutineQTE);
-        _coroutineQTE = null;
-        
+        if (_coroutineQTE != null)
+        {
+            StopCoroutine(_coroutineQTE);
+            _coroutineQTE = null;
+        }
     }
 
     public string GetQTEString()
@@ -111,7 +118,7 @@ public class QTEHandler : MonoBehaviour
         while (_indexInSequence < _currentQTESequence.ListSubHandlers.Count)
         {
             yield return new WaitUntil(() => _isPlaying);
-            if (Globals.BeatTimer?.IsInsideBeat ?? true || true) //A MODIFIER
+            if ((Globals.BeatTimer?.IsInsideBeat ?? true) || true) //A MODIFIER
             {
                 if (CheckInput(input))
                 {
@@ -120,18 +127,19 @@ public class QTEHandler : MonoBehaviour
                     if (_indexInSequence < _currentQTESequence.ListSubHandlers.Count) //Sequence finished
                     {
                         input = _currentQTESequence.ListSubHandlers[_indexInSequence];
-                        if (_QTEable != null)
+                        foreach (IQTEable reciever in _QTEables)
                         {
-                            _QTEable.OnQTECorrectInput();
+                            reciever.OnQTECorrectInput();
                         }
                     }
                 }
             }
             yield return null;
         }
-        if (_QTEable != null)
+        
+        foreach (IQTEable reciever in _QTEables)
         {
-            _QTEable.OnQTEComplete();
+            reciever.OnQTEComplete();
         }
     }
 }
