@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class BarmanMovement : PlayerMovement
 {
-    PlayerInputController _inputController;
     [SerializeField] BarmanPosition[] _barmanPositions;
     //[SerializeField,Range(0f,1f)] float _inputAcceptanceThreshold = 0.1f;
     int _indexPosition;
@@ -62,17 +61,16 @@ public class BarmanMovement : PlayerMovement
         }
     }
 
-    protected IEnumerator Start()
+    protected override IEnumerator Start()
     {
-        yield return new WaitUntil(() => Players.PlayersController[(int)PlayerRole.Bouncer] != null);
-        _inputController = Players.PlayersController[(int)PlayerRole.Barman];
-        _inputController.LeftJoystick.OnInputChange += OnInputMove;
+        yield return base.Start();
+        _playerController.LeftJoystick.OnInputChange += OnInputMove;
         Debug.Log("Barman Initialisé");
     }
 
     void OnInputMove()
     {
-        ChangeIndexToReach(_inputController.LeftJoystick.InputValue.y);
+        ChangeIndexToReach(_playerController.LeftJoystick.InputValue.y);
     }
 
     void ActivateCurrentQTE()

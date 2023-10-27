@@ -201,6 +201,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdcc0fdf8c315ec47ba167ba928dcbc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _movementData: {fileID: 0}
+  _transformToModify: {fileID: 0}
   _barmanPositions:
   - {fileID: 0}
   - {fileID: 0}
@@ -221,4 +223,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d30c3069ddb64074aab1358cf0fde211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePlayerId: 0
+  _gamePlayerRole: 0

@@ -2,7 +2,9 @@ using Rewired;
 using System;
 using System.Collections;
 using System.Text;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.XInput;
 
 public class QTEHandler : MonoBehaviour
 {
@@ -10,22 +12,17 @@ public class QTEHandler : MonoBehaviour
     PlayerInputController _playerController;
     int _indexInSequence = 0;
     QTESequence _currentQTESequence;
-    [SerializeField] BeatManager _beatManager;
     private Coroutine _coroutineQTE;
     IQTEable _QTEable;
     bool _isPlaying = true;
+    [SerializeField] float _holdDuration = .5f;
 
-    private void Update()
+    private IEnumerator Start()
     {
-        if (_playerController == null)
-        {
-            SetupController();
-        }
-    }
-    private void SetupController()
-    {
+        yield return new WaitUntil(() => Players.PlayersController[(int)_role] != null);
         _playerController = Players.PlayersController[(int)_role];
     }
+
     public void RegisterQTEable(IQTEable QTEable)
     {
         _QTEable = QTEable;
@@ -98,10 +95,11 @@ public class QTEHandler : MonoBehaviour
         switch (input.Status)
         {
             case InputStatus.PRESS:
-                isInputCorrect = _playerController.GetInput(input);
+                isInputCorrect = _playerController.GetInputClassWithID(input.ActionIndex).IsPerformed;
                 break;
             case InputStatus.HOLD:
-                isInputCorrect = _playerController.GetInputHold(input);
+                InputClass inputClass = _playerController.GetInputClassWithID(input.ActionIndex);
+                isInputCorrect = inputClass.IsPerformed && inputClass.InputDuration > _holdDuration;
                 break;
         }
         return isInputCorrect;
@@ -113,7 +111,7 @@ public class QTEHandler : MonoBehaviour
         while (_indexInSequence < _currentQTESequence.ListSubHandlers.Count)
         {
             yield return new WaitUntil(() => _isPlaying);
-            if (_beatManager.IsInsideBeat)
+            if (Globals.BeatTimer?.IsInsideBeat ?? true || true) //A MODIFIER
             {
                 if (CheckInput(input))
                 {

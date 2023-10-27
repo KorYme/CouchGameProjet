@@ -16,18 +16,18 @@ public class EntityMovement : MonoBehaviour, IMovable, IBounceable
     public bool IsBouncing => _movementCoroutine != null;
     public bool HasAlreadyMovedThisBeat { get; protected set; }
 
-    protected virtual void Start()
-    {
-        HasAlreadyMovedThisBeat = false;
-        Globals.BeatTimer.OnBeatStartEvent.AddListener(AllowNewInput);
-    }
+    //protected virtual void Start()
+    //{
+    //    HasAlreadyMovedThisBeat = false;
+    //    Globals.BeatTimer.OnBeatStartEvent.AddListener(AllowNewInput);
+    //}
 
-    protected virtual void OnDestroy()
-    {
-        Globals.BeatTimer.OnBeatStartEvent.RemoveListener(AllowNewInput);
-    }
+    //protected virtual void OnDestroy()
+    //{
+    //    Globals.BeatTimer.OnBeatStartEvent.RemoveListener(AllowNewInput);
+    //}
 
-    private void AllowNewInput() => HasAlreadyMovedThisBeat = false;
+    protected void AllowNewInput() => HasAlreadyMovedThisBeat = false;
 
     protected virtual IEnumerator MovementCoroutine(Vector3 positionToGo)
     {

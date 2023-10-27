@@ -1,4 +1,5 @@
 using Rewired;
+using Rewired.Utils.Classes.Data;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ public class PlayerInputController : MonoBehaviour
     public InputVector2 RightJoystick { get; private set; } = new(RewiredConsts.Action.AXISX, RewiredConsts.Action.AXISY);
 
 
-    List<InputClass> _allInputClasses => new List<InputClass>()
+    List<InputClass> _allMainInputClasses => new List<InputClass>()
     {
         Action1,
         Action2,
@@ -51,7 +52,6 @@ public class PlayerInputController : MonoBehaviour
         LeftJoystick,
         RightJoystick,
     };
-
     #endregion
 
     private void Start()
@@ -75,7 +75,7 @@ public class PlayerInputController : MonoBehaviour
 
     void SetUpAllInputClasses()
     {
-        _allInputClasses.ForEach(inputClass =>
+        _allMainInputClasses.ForEach(inputClass =>
         {
             
             newPlayer.AddInputEventDelegate(inputClass.InputCallback, UpdateLoopType.Update, inputClass.ActionID);
@@ -101,5 +101,34 @@ public class PlayerInputController : MonoBehaviour
         return player == null ? false : player.GetButtonLongPress(input.ActionIndex);
     }
 
-    public InputClass GetInputClassWithID(int ActionID) => _allInputClasses.FirstOrDefault(x => x.ActionID == ActionID);
+    public InputClass GetInputClassWithID(int ActionID)
+    {
+        InputClass returnValue = null;
+        _allMainInputClasses.ForEach(inputClass =>
+        {
+            switch (inputClass)
+            {
+                case InputVector2 inputVector2:
+                    if (inputVector2.InputClassX.ActionID == ActionID)
+                    {
+                        returnValue = inputVector2.InputClassX;
+                        return;
+                    }
+                    if (inputVector2.InputClassY.ActionID == ActionID)
+                    {
+                        returnValue = inputVector2.InputClassY;
+                        return;
+                    }
+                    break;
+                default:
+                    if (inputClass.ActionID == ActionID)
+                    {
+                        returnValue = inputClass;
+                        return;
+                    }
+                    break;
+            }
+        });
+        return returnValue;
+    }
 }

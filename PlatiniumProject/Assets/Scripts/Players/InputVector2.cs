@@ -6,6 +6,8 @@ public class InputVector2 : InputClass
 {
     InputFloat _inputValueX;
     InputFloat _inputValueY;
+    public InputFloat InputClassX => _inputValueX;
+    public InputFloat InputClassY => _inputValueY;
 
     public int SecondActionID { get; private set; }
 
