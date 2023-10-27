@@ -19,18 +19,16 @@ public class InputBool : InputClass
     public override void InputCallback(InputActionEventData data)
     {
         InputDuration = data.GetButtonTimePressed();
-        switch (data.eventType)
+        bool tmp = data.GetButton();
+        if (!IsPerformed && tmp)
         {
-            case InputActionEventType.ButtonJustPressed:
-                InputValue = true;
-                OnInputStart?.Invoke();
-                break;
-            case InputActionEventType.ButtonJustReleased:
-                InputValue = false;
-                OnInputEnd?.Invoke();
-                break;
-            default:
-                break;
+            InputValue = tmp;
+            OnInputStart?.Invoke();
+        }
+        else if (IsPerformed && !tmp)
+        {
+            InputValue = tmp;
+            OnInputEnd?.Invoke();
         }
     }
 }

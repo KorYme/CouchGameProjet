@@ -15,7 +15,7 @@ public class BarmanMovement : PlayerMovement
     [SerializeField] BeatManager _beatManager;
 
     public int IndexPosition { get => _indexPosition;}
-    public BarmanPosition[] BarmanPositions { get => _barmanPositions;}
+    public BarmanPosition[] BarmanPositions { get => _barmanPositions; }
 
     private void Awake()
     {

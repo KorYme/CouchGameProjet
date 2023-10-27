@@ -93,7 +93,8 @@
 				<MusicSegment Name="Crypt of the Necrodancer OST - Crypteque (1-2)" ID="{B9D4578D-B6E9-4FE1-8934-0A2F3172C6C7}" ShortID="174887429">
 					<PropertyList>
 						<Property Name="EndPosition" Type="Real64" Value="165604.729166667"/>
-						<Property Name="Tempo" Type="Real64" Value="65"/>
+						<Property Name="GridFrequencyPreset" Type="int16" Value="53"/>
+						<Property Name="Tempo" Type="Real64" Value="130"/>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
 								<Value>-6</Value>
@@ -173,6 +174,91 @@
 										<PropertyList>
 											<Property Name="CueType" Type="int16" Value="1"/>
 											<Property Name="TimeMs" Type="Real64" Value="165604.729166667"/>
+										</PropertyList>
+									</MusicCue>
+								</Local>
+							</Reference>
+						</ObjectList>
+					</ObjectLists>
+				</MusicSegment>
+				<MusicSegment Name="MageBattle" ID="{3441DE68-26FA-4A74-9806-D4745AB82F51}" ShortID="822723856">
+					<PropertyList>
+						<Property Name="EndPosition" Type="Real64" Value="336013.06122449"/>
+						<Property Name="GridFrequencyPreset" Type="int16" Value="53"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<MusicTrack Name="mage" ID="{169871DC-0948-4E04-9886-2ED7990E97B5}" ShortID="1057256646">
+							<ReferenceList>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="mage" ID="{7D14577F-1675-4D42-991B-7FC24BB68575}">
+									<Language>SFX</Language>
+									<AudioFile>mage.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="58924354"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<TransitionList>
+								<MusicTransition Name="Root" ID="{E0AEC1E5-EA47-46B2-AD5D-7D9DEFE6DBB6}">
+									<PropertyList>
+										<Property Name="IsFolder" Type="bool" Value="True"/>
+									</PropertyList>
+									<TransitionInfo/>
+								</MusicTransition>
+							</TransitionList>
+							<ObjectLists>
+								<ObjectList Name="Sequences">
+									<Reference>
+										<Local>
+											<MusicTrackSequence Name="" ID="{25F376BA-B293-4B01-AC28-FF1AD85005C0}">
+												<ObjectLists>
+													<ObjectList Name="Clips">
+														<Reference>
+															<Local>
+																<MusicClip Name="mage" ID="{5CF6E85A-3621-48ED-B76B-D40BD92188A1}">
+																	<PropertyList>
+																		<Property Name="EndTrimOffset" Type="Real64" Value="336013.06122449"/>
+																		<Property Name="FadeInMode" Type="int16" Value="0"/>
+																		<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																	</PropertyList>
+																	<AudioSourceRef Name="mage" ID="{7D14577F-1675-4D42-991B-7FC24BB68575}"/>
+																</MusicClip>
+															</Local>
+														</Reference>
+													</ObjectList>
+												</ObjectLists>
+											</MusicTrackSequence>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</MusicTrack>
+					</ChildrenList>
+					<ObjectLists>
+						<ObjectList Name="Cues">
+							<Reference>
+								<Local>
+									<MusicCue Name="Entry Cue" ID="{2E144678-D157-48E3-8AF9-4F188903BF0B}"/>
+								</Local>
+							</Reference>
+							<Reference>
+								<Local>
+									<MusicCue Name="Exit Cue" ID="{9E7A211F-ACB6-4CA5-8679-56EDD0B3F03D}">
+										<PropertyList>
+											<Property Name="CueType" Type="int16" Value="1"/>
+											<Property Name="TimeMs" Type="Real64" Value="336013.06122449"/>
 										</PropertyList>
 									</MusicCue>
 								</Local>

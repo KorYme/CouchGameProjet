@@ -10,8 +10,10 @@ public class BeatManager : MonoBehaviour, ITimingable
     #region FIELDS
     [Header("References"), Space]
     [SerializeField, Tooltip("Wwise play event to launch the sound and the beat\nDon't need to be modified by GDs")] 
-    AK.Wwise.Event _beatWwiseEvent;
+    List<AK.Wwise.Event> _beatWwiseEvent;
 
+    [SerializeField, Range(0,2)]
+    int _musicIndex;
 
     [Header("Parameters"), Space]
     [SerializeField, Range(0f, .5f), Tooltip("Timing window before the beat which allows input")]
@@ -64,7 +66,7 @@ public class BeatManager : MonoBehaviour, ITimingable
     {
         _beatDurationInMilliseconds = 1000;
         yield return null;
-        _beatWwiseEvent.Post(gameObject, (uint)AkCallbackType.AK_MusicSyncBeat, BeatCallBack);
+        _beatWwiseEvent[_musicIndex].Post(gameObject, (uint)AkCallbackType.AK_MusicSyncBeat, BeatCallBack);
     }
 
     private void BeatCallBack(object in_cookie, AkCallbackType in_type, AkCallbackInfo in_info)

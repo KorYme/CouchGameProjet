@@ -3,12 +3,34 @@
 	<Events>
 		<WorkUnit Name="Default Work Unit" ID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}" PersistMode="Standalone">
 			<ChildrenList>
-				<Event Name="PlayMusic" ID="{D8F73D14-0786-44B0-81BE-AA6463BB88F2}">
+				<Event Name="PlayMusic1" ID="{D8F73D14-0786-44B0-81BE-AA6463BB88F2}">
 					<ChildrenList>
 						<Action Name="" ID="{5C3838E2-289F-4830-A351-C89F95F0E59C}" ShortID="335401900">
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Crypt of the Necrodancer OST - Crypteque (1-2)" ID="{B9D4578D-B6E9-4FE1-8934-0A2F3172C6C7}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayMusic2" ID="{68835C7C-3593-49F4-BF60-C1C686066C36}">
+					<ChildrenList>
+						<Action Name="" ID="{4BC1B317-8316-4A89-B904-B059DD10D3A5}" ShortID="240588134">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="MageBattle" ID="{3441DE68-26FA-4A74-9806-D4745AB82F51}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayMusicTest" ID="{32CB9037-D8E2-4F2F-BF68-D1FF5B723EAE}">
+					<ChildrenList>
+						<Action Name="" ID="{620EA2C5-4059-4212-A4BC-D9D438CDF337}" ShortID="1019397609">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="60 BPM Metronome" ID="{E8E62256-2EDA-4A8A-8EC2-C9911386DB10}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
