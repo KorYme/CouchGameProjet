@@ -38,7 +38,7 @@ public class BouncerMovement : PlayerMovement
     private void OnInputMove()
     {
         Vector2 dir = GetClosestUnitVectorFromVector(_inputController.LeftJoystick.InputValue);
-        if (_inputController != null && dir != Vector2.zero)
+        if (_inputController != null && dir != Vector2.zero && currentState == BouncerState.Moving)
         {
             Move((int)GetClosestDirectionFromVector(dir));
         }
@@ -116,7 +116,7 @@ public class BouncerMovement : PlayerMovement
     {
         while (true)
         {
-            if (Input.GetKeyDown(KeyCode.Y))
+            if (_inputController.Action1.InputValue)
             {
                 CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
                 chara.BouncerAction(true);
@@ -125,7 +125,7 @@ public class BouncerMovement : PlayerMovement
                 yield break;
             }
 
-            if (Input.GetKeyDown(KeyCode.N))
+            if (_inputController.Action3.InputValue)
             {
                 CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
                 chara.BouncerAction(false);
