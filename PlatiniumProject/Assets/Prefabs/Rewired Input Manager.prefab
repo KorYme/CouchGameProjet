@@ -396,7 +396,7 @@ MonoBehaviour:
     - _id: 2
       _name: Action1
       _type: 1
-      _descriptiveName: Action1
+      _descriptiveName: ButtonDown
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
@@ -405,7 +405,7 @@ MonoBehaviour:
     - _id: 3
       _name: Action2
       _type: 1
-      _descriptiveName: Action2
+      _descriptiveName: ButtonLeft
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
@@ -414,7 +414,7 @@ MonoBehaviour:
     - _id: 4
       _name: Action3
       _type: 1
-      _descriptiveName: Action3
+      _descriptiveName: ButtonRight
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
@@ -423,7 +423,7 @@ MonoBehaviour:
     - _id: 5
       _name: Action4
       _type: 1
-      _descriptiveName: Action4
+      _descriptiveName: ButtonUp
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
@@ -529,7 +529,7 @@ MonoBehaviour:
     - _id: 0
       _name: Default
       _joystickAxisSensitivity: 1
-      _digitalAxisSimulation: 1
+      _digitalAxisSimulation: 0
       _digitalAxisSnap: 1
       _digitalAxisInstantReverse: 0
       _digitalAxisGravity: 3
@@ -725,7 +725,7 @@ MonoBehaviour:
         _axisRange: 0
         _invert: 0
         _axisContribution: 0
-        _keyboardKeyCode: 13
+        _keyboardKeyCode: 32
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
@@ -957,4 +957,4 @@ MonoBehaviour:
   - Player1
   - Player2
   - Player3
-  _playerRoles: 010000000000000002000000
+  _playerRoles: 020000000000000001000000

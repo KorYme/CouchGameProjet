@@ -1,41 +1,99 @@
+using Rewired;
 using System;
 using System.Collections;
+using System.Text;
 using UnityEngine;
 
 public class QTEHandler : MonoBehaviour
 {
     [SerializeField] PlayerRole _role;
-    [SerializeField] PlayerInputController _playerController;
+    PlayerInputController _playerController;
     int _indexInSequence = 0;
     QTESequence _currentQTESequence;
-    BeatManager _beatManager;
+    [SerializeField] BeatManager _beatManager;
+    private Coroutine _coroutineQTE;
+    IQTEable _QTEable;
+    bool _isPlaying = true;
 
-    public static event Action OnInputCorrect;
-    public static event Action OnSequenceComplete;
-
-    private void Start()
+    private void Update()
     {
-        ChangeQTE();
-        _beatManager = FindObjectOfType<BeatManager>();
+        if (_playerController == null)
+        {
+            SetupController();
+        }
     }
-    public void ChangeQTE()
+    private void SetupController()
     {
+        _playerController = Players.PlayersController[(int)_role];
+    }
+    public void RegisterQTEable(IQTEable QTEable)
+    {
+        _QTEable = QTEable;
+    }
+
+    public void StartRandomQTE()
+    {
+        if (_coroutineQTE != null)
+        {
+            StopCoroutine();
+        }
         _currentQTESequence = QTELoader.Instance.GetRandomQTE(_role);
         _indexInSequence = 0;
-        Debug.Log($"SEQUENCE CHOSEN{_currentQTESequence.Difficulty} {_currentQTESequence.SequenceType} {_currentQTESequence.Index}");
+        if (_QTEable != null)
+        {
+            _QTEable.OnQTEStarted(_currentQTESequence);
+        }
         switch (_currentQTESequence.SequenceType)
         {
             case InputsSequence.SEQUENCE:
-                StartCoroutine(StartRoutineSequence());
+                _coroutineQTE = StartCoroutine(StartRoutineSequence());
                 break;
             case InputsSequence.SIMULTANEOUS:
                 //TO DO
                 break;
         }
     }
+    
+    public void PauseQTE(bool value)
+    {
+        _isPlaying = !value;
+    }
+
+    public void StopCoroutine()
+    {
+        StopCoroutine(_coroutineQTE);
+        _coroutineQTE = null;
+        
+    }
+
+    public string GetQTEString()
+    {
+        if (_currentQTESequence != null)
+        {
+            StringBuilder str = new StringBuilder();
+            foreach (UnitInput input in _currentQTESequence.ListSubHandlers)
+            {
+                InputAction action = ReInput.mapping.GetAction(input.ActionIndex);
+                if (action != null)
+                {
+                    str.Append(action.descriptiveName);
+                    str.Append(" ");
+                }
+            }
+            str.Append(_indexInSequence.ToString());
+            str.Append(" ");
+            str.Append(_currentQTESequence.ListSubHandlers.Count);
+            return str.ToString();
+        }
+        return String.Empty;
+    }
 
     bool CheckInput(UnitInput input)
     {
+        if (_playerController == null) 
+        {
+            return false;
+        }
         bool isInputCorrect = false;
         switch (input.Status)
         {
@@ -54,29 +112,28 @@ public class QTEHandler : MonoBehaviour
         UnitInput input = _currentQTESequence.ListSubHandlers[_indexInSequence];
         while (_indexInSequence < _currentQTESequence.ListSubHandlers.Count)
         {
+            yield return new WaitUntil(() => _isPlaying);
             if (_beatManager.IsInsideBeat)
             {
                 if (CheckInput(input))
                 {
-                    if (_indexInSequence < _currentQTESequence.ListSubHandlers.Count - 1)
+                    _indexInSequence++;
+
+                    if (_indexInSequence < _currentQTESequence.ListSubHandlers.Count) //Sequence finished
                     {
-                        OnInputCorrect?.Invoke();
-                        _indexInSequence++;
-                    } else
-                    {
-                        OnInputCorrect?.Invoke();
+                        input = _currentQTESequence.ListSubHandlers[_indexInSequence];
+                        if (_QTEable != null)
+                        {
+                            _QTEable.OnQTECorrectInput();
+                        }
                     }
-                } else
-                {
-                    _indexInSequence = 0;
                 }
             }
             yield return null;
-            
         }
-    }
-    IEnumerator StartRoutineSimultaneous()
-    {
-        yield return null;
+        if (_QTEable != null)
+        {
+            _QTEable.OnQTEComplete();
+        }
     }
 }

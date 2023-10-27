@@ -6,14 +6,13 @@ using UnityEngine;
 public class QTELoader : MonoBehaviour
 {
     public static QTELoader Instance { get; private set; }
-    [SerializeField] private static List<QTESequence> _listQTE = new List<QTESequence>();
-     List<QTESequence> ListQTE => _listQTE;
+    [SerializeField] private List<QTESequence> _listQTE;
+    List<QTESequence> ListQTE => _listQTE;
     
 
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
-
         if (Instance != null && Instance != this)
         {
             Destroy(this);

@@ -25,8 +25,8 @@ public class CharacterMovementExample : EntityMovement
         direction = new Vector2(-direction.y, direction.x);
     }
 
-    public override void MoveToPosition(Vector3 position)
+    public override bool MoveToPosition(Vector3 position)
     {
-         base.MoveToPosition(position);
+         return base.MoveToPosition(position);
     }
 }

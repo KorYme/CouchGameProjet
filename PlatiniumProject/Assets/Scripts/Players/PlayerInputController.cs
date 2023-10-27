@@ -8,8 +8,8 @@ using UnityEngine;
 
 public class PlayerInputController : MonoBehaviour
 {
-    [SerializeField] int gamePlayerId = 0;
-    private Rewired.Player player { get { return PlayerInputsAssigner.GetRewiredPlayer(gamePlayerId); } }
+    [SerializeField] PlayerRole _gamePlayerRole;
+    private Rewired.Player player { get { return PlayerInputsAssigner.GetRewiredPlayer((int)_gamePlayerRole); } }
     public Rewired.Player newPlayer { get; private set; } 
     private bool _isRegistered = false;
 
@@ -61,13 +61,14 @@ public class PlayerInputController : MonoBehaviour
 
     IEnumerator SetUpRewiredCoroutine()
     {
-        yield return new WaitUntil(() => ReInput.isReady);
+        yield return new WaitUntil(() => ReInput.isReady && player != null);
         Debug.Log("Rewired ready");
-        newPlayer = PlayerInputsAssigner.GetRewiredPlayer(gamePlayerId);
+        newPlayer = PlayerInputsAssigner.GetRewiredPlayer((int)_gamePlayerRole);
+
         if (newPlayer != null)
         {
             _isRegistered = true;
-            Players.AddPlayerToList(this, (int) PlayerInputsAssigner.GetRolePlayer(gamePlayerId));
+            Players.AddPlayerToList(this, (int) PlayerInputsAssigner.GetRolePlayer((int)_gamePlayerRole));
             SetUpAllInputClasses();
         }
     }
@@ -76,11 +77,13 @@ public class PlayerInputController : MonoBehaviour
     {
         _allInputClasses.ForEach(inputClass =>
         {
+            
             newPlayer.AddInputEventDelegate(inputClass.InputCallback, UpdateLoopType.Update, inputClass.ActionID);
             switch (inputClass)
         {
                 case InputVector2 inputVector2:
                     Debug.Log("Add Vector2 delegate");
+                    inputVector2.Player = newPlayer;
                     newPlayer.AddInputEventDelegate(inputVector2.InputCallbackSecondAction, UpdateLoopType.Update, inputVector2.SecondActionID);
                     break;
                 default:
@@ -91,12 +94,11 @@ public class PlayerInputController : MonoBehaviour
 
     public bool GetInput(UnitInput input)
     {
-        
-        return player.GetButtonDown(input.ActionIndex);
+        return player == null ? false : player.GetButtonDown(input.ActionIndex);
     }
     public bool GetInputHold(UnitInput input)
     {
-        return player.GetButtonLongPress(input.ActionIndex);
+        return player == null ? false : player.GetButtonLongPress(input.ActionIndex);
     }
 
     public InputClass GetInputClassWithID(int ActionID) => _allInputClasses.FirstOrDefault(x => x.ActionID == ActionID);

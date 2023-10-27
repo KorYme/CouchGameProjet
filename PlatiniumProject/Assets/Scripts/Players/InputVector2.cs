@@ -9,6 +9,8 @@ public class InputVector2 : InputClass
 
     public int SecondActionID { get; private set; }
 
+    public Player Player { get; set; }
+
     public override bool IsPerformed => _inputValueX.IsPerformed && _inputValueY.IsPerformed;
 
     public Vector2 InputValue => new Vector2(_inputValueX.InputValue, _inputValueY.InputValue);
@@ -20,8 +22,16 @@ public class InputVector2 : InputClass
         SecondActionID = secondActionID;
         _inputValueX = new InputFloat(actionID);
         _inputValueY = new InputFloat(secondActionID);
-        _inputValueX.OnInputChange += OnInputChange;
-        _inputValueY.OnInputChange += OnInputChange;
+        _inputValueX.OnInputChange += () =>
+        {
+            ForceUpdateY();
+            OnInputChange?.Invoke();
+        };
+        _inputValueY.OnInputChange += () =>
+        {
+            ForceUpdateX();
+            OnInputChange?.Invoke();
+        };
         _inputValueX.OnInputStart += () =>
         {
             if (!_inputValueY.IsPerformed)
@@ -57,8 +67,18 @@ public class InputVector2 : InputClass
         _inputValueX.InputCallback(data);
     }
 
+    void ForceUpdateX()
+    {
+        _inputValueX.InputCallbackForced(Player);
+    }
+
     public void InputCallbackSecondAction(InputActionEventData data)
     {
         _inputValueY.InputCallback(data);
+    }
+
+    void ForceUpdateY()
+    {
+        _inputValueY.InputCallbackForced(Player);
     }
 }
