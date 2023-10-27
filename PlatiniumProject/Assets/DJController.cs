@@ -3,9 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
 using TMPro;
-using UnityEditorInternal;
 using UnityEngine;
 
+public enum Direction
+{
+    Right = 0,
+    Left = 1,
+    Down = 2,
+    Up = 3,
+}
 public class DJController : MonoBehaviour,IQTEable
 {
     [SerializeField] List<SlotInformation> _shapesLight;
@@ -46,6 +52,17 @@ public class DJController : MonoBehaviour,IQTEable
 
     public void OnQTECorrectInput()
     {
+        foreach (SlotInformation information in _shapesLight)
+        {
+            if (information.Occupant != null)
+            {
+                CharacterStateDancing state = information.Occupant.DancingState as CharacterStateDancing;
+                if (state != null)
+                {
+                    state.OnQTECorrectInput();
+                }
+            }
+        }
         _QTEDisplay.text = _qteHandler.GetQTEString();
     }
     #endregion
@@ -95,6 +112,10 @@ public class DJController : MonoBehaviour,IQTEable
                 GetDirection(_djInputController.RightJoystick, _rightJoystickClockwise, _rightJoystickAntiClockwise);
             };
         }
+        if (_qteHandler != null)
+        {
+            _qteHandler.UnregisterQTEable(this);
+        }
     }
     //DONE
     public void MoveLightShape(Direction direction)
@@ -108,6 +129,9 @@ public class DJController : MonoBehaviour,IQTEable
             if (CheckNbPlayersInLight() > 0)
             {
                 _qteHandler.StartRandomQTE();
+            } else
+            {
+                _qteHandler.StopCoroutine();
             }
         }
     }
@@ -160,7 +184,7 @@ public class DJController : MonoBehaviour,IQTEable
         }     
         _lastDirection = closestPoint;
         _directionChecked++;
-        Debug.Log($"Quart effectu�, Position actuelle - {_lastDirection}");
+        //Debug.Log($"Quart effectu�, Position actuelle - {_lastDirection}");
         if (_directionChecked >= 4)
         {
             switch (_rotationOrientation)

@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class CharacterStateDancing : CharacterState, IQTEable
+public class CharacterStateDancing : CharacterState
 {
     int _currentSatisfaction;
-
+    
     public override void EnterState()
     {
         _currentSatisfaction = StateMachine.CharacterDataObject.maxSatisafactionDJ;
@@ -23,10 +23,6 @@ public class CharacterStateDancing : CharacterState, IQTEable
         }
     }
 
-    public void OnQTEComplete()
-    {
-    }
-
     public void OnQTECorrectInput()
     {
         if (StateMachine.CurrentSlot.IsEnlighted)
@@ -34,9 +30,5 @@ public class CharacterStateDancing : CharacterState, IQTEable
             _currentSatisfaction = Mathf.Clamp(_currentSatisfaction + StateMachine.CharacterDataObject.incrementationValueOnFloor, 0, StateMachine.CharacterDataObject.maxSatisafactionDJ);
             Debug.Log($"{_currentSatisfaction} {StateMachine.name}");
         }
-    }
-
-    public void OnQTEStarted(QTESequence sequence)
-    {
     }
 }
