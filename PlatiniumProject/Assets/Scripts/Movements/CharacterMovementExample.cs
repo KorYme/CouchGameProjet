@@ -7,15 +7,13 @@ public class CharacterMovementExample : EntityMovement
 {
     Vector2 direction = Vector2.right;
 
-    protected override void Start()
+    protected void Start()
     {
-        base.Start();
         Globals.BeatTimer.OnBeatEvent.AddListener(Test);
     }
 
-    protected override void OnDestroy()
+    protected void OnDestroy()
     {
-        base.OnDestroy();
         Globals.BeatTimer.OnBeatEvent.RemoveListener(Test);
     }
 

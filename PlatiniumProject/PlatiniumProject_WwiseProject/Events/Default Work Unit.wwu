@@ -8,7 +8,7 @@
 						<Action Name="" ID="{5C3838E2-289F-4830-A351-C89F95F0E59C}" ShortID="335401900">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="60 BPM Metronome" ID="{E8E62256-2EDA-4A8A-8EC2-C9911386DB10}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}"/>
+									<ObjectRef Name="Crypt of the Necrodancer OST - Crypteque (1-2)" ID="{B9D4578D-B6E9-4FE1-8934-0A2F3172C6C7}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

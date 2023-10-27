@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class WaitingLineBar : MonoBehaviour,IQTEable
 {
@@ -22,6 +23,13 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
         }
     }
 
+    private void OnDestroy()
+    {
+        if (_qteHandler != null)
+        {
+            _qteHandler.UnregisterQTEable(this);
+        }
+    }
     private void OnInputCorrect()
     {
         _indexText.text = _qteHandler.GetQTEString();

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
+using TMPro;
 using UnityEngine;
 
 public enum Direction
@@ -11,7 +12,7 @@ public enum Direction
     Down = 2,
     Up = 3,
 }
-public class DJController : MonoBehaviour
+public class DJController : MonoBehaviour,IQTEable
 {
     [SerializeField] List<SlotInformation> _shapesLight;
     [SerializeField, Range(0f, 1f)] float _inputDistance = .4f;
@@ -27,21 +28,61 @@ public class DJController : MonoBehaviour
     int _directionChecked = 0;
     Vector2 _lastDirection = Vector2.zero;
     PlayerInputController _djInputController;
+    QTEHandler _qteHandler;
     bool _areInputsSetUp = false;
 
     readonly Color Red = Color.red;
     readonly Color Green = new Color(0f, 1f, 1f / 18f);
-    
+
+    #region ToRemove
+    [SerializeField] TextMeshProUGUI _QTEDisplay;
+
+    public void OnQTEStarted(QTESequence sequence)
+    {
+        _QTEDisplay.text = _qteHandler.GetQTEString();
+    }
+
+    public void OnQTEComplete()
+    {
+        if (CheckNbPlayersInLight() > 0)
+        {
+            _qteHandler.StartRandomQTE();
+        }
+    }
+
+    public void OnQTECorrectInput()
+    {
+        foreach (SlotInformation information in _shapesLight)
+        {
+            if (information.Occupant != null)
+            {
+                CharacterStateDancing state = information.Occupant.DancingState as CharacterStateDancing;
+                if (state != null)
+                {
+                    state.OnQTECorrectInput();
+                }
+            }
+        }
+        _QTEDisplay.text = _qteHandler.GetQTEString();
+    }
+    #endregion
+
 
     //TO CHECK
     private IEnumerator Start()
     {
         UpdateLightTiles(_shapesLight);
+        _qteHandler = GetComponent<QTEHandler>();
+        _QTEDisplay.text = ""; 
+        if (_qteHandler != null )
+        {
+            _qteHandler.RegisterQTEable(this);
+        }
         _areInputsSetUp = false;
         yield return new WaitUntil(()=> Players.PlayersController[(int)PlayerRole.DJ] != null);
         _djInputController = Players.PlayersController[(int)PlayerRole.DJ];
         SetUpInputs();
-        Debug.Log("DJ Initialisé");
+        Debug.Log("DJ Initialisï¿½");
     }
 
     //TO COMPLETE WITH OTHER INPUTS
@@ -71,6 +112,10 @@ public class DJController : MonoBehaviour
                 GetDirection(_djInputController.RightJoystick, _rightJoystickClockwise, _rightJoystickAntiClockwise);
             };
         }
+        if (_qteHandler != null)
+        {
+            _qteHandler.UnregisterQTEable(this);
+        }
     }
     //DONE
     public void MoveLightShape(Direction direction)
@@ -81,6 +126,13 @@ public class DJController : MonoBehaviour
             _shapesLight.ForEach(x => newList.Add(x.Neighbours[(int)direction]));
             UpdateLightTiles(newList);
             _shapesLight = newList;
+            if (CheckNbPlayersInLight() > 0)
+            {
+                _qteHandler.StartRandomQTE();
+            } else
+            {
+                _qteHandler.StopCoroutine();
+            }
         }
     }
     //DONE
@@ -101,7 +153,7 @@ public class DJController : MonoBehaviour
     private void GetDirection(InputVector2 vectorInput, Direction clockwiseDirection, Direction antiClockwiseDirection)
     {
         Vector2 closestPoint = GetClosestUnitVectorFromVector(vectorInput.InputValue);
-        Debug.Log(closestPoint);
+        //Debug.Log(closestPoint);
         if (_lastDirection == closestPoint) return;
         if (closestPoint == Vector2.zero)
         {
@@ -132,7 +184,7 @@ public class DJController : MonoBehaviour
         }     
         _lastDirection = closestPoint;
         _directionChecked++;
-        Debug.Log($"Quart effectué, Position actuelle - {_lastDirection}");
+        //Debug.Log($"Quart effectuï¿½, Position actuelle - {_lastDirection}");
         if (_directionChecked >= 4)
         {
             switch (_rotationOrientation)
@@ -208,4 +260,19 @@ public class DJController : MonoBehaviour
                 return Vector2.zero;
         }
     }
+    //Return the number of players
+    private int CheckNbPlayersInLight()
+    {
+        int nbPlayers = 0;
+        foreach (SlotInformation information in _shapesLight)
+        {
+            if (information.Occupant != null)
+            {
+                nbPlayers++;
+            }
+        }
+        return nbPlayers;
+    }
+
+    
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: QTEInput1_0
   m_EditorClassIdentifier: 
   Index: 0
-  ActionIndex: 0
+  ActionIndex: 2
   IsInputPositive: 1
   Status: 0
   CheckHold: 0

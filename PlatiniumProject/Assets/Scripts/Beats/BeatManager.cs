@@ -52,6 +52,11 @@ public class BeatManager : MonoBehaviour, ITimingable
     #region PROCEDURES
     private void Awake()
     {
+        if (Globals.BeatTimer != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Globals.BeatTimer = this;
     }
 
