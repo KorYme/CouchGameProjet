@@ -142,6 +142,5 @@ public class QTEHandler : MonoBehaviour
         {
             reciever.OnQTEComplete();
         }
-        _currentQTESequence = null;
     }
 }
