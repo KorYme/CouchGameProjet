@@ -13,7 +13,7 @@ public enum Direction
     Up = 3,
 }
 
-public class DJController : MonoBehaviour,IQTEable
+public class DJController : MonoBehaviour, IQTEable
 {
     [SerializeField] List<SlotInformation> _shapesLight;
     [SerializeField, Range(0f, 1f)] float _inputDistance = .4f;

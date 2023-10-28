@@ -3,19 +3,16 @@ using UnityEngine;
 
 public class BarmanMovement : PlayerMovement
 {
+    [Space, Header("Bouncer Parameters")]
     [SerializeField] BarmanPosition[] _barmanPositions;
-    //[SerializeField,Range(0f,1f)] float _inputAcceptanceThreshold = 0.1f;
-    int _indexPosition;
-    [SerializeField] float _timeBetweenBeat = 1f;
-    [SerializeField] float _timeBeatAccepted = 0.1f;
-    float _timer = 0f;
     [SerializeField] SpriteRenderer _renderer;
-    bool _inputRefreshed = true;
 
-    [SerializeField] BeatManager _beatManager;
+    float _timer = 0f;
 
+    int _indexPosition;
     public int IndexPosition { get => _indexPosition;}
-    public BarmanPosition[] BarmanPositions { get => _barmanPositions; }
+
+    protected override PlayerRole _playerRole => PlayerRole.Barman;
 
     private void Awake()
     {
@@ -26,6 +23,11 @@ public class BarmanMovement : PlayerMovement
         {
             MoveBarmanToIndex();
         }
+    }
+    protected override IEnumerator Start()
+    {
+        yield return base.Start();
+        Debug.Log("Barman Initialisé");
     }
 
     public void MoveBarmanToIndex()
@@ -61,16 +63,10 @@ public class BarmanMovement : PlayerMovement
         }
     }
 
-    protected override IEnumerator Start()
-    {
-        yield return base.Start();
-        _playerController.LeftJoystick.OnInputChange += OnInputMove;
-        Debug.Log("Barman Initialisé");
-    }
 
-    void OnInputMove()
+    protected override void OnInputMove(Vector2 vector)
     {
-        ChangeIndexToReach(_playerController.LeftJoystick.InputValue.y);
+        ChangeIndexToReach(vector.y);
     }
 
     void ActivateCurrentQTE()
