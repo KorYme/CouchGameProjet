@@ -111,7 +111,7 @@ public class BouncerMovement : PlayerMovement
     {
         while (true)
         {
-            if (_inputController.Action1.InputValue)
+            if (_playerController.Action1.InputValue)
             {
                 CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
                 chara.BouncerAction(true);
@@ -120,7 +120,7 @@ public class BouncerMovement : PlayerMovement
                 yield break;
             }
 
-            if (_inputController.Action3.InputValue)
+            if (_playerController.Action3.InputValue)
             {
                 CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
                 chara.BouncerAction(false);

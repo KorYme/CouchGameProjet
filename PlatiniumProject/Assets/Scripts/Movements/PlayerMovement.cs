@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class PlayerMovement : EntityMovement
 {
     [Header("Player Movements Parameters")]
-    [SerializeField, Range(0f, 1f)] protected float _inputDeadZone;
+    [SerializeField, Range(0f, 1f)] protected float _inputDeadZone = .5f;
 
     protected abstract PlayerRole _playerRole { get; }
     protected bool _isInputReset = true;
