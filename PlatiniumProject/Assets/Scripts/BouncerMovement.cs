@@ -30,7 +30,7 @@ public class BouncerMovement : PlayerMovement
         _currentSlot.PlayerOccupant = this;
         transform.position = _currentSlot.transform.position;
 
-        Debug.Log("Bouncer Initialisé");
+        Debug.Log("Bouncer Initialisï¿½");
     }
 
     protected override void OnInputMove(Vector2 vector)
@@ -111,7 +111,7 @@ public class BouncerMovement : PlayerMovement
     {
         while (true)
         {
-            if (Input.GetKeyDown(KeyCode.Y))
+            if (_inputController.Action1.InputValue)
             {
                 CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
                 chara.BouncerAction(true);
@@ -120,7 +120,7 @@ public class BouncerMovement : PlayerMovement
                 yield break;
             }
 
-            if (Input.GetKeyDown(KeyCode.N))
+            if (_inputController.Action3.InputValue)
             {
                 CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
                 chara.BouncerAction(false);
