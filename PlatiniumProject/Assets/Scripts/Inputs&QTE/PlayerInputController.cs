@@ -77,7 +77,6 @@ public class PlayerInputController : MonoBehaviour
     {
         _allMainInputClasses.ForEach(inputClass =>
         {
-            
             newPlayer.AddInputEventDelegate(inputClass.InputCallback, UpdateLoopType.Update, inputClass.ActionID);
             switch (inputClass)
         {
