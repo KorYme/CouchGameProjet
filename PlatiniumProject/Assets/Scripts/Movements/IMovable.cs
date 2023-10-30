@@ -5,6 +5,5 @@ using UnityEngine;
 public interface IMovable
 {
     public bool IsMoving { get; }
-    public bool HasAlreadyMovedThisBeat { get; }
     public bool MoveToPosition(Vector3 position);
 }

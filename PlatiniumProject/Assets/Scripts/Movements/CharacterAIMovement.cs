@@ -4,20 +4,13 @@ using UnityEngine;
 
 public class CharacterAIMovement : EntityMovement
 {
-    protected virtual void Start()
+    protected override IEnumerator Start()
     {
-        HasAlreadyMovedThisBeat = false;
-        Globals.BeatTimer.OnBeatStartEvent.AddListener(AllowNewInput);
-    }
-
-    protected virtual void OnDestroy()
-    {
-        Globals.BeatTimer.OnBeatStartEvent.RemoveListener(AllowNewInput);
+        yield return base.Start();
     }
 
     public override bool MoveToPosition(Vector3 position)
     {
         return base.MoveToPosition(position);
-        // A MODIFIER
     }
 }
