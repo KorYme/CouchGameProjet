@@ -103,7 +103,11 @@ public class QTEHandler : MonoBehaviour
         switch (input.Status)
         {
             case InputStatus.PRESS:
-                isInputCorrect = _playerController.GetInputClassWithID(input.ActionIndex).IsPerformed;
+                InputBool inputBool = _playerController.GetInputClassWithID(input.ActionIndex) as InputBool;
+                if (inputBool != null)
+                {
+                    isInputCorrect = inputBool.IsJustPressed;
+                }
                 break;
             case InputStatus.HOLD:
                 InputClass inputClass = _playerController.GetInputClassWithID(input.ActionIndex);

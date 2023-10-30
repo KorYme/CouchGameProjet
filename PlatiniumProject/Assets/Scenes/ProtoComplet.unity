@@ -4077,6 +4077,18 @@ PrefabInstance:
       propertyPath: _listQTE.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: 2f5dab6c82f84944db6232bfce323435, type: 2}
+    - target: {fileID: 7029082207090183600, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
+      propertyPath: _listQTE.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2f5dab6c82f84944db6232bfce323435, type: 2}
+    - target: {fileID: 7029082207090183600, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
+      propertyPath: _listQTE.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2f5dab6c82f84944db6232bfce323435, type: 2}
+    - target: {fileID: 7029082207090183600, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
+      propertyPath: _listQTE.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2f5dab6c82f84944db6232bfce323435, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12526,7 +12538,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1882866863
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12543,7 +12555,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 223.49869, y: 99}
+  m_AnchoredPosition: {x: -244, y: 88}
   m_SizeDelta: {x: 297.2528, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1882866864
@@ -13975,6 +13987,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8203250582693646274, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
+      propertyPath: _text
+      value: 
+      objectReference: {fileID: 1882866864}
+    - target: {fileID: 8203250582693646274, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
       propertyPath: _playerRole
       value: 2
       objectReference: {fileID: 0}
@@ -14005,29 +14021,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7340047238265229073, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7995805132037063312}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
---- !u!1 &7995805132037063311 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7340047238265229073, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
-  m_PrefabInstance: {fileID: 7995805132037063310}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7995805132037063312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7995805132037063311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d30c3069ddb64074aab1358cf0fde211, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gamePlayerRole: 2
 --- !u!1001 &8828322112396485396
 PrefabInstance:
   m_ObjectHideFlags: 0
