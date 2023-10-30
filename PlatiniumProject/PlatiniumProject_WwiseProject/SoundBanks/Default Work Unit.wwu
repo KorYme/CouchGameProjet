@@ -5,8 +5,12 @@
 			<ChildrenList>
 				<SoundBank Name="MainSoundBank" ID="{18A2385C-CF11-4FF9-8772-2FAF85BBCD05}">
 					<ObjectInclusionList>
-						<ObjectRef Name="PlayMusic" ID="{D8F73D14-0786-44B0-81BE-AA6463BB88F2}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PlayMusic1" ID="{D8F73D14-0786-44B0-81BE-AA6463BB88F2}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PlayMusic2" ID="{68835C7C-3593-49F4-BF60-C1C686066C36}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="MageBattle" ID="{3441DE68-26FA-4A74-9806-D4745AB82F51}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="60 BPM Metronome" ID="{E8E62256-2EDA-4A8A-8EC2-C9911386DB10}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PlayMusicTest" ID="{32CB9037-D8E2-4F2F-BF68-D1FF5B723EAE}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Crypt of the Necrodancer OST - Crypteque (1-2)" ID="{B9D4578D-B6E9-4FE1-8934-0A2F3172C6C7}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

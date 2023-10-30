@@ -537,6 +537,18 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
+      propertyPath: _beatWwiseEvent.Array.data[0].WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: e1ef30e0388fba047aa4874e3b7338a1, type: 2}
+    - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
+      propertyPath: _beatWwiseEvent.Array.data[1].WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: c22cd34a7118d6544a37279f46b72383, type: 2}
+    - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
+      propertyPath: _beatWwiseEvent.Array.data[2].WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 41dfb6b1e975a79488eb2986c27ae82e, type: 2}
+    - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _onBeatEndEvent.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}

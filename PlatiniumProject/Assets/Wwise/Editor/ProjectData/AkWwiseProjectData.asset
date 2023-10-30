@@ -66,7 +66,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: fcad22c92dc0e14fa128631e71d420c7
     GuidInternal: 
-    m_lastTime: -8585038043993747201
+    m_lastTime: -8585032081475634360
     List:
     - name: MainSoundBank
       guid: 5c38a21811cff94f87722faf85bbcd05
@@ -94,11 +94,11 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 12a18cfa2d74024aab561723c2caf146
     GuidInternal: 
-    m_lastTime: -8585038043993756850
+    m_lastTime: -8585032084897900363
     List:
-    - name: PlayMusic
+    - name: PlayMusic1
       guid: 143df7d88607b04481beaa6463bb88f2
-      id: 417627684
+      id: 1404211869
       PathAndIcons:
       - ElementName: Events
         ObjectType: 5
@@ -106,10 +106,44 @@ MonoBehaviour:
       - ElementName: Default Work Unit
         ObjectType: 12
         guid: 12a18cfa2d74024aab561723c2caf146
-      - ElementName: PlayMusic
+      - ElementName: PlayMusic1
         ObjectType: 3
         guid: 143df7d88607b04481beaa6463bb88f2
-      Path: Events\Default Work Unit\PlayMusic
+      Path: Events\Default Work Unit\PlayMusic1
+      maxAttenuation: 0
+      maxDuration: 165.60474
+      minDuration: 165.60474
+    - name: PlayMusic2
+      guid: 7c5c83689335f449bf60c1c686066c36
+      id: 1404211870
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 12a18cfa2d74024aab561723c2caf146
+      - ElementName: PlayMusic2
+        ObjectType: 3
+        guid: 7c5c83689335f449bf60c1c686066c36
+      Path: Events\Default Work Unit\PlayMusic2
+      maxAttenuation: 0
+      maxDuration: 336.01306
+      minDuration: 336.01306
+    - name: PlayMusicTest
+      guid: 3790cb32e2d82f4fbf68d1ff5b723eae
+      id: 3960000920
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 12a18cfa2d74024aab561723c2caf146
+      - ElementName: PlayMusicTest
+        ObjectType: 3
+        guid: 3790cb32e2d82f4fbf68d1ff5b723eae
+      Path: Events\Default Work Unit\PlayMusicTest
       maxAttenuation: 0
       maxDuration: 611.63684
       minDuration: 611.63684
@@ -169,7 +203,7 @@ MonoBehaviour:
     GuidInternal: 
     m_lastTime: -8585046803553958557
     List: []
-  ExpandedFileSystemItemIds: 
+  ExpandedFileSystemItemIds: 02000000030000000a000000
   ExpandedWaapiItemIds: 
   AutoSyncSelection: 0
   autoPopulateEnabled: 1

@@ -99,9 +99,8 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: c22cd34a7118d6544a37279f46b72383, type: 2}
-  _timingWindowPercentBeforeBeat: 0.1
-  _timingWindowPercentAfterBeat: 0.3
-  _beatOffsetInMilliseconds: 150
+  _timingBeforeBeat: 0.1
+  _timingAfterBeat: 0.3
   _onBeatEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -109,5 +108,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _onBeatEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _onBeatPercentIncreased:
     m_PersistentCalls:
       m_Calls: []
