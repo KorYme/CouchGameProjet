@@ -12,6 +12,7 @@ public class CheckerBoard : MonoBehaviour
     [SerializeField] protected float _horizontalSpacing;
     [SerializeField] protected float _verticalSpacing;
     [SerializeField] protected GameObject _slot;
+    [SerializeField] private bool _useShader = false;
     public Vector2Int BoardDimension => _boardDimension;
     public int BoardLength => _boardDimension.x * _boardDimension.y;
     int[] Directions => new int[4] { 1, -1, _boardDimension.x, -_boardDimension.x };
@@ -57,6 +58,11 @@ public class CheckerBoard : MonoBehaviour
                     _verticalSpacing * -(j - 1 % _boardDimension.y), 0);
             go.transform.rotation = Quaternion.identity;
             go.transform.parent = transform;
+            //Setup renderer
+
+            SlotRenderer renderer = go.GetComponent<SlotRenderer>();
+            renderer.SetUpMaterialDancefloor(i % _boardDimension.x, j - 1 % _boardDimension.y,_useShader);
+
             Board.Add(go.GetComponent<SlotInformation>());
         }
 
