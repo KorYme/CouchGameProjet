@@ -34,8 +34,7 @@ public class DJController : MonoBehaviour, IQTEable
     RollInputChecker _rollRightJoystick;
     RollInputChecker _rollLeftJoystick;
 
-    readonly Color Red = Color.red;
-    readonly Color Green = new Color(0f, 1f, 1f / 18f);
+    
 
     #region ToRemove
     [SerializeField] TextMeshProUGUI _QTEDisplay;
@@ -163,15 +162,29 @@ public class DJController : MonoBehaviour, IQTEable
             {
                 slot.OnOccupantChanges -= DeactivateQTE;
             }
-            slot.GetComponent<SpriteRenderer>().color = Green;
             slot.IsEnlighted = false;
+            if (slot.GetComponent<SlotRenderer>() != null)
+            {
+                slot.GetComponent<SlotRenderer>().ChangeColor(slot.IsEnlighted);
+            } else
+            {
+                slot.GetComponent<SpriteRenderer>().color = Color.green;
+            }
         }
         foreach (SlotInformation slot in newSlots)
         {
             slot.OnOccupantChanges += DeactivateQTE;
             slot.IsEnlighted = true;
-            slot.GetComponent<SpriteRenderer>().color = Red;
+            if (slot.GetComponent<SlotRenderer>() != null)
+            {
+                slot.GetComponent<SlotRenderer>().ChangeColor(slot.IsEnlighted);
+            }
+            else
+            {
+                slot.GetComponent<SpriteRenderer>().color = Color.red;
+            }
         }
+        
     }
 
     //Return the number of players

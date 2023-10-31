@@ -23,4 +23,5 @@ public class SlotInformation : MonoBehaviour
     public bool IsEnlighted { get; set; } = false;
 
     public event Action OnOccupantChanges;
+
 }
