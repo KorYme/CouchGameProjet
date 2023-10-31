@@ -54,6 +54,12 @@ public class CharacterStateMachine : MonoBehaviour
     public int CurrentMovementInBouncer { get; set; }
     #endregion
 
+    #region References
+
+    public CharacterAIStatisfaction Satisafaction { get; private set; }
+
+    #endregion
+
     private void Awake()
     {
         InitAllState();
@@ -62,6 +68,7 @@ public class CharacterStateMachine : MonoBehaviour
         AreaManager = FindObjectOfType<AreaManager>();
         WaitingLines = FindObjectsOfType<WaitingLineBar>();
         CharacterMove = GetComponent<IMovable>();
+        Satisafaction = GetComponent<CharacterAIStatisfaction>();
     }
 
     public void PullCharacter(CharacterState startState = null)

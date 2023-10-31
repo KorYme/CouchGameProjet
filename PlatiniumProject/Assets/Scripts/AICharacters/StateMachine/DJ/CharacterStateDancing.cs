@@ -6,7 +6,8 @@ public class CharacterStateDancing : CharacterState
     
     public override void EnterState()
     {
-        _currentSatisfaction = StateMachine.CharacterDataObject.maxSatisafactionDJ;
+        StateMachine.Satisafaction.InitializeStatisfaction(StateMachine.CharacterDataObject.maxSatisafactionDJ);
+        StateMachine.Satisafaction.OnSatsifactionZero += RunOutOfSatisfaction;
     }
 
     public override void OnBeat()
@@ -16,20 +17,27 @@ public class CharacterStateDancing : CharacterState
             Mathf.Clamp(_currentSatisfaction + StateMachine.CharacterDataObject.incrementationValueOnFloor, 0, StateMachine.CharacterDataObject.maxSatisafactionDJ) :
             Mathf.Clamp(_currentSatisfaction - StateMachine.CharacterDataObject.decrementationValueOnFloor, 0, StateMachine.CharacterDataObject.maxSatisafactionDJ);*/
         if (!StateMachine.CurrentSlot.IsEnlighted)
-            _currentSatisfaction = Mathf.Clamp(_currentSatisfaction - StateMachine.CharacterDataObject.decrementationValueOnFloor, 0, StateMachine.CharacterDataObject.maxSatisafactionDJ);
-        
-        if (_currentSatisfaction <= 0)
         {
-            StateMachine.ChangeState(StateMachine.DieState);
+            StateMachine.Satisafaction.DecreaseSatisfaction(StateMachine.CharacterDataObject.decrementationValueOnFloor);
         }
+    }
+
+    private void RunOutOfSatisfaction()
+    {
+        StateMachine.ChangeState(StateMachine.DieState);
     }
 
     public void OnQTECorrectInput()
     {
         if (StateMachine.CurrentSlot.IsEnlighted)
         {
-            _currentSatisfaction = Mathf.Clamp(_currentSatisfaction + StateMachine.CharacterDataObject.incrementationValueOnFloor, 0, StateMachine.CharacterDataObject.maxSatisafactionDJ);
+            StateMachine.Satisafaction.IncreaseSatisfaction(StateMachine.CharacterDataObject.incrementationValueOnFloor);
             //Debug.Log($"{_currentSatisfaction} {StateMachine.name}");
         }
+    }
+
+    public override void ExitState()
+    {
+        StateMachine.Satisafaction.OnSatsifactionZero -= RunOutOfSatisfaction;
     }
 }

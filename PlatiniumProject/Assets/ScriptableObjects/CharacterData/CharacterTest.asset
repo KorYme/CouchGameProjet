@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementAmountInQueue: 2
   beatAmountUnitlAction: 2
-  maxSatisafactionBar: 90
+  maxBarManSatisafactionBar: 10
+  decrementationValueOnBarMan: 1
   maxSatisafactionDJ: 20
   decrementationValueOnFloor: 1
   incrementationValueOnFloor: 5

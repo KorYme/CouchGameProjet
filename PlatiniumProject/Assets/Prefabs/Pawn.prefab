@@ -270,6 +270,7 @@ GameObject:
   - component: {fileID: 3774042573209187967}
   - component: {fileID: 8168715017868783817}
   - component: {fileID: 6601924391975132163}
+  - component: {fileID: 1392426080973553348}
   m_Layer: 0
   m_Name: Pawn
   m_TagString: Untagged
@@ -321,6 +322,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementData: {fileID: 11400000, guid: c205aac937c5b25478495ab06937bc4d, type: 2}
   _transformToModify: {fileID: 3774042573209187967}
+--- !u!114 &1392426080973553348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307051827475980772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b936343dcdb35a843bd0e2bd9197d658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4646384819726973220
 GameObject:
   m_ObjectHideFlags: 0
