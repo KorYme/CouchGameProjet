@@ -55,10 +55,22 @@ public class QTEHandler : MonoBehaviour
                 break;
         }
     }
-    
     public void PauseQTE(bool value)
     {
-        _isPlaying = !value;
+        if (value)
+        {
+            if (_coroutineQTE != null)
+            {
+                StopCoroutine(_coroutineQTE);
+                _coroutineQTE = null;
+            }
+        } else
+        {
+            if (_coroutineQTE == null && _currentQTESequence != null)
+            {
+                _coroutineQTE = StartCoroutine(StartRoutineSequence());
+            }
+        }
     }
 
     public void StopCoroutine()
@@ -122,7 +134,6 @@ public class QTEHandler : MonoBehaviour
         UnitInput input = _currentQTESequence.ListSubHandlers[_indexInSequence];
         while (_indexInSequence < _currentQTESequence.ListSubHandlers.Count)
         {
-            yield return new WaitUntil(() => _isPlaying);
             if ((Globals.BeatTimer?.IsInsideBeat ?? true) || true) //A MODIFIER
             {
                 if (CheckInput(input))
