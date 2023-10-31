@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using Random = UnityEngine.Random;
 
 public class CharacterStateMachine : MonoBehaviour
@@ -11,10 +7,10 @@ public class CharacterStateMachine : MonoBehaviour
     [SerializeField] private CharacterData _characterData;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     private SpawnManager _spawnManager;
-    private BeatManager _beatManager;
     public IMovable CharacterMove { get; private set; }
     public AreaManager AreaManager { get; private set; }
     public WaitingLineBar[] WaitingLines { get; private set; }
+    private ITimingable _BeatManager => Globals.BeatTimer;
     
     #region States
     public CharacterState IdleTransitState { get; } = new CharacterStateIdleTransit();
@@ -26,7 +22,6 @@ public class CharacterStateMachine : MonoBehaviour
     public CharacterState BarManQueueState { get; } = new CharacterStateBarmanQueue();
     public CharacterState BarManAtBar { get; } = new CharacterStateAtBar();
     public CharacterState DancingState { get; } = new CharacterStateDancing();
-    #endregion
     private CharacterState[] _allState => new CharacterState[]
     {
         IdleTransitState,
@@ -39,8 +34,9 @@ public class CharacterStateMachine : MonoBehaviour
         BarManAtBar,
         DancingState
     };
+    #endregion
     
-    #region Propreties
+    #region Properties
     private CharacterState StartState => IdleTransitState;
     public CharacterState CurrentState { get; private set; }
     public CharacterState PreviousState { get; private set; }
@@ -56,12 +52,11 @@ public class CharacterStateMachine : MonoBehaviour
 
     private void Awake()
     {
-        InitAllState();
-        _beatManager = FindObjectOfType<BeatManager>();
         _spawnManager = FindObjectOfType<SpawnManager>();
         AreaManager = FindObjectOfType<AreaManager>();
         WaitingLines = FindObjectsOfType<WaitingLineBar>();
         CharacterMove = GetComponent<IMovable>();
+        InitAllState();
     }
 
     public void PullCharacter(CharacterState startState = null)
@@ -109,8 +104,6 @@ public class CharacterStateMachine : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException(nameof(startState));
         }
-        // CurrentSlot = AreaManager.BouncerTransit.Slots[0];
-        // ChangeState(StartState);
     }
 
     private void Update()
@@ -123,13 +116,13 @@ public class CharacterStateMachine : MonoBehaviour
         CurrentState?.ExitState();
         if (CurrentState != null)
         {
-            _beatManager.OnBeatEvent.RemoveListener(CurrentState.OnBeat);
+            _BeatManager.OnBeatEvent.RemoveListener(CurrentState.OnBeat);
         }
         PreviousState = CurrentState;
         CurrentState = state;
         if (CurrentState != null)
         {
-            _beatManager.OnBeatEvent.AddListener(CurrentState.OnBeat);
+            _BeatManager.OnBeatEvent.AddListener(CurrentState.OnBeat);
         }
         CurrentState?.EnterState();
     }

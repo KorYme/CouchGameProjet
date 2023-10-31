@@ -13,9 +13,8 @@ public abstract class PlayerMovement : EntityMovement
     protected bool _isInputReset = true;
     protected bool _hasAlreadyMovedThisBeat;
 
-    protected override IEnumerator Start()
+    protected virtual IEnumerator Start()
     {
-        yield return base.Start();
         yield return new WaitUntil(() => Players.PlayersController[(int)_playerRole] != null);
         _playerController = Players.PlayersController[(int)_playerRole];
         _playerController.LeftJoystick.OnInputChange += CheckJoystickValue;
@@ -37,7 +36,7 @@ public abstract class PlayerMovement : EntityMovement
 
     public override bool MoveToPosition(Vector3 position)
     {
-        if (_hasAlreadyMovedThisBeat) return false;
+        if (_hasAlreadyMovedThisBeat || !_timingable.IsInsideBeat) return false;
         if (base.MoveToPosition(position))
         {
             _hasAlreadyMovedThisBeat = true;

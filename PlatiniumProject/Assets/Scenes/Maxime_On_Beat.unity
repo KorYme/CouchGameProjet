@@ -2361,6 +2361,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
+      propertyPath: _timingAfterBeat
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
+      propertyPath: _timingBeforeBeat
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _beatWwiseEvent.Array.data[0].WwiseObjectReference
       value: 
       objectReference: {fileID: 11400000, guid: e1ef30e0388fba047aa4874e3b7338a1, type: 2}
@@ -4423,7 +4431,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: c205aac937c5b25478495ab06937bc4d, type: 2}
     - target: {fileID: 5115288593331536716, guid: 7c529a488a751df4a9749ebcbee0ced4, type: 3}
       propertyPath: _inputDeadZone
-      value: 0.5
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 5115288593331536716, guid: 7c529a488a751df4a9749ebcbee0ced4, type: 3}
       propertyPath: _transformToModify
@@ -14008,7 +14016,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: c205aac937c5b25478495ab06937bc4d, type: 2}
     - target: {fileID: 8203250582693646274, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
       propertyPath: _inputDeadZone
-      value: 0.5
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8203250582693646274, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
       propertyPath: _inputDistance

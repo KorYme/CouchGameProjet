@@ -12,16 +12,11 @@ public class EntityMovement : MonoBehaviour, IMovable
     [SerializeField] protected Transform _transformToModify;
 
     protected Coroutine _movementCoroutine;
-    protected ITimingable _timingable;
+    protected ITimingable _timingable => Globals.BeatTimer;
     public bool IsMoving => _movementCoroutine != null;
 
     protected virtual float _TimeBetweenMovements => _movementData.MovementDurationPercent * _timingable.BeatDurationInMilliseconds / 1000f;
 
-    protected virtual IEnumerator Start()
-    {
-        yield return new WaitUntil(() => Globals.BeatTimer  != null);
-        _timingable = Globals.BeatTimer;
-    }
     public virtual bool MoveToPosition(Vector3 position)
     {
         if (IsMoving) return false;

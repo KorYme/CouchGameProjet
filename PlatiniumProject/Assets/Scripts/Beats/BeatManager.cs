@@ -62,7 +62,7 @@ public class BeatManager : MonoBehaviour, ITimingable
     {
         _beatDurationInMilliseconds = 1000;
         yield return null;
-        _beatWwiseEvent[_musicIndex].Post(gameObject, (uint)AkCallbackType.AK_MusicSyncBeat, BeatCallBack);
+        _beatWwiseEvent[_musicIndex].Post(gameObject, (uint)AkCallbackType.AK_MusicSyncGrid, BeatCallBack);
     }
 
     private void BeatCallBack(object in_cookie, AkCallbackType in_type, AkCallbackInfo in_info)
