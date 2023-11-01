@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class QTEHandler : MonoBehaviour
@@ -14,8 +13,8 @@ public class QTEHandler : MonoBehaviour
     QTESequence _currentQTESequence;
     private Coroutine _coroutineQTE;
     List<IQTEable> _QTEables = new List<IQTEable>();
-    bool _isPlaying = true;
     [SerializeField] float _holdDuration = .5f;
+    bool[] _inputsSucceeded;
 
     private IEnumerator Start()
     {
@@ -65,6 +64,7 @@ public class QTEHandler : MonoBehaviour
     }
     private void StartSequenceDependingOntype()
     {
+        _inputsSucceeded = new bool[_currentQTESequence.ListSubHandlers.Count];
         switch (_currentQTESequence.SequenceType)
         {
             case InputsSequence.SEQUENCE:
@@ -111,13 +111,21 @@ public class QTEHandler : MonoBehaviour
                 InputAction action = ReInput.mapping.GetAction(input.ActionIndex);
                 if (action != null)
                 {
+                    if (_inputsSucceeded != null && _inputsSucceeded[input.Index])
+                    {
+                        str.Append("<color=\"green\">");
+                    } else
+                    {
+                        str.Append("<color=\"red\">");
+                    }
                     str.Append(action.descriptiveName);
-                    str.Append(" ");
+                    str.Append("</color> ");
+                } else
+                {
+                    str.Append("(Not found) ");
                 }
             }
-            str.Append(_indexInSequence.ToString());
-            str.Append(" ");
-            str.Append(_currentQTESequence.ListSubHandlers.Count);
+            
             return str.ToString();
         }
         return String.Empty;
@@ -156,6 +164,7 @@ public class QTEHandler : MonoBehaviour
             {
                 if (CheckInput(input))
                 {
+                    _inputsSucceeded[_indexInSequence] = true;
                     _indexInSequence++;
 
                     if (_indexInSequence < _currentQTESequence.ListSubHandlers.Count) //Sequence finished
@@ -172,6 +181,7 @@ public class QTEHandler : MonoBehaviour
         }
         
         _currentQTESequence = null;
+        _inputsSucceeded = null;
         foreach (IQTEable reciever in _QTEables)
         {
             reciever.OnQTEComplete();
