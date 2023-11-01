@@ -29,12 +29,15 @@ public class BouncerMovement : PlayerMovement, IQTEable
     {
         _text.text = "";
         yield return base.Start();
-
+        Players.PlayersController[(int)_playerRole].RB.OnInputChange += () =>
+        {
+            Debug.Log(Players.PlayersController[(int)_playerRole].LT.InputValue);
+        };
         _currentSlot = _areaManager.BouncerBoard.Board[_areaManager.BouncerBoard.BoardDimension.x
             * Mathf.Max(1,_areaManager.BouncerBoard.BoardDimension.y / 2 + _areaManager.BouncerBoard.BoardDimension.y % 2) -1];
         _currentSlot.PlayerOccupant = this;
         transform.position = _currentSlot.transform.position;
-        _qteHandler = GetComponent<QTEHandler>();
+        TryGetComponent(out _qteHandler);
         if (_qteHandler != null)
         {
             _qteHandler.RegisterQTEable(this);
@@ -76,19 +79,6 @@ public class BouncerMovement : PlayerMovement, IQTEable
                 _currentSlot = _currentSlot.Neighbours[index];
                 _currentSlot.PlayerOccupant = this;
             }
-        }
-    }
-
-    private Vector2 GetClosestUnitVectorFromVector(Vector2 vector)
-    {
-        if (vector.magnitude < _inputDeadZone) return Vector2.zero;
-        if (Mathf.Abs(vector.x) > Mathf.Abs(vector.y))
-        {
-            return new Vector2(Mathf.Sign(vector.x), 0f);
-        }
-        else
-        {
-            return new Vector2(0f, Mathf.Sign(vector.y));
         }
     }
 

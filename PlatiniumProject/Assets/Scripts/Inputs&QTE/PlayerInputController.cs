@@ -33,8 +33,10 @@ public class PlayerInputController : MonoBehaviour
     public InputBool Action2 { get; private set; } = new(RewiredConsts.Action.ACTION2);
     public InputBool Action3 { get; private set; } = new(RewiredConsts.Action.ACTION3);
     public InputBool Action4 { get; private set; } = new(RewiredConsts.Action.ACTION4);
-    public InputBool RT { get; private set; } = new(RewiredConsts.Action.RT);
-    public InputBool LT { get; private set; } = new(RewiredConsts.Action.LT);
+    public InputFloat RT { get; private set; } = new(RewiredConsts.Action.RT);
+    public InputFloat LT { get; private set; } = new(RewiredConsts.Action.LT);
+    public InputBool RB { get; private set; } = new(RewiredConsts.Action.RB);
+    public InputBool LB { get; private set; } = new(RewiredConsts.Action.LB);
 
     //Axis Inputs
     public InputVector2 LeftJoystick { get; private set; } = new(RewiredConsts.Action.MOVE_HORIZONTAL, RewiredConsts.Action.MOVE_VERTICAL);
@@ -49,6 +51,8 @@ public class PlayerInputController : MonoBehaviour
         Action4,
         RT,
         LT,
+        RB,
+        LB,
         LeftJoystick,
         RightJoystick,
     };
@@ -79,15 +83,14 @@ public class PlayerInputController : MonoBehaviour
         {
             newPlayer.AddInputEventDelegate(inputClass.InputCallback, UpdateLoopType.Update, inputClass.ActionID);
             switch (inputClass)
-        {
+            {
                 case InputVector2 inputVector2:
-                    Debug.Log("Add Vector2 delegate");
                     inputVector2.Player = newPlayer;
                     newPlayer.AddInputEventDelegate(inputVector2.InputCallbackSecondAction, UpdateLoopType.Update, inputVector2.SecondActionID);
                     break;
                 default:
                     break;
-        }
+            }
         });
     }
 

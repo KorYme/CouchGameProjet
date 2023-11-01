@@ -9,10 +9,12 @@ public class BeatManager : MonoBehaviour, ITimingable
 {
     #region FIELDS
     [Header("References"), Space]
-    [SerializeField, Tooltip("Wwise play event to launch the sound and the beat\nDon't need to be modified by GDs")] 
+    [SerializeField, Tooltip("Drop Manager used to set up drop behaviour")]
+    DropManager _dropManager;
+    [SerializeField, Tooltip("Wwise play event to launch the sound and the beat\nDon't need to be modified by GDs"), Space] 
     List<AK.Wwise.Event> _beatWwiseEvent;
 
-    [SerializeField, Range(0,2)]
+    [SerializeField, Range(0,3)]
     int _musicIndex;
 
     [Header("Parameters"), Space]
@@ -34,6 +36,8 @@ public class BeatManager : MonoBehaviour, ITimingable
     int _beatDurationInMilliseconds;
     DateTime _lastBeatTime;
     Coroutine _beatCoroutine;
+
+    event Action OnNextBeat;
     #endregion
 
     #region PROPERTIES
@@ -48,6 +52,11 @@ public class BeatManager : MonoBehaviour, ITimingable
     #endregion
 
     #region PROCEDURES
+    private void Reset()
+    {
+        _dropManager = GetComponent<DropManager>();
+    }
+
     private void Awake()
     {
         if (Globals.BeatTimer != null)
@@ -62,25 +71,32 @@ public class BeatManager : MonoBehaviour, ITimingable
     {
         _beatDurationInMilliseconds = 1000;
         yield return null;
-        _beatWwiseEvent[_musicIndex].Post(gameObject, (uint)AkCallbackType.AK_MusicSyncGrid, BeatCallBack);
+        _beatWwiseEvent[_musicIndex].Post(gameObject, (uint)AkCallbackType.AK_MusicSyncGrid | (uint)AkCallbackType.AK_MusicSyncUserCue, BeatCallBack);
+
     }
 
     private void BeatCallBack(object in_cookie, AkCallbackType in_type, AkCallbackInfo in_info)
     {
         _lastBeatTime = DateTime.Now;
-        if (_beatCoroutine == null)
-        {
-            _beatCoroutine = StartCoroutine(BeatCoroutine());
-        }
-        switch (in_info)
-        {
-            case AkMusicSyncCallbackInfo info:
-                _beatDurationInMilliseconds = (int)(info.segmentInfo_fBeatDuration * 1000);
+        _beatCoroutine ??= StartCoroutine(BeatCoroutine());
+        AkMusicSyncCallbackInfo info = in_info as AkMusicSyncCallbackInfo;
+        switch (in_type)
+        { 
+            case AkCallbackType.AK_MusicSyncGrid:
+                _beatDurationInMilliseconds = (int)((info?.segmentInfo_fGridDuration ?? 1) * 1000);
+                OnBeatEvent?.Invoke();
+                if (OnNextBeat != null)
+                {
+                    OnNextBeat.Invoke();
+                    OnNextBeat = null;
+                }
+                break;
+            case AkCallbackType.AK_MusicSyncUserCue:
+                CheckUserCueName(info?.userCueName ?? "");
                 break;
             default:
                 break;
         }
-        OnBeatEvent?.Invoke();
     }
 
     IEnumerator BeatCoroutine()
@@ -91,6 +107,22 @@ public class BeatManager : MonoBehaviour, ITimingable
             OnBeatEndEvent?.Invoke();
             yield return new WaitUntil(() => IsInsideBeat);
             OnBeatStartEvent?.Invoke();
+        }
+    }
+
+    void CheckUserCueName(string userCueName)
+    {
+        Debug.Log(userCueName);
+        switch (userCueName)
+        {
+            case "StartDrop":
+                OnNextBeat += _dropManager.StartDrop;
+                break;
+            case "EndDrop":
+                OnNextBeat += _dropManager.EndDrop;
+                break;
+            default:
+                break;
         }
     }
     #endregion

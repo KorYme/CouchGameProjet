@@ -36,6 +36,17 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="PlayMusicPayday" ID="{62063533-D879-4C40-8682-67AF8C427F0C}">
+					<ChildrenList>
+						<Action Name="" ID="{614B3F68-A37B-4D10-BF23-EA18FE09AE95}" ShortID="521831122">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Alesso Payday" ID="{693A3023-6DFB-4776-8EC2-731FF11A5541}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

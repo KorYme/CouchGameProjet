@@ -2358,28 +2358,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _musicIndex
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
-      propertyPath: _timingAfterBeat
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
-      propertyPath: _timingBeforeBeat
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
-      propertyPath: _beatWwiseEvent.Array.data[0].WwiseObjectReference
-      value: 
-      objectReference: {fileID: 11400000, guid: e1ef30e0388fba047aa4874e3b7338a1, type: 2}
-    - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
-      propertyPath: _beatWwiseEvent.Array.data[1].WwiseObjectReference
-      value: 
-      objectReference: {fileID: 11400000, guid: c22cd34a7118d6544a37279f46b72383, type: 2}
-    - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
-      propertyPath: _beatWwiseEvent.Array.data[2].WwiseObjectReference
-      value: 
-      objectReference: {fileID: 11400000, guid: 41dfb6b1e975a79488eb2986c27ae82e, type: 2}
     - target: {fileID: 2994801982979645308, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: m_Name
       value: BeatManager
@@ -3245,7 +3225,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8.53
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -7572,18 +7552,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rewired Input Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 4714637834579531949, guid: c521e6c354ebf354d9a8f49e0cc47eed, type: 3}
-      propertyPath: _playerRoles.Array.data[0]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4714637834579531949, guid: c521e6c354ebf354d9a8f49e0cc47eed, type: 3}
-      propertyPath: _playerRoles.Array.data[1]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4714637834579531949, guid: c521e6c354ebf354d9a8f49e0cc47eed, type: 3}
-      propertyPath: _playerRoles.Array.data[2]
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8160778979726971435, guid: c521e6c354ebf354d9a8f49e0cc47eed, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -9241,6 +9209,7 @@ MonoBehaviour:
   _horizontalSpacing: 1.1
   _verticalSpacing: 1.1
   _slot: {fileID: 8862334621018384566, guid: 9aec76c18310e334288db65f58a95d3c, type: 3}
+  _useShader: 0
   Board:
   - {fileID: 274603248}
   - {fileID: 580745478}
@@ -10464,6 +10433,7 @@ MonoBehaviour:
   _horizontalSpacing: 1.1
   _verticalSpacing: 1.1
   _slot: {fileID: 8862334621018384566, guid: 9aec76c18310e334288db65f58a95d3c, type: 3}
+  _useShader: 0
   Board:
   - {fileID: 581907314}
   - {fileID: 166848552}
