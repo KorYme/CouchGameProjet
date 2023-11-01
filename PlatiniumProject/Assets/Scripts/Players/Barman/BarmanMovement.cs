@@ -17,8 +17,6 @@ public class BarmanMovement : PlayerMovement
     private void Awake()
     {
         _indexPosition = 0;
-        DeactivateAllQTE();
-        ActivateCurrentQTE();
         if (_barmanPositions.Length > 0)
         {
             MoveBarmanToIndex();
@@ -26,6 +24,9 @@ public class BarmanMovement : PlayerMovement
     }
     protected override IEnumerator Start()
     {
+        DeactivateAllQTE();
+        ActivateCurrentQTE();
+        
         yield return base.Start();
         Debug.Log("Barman Initialisé");
     }

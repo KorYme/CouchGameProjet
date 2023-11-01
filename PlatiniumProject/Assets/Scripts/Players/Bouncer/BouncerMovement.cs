@@ -143,7 +143,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     public void StartQTE()
     {
-        _qteHandler.StartRandomQTE();
+        _qteHandler.StartNewQTE();
     }
 
     public void OnQTEStarted(QTESequence sequence)

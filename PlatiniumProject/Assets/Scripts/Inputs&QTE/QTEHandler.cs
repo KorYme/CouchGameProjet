@@ -33,18 +33,38 @@ public class QTEHandler : MonoBehaviour
         _QTEables.Remove(QTEable);
     }
 
-    public void StartRandomQTE()
+    public void StartQTE()
     {
-        if (_coroutineQTE != null)
+        if (_currentQTESequence != null)
         {
-            StopCoroutine();
+            _indexInSequence = 0;
+            StartSequenceDependingOntype();
         }
-        _currentQTESequence = QTELoader.Instance.GetRandomQTE(_role);
+        else
+        {
+            StartNewQTE();
+        }
+    }
+    public void StartNewQTE()
+    {
+        StoreNewQTE();
         _indexInSequence = 0;
-        foreach(IQTEable reciever in _QTEables)
+        foreach (IQTEable reciever in _QTEables)
         {
             reciever.OnQTEStarted(_currentQTESequence);
         }
+        StartSequenceDependingOntype();
+    }
+    public void StoreNewQTE()
+    {
+        if (_coroutineQTE != null)
+        {
+            DeleteCurrentCoroutine();
+        }
+        _currentQTESequence = QTELoader.Instance.GetRandomQTE(_role);
+    }
+    private void StartSequenceDependingOntype()
+    {
         switch (_currentQTESequence.SequenceType)
         {
             case InputsSequence.SEQUENCE:
@@ -59,28 +79,26 @@ public class QTEHandler : MonoBehaviour
     {
         if (value)
         {
-            if (_coroutineQTE != null)
-            {
-                StopCoroutine(_coroutineQTE);
-                _coroutineQTE = null;
-            }
+            StopCurrentCoroutine();
         } else
         {
-            if (_coroutineQTE == null && _currentQTESequence != null)
-            {
-                _coroutineQTE = StartCoroutine(StartRoutineSequence());
-            }
+            StartQTE();
         }
     }
 
-    public void StopCoroutine()
+    public void StopCurrentCoroutine()
     {
         if (_coroutineQTE != null)
         {
             StopCoroutine(_coroutineQTE);
             _coroutineQTE = null;
-            _currentQTESequence = null;
         }
+    }
+
+    public void DeleteCurrentCoroutine()
+    {
+        StopCurrentCoroutine();
+        _currentQTESequence = null;
     }
 
     public string GetQTEString()
@@ -153,6 +171,7 @@ public class QTEHandler : MonoBehaviour
             yield return null;
         }
         
+        _currentQTESequence = null;
         foreach (IQTEable reciever in _QTEables)
         {
             reciever.OnQTEComplete();

@@ -48,7 +48,7 @@ public class DJController : MonoBehaviour, IQTEable
     {
         if (NbPlayersInLight() > 0)
         {
-            _qteHandler.StartRandomQTE();
+            _qteHandler.StartNewQTE();
         }
         _QTEDisplay.text = _qteHandler.GetQTEString();
     }
@@ -145,11 +145,11 @@ public class DJController : MonoBehaviour, IQTEable
     {
         if (NbPlayersInLight() > 0)
         {
-            _qteHandler.StartRandomQTE();
+            _qteHandler.StartNewQTE();
         }
         else
         {
-            _qteHandler.StopCoroutine();
+            _qteHandler.DeleteCurrentCoroutine();
         }
         _QTEDisplay.text = _qteHandler.GetQTEString();
     }
