@@ -91,16 +91,8 @@ public class DJController : MonoBehaviour, IQTEable
     {
         _rollLeftJoystick = new RollInputChecker(_djInputController.LeftJoystick, _inputDistance);
         _rollRightJoystick = new RollInputChecker(_djInputController.RightJoystick, _inputDistance);
-        _djInputController.LeftJoystick.OnInputChange += () =>
-        {
-            _rollLeftJoystick.GetDirection();
-        };
         _rollLeftJoystick.TurnClockWise += () => MoveLightShape(_leftJoystickClockwise);
         _rollLeftJoystick.TurnAntiClockWise += () => MoveLightShape(_leftJoystickAntiClockwise);
-        _djInputController.RightJoystick.OnInputChange += () =>
-        {
-            _rollRightJoystick.GetDirection();
-        };
         _rollRightJoystick.TurnClockWise += () => MoveLightShape(_rightJoystickClockwise);
         _rollRightJoystick.TurnAntiClockWise += () => MoveLightShape(_rightJoystickAntiClockwise);
     }
@@ -110,16 +102,8 @@ public class DJController : MonoBehaviour, IQTEable
     {
         if (_rollLeftJoystick != null)
         {
-            _djInputController.LeftJoystick.OnInputChange -= () =>
-            {
-                _rollLeftJoystick.GetDirection();
-            };
             _rollLeftJoystick.TurnClockWise -= () => MoveLightShape(_leftJoystickClockwise);
             _rollLeftJoystick.TurnAntiClockWise -= () => MoveLightShape(_leftJoystickAntiClockwise);
-            _djInputController.RightJoystick.OnInputChange -= () =>
-            {
-                _rollRightJoystick.GetDirection();
-            };
             _rollRightJoystick.TurnClockWise -= () => MoveLightShape(_rightJoystickClockwise);
             _rollRightJoystick.TurnAntiClockWise -= () => MoveLightShape(_rightJoystickAntiClockwise);
         }

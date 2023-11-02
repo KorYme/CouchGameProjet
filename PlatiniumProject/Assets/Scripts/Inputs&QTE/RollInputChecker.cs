@@ -23,6 +23,12 @@ public class RollInputChecker
     {
         _inputJoystick = inputController;
         _inputDistance = inputDistance;
+        _inputJoystick.OnInputChange += () => GetDirection();
+    }
+
+    ~RollInputChecker()
+    {
+        _inputJoystick.OnInputChange -= () => GetDirection();
     }
 
     public void GetDirection()
