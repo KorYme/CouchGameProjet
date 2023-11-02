@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
-public class BouncerMovement : PlayerMovement
+public class BouncerMovement : PlayerMovement, IQTEable
 {
     public enum BouncerState
     {
@@ -21,21 +22,32 @@ public class BouncerMovement : PlayerMovement
 
     protected override PlayerRole _playerRole => PlayerRole.Bouncer;
 
+    QTEHandler _qteHandler;
+    [SerializeField] TextMeshProUGUI _text;
+
     protected override IEnumerator Start()
     {
+        _text.text = "";
         yield return base.Start();
 
         _currentSlot = _areaManager.BouncerBoard.Board[_areaManager.BouncerBoard.BoardDimension.x
             * Mathf.Max(1,_areaManager.BouncerBoard.BoardDimension.y / 2 + _areaManager.BouncerBoard.BoardDimension.y % 2) -1];
         _currentSlot.PlayerOccupant = this;
         transform.position = _currentSlot.transform.position;
-
+        _qteHandler = GetComponent<QTEHandler>();
+        if (_qteHandler != null)
+        {
+            _qteHandler.RegisterQTEable(this);
+        }
         Debug.Log("Bouncer Initialis�");
     }
 
     protected override void OnInputMove(Vector2 vector)
     {
-        Move((int)GetClosestDirectionFromVector(vector));
+        if (currentState == BouncerState.Moving)
+        {
+            Move((int)GetClosestDirectionFromVector(vector));
+        }
     }
 
     public void Move(int index)
@@ -111,7 +123,7 @@ public class BouncerMovement : PlayerMovement
     {
         while (true)
         {
-            if (_playerController.Action1.InputValue)
+            if (_playerController.Action1.InputValue) //ACCEPT
             {
                 CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
                 chara.BouncerAction(true);
@@ -120,15 +132,36 @@ public class BouncerMovement : PlayerMovement
                 yield break;
             }
 
-            if (_playerController.Action3.InputValue)
+            if (_playerController.Action3.InputValue)//REFUSE
             {
-                CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
-                chara.BouncerAction(false);
-                currentState = BouncerState.Moving;
-                transform.position = _currentSlot.transform.position;
+                StartQTE();
                 yield break;
             }
             yield return null;
         }
+    }
+
+    public void StartQTE()
+    {
+        _qteHandler.StartNewQTE();
+    }
+
+    public void OnQTEStarted(QTESequence sequence)
+    {
+        _text.text = _qteHandler.GetQTEString();
+    }
+
+    public void OnQTEComplete()
+    {
+        CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
+        chara.BouncerAction(false);
+        currentState = BouncerState.Moving;
+        transform.position = _currentSlot.transform.position;
+        _text.text = "";
+    }
+
+    public void OnQTECorrectInput()
+    {
+        _text.text = _qteHandler.GetQTEString();
     }
 }

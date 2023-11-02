@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,14 +9,40 @@ public abstract class PlayerMovement : EntityMovement
     [SerializeField, Range(0f, 1f)] protected float _inputDeadZone = .5f;
 
     protected abstract PlayerRole _playerRole { get; }
-    protected bool _isInputReset = true;
     protected PlayerInputController _playerController;
+    protected bool _isInputReset = true;
+    protected bool _hasAlreadyMovedThisBeat;
 
     protected virtual IEnumerator Start()
     {
         yield return new WaitUntil(() => Players.PlayersController[(int)_playerRole] != null);
         _playerController = Players.PlayersController[(int)_playerRole];
         _playerController.LeftJoystick.OnInputChange += CheckJoystickValue;
+        _timingable.OnBeatStartEvent.AddListener(AllowNewMovement);
+    }
+
+    protected virtual void OnDestroy()
+    {
+        if (_playerController != null)
+        {
+            _playerController.LeftJoystick.OnInputChange -= CheckJoystickValue;
+            _timingable.OnBeatStartEvent.RemoveListener(AllowNewMovement);
+        }
+    }
+
+    protected abstract void OnInputMove(Vector2 vector);
+
+    protected void AllowNewMovement() => _hasAlreadyMovedThisBeat = false;
+
+    public override bool MoveToPosition(Vector3 position)
+    {
+        if (_hasAlreadyMovedThisBeat || !_timingable.IsInsideBeat) return false;
+        if (base.MoveToPosition(position))
+        {
+            _hasAlreadyMovedThisBeat = true;
+            return true;
+        }
+        return false;
     }
 
     protected virtual void CheckJoystickValue()
@@ -32,9 +59,7 @@ public abstract class PlayerMovement : EntityMovement
         }
     }
 
-    protected abstract void OnInputMove(Vector2 vector);
-
-    private Vector2 GetClosestUnitVectorFromVector(Vector2 vector)
+    protected Vector2 GetClosestUnitVectorFromVector(Vector2 vector)
     {
         if (vector.magnitude < _inputDeadZone) return Vector2.zero;
         if (Mathf.Abs(vector.x) > Mathf.Abs(vector.y))
@@ -45,11 +70,5 @@ public abstract class PlayerMovement : EntityMovement
         {
             return new Vector2(0f, Mathf.Sign(vector.y));
         }
-    }
-
-    public override bool MoveToPosition(Vector3 position)
-    {
-        return base.MoveToPosition(position);
-        // A MODIFIER
     }
 }

@@ -30,9 +30,6 @@ public class BeatManager : MonoBehaviour, ITimingable
     UnityEvent _onBeatStartEvent;
     [SerializeField, Tooltip("This event is called on the first frame an input cannot be received anymore")] 
     UnityEvent _onBeatEndEvent;
-    [SerializeField, Tooltip("This event is called each frame and returns a float between 0 and 1 representing the percent time spent between the last beat and the next one")]
-    UnityEvent<float> _onBeatPercentIncreased;
-
 
     int _beatDurationInMilliseconds;
     DateTime _lastBeatTime;
@@ -40,15 +37,14 @@ public class BeatManager : MonoBehaviour, ITimingable
     #endregion
 
     #region PROPERTIES
-    public bool IsInsideBeat => (DateTime.Now - _lastBeatTime).TotalMilliseconds < (_timingAfterBeat * _beatDurationInMilliseconds)
-        || (DateTime.Now - _lastBeatTime).TotalMilliseconds > _beatDurationInMilliseconds - (_timingBeforeBeat * _beatDurationInMilliseconds); // Modulo ?
     public int BeatDurationInMilliseconds => _beatDurationInMilliseconds;
     public UnityEvent OnBeatEvent => _onBeatEvent;
     public UnityEvent OnBeatStartEvent => _onBeatStartEvent;
     public UnityEvent OnBeatEndEvent => _onBeatEndEvent;
-    public UnityEvent<float> OnBeatPercentIncreased => _onBeatPercentIncreased;
 
-    float _PercentBeatTime => (float)(DateTime.Now - _lastBeatTime).TotalMilliseconds / _beatDurationInMilliseconds;
+    public bool IsInsideBeat => IsInBeatWindowBefore || IsInBeatWindowAfter;
+    public bool IsInBeatWindowBefore => (DateTime.Now - _lastBeatTime).TotalMilliseconds < (_timingAfterBeat * _beatDurationInMilliseconds);
+    public bool IsInBeatWindowAfter => (DateTime.Now - _lastBeatTime).TotalMilliseconds > _beatDurationInMilliseconds - (_timingBeforeBeat * _beatDurationInMilliseconds);
     #endregion
 
     #region PROCEDURES
@@ -66,7 +62,7 @@ public class BeatManager : MonoBehaviour, ITimingable
     {
         _beatDurationInMilliseconds = 1000;
         yield return null;
-        _beatWwiseEvent[_musicIndex].Post(gameObject, (uint)AkCallbackType.AK_MusicSyncBeat, BeatCallBack);
+        _beatWwiseEvent[_musicIndex].Post(gameObject, (uint)AkCallbackType.AK_MusicSyncGrid, BeatCallBack);
     }
 
     private void BeatCallBack(object in_cookie, AkCallbackType in_type, AkCallbackInfo in_info)
@@ -89,20 +85,11 @@ public class BeatManager : MonoBehaviour, ITimingable
 
     IEnumerator BeatCoroutine()
     {
-        
         while (true)
         {
-            while (IsInsideBeat)
-            {
-                yield return null;
-                OnBeatPercentIncreased?.Invoke(_PercentBeatTime);
-            }
+            yield return new WaitWhile(() => IsInsideBeat);
             OnBeatEndEvent?.Invoke();
-            while (!IsInsideBeat)
-            {
-                yield return null;
-                OnBeatPercentIncreased?.Invoke(_PercentBeatTime);
-            }
+            yield return new WaitUntil(() => IsInsideBeat);
             OnBeatStartEvent?.Invoke();
         }
     }

@@ -13,6 +13,8 @@ public class InputBool : InputClass
     }
 
     public bool InputValue { get; private set; }
+    public bool IsJustPressed { get; private set; }
+    public bool IsJustUnpressed { get; private set; }
 
     public override bool IsPerformed => InputValue;
 
@@ -20,15 +22,19 @@ public class InputBool : InputClass
     {
         InputDuration = data.GetButtonTimePressed();
         bool tmp = data.GetButton();
+        IsJustPressed = false;
+        IsJustUnpressed = false;
         if (!IsPerformed && tmp)
         {
             InputValue = tmp;
             OnInputStart?.Invoke();
+            IsJustPressed = true;
         }
         else if (IsPerformed && !tmp)
         {
             InputValue = tmp;
             OnInputEnd?.Invoke();
+            IsJustPressed = false;
         }
     }
 }

@@ -33,18 +33,38 @@ public class QTEHandler : MonoBehaviour
         _QTEables.Remove(QTEable);
     }
 
-    public void StartRandomQTE()
+    public void StartQTE()
     {
-        if (_coroutineQTE != null)
+        if (_currentQTESequence != null)
         {
-            StopCoroutine();
+            _indexInSequence = 0;
+            StartSequenceDependingOntype();
         }
-        _currentQTESequence = QTELoader.Instance.GetRandomQTE(_role);
+        else
+        {
+            StartNewQTE();
+        }
+    }
+    public void StartNewQTE()
+    {
+        StoreNewQTE();
         _indexInSequence = 0;
-        foreach(IQTEable reciever in _QTEables)
+        foreach (IQTEable reciever in _QTEables)
         {
             reciever.OnQTEStarted(_currentQTESequence);
         }
+        StartSequenceDependingOntype();
+    }
+    public void StoreNewQTE()
+    {
+        if (_coroutineQTE != null)
+        {
+            DeleteCurrentCoroutine();
+        }
+        _currentQTESequence = QTELoader.Instance.GetRandomQTE(_role);
+    }
+    private void StartSequenceDependingOntype()
+    {
         switch (_currentQTESequence.SequenceType)
         {
             case InputsSequence.SEQUENCE:
@@ -55,20 +75,30 @@ public class QTEHandler : MonoBehaviour
                 break;
         }
     }
-    
     public void PauseQTE(bool value)
     {
-        _isPlaying = !value;
+        if (value)
+        {
+            StopCurrentCoroutine();
+        } else
+        {
+            StartQTE();
+        }
     }
 
-    public void StopCoroutine()
+    public void StopCurrentCoroutine()
     {
         if (_coroutineQTE != null)
         {
             StopCoroutine(_coroutineQTE);
             _coroutineQTE = null;
-            _currentQTESequence = null;
         }
+    }
+
+    public void DeleteCurrentCoroutine()
+    {
+        StopCurrentCoroutine();
+        _currentQTESequence = null;
     }
 
     public string GetQTEString()
@@ -103,7 +133,11 @@ public class QTEHandler : MonoBehaviour
         switch (input.Status)
         {
             case InputStatus.PRESS:
-                isInputCorrect = _playerController.GetInputClassWithID(input.ActionIndex).IsPerformed;
+                InputBool inputBool = _playerController.GetInputClassWithID(input.ActionIndex) as InputBool;
+                if (inputBool != null)
+                {
+                    isInputCorrect = inputBool.IsJustPressed;
+                }
                 break;
             case InputStatus.HOLD:
                 InputClass inputClass = _playerController.GetInputClassWithID(input.ActionIndex);
@@ -118,7 +152,6 @@ public class QTEHandler : MonoBehaviour
         UnitInput input = _currentQTESequence.ListSubHandlers[_indexInSequence];
         while (_indexInSequence < _currentQTESequence.ListSubHandlers.Count)
         {
-            yield return new WaitUntil(() => _isPlaying);
             if ((Globals.BeatTimer?.IsInsideBeat ?? true) || true) //A MODIFIER
             {
                 if (CheckInput(input))
@@ -138,6 +171,7 @@ public class QTEHandler : MonoBehaviour
             yield return null;
         }
         
+        _currentQTESequence = null;
         foreach (IQTEable reciever in _QTEables)
         {
             reciever.OnQTEComplete();
