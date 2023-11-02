@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class QTEHandler : MonoBehaviour
@@ -15,6 +16,7 @@ public class QTEHandler : MonoBehaviour
     List<IQTEable> _QTEables = new List<IQTEable>();
     [SerializeField] float _holdDuration = .5f;
     bool[] _inputsSucceeded;
+    bool _isSequenceComplete = false;
 
     private IEnumerator Start()
     {
@@ -71,10 +73,11 @@ public class QTEHandler : MonoBehaviour
                 _coroutineQTE = StartCoroutine(StartRoutineSequence());
                 break;
             case InputsSequence.SIMULTANEOUS:
-                //TO DO
+                _coroutineQTE = StartCoroutine(StartRoutineSimultaneous());
                 break;
         }
     }
+
     public void PauseQTE(bool value)
     {
         if (value)
@@ -124,6 +127,10 @@ public class QTEHandler : MonoBehaviour
                 {
                     str.Append("(Not found) ");
                 }
+                if (_currentQTESequence.SequenceType == InputsSequence.SIMULTANEOUS && input.Index != _currentQTESequence.ListSubHandlers.Count - 1)
+                {
+                    str.Append("+ ");
+                }
             }
             
             return str.ToString();
@@ -154,9 +161,10 @@ public class QTEHandler : MonoBehaviour
         }
         return isInputCorrect;
     }
-
+    #region Routines
     IEnumerator StartRoutineSequence()
     {
+        yield return new WaitUntil(() => _playerController != null);
         UnitInput input = _currentQTESequence.ListSubHandlers[_indexInSequence];
         while (_indexInSequence < _currentQTESequence.ListSubHandlers.Count)
         {
@@ -187,4 +195,53 @@ public class QTEHandler : MonoBehaviour
             reciever.OnQTEComplete();
         }
     }
+
+    IEnumerator StartRoutineSimultaneous()
+    {
+        yield return new WaitUntil(() => _playerController != null);
+        _isSequenceComplete = false;
+        while (!_isSequenceComplete)
+        {
+            foreach (UnitInput input in _currentQTESequence.ListSubHandlers)
+            {
+                InputClass inputClass = _playerController.GetInputClassWithID(input.ActionIndex);
+                if (_inputsSucceeded[input.Index] != inputClass.IsPerformed) //Press
+                {
+                    _inputsSucceeded[input.Index] = inputClass.IsPerformed;
+                    ChangeStateInputClass();
+                }
+            }
+            yield return null;
+            _isSequenceComplete = CheckSequence();
+        }
+        
+        _currentQTESequence = null;
+        _inputsSucceeded = null;
+        foreach (IQTEable reciever in _QTEables)
+        {
+            reciever.OnQTEComplete();
+        }
+    }
+
+    void ChangeStateInputClass()
+    {
+        foreach (IQTEable reciever in _QTEables)
+        {
+            reciever.OnQTECorrectInput();
+        }
+    }
+
+    private bool CheckSequence()
+    {
+        bool res = true;
+        int i = 0;
+        while (res && i < _inputsSucceeded.Length) 
+        {
+            res = _inputsSucceeded[i];
+            i++;
+        }
+        
+        return res;
+    }
+    #endregion
 }
