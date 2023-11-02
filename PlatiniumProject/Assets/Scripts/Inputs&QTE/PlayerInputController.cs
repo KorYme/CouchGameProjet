@@ -10,24 +10,9 @@ using UnityEngine;
 public class PlayerInputController : MonoBehaviour
 {
     [SerializeField] PlayerRole _gamePlayerRole;
-    private Rewired.Player player { get { return PlayerInputsAssigner.GetRewiredPlayer((int)_gamePlayerRole); } }
-    public Rewired.Player newPlayer { get; private set; } 
-    private bool _isRegistered = false;
-
-    #region InputsMovement
-    public Vector2 MoveVector {  get; private set; } = Vector2.zero;
-    public bool OnMoveDown { get; private set; } = false;
-    private bool _isMoveDownRefreshed = true;
-    public Vector2 MoveDirection {  get; private set; } = Vector2.zero;
-    public event Action OnAxisMoveStarted;
-    #endregion
+    public Rewired.Player newPlayer { get; private set; }
 
     #region InputsActions
-    public bool IsAction1Pressed { get; private set; } = false;
-    public float DurationAction1Down { get; private set; } = 0f;
-    #endregion
-
-    #region NewInputsActions
     //Button Inputs
     public InputBool Action1 { get; private set; } = new(RewiredConsts.Action.ACTION1);
     public InputBool Action2 { get; private set; } = new(RewiredConsts.Action.ACTION2);
@@ -42,7 +27,7 @@ public class PlayerInputController : MonoBehaviour
     public InputVector2 LeftJoystick { get; private set; } = new(RewiredConsts.Action.MOVE_HORIZONTAL, RewiredConsts.Action.MOVE_VERTICAL);
     public InputVector2 RightJoystick { get; private set; } = new(RewiredConsts.Action.AXISX, RewiredConsts.Action.AXISY);
 
-
+    //Container with all Input Classes
     List<InputClass> _allMainInputClasses => new List<InputClass>()
     {
         Action1,
@@ -58,23 +43,13 @@ public class PlayerInputController : MonoBehaviour
     };
     #endregion
 
-    private void Start()
+    private IEnumerator Start()
     {
-        StartCoroutine(SetUpRewiredCoroutine());
-    }
-
-    IEnumerator SetUpRewiredCoroutine()
-    {
-        yield return new WaitUntil(() => ReInput.isReady && player != null);
+        yield return new WaitUntil(() => ReInput.isReady && PlayerInputsAssigner.GetRewiredPlayer((int)_gamePlayerRole) != null);
         Debug.Log("Rewired ready");
         newPlayer = PlayerInputsAssigner.GetRewiredPlayer((int)_gamePlayerRole);
-
-        if (newPlayer != null)
-        {
-            _isRegistered = true;
-            Players.AddPlayerToList(this, (int) PlayerInputsAssigner.GetRolePlayer((int)_gamePlayerRole));
-            SetUpAllInputClasses();
-        }
+        Players.AddPlayerToList(this, (int) PlayerInputsAssigner.GetRolePlayer((int)_gamePlayerRole));
+        SetUpAllInputClasses();
     }
 
     void SetUpAllInputClasses()
@@ -83,24 +58,16 @@ public class PlayerInputController : MonoBehaviour
         {
             newPlayer.AddInputEventDelegate(inputClass.InputCallback, UpdateLoopType.Update, inputClass.ActionID);
             switch (inputClass)
-            {
+        {
                 case InputVector2 inputVector2:
+                    Debug.Log("Add Vector2 delegate");
                     inputVector2.Player = newPlayer;
                     newPlayer.AddInputEventDelegate(inputVector2.InputCallbackSecondAction, UpdateLoopType.Update, inputVector2.SecondActionID);
                     break;
                 default:
                     break;
-            }
+        }
         });
-    }
-
-    public bool GetInput(UnitInput input)
-    {
-        return player == null ? false : player.GetButtonDown(input.ActionIndex);
-    }
-    public bool GetInputHold(UnitInput input)
-    {
-        return player == null ? false : player.GetButtonLongPress(input.ActionIndex);
     }
 
     public InputClass GetInputClassWithID(int ActionID)

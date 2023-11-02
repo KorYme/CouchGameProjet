@@ -22,12 +22,6 @@ public class DJController : MonoBehaviour, IQTEable
     [SerializeField] Direction _leftJoystickClockwise = Direction.Right;
     [SerializeField] Direction _leftJoystickAntiClockwise = Direction.Left;
 
-    /// <summary>
-    /// If rotate clockwise then 1 else -1 
-    /// </summary>
-    int _rotationOrientation = 0;
-    int _directionChecked = 0;
-    Vector2 _lastDirection = Vector2.zero;
     PlayerInputController _djInputController;
     QTEHandler _qteHandler;
 

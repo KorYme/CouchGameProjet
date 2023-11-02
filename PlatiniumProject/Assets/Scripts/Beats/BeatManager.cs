@@ -9,8 +9,6 @@ public class BeatManager : MonoBehaviour, ITimingable
 {
     #region FIELDS
     [Header("References"), Space]
-    [SerializeField, Tooltip("Drop Manager used to set up drop behaviour")]
-    DropManager _dropManager;
     [SerializeField, Tooltip("Wwise play event to launch the sound and the beat\nDon't need to be modified by GDs"), Space] 
     List<AK.Wwise.Event> _beatWwiseEvent;
 
@@ -52,11 +50,6 @@ public class BeatManager : MonoBehaviour, ITimingable
     #endregion
 
     #region PROCEDURES
-    private void Reset()
-    {
-        _dropManager = GetComponent<DropManager>();
-    }
-
     private void Awake()
     {
         if (Globals.BeatTimer != null)
@@ -116,10 +109,10 @@ public class BeatManager : MonoBehaviour, ITimingable
         switch (userCueName)
         {
             case "StartDrop":
-                OnNextBeat += _dropManager.StartDrop;
+                //OnNextBeat += _dropManager.StartDrop;
                 break;
             case "EndDrop":
-                OnNextBeat += _dropManager.EndDrop;
+                //OnNextBeat += _dropManager.EndDrop;
                 break;
             default:
                 break;

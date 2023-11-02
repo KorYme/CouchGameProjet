@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5587659796852208841}
   - component: {fileID: 2475575777112969248}
   - component: {fileID: 1020801392736537925}
-  - component: {fileID: 5276269842602481892}
+  - component: {fileID: 3001707074899246954}
   m_Layer: 0
   m_Name: BeatManager
   m_TagString: Untagged
@@ -96,7 +96,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e573ed85ee043f4989ff9b486aa2aad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dropManager: {fileID: 5276269842602481892}
   _beatWwiseEvent:
   - idInternal: 0
     valueGuidInternal: 
@@ -122,7 +121,7 @@ MonoBehaviour:
   _onBeatEndEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5276269842602481892
+--- !u!114 &3001707074899246954
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,6 +130,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2994801982979645308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6f3bf7419901f44b84ff7d3f09333b4, type: 3}
+  m_Script: {fileID: 11500000, guid: af7f1d791994e1e418d1513544522b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputDeadZone: 0.8

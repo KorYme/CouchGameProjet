@@ -14,7 +14,6 @@ public class QTEHandler : MonoBehaviour
     QTESequence _currentQTESequence;
     private Coroutine _coroutineQTE;
     List<IQTEable> _QTEables = new List<IQTEable>();
-    bool _isPlaying = true;
     [SerializeField] float _holdDuration = .5f;
 
     private IEnumerator Start()
