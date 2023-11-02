@@ -16,6 +16,7 @@ MonoBehaviour:
   PlayerRole: 0
   Difficulty: 0
   SequenceType: 1
+  ClientType: 0
   QTELevel: 0
   ListSubHandlers:
   - {fileID: 11400000, guid: c7b4d8585aeacfb459fcb852291f068e, type: 2}

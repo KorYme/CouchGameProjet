@@ -12,6 +12,7 @@ public class QTEHandler : MonoBehaviour
     PlayerInputController _playerController;
     int _indexInSequence = 0;
     QTESequence _currentQTESequence;
+    QTEListSequences _listSequences;
     private Coroutine _coroutineQTE;
     List<IQTEable> _QTEables = new List<IQTEable>();
     [SerializeField] float _holdDuration = .5f;
@@ -20,6 +21,7 @@ public class QTEHandler : MonoBehaviour
 
     private IEnumerator Start()
     {
+        _listSequences = new QTEListSequences();
         yield return new WaitUntil(() => Players.PlayersController[(int)_role] != null);
         _playerController = Players.PlayersController[(int)_role];
     }
@@ -46,7 +48,7 @@ public class QTEHandler : MonoBehaviour
             StartNewQTE();
         }
     }
-    public void StartNewQTE()
+    public void StartNewQTE(CharacterData[] characters = null)
     {
         StoreNewQTE();
         _indexInSequence = 0;
@@ -56,6 +58,7 @@ public class QTEHandler : MonoBehaviour
         }
         StartSequenceDependingOntype();
     }
+
     public void StoreNewQTE()
     {
         if (_coroutineQTE != null)

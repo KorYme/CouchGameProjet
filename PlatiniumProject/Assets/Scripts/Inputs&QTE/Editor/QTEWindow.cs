@@ -177,8 +177,10 @@ public class QTEWindow : EditorWindow
             _selectedQTE.SequenceType = (InputsSequence) EditorGUILayout.EnumPopup("Sequence ", _selectedQTE.SequenceType);
             _selectedQTE.PlayerRole = (PlayerRole) EditorGUILayout.EnumPopup("Role ", _selectedQTE.PlayerRole);
             GUILayout.EndHorizontal();
+
             if (_selectedQTE.PlayerRole == PlayerRole.DJ)
             {
+                _selectedQTE.ClientType = (CLIENT_TYPE) EditorGUILayout.EnumPopup("Client type ", _selectedQTE.ClientType);
                 _selectedQTE.QTELevel = EditorGUILayout.IntField("Level", _selectedQTE.QTELevel);
             }
             DrawListInputs();
