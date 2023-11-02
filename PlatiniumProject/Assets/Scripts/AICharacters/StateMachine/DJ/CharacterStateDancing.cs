@@ -6,13 +6,15 @@ public class CharacterStateDancing : CharacterState
     
     public override void EnterState()
     {
+        base.EnterState();
         StateMachine.Satisafaction.InitializeStatisfaction(StateMachine.CharacterDataObject.maxSatisafactionDJ);
         StateMachine.Satisafaction.OnSatsifactionZero += RunOutOfSatisfaction;
     }
 
     public override void OnBeat()
     {
-        StateMachine.SpriteRenderer.color = Random.ColorHSV();
+        //StateMachine.SpriteRenderer.color = Random.ColorHSV();
+        StateMachine.SpriteRenderer.sprite = StateMachine.Animation.GetAnimationSprite(CharacterAnimation.ANIMATION_TYPE.DANCING);
         /*currentSatisfaction = StateMachine.CurrentSlot.IsEnlighted ?
             Mathf.Clamp(_currentSatisfaction + StateMachine.CharacterDataObject.incrementationValueOnFloor, 0, StateMachine.CharacterDataObject.maxSatisafactionDJ) :
             Mathf.Clamp(_currentSatisfaction - StateMachine.CharacterDataObject.decrementationValueOnFloor, 0, StateMachine.CharacterDataObject.maxSatisafactionDJ);*/

@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class CharacterStateBarmanQueue : CharacterState
 {
+    public override void OnBeat()
+    {
+        base.OnBeat();
+        StateMachine.SpriteRenderer.sprite = StateMachine.Animation.GetAnimationSprite(CharacterAnimation.ANIMATION_TYPE.IDLE);
+    }
     public override void EnterState()
     {
+        base.EnterState();
         if (StateMachine.WaitingLines.Length > 0) 
         {
             int indexLine = 0;

@@ -12,7 +12,11 @@ public abstract class CharacterState
     {
         StateMachine = sm;
     }
-    public virtual void EnterState(){}
+
+    public virtual void EnterState()
+    {
+        StateMachine.Animation.ResetAnimation();
+    }
     public virtual void UpdateState(){}
     public virtual void ExitState(){}
     public virtual void OnBeat()

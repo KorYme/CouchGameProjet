@@ -53,7 +53,6 @@ public class CharacterAIStatisfaction : MonoBehaviour
         
         if (CurrentStatisafction <= 0)
         {
-            Debug.Log("qdqsdsqdqsdsqdsq");
             OnSatsifactionZero?.Invoke();
         }
     }

@@ -12,7 +12,8 @@ public class CharacterStateMachine : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
     private SpawnManager _spawnManager;
     private BeatManager _beatManager;
-    public IMovable CharacterMove { get; private set; }
+    public Vector3 PullPos { get; set; }
+    public CharacterAIMovement CharacterMove { get; private set; }
     public AreaManager AreaManager { get; private set; }
     public WaitingLineBar[] WaitingLines { get; private set; }
     
@@ -57,6 +58,7 @@ public class CharacterStateMachine : MonoBehaviour
     #region References
 
     public CharacterAIStatisfaction Satisafaction { get; private set; }
+    public CharacterAnimation Animation { get; private set; }
 
     #endregion
 
@@ -67,8 +69,9 @@ public class CharacterStateMachine : MonoBehaviour
         _spawnManager = FindObjectOfType<SpawnManager>();
         AreaManager = FindObjectOfType<AreaManager>();
         WaitingLines = FindObjectsOfType<WaitingLineBar>();
-        CharacterMove = GetComponent<IMovable>();
+        CharacterMove = GetComponent<CharacterAIMovement>();
         Satisafaction = GetComponent<CharacterAIStatisfaction>();
+        Animation = GetComponent<CharacterAnimation>();
     }
 
     public void PullCharacter(CharacterState startState = null)

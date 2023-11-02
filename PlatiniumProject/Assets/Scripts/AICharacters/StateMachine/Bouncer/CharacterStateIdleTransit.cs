@@ -7,6 +7,12 @@ using Random = UnityEngine.Random;
 public class CharacterStateIdleTransit : CharacterState
 {
     List<SlotInformation> availableSlots;
+    
+    public override void OnBeat()
+    {
+        base.OnBeat();
+        StateMachine.SpriteRenderer.sprite = StateMachine.Animation.GetAnimationSprite(CharacterAnimation.ANIMATION_TYPE.IDLE);
+    }
 
     public override void BeatAction()
     {
