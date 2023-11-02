@@ -89,7 +89,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             }
             for (int i = 0;i < _waitingCharactersList.Count; i++)
              {
-                 _waitingCharactersList[i].CharacterMove.MoveToPosition(transform.position + Vector3.left * (i + 1));
+                 _waitingCharactersList[i].CharacterMove.MoveTo(transform.position + Vector3.left * (i + 1));
              }
              _waitingCharactersList[0].ChangeState(_waitingCharactersList[0].BarManAtBar);
          }
@@ -97,7 +97,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
 
     public void AddToWaitingLine(CharacterStateMachine character)
     {
-        character.CharacterMove.MoveToPosition(transform.position + Vector3.left * (_waitingCharactersList.Count + 1));
+        character.CharacterMove.MoveTo(transform.position + Vector3.left * (_waitingCharactersList.Count + 1));
         if (_waitingCharactersList.Count == 0) //If first person in line
         {
             if (IsInPause)

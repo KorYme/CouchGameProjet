@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -23,7 +25,46 @@ public class EntityMovement : MonoBehaviour, IMovable
         _movementCoroutine = StartCoroutine(MovementCoroutine(position));
         return true;
     }
+    
+    public virtual bool MoveToPositionWithAnim(Vector3 position, Action callBack, int animationFrames)
+    {
+        if (IsMoving) return false;
+        _movementCoroutine = StartCoroutine(MovementCoroutineAnimation(position, callBack, animationFrames));
+        return true;
+    }
+    
+    protected virtual IEnumerator MovementCoroutineAnimation (Vector3 positionToGo, Action callBack, int animationsFrames)
+    {
+        float timer = 0;
+        Vector3 initialPosition = _transformToModify.position;
+        Vector3 initialScale = _transformToModify.localScale;
+        float timeBetweenAnims = _TimeBetweenMovements / animationsFrames;
+        float animTimer = 1f;
+        
+        while (timer < _TimeBetweenMovements)
+        {
+            timer += Time.deltaTime;
+            animTimer += Time.deltaTime;
 
+            if (animTimer >= timeBetweenAnims - Mathf.Epsilon * 2)
+            {
+                animTimer = 0f;
+                callBack?.Invoke();
+            }
+            
+            _transformToModify.position = Vector3.LerpUnclamped(initialPosition, positionToGo, 
+                _movementData.MovementCurve.Evaluate(timer / _TimeBetweenMovements));
+            
+            _transformToModify.localScale = initialScale +
+                (new Vector3(initialScale.x * _movementData.BounceMultiplierX, initialScale.y * _movementData.BounceMultiplierY, 0)
+                 * _movementData.BounceCurve.Evaluate(timer / _TimeBetweenMovements));
+            
+            yield return null;
+        }
+        _transformToModify.localScale = initialScale;
+        _transformToModify.position = positionToGo;
+        _movementCoroutine = null;
+    }
     protected virtual IEnumerator MovementCoroutine(Vector3 positionToGo)
     {
         float timer = 0;
