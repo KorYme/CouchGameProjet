@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class QTEHandler : MonoBehaviour
@@ -14,6 +15,8 @@ public class QTEHandler : MonoBehaviour
     private Coroutine _coroutineQTE;
     List<IQTEable> _QTEables = new List<IQTEable>();
     [SerializeField] float _holdDuration = .5f;
+    bool[] _inputsSucceeded;
+    bool _isSequenceComplete = false;
 
     private IEnumerator Start()
     {
