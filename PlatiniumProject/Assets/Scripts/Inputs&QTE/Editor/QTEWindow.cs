@@ -81,7 +81,7 @@ public class QTEWindow : EditorWindow
             _temporaryQTE = true;
         }
     }
-
+    #region Save
     void SaveQTEFile()
     {
         _selectedQTE.Index = _indexNewSequence;
@@ -109,7 +109,9 @@ public class QTEWindow : EditorWindow
         AssetDatabase.CreateAsset(_selectedQTE.ListSubHandlers[indexUnit], $"Assets/ScriptableObjects/QTE/QTEInput{indexQTE}_{indexUnit}.asset");
         AssetDatabase.SaveAssets();
     }
+    #endregion
 
+    #region Delete
     void RemoveUnitAtIndex(int indexUnit)
     {
         if (AssetDatabase.IsValidFolder("Assets/ScriptableObjects") && AssetDatabase.IsValidFolder("Assets/ScriptableObjects/QTE"))
@@ -127,25 +129,29 @@ public class QTEWindow : EditorWindow
 
     void RemoveSelectedSequence()
     {
-        for(int i = _selectedQTE.ListSubHandlers.Count - 1; i >= 0; i--)
+        if (EditorUtility.DisplayDialog("Delete QTE",
+                "Are you sure you want to delete this QTE ?", "Yes", "No"))
         {
-            RemoveUnitAtIndex(i);
-        }
-        if (AssetDatabase.IsValidFolder("Assets/ScriptableObjects") && AssetDatabase.IsValidFolder("Assets/ScriptableObjects/QTE"))
-        {
-            if (AssetDatabase.DeleteAsset($"Assets/ScriptableObjects/QTE/QTEInput{_selectedQTE.Index}.asset"))
+            for (int i = _selectedQTE.ListSubHandlers.Count - 1; i >= 0; i--)
             {
-                Debug.Log("File of QTE has been deleted.");
+                RemoveUnitAtIndex(i);
             }
-            else
+            if (AssetDatabase.IsValidFolder("Assets/ScriptableObjects") && AssetDatabase.IsValidFolder("Assets/ScriptableObjects/QTE"))
             {
-                Debug.Log("File of QTE not found");
+                if (AssetDatabase.DeleteAsset($"Assets/ScriptableObjects/QTE/QTEInput{_selectedQTE.Index}.asset"))
+                {
+                    Debug.Log("File of QTE has been deleted.");
+                }
+                else
+                {
+                    Debug.Log("File of QTE not found");
+                }
             }
+            AssetDatabase.SaveAssets();
+            _selectedQTE = null;
         }
-        AssetDatabase.SaveAssets();
-        _selectedQTE = null;
     }
-
+    #endregion
     private void OnGUI()
     {
         if (_buttonInputOptions == null && ReInput.isReady)
@@ -171,7 +177,10 @@ public class QTEWindow : EditorWindow
             _selectedQTE.SequenceType = (InputsSequence) EditorGUILayout.EnumPopup("Sequence ", _selectedQTE.SequenceType);
             _selectedQTE.PlayerRole = (PlayerRole) EditorGUILayout.EnumPopup("Role ", _selectedQTE.PlayerRole);
             GUILayout.EndHorizontal();
-
+            if (_selectedQTE.PlayerRole == PlayerRole.DJ)
+            {
+                _selectedQTE.QTELevel = EditorGUILayout.IntField("Level", _selectedQTE.QTELevel);
+            }
             DrawListInputs();
             if (_temporaryQTE && GUILayout.Button("Save QTE"))
             {
@@ -179,10 +188,9 @@ public class QTEWindow : EditorWindow
                 _temporaryQTE = false;
             }
         }
-        else
+        else // No QTE selected
         {
             GUILayout.Label("Select a QTE or add a new one");
-            GUILayout.Label("PLEASE FOR THE INCOMING BUILD CHOOSE SEQUENCE AND PRESS");
         }
         GUILayout.EndVertical();
         GUILayout.EndHorizontal();
@@ -220,7 +228,8 @@ public class QTEWindow : EditorWindow
         }
 
         GUILayout.EndVertical();
-        if (GUILayout.Button("Delete"))
+        if (GUILayout.Button("Delete") && EditorUtility.DisplayDialog("Delete input",
+                "Are you sure you want to delete this input ?", "Yes", "No"))
         {
             RemoveUnitAtIndex(input.Index);
             _selectedQTE.ListSubHandlers.Remove(input);
