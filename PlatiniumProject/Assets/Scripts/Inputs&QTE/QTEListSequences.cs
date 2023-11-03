@@ -10,6 +10,10 @@ public class QTEListSequences : MonoBehaviour
         _sequences.Add(sequence);
     }
 
+    public QTESequence GetSequence(int index)
+    {
+        return _sequences[index];
+    }
     public int TotalLengthInputs
     {
         get
@@ -22,7 +26,12 @@ public class QTEListSequences : MonoBehaviour
             return totalLength;
         }
     }
-    public void Clear(QTESequence sequence)
+
+    public int Length
+    {
+        get { return _sequences.Count; }
+    }
+    public void Clear()
     {
         _sequences.Clear();
     }

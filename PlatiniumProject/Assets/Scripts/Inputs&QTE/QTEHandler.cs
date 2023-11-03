@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Rewired;
 using System;
 using System.Collections;
@@ -11,6 +12,7 @@ public class QTEHandler : MonoBehaviour
     [SerializeField] PlayerRole _role;
     PlayerInputController _playerController;
     int _indexInSequence = 0;
+    int _indexOfSequence = 0;
     QTESequence _currentQTESequence;
     QTEListSequences _listSequences;
     private Coroutine _coroutineQTE;
@@ -40,7 +42,7 @@ public class QTEHandler : MonoBehaviour
     {
         if (_currentQTESequence != null)
         {
-            _indexInSequence = 0;
+            _indexOfSequence = 0;
             StartSequenceDependingOntype();
         }
         else
@@ -50,8 +52,9 @@ public class QTEHandler : MonoBehaviour
     }
     public void StartNewQTE(CharacterData[] characters = null)
     {
-        StoreNewQTE();
-        _indexInSequence = 0;
+        _indexOfSequence = 0;
+        _listSequences.Clear();
+        StoreNewQTE(characters);
         foreach (IQTEable reciever in _QTEables)
         {
             reciever.OnQTEStarted(_currentQTESequence);
@@ -59,16 +62,32 @@ public class QTEHandler : MonoBehaviour
         StartSequenceDependingOntype();
     }
 
-    public void StoreNewQTE()
+    public void StoreNewQTE(CharacterData[] characters = null)
     {
         if (_coroutineQTE != null)
         {
             DeleteCurrentCoroutine();
         }
-        _currentQTESequence = QTELoader.Instance.GetRandomQTE(_role);
+        if (characters == null)
+        {
+            _currentQTESequence = QTELoader.Instance.GetRandomQTE(_role);
+            _listSequences.AddSequence(_currentQTESequence);
+        }
+        else
+        {
+            int[] charactersCount = new int[Enum.GetNames(typeof(CLIENT_TYPE)).Length];
+            foreach (CharacterData character in characters)
+            {
+                charactersCount[(int)character.clienType] += 1;
+                _currentQTESequence = QTELoader.Instance.GetRandomQTE(character.clienType, charactersCount[(int)character.clienType], _role);
+                _listSequences.AddSequence(_currentQTESequence);
+            }
+        }
     }
     private void StartSequenceDependingOntype()
     {
+        _indexInSequence = 0;
+        _currentQTESequence = _listSequences.GetSequence(_indexOfSequence);
         _inputsSucceeded = new bool[_currentQTESequence.ListSubHandlers.Count];
         switch (_currentQTESequence.SequenceType)
         {
@@ -190,42 +209,51 @@ public class QTEHandler : MonoBehaviour
             }
             yield return null;
         }
-        
-        _currentQTESequence = null;
-        _inputsSucceeded = null;
-        foreach (IQTEable reciever in _QTEables)
-        {
-            reciever.OnQTEComplete();
-        }
+
+        ClearRoutine();
     }
 
     IEnumerator StartRoutineSimultaneous()
     {
         yield return new WaitUntil(() => _playerController != null);
         _isSequenceComplete = false;
+        InputClass[] inputs = new InputClass[_currentQTESequence.ListSubHandlers.Count];
+        for (int i = 0; i < inputs.Length;i++)
+        {
+            inputs[i] = _playerController.GetInputClassWithID(_currentQTESequence.ListSubHandlers[i].ActionIndex);
+        }
         while (!_isSequenceComplete)
         {
-            foreach (UnitInput input in _currentQTESequence.ListSubHandlers)
+            for (int i = 0; i < _currentQTESequence.ListSubHandlers.Count;i++)
             {
-                InputClass inputClass = _playerController.GetInputClassWithID(input.ActionIndex);
-                if (_inputsSucceeded[input.Index] != inputClass.IsPerformed) //Press
+                if (_inputsSucceeded[i] != inputs[i].IsPerformed) //Press
                 {
-                    _inputsSucceeded[input.Index] = inputClass.IsPerformed;
+                    _inputsSucceeded[i] = inputs[i].IsPerformed;
                     ChangeStateInputClass();
                 }
             }
             yield return null;
             _isSequenceComplete = CheckSequence();
         }
+
+        ClearRoutine();
         
+    }
+
+    void ClearRoutine()
+    {
+        _indexOfSequence++;
         _currentQTESequence = null;
         _inputsSucceeded = null;
         foreach (IQTEable reciever in _QTEables)
         {
             reciever.OnQTEComplete();
         }
+        if (_indexOfSequence < _listSequences.Length)
+        {
+            StartSequenceDependingOntype();
+        }
     }
-
     void ChangeStateInputClass()
     {
         foreach (IQTEable reciever in _QTEables)
