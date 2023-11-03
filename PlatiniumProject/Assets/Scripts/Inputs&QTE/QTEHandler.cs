@@ -73,15 +73,34 @@ public class QTEHandler : MonoBehaviour
         else
         {
             int[] charactersCount = new int[Enum.GetNames(typeof(CharacterColor)).Length];
+            int indexEvil = 0;
+            int nbEvilCharacters = GetNbOfEvilCharacters(characters);
             foreach (CharacterTypeData character in characters)
             {
-                Debug.Log(character.ClientType + " " + character.Evilness);
-                charactersCount[(int)character.ClientType] += 1;
-                _currentQTESequence = QTELoader.Instance.GetRandomQTE(character.ClientType, character.Evilness, charactersCount[(int)character.ClientType], _role);
+                if (character.Evilness == Evilness.GOOD)
+                {
+                    charactersCount[(int)character.ClientType] += 1; // SI GENTIL SINON + 0
+                    _currentQTESequence = QTELoader.Instance.GetRandomQTE(character.ClientType, character.Evilness, charactersCount[(int)character.ClientType] + nbEvilCharacters, _role);
+
+                } else
+                {
+                    indexEvil++;
+                    _currentQTESequence = QTELoader.Instance.GetRandomQTE(character.ClientType, character.Evilness, indexEvil, _role);
+                }
                 _listSequences.AddSequence(_currentQTESequence);
             }
         }
         LengthInputs = _listSequences.TotalLengthInputs;
+    }
+
+    public int GetNbOfEvilCharacters(CharacterTypeData[] characters)
+    {
+        int total = 0;
+        foreach (CharacterTypeData character in characters)
+        {
+            if (character.Evilness == Evilness.EVIL) total++;
+        }
+        return total;
     }
     private void StartSequenceDependingOntype()
     {
