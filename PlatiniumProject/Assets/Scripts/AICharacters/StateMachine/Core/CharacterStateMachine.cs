@@ -10,13 +10,14 @@ public class CharacterStateMachine : MonoBehaviour
 {
     [SerializeField] private CharacterData _characterData;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private CharacterTypeData[] _typesDataAvailable;
     private SpawnManager _spawnManager;
     private BeatManager _beatManager;
     public Vector3 PullPos { get; set; }
     public CharacterAIMovement CharacterMove { get; private set; }
     public AreaManager AreaManager { get; private set; }
     public WaitingLineBar[] WaitingLines { get; private set; }
-    
+
     #region States
     public CharacterState IdleTransitState { get; } = new CharacterStateIdleTransit();
     public CharacterState IdleBouncerState { get; } = new CharacterStateIdleBouncer();
@@ -60,6 +61,8 @@ public class CharacterStateMachine : MonoBehaviour
     public CharacterAIStatisfaction Satisafaction { get; private set; }
     public CharacterAnimation Animation { get; private set; }
 
+    public CharacterTypeData TypeData { get; private set; }
+
     #endregion
 
     private void Awake()
@@ -76,6 +79,22 @@ public class CharacterStateMachine : MonoBehaviour
 
     public void PullCharacter(CharacterState startState = null)
     {
+        GetRandomCharacterTypeData();
+        switch (TypeData.ClientType)
+        {
+            case CharacterColor.BLUE:
+                _spriteRenderer.color = Color.blue;
+                break;
+            case CharacterColor.RED:
+                _spriteRenderer.color = Color.red;
+                break;
+            case CharacterColor.YELLOW:
+                _spriteRenderer.color = Color.yellow;
+                break;
+            case CharacterColor.GREEN:
+                _spriteRenderer.color = Color.green;
+                break;
+        }
         if (startState == null)
         {
             SlotInformation firstQueueSlot = AreaManager.BouncerTransit.Slots[0];
@@ -157,5 +176,16 @@ public class CharacterStateMachine : MonoBehaviour
         _spawnManager.ReInsertCharacterInPull(this);
         ChangeState(null);
         _spriteRenderer.color = Color.white;
+    }
+
+    private void GetRandomCharacterTypeData()
+    {
+        if (_typesDataAvailable.Length == 0)
+        {
+            Debug.LogWarning("List of type of character available is empty");
+        } else
+        {
+            TypeData = _typesDataAvailable[Random.Range(0, _typesDataAvailable.Length)];
+        }
     }
 }

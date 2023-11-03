@@ -4,7 +4,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class QTEHandler : MonoBehaviour
@@ -52,7 +51,7 @@ public class QTEHandler : MonoBehaviour
             StartNewQTE();
         }
     }
-    public void StartNewQTE(CharacterData[] characters = null)
+    public void StartNewQTE(CharacterTypeData[] characters = null)
     {
         _indexOfSequence = 0;
         _listSequences.Clear();
@@ -60,25 +59,25 @@ public class QTEHandler : MonoBehaviour
         StartSequenceDependingOntype();
     }
 
-    public void StoreNewQTE(CharacterData[] characters = null)
+    public void StoreNewQTE(CharacterTypeData[] characters = null)
     {
         if (_coroutineQTE != null)
         {
             DeleteCurrentCoroutine();
         }
-        if (characters == null)
+        if (characters == null) // Characters type not needed
         {
             _currentQTESequence = QTELoader.Instance.GetRandomQTE(_role);
             _listSequences.AddSequence(_currentQTESequence);
         }
         else
         {
-            int[] charactersCount = new int[Enum.GetNames(typeof(CLIENT_TYPE)).Length];
-            foreach (CharacterData character in characters)
+            int[] charactersCount = new int[Enum.GetNames(typeof(CharacterColor)).Length];
+            foreach (CharacterTypeData character in characters)
             {
-                charactersCount[(int)character.clienType] += 1;
-                //Debug.Log($"{character.clienType} {_role} {charactersCount[(int)character.clienType]}");
-                _currentQTESequence = QTELoader.Instance.GetRandomQTE(character.clienType, charactersCount[(int)character.clienType], _role);
+                Debug.Log(character.ClientType + " " + character.Evilness);
+                charactersCount[(int)character.ClientType] += 1;
+                _currentQTESequence = QTELoader.Instance.GetRandomQTE(character.ClientType, character.Evilness, charactersCount[(int)character.ClientType], _role);
                 _listSequences.AddSequence(_currentQTESequence);
             }
         }
@@ -236,7 +235,7 @@ public class QTEHandler : MonoBehaviour
             yield return null;
             _isSequenceComplete = CheckSequence();
         }
-
+        
         ClearRoutine();
         
     }
@@ -249,7 +248,6 @@ public class QTEHandler : MonoBehaviour
         
         if (_indexOfSequence < _listSequences.Length)
         {
-            Debug.LogWarning("START NEXT SEQUENCE");
             StartSequenceDependingOntype();
         } else
         {

@@ -27,7 +27,9 @@ public class QTESequence : ScriptableObject
     public PlayerRole PlayerRole;
     public Difficulty Difficulty;
     public InputsSequence SequenceType;
-    public CLIENT_TYPE ClientType;
+    public CharacterColor ClientType;
+    public Evilness Evilness;
     public int QTELevel = 1;
+    public int DurationHold = 1;
     public List<UnitInput> ListSubHandlers = new List<UnitInput>();
 }

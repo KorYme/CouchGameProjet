@@ -9,16 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8333e8bf53b1c2409b30abd1787e784, type: 3}
-  m_Name: QTE3
+  m_Script: {fileID: 11500000, guid: 76b88fa07367243479aee3d5fa81e7b0, type: 3}
+  m_Name: DISCOMOM
   m_EditorClassIdentifier: 
-  Index: 3
-  PlayerRole: 1
-  Difficulty: 0
-  SequenceType: 0
   ClientType: 0
   Evilness: 0
-  QTELevel: 1
-  DurationHold: 1
-  ListSubHandlers:
-  - {fileID: 11400000, guid: ec38dedc05f1eb84aa704779eed2eb80, type: 2}

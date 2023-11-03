@@ -9,7 +9,6 @@ public class QTELoader : MonoBehaviour
     public static QTELoader Instance { get; private set; }
     [SerializeField] private List<QTESequence> _listQTE;
     List<QTESequence> ListQTE => _listQTE;
-    
 
     private void Awake()
     {
@@ -64,13 +63,13 @@ public class QTELoader : MonoBehaviour
         return listQTEForRole[randomIndex];
     }
 
-    public QTESequence GetRandomQTE(CLIENT_TYPE clientType,int level,PlayerRole role = PlayerRole.None)
+    public QTESequence GetRandomQTE(CharacterColor clientType, Evilness evilness, int level,PlayerRole role = PlayerRole.None)
     {
         List<QTESequence> listQTEForRole;
         if (role != PlayerRole.None)
         {
             listQTEForRole = new List<QTESequence>();
-            listQTEForRole = _listQTE.Where(x => x.ClientType == clientType && x.PlayerRole == role).ToList();
+            listQTEForRole = _listQTE.Where(x => x.ClientType == clientType && x.PlayerRole == role && x.Evilness == evilness).ToList();
             
             while (listQTEForRole.Where(x => x.QTELevel == level).Count() == 0 && level > 0)
             {
