@@ -4,7 +4,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class QTEHandler : MonoBehaviour
@@ -20,6 +19,8 @@ public class QTEHandler : MonoBehaviour
     [SerializeField] float _holdDuration = .5f;
     bool[] _inputsSucceeded;
     bool _isSequenceComplete = false;
+
+    public int LengthInputs { get; private set; }
 
     private IEnumerator Start()
     {
@@ -50,45 +51,47 @@ public class QTEHandler : MonoBehaviour
             StartNewQTE();
         }
     }
-    public void StartNewQTE(CharacterData[] characters = null)
+    public void StartNewQTE(CharacterTypeData[] characters = null)
     {
         _indexOfSequence = 0;
         _listSequences.Clear();
         StoreNewQTE(characters);
-        foreach (IQTEable reciever in _QTEables)
-        {
-            reciever.OnQTEStarted(_currentQTESequence);
-        }
         StartSequenceDependingOntype();
     }
 
-    public void StoreNewQTE(CharacterData[] characters = null)
+    public void StoreNewQTE(CharacterTypeData[] characters = null)
     {
         if (_coroutineQTE != null)
         {
             DeleteCurrentCoroutine();
         }
-        if (characters == null)
+        if (characters == null) // Characters type not needed
         {
             _currentQTESequence = QTELoader.Instance.GetRandomQTE(_role);
             _listSequences.AddSequence(_currentQTESequence);
         }
         else
         {
-            int[] charactersCount = new int[Enum.GetNames(typeof(CLIENT_TYPE)).Length];
-            foreach (CharacterData character in characters)
+            int[] charactersCount = new int[Enum.GetNames(typeof(CharacterColor)).Length];
+            foreach (CharacterTypeData character in characters)
             {
-                charactersCount[(int)character.clienType] += 1;
-                _currentQTESequence = QTELoader.Instance.GetRandomQTE(character.clienType, charactersCount[(int)character.clienType], _role);
+                Debug.Log(character.ClientType + " " + character.Evilness);
+                charactersCount[(int)character.ClientType] += 1;
+                _currentQTESequence = QTELoader.Instance.GetRandomQTE(character.ClientType, character.Evilness, charactersCount[(int)character.ClientType], _role);
                 _listSequences.AddSequence(_currentQTESequence);
             }
         }
+        LengthInputs = _listSequences.TotalLengthInputs;
     }
     private void StartSequenceDependingOntype()
     {
         _indexInSequence = 0;
         _currentQTESequence = _listSequences.GetSequence(_indexOfSequence);
         _inputsSucceeded = new bool[_currentQTESequence.ListSubHandlers.Count];
+        foreach (IQTEable reciever in _QTEables)
+        {
+            reciever.OnQTEStarted(_currentQTESequence);
+        }
         switch (_currentQTESequence.SequenceType)
         {
             case InputsSequence.SEQUENCE:
@@ -200,11 +203,8 @@ public class QTEHandler : MonoBehaviour
                     if (_indexInSequence < _currentQTESequence.ListSubHandlers.Count) //Sequence finished
                     {
                         input = _currentQTESequence.ListSubHandlers[_indexInSequence];
-                        foreach (IQTEable reciever in _QTEables)
-                        {
-                            reciever.OnQTECorrectInput();
-                        }
                     }
+                    CallOnCorrectInput();
                 }
             }
             yield return null;
@@ -229,13 +229,13 @@ public class QTEHandler : MonoBehaviour
                 if (_inputsSucceeded[i] != inputs[i].IsPerformed) //Press
                 {
                     _inputsSucceeded[i] = inputs[i].IsPerformed;
-                    ChangeStateInputClass();
+                    CallOnCorrectInput();
                 }
             }
             yield return null;
             _isSequenceComplete = CheckSequence();
         }
-
+        
         ClearRoutine();
         
     }
@@ -245,16 +245,19 @@ public class QTEHandler : MonoBehaviour
         _indexOfSequence++;
         _currentQTESequence = null;
         _inputsSucceeded = null;
-        foreach (IQTEable reciever in _QTEables)
-        {
-            reciever.OnQTEComplete();
-        }
+        
         if (_indexOfSequence < _listSequences.Length)
         {
             StartSequenceDependingOntype();
+        } else
+        {
+            foreach (IQTEable reciever in _QTEables)
+            {
+                reciever.OnQTEComplete();
+            }
         }
     }
-    void ChangeStateInputClass()
+    void CallOnCorrectInput()
     {
         foreach (IQTEable reciever in _QTEables)
         {

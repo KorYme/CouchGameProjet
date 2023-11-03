@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e1e12e06f57c5d4ab75e840b09b7663, type: 3}
-  m_Name: QTEInput4_1
+  m_Name: QTEInput8_1
   m_EditorClassIdentifier: 
   Index: 1
-  ActionIndex: 5
+  ActionIndex: 3
   IsInputPositive: 1
   Status: 0
   CheckHold: 0

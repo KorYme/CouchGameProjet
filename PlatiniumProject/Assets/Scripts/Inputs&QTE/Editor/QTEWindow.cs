@@ -178,10 +178,16 @@ public class QTEWindow : EditorWindow
             _selectedQTE.PlayerRole = (PlayerRole) EditorGUILayout.EnumPopup("Role ", _selectedQTE.PlayerRole);
             GUILayout.EndHorizontal();
 
-            if (_selectedQTE.PlayerRole == PlayerRole.DJ)
+            switch (_selectedQTE.PlayerRole)
             {
-                _selectedQTE.ClientType = (CLIENT_TYPE) EditorGUILayout.EnumPopup("Client type ", _selectedQTE.ClientType);
-                _selectedQTE.QTELevel = EditorGUILayout.IntField("Level", _selectedQTE.QTELevel);
+                case PlayerRole.DJ:
+                    _selectedQTE.ClientType = (CharacterColor) EditorGUILayout.EnumPopup("Client type ", _selectedQTE.ClientType);
+                    _selectedQTE.Evilness = (Evilness) EditorGUILayout.EnumPopup("Evilness level ", _selectedQTE.Evilness);
+                    _selectedQTE.QTELevel = EditorGUILayout.IntField("Level", _selectedQTE.QTELevel);
+                    break;
+                case PlayerRole.Barman:
+                    _selectedQTE.DurationHold = EditorGUILayout.IntField("Duration ", _selectedQTE.DurationHold);
+                    break;
             }
             DrawListInputs();
             if (_temporaryQTE && GUILayout.Button("Save QTE"))
@@ -251,7 +257,6 @@ public class QTEWindow : EditorWindow
                     _serializedObject = new SerializedObject(_selectedQTE.ListSubHandlers[i]);
                     _propertyName = _serializedObject.FindProperty(NAME_ACTION);
                     DrawInput(_selectedQTE.ListSubHandlers[i]);
-                    //Debug.Log($"i {i} index {_selectedQTE.Index} {_selectedQTE.ListSubHandlers[i].Index}");
                 }
             }
         }

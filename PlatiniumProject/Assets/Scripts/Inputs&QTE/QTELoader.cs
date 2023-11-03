@@ -9,7 +9,6 @@ public class QTELoader : MonoBehaviour
     public static QTELoader Instance { get; private set; }
     [SerializeField] private List<QTESequence> _listQTE;
     List<QTESequence> ListQTE => _listQTE;
-    
 
     private void Awake()
     {
@@ -26,6 +25,7 @@ public class QTELoader : MonoBehaviour
     #if UNITY_EDITOR
     public void LoadQTE()
     {
+        _listQTE.Clear();
         string[] fileGuids = AssetDatabase.FindAssets("t:" + typeof(QTESequence));
         if (fileGuids.Length > 0)
         {
@@ -63,20 +63,14 @@ public class QTELoader : MonoBehaviour
         return listQTEForRole[randomIndex];
     }
 
-    public QTESequence GetRandomQTE(CLIENT_TYPE clientType,int level,PlayerRole role = PlayerRole.None)
+    public QTESequence GetRandomQTE(CharacterColor clientType, Evilness evilness, int level,PlayerRole role = PlayerRole.None)
     {
         List<QTESequence> listQTEForRole;
         if (role != PlayerRole.None)
         {
             listQTEForRole = new List<QTESequence>();
-            /*for (int i = 0; i < _listQTE.Count; i++)
-            {
-                if (_listQTE[i].PlayerRole == role && _listQTE[i].ClientType == clientType)
-                {
-                    listQTEForRole.Add(_listQTE[i]);
-                }
-            }*/
-            listQTEForRole = _listQTE.Where(x => x.ClientType == clientType && x.PlayerRole == role).ToList();
+            listQTEForRole = _listQTE.Where(x => x.ClientType == clientType && x.PlayerRole == role && x.Evilness == evilness).ToList();
+            
             while (listQTEForRole.Where(x => x.QTELevel == level).Count() == 0 && level > 0)
             {
                 level--;
@@ -88,6 +82,7 @@ public class QTELoader : MonoBehaviour
             {
                 listQTEForRole = listQTEForRole.Where(x => x.QTELevel == level).ToList();
             }
+            Debug.Log(listQTEForRole.Count() + " " + level+" "+listQTEForRole[0].name);
         }
         else
         {

@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QTEListSequences : MonoBehaviour
+public class QTEListSequences
 {
-    List<QTESequence> _sequences = new List<QTESequence>();
+    List<QTESequence> _sequences;
+
+    public QTEListSequences()
+    {
+        _sequences = new List<QTESequence>();
+    }
+
     public void AddSequence(QTESequence sequence)
     {
         _sequences.Add(sequence);

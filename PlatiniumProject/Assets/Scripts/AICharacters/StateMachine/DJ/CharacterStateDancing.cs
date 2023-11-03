@@ -15,9 +15,6 @@ public class CharacterStateDancing : CharacterState
     {
         //StateMachine.SpriteRenderer.color = Random.ColorHSV();
         StateMachine.SpriteRenderer.sprite = StateMachine.Animation.GetAnimationSprite(CharacterAnimation.ANIMATION_TYPE.DANCING);
-        /*currentSatisfaction = StateMachine.CurrentSlot.IsEnlighted ?
-            Mathf.Clamp(_currentSatisfaction + StateMachine.CharacterDataObject.incrementationValueOnFloor, 0, StateMachine.CharacterDataObject.maxSatisafactionDJ) :
-            Mathf.Clamp(_currentSatisfaction - StateMachine.CharacterDataObject.decrementationValueOnFloor, 0, StateMachine.CharacterDataObject.maxSatisafactionDJ);*/
         if (!StateMachine.CurrentSlot.IsEnlighted)
         {
             StateMachine.Satisafaction.DecreaseSatisfaction(StateMachine.CharacterDataObject.decrementationValueOnFloor);
@@ -29,12 +26,11 @@ public class CharacterStateDancing : CharacterState
         StateMachine.ChangeState(StateMachine.DieState);
     }
 
-    public void OnQTECorrectInput()
+    public void OnQTECorrectInput(int nbTotalInputs)
     {
         if (StateMachine.CurrentSlot.IsEnlighted)
         {
-            StateMachine.Satisafaction.IncreaseSatisfaction(StateMachine.CharacterDataObject.incrementationValueOnFloor);
-            //Debug.Log($"{_currentSatisfaction} {StateMachine.name}");
+            StateMachine.Satisafaction.IncreaseSatisfaction(StateMachine.CharacterDataObject.maxSatisafactionDJ * 1 / nbTotalInputs);
         }
     }
 

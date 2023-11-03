@@ -3,19 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public enum CLIENT_TYPE
-{
-    PUNK,
-    DAD,
-    DISCOMOM,
-    PRIEST,
-}
-
 [CreateAssetMenu()]
 public class CharacterData : ScriptableObject
 {
-    public CLIENT_TYPE clienType;
-    
     [Header("Bouncer")]
     public int movementAmountInQueue;
     public int beatAmountUnitlAction;
