@@ -44,3 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4735391014c845c4285a89a424a3ac14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _listQTE:
+  - {fileID: 11400000, guid: 437d34eab1623844a975acc122aed1ab, type: 2}
+  - {fileID: 11400000, guid: a6f3c62810165a748be09c4bb79971d9, type: 2}
+  - {fileID: 11400000, guid: 2f5dab6c82f84944db6232bfce323435, type: 2}
+  - {fileID: 11400000, guid: 0bba734e73560b34f94c28648e054650, type: 2}
+  - {fileID: 11400000, guid: 72d1a05273da3ac4dbdccb701a9964b3, type: 2}
+  - {fileID: 11400000, guid: 909610bd066cb0e43a22d20beec2d864, type: 2}
+  - {fileID: 11400000, guid: 3909753e6a876764cb2a545bcaaacf42, type: 2}
+  - {fileID: 11400000, guid: 16db24cbb50bdfd40b3a881cbc3a9220, type: 2}
+  - {fileID: 11400000, guid: 9cdb2b6ad2d83d541a9772536ebfc330, type: 2}
+  - {fileID: 11400000, guid: d343b14f0344b724c9853103e22ceecd, type: 2}
+  - {fileID: 11400000, guid: 872856f0cc44b5e428a123d3beda0635, type: 2}
+  - {fileID: 11400000, guid: e3c5bf265cda18841a9f8445dbc2ff37, type: 2}

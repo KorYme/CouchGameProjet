@@ -312,6 +312,7 @@ MonoBehaviour:
   _typesDataAvailable:
   - {fileID: 11400000, guid: 141b890269223b541a7c11e86c1d5fd1, type: 2}
   - {fileID: 11400000, guid: a755c41e2598ea347861b42559d7e80c, type: 2}
+  - {fileID: 11400000, guid: 736367c6e0ee4f04fa285e44db1ac8da, type: 2}
   - {fileID: 11400000, guid: 9305c13ea32710a42987b19c4659a5b0, type: 2}
 --- !u!114 &6601924391975132163
 MonoBehaviour:
