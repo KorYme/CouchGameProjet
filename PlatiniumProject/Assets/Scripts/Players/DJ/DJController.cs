@@ -44,10 +44,6 @@ public class DJController : MonoBehaviour, IQTEable
 
     public void OnQTEComplete()
     {
-        if (NbPlayersInLight() > 0)
-        {
-            _qteHandler.StartNewQTE();
-        }
         _QTEDisplay.text = _qteHandler.GetQTEString();
     }
 
@@ -60,7 +56,7 @@ public class DJController : MonoBehaviour, IQTEable
                 CharacterStateDancing state = information.Occupant.DancingState as CharacterStateDancing;
                 if (state != null)
                 {
-                    state.OnQTECorrectInput();
+                    state.OnQTECorrectInput(_qteHandler.LengthInputs);
                 }
             }
         }
@@ -153,7 +149,7 @@ public class DJController : MonoBehaviour, IQTEable
                     index++;
                 }
             }
-            _qteHandler.StartNewQTE();
+            _qteHandler.StartNewQTE(clientsData);
         }
         else
         {
