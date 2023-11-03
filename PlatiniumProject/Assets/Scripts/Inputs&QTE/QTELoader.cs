@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -55,6 +56,40 @@ public class QTELoader : MonoBehaviour
                 listQTEForRole = _listQTE;
             }
         } else
+        {
+            listQTEForRole = _listQTE;
+        }
+        int randomIndex = Random.Range(0, listQTEForRole.Count);
+        return listQTEForRole[randomIndex];
+    }
+
+    public QTESequence GetRandomQTE(CLIENT_TYPE clientType,int level,PlayerRole role = PlayerRole.None)
+    {
+        List<QTESequence> listQTEForRole;
+        if (role != PlayerRole.None)
+        {
+            listQTEForRole = new List<QTESequence>();
+            /*for (int i = 0; i < _listQTE.Count; i++)
+            {
+                if (_listQTE[i].PlayerRole == role && _listQTE[i].ClientType == clientType)
+                {
+                    listQTEForRole.Add(_listQTE[i]);
+                }
+            }*/
+            listQTEForRole = _listQTE.Where(x => x.ClientType == clientType && x.PlayerRole == role).ToList();
+            while (listQTEForRole.Where(x => x.QTELevel == level).Count() == 0 && level > 0)
+            {
+                level--;
+            }
+            if (level == 0)
+            {
+                listQTEForRole = _listQTE;
+            } else
+            {
+                listQTEForRole = listQTEForRole.Where(x => x.QTELevel == level).ToList();
+            }
+        }
+        else
         {
             listQTEForRole = _listQTE;
         }
