@@ -176,6 +176,7 @@ public class QTEWindow : EditorWindow
             _selectedQTE.Difficulty = (Difficulty)EditorGUILayout.EnumPopup("Difficulty ", _selectedQTE.Difficulty);
             _selectedQTE.SequenceType = (InputsSequence) EditorGUILayout.EnumPopup("Sequence ", _selectedQTE.SequenceType);
             _selectedQTE.PlayerRole = (PlayerRole) EditorGUILayout.EnumPopup("Role ", _selectedQTE.PlayerRole);
+            _selectedQTE.Status = (InputStatus) EditorGUILayout.EnumPopup("Status ", _selectedQTE.Status);
             GUILayout.EndHorizontal();
 
             switch (_selectedQTE.PlayerRole)
@@ -228,11 +229,6 @@ public class QTEWindow : EditorWindow
             EditorGUILayout.PropertyField(_propertyName, true); // draw property with its children
             _serializedObject.ApplyModifiedProperties();
             input.IsInputPositive = EditorGUILayout.Toggle("Input has positive value",input.IsInputPositive);
-        }
-        input.Status = (InputStatus) EditorGUILayout.EnumPopup("Input type", input.Status);
-        if (input.Status == InputStatus.HOLD)
-        {
-            input.NbBeatHoldDuration = EditorGUILayout.IntField("Duration hold", input.NbBeatHoldDuration);
         }
 
         GUILayout.EndVertical();

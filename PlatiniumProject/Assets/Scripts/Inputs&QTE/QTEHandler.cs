@@ -1,4 +1,3 @@
-using DG.Tweening;
 using Rewired;
 using System;
 using System.Collections;
@@ -9,22 +8,28 @@ using UnityEngine;
 public class QTEHandler : MonoBehaviour
 {
     [SerializeField] PlayerRole _role;
+    
     PlayerInputController _playerController;
-    int _indexInSequence = 0;
-    int _indexOfSequence = 0;
-    QTESequence _currentQTESequence;
-    QTEListSequences _listSequences;
-    private Coroutine _coroutineQTE;
+    ITimingable _timingable;
+
+    //List of listener on QTEHandler
     List<IQTEable> _QTEables = new List<IQTEable>();
-    [SerializeField] float _holdDuration = .5f;
+    private Coroutine _coroutineQTE;
+    QTEListSequences _currentListSequences;
+    QTESequence _currentQTESequence;
     bool[] _inputsSucceeded;
+    
+    int _indexOfSequence = 0;
+    int _indexInSequence = 0;
     bool _isSequenceComplete = false;
+    int _durationHold = 0;
 
     public int LengthInputs { get; private set; }
 
     private IEnumerator Start()
     {
-        _listSequences = new QTEListSequences();
+        _currentListSequences = new QTEListSequences();
+        _timingable = Globals.BeatTimer;
         yield return new WaitUntil(() => Players.PlayersController[(int)_role] != null);
         _playerController = Players.PlayersController[(int)_role];
     }
@@ -54,7 +59,7 @@ public class QTEHandler : MonoBehaviour
     public void StartNewQTE(CharacterTypeData[] characters = null)
     {
         _indexOfSequence = 0;
-        _listSequences.Clear();
+        _currentListSequences.Clear();
         StoreNewQTE(characters);
         StartSequenceDependingOntype();
     }
@@ -68,7 +73,7 @@ public class QTEHandler : MonoBehaviour
         if (characters == null) // Characters type not needed
         {
             _currentQTESequence = QTELoader.Instance.GetRandomQTE(_role);
-            _listSequences.AddSequence(_currentQTESequence);
+            _currentListSequences.AddSequence(_currentQTESequence);
         }
         else
         {
@@ -87,10 +92,10 @@ public class QTEHandler : MonoBehaviour
                     indexEvil++;
                     _currentQTESequence = QTELoader.Instance.GetRandomQTE(character.ClientType, character.Evilness, indexEvil, _role);
                 }
-                _listSequences.AddSequence(_currentQTESequence);
+                _currentListSequences.AddSequence(_currentQTESequence);
             }
         }
-        LengthInputs = _listSequences.TotalLengthInputs;
+        LengthInputs = _currentListSequences.TotalLengthInputs;
     }
 
     public int GetNbOfEvilCharacters(CharacterTypeData[] characters)
@@ -105,7 +110,7 @@ public class QTEHandler : MonoBehaviour
     private void StartSequenceDependingOntype()
     {
         _indexInSequence = 0;
-        _currentQTESequence = _listSequences.GetSequence(_indexOfSequence);
+        _currentQTESequence = _currentListSequences.GetSequence(_indexOfSequence);
         _inputsSucceeded = new bool[_currentQTESequence.ListSubHandlers.Count];
         foreach (IQTEable reciever in _QTEables)
         {
@@ -189,19 +194,11 @@ public class QTEHandler : MonoBehaviour
             return false;
         }
         bool isInputCorrect = false;
-        switch (input.Status)
+
+        InputBool inputBool = _playerController.GetInputClassWithID(input.ActionIndex) as InputBool;
+        if (inputBool != null)
         {
-            case InputStatus.PRESS:
-                InputBool inputBool = _playerController.GetInputClassWithID(input.ActionIndex) as InputBool;
-                if (inputBool != null)
-                {
-                    isInputCorrect = inputBool.IsJustPressed;
-                }
-                break;
-            case InputStatus.HOLD:
-                InputClass inputClass = _playerController.GetInputClassWithID(input.ActionIndex);
-                isInputCorrect = inputClass.IsPerformed && inputClass.InputDuration > _holdDuration;
-                break;
+            isInputCorrect = inputBool.IsJustPressed;
         }
         return isInputCorrect;
     }
@@ -241,9 +238,10 @@ public class QTEHandler : MonoBehaviour
         {
             inputs[i] = _playerController.GetInputClassWithID(_currentQTESequence.ListSubHandlers[i].ActionIndex);
         }
-        while (!_isSequenceComplete)
+        _durationHold = 0;
+        while ((!_isSequenceComplete &&_currentQTESequence.Status == InputStatus.PRESS) || _durationHold < (_currentQTESequence.DurationHold * _timingable.BeatDurationInMilliseconds))
         {
-            for (int i = 0; i < _currentQTESequence.ListSubHandlers.Count;i++)
+            for (int i = 0; i < _currentQTESequence.ListSubHandlers.Count; i++)
             {
                 if (_inputsSucceeded[i] != inputs[i].IsPerformed) //Press
                 {
@@ -253,10 +251,12 @@ public class QTEHandler : MonoBehaviour
             }
             yield return null;
             _isSequenceComplete = CheckSequence();
+            if (_isSequenceComplete && _currentQTESequence.Status == InputStatus.HOLD)
+            {
+                _durationHold += (int)(Time.deltaTime * 1000);
+            }
         }
-        
         ClearRoutine();
-        
     }
 
     void ClearRoutine()
@@ -265,7 +265,7 @@ public class QTEHandler : MonoBehaviour
         _currentQTESequence = null;
         _inputsSucceeded = null;
         
-        if (_indexOfSequence < _listSequences.Length)
+        if (_indexOfSequence < _currentListSequences.Length)
         {
             StartSequenceDependingOntype();
         } else
