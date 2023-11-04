@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb1ca7b282e771c48b59a05dff5461ad, type: 3}
   m_Name: CharacterTest
   m_EditorClassIdentifier: 
-  clienType: 0
   movementAmountInQueue: 2
   beatAmountUnitlAction: 5
   maxBarManSatisafactionBar: 10
   decrementationValueOnBarMan: 1
-  maxSatisafactionDJ: 99
+  maxSatisafactionDJ: 20
   decrementationValueOnFloor: 1
   incrementationValueOnFloor: 5

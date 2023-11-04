@@ -15,6 +15,3 @@ MonoBehaviour:
   Index: 2
   ActionIndex: 5
   IsInputPositive: 1
-  Status: 0
-  CheckHold: 0
-  NbBeatHoldDuration: 2

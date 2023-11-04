@@ -19,6 +19,7 @@ MonoBehaviour:
   ClientType: 1
   Evilness: 0
   QTELevel: 1
+  Status: 0
   DurationHold: 1
   ListSubHandlers:
   - {fileID: 11400000, guid: 59a06bdfbec42784bac4a71b89c51ba9, type: 2}
