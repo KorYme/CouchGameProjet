@@ -50,7 +50,20 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             stateMachine.ChangeState(stateMachine.MoveToState);
 
         }
+        GetNextCharacter();
+    }
+
+     public void OnFailDrink()
+     {
+         _indexText.text = _qteHandler.GetQTEString();
+         _qteHandler.DeleteCurrentCoroutine();
+         GetNextCharacter();
+     }
+
+    public void GetNextCharacter()
+    {
         _waitingCharactersList.RemoveAt(0);
+
         if (_waitingCharactersList.Count > 0)
         {
             if (IsInPause)
@@ -63,28 +76,10 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             }
             UpdatePositions();
             _waitingCharactersList[0].ChangeState(_waitingCharactersList[0].BarManAtBar);
-            _indexText.text = _qteHandler.GetQTEString();
         }
+        _indexText.text = _qteHandler.GetQTEString();
     }
 
-     public void OnFailDrink()
-     {
-        _indexText.text = _qteHandler.GetQTEString();
-        _qteHandler.DeleteCurrentCoroutine();
-         _waitingCharactersList.RemoveAt(0);
-         if (_waitingCharactersList.Count > 0)
-         {
-            if (IsInPause)
-            {
-                _qteHandler.StoreNewQTE();
-            } else
-            {
-                _qteHandler.StartNewQTE();
-            }
-            UpdatePositions();
-             _waitingCharactersList[0].ChangeState(_waitingCharactersList[0].BarManAtBar);
-         }
-     }
     void UpdatePositions()
     {
         for (int i = 0; i < _waitingCharactersList.Count; i++)
