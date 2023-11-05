@@ -61,6 +61,10 @@ public class CharacterStateMachine : MonoBehaviour
 
     #endregion
 
+    #region Events
+    public Action OnCharacterDeath;
+    #endregion
+
     private void Awake()
     {
         InitAllState();

@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: 7
   PlayerRole: 1
-  Difficulty: 0
   SequenceType: 0
   ClientType: 1
   Evilness: 0
