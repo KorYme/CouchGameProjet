@@ -8,6 +8,7 @@ public class CharacterDieState : CharacterState
     public override void EnterState()
     {
         base.EnterState();
+        StateMachine.OnCharacterDeath?.Invoke();
         if (StateMachine.CurrentSlot != null)
         {
             StateMachine.CurrentSlot.Occupant = null;

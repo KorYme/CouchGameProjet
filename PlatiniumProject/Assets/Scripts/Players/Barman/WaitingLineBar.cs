@@ -1,9 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 public class WaitingLineBar : MonoBehaviour,IQTEable
 {
@@ -53,7 +50,20 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             stateMachine.ChangeState(stateMachine.MoveToState);
 
         }
+        GetNextCharacter();
+    }
+
+     public void OnFailDrink()
+     {
+         _indexText.text = _qteHandler.GetQTEString();
+         _qteHandler.DeleteCurrentCoroutine();
+         GetNextCharacter();
+     }
+
+    public void GetNextCharacter()
+    {
         _waitingCharactersList.RemoveAt(0);
+
         if (_waitingCharactersList.Count > 0)
         {
             if (IsInPause)
@@ -68,33 +78,19 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             {
                 _waitingCharactersList[i].CharacterMove.MoveTo(transform.position + Vector3.left * (i + 1));
             }
+            UpdatePositions();
             _waitingCharactersList[0].ChangeState(_waitingCharactersList[0].BarManAtBar);
-            _indexText.text = _qteHandler.GetQTEString();
         }
+        _indexText.text = _qteHandler.GetQTEString();
     }
 
-     public void OnFailDrink()
-     {
-        _indexText.text = _qteHandler.GetQTEString();
-        _qteHandler.DeleteCurrentCoroutine();
-         _waitingCharactersList.RemoveAt(0);
-         if (_waitingCharactersList.Count > 0)
-         {
-            if (IsInPause)
-            {
-                _qteHandler.StoreNewQTE();
-            } else
-            {
-                _qteHandler.StartNewQTE();
-            }
-            for (int i = 0;i < _waitingCharactersList.Count; i++)
-             {
-                 _waitingCharactersList[i].CharacterMove.MoveTo(transform.position + Vector3.left * (i + 1));
-             }
-             _waitingCharactersList[0].ChangeState(_waitingCharactersList[0].BarManAtBar);
-         }
-     }
-
+    void UpdatePositions()
+    {
+        for (int i = 0; i < _waitingCharactersList.Count; i++)
+        {
+            _waitingCharactersList[i].CharacterMove.MoveTo(transform.position + Vector3.left * (i + 1));
+        }
+    }
     public void AddToWaitingLine(CharacterStateMachine character)
     {
         character.CharacterMove.MoveTo(transform.position + Vector3.left * (_waitingCharactersList.Count + 1));

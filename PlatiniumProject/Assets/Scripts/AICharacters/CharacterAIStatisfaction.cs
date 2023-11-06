@@ -6,6 +6,7 @@ using UnityEngine;
 public class CharacterAIStatisfaction : MonoBehaviour
 {
     private CharacterData _characerData;
+    private CharacterTypeData _characterTypeData;
     private CharacterStateMachine _stateMachine;
     public Action OnSatsifactionZero;
     
@@ -25,7 +26,7 @@ public class CharacterAIStatisfaction : MonoBehaviour
             Debug.LogError("Statisfaction must be positive ");
             return;
         }
-        
+        _characterTypeData = _stateMachine.TypeData;
         CurrentMaxStatisafction = maxSatisfction;
         CurrentStatisafction = CurrentMaxStatisafction;
     }
@@ -51,7 +52,7 @@ public class CharacterAIStatisfaction : MonoBehaviour
 
         CurrentStatisafction -= amount;
         
-        if (CurrentStatisafction <= 0)
+        if (CurrentStatisafction <= 0 && _characterTypeData.Evilness == Evilness.GOOD)
         {
             OnSatsifactionZero?.Invoke();
         }
