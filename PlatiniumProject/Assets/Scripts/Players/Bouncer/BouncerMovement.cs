@@ -57,7 +57,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
         if (_currentSlot.Neighbours[index].Occupant != null)
         {
-            if (MoveToPosition(_currentSlot.Neighbours[index].transform.position + new Vector3(_areaManager.BouncerBoard.HorizontalSpacing / 2, 0, 0)))
+            if (MoveTo(_currentSlot.Neighbours[index].transform.position + new Vector3(_areaManager.BouncerBoard.HorizontalSpacing / 2, 0, 0)))
             {
                 currentState = BouncerState.Checking;
                 _currentSlot.Neighbours[index].Occupant.ChangeState(_currentSlot.Neighbours[index].Occupant.BouncerCheckState);
@@ -70,7 +70,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
         }
         else
         {
-            if (MoveToPosition(_currentSlot.Neighbours[index].transform.position))
+            if (MoveTo(_currentSlot.Neighbours[index].transform.position))
             {
                 _currentSlot.PlayerOccupant = null;
                 _currentSlot = _currentSlot.Neighbours[index];

@@ -66,7 +66,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             }
             for (int i = 0;i < _waitingCharactersList.Count; i++)
             {
-                _waitingCharactersList[i].CharacterMove.MoveToPosition(transform.position + Vector3.left * (i + 1));
+                _waitingCharactersList[i].CharacterMove.MoveTo(transform.position + Vector3.left * (i + 1));
             }
             _waitingCharactersList[0].ChangeState(_waitingCharactersList[0].BarManAtBar);
             _indexText.text = _qteHandler.GetQTEString();
