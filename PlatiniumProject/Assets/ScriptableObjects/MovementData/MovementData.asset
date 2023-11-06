@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8bc4844133adfb47a2b0f576f1908d0, type: 3}
   m_Name: MovementData
   m_EditorClassIdentifier: 
-  MovementDuration: 0.2
-  SpeedMultiplier: 1
+  MovementDurationPercent: 0.8
   MovementCurve:
     serializedVersion: 2
     m_Curve:
@@ -71,5 +70,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  BounceMultiplier: 1
-  BounceFactors: {x: 2, y: -0.5}
+  BounceMultiplierX: 1
+  BounceMultiplierY: 1

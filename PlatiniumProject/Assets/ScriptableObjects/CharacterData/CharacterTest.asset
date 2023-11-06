@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: CharacterTest
   m_EditorClassIdentifier: 
   movementAmountInQueue: 2
-  beatAmountUnitlAction: 2
-  maxSatisafactionBar: 90
+  beatAmountUnitlAction: 5
+  maxBarManSatisafactionBar: 10
+  decrementationValueOnBarMan: 1
   maxSatisafactionDJ: 20
   decrementationValueOnFloor: 1
   incrementationValueOnFloor: 5

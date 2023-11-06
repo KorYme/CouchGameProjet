@@ -37,6 +37,7 @@ public class SpawnManager : MonoBehaviour
             GameObject go = Instantiate(_pnj, _poolingSpawn.position, Quaternion.identity);
             go.transform.position += new Vector3(1f, 0f, 0f) * i;
             CharacterStateMachine stateMachine = go.GetComponent<CharacterStateMachine>();
+            stateMachine.PullPos = go.transform.position += new Vector3(1f, 0f, 0f) * i;
             _characterList[i] = stateMachine;
             _availableCharcters.Add(stateMachine);
         }
@@ -96,7 +97,7 @@ public class SpawnManager : MonoBehaviour
     public void ReInsertCharacterInPull(CharacterStateMachine chara)
     {
         _availableCharcters.Add(chara);
-        chara.transform.position = _poolingSpawn.transform.position;
+        chara.transform.position = chara.PullPos;
     }
 
     // void SpawnATikTak()

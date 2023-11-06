@@ -28,8 +28,6 @@ public class DJController : MonoBehaviour, IQTEable
     RollInputChecker _rollRightJoystick;
     RollInputChecker _rollLeftJoystick;
 
-    
-
     #region ToRemove
     [SerializeField] TextMeshProUGUI _QTEDisplay;
 
@@ -40,10 +38,6 @@ public class DJController : MonoBehaviour, IQTEable
 
     public void OnQTEComplete()
     {
-        if (NbPlayersInLight() > 0)
-        {
-            _qteHandler.StartNewQTE();
-        }
         _QTEDisplay.text = _qteHandler.GetQTEString();
     }
 
@@ -56,7 +50,7 @@ public class DJController : MonoBehaviour, IQTEable
                 CharacterStateDancing state = information.Occupant.DancingState as CharacterStateDancing;
                 if (state != null)
                 {
-                    state.OnQTECorrectInput();
+                    state.OnQTECorrectInput(_qteHandler.LengthInputs);
                 }
             }
         }
@@ -123,7 +117,17 @@ public class DJController : MonoBehaviour, IQTEable
     {
         if (NbPlayersInLight() > 0)
         {
-            _qteHandler.StartNewQTE();
+            CharacterTypeData[] clientsData = new CharacterTypeData[NbPlayersInLight()];
+            int index = 0;
+            foreach(SlotInformation info in _shapesLight)
+            {
+                if (info.Occupant != null)
+                {
+                    clientsData[index] = info.Occupant.TypeData;
+                    index++;
+                }
+            }
+            _qteHandler.StartNewQTE(clientsData);
         }
         else
         {
