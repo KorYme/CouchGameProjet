@@ -5,7 +5,7 @@ using UnityEngine;
 public enum InputStatus
 {
     PRESS,
-    HOLD
+    HOLD,
 }
 
 public enum InputsSequence
