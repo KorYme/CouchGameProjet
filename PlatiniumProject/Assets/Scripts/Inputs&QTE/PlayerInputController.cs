@@ -68,7 +68,7 @@ public class PlayerInputController : MonoBehaviour
         });
     }
 
-    public InputClass GetInputClassWithID(int ActionID)
+    public InputClass GetInputClassWithID(int ActionID, bool getParentClass = false)
     {
         InputClass returnValue = null;
         _allMainInputClasses.ForEach(inputClass =>
@@ -78,12 +78,12 @@ public class PlayerInputController : MonoBehaviour
                 case InputVector2 inputVector2:
                     if (inputVector2.InputClassX.ActionID == ActionID)
                     {
-                        returnValue = inputVector2.InputClassX;
+                        returnValue = getParentClass ? inputVector2 : inputVector2.InputClassX;
                         return;
                     }
                     if (inputVector2.InputClassY.ActionID == ActionID)
                     {
-                        returnValue = inputVector2.InputClassY;
+                        returnValue = getParentClass ? inputVector2 : inputVector2.InputClassY;
                         return;
                     }
                     break;
