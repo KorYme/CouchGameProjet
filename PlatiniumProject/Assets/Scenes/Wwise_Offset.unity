@@ -220,6 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 396b480537a128548a0b4eff7c32b42c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _offsetTest: 0
   _spriteRenderer: {fileID: 376560646}
 --- !u!1001 &1374131529
 PrefabInstance:
@@ -287,7 +288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _onBeatEndEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _onBeatStartEvent.m_PersistentCalls.m_Calls.Array.size
@@ -319,7 +320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _onBeatEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeColorToGreen
+      value: ChangeColorWithTimer
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _onBeatStartEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
