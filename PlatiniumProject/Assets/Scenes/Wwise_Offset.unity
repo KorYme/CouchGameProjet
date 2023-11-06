@@ -272,19 +272,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _musicIndex
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _timingAfterBeat
-      value: 0.1
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _timingBeforeBeat
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _onBeatEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _onBeatEndEvent.m_PersistentCalls.m_Calls.Array.size

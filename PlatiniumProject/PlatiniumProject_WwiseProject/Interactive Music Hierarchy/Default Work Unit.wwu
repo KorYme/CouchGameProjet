@@ -94,7 +94,7 @@
 					<PropertyList>
 						<Property Name="EndPosition" Type="Real64" Value="165604.729166667"/>
 						<Property Name="GridFrequencyPreset" Type="int16" Value="53"/>
-						<Property Name="GridOffsetCustom" Type="Real64" Value="75"/>
+						<Property Name="GridOffsetCustom" Type="Real64" Value="100"/>
 						<Property Name="GridOffsetPreset" Type="int16" Value="1"/>
 						<Property Name="Tempo" Type="Real64" Value="130"/>
 						<Property Name="Volume" Type="Real64">
@@ -272,7 +272,6 @@
 					<PropertyList>
 						<Property Name="EndPosition" Type="Real64" Value="255166.857142857"/>
 						<Property Name="GridFrequencyPreset" Type="int16" Value="53"/>
-						<Property Name="GridOffsetCustom" Type="Real64" Value="100"/>
 						<Property Name="GridOffsetPreset" Type="int16" Value="1"/>
 						<Property Name="Tempo" Type="Real64" Value="126"/>
 						<Property Name="Volume" Type="Real64">

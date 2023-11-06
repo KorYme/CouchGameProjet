@@ -50,6 +50,9 @@ public class BeatManager : MonoBehaviour, ITimingable
     public bool IsInsideBeatWindow => IsInBeatWindowBefore || IsInBeatWindowAfter;
     public bool IsInBeatWindowBefore => (DateTime.Now - _lastBeatTime).TotalMilliseconds < (_timingAfterBeat * _beatDurationInMilliseconds);
     public bool IsInBeatWindowAfter => (DateTime.Now - _lastBeatTime).TotalMilliseconds > _beatDurationInMilliseconds - (_timingBeforeBeat * _beatDurationInMilliseconds);
+
+    public double BeatDeltaTime => (DateTime.Now - _lastBeatTime).TotalMilliseconds;
+
     #endregion
 
     #region PROCEDURES
@@ -97,12 +100,12 @@ public class BeatManager : MonoBehaviour, ITimingable
 
     private void BeatCallBack(object in_cookie, AkCallbackType in_type, AkCallbackInfo in_info)
     {
-        _lastBeatTime = DateTime.Now;
-        _beatCoroutine ??= StartCoroutine(BeatCoroutine());
         AkMusicSyncCallbackInfo info = in_info as AkMusicSyncCallbackInfo;
         switch (in_type)
         { 
             case AkCallbackType.AK_MusicSyncGrid:
+                _beatCoroutine ??= StartCoroutine(BeatCoroutine());
+                _lastBeatTime = DateTime.Now;
                 _beatDurationInMilliseconds = (int)((info?.segmentInfo_fGridDuration ?? 1) * 1000);
                 OnBeatEvent?.Invoke();
                 if (OnNextBeat != null)
