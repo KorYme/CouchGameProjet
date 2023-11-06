@@ -8,6 +8,7 @@ public class TestBeat : MonoBehaviour
     [SerializeField, Range(0f, 1f)] float _offsetTest;
     [SerializeField] SpriteRenderer _spriteRenderer;
 
+    BeatManager _beatManager;
     DateTime _lastBeatTiming;
     Coroutine _offsetCoroutine;
 
@@ -19,15 +20,26 @@ public class TestBeat : MonoBehaviour
     private void Start()
     {
         _lastBeatTiming = DateTime.Now;
+        _beatManager = Globals.BeatTimer as BeatManager;
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log($"Timing between last input : {_lastBeatTiming.Millisecond}ms");
-            _lastBeatTiming = DateTime.Now;
+            Debug.Log(_beatManager.BeatDeltaTime);
+            if (_beatManager.IsInsideBeatWindow)
+            {
+                StartCoroutine(ChangeColorOnBeat());
+            }
         }
+    }
+
+    IEnumerator ChangeColorOnBeat()
+    {
+        ChangeColorToGreen();
+        yield return new WaitForSeconds(.15f);
+        ChangeColorToRed();
     }
 
     public void ChangeColorToRed()
