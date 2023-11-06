@@ -35,7 +35,10 @@ public class BeatManager : MonoBehaviour, ITimingable
     DateTime _lastBeatTime;
     Coroutine _beatCoroutine;
 
-    event Action OnNextBeat;
+    public event Action OnNextBeatStart;
+    public event Action OnNextBeat;
+    public event Action OnNextBeatEnd;
+    public event Action<string> OnUserCueReceived;
     #endregion
 
     #region PROPERTIES
@@ -44,7 +47,7 @@ public class BeatManager : MonoBehaviour, ITimingable
     public UnityEvent OnBeatStartEvent => _onBeatStartEvent;
     public UnityEvent OnBeatEndEvent => _onBeatEndEvent;
 
-    public bool IsInsideBeat => IsInBeatWindowBefore || IsInBeatWindowAfter;
+    public bool IsInsideBeatWindow => IsInBeatWindowBefore || IsInBeatWindowAfter;
     public bool IsInBeatWindowBefore => (DateTime.Now - _lastBeatTime).TotalMilliseconds < (_timingAfterBeat * _beatDurationInMilliseconds);
     public bool IsInBeatWindowAfter => (DateTime.Now - _lastBeatTime).TotalMilliseconds > _beatDurationInMilliseconds - (_timingBeforeBeat * _beatDurationInMilliseconds);
     #endregion
@@ -63,9 +66,33 @@ public class BeatManager : MonoBehaviour, ITimingable
     private IEnumerator Start()
     {
         _beatDurationInMilliseconds = 1000;
+        _onBeatEvent.AddListener(() =>
+        {
+            OnNextBeat?.Invoke();
+            OnNextBeat = null;
+        });
+        _onBeatStartEvent.AddListener(() =>
+        {
+            OnNextBeatStart?.Invoke();
+            OnNextBeatStart = null;
+        });
+        _onBeatEndEvent.AddListener(() =>
+        {
+            OnNextBeatEnd?.Invoke();
+            OnNextBeatEnd = null;
+        });
         yield return null;
         _beatWwiseEvent[_musicIndex].Post(gameObject, (uint)AkCallbackType.AK_MusicSyncGrid | (uint)AkCallbackType.AK_MusicSyncUserCue, BeatCallBack);
+    }
 
+    private void OnDestroy()
+    {
+        _onBeatEvent.RemoveAllListeners();
+        _onBeatStartEvent.RemoveAllListeners();
+        _onBeatEndEvent.RemoveAllListeners();
+        OnNextBeatStart = null;
+        OnNextBeat = null;
+        OnNextBeatEnd = null;
     }
 
     private void BeatCallBack(object in_cookie, AkCallbackType in_type, AkCallbackInfo in_info)
@@ -85,7 +112,7 @@ public class BeatManager : MonoBehaviour, ITimingable
                 }
                 break;
             case AkCallbackType.AK_MusicSyncUserCue:
-                CheckUserCueName(info?.userCueName ?? "");
+                OnUserCueReceived?.Invoke(info?.userCueName ?? "");
                 break;
             default:
                 break;
@@ -96,26 +123,10 @@ public class BeatManager : MonoBehaviour, ITimingable
     {
         while (true)
         {
-            yield return new WaitWhile(() => IsInsideBeat);
+            yield return new WaitWhile(() => IsInsideBeatWindow);
             OnBeatEndEvent?.Invoke();
-            yield return new WaitUntil(() => IsInsideBeat);
+            yield return new WaitUntil(() => IsInsideBeatWindow);
             OnBeatStartEvent?.Invoke();
-        }
-    }
-
-    void CheckUserCueName(string userCueName)
-    {
-        Debug.Log(userCueName);
-        switch (userCueName)
-        {
-            case "StartDrop":
-                //OnNextBeat += _dropManager.StartDrop;
-                break;
-            case "EndDrop":
-                //OnNextBeat += _dropManager.EndDrop;
-                break;
-            default:
-                break;
         }
     }
     #endregion

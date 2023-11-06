@@ -36,7 +36,7 @@ public abstract class PlayerMovement : EntityMovement
 
     public override bool MoveToPosition(Vector3 position)
     {
-        if (_hasAlreadyMovedThisBeat || !_timingable.IsInsideBeat) return false;
+        if (_hasAlreadyMovedThisBeat || !_timingable.IsInsideBeatWindow) return false;
         if (base.MoveToPosition(position))
         {
             _hasAlreadyMovedThisBeat = true;

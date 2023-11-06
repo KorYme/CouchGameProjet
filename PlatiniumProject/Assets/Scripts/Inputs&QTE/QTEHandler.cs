@@ -151,7 +151,7 @@ public class QTEHandler : MonoBehaviour
         UnitInput input = _currentQTESequence.ListSubHandlers[_indexInSequence];
         while (_indexInSequence < _currentQTESequence.ListSubHandlers.Count)
         {
-            if ((Globals.BeatTimer?.IsInsideBeat ?? true) || true) //A MODIFIER
+            if ((Globals.BeatTimer?.IsInsideBeatWindow ?? true) || true) //A MODIFIER
             {
                 if (CheckInput(input))
                 {

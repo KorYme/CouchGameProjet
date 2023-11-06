@@ -46,7 +46,6 @@ public class PlayerInputController : MonoBehaviour
     private IEnumerator Start()
     {
         yield return new WaitUntil(() => ReInput.isReady && PlayerInputsAssigner.GetRewiredPlayer((int)_gamePlayerRole) != null);
-        Debug.Log("Rewired ready");
         newPlayer = PlayerInputsAssigner.GetRewiredPlayer((int)_gamePlayerRole);
         Players.AddPlayerToList(this, (int) PlayerInputsAssigner.GetRolePlayer((int)_gamePlayerRole));
         SetUpAllInputClasses();
@@ -60,7 +59,6 @@ public class PlayerInputController : MonoBehaviour
             switch (inputClass)
         {
                 case InputVector2 inputVector2:
-                    Debug.Log("Add Vector2 delegate");
                     inputVector2.Player = newPlayer;
                     newPlayer.AddInputEventDelegate(inputVector2.InputCallbackSecondAction, UpdateLoopType.Update, inputVector2.SecondActionID);
                     break;

@@ -270,9 +270,9 @@
 				</MusicSegment>
 				<MusicSegment Name="Alesso Payday" ID="{693A3023-6DFB-4776-8EC2-731FF11A5541}" ShortID="230343818">
 					<PropertyList>
-						<Property Name="EndPosition" Type="Real64" Value="198024.023531583"/>
+						<Property Name="EndPosition" Type="Real64" Value="255166.857142857"/>
 						<Property Name="GridFrequencyPreset" Type="int16" Value="53"/>
-						<Property Name="GridOffsetCustom" Type="Real64" Value="380"/>
+						<Property Name="GridOffsetCustom" Type="Real64" Value="170"/>
 						<Property Name="GridOffsetPreset" Type="int16" Value="1"/>
 						<Property Name="Tempo" Type="Real64" Value="126"/>
 						<Property Name="Volume" Type="Real64">
@@ -360,30 +360,30 @@
 							</Reference>
 							<Reference>
 								<Local>
-									<MusicCue Name="Test" ID="{8F4C8758-45B0-42FA-8419-77B2405BC35A}">
+									<MusicCue Name="DropEnd" ID="{CFBEC4AA-62C2-4EBF-9E7C-40126F9375E7}">
 										<PropertyList>
 											<Property Name="CueType" Type="int16" Value="2"/>
-											<Property Name="TimeMs" Type="Real64" Value="3809.52380952381"/>
+											<Property Name="TimeMs" Type="Real64" Value="66666.6666666667"/>
 										</PropertyList>
 									</MusicCue>
 								</Local>
 							</Reference>
 							<Reference>
 								<Local>
-									<MusicCue Name="DROOOOOOPPPP" ID="{CFBEC4AA-62C2-4EBF-9E7C-40126F9375E7}">
+									<MusicCue Name="BuildUpStart" ID="{7CC9C465-9940-4196-9E0F-DF965744BB98}">
 										<PropertyList>
 											<Property Name="CueType" Type="int16" Value="2"/>
-											<Property Name="TimeMs" Type="Real64" Value="7619.04761904762"/>
+											<Property Name="TimeMs" Type="Real64" Value="60000"/>
 										</PropertyList>
 									</MusicCue>
 								</Local>
 							</Reference>
 							<Reference>
 								<Local>
-									<MusicCue Name="FirstBEat" ID="{7CC9C465-9940-4196-9E0F-DF965744BB98}">
+									<MusicCue Name="DropStart" ID="{47DC586E-B2E7-40F0-830E-5F0EF57FB66E}">
 										<PropertyList>
 											<Property Name="CueType" Type="int16" Value="2"/>
-											<Property Name="TimeMs" Type="Real64" Value="357.142857142857"/>
+											<Property Name="TimeMs" Type="Real64" Value="65508.4423458516"/>
 										</PropertyList>
 									</MusicCue>
 								</Local>
