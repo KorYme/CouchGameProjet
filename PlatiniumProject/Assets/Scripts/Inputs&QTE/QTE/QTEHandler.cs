@@ -22,6 +22,7 @@ public class QTEHandler : MonoBehaviour
     
     int _indexOfSequence = 0;
     int _indexInSequence = 0;
+    int _indexInListSequences = 0;
     bool _isSequenceComplete = false;
     int _durationHold = 0;
     CheckHasInputThisBeat _checkInputThisBeat;
@@ -128,8 +129,10 @@ public class QTEHandler : MonoBehaviour
     private void StartSequenceDependingOntype()
     {
         _indexInSequence = 0;
+        _indexInListSequences = 0;
         _currentQTESequence = _currentListSequences.GetSequence(_indexOfSequence);
         _inputsSucceeded = new bool[_currentQTESequence.ListSubHandlers.Count];
+        _currentListSequences.SetUpList();
         foreach (IQTEable reciever in _QTEables)
         {
             reciever.OnQTEStarted(_currentQTESequence);
@@ -172,9 +175,9 @@ public class QTEHandler : MonoBehaviour
     #endregion
     public string GetQTEString()
     {
-        if (_currentQTESequence != null)
+        if (_currentListSequences != null)
         {
-            StringBuilder str = new StringBuilder();
+            /*StringBuilder str = new StringBuilder();
             UnitInput input;
             for (int i = 0;i < _currentQTESequence.ListSubHandlers.Count ;i++)
             {
@@ -183,7 +186,7 @@ public class QTEHandler : MonoBehaviour
                 InputAction action = ReInput.mapping.GetAction(input.ActionIndex);
                 if (action != null)
                 {
-                    if (_inputsSucceeded != null && _inputsSucceeded[input.Index])
+                    if (_inputsSucceeded != null && _inputsSucceeded[i])
                     {
                         str.Append("<color=\"green\">");
                     } else if (_indexInSequence == i && _currentQTESequence.SequenceType == InputsSequence.SEQUENCE)
@@ -203,9 +206,9 @@ public class QTEHandler : MonoBehaviour
                 {
                     str.Append("+ ");
                 }
-            }
-            
-            return str.ToString();
+            }*/
+
+            return _currentListSequences.ToString(_indexOfSequence, _indexInSequence);
         }
         return String.Empty;
     }
@@ -226,13 +229,17 @@ public class QTEHandler : MonoBehaviour
                         if (inputRef.ActionID == expectedActionID)
                         {
                             _inputsSucceeded[_indexInSequence] = true;
+                            _currentListSequences.SetInputSucceeded(_indexInListSequences, true);
                             _indexInSequence++;
+                            _indexInListSequences++;
                             CallOnCorrectInput();
                         } else
                         {
                             _indexInSequence++;
+                            _indexInListSequences++;
                             CallOnWrongInput();
                         }
+                        //Debug.Log($"index {_indexInSequence} {expectedActionID}");
                     }
                 }
             }
@@ -243,6 +250,7 @@ public class QTEHandler : MonoBehaviour
     {
         yield return new WaitUntil(() => _playerController != null);
         UnitInput correctInput = _currentQTESequence.ListSubHandlers[_indexInSequence];
+        Debug.Log($"index {_indexInSequence} {correctInput.ActionIndex}");
         while (_indexInSequence < _currentQTESequence.ListSubHandlers.Count)
         {
             if ((_timingable?.IsInsideBeatWindow ?? true) || true)

@@ -200,7 +200,7 @@ public class QTEWindow : EditorWindow
     }
     private void DisplayMainView()
     {
-        GUILayout.BeginVertical();
+        GUILayout.BeginVertical("GroupBox");
         EditorGUILayout.Space();
         if (_selectedQTE != null)
         {
@@ -296,7 +296,7 @@ public class QTEWindow : EditorWindow
 
         GUI.backgroundColor = Color.red;
         GUILayout.EndVertical();
-        if (GUILayout.Button("Delete") && EditorUtility.DisplayDialog("Delete input",
+        if (GUILayout.Button("X",GUILayout.Width(30), GUILayout.Height(30)) && EditorUtility.DisplayDialog("Delete input",
                 "Are you sure you want to delete this input ?", "Yes", "No"))
         {
             RemoveUnitAtIndex(input.Index);
