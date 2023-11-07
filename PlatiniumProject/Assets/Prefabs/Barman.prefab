@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.19, y: 0.19, z: 0.19}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2764838264077394712}
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.16898394, a: 1}
+  m_Sprite: {fileID: 21300000, guid: e2790b8ba4457754ebb7948b153bfa33, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 1473623265515723792}
   - component: {fileID: 5115288593331536716}
   - component: {fileID: 672007605793595462}
+  - component: {fileID: 9119380374867281263}
   m_Layer: 0
   m_Name: Barman
   m_TagString: Untagged
@@ -201,16 +202,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdcc0fdf8c315ec47ba167ba928dcbc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementData: {fileID: 0}
-  _transformToModify: {fileID: 0}
+  _movementData: {fileID: 11400000, guid: c205aac937c5b25478495ab06937bc4d, type: 2}
+  _transformToModify: {fileID: 2764838264077394712}
+  _inputDeadZone: 0.5
   _barmanPositions:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _timeBetweenBeat: 1
-  _timeBeatAccepted: 0.4
   _renderer: {fileID: 3216145741783483841}
-  _beatManager: {fileID: 0}
 --- !u!114 &672007605793595462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,3 +223,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gamePlayerRole: 0
+--- !u!114 &9119380374867281263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6110243176272634959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86ee12c01a880ba4fb3c459e2744f37a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterAnimationData: {fileID: 11400000, guid: 4fb544f641d7b9d4f9a63dc2bb208fe9, type: 2}
