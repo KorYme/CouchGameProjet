@@ -175,14 +175,20 @@ public class QTEHandler : MonoBehaviour
         if (_currentQTESequence != null)
         {
             StringBuilder str = new StringBuilder();
-            foreach (UnitInput input in _currentQTESequence.ListSubHandlers)
+            UnitInput input;
+            for (int i = 0;i < _currentQTESequence.ListSubHandlers.Count ;i++)
             {
+                input = _currentQTESequence.ListSubHandlers[i];
+
                 InputAction action = ReInput.mapping.GetAction(input.ActionIndex);
                 if (action != null)
                 {
                     if (_inputsSucceeded != null && _inputsSucceeded[input.Index])
                     {
                         str.Append("<color=\"green\">");
+                    } else if (_indexInSequence == i && _currentQTESequence.SequenceType == InputsSequence.SEQUENCE)
+                    {
+                        str.Append("<color=\"orange\">");
                     } else
                     {
                         str.Append("<color=\"red\">");
@@ -207,23 +213,24 @@ public class QTEHandler : MonoBehaviour
     void CheckInputs(int expectedActionID)
     {
         InputBool inputBool;
-        foreach (InputClass inputClass in _inputsQTE)
+        foreach (InputClass inputRef in _inputsQTE)
         {
-            if (!_checkInputThisBeat.HadInputThisBeat)
+            if (!_checkInputThisBeat.HadInputThisBeat && inputRef != null)
             {
-                inputBool = inputClass as InputBool; //TO DO : change for IsJustPerformed or smt in inputclass
-                if (inputBool.IsJustPressed)
+                inputBool = inputRef as InputBool; //TO DO : change for IsJustPerformed or smt in inputclass
+                if (inputBool != null && inputBool.IsJustPressed)
                 {
                     _checkInputThisBeat.ChangeHadInputThisBeat();
-                    if (inputClass.ActionID == expectedActionID)
+                    if (inputRef.ActionID == expectedActionID)
                     {
                         _inputsSucceeded[_indexInSequence] = true;
+                        _indexInSequence++;
                         CallOnCorrectInput();
                     } else
                     {
+                        _indexInSequence++;
                         CallOnWrongInput();
                     }
-                    _indexInSequence++;
                 }
             }
         }
@@ -235,7 +242,7 @@ public class QTEHandler : MonoBehaviour
         UnitInput correctInput = _currentQTESequence.ListSubHandlers[_indexInSequence];
         while (_indexInSequence < _currentQTESequence.ListSubHandlers.Count)
         {
-            if ((_timingable?.IsInsideBeatWindow ?? true) && !_checkInputThisBeat.HadInputThisBeat)
+            if ((_timingable?.IsInsideBeatWindow ?? true) || true)
             {
                 CheckInputs(correctInput.ActionIndex);
             }
@@ -306,6 +313,7 @@ public class QTEHandler : MonoBehaviour
     }
     void CallOnCorrectInput()
     {
+        Debug.LogWarning("CORRECT INPUT");
         foreach (IQTEable reciever in _QTEables)
         {
             reciever.OnQTECorrectInput();
@@ -314,6 +322,7 @@ public class QTEHandler : MonoBehaviour
 
     void CallOnWrongInput()
     {
+        Debug.LogWarning("WRONG INPUT");
         foreach (IQTEable reciever in _QTEables)
         {
             reciever.OnQTEWrongInput();

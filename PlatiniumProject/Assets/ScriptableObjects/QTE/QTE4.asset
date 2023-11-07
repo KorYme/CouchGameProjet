@@ -20,7 +20,6 @@ MonoBehaviour:
   QTELevel: 2
   Status: 0
   DurationHold: 1
-  NbTurns: 1
   ListSubHandlers:
   - {fileID: 11400000, guid: ad10fe15d52c30e499d4cdc3be2a96c8, type: 2}
   - {fileID: 11400000, guid: 7d40ab3b7c04abc4ab906b1873f48515, type: 2}
