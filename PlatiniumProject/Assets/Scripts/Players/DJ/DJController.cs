@@ -190,6 +190,7 @@ public class DJController : MonoBehaviour, IQTEable
 
     public void OnQTEWrongInput()
     {
-        
+        //UpdateQTE();
+        _QTEDisplay.text = _qteHandler?.GetQTEString();
     }
 }
