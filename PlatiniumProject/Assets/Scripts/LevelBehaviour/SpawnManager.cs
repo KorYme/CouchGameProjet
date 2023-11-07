@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
@@ -11,8 +12,8 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private int _objectsToPoolNumber;
     [SerializeField] private Transform _poolingSpawn;
-    [SerializeField] private AreaManager areaManager;
     [SerializeField] private GameObject _pnj;
+    private AreaManager _areaManager;
 
     [Header("Spawn Parameter")] 
     [SerializeField] private Vector2 _minMaxSpawnPerMinutes;
@@ -46,6 +47,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Awake()
     {
+        _areaManager = FindObjectOfType<AreaManager>();
         GdTest();
         
         _badClientsBools = new bool[(int)_badClientRatio.y];
@@ -151,13 +153,13 @@ public class SpawnManager : MonoBehaviour
     }
     public void PullACharacter()
     {
-        if (_availableCharcters.Count <= 0 || areaManager.BouncerTransit.Slots[0].Occupant != null)
+        if (_availableCharcters.Count <= 0 || _areaManager.BouncerTransit.Slots[0].Occupant != null)
         {
             Debug.LogWarning(_availableCharcters.Count <= 0?"No more pullable character" : "First Slot Occuped");
             return;
         }
         CharacterAiPuller chara = _availableCharcters[0];
-        chara.StateMachine.CurrentSlot = areaManager.BouncerTransit.Slots[0];
+        chara.StateMachine.CurrentSlot = _areaManager.BouncerTransit.Slots[0];
         chara.StateMachine.CurrentSlot.Occupant = chara.StateMachine;
         _availableCharcters.Remove(chara);
         chara.PullCharacter(GetClientType(IsBadClient()));
@@ -171,10 +173,16 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator PullRoutine()
     {
+        float timer = 0f;
         while (true)
         {
-            yield return new WaitForSeconds(_minMaxSpawnPerMinutes.x);
-            PullACharacter();
+            timer += Time.deltaTime;
+            if (timer >= _minMaxSpawnPerMinutes.x)
+            {
+                yield return new WaitUntil(() => _areaManager.BouncerTransit.Slots[0].Occupant == null);
+                timer = 0f;
+                PullACharacter();
+            }
             yield return null;
         }
     }
