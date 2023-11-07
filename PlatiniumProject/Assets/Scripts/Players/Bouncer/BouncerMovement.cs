@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
     [Space, Header("Bouncer Parameters")]
     [SerializeField] private AreaManager _areaManager;
 
-    private BouncerState currentState = BouncerState.Moving;
+    private BouncerState _currentState = BouncerState.Moving;
 
     private SlotInformation _currentSlot;
 
@@ -47,53 +48,45 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     protected override void OnInputMove(Vector2 vector)
     {
-        if (currentState == BouncerState.Moving)
+        if (_currentState == BouncerState.Moving)
         {
             Move((int)GetClosestDirectionFromVector(vector));
         }
     }
 
-    private void Update()
+    public void CheckMode(CharacterStateMachine chara)
     {
-        if(currentState == BouncerState.Checking)
-            return;
-        
-        // if (_currentSlot != null && _currentSlot.Occupant != null)
-        // {
-        //     currentState = BouncerState.Checking;
-        //     _currentSlot.Occupant.ChangeState(_currentSlot.Occupant.BouncerCheckState);
-        //     
-        //     StartCoroutine(TestCheck());
-        // }
+        _currentState = BouncerState.Checking;
+        StartCoroutine(TestCheck(chara.transform.position));
     }
-
+    
     public void Move(int index)
     {
         if (_currentSlot.Neighbours[index] == null)
             return;
 
-        if (_currentSlot.Neighbours[index].Occupant != null && _currentSlot.Neighbours[index].Occupant.CurrentState == _currentSlot.Neighbours[index].Occupant.IdleBouncerState)
+        if (MoveTo(_currentSlot.Neighbours[index].transform.position))
         {
-            if (MoveTo(_currentSlot.Neighbours[index].transform.position + new Vector3(_areaManager.BouncerBoard.HorizontalSpacing / 2, 0, 0)))
-            {
-                currentState = BouncerState.Checking;
-                _currentSlot.Neighbours[index].Occupant.ChangeState(_currentSlot.Neighbours[index].Occupant.BouncerCheckState);
-
-                _currentSlot.PlayerOccupant = null;
-                _currentSlot = _currentSlot.Neighbours[index];
-                _currentSlot.PlayerOccupant = this;
-                StartCoroutine(TestCheck());
-            }
+            _currentSlot.PlayerOccupant = null;
+            _currentSlot = _currentSlot.Neighbours[index];
+            _currentSlot.PlayerOccupant = this;
         }
-        else
-        {
-            if (MoveTo(_currentSlot.Neighbours[index].transform.position))
-            {
-                _currentSlot.PlayerOccupant = null;
-                _currentSlot = _currentSlot.Neighbours[index];
-                _currentSlot.PlayerOccupant = this;
-            }
-        }
+        // if (_currentSlot.Neighbours[index].Occupant != null && _currentSlot.Neighbours[index].Occupant.CurrentState == _currentSlot.Neighbours[index].Occupant.IdleBouncerState)
+        // {
+        //     // if (MoveTo(_currentSlot.Neighbours[index].transform.position + new Vector3(_areaManager.BouncerBoard.HorizontalSpacing / 2, 0, 0)))
+        //     // {
+        //     //     currentState = BouncerState.Checking;
+        //     //     _currentSlot.Neighbours[index].Occupant.ChangeState(_currentSlot.Neighbours[index].Occupant.BouncerCheckState);
+        //     //
+        //     //     _currentSlot.PlayerOccupant = null;
+        //     //     _currentSlot = _currentSlot.Neighbours[index];
+        //     //     _currentSlot.PlayerOccupant = this;
+        //     //     StartCoroutine(TestCheck());
+        //     // }
+        // }
+        // else
+        // {
+        // }
     }
 
     private Direction GetClosestDirectionFromVector(Vector2 vector)
@@ -123,15 +116,16 @@ public class BouncerMovement : PlayerMovement, IQTEable
     }
 
 
-    IEnumerator TestCheck()
+    IEnumerator TestCheck(Vector3 pos)
     {
+        CorrectDestination(pos + new Vector3(_areaManager.BouncerBoard.HorizontalSpacing , 0, 0));
         while (true)
         {
             if (_playerController.Action1.InputValue) //ACCEPT
             {
                 CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
                 chara.BouncerAction(true);
-                currentState = BouncerState.Moving;
+                _currentState = BouncerState.Moving;
                 transform.position = _currentSlot.transform.position;
                 yield break;
             }
@@ -159,7 +153,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
     {
         CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
         chara.BouncerAction(false);
-        currentState = BouncerState.Moving;
+        _currentState = BouncerState.Moving;
         transform.position = _currentSlot.transform.position;
         _text.text = "";
     }

@@ -18,6 +18,8 @@ public class EntityMovement : MonoBehaviour, IMovable
     protected ITimingable _timingable => Globals.BeatTimer;
     public bool IsMoving => _movementCoroutine != null;
 
+    private Vector3 _destination;
+
     protected virtual float _TimeBetweenMovements => _movementData.MovementDurationPercent * _timingable.BeatDurationInMilliseconds / 1000f;
     public MovementData MovementData
     {
@@ -31,6 +33,11 @@ public class EntityMovement : MonoBehaviour, IMovable
         _movementCoroutine = StartCoroutine(MovementCoroutineAnimation(position, OnMove, animationFrames));
         return true;
     }
+
+    public void CorrectDestination(Vector3 newDestination)
+    {
+        _destination = newDestination;
+    }
     
     protected virtual IEnumerator MovementCoroutineAnimation (Vector3 positionToGo, Action callBack, int animationsFrames)
     {
@@ -39,6 +46,7 @@ public class EntityMovement : MonoBehaviour, IMovable
         Vector3 initialScale = _transformToModify.localScale;
         float timeBetweenAnims = _TimeBetweenMovements / animationsFrames;
         float animTimer = 0f;
+        _destination = positionToGo;
         
         callBack?.Invoke();
         
@@ -53,7 +61,7 @@ public class EntityMovement : MonoBehaviour, IMovable
                 callBack?.Invoke();
             }
             
-            _transformToModify.position = Vector3.LerpUnclamped(initialPosition, positionToGo, 
+            _transformToModify.position = Vector3.LerpUnclamped(initialPosition, _destination, 
                 _movementData.MovementCurve.Evaluate(timer / _TimeBetweenMovements));
             
             _transformToModify.localScale = initialScale +
@@ -63,7 +71,7 @@ public class EntityMovement : MonoBehaviour, IMovable
             yield return null;
         }
         _transformToModify.localScale = initialScale;
-        _transformToModify.position = positionToGo;
+        _transformToModify.position = _destination;
         _movementCoroutine = null;
     }
 }
