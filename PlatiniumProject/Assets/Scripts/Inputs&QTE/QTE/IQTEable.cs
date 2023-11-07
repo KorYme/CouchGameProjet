@@ -7,4 +7,5 @@ public interface IQTEable
     void OnQTEStarted(QTESequence sequence);
     void OnQTEComplete();
     void OnQTECorrectInput();
+    void OnQTEWrongInput();
 }
