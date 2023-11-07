@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 376560647}
   - component: {fileID: 376560646}
   - component: {fileID: 376560648}
+  - component: {fileID: 376560649}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -222,6 +223,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _offsetTest: 0
   _spriteRenderer: {fileID: 376560646}
+--- !u!114 &376560649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376560645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcc46cd70152b9044b919b1d5a390dd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _allWwiseEvents: {fileID: 0}
 --- !u!1001 &1374131529
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -272,7 +286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _musicIndex
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _timingAfterBeat
@@ -281,6 +295,30 @@ PrefabInstance:
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _timingBeforeBeat
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
+      propertyPath: _musicWwiseEventName.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
+      propertyPath: _musicWwiseEventName.Array.data[0]
+      value: Metronome
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
+      propertyPath: _musicWwiseEventName.Array.data[1]
+      value: CryptOfTheNecrodancer
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
+      propertyPath: _musicWwiseEventName.Array.data[2]
+      value: MageBattle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
+      propertyPath: _musicWwiseEventName.Array.data[3]
+      value: Payday
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
+      propertyPath: _testEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _onBeatEvent.m_PersistentCalls.m_Calls.Array.size
@@ -295,8 +333,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
+      propertyPath: _testEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _onBeatEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
+      propertyPath: _testEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _onBeatEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -304,12 +350,20 @@ PrefabInstance:
       objectReference: {fileID: 376560648}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _onBeatEndEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
+      propertyPath: _testEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
+      propertyPath: _testEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_runInEditMode
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _onBeatEndEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 376560648}
+      objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _onBeatEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -332,7 +386,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _onBeatEndEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeColorToRed
+      value: PlayAnySFX
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _onBeatStartEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -343,16 +397,24 @@ PrefabInstance:
       value: ChangeColorToBlue
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
+      propertyPath: _testEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.MonoBehaviour, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _onBeatEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: TestBeat, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _onBeatEndEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TestBeat, Assembly-CSharp
+      value: WwiseEventPlayer, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _onBeatStartEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: TestBeat, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
+      propertyPath: _testEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _onBeatEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

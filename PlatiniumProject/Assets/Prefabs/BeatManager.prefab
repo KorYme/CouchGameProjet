@@ -96,25 +96,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e573ed85ee043f4989ff9b486aa2aad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _beatWwiseEvent:
-  - idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: e1ef30e0388fba047aa4874e3b7338a1, type: 2}
-  - idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: c22cd34a7118d6544a37279f46b72383, type: 2}
-  - idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 41dfb6b1e975a79488eb2986c27ae82e, type: 2}
-  - idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: d1807f620afa38e438e6b10419d18610, type: 2}
+  _allWwiseEvents: {fileID: 11400000, guid: cf58975faf770dd4cbcef333a05f99a6, type: 2}
   _musicIndex: 1
   _timingBeforeBeat: 0.1
   _timingAfterBeat: 0.3
   _onBeatEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: WwiseEventPlayer, Assembly-CSharp
+        m_MethodName: PlaySFX
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onBeatStartEvent:
     m_PersistentCalls:
       m_Calls: []

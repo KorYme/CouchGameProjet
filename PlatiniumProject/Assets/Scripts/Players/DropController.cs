@@ -28,7 +28,7 @@ public class DropController : MonoBehaviour
     }
     int _triggerPressedNumber;
     BeatManager _beatManager;
-    List<TriggerInputCheck> _allTriggerChecks = new List<TriggerInputCheck>();
+    readonly List<TriggerInputCheck> _allTriggerChecks = new();
 
     private void Awake()
     {
@@ -38,7 +38,7 @@ public class DropController : MonoBehaviour
 
     private void Start()
     {
-        _beatManager ??= Globals.BeatTimer as BeatManager;
+        _beatManager = Globals.BeatTimer as BeatManager;
         _beatManager.OnUserCueReceived += CheckUserCueName;
         _dropState = DROP_STATE.OUT_OF_DROP;
         _triggerPressedNumber = 0;

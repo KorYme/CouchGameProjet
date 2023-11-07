@@ -8,17 +8,18 @@ public abstract class PlayerMovement : EntityMovement
     [Header("Player Movements Parameters")]
     [SerializeField, Range(0f, 1f)] protected float _inputDeadZone = .5f;
 
-    protected abstract PlayerRole _playerRole { get; }
+    protected abstract PlayerRole PlayerRole { get; }
     protected PlayerInputController _playerController;
     protected bool _isInputReset = true;
     protected bool _hasAlreadyMovedThisBeat;
 
     protected virtual IEnumerator Start()
     {
-        yield return new WaitUntil(() => Players.PlayersController[(int)_playerRole] != null);
-        _playerController = Players.PlayersController[(int)_playerRole];
+        yield return new WaitUntil(() => Players.PlayersController[(int)PlayerRole] != null);
+        _playerController = Players.PlayersController[(int)PlayerRole];
         _playerController.LeftJoystick.OnInputChange += CheckJoystickValue;
         _timingable.OnBeatStartEvent.AddListener(AllowNewMovement);
+        
     }
 
     protected virtual void OnDestroy()

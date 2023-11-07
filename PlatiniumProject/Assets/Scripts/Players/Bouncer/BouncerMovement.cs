@@ -20,7 +20,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     private SlotInformation _currentSlot;
 
-    protected override PlayerRole _playerRole => PlayerRole.Bouncer;
+    protected override PlayerRole PlayerRole => PlayerRole.Bouncer;
 
     QTEHandler _qteHandler;
     [SerializeField] TextMeshProUGUI _text;
@@ -29,9 +29,9 @@ public class BouncerMovement : PlayerMovement, IQTEable
     {
         _text.text = "";
         yield return base.Start();
-        Players.PlayersController[(int)_playerRole].RB.OnInputChange += () =>
+        Players.PlayersController[(int)PlayerRole].RB.OnInputChange += () =>
         {
-            Debug.Log(Players.PlayersController[(int)_playerRole].LT.InputValue);
+            Debug.Log(Players.PlayersController[(int)PlayerRole].LT.InputValue);
         };
         _currentSlot = _areaManager.BouncerBoard.Board[_areaManager.BouncerBoard.BoardDimension.x
             * Mathf.Max(1,_areaManager.BouncerBoard.BoardDimension.y / 2 + _areaManager.BouncerBoard.BoardDimension.y % 2) -1];
