@@ -74,6 +74,10 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             {
                 _qteHandler.StartNewQTE();
             }
+            for (int i = 0;i < _waitingCharactersList.Count; i++)
+            {
+                _waitingCharactersList[i].CharacterMove.MoveTo(transform.position + Vector3.left * (i + 1));
+            }
             UpdatePositions();
             _waitingCharactersList[0].ChangeState(_waitingCharactersList[0].BarManAtBar);
         }

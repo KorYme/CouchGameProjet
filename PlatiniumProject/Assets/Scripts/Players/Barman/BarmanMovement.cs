@@ -40,7 +40,7 @@ public class BarmanMovement : PlayerMovement
         {
             if (_indexPosition < _barmanPositions.Length - 1)
             {
-                if (MoveToPosition(_barmanPositions[_indexPosition+1].transform.position))
+                if (MoveTo(_barmanPositions[_indexPosition+1].transform.position))
                 {
                     DeactivateCurrentQTE();
                     _indexPosition++;
@@ -52,7 +52,7 @@ public class BarmanMovement : PlayerMovement
         {
             if (_indexPosition > 0)
             {
-                if (MoveToPosition(_barmanPositions[_indexPosition-1].transform.position))
+                if (MoveTo(_barmanPositions[_indexPosition-1].transform.position))
                 {
                     DeactivateCurrentQTE();
                     _indexPosition--;

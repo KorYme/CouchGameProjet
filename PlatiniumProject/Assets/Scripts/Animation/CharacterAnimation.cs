@@ -13,7 +13,11 @@ public class CharacterAnimation : MonoBehaviour
     private int _animationIndex;
     private ANIMATION_TYPE lastAnimationType;
 
-    public CharacterAnimationObject CharacterAnimationObject => _characterAnimationData;
+    public CharacterAnimationObject CharacterAnimationObject
+    {
+        get { return _characterAnimationData; }
+        set { if(value != null) _characterAnimationData = value; }
+    }
 
 
     public void ResetAnimation()
