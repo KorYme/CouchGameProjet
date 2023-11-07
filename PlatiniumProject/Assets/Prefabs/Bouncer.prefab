@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1021743411
-  m_SortingLayer: 1
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 013f07d8896301546a0c64f24f3a384d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 8203250582693646274}
   - component: {fileID: 6699403960362053402}
   - component: {fileID: 1802435890418990038}
+  - component: {fileID: 6716087328787060443}
   m_Layer: 0
   m_Name: Bouncer
   m_TagString: Untagged
@@ -131,10 +132,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1611ab4a2152a31448f261ed9748aacc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementData: {fileID: 0}
-  _transformToModify: {fileID: 0}
+  _movementData: {fileID: 11400000, guid: c205aac937c5b25478495ab06937bc4d, type: 2}
+  _transformToModify: {fileID: 4017106879461392871}
   _inputDeadZone: 0.5
   _areaManager: {fileID: 0}
+  _text: {fileID: 0}
 --- !u!114 &6699403960362053402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,4 +163,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _role: 2
-  _holdDuration: 0.5
+--- !u!114 &6716087328787060443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7340047238265229073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86ee12c01a880ba4fb3c459e2744f37a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterAnimationData: {fileID: 11400000, guid: 4fb544f641d7b9d4f9a63dc2bb208fe9, type: 2}

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UIElements;
@@ -45,6 +46,8 @@ public class SpawnManager : MonoBehaviour
 
     private void Awake()
     {
+        GdTest();
+        
         _badClientsBools = new bool[(int)_badClientRatio.y];
         _characterList = new CharacterAiPuller[_objectsToPoolNumber];
         for (int i = 0; i < _objectsToPoolNumber; ++i)
@@ -56,6 +59,21 @@ public class SpawnManager : MonoBehaviour
             _characterList[i] = puller;
             _availableCharcters.Add(puller);
         }
+    }
+
+    private void GdTest()
+    {
+        if (_minMaxSpawnPerMinutes.x <= 0 || _minMaxSpawnPerMinutes.y <= 0)
+            Debug.LogException(new DataException("SpawnIntervalle must be positive integer"), this);
+
+        if (_minMaxSpawnPerMinutes.x >= _minMaxSpawnPerMinutes.y)
+            Debug.LogException(new DataException("SpawnIntervalle first value must be higher than the second"), this);
+
+        if (_badClientRatio.x <= 0 || _badClientRatio.y <= 0)
+            Debug.LogException(new DataException("badclientRation must be positive integer"), this);
+
+        if (_badClientRatio.x >= _badClientRatio.y)
+            Debug.LogException(new DataException("badclientRation first value must be higher than the second"), this);
     }
 
     private void Start()
