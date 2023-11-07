@@ -59,43 +59,46 @@ public class QTEListSequences
         UnitInput input;
         StringBuilder str = new StringBuilder();
         int index = 0;
-        for (int i = 0; i < _sequences.Count; i++)
+        if (_inputsSucceeded != null)
         {
-            sequence = _sequences[i];
-            for (int j = 0; j < sequence.ListSubHandlers.Count; j++)
+            for (int i = 0; i < _sequences.Count; i++)
             {
-                input = sequence.ListSubHandlers[j];
-
-                InputAction action = ReInput.mapping.GetAction(input.ActionIndex);
-                if (action != null && _inputsSucceeded != null)
+                sequence = _sequences[i];
+                for (int j = 0; j < sequence.ListSubHandlers.Count; j++)
                 {
-                    if (_inputsSucceeded[index])
+                    input = sequence.ListSubHandlers[j];
+
+                    InputAction action = ReInput.mapping.GetAction(input.ActionIndex);
+                    if (action != null)
                     {
-                        Debug.Log($"{index} GOOD");
-                        str.Append("<color=\"green\">");
-                    }
-                    else if (currentIndex == j && currentIndexSequence == i
-                        && sequence.SequenceType == InputsSequence.SEQUENCE)
-                    {
-                        str.Append("<color=\"orange\">");
+                        if (_inputsSucceeded[index])
+                        {
+                            Debug.Log($"{index} GOOD");
+                            str.Append("<color=\"green\">");
+                        }
+                        else if (currentIndex == j && currentIndexSequence == i
+                            && sequence.SequenceType == InputsSequence.SEQUENCE)
+                        {
+                            str.Append("<color=\"orange\">");
+                        }
+                        else
+                        {
+                            Debug.Log($"{index} WRONG");
+                            str.Append("<color=\"red\">");
+                        }
+                        str.Append(action.descriptiveName);
+                        str.Append("</color> ");
                     }
                     else
                     {
-                        Debug.Log($"{index} WRONG");
-                        str.Append("<color=\"red\">");
+                        str.Append("(Not found) ");
                     }
-                    str.Append(action.descriptiveName);
-                    str.Append("</color> ");
+                    if (sequence.SequenceType == InputsSequence.SIMULTANEOUS && input.Index != sequence.ListSubHandlers.Count - 1 && sequence.Index != _sequences.Count - 1)
+                    {
+                        str.Append("+ ");
+                    }
+                    ++index;
                 }
-                else
-                {
-                    str.Append("(Not found) ");
-                }
-                if (sequence.SequenceType == InputsSequence.SIMULTANEOUS && input.Index != sequence.ListSubHandlers.Count - 1 && sequence.Index != _sequences.Count - 1)
-                {
-                    str.Append("+ ");
-                }
-                ++index;
             }
         }
         return str.ToString();

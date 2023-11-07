@@ -45,8 +45,6 @@ public class QTEHandler : MonoBehaviour
             _playerController.Action4,
             _playerController.RB,
             _playerController.RT,
-            _playerController.RT,
-            //_playerController.RightJoystick            
         };
     }
 
@@ -78,6 +76,7 @@ public class QTEHandler : MonoBehaviour
     public void StartNewQTE(CharacterTypeData[] characters = null)
     {
         _indexOfSequence = 0;
+        _indexInListSequences = 0;
         _currentListSequences.Clear();
         StoreNewQTE(characters);
         StartSequenceDependingOntype();
@@ -93,6 +92,7 @@ public class QTEHandler : MonoBehaviour
         {
             _currentQTESequence = QTELoader.Instance.GetRandomQTE(_role);
             _currentListSequences.AddSequence(_currentQTESequence);
+            Debug.Log($"TYPE QTE{_currentQTESequence.Index}");
         }
         else
         {
@@ -114,6 +114,7 @@ public class QTEHandler : MonoBehaviour
                 _currentListSequences.AddSequence(_currentQTESequence);
             }
         }
+        _currentListSequences.SetUpList();
         LengthInputs = _currentListSequences.TotalLengthInputs;
     }
 
@@ -129,10 +130,9 @@ public class QTEHandler : MonoBehaviour
     private void StartSequenceDependingOntype()
     {
         _indexInSequence = 0;
-        _indexInListSequences = 0;
         _currentQTESequence = _currentListSequences.GetSequence(_indexOfSequence);
         _inputsSucceeded = new bool[_currentQTESequence.ListSubHandlers.Count];
-        _currentListSequences.SetUpList();
+        
         foreach (IQTEable reciever in _QTEables)
         {
             reciever.OnQTEStarted(_currentQTESequence);
@@ -175,7 +175,7 @@ public class QTEHandler : MonoBehaviour
     #endregion
     public string GetQTEString()
     {
-        if (_currentListSequences != null)
+        if (_currentListSequences != null || _currentListSequences.Length > 0)
         {
             /*StringBuilder str = new StringBuilder();
             UnitInput input;
