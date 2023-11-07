@@ -25,7 +25,7 @@ public class TransitQueueEditor : Editor
         {
             Destroy(this);
         }
-        SceneView.onSceneGUIDelegate += OnScene;
+        SceneView.duringSceneGui += OnScene;
     }
 
     void OnScene(SceneView scene)
@@ -41,8 +41,6 @@ public class TransitQueueEditor : Editor
 
             Ray ray = scene.camera.ScreenPointToRay(mousePos);
             transitQueue.AddSlot(ray.origin);
-            RaycastHit hit;
-
             e.Use();
         }
         

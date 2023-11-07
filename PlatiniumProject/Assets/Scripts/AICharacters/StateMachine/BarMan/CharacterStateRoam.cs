@@ -27,7 +27,7 @@ public class CharacterStateRoam : CharacterState
         }
     }
 
-    private void BeatAction()
+    public override void BeatAction()
     {
         if (StateMachine.AreaManager.RoamQueue[0] == StateMachine)
         {

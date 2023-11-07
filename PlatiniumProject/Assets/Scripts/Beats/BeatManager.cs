@@ -9,10 +9,10 @@ public class BeatManager : MonoBehaviour, ITimingable
 {
     #region FIELDS
     [Header("References"), Space]
-    [SerializeField, Tooltip("Wwise play event to launch the sound and the beat\nDon't need to be modified by GDs")] 
+    [SerializeField, Tooltip("Wwise play event to launch the sound and the beat\nDon't need to be modified by GDs"), Space] 
     List<AK.Wwise.Event> _beatWwiseEvent;
 
-    [SerializeField, Range(0,2)]
+    [SerializeField, Range(0,3)]
     int _musicIndex;
 
     [Header("Parameters"), Space]
@@ -34,6 +34,11 @@ public class BeatManager : MonoBehaviour, ITimingable
     int _beatDurationInMilliseconds;
     DateTime _lastBeatTime;
     Coroutine _beatCoroutine;
+
+    public event Action OnNextBeatStart;
+    public event Action OnNextBeat;
+    public event Action OnNextBeatEnd;
+    public event Action<string> OnUserCueReceived;
     #endregion
 
     #region PROPERTIES
@@ -42,9 +47,12 @@ public class BeatManager : MonoBehaviour, ITimingable
     public UnityEvent OnBeatStartEvent => _onBeatStartEvent;
     public UnityEvent OnBeatEndEvent => _onBeatEndEvent;
 
-    public bool IsInsideBeat => IsInBeatWindowBefore || IsInBeatWindowAfter;
+    public bool IsInsideBeatWindow => IsInBeatWindowBefore || IsInBeatWindowAfter;
     public bool IsInBeatWindowBefore => (DateTime.Now - _lastBeatTime).TotalMilliseconds < (_timingAfterBeat * _beatDurationInMilliseconds);
     public bool IsInBeatWindowAfter => (DateTime.Now - _lastBeatTime).TotalMilliseconds > _beatDurationInMilliseconds - (_timingBeforeBeat * _beatDurationInMilliseconds);
+
+    public double BeatDeltaTime => (DateTime.Now - _lastBeatTime).TotalMilliseconds;
+
     #endregion
 
     #region PROCEDURES
@@ -61,35 +69,66 @@ public class BeatManager : MonoBehaviour, ITimingable
     private IEnumerator Start()
     {
         _beatDurationInMilliseconds = 1000;
+        _onBeatEvent.AddListener(() =>
+        {
+            OnNextBeat?.Invoke();
+            OnNextBeat = null;
+        });
+        _onBeatStartEvent.AddListener(() =>
+        {
+            OnNextBeatStart?.Invoke();
+            OnNextBeatStart = null;
+        });
+        _onBeatEndEvent.AddListener(() =>
+        {
+            OnNextBeatEnd?.Invoke();
+            OnNextBeatEnd = null;
+        });
         yield return null;
-        _beatWwiseEvent[_musicIndex].Post(gameObject, (uint)AkCallbackType.AK_MusicSyncGrid, BeatCallBack);
+        _beatWwiseEvent[_musicIndex].Post(gameObject, (uint)AkCallbackType.AK_MusicSyncGrid | (uint)AkCallbackType.AK_MusicSyncUserCue, BeatCallBack);
+    }
+
+    private void OnDestroy()
+    {
+        _onBeatEvent.RemoveAllListeners();
+        _onBeatStartEvent.RemoveAllListeners();
+        _onBeatEndEvent.RemoveAllListeners();
+        OnNextBeatStart = null;
+        OnNextBeat = null;
+        OnNextBeatEnd = null;
     }
 
     private void BeatCallBack(object in_cookie, AkCallbackType in_type, AkCallbackInfo in_info)
     {
-        _lastBeatTime = DateTime.Now;
-        if (_beatCoroutine == null)
-        {
-            _beatCoroutine = StartCoroutine(BeatCoroutine());
-        }
-        switch (in_info)
-        {
-            case AkMusicSyncCallbackInfo info:
-                _beatDurationInMilliseconds = (int)(info.segmentInfo_fBeatDuration * 1000);
+        AkMusicSyncCallbackInfo info = in_info as AkMusicSyncCallbackInfo;
+        switch (in_type)
+        { 
+            case AkCallbackType.AK_MusicSyncGrid:
+                _beatCoroutine ??= StartCoroutine(BeatCoroutine());
+                _lastBeatTime = DateTime.Now;
+                _beatDurationInMilliseconds = (int)((info?.segmentInfo_fGridDuration ?? 1) * 1000);
+                OnBeatEvent?.Invoke();
+                if (OnNextBeat != null)
+                {
+                    OnNextBeat.Invoke();
+                    OnNextBeat = null;
+                }
+                break;
+            case AkCallbackType.AK_MusicSyncUserCue:
+                OnUserCueReceived?.Invoke(info?.userCueName ?? "");
                 break;
             default:
                 break;
         }
-        OnBeatEvent?.Invoke();
     }
 
     IEnumerator BeatCoroutine()
     {
         while (true)
         {
-            yield return new WaitWhile(() => IsInsideBeat);
+            yield return new WaitWhile(() => IsInsideBeatWindow);
             OnBeatEndEvent?.Invoke();
-            yield return new WaitUntil(() => IsInsideBeat);
+            yield return new WaitUntil(() => IsInsideBeatWindow);
             OnBeatStartEvent?.Invoke();
         }
     }

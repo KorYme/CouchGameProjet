@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 
 public interface ITimingable
 {
-    public bool IsInsideBeat => IsInBeatWindowBefore || IsInBeatWindowAfter;
+    public bool IsInsideBeatWindow => IsInBeatWindowBefore || IsInBeatWindowAfter;
     public bool IsInBeatWindowBefore { get; }
     public bool IsInBeatWindowAfter { get; }
     public int BeatDurationInMilliseconds { get; }

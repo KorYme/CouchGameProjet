@@ -7,8 +7,6 @@ public class BarmanMovement : PlayerMovement
     [SerializeField] BarmanPosition[] _barmanPositions;
     [SerializeField] SpriteRenderer _renderer;
 
-    float _timer = 0f;
-
     int _indexPosition;
     public int IndexPosition { get => _indexPosition;}
 
