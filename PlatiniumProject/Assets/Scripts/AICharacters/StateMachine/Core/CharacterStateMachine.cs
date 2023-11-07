@@ -141,10 +141,10 @@ public class CharacterStateMachine : MonoBehaviour
                 ChangeState(IdleTransitState);
                 break;
             
-            case CharacterStateRoam characterStateRoam:
+            case CharacterStateBarmanQueue characterStateRoam:
                 Vector2 destination = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * Random.Range(0f, AreaManager.CircleRadius);
-                transform.position = destination;
-                ChangeState(RoamState);
+                transform.position = AreaManager.CircleOrigin.position + (Vector3) destination;
+                ChangeState(BarManQueueState);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(startState));
@@ -187,6 +187,11 @@ public class CharacterStateMachine : MonoBehaviour
         _spawnManager.ReInsertCharacterInPull(Puller);
         ChangeState(null);
         _spriteRenderer.color = Color.white;
+        CurrentBeatAmount = 0;
+        CurrentMovementInBouncer = 0;
+        MoveToLocation = Vector3.zero;
+        CurrentState = null;
+        NextState = null;
     }
 
     // private void GetRandomCharacterTypeData()

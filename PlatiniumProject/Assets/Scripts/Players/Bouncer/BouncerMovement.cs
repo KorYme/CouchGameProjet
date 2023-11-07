@@ -53,12 +53,26 @@ public class BouncerMovement : PlayerMovement, IQTEable
         }
     }
 
+    private void Update()
+    {
+        if(currentState == BouncerState.Checking)
+            return;
+        
+        // if (_currentSlot != null && _currentSlot.Occupant != null)
+        // {
+        //     currentState = BouncerState.Checking;
+        //     _currentSlot.Occupant.ChangeState(_currentSlot.Occupant.BouncerCheckState);
+        //     
+        //     StartCoroutine(TestCheck());
+        // }
+    }
+
     public void Move(int index)
     {
         if (_currentSlot.Neighbours[index] == null)
             return;
 
-        if (_currentSlot.Neighbours[index].Occupant != null)
+        if (_currentSlot.Neighbours[index].Occupant != null && _currentSlot.Neighbours[index].Occupant.CurrentState == _currentSlot.Neighbours[index].Occupant.IdleBouncerState)
         {
             if (MoveTo(_currentSlot.Neighbours[index].transform.position + new Vector3(_areaManager.BouncerBoard.HorizontalSpacing / 2, 0, 0)))
             {
