@@ -14,8 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: 1
   PlayerRole: 1
-  Difficulty: 0
   SequenceType: 0
+  ClientType: 0
+  Evilness: 0
+  QTELevel: 1
+  Status: 0
+  DurationHold: 1
   ListSubHandlers:
   - {fileID: 11400000, guid: b63e7eaa24aeac34bb3a74610cccde50, type: 2}
   - {fileID: 11400000, guid: 2bf6d803068474d4691987515d087610, type: 2}

@@ -1,22 +1,16 @@
 using System.Collections;
 using UnityEngine;
 
-public class BarmanMovement : MonoBehaviour
+public class BarmanMovement : PlayerMovement
 {
-    PlayerInputController _controller;
+    [Space, Header("Bouncer Parameters")]
     [SerializeField] BarmanPosition[] _barmanPositions;
-    //[SerializeField,Range(0f,1f)] float _inputAcceptanceThreshold = 0.1f;
-    int _indexPosition;
-    [SerializeField] float _timeBetweenBeat = 1f;
-    [SerializeField] float _timeBeatAccepted = 0.1f;
-    float _timer = 0f;
     [SerializeField] SpriteRenderer _renderer;
-    bool _inputRefreshed = true;
 
-    [SerializeField] BeatManager _beatManager;
-
+    int _indexPosition;
     public int IndexPosition { get => _indexPosition;}
-    public BarmanPosition[] BarmanPositions { get => _barmanPositions;}
+
+    protected override PlayerRole _playerRole => PlayerRole.Barman;
 
     private void Awake()
     {
@@ -26,49 +20,13 @@ public class BarmanMovement : MonoBehaviour
             MoveBarmanToIndex();
         }
     }
-    
-    private void Start()
+    protected override IEnumerator Start()
     {
-        _renderer.color = _beatManager.IsInsideBeat ? Color.red : Color.blue;
-        //StartCoroutine(CoroutineBeat());
-        _beatManager.OnBeatStartEvent.AddListener(ChangeColorToRed);
-        _beatManager.OnBeatEndEvent.AddListener(ChangeColorToBlue);
-    }
-
-    private void OnDestroy()
-    {
-        _beatManager.OnBeatStartEvent.RemoveListener(ChangeColorToRed);
-        _beatManager.OnBeatEndEvent.RemoveListener(ChangeColorToBlue);
-    }
-
-    public void ChangeColorToRed()
-    {
-        _renderer.color = Color.red;
-    }
+        DeactivateAllQTE();
+        ActivateCurrentQTE();
         
-    public void ChangeColorToBlue()
-    {
-        _renderer.color = Color.blue;
-    }
-
-    IEnumerator CoroutineBeat()
-    {
-        while (true)
-        {
-            _timer += Time.deltaTime;
-            _timer %= _timeBetweenBeat;
-            
-            if (_timer > _timeBetweenBeat - _timeBeatAccepted / 2f)
-            {
-                _renderer.color = Color.red;
-            }
-            else if(_timer > _timeBeatAccepted / 2f)
-            {
-                _renderer.color = Color.blue;
-            }
-
-            yield return null;
-        }
+        yield return base.Start();
+        Debug.Log("Barman Initialisé");
     }
 
     public void MoveBarmanToIndex()
@@ -80,59 +38,51 @@ public class BarmanMovement : MonoBehaviour
     {
         if (value > 0f)
         {
-            
             if (_indexPosition < _barmanPositions.Length - 1)
             {
-                _indexPosition++;
+                if (MoveTo(_barmanPositions[_indexPosition+1].transform.position))
+                {
+                    DeactivateCurrentQTE();
+                    _indexPosition++;
+                    ActivateCurrentQTE();
+                }
             }
-            MoveBarmanToIndex();
         }
         else if (value < 0f)
         {
             if (_indexPosition > 0)
             {
-                _indexPosition--;
+                if (MoveTo(_barmanPositions[_indexPosition-1].transform.position))
+                {
+                    DeactivateCurrentQTE();
+                    _indexPosition--;
+                    ActivateCurrentQTE();
+                }
             }
-            MoveBarmanToIndex();
         }
     }
 
-    public bool IsInputDuringBeatTime()
+
+    protected override void OnInputMove(Vector2 vector)
     {
-        return _beatManager.IsInsideBeat;
-        //return _timer < _timeBeatAccepted / 2f || _timer > _timeBetweenBeat - (_timeBeatAccepted / 2f);
-    }
-    private void Update()
-    {
-        if (_controller == null)
-        {
-            SetupController();
-        }
-        if (!IsInputDuringBeatTime())
-        {
-            _inputRefreshed = true;
-        }
+        ChangeIndexToReach(vector.y);
     }
 
-    private void SetupController()
+    void ActivateCurrentQTE()
     {
-        _controller = Players.PlayersController[(int)PlayerRole.Barman];
-        if (_controller != null)
-        {
-            _controller.OnAxisMoveStarted += OnInputMove;
-        }
+        _barmanPositions[_indexPosition].WaitingLine.PauseQTE(false);
+    }
+    
+    void DeactivateCurrentQTE()
+    {
+        _barmanPositions[_indexPosition].WaitingLine.PauseQTE(true);
     }
 
-    void OnInputMove()
+    void DeactivateAllQTE()
     {
-        if (_controller != null)
+        for (int i = 0; i < _barmanPositions.Length; i++)
         {
-            if (_inputRefreshed && IsInputDuringBeatTime())
-            {
-                _inputRefreshed = false;
-                float value = _controller.MoveVector.y;
-                ChangeIndexToReach(value);
-            }
+            _barmanPositions[i].WaitingLine.PauseQTE(true);
         }
     }
 }

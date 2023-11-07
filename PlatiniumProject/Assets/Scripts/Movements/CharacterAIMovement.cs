@@ -1,12 +1,32 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterAIMovement : EntityMovement
 {
-    public override void MoveToPosition(Vector3 position)
+    private CharacterStateMachine _stateMachine;
+    private void Awake()
     {
-        base.MoveToPosition(position);
-        // A MODIFIER
+        _stateMachine = GetComponent<CharacterStateMachine>();
+        OnMove += AnimationSetter;
     }
+
+    private void OnDisable()
+    {
+        OnMove -= AnimationSetter;
+    }
+
+    public void MoveTo(Vector3 pos)
+    {
+        MoveToPosition(pos, _stateMachine.Animation.CharacterAnimationObject.walkAnimation.AnimationLenght);
+    }
+
+    private void AnimationSetter()
+    {
+        _stateMachine.SpriteRenderer.sprite =
+            _stateMachine.Animation.GetAnimationSprite(CharacterAnimation.ANIMATION_TYPE.MOVING);
+    }
+
+
 }
