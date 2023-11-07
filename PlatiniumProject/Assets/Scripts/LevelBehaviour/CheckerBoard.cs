@@ -18,13 +18,42 @@ public class CheckerBoard : MonoBehaviour
     int[] Directions => new int[4] { 1, -1, _boardDimension.x, -_boardDimension.x };
     public float HorizontalSpacing => _horizontalSpacing;
     public List <SlotInformation> AvailableSlots { get; private set; } = new List<SlotInformation>();
-
-
+    public List<SlotInformation> EntrySlots { get; private set; } = new List<SlotInformation>();
+    
     public List<SlotInformation> Board;
 
     private void Awake()
     {
         SetAvailableSlots();
+        SetEnterySlots();
+    }
+
+    private void SetEnterySlots()
+    {
+        for (int i = 0; i < _boardDimension.x; ++i)
+        {
+            EntrySlots.Add(Board[i]);
+        }
+    }
+
+    public bool AreAnyEntryFree()
+    {
+        if (EntrySlots.TrueForAll(x => x.Occupant != null && x.PlayerOccupant != null))
+            return false;
+        return true;
+    }
+
+    public SlotInformation GetFreeEntrySlot()
+    {
+        List<SlotInformation> result = new List<SlotInformation>();
+        EntrySlots.ForEach(x =>
+        {
+            if (x.Occupant == null)
+            {
+                result.Add(x);
+            }
+        });
+        return result[Random.Range(0, result.Count)];
     }
 
     public void Delete()
