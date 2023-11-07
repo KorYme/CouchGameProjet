@@ -35,6 +35,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     private void OnInputCorrect()
     {
         _indexText.text = _qteHandler.GetQTEString();
+        Debug.Log("INPUT CORRECT");
     }
 
      void OnDrinkComplete()
@@ -55,8 +56,9 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
 
      public void OnFailDrink()
      {
-         _indexText.text = _qteHandler.GetQTEString();
+         Debug.Log("DRINK FAIL");
          _qteHandler.DeleteCurrentCoroutine();
+         _indexText.text = _qteHandler.GetQTEString();
          GetNextCharacter();
      }
 
@@ -73,6 +75,10 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             else
             {
                 _qteHandler.StartNewQTE();
+            }
+            for (int i = 0;i < _waitingCharactersList.Count; i++)
+            {
+                _waitingCharactersList[i].CharacterMove.MoveTo(transform.position + Vector3.left * (i + 1));
             }
             UpdatePositions();
             _waitingCharactersList[0].ChangeState(_waitingCharactersList[0].BarManAtBar);
@@ -127,5 +133,9 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
         {
             _qteHandler.PauseQTE(value);
         }
+    }
+
+    public void OnQTEWrongInput()
+    {
     }
 }

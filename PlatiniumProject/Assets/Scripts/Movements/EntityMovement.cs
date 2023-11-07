@@ -14,23 +14,29 @@ public class EntityMovement : MonoBehaviour, IMovable
     [SerializeField] protected Transform _transformToModify;
 
     protected Coroutine _movementCoroutine;
+    protected Action OnMove;
     protected ITimingable _timingable => Globals.BeatTimer;
     public bool IsMoving => _movementCoroutine != null;
 
-    protected virtual float _TimeBetweenMovements => _movementData.MovementDurationPercent * _timingable.BeatDurationInMilliseconds / 1000f;
+    private Vector3 _destination;
 
-    public virtual bool MoveToPosition(Vector3 position)
+    protected virtual float _TimeBetweenMovements => _movementData.MovementDurationPercent * _timingable.BeatDurationInMilliseconds / 1000f;
+    public MovementData MovementData
     {
-        if (IsMoving) return false;
-        _movementCoroutine = StartCoroutine(MovementCoroutine(position));
-        return true;
+        get { return _movementData; }
+        set { if(value != null) _movementData = value; }
     }
     
-    public virtual bool MoveToPositionWithAnim(Vector3 position, Action callBack, int animationFrames)
+    public virtual bool MoveToPosition(Vector3 position, int animationFrames)
     {
         if (IsMoving) return false;
-        _movementCoroutine = StartCoroutine(MovementCoroutineAnimation(position, callBack, animationFrames));
+        _movementCoroutine = StartCoroutine(MovementCoroutineAnimation(position, OnMove, animationFrames));
         return true;
+    }
+
+    public void CorrectDestination(Vector3 newDestination)
+    {
+        _destination = newDestination;
     }
     
     protected virtual IEnumerator MovementCoroutineAnimation (Vector3 positionToGo, Action callBack, int animationsFrames)
@@ -39,20 +45,23 @@ public class EntityMovement : MonoBehaviour, IMovable
         Vector3 initialPosition = _transformToModify.position;
         Vector3 initialScale = _transformToModify.localScale;
         float timeBetweenAnims = _TimeBetweenMovements / animationsFrames;
-        float animTimer = 1f;
+        float animTimer = 0f;
+        _destination = positionToGo;
+        
+        callBack?.Invoke();
         
         while (timer < _TimeBetweenMovements)
         {
             timer += Time.deltaTime;
             animTimer += Time.deltaTime;
 
-            if (animTimer >= timeBetweenAnims - Mathf.Epsilon * 2)
+            if (animTimer >= timeBetweenAnims )
             {
                 animTimer = 0f;
                 callBack?.Invoke();
             }
             
-            _transformToModify.position = Vector3.LerpUnclamped(initialPosition, positionToGo, 
+            _transformToModify.position = Vector3.LerpUnclamped(initialPosition, _destination, 
                 _movementData.MovementCurve.Evaluate(timer / _TimeBetweenMovements));
             
             _transformToModify.localScale = initialScale +
@@ -62,26 +71,7 @@ public class EntityMovement : MonoBehaviour, IMovable
             yield return null;
         }
         _transformToModify.localScale = initialScale;
-        _transformToModify.position = positionToGo;
-        _movementCoroutine = null;
-    }
-    protected virtual IEnumerator MovementCoroutine(Vector3 positionToGo)
-    {
-        float timer = 0;
-        Vector3 initialPosition = _transformToModify.position;
-        Vector3 initialScale = _transformToModify.localScale;
-        while (timer < _TimeBetweenMovements)
-        {
-            timer += Time.deltaTime;
-            _transformToModify.position = Vector3.LerpUnclamped(initialPosition, positionToGo, 
-                _movementData.MovementCurve.Evaluate(timer / _TimeBetweenMovements));
-            _transformToModify.localScale = initialScale + 
-                (new Vector3(initialScale.x * _movementData.BounceMultiplierX, initialScale.y * _movementData.BounceMultiplierY, 0) 
-                * _movementData.BounceCurve.Evaluate(timer / _TimeBetweenMovements));
-            yield return null;
-        }
-        _transformToModify.localScale = initialScale;
-        _transformToModify.position = positionToGo;
+        _transformToModify.position = _destination;
         _movementCoroutine = null;
     }
 }

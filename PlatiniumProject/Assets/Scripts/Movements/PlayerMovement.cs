@@ -13,10 +13,20 @@ public abstract class PlayerMovement : EntityMovement
     protected bool _isInputReset = true;
     protected bool _hasAlreadyMovedThisBeat;
 
+    protected CharacterAnimation _animation;
+    protected SpriteRenderer _sp;
+
+    private void Awake()
+    {
+    }
+
     protected virtual IEnumerator Start()
     {
-        yield return new WaitUntil(() => Players.PlayersController[(int)PlayerRole] != null);
-        _playerController = Players.PlayersController[(int)PlayerRole];
+        _sp = GetComponentInChildren<SpriteRenderer>();
+        _animation = GetComponent<CharacterAnimation>();
+        OnMove += AnimationSetter;
+        yield return new WaitUntil(() => Players.PlayersController[(int)_playerRole] != null);
+        _playerController = Players.PlayersController[(int)_playerRole];
         _playerController.LeftJoystick.OnInputChange += CheckJoystickValue;
         _timingable.OnBeatStartEvent.AddListener(AllowNewMovement);
         
@@ -24,6 +34,7 @@ public abstract class PlayerMovement : EntityMovement
 
     protected virtual void OnDestroy()
     {
+        OnMove -= AnimationSetter;
         if (_playerController != null)
         {
             _playerController.LeftJoystick.OnInputChange -= CheckJoystickValue;
@@ -35,17 +46,22 @@ public abstract class PlayerMovement : EntityMovement
 
     protected void AllowNewMovement() => _hasAlreadyMovedThisBeat = false;
 
-    public override bool MoveToPosition(Vector3 position)
+    public bool MoveTo(Vector3 position)
     {
         if (_hasAlreadyMovedThisBeat || !_timingable.IsInsideBeatWindow) return false;
-        if (base.MoveToPosition(position))
+        if (MoveToPosition(position, _animation.CharacterAnimationObject.walkAnimation.AnimationLenght))
         {
             _hasAlreadyMovedThisBeat = true;
             return true;
         }
         return false;
     }
-
+    
+    private void AnimationSetter()
+    {
+        _sp.sprite = _animation.GetAnimationSprite(CharacterAnimation.ANIMATION_TYPE.MOVING);
+    }
+    
     protected virtual void CheckJoystickValue()
     {
         Vector2 vector = GetClosestUnitVectorFromVector(_playerController.LeftJoystick.InputValue);

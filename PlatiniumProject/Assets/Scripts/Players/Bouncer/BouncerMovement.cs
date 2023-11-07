@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
     [Space, Header("Bouncer Parameters")]
     [SerializeField] private AreaManager _areaManager;
 
-    private BouncerState currentState = BouncerState.Moving;
+    private BouncerState _currentState = BouncerState.Moving;
 
     private SlotInformation _currentSlot;
 
@@ -29,9 +30,9 @@ public class BouncerMovement : PlayerMovement, IQTEable
     {
         _text.text = "";
         yield return base.Start();
-        Players.PlayersController[(int)PlayerRole].RB.OnInputChange += () =>
+        Players.PlayersController[(int)_playerRole].RB.OnInputChange += () =>
         {
-            Debug.Log(Players.PlayersController[(int)PlayerRole].LT.InputValue);
+            Debug.Log(Players.PlayersController[(int)_playerRole].LT.InputValue);
         };
         _currentSlot = _areaManager.BouncerBoard.Board[_areaManager.BouncerBoard.BoardDimension.x
             * Mathf.Max(1,_areaManager.BouncerBoard.BoardDimension.y / 2 + _areaManager.BouncerBoard.BoardDimension.y % 2) -1];
@@ -47,39 +48,45 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     protected override void OnInputMove(Vector2 vector)
     {
-        if (currentState == BouncerState.Moving)
+        if (_currentState == BouncerState.Moving)
         {
             Move((int)GetClosestDirectionFromVector(vector));
         }
     }
 
+    public void CheckMode(CharacterStateMachine chara)
+    {
+        _currentState = BouncerState.Checking;
+        StartCoroutine(TestCheck(chara.transform.position));
+    }
+    
     public void Move(int index)
     {
         if (_currentSlot.Neighbours[index] == null)
             return;
 
-        if (_currentSlot.Neighbours[index].Occupant != null)
+        if (MoveTo(_currentSlot.Neighbours[index].transform.position))
         {
-            if (MoveToPosition(_currentSlot.Neighbours[index].transform.position + new Vector3(_areaManager.BouncerBoard.HorizontalSpacing / 2, 0, 0)))
-            {
-                currentState = BouncerState.Checking;
-                _currentSlot.Neighbours[index].Occupant.ChangeState(_currentSlot.Neighbours[index].Occupant.BouncerCheckState);
-
-                _currentSlot.PlayerOccupant = null;
-                _currentSlot = _currentSlot.Neighbours[index];
-                _currentSlot.PlayerOccupant = this;
-                StartCoroutine(TestCheck());
-            }
+            _currentSlot.PlayerOccupant = null;
+            _currentSlot = _currentSlot.Neighbours[index];
+            _currentSlot.PlayerOccupant = this;
         }
-        else
-        {
-            if (MoveToPosition(_currentSlot.Neighbours[index].transform.position))
-            {
-                _currentSlot.PlayerOccupant = null;
-                _currentSlot = _currentSlot.Neighbours[index];
-                _currentSlot.PlayerOccupant = this;
-            }
-        }
+        // if (_currentSlot.Neighbours[index].Occupant != null && _currentSlot.Neighbours[index].Occupant.CurrentState == _currentSlot.Neighbours[index].Occupant.IdleBouncerState)
+        // {
+        //     // if (MoveTo(_currentSlot.Neighbours[index].transform.position + new Vector3(_areaManager.BouncerBoard.HorizontalSpacing / 2, 0, 0)))
+        //     // {
+        //     //     currentState = BouncerState.Checking;
+        //     //     _currentSlot.Neighbours[index].Occupant.ChangeState(_currentSlot.Neighbours[index].Occupant.BouncerCheckState);
+        //     //
+        //     //     _currentSlot.PlayerOccupant = null;
+        //     //     _currentSlot = _currentSlot.Neighbours[index];
+        //     //     _currentSlot.PlayerOccupant = this;
+        //     //     StartCoroutine(TestCheck());
+        //     // }
+        // }
+        // else
+        // {
+        // }
     }
 
     private Direction GetClosestDirectionFromVector(Vector2 vector)
@@ -109,49 +116,72 @@ public class BouncerMovement : PlayerMovement, IQTEable
     }
 
 
-    IEnumerator TestCheck()
+    IEnumerator TestCheck(Vector3 pos)
     {
+        CorrectDestination(pos + new Vector3(_areaManager.BouncerBoard.HorizontalSpacing , 0, 0));
         while (true)
         {
             if (_playerController.Action1.InputValue) //ACCEPT
             {
-                CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
-                chara.BouncerAction(true);
-                currentState = BouncerState.Moving;
-                transform.position = _currentSlot.transform.position;
+                LetCharacterEnterBox();
                 yield break;
             }
-
-            if (_playerController.Action3.InputValue)//REFUSE
+            
+            if (_playerController.Action3.InputValue)//REFUSE + evil character
             {
-                StartQTE();
+                if (_currentSlot.Occupant.TypeData.Evilness == Evilness.EVIL)
+                {
+                    StartQTE();
+                } else
+                {
+                    RefuseCharacterEnterBox();
+                }
                 yield break;
             }
             yield return null;
         }
     }
 
-    public void StartQTE()
-    {
-        _qteHandler.StartNewQTE();
+    public void LetCharacterEnterBox()
+    {
+        CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
+        chara.BouncerAction(true);
+        currentState = BouncerState.Moving;
+        transform.position = _currentSlot.transform.position;
     }
 
-    public void OnQTEStarted(QTESequence sequence)
-    {
-        _text.text = _qteHandler.GetQTEString();
-    }
-
-    public void OnQTEComplete()
-    {
-        CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
-        chara.BouncerAction(false);
-        currentState = BouncerState.Moving;
-        transform.position = _currentSlot.transform.position;
-        _text.text = "";
-    }
-
-    public void OnQTECorrectInput()
-    {
-        _text.text = _qteHandler.GetQTEString();
-    }
+    public void StartQTE()
+    {
+        _qteHandler.StartNewQTE();
+    }
+
+    public void OnQTEStarted(QTESequence sequence)
+    {
+        _text.text = _qteHandler.GetQTEString();
+    }
+
+    public void OnQTEComplete()
+    {
+        RefuseCharacterEnterBox();
+        _text.text = "";
+    }
+
+    private void RefuseCharacterEnterBox()
+    {
+        CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
+        chara.BouncerAction(false);
+        currentState = BouncerState.Moving;
+        transform.position = _currentSlot.transform.position;
+    }
+
+    public void OnQTECorrectInput()
+    {
+        _text.text = _qteHandler.GetQTEString();
+    }
+
+    public void OnQTEWrongInput()
+    {
+        LetCharacterEnterBox();
+        _qteHandler.DeleteCurrentCoroutine();
+    }
 }
