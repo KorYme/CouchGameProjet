@@ -19,6 +19,11 @@ public class EntityMovement : MonoBehaviour, IMovable
     public bool IsMoving => _movementCoroutine != null;
 
     protected virtual float _TimeBetweenMovements => _movementData.MovementDurationPercent * _timingable.BeatDurationInMilliseconds / 1000f;
+    public MovementData MovementData
+    {
+        get { return _movementData; }
+        set { if(value != null) _movementData = value; }
+    }
     
     public virtual bool MoveToPosition(Vector3 position, int animationFrames)
     {

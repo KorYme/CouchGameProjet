@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c42211c12f671429e2e3e5c1569e18, type: 3}
+  m_Name: Discomom
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: fc4c4a7d8a27a084fac635a3837223e0, type: 2}
+  animation: {fileID: 11400000, guid: 2f8ac897066e0ae4cb81136d59362a9e, type: 2}
+  type: {fileID: 11400000, guid: a755c41e2598ea347861b42559d7e80c, type: 2}
+  movement: {fileID: 11400000, guid: c205aac937c5b25478495ab06937bc4d, type: 2}
