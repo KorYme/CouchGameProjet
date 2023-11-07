@@ -35,6 +35,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     private void OnInputCorrect()
     {
         _indexText.text = _qteHandler.GetQTEString();
+        Debug.Log("INPUT CORRECT");
     }
 
      void OnDrinkComplete()
@@ -55,8 +56,9 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
 
      public void OnFailDrink()
      {
-         _indexText.text = _qteHandler.GetQTEString();
+         Debug.Log("DRINK FAIL");
          _qteHandler.DeleteCurrentCoroutine();
+         _indexText.text = _qteHandler.GetQTEString();
          GetNextCharacter();
      }
 
@@ -131,5 +133,9 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
         {
             _qteHandler.PauseQTE(value);
         }
+    }
+
+    public void OnQTEWrongInput()
+    {
     }
 }

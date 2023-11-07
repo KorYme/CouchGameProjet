@@ -115,20 +115,31 @@ public class BouncerMovement : PlayerMovement, IQTEable
         {
             if (_playerController.Action1.InputValue) //ACCEPT
             {
-                CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
-                chara.BouncerAction(true);
-                currentState = BouncerState.Moving;
-                transform.position = _currentSlot.transform.position;
+                LetCharacterEnterBox();
                 yield break;
             }
-
-            if (_playerController.Action3.InputValue)//REFUSE
+            
+            if (_playerController.Action3.InputValue)//REFUSE + evil character
             {
-                StartQTE();
+                if (_currentSlot.Occupant.TypeData.Evilness == Evilness.EVIL)
+                {
+                    StartQTE();
+                } else
+                {
+                    RefuseCharacterEnterBox();
+                }
                 yield break;
             }
             yield return null;
         }
+    }
+
+    public void LetCharacterEnterBox()
+    {
+        CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
+        chara.BouncerAction(true);
+        currentState = BouncerState.Moving;
+        transform.position = _currentSlot.transform.position;
     }
 
     public void StartQTE()
@@ -143,15 +154,26 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     public void OnQTEComplete()
     {
+        RefuseCharacterEnterBox();
+        _text.text = "";
+    }
+
+    private void RefuseCharacterEnterBox()
+    {
         CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
         chara.BouncerAction(false);
         currentState = BouncerState.Moving;
         transform.position = _currentSlot.transform.position;
-        _text.text = "";
     }
 
     public void OnQTECorrectInput()
     {
         _text.text = _qteHandler.GetQTEString();
+    }
+
+    public void OnQTEWrongInput()
+    {
+        LetCharacterEnterBox();
+        _qteHandler.DeleteCurrentCoroutine();
     }
 }

@@ -25,9 +25,13 @@ public class InputFloat : InputClass
         }
     }
 
+    public float DeltaValue { get; private set; }
+    public bool IsMoving => DeltaValue != 0f;
+
     public override void InputCallback(InputActionEventData data)
     {
         InputDuration = data.GetAxisTimeActive();
+        DeltaValue = data.GetAxisDelta();
         float tmp = data.GetAxis();
         if (!IsPerformed && tmp != 0f)
         {
