@@ -16,17 +16,13 @@ public abstract class PlayerMovement : EntityMovement
     protected CharacterAnimation _animation;
     protected SpriteRenderer _sp;
 
-    private void Awake()
-    {
-    }
-
     protected virtual IEnumerator Start()
     {
         _sp = GetComponentInChildren<SpriteRenderer>();
         _animation = GetComponent<CharacterAnimation>();
         OnMove += AnimationSetter;
-        yield return new WaitUntil(() => Players.PlayersController[(int)_playerRole] != null);
-        _playerController = Players.PlayersController[(int)_playerRole];
+        yield return new WaitUntil(() => Players.PlayersController[(int)PlayerRole] != null);
+        _playerController = Players.PlayersController[(int)PlayerRole];
         _playerController.LeftJoystick.OnInputChange += CheckJoystickValue;
         _timingable.OnBeatStartEvent.AddListener(AllowNewMovement);
         

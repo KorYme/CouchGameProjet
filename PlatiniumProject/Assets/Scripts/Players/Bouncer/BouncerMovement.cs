@@ -30,9 +30,9 @@ public class BouncerMovement : PlayerMovement, IQTEable
     {
         _text.text = "";
         yield return base.Start();
-        Players.PlayersController[(int)_playerRole].RB.OnInputChange += () =>
+        Players.PlayersController[(int)PlayerRole].RB.OnInputChange += () =>
         {
-            Debug.Log(Players.PlayersController[(int)_playerRole].LT.InputValue);
+            Debug.Log(Players.PlayersController[(int)PlayerRole].LT.InputValue);
         };
         _currentSlot = _areaManager.BouncerBoard.Board[_areaManager.BouncerBoard.BoardDimension.x
             * Mathf.Max(1,_areaManager.BouncerBoard.BoardDimension.y / 2 + _areaManager.BouncerBoard.BoardDimension.y % 2) -1];
@@ -126,15 +126,14 @@ public class BouncerMovement : PlayerMovement, IQTEable
                 LetCharacterEnterBox();
                 yield break;
             }
-            
             if (_playerController.Action3.InputValue)//REFUSE + evil character
             {
-                if (_currentSlot.Occupant.TypeData.Evilness == Evilness.EVIL)
-                {
+                if (_currentSlot.Occupant.TypeData.Evilness == Evilness.EVIL)
+                {
                     StartQTE();
-                } else
-                {
-                    RefuseCharacterEnterBox();
+                } else
+                {
+                    RefuseCharacterEnterBox();
                 }
                 yield break;
             }
@@ -142,46 +141,41 @@ public class BouncerMovement : PlayerMovement, IQTEable
         }
     }
 
-    public void LetCharacterEnterBox()
-    {
-        CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
-        chara.BouncerAction(true);
-        currentState = BouncerState.Moving;
-        transform.position = _currentSlot.transform.position;
+    public void LetCharacterEnterBox()
+    {
+        CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
+        chara.BouncerAction(true);
+        _currentState = BouncerState.Moving;
+        transform.position = _currentSlot.transform.position;
     }
 
-    public void StartQTE()
-    {
-        _qteHandler.StartNewQTE();
+    public void StartQTE()
+    {
+        _qteHandler.StartNewQTE();
     }
-
-    public void OnQTEStarted(QTESequence sequence)
-    {
-        _text.text = _qteHandler.GetQTEString();
+    public void OnQTEStarted(QTESequence sequence)
+    {
+        _text.text = _qteHandler.GetQTEString();
     }
-
-    public void OnQTEComplete()
-    {
-        RefuseCharacterEnterBox();
-        _text.text = "";
+    public void OnQTEComplete()
+    {
+        RefuseCharacterEnterBox();
+        _text.text = "";
     }
-
-    private void RefuseCharacterEnterBox()
-    {
-        CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
-        chara.BouncerAction(false);
-        currentState = BouncerState.Moving;
-        transform.position = _currentSlot.transform.position;
+    private void RefuseCharacterEnterBox()
+    {
+        CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
+        chara.BouncerAction(false);
+        _currentState = BouncerState.Moving;
+        transform.position = _currentSlot.transform.position;
     }
-
-    public void OnQTECorrectInput()
-    {
-        _text.text = _qteHandler.GetQTEString();
+    public void OnQTECorrectInput()
+    {
+        _text.text = _qteHandler.GetQTEString();
     }
-
-    public void OnQTEWrongInput()
-    {
-        LetCharacterEnterBox();
-        _qteHandler.DeleteCurrentCoroutine();
-    }
+    public void OnQTEWrongInput()
+    {
+        LetCharacterEnterBox();
+        _qteHandler.DeleteCurrentCoroutine();
+    }
 }
