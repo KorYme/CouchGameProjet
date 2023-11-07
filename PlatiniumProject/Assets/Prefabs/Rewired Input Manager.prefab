@@ -486,7 +486,7 @@ MonoBehaviour:
     - _id: 12
       _name: LT
       _type: 0
-      _descriptiveName: 
+      _descriptiveName: LT
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
@@ -495,7 +495,7 @@ MonoBehaviour:
     - _id: 13
       _name: RT
       _type: 0
-      _descriptiveName: 
+      _descriptiveName: RT
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
@@ -504,7 +504,7 @@ MonoBehaviour:
     - _id: 14
       _name: LB
       _type: 1
-      _descriptiveName: 
+      _descriptiveName: LB
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
@@ -513,7 +513,7 @@ MonoBehaviour:
     - _id: 15
       _name: RB
       _type: 1
-      _descriptiveName: 
+      _descriptiveName: RB
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
