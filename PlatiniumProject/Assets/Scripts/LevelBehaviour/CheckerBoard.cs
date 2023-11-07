@@ -48,7 +48,7 @@ public class CheckerBoard : MonoBehaviour
         List<SlotInformation> result = new List<SlotInformation>();
         EntrySlots.ForEach(x =>
         {
-            if (x.Occupant == null)
+            if (x.Occupant == null && x.PlayerOccupant == null)
             {
                 result.Add(x);
             }
