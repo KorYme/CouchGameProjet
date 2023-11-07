@@ -100,7 +100,7 @@ public class SpawnManager : MonoBehaviour
             }
             CharacterAiPuller chara = _availableCharcters[0];
             _availableCharcters.Remove(chara);
-            chara.PullCharacter(GetClientType(), chara.StateMachine.RoamState);
+            chara.PullCharacter(GetClientType(), chara.StateMachine.BarManQueueState);
         }
         for (int i = 0; i < _baseClientInDj; ++i)
         {

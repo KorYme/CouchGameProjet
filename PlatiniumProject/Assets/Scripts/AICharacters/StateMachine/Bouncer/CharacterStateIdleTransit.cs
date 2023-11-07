@@ -6,8 +6,6 @@ using Random = UnityEngine.Random;
 
 public class CharacterStateIdleTransit : CharacterState
 {
-    List<SlotInformation> availableSlots;
-    
     public override void OnBeat()
     {
         base.OnBeat();
