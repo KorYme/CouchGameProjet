@@ -193,11 +193,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4189869074888871253, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
       propertyPath: _playerRoles.Array.data[0]
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4189869074888871253, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
       propertyPath: _playerRoles.Array.data[1]
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4189869074888871253, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
       propertyPath: _playerRoles.Array.data[2]
