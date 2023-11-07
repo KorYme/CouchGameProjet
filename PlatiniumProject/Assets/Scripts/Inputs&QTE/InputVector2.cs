@@ -19,6 +19,9 @@ public class InputVector2 : InputClass
 
     public override double InputDuration => Math.Max(_inputValueX.InputDuration, _inputValueY.InputDuration);
 
+    public Vector2 DeltaValue => new Vector2(_inputValueX.DeltaValue, _inputValueY.DeltaValue);
+    public bool IsMoving => _inputValueX.IsMoving || _inputValueY.IsMoving;
+
     public InputVector2(int actionID, int secondActionID) : base(actionID)
     {
         SecondActionID = secondActionID;

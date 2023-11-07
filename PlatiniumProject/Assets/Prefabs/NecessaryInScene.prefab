@@ -1567,9 +1567,37 @@ MonoBehaviour:
   _poolingSpawn: {fileID: 3490318135030716487}
   areaManager: {fileID: 169444546024364851}
   _pnj: {fileID: 1307051827475980772, guid: 9aa80bdd6c04ef14e810ca8a1f7f5597, type: 3}
+  _minMaxSpawnPerMinutes: {x: 3, y: 50}
+  _spawnEvolutionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _badClientRatio: {x: 0, y: 10}
   _baseClientInBouncer: 3
   _baseClientInBarMan: 3
   _baseClientInDj: 15
+  _goodClients: []
+  _badClients: []
 --- !u!1 &6672130290628233214
 GameObject:
   m_ObjectHideFlags: 0
@@ -13259,8 +13287,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeatManager
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5587659796852208841, guid: 43b8848140f1758428d3b77851546651, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

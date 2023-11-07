@@ -8,5 +8,6 @@ public class UnitInput : ScriptableObject
     public int Index;
     [ActionIdProperty(typeof(RewiredConsts.Action))]
     public int ActionIndex = 0; //Input action index
-    public bool IsInputPositive = true;
+    public bool UseRotation = false;
+    public int NbTurns = 1;
 }

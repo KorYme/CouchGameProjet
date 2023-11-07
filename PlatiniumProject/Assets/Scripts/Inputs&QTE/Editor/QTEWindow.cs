@@ -9,11 +9,12 @@ public class QTEWindow : EditorWindow
 {
     List<QTESequence> _drinks;
     QTESequence _selectedQTE = null;
-    bool _temporaryQTE = false;
+    bool _isATemporaryQTE = false;
     int _indexNewSequence = 0;//Used to have different names for file sequences
     bool _showListInputs = true;
     Vector2 _scrollQTEListPosition;
     Vector2 _scrollInputsPosition;
+
     #region ListOptionsKeys
     //Used for the display of the rewired keys
     private string[] _buttonInputOptions = null;
@@ -85,7 +86,7 @@ public class QTEWindow : EditorWindow
                 if (GUILayout.Button($"QTE {name}", GUILayout.MinHeight(30)))
                 {
                     _selectedQTE = _drinks[i];
-                    _temporaryQTE = false;
+                    _isATemporaryQTE = false;
                 }
             }
         }
@@ -193,7 +194,7 @@ public class QTEWindow : EditorWindow
         {
             _selectedQTE = CreateInstance<QTESequence>();
             _selectedQTE.Index = _indexNewSequence;
-            _temporaryQTE = true;
+            _isATemporaryQTE = true;
         }
         GUILayout.EndVertical();
     }
@@ -242,10 +243,10 @@ public class QTEWindow : EditorWindow
             GUILayout.EndVertical();
             EditorGUILayout.Space();
             DrawListInputs();
-            if (_temporaryQTE && GUILayout.Button("Save QTE"))
+            if (_isATemporaryQTE && GUILayout.Button("Save QTE"))
             {
                 SaveQTEFile();
-                _temporaryQTE = false;
+                _isATemporaryQTE = false;
             }
         }
         else // No QTE selected
@@ -281,12 +282,21 @@ public class QTEWindow : EditorWindow
             _serializedObject.Update();
             EditorGUILayout.PropertyField(_propertyName, true); // draw property with its children
             _serializedObject.ApplyModifiedProperties();
-            input.IsInputPositive = EditorGUILayout.Toggle("Input has positive value",input.IsInputPositive);
+            bool isAxisInput = input.ActionIndex == RewiredConsts.Action.AXISX || 
+                input.ActionIndex == RewiredConsts.Action.AXISY;
+            if (isAxisInput)
+            {
+                input.UseRotation = EditorGUILayout.Toggle("Use rotation",input.UseRotation);
+            }
+            if (input.UseRotation)
+            {
+                input.NbTurns = EditorGUILayout.IntField("Number of turns", input.NbTurns);
+            }
         }
 
         GUI.backgroundColor = Color.red;
         GUILayout.EndVertical();
-        if (GUILayout.Button("Delete", GUILayout.MinHeight(40)) && EditorUtility.DisplayDialog("Delete input",
+        if (GUILayout.Button("Delete") && EditorUtility.DisplayDialog("Delete input",
                 "Are you sure you want to delete this input ?", "Yes", "No"))
         {
             RemoveUnitAtIndex(input.Index);
@@ -300,11 +310,10 @@ public class QTEWindow : EditorWindow
     {
         if (GUILayout.Button("Add an input", GUILayout.MinHeight(30)))
         {
-
             UnitInput unit = CreateInstance<UnitInput>();
             unit.Index = _selectedQTE.ListSubHandlers.Count;
             _selectedQTE.ListSubHandlers.Add(unit);
-            if (!_temporaryQTE)
+            if (!_isATemporaryQTE)
             {
                 SaveQTEUnitInputFile(_selectedQTE.Index, unit.Index);
             }
