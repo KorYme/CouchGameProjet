@@ -118,10 +118,16 @@ public class BouncerMovement : PlayerMovement, IQTEable
                 LetCharacterEnterBox();
                 yield break;
             }
-
-            if (_playerController.Action3.InputValue && _currentSlot.Occupant.TypeData.Evilness == Evilness.EVIL)//REFUSE + evil character
+            
+            if (_playerController.Action3.InputValue)//REFUSE + evil character
             {
-                StartQTE();
+                if (_currentSlot.Occupant.TypeData.Evilness == Evilness.EVIL)
+                {
+                    StartQTE();
+                } else
+                {
+                    RefuseCharacterEnterBox();
+                }
                 yield break;
             }
             yield return null;
@@ -148,11 +154,16 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     public void OnQTEComplete()
     {
+        RefuseCharacterEnterBox();
+        _text.text = "";
+    }
+
+    private void RefuseCharacterEnterBox()
+    {
         CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
         chara.BouncerAction(false);
         currentState = BouncerState.Moving;
         transform.position = _currentSlot.transform.position;
-        _text.text = "";
     }
 
     public void OnQTECorrectInput()

@@ -132,6 +132,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 795238794731590820, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
+      propertyPath: _badClientRatio.x
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 795238794731590820, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
       propertyPath: _badClients.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -155,6 +159,38 @@ PrefabInstance:
       propertyPath: _goodClients.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: b2efc327949abde40b9ce71559e38fca, type: 2}
+    - target: {fileID: 795238794731590820, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
+      propertyPath: _spawnEvolutionCurve.m_Curve.Array.data[0].time
+      value: 0.0055481438
+      objectReference: {fileID: 0}
+    - target: {fileID: 795238794731590820, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
+      propertyPath: _spawnEvolutionCurve.m_Curve.Array.data[0].value
+      value: 0.99906677
+      objectReference: {fileID: 0}
+    - target: {fileID: 795238794731590820, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
+      propertyPath: _spawnEvolutionCurve.m_Curve.Array.data[0].inSlope
+      value: 0.0009384365
+      objectReference: {fileID: 0}
+    - target: {fileID: 795238794731590820, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
+      propertyPath: _spawnEvolutionCurve.m_Curve.Array.data[1].inSlope
+      value: 0.0009384365
+      objectReference: {fileID: 0}
+    - target: {fileID: 795238794731590820, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
+      propertyPath: _spawnEvolutionCurve.m_Curve.Array.data[0].outSlope
+      value: 0.0009384365
+      objectReference: {fileID: 0}
+    - target: {fileID: 795238794731590820, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
+      propertyPath: _spawnEvolutionCurve.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 795238794731590820, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
+      propertyPath: _spawnEvolutionCurve.m_Curve.Array.data[1].outSlope
+      value: 0.0009384365
+      objectReference: {fileID: 0}
+    - target: {fileID: 795238794731590820, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
+      propertyPath: _spawnEvolutionCurve.m_Curve.Array.data[0].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
     - target: {fileID: 4189869074888871253, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
       propertyPath: _playerRoles.Array.data[0]
       value: 2

@@ -212,24 +212,27 @@ public class QTEHandler : MonoBehaviour
 
     void CheckInputs(int expectedActionID)
     {
-        InputBool inputBool;
-        foreach (InputClass inputRef in _inputsQTE)
+        if (!_checkInputThisBeat.HadInputThisBeat)
         {
-            if (!_checkInputThisBeat.HadInputThisBeat && inputRef != null)
+            InputBool inputBool;
+            foreach (InputClass inputRef in _inputsQTE)
             {
-                inputBool = inputRef as InputBool; //TO DO : change for IsJustPerformed or smt in inputclass
-                if (inputBool != null && inputBool.IsJustPressed)
+                if (!_checkInputThisBeat.HadInputThisBeat && inputRef != null)
                 {
-                    _checkInputThisBeat.ChangeHadInputThisBeat();
-                    if (inputRef.ActionID == expectedActionID)
+                    inputBool = inputRef as InputBool; //TO DO : change for IsJustPerformed or smt in inputclass
+                    if (inputBool != null && inputBool.IsJustPressed)
                     {
-                        _inputsSucceeded[_indexInSequence] = true;
-                        _indexInSequence++;
-                        CallOnCorrectInput();
-                    } else
-                    {
-                        _indexInSequence++;
-                        CallOnWrongInput();
+                        _checkInputThisBeat.ChangeHadInputThisBeat();
+                        if (inputRef.ActionID == expectedActionID)
+                        {
+                            _inputsSucceeded[_indexInSequence] = true;
+                            _indexInSequence++;
+                            CallOnCorrectInput();
+                        } else
+                        {
+                            _indexInSequence++;
+                            CallOnWrongInput();
+                        }
                     }
                 }
             }
@@ -244,7 +247,7 @@ public class QTEHandler : MonoBehaviour
         {
             if ((_timingable?.IsInsideBeatWindow ?? true) || true)
             {
-                CheckInputs(correctInput.ActionIndex);
+                CheckInputs(_currentQTESequence.ListSubHandlers[_indexInSequence].ActionIndex);
             }
             yield return null;
         }
