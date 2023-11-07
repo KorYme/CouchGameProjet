@@ -6,4 +6,5 @@ public static class Globals
 {
     public static ITimingable BeatTimer = null;
     public static DropController DropController = null;
+    public static SpawnManager SpawnManager = null;
 }

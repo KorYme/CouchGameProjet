@@ -116,8 +116,10 @@ public class DropController : MonoBehaviour
         switch (newState)
         {
             case DROP_STATE.OUT_OF_DROP:
+                Globals.SpawnManager.CanSpawnClients = true;
                 break;
             case DROP_STATE.ON_DROP_PRESSING:
+                Globals.SpawnManager.CanSpawnClients = false;
                 break;
             case DROP_STATE.ON_DROP_RELEASING:
                 if (_triggerPressedNumber != Players.PlayerConnected * 2)
