@@ -5,7 +5,42 @@ using UnityEngine;
 
 public class TestBeat : MonoBehaviour
 {
+    [SerializeField, Range(0f, 1f)] float _offsetTest;
     [SerializeField] SpriteRenderer _spriteRenderer;
+
+    BeatManager _beatManager;
+    DateTime _lastBeatTiming;
+    Coroutine _offsetCoroutine;
+
+    private void Reset()
+    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void Start()
+    {
+        _lastBeatTiming = DateTime.Now;
+        _beatManager = Globals.BeatTimer as BeatManager;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log(_beatManager.BeatDeltaTime);
+            if (_beatManager.IsInsideBeatWindow)
+            {
+                StartCoroutine(ChangeColorOnBeat());
+            }
+        }
+    }
+
+    IEnumerator ChangeColorOnBeat()
+    {
+        ChangeColorToGreen();
+        yield return new WaitForSeconds(.15f);
+        ChangeColorToRed();
+    }
 
     public void ChangeColorToRed()
     {
@@ -20,6 +55,25 @@ public class TestBeat : MonoBehaviour
     public void ChangeColorToGreen()
     {
         _spriteRenderer.color = Color.green;
+    }
+
+    public void ChangeColorWithTimer()
+    {
+        Debug.Log("Beat");
+        if (_offsetCoroutine != null)
+        {
+            StopCoroutine(_offsetCoroutine);
+            _spriteRenderer.color = Color.red;
+        }
+        _offsetCoroutine = StartCoroutine(WaitForOffset());
+    }
+
+    IEnumerator WaitForOffset()
+    {
+        yield return new WaitForSeconds(_offsetTest);
+        ChangeColorToGreen();
+        yield return new WaitForSeconds(.15f);
+        ChangeColorToRed();
     }
 
     public void Print(string text)

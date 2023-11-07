@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5740807961680605351}
   - component: {fileID: 6875555677433497078}
   - component: {fileID: 5653201513740092530}
+  - component: {fileID: 2512290002944877076}
   m_Layer: 0
   m_Name: Slot
   m_TagString: Untagged
@@ -53,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -71,11 +72,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1806788807
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 61cb98beaecdd1a43bd00079084ca177, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.071157455, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.07058835, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -102,3 +103,19 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &2512290002944877076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8862334621018384566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d58b657a9d844043a4443d4db983f6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _materialTileEnlighten: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  _materialDanceFloorShared: {fileID: 2100000, guid: 3c818189b929ddc43991abb9772f953e, type: 2}
+  _position: {x: 0, y: 0}
+  _useShader: 0

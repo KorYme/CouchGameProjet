@@ -1,77 +1,32 @@
 using System.Collections;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
-public class BarmanMovement : MonoBehaviour
+public class BarmanMovement : PlayerMovement
 {
-    PlayerInputController _controller;
+    [Space, Header("Bouncer Parameters")]
     [SerializeField] BarmanPosition[] _barmanPositions;
-    //[SerializeField,Range(0f,1f)] float _inputAcceptanceThreshold = 0.1f;
-    int _indexPosition;
-    [SerializeField] float _timeBetweenBeat = 1f;
-    [SerializeField] float _timeBeatAccepted = 0.1f;
-    float _timer = 0f;
     [SerializeField] SpriteRenderer _renderer;
-    bool _inputRefreshed = true;
 
-    [SerializeField] BeatManager _beatManager;
-
+    int _indexPosition;
     public int IndexPosition { get => _indexPosition;}
-    public BarmanPosition[] BarmanPositions { get => _barmanPositions;}
+
+    protected override PlayerRole _playerRole => PlayerRole.Barman;
 
     private void Awake()
     {
         _indexPosition = 0;
-        DeactivateAllQTE();
-        ActivateCurrentQTE();
         if (_barmanPositions.Length > 0)
         {
             MoveBarmanToIndex();
         }
     }
-    
-    private void Start()
+    protected override IEnumerator Start()
     {
-        _renderer.color = _beatManager.IsInsideBeat ? Color.red : Color.blue;
-        //StartCoroutine(CoroutineBeat());
-        _beatManager.OnBeatStartEvent.AddListener(ChangeColorToRed);
-        _beatManager.OnBeatEndEvent.AddListener(ChangeColorToBlue);
-    }
-
-    private void OnDestroy()
-    {
-        _beatManager.OnBeatStartEvent.RemoveListener(ChangeColorToRed);
-        _beatManager.OnBeatEndEvent.RemoveListener(ChangeColorToBlue);
-    }
-
-    public void ChangeColorToRed()
-    {
-        _renderer.color = Color.red;
-    }
+        DeactivateAllQTE();
+        ActivateCurrentQTE();
         
-    public void ChangeColorToBlue()
-    {
-        _renderer.color = Color.blue;
-    }
-
-    IEnumerator CoroutineBeat()
-    {
-        while (true)
-        {
-            _timer += Time.deltaTime;
-            _timer %= _timeBetweenBeat;
-            
-            if (_timer > _timeBetweenBeat - _timeBeatAccepted / 2f)
-            {
-                _renderer.color = Color.red;
-            }
-            else if(_timer > _timeBeatAccepted / 2f)
-            {
-                _renderer.color = Color.blue;
-            }
-
-            yield return null;
-        }
+        yield return base.Start();
+        Debug.Log("Barman Initialisé");
     }
 
     public void MoveBarmanToIndex()
@@ -81,57 +36,36 @@ public class BarmanMovement : MonoBehaviour
 
     void ChangeIndexToReach(float value)
     {
-        DeactivateCurrentQTE();
         if (value > 0f)
         {
             if (_indexPosition < _barmanPositions.Length - 1)
             {
-                _indexPosition++;
+                if (MoveTo(_barmanPositions[_indexPosition+1].transform.position))
+                {
+                    DeactivateCurrentQTE();
+                    _indexPosition++;
+                    ActivateCurrentQTE();
+                }
             }
-            MoveBarmanToIndex();
-            ActivateCurrentQTE();
         }
         else if (value < 0f)
         {
             if (_indexPosition > 0)
             {
-                _indexPosition--;
+                if (MoveTo(_barmanPositions[_indexPosition-1].transform.position))
+                {
+                    DeactivateCurrentQTE();
+                    _indexPosition--;
+                    ActivateCurrentQTE();
+                }
             }
-            MoveBarmanToIndex();
-            ActivateCurrentQTE();
         }
     }
 
-    public bool IsInputDuringBeatTime()
-    {
-        return _beatManager.IsInsideBeat;
-    }
-    private void Update()
-    {
-        if (_controller == null)
-        {
-            SetupController();
-        } 
-    }
 
-    private void SetupController()
+    protected override void OnInputMove(Vector2 vector)
     {
-        _controller = Players.PlayersController[(int)PlayerRole.Barman];
-
-        if (_controller != null)
-        {
-            _controller.LeftJoystick.OnInputStart += OnInputMove;
-        }
-    }
-
-    void OnInputMove()
-    {
-        if (_controller != null)
-        {
-            float value = _controller.LeftJoystick.InputValue.y;
-            ChangeIndexToReach(value);
-        }
-
+        ChangeIndexToReach(vector.y);
     }
 
     void ActivateCurrentQTE()

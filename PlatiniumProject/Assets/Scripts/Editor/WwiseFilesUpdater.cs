@@ -130,5 +130,8 @@ public static class WwiseFilesUpdater
 
     [MenuItem("Tools/Wwise Google Update/Authentify")]
     public static void ResetOAuthToken() => AuthController.RefreshAccessToken();
+
+    [MenuItem("Tools/Wwise Google Update/.wav Folder")]
+    public static void OpenFolder() => EditorUtility.RevealInFinder(Path.Combine(WwiseSFXFilePath, "SFX"));
 }
 #endif
