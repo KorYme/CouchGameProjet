@@ -26,4 +26,5 @@ public class QTESequence : ScriptableObject
     public InputStatus Status = InputStatus.PRESS;
     public int DurationHold = 1;
     public List<UnitInput> ListSubHandlers = new List<UnitInput>();
+
 }

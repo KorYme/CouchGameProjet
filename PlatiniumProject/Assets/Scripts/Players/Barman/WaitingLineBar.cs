@@ -8,12 +8,14 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
 
     [SerializeField] TextMeshProUGUI _indexText;
     List<CharacterStateMachine> _waitingCharactersList;
+    private DjUsher _djUsher;
 
     public int NbCharactersWaiting { get => _waitingCharactersList.Count; }
     public bool IsInPause = true;
 
     private void Awake()
     {
+        _djUsher = FindObjectOfType<DjUsher>();
         _waitingCharactersList = new List<CharacterStateMachine>();
     }
 
@@ -23,6 +25,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
         {
             _qteHandler.RegisterQTEable(this);
         }
+        _djUsher.SetNextSlot();
     }
 
     private void OnDestroy()
@@ -44,7 +47,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
         CharacterStateMachine stateMachine = _waitingCharactersList[0];
         if (stateMachine != null)
         {
-            stateMachine.CurrentSlot = stateMachine.AreaManager.DjBoard.GetRandomAvailableSlot();
+            stateMachine.CurrentSlot = _djUsher.NextSlot;
             stateMachine.MoveToLocation = stateMachine.CurrentSlot.transform.position;
             
             stateMachine.NextState = stateMachine.DancingState;
@@ -52,6 +55,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
 
         }
         GetNextCharacter();
+        _djUsher.SetNextSlot();
     }
 
      public void OnFailDrink()

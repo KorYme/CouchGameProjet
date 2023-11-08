@@ -2098,6 +2098,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _slotRenderer: {fileID: 0}
 --- !u!212 &385654266
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2445,18 +2447,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1624141984}
     m_Modifications:
-    - target: {fileID: 2512290002944877076, guid: 9aec76c18310e334288db65f58a95d3c, type: 3}
-      propertyPath: _useShader
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2512290002944877076, guid: 9aec76c18310e334288db65f58a95d3c, type: 3}
-      propertyPath: _position.x
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2512290002944877076, guid: 9aec76c18310e334288db65f58a95d3c, type: 3}
-      propertyPath: _position.y
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 5653201513740092530, guid: 9aec76c18310e334288db65f58a95d3c, type: 3}
       propertyPath: Neighbours.Array.data[0]
       value: 
@@ -4379,11 +4369,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4714637834579531949, guid: c521e6c354ebf354d9a8f49e0cc47eed, type: 3}
       propertyPath: _playerRoles.Array.data[0]
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4714637834579531949, guid: c521e6c354ebf354d9a8f49e0cc47eed, type: 3}
       propertyPath: _playerRoles.Array.data[1]
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4714637834579531949, guid: c521e6c354ebf354d9a8f49e0cc47eed, type: 3}
       propertyPath: _playerRoles.Array.data[2]
@@ -6612,6 +6602,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1051890467}
+  - component: {fileID: 1051890468}
   m_Layer: 0
   m_Name: Bar
   m_TagString: Untagged
@@ -6635,6 +6626,19 @@ Transform:
   - {fileID: 1546433091}
   m_Father: {fileID: 474585915}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1051890468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051890466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7723148dff233144979289bd10ef4b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dancefloor: {fileID: 1624141983}
 --- !u!1001 &1060345006
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7092,6 +7096,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _slotRenderer: {fileID: 0}
 --- !u!212 &1129705962
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11108,6 +11114,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _slotRenderer: {fileID: 0}
 --- !u!212 &1550955296
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11518,6 +11526,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _slotRenderer: {fileID: 0}
 --- !u!212 &1572920419
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13015,6 +13025,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _slotRenderer: {fileID: 0}
 --- !u!212 &1767130223
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -56,6 +56,11 @@ public class DJController : MonoBehaviour, IQTEable
         }
         _QTEDisplay.text = _qteHandler.GetQTEString();
     }
+
+    public void OnQTEWrongInput()
+    {
+        _QTEDisplay.text = _qteHandler.GetQTEString();
+    }
     #endregion
     //TO CHECK
     private IEnumerator Start()
@@ -145,25 +150,25 @@ public class DJController : MonoBehaviour, IQTEable
                 slot.OnOccupantChanges -= DeactivateQTE;
             }
             slot.IsEnlighted = false;
-            if (slot.GetComponent<SlotRenderer>() != null)
+            if (slot.SlotRenderer != null)
             {
-                slot.GetComponent<SlotRenderer>().ChangeColor(slot.IsEnlighted);
+                slot.SlotRenderer.ChangeColor(slot.IsEnlighted);
             } else
             {
-                slot.GetComponent<SpriteRenderer>().color = Color.green;
+                slot.SpriteRenderer.color = Color.green;
             }
         }
         foreach (SlotInformation slot in newSlots)
         {
             slot.OnOccupantChanges += DeactivateQTE;
             slot.IsEnlighted = true;
-            if (slot.GetComponent<SlotRenderer>() != null)
+            if (slot.SlotRenderer != null)
             {
-                slot.GetComponent<SlotRenderer>().ChangeColor(slot.IsEnlighted);
+                slot.SlotRenderer.ChangeColor(slot.IsEnlighted);
             }
             else
             {
-                slot.GetComponent<SpriteRenderer>().color = Color.red;
+                slot.SpriteRenderer.color = Color.red;
             }
         }
         
@@ -186,11 +191,5 @@ public class DJController : MonoBehaviour, IQTEable
     private void DeactivateQTE()
     {
         UpdateQTE();
-    }
-
-    public void OnQTEWrongInput()
-    {
-        //UpdateQTE();
-        _QTEDisplay.text = _qteHandler?.GetQTEString();
     }
 }

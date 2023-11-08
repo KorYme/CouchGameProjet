@@ -21,7 +21,10 @@ public class SlotInformation : MonoBehaviour
     public SlotInformation[] Neighbours = new SlotInformation[4] {null, null,null, null};
 
     public bool IsEnlighted { get; set; } = false;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private SlotRenderer _slotRenderer;
 
+    public SpriteRenderer SpriteRenderer => _spriteRenderer;
+    public SlotRenderer SlotRenderer => _slotRenderer;
     public event Action OnOccupantChanges;
-
 }

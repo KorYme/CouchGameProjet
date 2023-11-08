@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1806788807
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 61cb98beaecdd1a43bd00079084ca177, type: 3}
   m_Color: {r: 0, g: 1, b: 0.07058835, a: 1}
@@ -103,6 +103,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _spriteRenderer: {fileID: 6875555677433497078}
+  _slotRenderer: {fileID: 2512290002944877076}
 --- !u!114 &2512290002944877076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,5 +119,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _materialTileEnlighten: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   _materialDanceFloorShared: {fileID: 2100000, guid: 3c818189b929ddc43991abb9772f953e, type: 2}
-  _position: {x: 0, y: 0}
-  _useShader: 0
+  _position: {x: 8, y: 7}
+  _useShader: 1
