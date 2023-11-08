@@ -8,7 +8,7 @@ public class CharacterCheckByBouncerState : CharacterState
         public override void OnBeat()
         {
                 StateMachine.SpriteRenderer.sprite =
-                        StateMachine.Animation.GetAnimationSprite(CharacterAnimation.ANIMATION_TYPE.IDLE);
+                        StateMachine.Animation.GetAnimationSprite(ANIMATION_TYPE.IDLE);
         }
 
         public override void EnterState()

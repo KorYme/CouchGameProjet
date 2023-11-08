@@ -19,13 +19,13 @@ public class CharacterAIMovement : EntityMovement
 
     public void MoveTo(Vector3 pos)
     {
-        MoveToPosition(pos, _stateMachine.Animation.CharacterAnimationObject.walkAnimation.AnimationLenght);
+        MoveToPosition(pos, _stateMachine.Animation.CharacterAnimationObject.Animations[ANIMATION_TYPE.MOVE].AnimationLenght);
     }
 
     private void AnimationSetter()
     {
         _stateMachine.SpriteRenderer.sprite =
-            _stateMachine.Animation.GetAnimationSprite(CharacterAnimation.ANIMATION_TYPE.MOVING);
+            _stateMachine.Animation.GetAnimationSprite(ANIMATION_TYPE.MOVE);
     }
 
 

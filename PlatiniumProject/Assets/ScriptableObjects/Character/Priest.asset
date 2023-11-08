@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Priest
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: fc4c4a7d8a27a084fac635a3837223e0, type: 2}
-  animation: {fileID: 11400000, guid: 1d02bf1a5b3444a4ea24570b277af558, type: 2}
+  animation: {fileID: 11400000, guid: 55ef9ec6bc1186e42a3022f083740a27, type: 2}
   type: {fileID: 11400000, guid: 736367c6e0ee4f04fa285e44db1ac8da, type: 2}
   movement: {fileID: 11400000, guid: c205aac937c5b25478495ab06937bc4d, type: 2}

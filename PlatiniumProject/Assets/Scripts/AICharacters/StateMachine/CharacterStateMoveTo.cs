@@ -16,11 +16,11 @@ public class CharacterStateMoveTo : CharacterState
     private void AnimationSetter()
     {
         StateMachine.SpriteRenderer.sprite =
-            StateMachine.Animation.GetAnimationSprite(CharacterAnimation.ANIMATION_TYPE.MOVING);
+            StateMachine.Animation.GetAnimationSprite(ANIMATION_TYPE.MOVE);
     }
     IEnumerator MoveRoutine()
     {
-        StateMachine.CharacterMove.MoveToPosition(StateMachine.MoveToLocation, StateMachine.Animation.CharacterAnimationObject.walkAnimation.AnimationLenght);
+        StateMachine.CharacterMove.MoveToPosition(StateMachine.MoveToLocation, StateMachine.Animation.CharacterAnimationObject.Animations[ANIMATION_TYPE.MOVE].AnimationLenght);
         StateMachine.MoveToLocation = Vector2.zero;
 
         yield return new WaitUntil(() => !StateMachine.CharacterMove.IsMoving);

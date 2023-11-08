@@ -9,6 +9,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     [SerializeField] TextMeshProUGUI _indexText;
     List<CharacterStateMachine> _waitingCharactersList;
     private DjUsher _djUsher;
+    private PriestCalculator _priestCalculator;
 
     public int NbCharactersWaiting { get => _waitingCharactersList.Count; }
     public bool IsInPause = true;
@@ -16,6 +17,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     private void Awake()
     {
         _djUsher = FindObjectOfType<DjUsher>();
+        _priestCalculator = FindObjectOfType<PriestCalculator>();
         _waitingCharactersList = new List<CharacterStateMachine>();
     }
 
@@ -53,6 +55,10 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             stateMachine.NextState = stateMachine.DancingState;
             stateMachine.ChangeState(stateMachine.MoveToState);
 
+            if (stateMachine.TypeData.Evilness == Evilness.EVIL)
+            {
+                _priestCalculator.PriestOnDanceFloor(stateMachine);
+            }
         }
         GetNextCharacter();
         _djUsher.SetNextSlot();

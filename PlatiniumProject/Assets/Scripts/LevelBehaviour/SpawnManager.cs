@@ -47,6 +47,17 @@ public class SpawnManager : MonoBehaviour
 
     private void Awake()
     {
+
+        foreach (var g in _goodClients)
+        {
+            g.animation.Init();
+        }
+
+        foreach (var b in _badClients)
+        {
+            b.animation.Init();
+        }
+        
         _areaManager = FindObjectOfType<AreaManager>();
         GdTest();
         
