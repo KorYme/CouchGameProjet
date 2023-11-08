@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -6,14 +6,21 @@ using UnityEngine;
 public class DJQTEController : MonoBehaviour, IQTEable
 {
     QTEHandler _qteHandler;
-    [SerializeField] TextMeshProUGUI _QTEDisplay;
-    [SerializeField] GameObject _bubbleObject;
+    //[SerializeField] TextMeshProUGUI _QTEDisplay;
+    //[SerializeField] GameObject _bubbleObject;
     List<SlotInformation> _shapesLightCopy;
+
+    #region Events
+    public event Action<string> OnDJQTEStarted;
+    //Params = string : QTE string ; bool : Indicate if there is an other qte after
+    public event Action<string> OnDJQTEEnded;
+    public event Action<string> OnDJQTEChanged;
+    #endregion
 
     private void Awake()
     {
         _qteHandler = GetComponent<QTEHandler>();
-        _bubbleObject.SetActive(false);
+        //_bubbleObject.SetActive(false);
     }
     private void Start()
     {
@@ -21,7 +28,6 @@ public class DJQTEController : MonoBehaviour, IQTEable
         {
             _qteHandler.RegisterQTEable(this);
         }
-        _QTEDisplay.text = _qteHandler.GetQTEString();
     }
     private void OnDestroy()
     {
@@ -61,13 +67,13 @@ public class DJQTEController : MonoBehaviour, IQTEable
                 }
             }
             _qteHandler.StartNewQTE(clientsData);
+            //OnDJQTEStarted?.Invoke(_qteHandler.GetQTEString());
         }
         else
         {
             _qteHandler.DeleteCurrentCoroutine();
+            OnDJQTEEnded?.Invoke(_qteHandler.GetQTEString());
         }
-        _QTEDisplay.text = _qteHandler.GetQTEString();
-        _bubbleObject.SetActive(nbCharactersInLight > 0);
     }
     public void UpdateShape(List<SlotInformation> shape)
     {
@@ -77,13 +83,13 @@ public class DJQTEController : MonoBehaviour, IQTEable
     #region IQTEable
     public void OnQTEStarted()
     {
-        _QTEDisplay.text = _qteHandler.GetQTEString();
+        OnDJQTEStarted?.Invoke(_qteHandler.GetQTEString());
     }
 
     public void OnQTEComplete()
     {
-        _QTEDisplay.text = _qteHandler.GetQTEString();
-        _bubbleObject.SetActive(false);
+        //_bubbleObject.SetActive(false);
+        OnDJQTEEnded?.Invoke(_qteHandler.GetQTEString());
     }
 
     public void OnQTECorrectInput()
@@ -99,12 +105,12 @@ public class DJQTEController : MonoBehaviour, IQTEable
                 }
             }
         }
-        _QTEDisplay.text = _qteHandler.GetQTEString();
+        OnDJQTEChanged?.Invoke(_qteHandler.GetQTEString());
     }
 
     public void OnQTEWrongInput()
     {
-        _QTEDisplay.text = _qteHandler.GetQTEString();
+        OnDJQTEChanged?.Invoke(_qteHandler.GetQTEString());
     }
     #endregion
 }

@@ -7,7 +7,7 @@ public class QTEHandler : MonoBehaviour
 {
     [SerializeField] PlayerRole _role;
     [SerializeField] bool _inputsAreOnBeat = true;
-
+
     PlayerInputController _playerController;
     ITimingable _timingable;
     QTEHandlerEvents _events = new();
