@@ -145,25 +145,25 @@ public class DJController : MonoBehaviour, IQTEable
                 slot.OnOccupantChanges -= DeactivateQTE;
             }
             slot.IsEnlighted = false;
-            if (slot.GetComponent<SlotRenderer>() != null)
+            if (slot.SlotRenderer != null)
             {
-                slot.GetComponent<SlotRenderer>().ChangeColor(slot.IsEnlighted);
+                slot.SlotRenderer.ChangeColor(slot.IsEnlighted);
             } else
             {
-                slot.GetComponent<SpriteRenderer>().color = Color.green;
+                slot.SpriteRenderer.color = Color.green;
             }
         }
         foreach (SlotInformation slot in newSlots)
         {
             slot.OnOccupantChanges += DeactivateQTE;
             slot.IsEnlighted = true;
-            if (slot.GetComponent<SlotRenderer>() != null)
+            if (slot.SlotRenderer != null)
             {
-                slot.GetComponent<SlotRenderer>().ChangeColor(slot.IsEnlighted);
+                slot.SlotRenderer.ChangeColor(slot.IsEnlighted);
             }
             else
             {
-                slot.GetComponent<SpriteRenderer>().color = Color.red;
+                slot.SpriteRenderer.color = Color.red;
             }
         }
         
