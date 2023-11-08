@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2336091562529371814}
+  - component: {fileID: 8725837774788164357}
   m_Layer: 0
   m_Name: Bar
   m_TagString: Untagged
@@ -32,6 +33,19 @@ Transform:
   - {fileID: 5479295751677296085}
   m_Father: {fileID: 8218476273385488507}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8725837774788164357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110530973469002712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7723148dff233144979289bd10ef4b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dancefloor: {fileID: 4647129868411936517}
 --- !u!1 &447964135857160876
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,6 +622,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _slotRenderer: {fileID: 0}
 --- !u!1 &2849496805992340469
 GameObject:
   m_ObjectHideFlags: 0
@@ -1027,6 +1043,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _slotRenderer: {fileID: 0}
 --- !u!1 &4718981290247789791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,6 +1278,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _slotRenderer: {fileID: 0}
 --- !u!1 &5297844128131242842
 GameObject:
   m_ObjectHideFlags: 0
@@ -1699,6 +1719,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _slotRenderer: {fileID: 0}
 --- !u!1 &7436146271516604453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1801,6 +1823,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _slotRenderer: {fileID: 0}
 --- !u!1 &7489283456639029809
 GameObject:
   m_ObjectHideFlags: 0
@@ -13348,7 +13372,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeatManager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5587659796852208841, guid: 43b8848140f1758428d3b77851546651, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
