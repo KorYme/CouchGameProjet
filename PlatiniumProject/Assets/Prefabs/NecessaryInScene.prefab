@@ -1615,8 +1615,12 @@ MonoBehaviour:
   _baseClientInBouncer: 3
   _baseClientInBarMan: 3
   _baseClientInDj: 15
-  _goodClients: []
-  _badClients: []
+  _goodClients:
+  - {fileID: 11400000, guid: 2e5673b9a8fec3d4ba2d547ff90cb43c, type: 2}
+  - {fileID: 11400000, guid: f34499c5ae44ea944bf758664c01d05a, type: 2}
+  - {fileID: 11400000, guid: b2efc327949abde40b9ce71559e38fca, type: 2}
+  _badClients:
+  - {fileID: 11400000, guid: 5d42f79c1b4fd6d45a9a5ee212036938, type: 2}
 --- !u!1 &6672130290628233214
 GameObject:
   m_ObjectHideFlags: 0

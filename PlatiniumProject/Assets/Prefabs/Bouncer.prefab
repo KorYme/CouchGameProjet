@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 6699403960362053402}
   - component: {fileID: 1802435890418990038}
   - component: {fileID: 6716087328787060443}
+  - component: {fileID: 1444709949796741650}
   m_Layer: 0
   m_Name: Bouncer
   m_TagString: Untagged
@@ -163,6 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _role: 2
+  _inputsAreOnBeat: 1
 --- !u!114 &6716087328787060443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,3 +178,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterAnimationData: {fileID: 11400000, guid: 4fb544f641d7b9d4f9a63dc2bb208fe9, type: 2}
+--- !u!114 &1444709949796741650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7340047238265229073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38b842c1af6285048808629d4889451a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerRole: 2

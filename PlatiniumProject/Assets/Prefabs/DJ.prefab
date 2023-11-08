@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6900662313483259734}
   - component: {fileID: 4886740904803253177}
   - component: {fileID: 2380923746897791189}
+  - component: {fileID: 3984522143511510853}
   m_Layer: 0
   m_Name: DJ
   m_TagString: Untagged
@@ -84,6 +85,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _role: 1
+  _inputsAreOnBeat: 1
 --- !u!114 &2380923746897791189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,6 +99,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterAnimationData: {fileID: 11400000, guid: 4fb544f641d7b9d4f9a63dc2bb208fe9, type: 2}
+--- !u!114 &3984522143511510853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3598487020168188391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38b842c1af6285048808629d4889451a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerRole: 1
 --- !u!1 &4614664837856955969
 GameObject:
   m_ObjectHideFlags: 0

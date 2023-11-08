@@ -122,7 +122,6 @@ public class DropManager : MonoBehaviour
             case DROP_STATE.ON_DROP_PRESSING:
                 if (!_beatManager.IsInsideBeatWindow) return;
                 _triggerPressedNumber = _allDropControllers.Sum(x => x.TriggerPressed);
-                Debug.Log($"Currently pressing {_triggerPressedNumber} triggers");
                 if (_triggerPressedNumber == Players.PlayerConnected * 2)
                 {
                     DropState = DROP_STATE.ON_DROP_ALL_PRESSED;
