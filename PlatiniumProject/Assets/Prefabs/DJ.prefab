@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6900662313483259734}
   - component: {fileID: 4886740904803253177}
   - component: {fileID: 2380923746897791189}
+  - component: {fileID: 5158429038718605109}
   m_Layer: 0
   m_Name: DJ
   m_TagString: Untagged
@@ -57,7 +58,6 @@ MonoBehaviour:
   _rightJoystickAntiClockwise: 3
   _leftJoystickClockwise: 0
   _leftJoystickAntiClockwise: 1
-  _QTEDisplay: {fileID: 0}
 --- !u!114 &6900662313483259734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,6 +98,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterAnimationData: {fileID: 11400000, guid: 4fb544f641d7b9d4f9a63dc2bb208fe9, type: 2}
+--- !u!114 &5158429038718605109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3598487020168188391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f083d48259fdba44e9b570aac39a13e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _QTEDisplay: {fileID: 0}
 --- !u!1 &4614664837856955969
 GameObject:
   m_ObjectHideFlags: 0

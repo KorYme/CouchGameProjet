@@ -41,7 +41,7 @@ public class QTEHandler : MonoBehaviour
             _playerController.Action2,
             _playerController.Action3,
             _playerController.Action4,
-            _playerController.RB,
+            _playerController.LT,
             _playerController.RT,
         };
     }
@@ -169,7 +169,7 @@ public class QTEHandler : MonoBehaviour
     #endregion
     public string GetQTEString()
     {
-        if (_currentListSequences != null || _currentListSequences.Length > 0)
+        if (_currentListSequences != null && _currentListSequences.Length > 0)
         {
             return _currentListSequences.ToString(_indexOfSequence, _indexInSequence);
         }
