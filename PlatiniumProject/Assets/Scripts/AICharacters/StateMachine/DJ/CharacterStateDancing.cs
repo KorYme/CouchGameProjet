@@ -14,7 +14,7 @@ public class CharacterStateDancing : CharacterState
     public override void OnBeat()
     {
         //StateMachine.SpriteRenderer.color = Random.ColorHSV();
-        StateMachine.SpriteRenderer.sprite = StateMachine.Animation.GetAnimationSprite(CharacterAnimation.ANIMATION_TYPE.DANCING);
+        StateMachine.SpriteRenderer.sprite = StateMachine.Animation.GetAnimationSprite(ANIMATION_TYPE.DANCING);
         if (!StateMachine.CurrentSlot.IsEnlighted)
         {
             StateMachine.Satisafaction.DecreaseSatisfaction(StateMachine.CharacterDataObject.decrementationValueOnFloor);

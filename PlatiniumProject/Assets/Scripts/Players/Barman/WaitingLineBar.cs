@@ -9,6 +9,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     [SerializeField] TextMeshProUGUI _indexText;
     List<CharacterStateMachine> _waitingCharactersList;
     private DjUsher _djUsher;
+    private PriestCalculator _priestCalculator;
 
     Vector3 Direction => Vector3.down;
     Vector3 Offset => Direction * 2.5f;
@@ -19,6 +20,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     private void Awake()
     {
         _djUsher = FindObjectOfType<DjUsher>();
+        _priestCalculator = FindObjectOfType<PriestCalculator>();
         _waitingCharactersList = new List<CharacterStateMachine>();
     }
 
@@ -53,6 +55,11 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             stateMachine.MoveToLocation = stateMachine.CurrentSlot.transform.position;
             stateMachine.NextState = stateMachine.DancingState;
             stateMachine.ChangeState(stateMachine.MoveToState);
+
+            if (stateMachine.TypeData.Evilness == Evilness.EVIL)
+            {
+                _priestCalculator.PriestOnDanceFloor(stateMachine);
+            }
         }
         GetNextCharacter();
         _djUsher.SetNextSlot();

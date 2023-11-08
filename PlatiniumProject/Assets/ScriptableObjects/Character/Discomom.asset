@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Discomom
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: fc4c4a7d8a27a084fac635a3837223e0, type: 2}
-  animation: {fileID: 11400000, guid: 2f8ac897066e0ae4cb81136d59362a9e, type: 2}
+  animation: {fileID: 11400000, guid: 284bd2b3119181d4499b40c1787a3533, type: 2}
   type: {fileID: 11400000, guid: a755c41e2598ea347861b42559d7e80c, type: 2}
   movement: {fileID: 11400000, guid: c205aac937c5b25478495ab06937bc4d, type: 2}

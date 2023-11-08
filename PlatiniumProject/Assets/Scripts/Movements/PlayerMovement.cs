@@ -45,7 +45,7 @@ public abstract class PlayerMovement : EntityMovement
     public bool MoveTo(Vector3 position)
     {
         if (_hasAlreadyMovedThisBeat || !_timingable.IsInsideBeatWindow) return false;
-        if (MoveToPosition(position, _animation.CharacterAnimationObject.walkAnimation.AnimationLenght))
+        if (MoveToPosition(position, _animation.CharacterAnimationObject.Animations[ANIMATION_TYPE.MOVE].AnimationLenght))
         {
             _hasAlreadyMovedThisBeat = true;
             return true;
@@ -55,7 +55,7 @@ public abstract class PlayerMovement : EntityMovement
     
     private void AnimationSetter()
     {
-        _sp.sprite = _animation.GetAnimationSprite(CharacterAnimation.ANIMATION_TYPE.MOVING);
+        _sp.sprite = _animation.GetAnimationSprite(ANIMATION_TYPE.MOVE);
     }
     
     protected virtual void CheckJoystickValue()

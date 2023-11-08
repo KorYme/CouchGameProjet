@@ -90,7 +90,7 @@ public class CharacterStateMachine : MonoBehaviour
 
     public void PullCharacter(CharacterState startState = null)
     {
-        _spriteRenderer.sprite = Animation.GetAnimationSprite(CharacterAnimation.ANIMATION_TYPE.IDLE);
+        _spriteRenderer.sprite = Animation.GetAnimationSprite(ANIMATION_TYPE.IDLE);
         switch (TypeData.ClientType)
         {
             case CharacterColor.BLUE:

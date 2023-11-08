@@ -3,12 +3,6 @@ using UnityEngine;
 
 public class CharacterAnimation : MonoBehaviour
 {
-    public enum ANIMATION_TYPE
-    {
-        DANCING,
-        IDLE,
-        MOVING,
-    }
     [SerializeField] private CharacterAnimationObject _characterAnimationData;
     private int _animationIndex;
     private ANIMATION_TYPE lastAnimationType;
@@ -36,17 +30,30 @@ public class CharacterAnimation : MonoBehaviour
         switch (animation)
         {
             case ANIMATION_TYPE.DANCING:
-                result = _characterAnimationData.dancingAnimation.GetNextAnimationSprite(ref _animationIndex);
-                if(result == null)
+                if (!_characterAnimationData.Animations.ContainsKey(ANIMATION_TYPE.DANCING))
+                    return null;
+                result = _characterAnimationData.Animations[ANIMATION_TYPE.DANCING].GetNextAnimationSprite(ref _animationIndex);
+                if(result == null )
                     throw new ArgumentOutOfRangeException("there is no sprite for animation");
                 return result;
             case ANIMATION_TYPE.IDLE:
-                result = _characterAnimationData.idleAnimation.GetNextAnimationSprite(ref _animationIndex);
+                if (!_characterAnimationData.Animations.ContainsKey(ANIMATION_TYPE.IDLE))
+                    return null;
+                result = _characterAnimationData.Animations[ANIMATION_TYPE.IDLE].GetNextAnimationSprite(ref _animationIndex);
                 if(result == null)
                     throw new ArgumentOutOfRangeException("there is no sprite for animation");
                 return result;
-            case ANIMATION_TYPE.MOVING:
-                result = _characterAnimationData.walkAnimation.GetNextAnimationSprite(ref _animationIndex);
+            case ANIMATION_TYPE.EXORCIZE:
+                if (!_characterAnimationData.Animations.ContainsKey(ANIMATION_TYPE.EXORCIZE))
+                    return null;
+                result = _characterAnimationData.Animations[ANIMATION_TYPE.EXORCIZE].GetNextAnimationSprite(ref _animationIndex);
+                if(result == null)
+                    throw new ArgumentOutOfRangeException("there is no sprite for animation");
+                return result;
+            case ANIMATION_TYPE.MOVE:
+                if (!_characterAnimationData.Animations.ContainsKey(ANIMATION_TYPE.MOVE))
+                    return null;
+                result = _characterAnimationData.Animations[ANIMATION_TYPE.MOVE].GetNextAnimationSprite(ref _animationIndex);
                 if(result == null)
                     throw new ArgumentOutOfRangeException("there is no sprite for animation");
                 return result;
