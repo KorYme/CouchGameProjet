@@ -203,6 +203,10 @@ PrefabInstance:
       propertyPath: _QTEDisplay
       value: 
       objectReference: {fileID: 483770713}
+    - target: {fileID: 640554239761859928, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
+      propertyPath: _bubbleObject
+      value: 
+      objectReference: {fileID: 1296760308}
     - target: {fileID: 795238794731590820, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
       propertyPath: _badClientRatio.x
       value: 9
@@ -385,15 +389,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4946873097406760093, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
       propertyPath: _playerRoles.Array.data[0]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4946873097406760093, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
-      propertyPath: _playerRoles.Array.data[1]
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4946873097406760093, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
-      propertyPath: _playerRoles.Array.data[2]
+      propertyPath: _playerRoles.Array.data[1]
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4946873097406760093, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
+      propertyPath: _playerRoles.Array.data[2]
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5319583278937007786, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
       propertyPath: _useShader
@@ -463,6 +467,10 @@ PrefabInstance:
       propertyPath: _useShader
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7345979481681187786, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 184
+      objectReference: {fileID: 0}
     - target: {fileID: 7654672833834681485, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
       propertyPath: _useShader
       value: 0
@@ -526,6 +534,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
+--- !u!1 &1296760308 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3033848780851214686, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
+  m_PrefabInstance: {fileID: 1296760307}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

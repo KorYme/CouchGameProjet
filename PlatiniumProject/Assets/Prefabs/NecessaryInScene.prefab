@@ -7442,6 +7442,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasMainScene
       objectReference: {fileID: 0}
+    - target: {fileID: 6732279293289214389, guid: 03620f3353903864bb9dae11d2303e46, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 181
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732279293289214389, guid: 03620f3353903864bb9dae11d2303e46, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 105
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
