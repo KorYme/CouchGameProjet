@@ -73,7 +73,7 @@ public class QTEListSequences
                     {
                         if (_inputsSucceeded[index])
                         {
-                            Debug.Log($"{index} GOOD");
+                            //Debug.Log($"{index} GOOD");
                             str.Append("<color=\"green\">");
                         }
                         else if (currentIndex == j && currentIndexSequence == i
@@ -83,7 +83,7 @@ public class QTEListSequences
                         }
                         else
                         {
-                            Debug.Log($"{index} WRONG");
+                            //Debug.Log($"{index} WRONG");
                             str.Append("<color=\"red\">");
                         }
                         str.Append(action.descriptiveName);
