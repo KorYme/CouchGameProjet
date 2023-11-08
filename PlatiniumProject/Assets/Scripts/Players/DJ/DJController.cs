@@ -31,7 +31,7 @@ public class DJController : MonoBehaviour, IQTEable
     #region ToRemove
     [SerializeField] TextMeshProUGUI _QTEDisplay;
 
-    public void OnQTEStarted(QTESequence sequence)
+    public void OnQTEStarted()
     {
         _QTEDisplay.text = _qteHandler.GetQTEString();
     }
@@ -191,5 +191,21 @@ public class DJController : MonoBehaviour, IQTEable
     private void DeactivateQTE()
     {
         UpdateQTE();
+    }
+
+    public void OnQTECorrectInput()
+    {
+        foreach (SlotInformation information in _shapesLight)
+        {
+            if (information.Occupant != null)
+            {
+                CharacterStateDancing state = information.Occupant.DancingState as CharacterStateDancing;
+                if (state != null)
+                {
+                    state.OnQTECorrectInput(_qteHandler.LengthInputs);
+                }
+            }
+        }
+        _QTEDisplay.text = _qteHandler.GetQTEString();
     }
 }

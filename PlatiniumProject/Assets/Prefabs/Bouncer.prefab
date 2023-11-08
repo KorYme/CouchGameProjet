@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _role: 2
+  _inputsAreOnBeat: 1
 --- !u!114 &6716087328787060443
 MonoBehaviour:
   m_ObjectHideFlags: 0
