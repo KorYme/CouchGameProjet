@@ -10,8 +10,7 @@ public class QTEHandler : MonoBehaviour
 
     PlayerInputController _playerController;
     ITimingable _timingable;
-    //List of listener on QTEHandler
-    List<IQTEable> _QTEables = new List<IQTEable>();
+    QTEHandlerEvents _events = new();
 
     private Coroutine _coroutineQTE;
     QTEListSequences _currentListSequences;
@@ -32,6 +31,7 @@ public class QTEHandler : MonoBehaviour
     {
         _currentListSequences = new QTEListSequences();
         _timingable = Globals.BeatTimer;
+        //_events = GetComponent<QTEHandlerEvents>();
         _checkInputThisBeat = new CheckHasInputThisBeat(_timingable);
         yield return new WaitUntil(() => Players.PlayersController[(int)_role] != null);
         _playerController = Players.PlayersController[(int)_role];
@@ -41,7 +41,7 @@ public class QTEHandler : MonoBehaviour
             _playerController.Action2,
             _playerController.Action3,
             _playerController.Action4,
-            _playerController.RB,
+            _playerController.LT,
             _playerController.RT,
         };
     }
@@ -49,44 +49,14 @@ public class QTEHandler : MonoBehaviour
     #region QTEable
     public void RegisterQTEable(IQTEable QTEable)
     {
-        _QTEables.Add(QTEable);
+        _events?.RegisterQTEable(QTEable);
     }
 
     public void UnregisterQTEable(IQTEable QTEable)
     {
-        _QTEables.Remove(QTEable);
+        _events?.UnregisterQTEable(QTEable);
     }
-    void CallOnCorrectInput()
-    {
-        //Debug.LogWarning("CORRECT INPUT");
-        foreach (IQTEable reciever in _QTEables)
-        {
-            reciever.OnQTECorrectInput();
-        }
-    }
-    void CallOnWrongInput()
-    {
-        //Debug.LogWarning("WRONG INPUT");
-        foreach (IQTEable reciever in _QTEables)
-        {
-            reciever.OnQTEWrongInput();
-        }
-    }
-    void CallOnQTEComplete()
-    {
-        foreach (IQTEable reciever in _QTEables)
-        {
-            reciever.OnQTEComplete();
-        }
-    }
-
-    void CallOnQTEStarted()
-    {
-        foreach (IQTEable reciever in _QTEables)
-        {
-            reciever.OnQTEStarted(_currentQTESequence);
-        }
-    }
+    
     #endregion
 
     #region SetUpQTE
@@ -158,7 +128,7 @@ public class QTEHandler : MonoBehaviour
         _indexInSequence = 0;
         _currentQTESequence = _currentListSequences.GetSequence(_indexOfSequence);
         _inputsSucceeded = new bool[_currentQTESequence.ListSubHandlers.Count];
-        CallOnQTEStarted();
+        _events?.CallOnQTEStarted();
 
         switch (_currentQTESequence.SequenceType)
         {
@@ -199,13 +169,21 @@ public class QTEHandler : MonoBehaviour
     #endregion
     public string GetQTEString()
     {
-        if (_currentListSequences != null || _currentListSequences.Length > 0)
+        if (_currentListSequences != null && _currentListSequences.Length > 0)
         {
             return _currentListSequences.ToString(_indexOfSequence, _indexInSequence);
         }
         return String.Empty;
     }
 
+    public string GetCurrentInputString()
+    {
+        if (_currentListSequences != null && _currentListSequences.Length > 0)
+        {
+            return _currentListSequences.GetInputString(_indexOfSequence, _indexInSequence);
+        }
+        return String.Empty;
+    }
     void CheckInputs(int expectedActionID)
     {
         if (!_checkInputThisBeat.HadInputThisBeat)
@@ -225,12 +203,12 @@ public class QTEHandler : MonoBehaviour
                             _currentListSequences.SetInputSucceeded(_indexInListSequences, true);
                             _indexInSequence++;
                             _indexInListSequences++;
-                            CallOnCorrectInput();
+                            _events?.CallOnCorrectInput();
                         } else
                         {
                             _indexInSequence++;
                             _indexInListSequences++;
-                            CallOnWrongInput();
+                            _events?.CallOnWrongInput();
                         }
                     }
                 }
@@ -279,13 +257,19 @@ public class QTEHandler : MonoBehaviour
                             //Debug.Log($"DeltaValue {vectAxis.DeltaValue}");
                             _inputsSucceeded[i] = vectAxis.IsMoving;
                             _currentListSequences.SetInputSucceeded(i, _inputsSucceeded[i]);
-                            CallOnCorrectInput(); 
+                            if (_inputsSucceeded[i])// TO DO : CHANGE
+                            {
+                                _events?.CallOnCorrectInput(); 
+                            }
                         }
                     } else if (_inputsSucceeded[i] != inputs[i].IsPerformed)
                     {
                         _inputsSucceeded[i] = inputs[i].IsPerformed;
                         _currentListSequences.SetInputSucceeded(i, _inputsSucceeded[i]);
-                        CallOnCorrectInput(); // TO DO : CHANGE
+                        if (_inputsSucceeded[i]) // TO DO : CHANGE
+                        {
+                            _events?.CallOnCorrectInput();
+                        }
                     }
                 }
             }
@@ -312,7 +296,7 @@ public class QTEHandler : MonoBehaviour
         else // End of the list of sequences
         {
             _currentListSequences.Clear();
-            CallOnQTEComplete();
+            _events?.CallOnQTEComplete();
         }
     }
     

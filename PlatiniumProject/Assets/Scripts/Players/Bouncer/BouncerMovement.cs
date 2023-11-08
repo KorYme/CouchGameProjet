@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class BouncerMovement : PlayerMovement, IQTEable
@@ -153,9 +150,9 @@ public class BouncerMovement : PlayerMovement, IQTEable
     {
         _qteHandler.StartNewQTE();
     }
-    public void OnQTEStarted(QTESequence sequence)
+    public void OnQTEStarted()
     {
-        _text.text = _qteHandler.GetQTEString();
+        _text.text = _qteHandler.GetCurrentInputString();
     }
     public void OnQTEComplete()
     {
@@ -171,11 +168,12 @@ public class BouncerMovement : PlayerMovement, IQTEable
     }
     public void OnQTECorrectInput()
     {
-        _text.text = _qteHandler.GetQTEString();
+        _text.text = _qteHandler.GetCurrentInputString();
     }
     public void OnQTEWrongInput()
     {
         LetCharacterEnterBox();
         _qteHandler.DeleteCurrentCoroutine();
+        _text.text = _qteHandler.GetCurrentInputString();
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IQTEable
 {
-    void OnQTEStarted(QTESequence sequence);
+    void OnQTEStarted();
     void OnQTEComplete();
     void OnQTECorrectInput();
     void OnQTEWrongInput();
