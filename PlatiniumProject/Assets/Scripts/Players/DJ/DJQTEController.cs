@@ -7,6 +7,7 @@ public class DJQTEController : MonoBehaviour, IQTEable
 {
     QTEHandler _qteHandler;
     [SerializeField] TextMeshProUGUI _QTEDisplay;
+    [SerializeField] GameObject _bubbleObject;
     List<SlotInformation> _shapesLightCopy;
 
     private void Awake()
@@ -66,11 +67,11 @@ public class DJQTEController : MonoBehaviour, IQTEable
         }
         _QTEDisplay.text = _qteHandler.GetQTEString();
     }
-
     public void UpdateShape(List<SlotInformation> shape)
     {
         _shapesLightCopy = shape;
     }
+
     #region IQTEable
     public void OnQTEStarted()
     {
