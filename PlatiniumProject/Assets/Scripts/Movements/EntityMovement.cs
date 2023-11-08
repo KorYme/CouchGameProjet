@@ -15,7 +15,7 @@ public class EntityMovement : MonoBehaviour, IMovable
 
     protected Coroutine _movementCoroutine;
     protected Action OnMove;
-    protected ITimingable _timingable => Globals.BeatTimer;
+    protected ITimingable _timingable => Globals.BeatManager;
     public bool IsMoving => _movementCoroutine != null;
 
     private Vector3 _destination;

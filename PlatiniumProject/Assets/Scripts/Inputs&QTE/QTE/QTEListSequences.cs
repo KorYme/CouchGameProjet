@@ -1,8 +1,10 @@
 using Rewired;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class QTEListSequences
 {
@@ -113,5 +115,19 @@ public class QTEListSequences
                 yield return input;
             }
         }
+    }
+
+    public string GetInputString(int indexOfSequence,int indexInSequence)
+    {
+        StringBuilder str = new StringBuilder();
+        if (indexOfSequence >= 0 && indexOfSequence < _sequences.Count &&
+            indexInSequence >= 0 && indexInSequence < _sequences[indexOfSequence].ListSubHandlers.Count)
+        {
+            str.Append("<color=\"red\">");
+            InputAction action = ReInput.mapping.GetAction(_sequences[indexOfSequence].ListSubHandlers[indexInSequence].ActionIndex);
+            str.Append(action.descriptiveName);
+            str.Append("</color> ");
+        }
+        return str.ToString();
     }
 }

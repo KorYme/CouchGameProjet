@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class BouncerMovement : PlayerMovement, IQTEable
@@ -22,13 +19,15 @@ public class BouncerMovement : PlayerMovement, IQTEable
     private SlotInformation _currentSlot;
 
     protected override PlayerRole PlayerRole => PlayerRole.Bouncer;
+    private BouncerQTEController _qteController;
 
-    QTEHandler _qteHandler;
-    [SerializeField] TextMeshProUGUI _text;
+    private void Awake()
+    {
+        _qteController = GetComponent<BouncerQTEController>();
+    }
 
     protected override IEnumerator Start()
     {
-        _text.text = "";
         yield return base.Start();
         Players.PlayersController[(int)PlayerRole].RB.OnInputChange += () =>
         {
@@ -38,10 +37,11 @@ public class BouncerMovement : PlayerMovement, IQTEable
             * Mathf.Max(1,_areaManager.BouncerBoard.BoardDimension.y / 2 + _areaManager.BouncerBoard.BoardDimension.y % 2) -1];
         _currentSlot.PlayerOccupant = this;
         transform.position = _currentSlot.transform.position;
-        TryGetComponent(out _qteHandler);
-        if (_qteHandler != null)
+        QTEHandler qteHandler;
+        TryGetComponent(out qteHandler);
+        if (qteHandler != null)
         {
-            _qteHandler.RegisterQTEable(this);
+            qteHandler.RegisterQTEable(this);
         }
         Debug.Log("Bouncer Initialis�");
     }
@@ -130,7 +130,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
             {
                 if (_currentSlot.Occupant.TypeData.Evilness == Evilness.EVIL)
                 {
-                    StartQTE();
+                    _qteController?.StartQTE();
                 } else
                 {
                     RefuseCharacterEnterBox();
@@ -147,20 +147,11 @@ public class BouncerMovement : PlayerMovement, IQTEable
         chara.BouncerAction(true);
         _currentState = BouncerState.Moving;
         transform.position = _currentSlot.transform.position;
-    }
-
-    public void StartQTE()
-    {
-        _qteHandler.StartNewQTE();
     }
-    public void OnQTEStarted(QTESequence sequence)
-    {
-        _text.text = _qteHandler.GetQTEString();
-    }
+    public void OnQTEStarted(){}
     public void OnQTEComplete()
     {
         RefuseCharacterEnterBox();
-        _text.text = "";
     }
     private void RefuseCharacterEnterBox()
     {
@@ -169,13 +160,9 @@ public class BouncerMovement : PlayerMovement, IQTEable
         _currentState = BouncerState.Moving;
         transform.position = _currentSlot.transform.position;
     }
-    public void OnQTECorrectInput()
-    {
-        _text.text = _qteHandler.GetQTEString();
-    }
+    public void OnQTECorrectInput() {}
     public void OnQTEWrongInput()
     {
         LetCharacterEnterBox();
-        _qteHandler.DeleteCurrentCoroutine();
     }
 }

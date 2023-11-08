@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _allWwiseEvents: {fileID: 11400000, guid: cf58975faf770dd4cbcef333a05f99a6, type: 2}
-  _musicIndex: 1
+  _musicIndex: 3
   _timingBeforeBeat: 0.1
   _timingAfterBeat: 0.3
   _onBeatEvent:
