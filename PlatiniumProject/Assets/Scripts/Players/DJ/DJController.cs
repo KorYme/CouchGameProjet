@@ -56,6 +56,11 @@ public class DJController : MonoBehaviour, IQTEable
         }
         _QTEDisplay.text = _qteHandler.GetQTEString();
     }
+
+    public void OnQTEWrongInput()
+    {
+        _QTEDisplay.text = _qteHandler.GetQTEString();
+    }
     #endregion
     //TO CHECK
     private IEnumerator Start()
@@ -186,11 +191,5 @@ public class DJController : MonoBehaviour, IQTEable
     private void DeactivateQTE()
     {
         UpdateQTE();
-    }
-
-    public void OnQTEWrongInput()
-    {
-        //UpdateQTE();
-        _QTEDisplay.text = _qteHandler?.GetQTEString();
     }
 }
