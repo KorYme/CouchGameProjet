@@ -10,6 +10,9 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     List<CharacterStateMachine> _waitingCharactersList;
     private DjUsher _djUsher;
 
+    Vector3 Direction => Vector3.down;
+    Vector3 Offset => Direction * 2.5f;
+
     public int NbCharactersWaiting { get => _waitingCharactersList.Count; }
     public bool IsInPause = true;
 
@@ -48,10 +51,8 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
         {
             stateMachine.CurrentSlot = _djUsher.NextSlot;
             stateMachine.MoveToLocation = stateMachine.CurrentSlot.transform.position;
-            
             stateMachine.NextState = stateMachine.DancingState;
             stateMachine.ChangeState(stateMachine.MoveToState);
-
         }
         GetNextCharacter();
         _djUsher.SetNextSlot();
@@ -81,7 +82,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             }
             for (int i = 0;i < _waitingCharactersList.Count; i++)
             {
-                _waitingCharactersList[i].CharacterMove.MoveTo(transform.position + Vector3.left * (i + 1));
+                _waitingCharactersList[i].CharacterMove.MoveTo(transform.position + Direction * (i + 1) + Offset);
             }
             UpdatePositions();
             _waitingCharactersList[0].ChangeState(_waitingCharactersList[0].BarManAtBar);
@@ -93,12 +94,12 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     {
         for (int i = 0; i < _waitingCharactersList.Count; i++)
         {
-            _waitingCharactersList[i].CharacterMove.MoveTo(transform.position + Vector3.left * (i + 1));
+            _waitingCharactersList[i].CharacterMove.MoveTo(transform.position + Direction * (i + 1) + Offset);
         }
     }
     public void AddToWaitingLine(CharacterStateMachine character)
     {
-        character.CharacterMove.MoveTo(transform.position + Vector3.left * (_waitingCharactersList.Count + 1));
+        character.CharacterMove.MoveTo(transform.position + Offset + Direction * (_waitingCharactersList.Count + 1));
         if (_waitingCharactersList.Count == 0) //If first person in line
         {
             if (IsInPause)
