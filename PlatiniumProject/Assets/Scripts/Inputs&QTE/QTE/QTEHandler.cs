@@ -30,8 +30,7 @@ public class QTEHandler : MonoBehaviour
     private IEnumerator Start()
     {
         _currentListSequences = new QTEListSequences();
-        _timingable = Globals.BeatManager;
-        //_events = GetComponent<QTEHandlerEvents>();
+        _timingable = Globals.BeatTimer;
         _checkInputThisBeat = new CheckHasInputThisBeat(_timingable);
         yield return new WaitUntil(() => Players.PlayersController[(int)_role] != null);
         _playerController = Players.PlayersController[(int)_role];
