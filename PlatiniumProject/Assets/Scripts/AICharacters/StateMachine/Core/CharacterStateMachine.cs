@@ -6,7 +6,7 @@ public class CharacterStateMachine : MonoBehaviour
 {
     [SerializeField] private CharacterData _characterData;
     [SerializeField] private SpriteRenderer _spriteRenderer;
-    [SerializeField] private CharacterTypeData[] _typesDataAvailable;
+    [SerializeField] private CharacterTypeData _currentType;
     private SpawnManager _spawnManager;
     private BeatManager _beatManager;
     public Vector3 PullPos { get; set; }
@@ -45,7 +45,16 @@ public class CharacterStateMachine : MonoBehaviour
     public CharacterState NextState { get; set; }
     public Vector3 MoveToLocation { get; set; }
     public WaitingLineBar CurrentWaitingLine { get; set; }
-    public CharacterData CharacterDataObject => _characterData;
+    public CharacterData CharacterDataObject
+    {
+        get { return _characterData; }
+        set { if(value != null) _characterData = value; }
+    }
+    public CharacterTypeData CharacterTypeData
+    {
+        get { return _currentType; }
+        set { if(value != null) _currentType = value; }
+    }
     public SpriteRenderer SpriteRenderer => _spriteRenderer;
     public SlotInformation CurrentSlot { get; set; }
     public int CurrentBeatAmount { get; set; }
@@ -57,8 +66,13 @@ public class CharacterStateMachine : MonoBehaviour
     public CharacterAIStatisfaction Satisafaction { get; private set; }
     public CharacterAnimation Animation { get; private set; }
 
-    public CharacterTypeData TypeData { get; private set; }
+    public CharacterTypeData TypeData { get; set; }
+    public CharacterAiPuller Puller { get; private set; }
 
+    #endregion
+
+    #region Events
+    public Action OnCharacterDeath;
     #endregion
 
     private void Awake()
@@ -71,11 +85,12 @@ public class CharacterStateMachine : MonoBehaviour
         CharacterMove = GetComponent<CharacterAIMovement>();
         Satisafaction = GetComponent<CharacterAIStatisfaction>();
         Animation = GetComponent<CharacterAnimation>();
+        Puller = GetComponent<CharacterAiPuller>();
     }
 
     public void PullCharacter(CharacterState startState = null)
     {
-        GetRandomCharacterTypeData();
+        _spriteRenderer.sprite = Animation.GetAnimationSprite(CharacterAnimation.ANIMATION_TYPE.IDLE);
         switch (TypeData.ClientType)
         {
             case CharacterColor.BLUE:
@@ -126,10 +141,10 @@ public class CharacterStateMachine : MonoBehaviour
                 ChangeState(IdleTransitState);
                 break;
             
-            case CharacterStateRoam characterStateRoam:
+            case CharacterStateBarmanQueue characterStateRoam:
                 Vector2 destination = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * Random.Range(0f, AreaManager.CircleRadius);
-                transform.position = destination;
-                ChangeState(RoamState);
+                transform.position = AreaManager.CircleOrigin.position + (Vector3) destination;
+                ChangeState(BarManQueueState);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(startState));
@@ -169,19 +184,24 @@ public class CharacterStateMachine : MonoBehaviour
 
     public void GoBackInPull()
     {
-        _spawnManager.ReInsertCharacterInPull(this);
+        _spawnManager.ReInsertCharacterInPull(Puller);
         ChangeState(null);
         _spriteRenderer.color = Color.white;
+        CurrentBeatAmount = 0;
+        CurrentMovementInBouncer = 0;
+        MoveToLocation = Vector3.zero;
+        CurrentState = null;
+        NextState = null;
     }
 
-    private void GetRandomCharacterTypeData()
-    {
-        if (_typesDataAvailable.Length == 0)
-        {
-            Debug.LogWarning("List of type of character available is empty");
-        } else
-        {
-            TypeData = _typesDataAvailable[Random.Range(0, _typesDataAvailable.Length)];
-        }
-    }
+    // private void GetRandomCharacterTypeData()
+    // {
+    //     if (_typesDataAvailable.Length == 0)
+    //     {
+    //         Debug.LogWarning("List of type of character available is empty");
+    //     } else
+    //     {
+    //         TypeData = _typesDataAvailable[Random.Range(0, _typesDataAvailable.Length)];
+    //     }
+    // }
 }

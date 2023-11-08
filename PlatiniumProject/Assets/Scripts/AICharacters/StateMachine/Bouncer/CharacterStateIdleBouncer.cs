@@ -13,6 +13,16 @@ public class CharacterStateIdleBouncer : CharacterState
         base.OnBeat();
         StateMachine.SpriteRenderer.sprite = StateMachine.Animation.GetAnimationSprite(CharacterAnimation.ANIMATION_TYPE.IDLE);
     }
+
+    public override void UpdateState()
+    {
+        if (StateMachine.CurrentSlot.PlayerOccupant != null)
+        {
+            StateMachine.ChangeState(StateMachine.BouncerCheckState);
+            StateMachine.CurrentSlot.PlayerOccupant.CheckMode(StateMachine);
+        }
+    }
+
     public override void BeatAction()
     {
 

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5587659796852208841}
   - component: {fileID: 2475575777112969248}
   - component: {fileID: 1020801392736537925}
+  - component: {fileID: 3001707074899246954}
   m_Layer: 0
   m_Name: BeatManager
   m_TagString: Untagged
@@ -95,21 +96,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e573ed85ee043f4989ff9b486aa2aad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _beatWwiseEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: c22cd34a7118d6544a37279f46b72383, type: 2}
+  _allWwiseEvents: {fileID: 11400000, guid: cf58975faf770dd4cbcef333a05f99a6, type: 2}
+  _musicIndex: 3
   _timingBeforeBeat: 0.1
   _timingAfterBeat: 0.3
   _onBeatEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: WwiseEventPlayer, Assembly-CSharp
+        m_MethodName: PlaySFX
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onBeatStartEvent:
     m_PersistentCalls:
       m_Calls: []
   _onBeatEndEvent:
     m_PersistentCalls:
       m_Calls: []
-  _onBeatPercentIncreased:
-    m_PersistentCalls:
-      m_Calls: []
+--- !u!114 &3001707074899246954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2994801982979645308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7f1d791994e1e418d1513544522b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputDeadZone: 0.8

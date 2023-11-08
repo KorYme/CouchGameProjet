@@ -23,6 +23,12 @@ public class RollInputChecker
     {
         _inputJoystick = inputController;
         _inputDistance = inputDistance;
+        _inputJoystick.OnInputChange += () => GetDirection();
+    }
+
+    ~RollInputChecker()
+    {
+        _inputJoystick.OnInputChange -= () => GetDirection();
     }
 
     public void GetDirection()
@@ -78,7 +84,9 @@ public class RollInputChecker
 
     private Vector2 GetClosestUnitVectorFromVector(Vector2 vector)
     {
-        if (vector.magnitude < _inputDistance) return Vector2.zero;
+        if (vector.magnitude < _inputDistance) {
+            return Vector2.zero;
+        }
         if (Mathf.Abs(vector.x) > Mathf.Abs(vector.y))
         {
             return new Vector2(Mathf.Sign(vector.x), 0f);

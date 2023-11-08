@@ -19,7 +19,6 @@ public class CharacterStateRoam : CharacterState
     {
         StateMachine.CurrentBeatAmount++;
         StateMachine.SpriteRenderer.sprite = StateMachine.Animation.GetAnimationSprite(CharacterAnimation.ANIMATION_TYPE.IDLE);
-        Debug.Log("Beat");
         if (StateMachine.CurrentBeatAmount >= StateMachine.CharacterDataObject.beatAmountUnitlAction)
         {
             StateMachine.CurrentBeatAmount = 0;
@@ -27,7 +26,7 @@ public class CharacterStateRoam : CharacterState
         }
     }
 
-    private void BeatAction()
+    public override void BeatAction()
     {
         if (StateMachine.AreaManager.RoamQueue[0] == StateMachine)
         {

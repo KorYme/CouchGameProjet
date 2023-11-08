@@ -94,7 +94,7 @@
 					<PropertyList>
 						<Property Name="EndPosition" Type="Real64" Value="165604.729166667"/>
 						<Property Name="GridFrequencyPreset" Type="int16" Value="53"/>
-						<Property Name="GridOffsetCustom" Type="Real64" Value="75"/>
+						<Property Name="GridOffsetCustom" Type="Real64" Value="100"/>
 						<Property Name="GridOffsetPreset" Type="int16" Value="1"/>
 						<Property Name="Tempo" Type="Real64" Value="130"/>
 						<Property Name="Volume" Type="Real64">
@@ -261,6 +261,128 @@
 										<PropertyList>
 											<Property Name="CueType" Type="int16" Value="1"/>
 											<Property Name="TimeMs" Type="Real64" Value="336013.06122449"/>
+										</PropertyList>
+									</MusicCue>
+								</Local>
+							</Reference>
+						</ObjectList>
+					</ObjectLists>
+				</MusicSegment>
+				<MusicSegment Name="Alesso Payday" ID="{693A3023-6DFB-4776-8EC2-731FF11A5541}" ShortID="230343818">
+					<PropertyList>
+						<Property Name="EndPosition" Type="Real64" Value="255166.857142857"/>
+						<Property Name="GridFrequencyPreset" Type="int16" Value="53"/>
+						<Property Name="GridOffsetPreset" Type="int16" Value="1"/>
+						<Property Name="Tempo" Type="Real64" Value="126"/>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-3</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<MusicTrack Name="Alesso Payday" ID="{2444CFB0-810B-4180-9C15-745DD6725DEC}" ShortID="1043983145">
+							<ReferenceList>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Alesso Payday" ID="{14243C55-882A-4E3C-AF24-7197AB331CCE}">
+									<Language>SFX</Language>
+									<AudioFile>Alesso Payday.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="698715666"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<TransitionList>
+								<MusicTransition Name="Root" ID="{BD96A18B-22E7-4E26-8500-C124FDCF4449}">
+									<PropertyList>
+										<Property Name="IsFolder" Type="bool" Value="True"/>
+									</PropertyList>
+									<TransitionInfo/>
+								</MusicTransition>
+							</TransitionList>
+							<ObjectLists>
+								<ObjectList Name="Sequences">
+									<Reference>
+										<Local>
+											<MusicTrackSequence Name="" ID="{AD962ED9-49C8-4FB2-A782-EFBF87A7431B}">
+												<ObjectLists>
+													<ObjectList Name="Clips">
+														<Reference>
+															<Local>
+																<MusicClip Name="Alesso Payday" ID="{7938154F-96AB-43CF-A44C-76E1F8101B73}">
+																	<PropertyList>
+																		<Property Name="EndTrimOffset" Type="Real64" Value="198024"/>
+																		<Property Name="FadeInMode" Type="int16" Value="0"/>
+																		<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																	</PropertyList>
+																	<AudioSourceRef Name="Alesso Payday" ID="{14243C55-882A-4E3C-AF24-7197AB331CCE}"/>
+																</MusicClip>
+															</Local>
+														</Reference>
+													</ObjectList>
+												</ObjectLists>
+											</MusicTrackSequence>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</MusicTrack>
+					</ChildrenList>
+					<ObjectLists>
+						<ObjectList Name="Cues">
+							<Reference>
+								<Local>
+									<MusicCue Name="Entry Cue" ID="{9FCA9E5F-4F32-41D9-8219-71CBA0C461B9}"/>
+								</Local>
+							</Reference>
+							<Reference>
+								<Local>
+									<MusicCue Name="Exit Cue" ID="{2F6BAB22-A735-4BE6-997C-15DC6637C40E}">
+										<PropertyList>
+											<Property Name="CueType" Type="int16" Value="1"/>
+											<Property Name="TimeMs" Type="Real64" Value="198024"/>
+										</PropertyList>
+									</MusicCue>
+								</Local>
+							</Reference>
+							<Reference>
+								<Local>
+									<MusicCue Name="DropEnd" ID="{CFBEC4AA-62C2-4EBF-9E7C-40126F9375E7}">
+										<PropertyList>
+											<Property Name="CueType" Type="int16" Value="2"/>
+											<Property Name="TimeMs" Type="Real64" Value="24761.9047619048"/>
+										</PropertyList>
+									</MusicCue>
+								</Local>
+							</Reference>
+							<Reference>
+								<Local>
+									<MusicCue Name="BuildUpStart" ID="{7CC9C465-9940-4196-9E0F-DF965744BB98}">
+										<PropertyList>
+											<Property Name="CueType" Type="int16" Value="2"/>
+											<Property Name="TimeMs" Type="Real64" Value="4761.90476190476"/>
+										</PropertyList>
+									</MusicCue>
+								</Local>
+							</Reference>
+							<Reference>
+								<Local>
+									<MusicCue Name="DropStart" ID="{47DC586E-B2E7-40F0-830E-5F0EF57FB66E}">
+										<PropertyList>
+											<Property Name="CueType" Type="int16" Value="2"/>
+											<Property Name="TimeMs" Type="Real64" Value="20000"/>
 										</PropertyList>
 									</MusicCue>
 								</Local>

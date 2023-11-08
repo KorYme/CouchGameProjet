@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: 2
   PlayerRole: 0
-  Difficulty: 0
   SequenceType: 1
   ClientType: 0
   Evilness: 0
-  QTELevel: 0
+  QTELevel: 1
   Status: 1
   DurationHold: 2
   ListSubHandlers:

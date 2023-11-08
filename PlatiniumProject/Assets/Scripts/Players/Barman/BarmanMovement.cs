@@ -7,12 +7,10 @@ public class BarmanMovement : PlayerMovement
     [SerializeField] BarmanPosition[] _barmanPositions;
     [SerializeField] SpriteRenderer _renderer;
 
-    float _timer = 0f;
-
     int _indexPosition;
     public int IndexPosition { get => _indexPosition;}
 
-    protected override PlayerRole _playerRole => PlayerRole.Barman;
+    protected override PlayerRole PlayerRole => PlayerRole.Barman;
 
     private void Awake()
     {
@@ -42,7 +40,7 @@ public class BarmanMovement : PlayerMovement
         {
             if (_indexPosition < _barmanPositions.Length - 1)
             {
-                if (MoveToPosition(_barmanPositions[_indexPosition+1].transform.position))
+                if (MoveTo(_barmanPositions[_indexPosition+1].transform.position))
                 {
                     DeactivateCurrentQTE();
                     _indexPosition++;
@@ -54,7 +52,7 @@ public class BarmanMovement : PlayerMovement
         {
             if (_indexPosition > 0)
             {
-                if (MoveToPosition(_barmanPositions[_indexPosition-1].transform.position))
+                if (MoveTo(_barmanPositions[_indexPosition-1].transform.position))
                 {
                     DeactivateCurrentQTE();
                     _indexPosition--;

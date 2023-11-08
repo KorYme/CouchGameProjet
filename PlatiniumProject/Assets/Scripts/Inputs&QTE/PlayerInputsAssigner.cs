@@ -65,7 +65,7 @@ public class PlayerInputsAssigner : MonoBehaviour {
         {
             if (instance.playerMap[i].gamePlayerId == gamePlayerId)
             {
-                Debug.Log("ID " + gamePlayerId + " i " + i + " " + instance.playerMap[i].role);
+                Debug.Log("ID " + gamePlayerId + " i " + i + " " + instance.playerMap[i].role.ToString());
                 return instance.playerMap[i].role;
             }
         }

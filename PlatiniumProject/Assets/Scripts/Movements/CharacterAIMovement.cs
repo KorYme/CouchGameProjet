@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class CharacterAIMovement : EntityMovement
 {
-    public Action OnMove;
     private CharacterStateMachine _stateMachine;
     private void Awake()
     {
@@ -18,15 +17,16 @@ public class CharacterAIMovement : EntityMovement
         OnMove -= AnimationSetter;
     }
 
+    public void MoveTo(Vector3 pos)
+    {
+        MoveToPosition(pos, _stateMachine.Animation.CharacterAnimationObject.walkAnimation.AnimationLenght);
+    }
+
     private void AnimationSetter()
     {
         _stateMachine.SpriteRenderer.sprite =
             _stateMachine.Animation.GetAnimationSprite(CharacterAnimation.ANIMATION_TYPE.MOVING);
     }
 
-    public void MoveTo(Vector3 position)
-    {
-        MoveToPositionWithAnim(position, OnMove,
-            _stateMachine.Animation.CharacterAnimationObject.walkAnimation.AnimationLenght);
-    }
+
 }

@@ -62,6 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _qteHandler: {fileID: 8571109586739665489}
   _indexText: {fileID: 0}
+  IsInPause: 1
 --- !u!114 &8571109586739665489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,4 +76,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _role: 0
-  _beatManager: {fileID: 0}
+  _inputsAreOnBeat: 1

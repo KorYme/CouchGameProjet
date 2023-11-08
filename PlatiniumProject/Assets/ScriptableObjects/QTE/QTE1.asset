@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: QTE1
   m_EditorClassIdentifier: 
   Index: 1
-  PlayerRole: 1
-  Difficulty: 0
+  PlayerRole: 2
   SequenceType: 0
   ClientType: 0
   Evilness: 0
-  QTELevel: 0
+  QTELevel: 1
   Status: 0
   DurationHold: 1
   ListSubHandlers:

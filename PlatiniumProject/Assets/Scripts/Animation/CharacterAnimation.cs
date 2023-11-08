@@ -13,7 +13,11 @@ public class CharacterAnimation : MonoBehaviour
     private int _animationIndex;
     private ANIMATION_TYPE lastAnimationType;
 
-    public CharacterAnimationObject CharacterAnimationObject => _characterAnimationData;
+    public CharacterAnimationObject CharacterAnimationObject
+    {
+        get { return _characterAnimationData; }
+        set { if(value != null) _characterAnimationData = value; }
+    }
 
 
     public void ResetAnimation()
@@ -36,19 +40,16 @@ public class CharacterAnimation : MonoBehaviour
                 if(result == null)
                     throw new ArgumentOutOfRangeException("there is no sprite for animation");
                 return result;
-                break;
             case ANIMATION_TYPE.IDLE:
                 result = _characterAnimationData.idleAnimation.GetNextAnimationSprite(ref _animationIndex);
                 if(result == null)
                     throw new ArgumentOutOfRangeException("there is no sprite for animation");
                 return result;
-                break;
             case ANIMATION_TYPE.MOVING:
                 result = _characterAnimationData.walkAnimation.GetNextAnimationSprite(ref _animationIndex);
                 if(result == null)
                     throw new ArgumentOutOfRangeException("there is no sprite for animation");
                 return result;
-                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(animation), animation, null);
         }

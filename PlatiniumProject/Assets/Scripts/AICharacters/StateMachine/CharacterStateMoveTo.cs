@@ -20,7 +20,7 @@ public class CharacterStateMoveTo : CharacterState
     }
     IEnumerator MoveRoutine()
     {
-        StateMachine.CharacterMove.MoveTo(StateMachine.MoveToLocation);
+        StateMachine.CharacterMove.MoveToPosition(StateMachine.MoveToLocation, StateMachine.Animation.CharacterAnimationObject.walkAnimation.AnimationLenght);
         StateMachine.MoveToLocation = Vector2.zero;
 
         yield return new WaitUntil(() => !StateMachine.CharacterMove.IsMoving);

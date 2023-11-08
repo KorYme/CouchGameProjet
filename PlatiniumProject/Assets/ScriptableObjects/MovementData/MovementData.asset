@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8bc4844133adfb47a2b0f576f1908d0, type: 3}
   m_Name: MovementData
   m_EditorClassIdentifier: 
-  MovementDurationPercent: 0.8
+  MovementDurationPercent: 0.6
   MovementCurve:
     serializedVersion: 2
     m_Curve:
