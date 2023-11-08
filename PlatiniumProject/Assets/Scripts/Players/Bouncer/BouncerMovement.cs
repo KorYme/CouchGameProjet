@@ -152,7 +152,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
     }
     public void OnQTEStarted()
     {
-        _text.text = _qteHandler.GetQTEString();
+        _text.text = _qteHandler.GetCurrentInputString();
     }
     public void OnQTEComplete()
     {
@@ -168,11 +168,12 @@ public class BouncerMovement : PlayerMovement, IQTEable
     }
     public void OnQTECorrectInput()
     {
-        _text.text = _qteHandler.GetQTEString();
+        _text.text = _qteHandler.GetCurrentInputString();
     }
     public void OnQTEWrongInput()
     {
         LetCharacterEnterBox();
         _qteHandler.DeleteCurrentCoroutine();
+        _text.text = _qteHandler.GetCurrentInputString();
     }
 }

@@ -176,6 +176,14 @@ public class QTEHandler : MonoBehaviour
         return String.Empty;
     }
 
+    public string GetCurrentInputString()
+    {
+        if (_currentListSequences != null && _currentListSequences.Length > 0)
+        {
+            return _currentListSequences.GetInputString(_indexOfSequence, _indexInSequence);
+        }
+        return String.Empty;
+    }
     void CheckInputs(int expectedActionID)
     {
         if (!_checkInputThisBeat.HadInputThisBeat)
