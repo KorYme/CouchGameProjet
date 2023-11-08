@@ -58,7 +58,7 @@ public class QTEHandler : MonoBehaviour
     }
     void CallOnCorrectInput()
     {
-        Debug.LogWarning("CORRECT INPUT");
+        //Debug.LogWarning("CORRECT INPUT");
         foreach (IQTEable reciever in _QTEables)
         {
             reciever.OnQTECorrectInput();
@@ -66,7 +66,7 @@ public class QTEHandler : MonoBehaviour
     }
     void CallOnWrongInput()
     {
-        Debug.LogWarning("WRONG INPUT");
+        //Debug.LogWarning("WRONG INPUT");
         foreach (IQTEable reciever in _QTEables)
         {
             reciever.OnQTEWrongInput();
@@ -278,12 +278,14 @@ public class QTEHandler : MonoBehaviour
                         {
                             //Debug.Log($"DeltaValue {vectAxis.DeltaValue}");
                             _inputsSucceeded[i] = vectAxis.IsMoving;
-                            CallOnCorrectInput();
+                            _currentListSequences.SetInputSucceeded(i, _inputsSucceeded[i]);
+                            CallOnCorrectInput(); 
                         }
                     } else if (_inputsSucceeded[i] != inputs[i].IsPerformed)
                     {
                         _inputsSucceeded[i] = inputs[i].IsPerformed;
-                        CallOnCorrectInput();
+                        _currentListSequences.SetInputSucceeded(i, _inputsSucceeded[i]);
+                        CallOnCorrectInput(); // TO DO : CHANGE
                     }
                 }
             }
