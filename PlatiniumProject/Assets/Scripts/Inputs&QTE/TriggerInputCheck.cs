@@ -10,12 +10,20 @@ public class TriggerInputCheck
 
     public event Action<bool> OnTriggerStateChange;
 
+    bool _needToBeReleased;
+    public bool NeedToBeReleased
+    {
+        get => _needToBeReleased;
+        set => _needToBeReleased = IsPressed && value;
+    }
     public bool IsPressed { get; private set; }
+    public bool IsPressedOnBeat => IsPressed && !NeedToBeReleased;
 
     public TriggerInputCheck(InputFloat inputTrigger, float inputDeadZone)
     {
         _inputTrigger = inputTrigger;
         _inputDeadZone = inputDeadZone;
+        _needToBeReleased = false;
         _inputTrigger.OnInputChange += () => GetTriggerValue();
     }
 
@@ -31,6 +39,7 @@ public class TriggerInputCheck
             if (IsPressed)
             {
                 IsPressed = false;
+                _needToBeReleased = false;
                 OnTriggerStateChange?.Invoke(false);
             }
         }

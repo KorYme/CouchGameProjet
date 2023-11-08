@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class Globals
 {
-    public static ITimingable BeatTimer = null;
-    public static DropController DropController = null;
+    public static ITimingable BeatManager = null;
+    public static DropManager DropManager = null;
     public static SpawnManager SpawnManager = null;
 }

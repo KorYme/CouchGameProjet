@@ -35,7 +35,7 @@ public class SlotRenderer : MonoBehaviour
 
     private void Start()
     {
-        _beatManager = Globals.BeatTimer;
+        _beatManager = Globals.BeatManager;
         if (_useShader)
         {
             _beatManager.OnBeatEvent.AddListener(() => ChangeOnBeat()); 
