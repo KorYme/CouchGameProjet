@@ -38,7 +38,6 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     private void OnInputCorrect()
     {
         _indexText.text = _qteHandler.GetQTEString();
-        Debug.Log("INPUT CORRECT");
     }
 
      void OnDrinkComplete()

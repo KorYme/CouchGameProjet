@@ -22,7 +22,7 @@ public class DropManager : MonoBehaviour
     public DROP_STATE DropState
     {
         get => _dropState;
-        set
+        private set
         {
             OnDropStateChange?.Invoke(value);
             _dropState = value;
@@ -31,6 +31,7 @@ public class DropManager : MonoBehaviour
     event Action<DROP_STATE> OnDropStateChange;
 
     public event Action OnDropSuccess;
+    public event Action OnDropFail;
 
     int _triggerPressedNumber;
     BeatManager _beatManager;
@@ -64,18 +65,14 @@ public class DropManager : MonoBehaviour
         {
             case DROP_STATE.OUT_OF_DROP:
                 Globals.SpawnManager.CanSpawnClients = true;
+                _allDropControllers.ForEach(x => x.DisplayTriggers(false));
                 break;
             case DROP_STATE.ON_DROP_PRESSING:
                 Globals.SpawnManager.CanSpawnClients = false;
-                break;
-            case DROP_STATE.ON_DROP_RELEASING:
-                if (_triggerPressedNumber != Players.PlayerConnected * 2)
-                {
-                    DropState = DROP_STATE.ON_DROP_MISSED;
-                    Debug.Log("Not enough triggers pushed, drop missed");
-                }
+                _allDropControllers.ForEach(x => x.DisplayTriggers(true));
                 break;
             case DROP_STATE.ON_DROP_MISSED:
+                OnDropFail?.Invoke();
                 _beatManager.OnNextBeatStart += () => DropState = DROP_STATE.OUT_OF_DROP;
                 break;
             default:
@@ -97,16 +94,20 @@ public class DropManager : MonoBehaviour
                 break;
             case "DropStart":
                 _beatManager.OnBeatEndEvent.RemoveListener(AllTriggerRelease);
-                DropState = DROP_STATE.ON_DROP_RELEASING;
-                break;
-            case "DropEnd":
-                if (DropState != DROP_STATE.ON_DROP_RELEASING) return;
-                if (_triggerPressedNumber == 0)
+                if (_triggerPressedNumber >= Players.PlayerConnected * 2)
                 {
-                    Success();
+                    DropState = DROP_STATE.ON_DROP_RELEASING;
                 }
                 else
                 {
+                    Debug.Log("Not enough triggers pushed, drop missed");
+                    DropState = DROP_STATE.ON_DROP_MISSED;
+                }
+                break;
+            case "DropEnd":
+                if (DropState != DROP_STATE.OUT_OF_DROP)
+                {
+                    Debug.Log("Not enough triggers released, drop missed");
                     DropState = DROP_STATE.ON_DROP_MISSED;
                 }
                 break;
@@ -139,7 +140,9 @@ public class DropManager : MonoBehaviour
                 _triggerPressedNumber = _allDropControllers.Sum(x => x.TriggerPressed);
                 if (_triggerPressedNumber == 0)
                 {
-                    Success();
+                    Debug.Log("Success Drop");
+                    DropState = DROP_STATE.OUT_OF_DROP;
+                    OnDropSuccess?.Invoke();
                 }
                 break;
             default:
@@ -151,12 +154,5 @@ public class DropManager : MonoBehaviour
     {
         if (DropState == DROP_STATE.ON_DROP_ALL_PRESSED) return;
         _allDropControllers.ForEach(x => x.ForceTriggersRelease());
-    }
-
-    private void Success()
-    {
-        Debug.Log("Success Drop");
-        OnDropSuccess?.Invoke();
-        DropState = DROP_STATE.OUT_OF_DROP;
     }
 }

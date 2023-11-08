@@ -362,7 +362,7 @@
 									<MusicCue Name="DropEnd" ID="{CFBEC4AA-62C2-4EBF-9E7C-40126F9375E7}">
 										<PropertyList>
 											<Property Name="CueType" Type="int16" Value="2"/>
-											<Property Name="TimeMs" Type="Real64" Value="15238.0952380952"/>
+											<Property Name="TimeMs" Type="Real64" Value="24761.9047619048"/>
 										</PropertyList>
 									</MusicCue>
 								</Local>
@@ -372,7 +372,7 @@
 									<MusicCue Name="BuildUpStart" ID="{7CC9C465-9940-4196-9E0F-DF965744BB98}">
 										<PropertyList>
 											<Property Name="CueType" Type="int16" Value="2"/>
-											<Property Name="TimeMs" Type="Real64" Value="5238.09523809524"/>
+											<Property Name="TimeMs" Type="Real64" Value="4761.90476190476"/>
 										</PropertyList>
 									</MusicCue>
 								</Local>
@@ -382,7 +382,7 @@
 									<MusicCue Name="DropStart" ID="{47DC586E-B2E7-40F0-830E-5F0EF57FB66E}">
 										<PropertyList>
 											<Property Name="CueType" Type="int16" Value="2"/>
-											<Property Name="TimeMs" Type="Real64" Value="19523.8095238095"/>
+											<Property Name="TimeMs" Type="Real64" Value="20000"/>
 										</PropertyList>
 									</MusicCue>
 								</Local>

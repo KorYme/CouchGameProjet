@@ -13357,10 +13357,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
-      propertyPath: _musicIndex
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _beatWwiseEvent.Array.data[0].WwiseObjectReference
       value: 
       objectReference: {fileID: 11400000, guid: e1ef30e0388fba047aa4874e3b7338a1, type: 2}

@@ -3,27 +3,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class TriggerInputCheck
 {
+    public enum TRIGGER_STATE
+    {
+        RELEASED,
+        PRESSED_ON_BEAT,
+        NEED_TO_BE_RELEASED,
+    }
+
     float _inputDeadZone;
     InputFloat _inputTrigger;
+    public event Action<bool> OnTriggerPerformed;
+    public event Action<TRIGGER_STATE> OnTriggerStateChange;
+    TRIGGER_STATE _triggerState;
 
-    public event Action<bool> OnTriggerStateChange;
-
-    bool _needToBeReleased;
-    public bool NeedToBeReleased
+    public TRIGGER_STATE TriggerState
     {
-        get => _needToBeReleased;
-        set => _needToBeReleased = IsPressed && value;
+        get => _triggerState;
+        set
+        {
+            _triggerState = value;
+            OnTriggerStateChange?.Invoke(value);
+        }
     }
-    public bool IsPressed { get; private set; }
-    public bool IsPressedOnBeat => IsPressed && !NeedToBeReleased;
+
 
     public TriggerInputCheck(InputFloat inputTrigger, float inputDeadZone)
     {
         _inputTrigger = inputTrigger;
         _inputDeadZone = inputDeadZone;
-        _needToBeReleased = false;
+        TriggerState = TRIGGER_STATE.RELEASED;
         _inputTrigger.OnInputChange += () => GetTriggerValue();
     }
 
@@ -36,19 +47,18 @@ public class TriggerInputCheck
     {
         if (_inputTrigger.InputValue < _inputDeadZone)
         {
-            if (IsPressed)
+            if (TriggerState != TRIGGER_STATE.RELEASED)
             {
-                IsPressed = false;
-                _needToBeReleased = false;
-                OnTriggerStateChange?.Invoke(false);
+                TriggerState = TRIGGER_STATE.RELEASED;
+                OnTriggerPerformed?.Invoke(false);
             }
         }
         else
         {
-            if (!IsPressed)
+            if (TriggerState == TRIGGER_STATE.RELEASED)
             {
-                IsPressed = true;
-                OnTriggerStateChange?.Invoke(true);
+                TriggerState = Globals.BeatManager.IsInsideBeatWindow ? TRIGGER_STATE.PRESSED_ON_BEAT : TRIGGER_STATE.NEED_TO_BE_RELEASED;
+                OnTriggerPerformed?.Invoke(true);
             }
         }
     }
