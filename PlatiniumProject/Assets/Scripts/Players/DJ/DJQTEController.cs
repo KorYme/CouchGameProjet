@@ -12,7 +12,6 @@ public class DJQTEController : MonoBehaviour, IQTEable
 
     #region Events
     public event Action<string> OnDJQTEStarted;
-    //Params = string : QTE string ; bool : Indicate if there is an other qte after
     public event Action<string> OnDJQTEEnded;
     public event Action<string> OnDJQTEChanged;
     #endregion
