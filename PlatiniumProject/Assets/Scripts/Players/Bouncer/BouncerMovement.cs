@@ -130,7 +130,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
             {
                 if (_currentSlot.Occupant.TypeData.Evilness == Evilness.EVIL)
                 {
-                    _qteController?.StartQTE();
+                    _qteController?.StartQTE(_currentSlot.Occupant.TypeData);
                 } else
                 {
                     RefuseCharacterEnterBox();
