@@ -23,3 +23,5 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 9fc0fb30fb8691b41a101f3c4f0b6f63, type: 3}
   - animationSprites:
     - {fileID: 21300000, guid: 41a3d2731f05b3148b698d224f9f57cc, type: 3}
+  - animationSprites:
+    - {fileID: 21300000, guid: bbb129b3befb6fa45a709679631152ca, type: 3}

@@ -1,3 +1,4 @@
+using DG.Tweening.Plugins.Options;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -38,19 +39,13 @@ public class QTELoader : MonoBehaviour
     }
     #endif
 
-    public QTESequence GetRandomQTE(PlayerRole role = PlayerRole.None)
+    public QTESequence GetRandomQTE(PlayerRole role, Evilness evilness = Evilness.GOOD)
     {
         List<QTESequence> listQTEForRole;
         if (role != PlayerRole.None)
         {
-            listQTEForRole = new List<QTESequence>();
-            for (int i = 0;i < _listQTE.Count; i++)
-            {
-                if (_listQTE[i].PlayerRole == role)
-                {
-                    listQTEForRole.Add(_listQTE[i]);
-                }
-            }
+            listQTEForRole = _listQTE.Where(x => x.PlayerRole == role && x.Evilness == evilness).ToList();
+            
             if (listQTEForRole.Count == 0)
             {
                 listQTEForRole = _listQTE;
@@ -63,12 +58,11 @@ public class QTELoader : MonoBehaviour
         return listQTEForRole[randomIndex];
     }
 
-    public QTESequence GetRandomQTE(CharacterColor clientType, Evilness evilness, int level,PlayerRole role = PlayerRole.None)
+    public QTESequence GetRandomQTE(CharacterColor clientType, Evilness evilness, int level,PlayerRole role)
     {
         List<QTESequence> listQTEForRole;
         if (role != PlayerRole.None)
         {
-            listQTEForRole = new List<QTESequence>();
             listQTEForRole = _listQTE.Where(x => x.ClientType == clientType && x.PlayerRole == role && x.Evilness == evilness).ToList();
             
             while (listQTEForRole.Where(x => x.QTELevel == level).Count() == 0 && level > 0)
