@@ -259,6 +259,9 @@ public class QTEHandler : MonoBehaviour
                             if (_inputsSucceeded[i])// TO DO : CHANGE
                             {
                                 _events?.CallOnCorrectInput(); 
+                            } else
+                            {
+                                _events?.CallOnWrongInput();
                             }
                         }
                     } else if (_inputsSucceeded[i] != inputs[i].IsPerformed)
@@ -268,6 +271,10 @@ public class QTEHandler : MonoBehaviour
                         if (_inputsSucceeded[i]) // TO DO : CHANGE
                         {
                             _events?.CallOnCorrectInput();
+                        }
+                        else
+                        {
+                            _events?.CallOnWrongInput();
                         }
                     }
                 }

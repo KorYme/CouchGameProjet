@@ -5,11 +5,10 @@ using UnityEngine;
 public class WaitingLineBar : MonoBehaviour,IQTEable
 {
     [SerializeField] QTEHandler _qteHandler;
-
-    [SerializeField] TextMeshProUGUI _indexText;
-    List<CharacterStateMachine> _waitingCharactersList;
+    List<CharacterStateMachine> _waitingCharactersList; // Convert to queue
     private DjUsher _djUsher;
     private PriestCalculator _priestCalculator;
+    BarmanQTEController _barmanController;
 
     Vector3 Direction => Vector3.down;
     Vector3 Offset => Direction * 2.5f;
@@ -21,6 +20,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     {
         _djUsher = FindObjectOfType<DjUsher>();
         _priestCalculator = FindObjectOfType<PriestCalculator>();
+        _barmanController = FindObjectOfType<BarmanQTEController>();
         _waitingCharactersList = new List<CharacterStateMachine>();
     }
 
@@ -40,14 +40,17 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             _qteHandler.UnregisterQTEable(this);
         }
     }
-    private void OnInputCorrect()
+    private void OnInputChange()
     {
-        _indexText.text = _qteHandler.GetQTEString();
+        if (!IsInPause)
+        {
+            _barmanController.ModifyQTE(_qteHandler.GetQTEString());
+        }
+
     }
 
      void OnDrinkComplete()
     {
-        _indexText.text = string.Empty;
         CharacterStateMachine stateMachine = _waitingCharactersList[0];
         if (stateMachine != null)
         {
@@ -67,9 +70,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
 
      public void OnFailDrink()
      {
-         Debug.Log("DRINK FAIL");
          _qteHandler.DeleteCurrentCoroutine();
-         _indexText.text = _qteHandler.GetQTEString();
          GetNextCharacter();
      }
 
@@ -93,8 +94,10 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             }
             UpdatePositions();
             _waitingCharactersList[0].ChangeState(_waitingCharactersList[0].BarManAtBar);
+        } else if (!IsInPause)
+        {
+            _barmanController.EndQTE(_qteHandler.GetQTEString());
         }
-        _indexText.text = _qteHandler.GetQTEString();
     }
 
     void UpdatePositions()
@@ -120,12 +123,11 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             character.ChangeState(character.BarManAtBar);
         }
         _waitingCharactersList.Add(character);
-        _indexText.text = _qteHandler.GetQTEString();
     }
 
     void IQTEable.OnQTEStarted()
     {
-        _indexText.text = _qteHandler.GetQTEString();
+        _barmanController.StartQTE(_qteHandler.GetQTEString());
     }
 
     void IQTEable.OnQTEComplete()
@@ -135,7 +137,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
 
     void IQTEable.OnQTECorrectInput()
     {
-        OnInputCorrect();
+        OnInputChange();
     }
 
     public void PauseQTE(bool value) {
@@ -148,5 +150,6 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
 
     public void OnQTEWrongInput()
     {
+        OnInputChange();
     }
 }

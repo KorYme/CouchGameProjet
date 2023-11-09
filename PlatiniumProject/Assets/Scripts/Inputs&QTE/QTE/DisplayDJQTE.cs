@@ -20,6 +20,12 @@ public class DisplayDJQTE : MonoBehaviour
         _qteController.OnDJQTEChanged += OnDJQTEChanged;
     }
 
+    private void OnDestroy()
+    {
+        _qteController.OnDJQTEStarted -= OnDJQTEStarted;
+        _qteController.OnDJQTEEnded -= OnDJQTEEnded;
+        _qteController.OnDJQTEChanged -= OnDJQTEChanged;
+    }
     private void OnDJQTEChanged(string qteString)
     {
         _qteDisplay.text = qteString;

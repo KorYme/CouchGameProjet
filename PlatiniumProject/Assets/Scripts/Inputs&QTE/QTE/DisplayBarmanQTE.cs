@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class DisplayBouncerQTE : MonoBehaviour
+public class DisplayBarmanQTE : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI _qteDisplay;
     [SerializeField] GameObject _bubbleObject;
-    [SerializeField] BouncerQTEController _qteController;
+    [SerializeField] BarmanQTEController _qteController;
 
     private void Awake()
     {
@@ -15,17 +15,18 @@ public class DisplayBouncerQTE : MonoBehaviour
     }
     private void Start()
     {
-        _qteController.OnBouncerQTEStarted += OnDJQTEStarted;
-        _qteController.OnBouncerQTEEnded += OnDJQTEEnded;
-        _qteController.OnBouncerQTEChanged += OnDJQTEChanged;
+        _qteController.OnBarmanQTEStarted += OnDJQTEStarted;
+        _qteController.OnBarmanQTEEnded += OnDJQTEEnded;
+        _qteController.OnBarmanQTEChanged += OnDJQTEChanged;
     }
 
     private void OnDestroy()
     {
-        _qteController.OnBouncerQTEStarted -= OnDJQTEStarted;
-        _qteController.OnBouncerQTEEnded -= OnDJQTEEnded;
-        _qteController.OnBouncerQTEChanged -= OnDJQTEChanged;
+        _qteController.OnBarmanQTEStarted -= OnDJQTEStarted;
+        _qteController.OnBarmanQTEEnded -= OnDJQTEEnded;
+        _qteController.OnBarmanQTEChanged -= OnDJQTEChanged;
     }
+
     private void OnDJQTEChanged(string qteString)
     {
         _qteDisplay.text = qteString;

@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 672007605793595462}
   - component: {fileID: 9119380374867281263}
   - component: {fileID: 6461651777654835953}
+  - component: {fileID: 8956483046599270321}
   m_Layer: 0
   m_Name: Barman
   m_TagString: Untagged
@@ -182,6 +183,18 @@ MonoBehaviour:
   _playerRole: 0
   _rtImage: {fileID: 8910112478019611841}
   _ltImage: {fileID: 3320435879716392978}
+--- !u!114 &8956483046599270321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6110243176272634959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57cb009402bed774f809557f0576ee77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1390360459499180289
 PrefabInstance:
   m_ObjectHideFlags: 0
