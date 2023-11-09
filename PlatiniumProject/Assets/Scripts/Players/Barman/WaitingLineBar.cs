@@ -82,11 +82,11 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
         {
             if (IsInPause)
             {
-                _qteHandler.StoreNewQTE();
+                _qteHandler.StoreNewQTE(_waitingCharactersList[0].TypeData);
             }
             else
             {
-                _qteHandler.StartNewQTE();
+                _qteHandler.StartNewQTE(_waitingCharactersList[0].TypeData);
             }
             for (int i = 0;i < _waitingCharactersList.Count; i++)
             {
@@ -114,11 +114,11 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
         {
             if (IsInPause)
             {
-                _qteHandler.StoreNewQTE();
+                _qteHandler.StoreNewQTE(character.TypeData);
             }
             else
             {
-                _qteHandler.StartNewQTE();
+                _qteHandler.StartNewQTE(character.TypeData);
             }
             character.ChangeState(character.BarManAtBar);
         }
