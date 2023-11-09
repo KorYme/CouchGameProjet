@@ -7,7 +7,7 @@ public class QTEHandler : MonoBehaviour
 {
     [SerializeField] PlayerRole _role;
     [SerializeField] bool _inputsAreOnBeat = true;
-
+
     PlayerInputController _playerController;
     ITimingable _timingable;
     QTEHandlerEvents _events = new();
@@ -259,6 +259,9 @@ public class QTEHandler : MonoBehaviour
                             if (_inputsSucceeded[i])// TO DO : CHANGE
                             {
                                 _events?.CallOnCorrectInput(); 
+                            } else
+                            {
+                                _events?.CallOnWrongInput();
                             }
                         }
                     } else if (_inputsSucceeded[i] != inputs[i].IsPerformed)
@@ -268,6 +271,10 @@ public class QTEHandler : MonoBehaviour
                         if (_inputsSucceeded[i]) // TO DO : CHANGE
                         {
                             _events?.CallOnCorrectInput();
+                        }
+                        else
+                        {
+                            _events?.CallOnWrongInput();
                         }
                     }
                 }

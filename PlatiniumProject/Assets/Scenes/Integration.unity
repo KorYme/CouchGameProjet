@@ -123,6 +123,63 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1208695685
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1208695687}
+  - component: {fileID: 1208695686}
+  m_Layer: 0
+  m_Name: WwiseGlobal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1208695686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208695685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e66dced33b46024186ec14eb3a728c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationSettings: {fileID: 11400000, guid: 62be05d2322bd6745a83acea4592a46a, type: 2}
+  basePath: 
+  language: 
+  defaultPoolSize: 0
+  lowerPoolSize: 0
+  streamingPoolSize: 0
+  memoryCutoffThreshold: 0
+  monitorPoolSize: 0
+  monitorQueuePoolSize: 0
+  callbackManagerBufferSize: 0
+  spatialAudioPoolSize: 0
+  maxSoundPropagationDepth: 0
+  engineLogging: 0
+--- !u!4 &1208695687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208695685}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &9139922703549223136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -131,9 +188,77 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 266350126498404404, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 515379936850616470, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 765921921799018500, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095109953880118314, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1131370977915181673, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494081647569290159, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1577847521902732520, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1664457148301884571, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -715
+      objectReference: {fileID: 0}
+    - target: {fileID: 1664457148301884571, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -260
+      objectReference: {fileID: 0}
     - target: {fileID: 1876061551124879114, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_Name
       value: ---MainScenePrefab---
+      objectReference: {fileID: 0}
+    - target: {fileID: 2024815263329766290, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677265547393294417, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3040187504046688731, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301320039491608240, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454572446664040955, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -718
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454572446664040955, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -382
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640194868473179015, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3885033986976104068, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4124807467455219230, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_LocalPosition.x
@@ -175,6 +300,74 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4198724841753119578, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4252271533854338573, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4397429543920220052, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4540828674624271104, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5217474411478481466, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -722
+      objectReference: {fileID: 0}
+    - target: {fileID: 5217474411478481466, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -139
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365693788412591510, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969381738002770733, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081387226888926224, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _playerRoles.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081387226888926224, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _playerRoles.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308792399490499987, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342899436390327851, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579776680720023925, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7759937461522283398, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070982524340919818, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769232632291434446, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780952423113879383, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useShader
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -185,3 +378,4 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 9139922703549223136}
+  - {fileID: 1208695687}

@@ -7448,8 +7448,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6732279293289214389, guid: 03620f3353903864bb9dae11d2303e46, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 105
+      value: 184
       objectReference: {fileID: 0}
+    - target: {fileID: 6894533026765396825, guid: 03620f3353903864bb9dae11d2303e46, type: 3}
+      propertyPath: _qteController
+      value: 
+      objectReference: {fileID: 640554239761859928}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9863,6 +9867,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5449899325943722540, guid: de8a1a06ec295c34ca39912836976177, type: 3}
   m_PrefabInstance: {fileID: 5725728030115074669}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &640554239761859928 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5158429038718605109, guid: de8a1a06ec295c34ca39912836976177, type: 3}
+  m_PrefabInstance: {fileID: 5725728030115074669}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f083d48259fdba44e9b570aac39a13e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5762087055684214000
 PrefabInstance:
   m_ObjectHideFlags: 0

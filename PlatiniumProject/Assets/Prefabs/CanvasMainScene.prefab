@@ -26,7 +26,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1334631570156395297}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 4410568146327091672}
   - component: {fileID: 5850542992063643063}
   - component: {fileID: 1830630220376285643}
+  - component: {fileID: 6894533026765396825}
   m_Layer: 5
   m_Name: CanvasMainScene
   m_TagString: Untagged
@@ -197,6 +198,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6894533026765396825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2353377517457044933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 722b7cd244036054e8d3ab7c4eac7ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _qteDisplay: {fileID: 6715358717050040975}
+  _bubbleObject: {fileID: 1334631570156395297}
+  _qteController: {fileID: 0}
 --- !u!1 &3355821781238671813
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +238,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3355821781238671813}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
