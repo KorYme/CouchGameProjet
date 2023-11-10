@@ -1,11 +1,16 @@
+using System;
 using TMPro;
 using UnityEngine;
 
 public class BouncerQTEController : MonoBehaviour, IQTEable
 {
     QTEHandler _qteHandler;
-    [SerializeField] TextMeshProUGUI _text;
-    [SerializeField] GameObject _bubbleImage;
+
+    #region Events
+    public event Action<string> OnBouncerQTEStarted;
+    public event Action<string> OnBouncerQTEEnded; //Arg1 peut être enlevé
+    public event Action<string> OnBouncerQTEChanged;
+    #endregion
     void Start()
     {
         TryGetComponent(out _qteHandler);
@@ -13,35 +18,30 @@ public class BouncerQTEController : MonoBehaviour, IQTEable
         {
             _qteHandler.RegisterQTEable(this);
         }
-        _bubbleImage.SetActive(false);
     }
-    public void StartQTE()
+    public void StartQTE(CharacterTypeData typeData)
     {
-        _qteHandler.StartNewQTE();
+        _qteHandler.StartNewQTE(typeData);
     }
 
     public void OnQTEComplete()
     {
-        //BUBBLE DISAPPEAR
-        _bubbleImage.SetActive(false);
+        OnBouncerQTEEnded?.Invoke(_qteHandler.GetCurrentInputString());
     }
 
     public void OnQTECorrectInput()
     {
-        _text.text = _qteHandler.GetCurrentInputString();
+        OnBouncerQTEChanged?.Invoke(_qteHandler.GetCurrentInputString());
     }
 
     public void OnQTEStarted()
     {
-        //BUBBLE APPEAR
-        _bubbleImage.SetActive(true);
-        _text.text = _qteHandler.GetCurrentInputString();
+        OnBouncerQTEStarted?.Invoke(_qteHandler.GetCurrentInputString());
     }
 
     public void OnQTEWrongInput()
     {
         _qteHandler.DeleteCurrentCoroutine();
-        _bubbleImage.SetActive(false);
-        _text.text = _qteHandler.GetCurrentInputString();
+        OnBouncerQTEEnded?.Invoke(_qteHandler.GetCurrentInputString());
     }
 }

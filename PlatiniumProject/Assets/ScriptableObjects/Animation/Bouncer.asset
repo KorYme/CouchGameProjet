@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221e7a1d53d37874394b67d10fe9257d, type: 3}
   m_Name: Bouncer
   m_EditorClassIdentifier: 
-  selectedAnimationType: 2
+  selectedAnimationType: 1
   animationsList:
   - animationSprites:
     - {fileID: 21300000, guid: 9fc0fb30fb8691b41a101f3c4f0b6f63, type: 3}
@@ -23,3 +23,5 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 98e9461f6d9361646b887924ac2e1d48, type: 3}
     - {fileID: 21300000, guid: 712b5051db248534995f347c2f9dce19, type: 3}
     - {fileID: 21300000, guid: 9fc0fb30fb8691b41a101f3c4f0b6f63, type: 3}
+  - animationSprites:
+    - {fileID: 21300000, guid: bbb129b3befb6fa45a709679631152ca, type: 3}

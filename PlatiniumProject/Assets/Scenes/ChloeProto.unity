@@ -468,8 +468,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7345979481681187786, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 184
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 7654672833834681485, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
       propertyPath: _useShader
@@ -478,6 +478,10 @@ PrefabInstance:
     - target: {fileID: 7767583234080786680, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
       propertyPath: m_Name
       value: TextBouncer
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837367464042740822, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 7979980494559199344, guid: d7024a0ef3a071540b2d83196c8ac8d9, type: 3}
       propertyPath: _useShader
