@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Dad
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: fc4c4a7d8a27a084fac635a3837223e0, type: 2}
-  animation: {fileID: 11400000, guid: cd626704863a26646b503ea7ebcc206f, type: 2}
+  animation: {fileID: 11400000, guid: 2b0f4661ca54a064b9b82dcc51dff85d, type: 2}
   type: {fileID: 11400000, guid: 141b890269223b541a7c11e86c1d5fd1, type: 2}
   movement: {fileID: 11400000, guid: c205aac937c5b25478495ab06937bc4d, type: 2}
