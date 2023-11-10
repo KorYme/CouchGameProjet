@@ -67,10 +67,13 @@ public class BeatManager : MonoBehaviour, ITimingable
         Globals.BeatManager = this;
     }
 
+    #if UNITY_EDITOR
     private void Reset()
     {
         _allWwiseEvents = (AllWwiseEvents)AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/WwiseEvents/WwiseEvents.asset", typeof(AllWwiseEvents));
     }
+        
+    #endif
 
     private IEnumerator Start()
     {
