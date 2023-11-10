@@ -17,6 +17,7 @@ public class CharacterAnimationObjectEditor : Editor
     
     public override void OnInspectorGUI()
     {
+        serializedObject.Update();
         CharacterAnimationObject anim = (CharacterAnimationObject)target;
         GUILayout.Label($"Custom Animatooor", new GUIStyle(GUI.skin.label)
         {
@@ -87,8 +88,7 @@ public class CharacterAnimationObjectEditor : Editor
                         });
                     }
                 }
-
-                GUILayout.Label(anim.animationsList[i].AnimationType.ToString());
+                
                 
                 if (GUILayout.Button("Add Frame"))
                 {
@@ -116,6 +116,7 @@ public class CharacterAnimationObjectEditor : Editor
         GUILayout.EndVertical();
         
         EditorUtility.SetDirty(target);
+        serializedObject.ApplyModifiedProperties();
     }
     
     private void AnimRoutine()
