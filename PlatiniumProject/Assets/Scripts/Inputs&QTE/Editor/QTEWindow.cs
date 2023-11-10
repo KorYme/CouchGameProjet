@@ -14,12 +14,11 @@ public class QTEWindow : EditorWindow
     bool _showListInputs = true;
     Vector2 _scrollQTEListPosition;
     Vector2 _scrollInputsPosition;
+    InputManager _rewiredInputManager;
 
     #region ListOptionsKeys
     //Used for the display of the rewired keys
-    private string[] _buttonInputOptions = null;
     const string NAME_ACTION = nameof(UnitInput.ActionIndex);
-
     SerializedObject _serializedObject;
     SerializedProperty _propertyName;
     #endregion
@@ -35,9 +34,15 @@ public class QTEWindow : EditorWindow
         window.titleContent = new GUIContent("Tool QTE inputs");
         window.Show();
     }
+
     private void Awake()
     {
         LoadQTE();
+        _rewiredInputManager = FindObjectOfType<InputManager>();
+        if (_rewiredInputManager != null ) 
+        { 
+            _rewiredInputManager.runInEditMode = true; 
+        }
         _styleButtonAddQTE = new GUIStyle()
         {
             fontStyle = FontStyle.Bold,
@@ -47,6 +52,11 @@ public class QTEWindow : EditorWindow
             margin = new RectOffset(3,5,1,1),
             normal = new GUIStyleState() { background = Texture2D.whiteTexture}
         };
+    }
+    private void OnDestroy()
+    {
+        if (_rewiredInputManager != null)
+            _rewiredInputManager.runInEditMode = false;
     }
     void LoadQTE()
     {
@@ -169,15 +179,6 @@ public class QTEWindow : EditorWindow
     #endregion
     private void OnGUI()
     {
-        //EditorGUIUtility.labelWidth = 100;
-        if (_buttonInputOptions == null && ReInput.isReady)
-        {
-            _buttonInputOptions = new string[ReInput.mapping.Actions.Count];
-            for (int i = 0; i < _buttonInputOptions.Length; i++)
-            {
-                _buttonInputOptions[ReInput.mapping.Actions[i].id] = ReInput.mapping.Actions[i].name;
-            }
-        }
         GUILayout.BeginHorizontal();
         DisplayViewLeft();
         EditorGUILayout.Space(2);
@@ -288,11 +289,26 @@ public class QTEWindow : EditorWindow
 
         if (_propertyName != null)
         {
+            //Display ActionID in a list like in editor
             _serializedObject.Update();
             EditorGUILayout.PropertyField(_propertyName, true); // draw property with its children
             _serializedObject.ApplyModifiedProperties();
-            bool isAxisInput = input.ActionIndex == RewiredConsts.Action.AXISX || 
-                input.ActionIndex == RewiredConsts.Action.AXISY;
+            bool isAxisInput;
+            if (_rewiredInputManager != null)
+            {
+                InputActionType rewiredInputType = ReInput.mapping.GetAction(input.ActionIndex).type;
+                isAxisInput = rewiredInputType == InputActionType.Axis;
+                EditorGUILayout.LabelField(Enum.GetName(typeof(InputActionType), rewiredInputType));
+                
+            } else
+            {
+                EditorGUILayout.LabelField("Rewired inputs not loaded. Please run Rewired Input Manager in edit mode.", new GUIStyle() { normal = new GUIStyleState() { textColor = Color.red } });
+                isAxisInput = input.ActionIndex == RewiredConsts.Action.AXISX || 
+                    input.ActionIndex == RewiredConsts.Action.AXISY;
+            }
+            
+
+                
             if (isAxisInput)
             {
                 input.UseRotation = EditorGUILayout.Toggle("Use rotation",input.UseRotation);
@@ -314,7 +330,6 @@ public class QTEWindow : EditorWindow
         GUI.backgroundColor = Color.white;
         GUILayout.EndHorizontal();
     }
-
     private void DrawListInputs()
     {
         if (GUILayout.Button("Add an input", GUILayout.MinHeight(30)))
