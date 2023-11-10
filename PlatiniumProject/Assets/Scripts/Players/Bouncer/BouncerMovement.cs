@@ -119,11 +119,13 @@ public class BouncerMovement : PlayerMovement, IQTEable
     IEnumerator TestCheck(Vector3 pos)
     {
         CorrectDestination(pos + new Vector3(_areaManager.BouncerBoard.HorizontalSpacing , 0, 0));
+        _qteController?.OpenBubble();
         while (true)
         {
             if (_playerController.Action1.InputValue) //ACCEPT
             {
                 LetCharacterEnterBox();
+                _qteController?.CloseBubble();
                 yield break;
             }
             if (_playerController.Action3.InputValue)//REFUSE + evil character
@@ -134,6 +136,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
                 } else
                 {
                     RefuseCharacterEnterBox();
+                    _qteController?.CloseBubble();
                 }
                 yield break;
             }
