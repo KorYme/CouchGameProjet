@@ -26,7 +26,7 @@ public class BouncerQTEController : MonoBehaviour, IQTEable
 
     public void OpenBubble()
     {
-        OnBouncerQTEStarted?.Invoke("<color = green>A</color> to Accept\n<color = red>B</color> to Refuse");
+        OnBouncerQTEStarted?.Invoke("<color=green>A</color> to Accept\n<color=red>B</color> to Refuse");
     }
     public void CloseBubble()
     {
