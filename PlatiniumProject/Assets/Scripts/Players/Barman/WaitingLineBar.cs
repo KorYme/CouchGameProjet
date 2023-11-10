@@ -22,14 +22,14 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
         _priestCalculator = FindObjectOfType<PriestCalculator>();
         _barmanController = FindObjectOfType<BarmanQTEController>();
         _waitingCharactersList = new List<CharacterStateMachine>();
-    }
-
-    private void Start()
-    {
         if (_qteHandler != null)
         {
             _qteHandler.RegisterQTEable(this);
         }
+    }
+
+    private void Start()
+    {
         _djUsher.SetNextSlot();
     }
 
