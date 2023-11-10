@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221e7a1d53d37874394b67d10fe9257d, type: 3}
   m_Name: Punk
   m_EditorClassIdentifier: 
-  selectedAnimationType: 2
+  selectedAnimationType: 0
   animationsList:
   - animationSprites:
     - {fileID: 21300000, guid: fcd4522e94aafe74cb045ac06984a08e, type: 3}
@@ -25,3 +25,6 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 712b5051db248534995f347c2f9dce19, type: 3}
     - {fileID: 21300000, guid: 712b5051db248534995f347c2f9dce19, type: 3}
     _animationType: 2
+  - animationSprites:
+    - {fileID: 21300000, guid: fcd4522e94aafe74cb045ac06984a08e, type: 3}
+    _animationType: 0

@@ -81,13 +81,13 @@ public class SpawnManager : MonoBehaviour
         if (_minMaxSpawnPerMinutes.x <= 0 || _minMaxSpawnPerMinutes.y <= 0)
             Debug.LogException(new DataException("SpawnIntervalle must be positive integer"), this);
 
-        if (_minMaxSpawnPerMinutes.x >= _minMaxSpawnPerMinutes.y)
+        if (_minMaxSpawnPerMinutes.x > _minMaxSpawnPerMinutes.y)
             Debug.LogException(new DataException("SpawnIntervalle first value must be higher than the second"), this);
 
         if (_badClientRatio.x <= 0 || _badClientRatio.y <= 0)
             Debug.LogException(new DataException("badclientRation must be positive integer"), this);
 
-        if (_badClientRatio.x >= _badClientRatio.y)
+        if (_badClientRatio.x > _badClientRatio.y)
             Debug.LogException(new DataException("badclientRation first value must be higher than the second"), this);
     }
 

@@ -1,12 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-[CustomEditor(typeof(CharacterAnimationObject))]
+[CustomEditor(typeof(CharacterAnimationObject)),CanEditMultipleObjects]
 public class CharacterAnimationObjectEditor : Editor
 {
     private bool isPreviewing;
