@@ -24,6 +24,14 @@ public class BouncerQTEController : MonoBehaviour, IQTEable
         _qteHandler.StartNewQTE(typeData);
     }
 
+    public void OpenBubble()
+    {
+        OnBouncerQTEStarted?.Invoke("<color = green>A</color> to Accept\n<color = red>B</color> to Refuse");
+    }
+    public void CloseBubble()
+    {
+        OnBouncerQTEEnded?.Invoke("");
+    }
     public void OnQTEComplete()
     {
         OnBouncerQTEEnded?.Invoke(_qteHandler.GetCurrentInputString());
@@ -36,7 +44,8 @@ public class BouncerQTEController : MonoBehaviour, IQTEable
 
     public void OnQTEStarted()
     {
-        OnBouncerQTEStarted?.Invoke(_qteHandler.GetCurrentInputString());
+        //OnBouncerQTEStarted?.Invoke(_qteHandler.GetCurrentInputString());
+        OnBouncerQTEChanged?.Invoke(_qteHandler.GetCurrentInputString());
     }
 
     public void OnQTEWrongInput()
