@@ -9,12 +9,13 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     private DjUsher _djUsher;
     private PriestCalculator _priestCalculator;
     BarmanQTEController _barmanController;
-
+    [SerializeField] int _maxPlaces = 10;
     Vector3 Direction => Vector3.down;
     Vector3 Offset => Direction * 2.5f;
 
     public int NbCharactersWaiting { get => _waitingCharactersList.Count; }
     public bool IsInPause = true;
+    public bool IsFull => _waitingCharactersList == null ? true : _waitingCharactersList.Count >= _maxPlaces;
 
     private void Awake()
     {
