@@ -2,9 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PriestCalculator : MonoBehaviour
 {
+
+    public enum EXORCIZE_STATE
+    {
+        NORMAL,
+        EXORCIZING,
+        EXORCIZED
+    }
+    
     [Header("Values")]
     [SerializeField] private int _priestAmountToStartExorcize;
     [SerializeField] private int _priestAmountToExorcize;
@@ -12,21 +21,37 @@ public class PriestCalculator : MonoBehaviour
     [Header("References")]
     [SerializeField] private CheckerBoard _danceFloor;
     public List<CharacterStateMachine> CurrentPriestList;
+
+    public EXORCIZE_STATE ExorcizeState { get; private set; } = EXORCIZE_STATE.NORMAL;
     
     public Action OnPriestNearToExorcize;
     public Action OnPriestExorcize;
 
-    private void Start()
+    public UnityEvent OnLoose;
+
+    private void Awake()
     {
-        //Globals.DropController
+        Globals.PriestCalculator ??= this;
     }
 
+    private void Start()
+    {
+        Globals.DropManager.OnDropSuccess += DropSucced;
+    }
+
+    private void OnDestroy()
+    {
+        Globals.DropManager.OnDropSuccess -= DropSucced;
+    }
+
+
+    public void DropSucced()
+    {
+        CleanPriests();
+        ExorcizeState = EXORCIZE_STATE.NORMAL;
+    }
     public void CleanPriests()
     {
-        foreach (var p in CurrentPriestList)
-        {
-            p.ChangeState(p.DieState);
-        }
         CurrentPriestList.Clear();
     }
 
@@ -36,12 +61,16 @@ public class PriestCalculator : MonoBehaviour
         if (CurrentPriestList.Count == _priestAmountToStartExorcize)
         {
             Debug.Log("Start exorcisme");
+            ExorcizeState = EXORCIZE_STATE.EXORCIZING;
             OnPriestNearToExorcize?.Invoke();
         }
         else if (CurrentPriestList.Count == _priestAmountToExorcize)
         {
             Debug.Log("GAME OVER");
+            ExorcizeState = EXORCIZE_STATE.EXORCIZED;
             OnPriestExorcize?.Invoke();
+            Time.timeScale = 0f;
+            OnLoose?.Invoke();
         }
     }
 }

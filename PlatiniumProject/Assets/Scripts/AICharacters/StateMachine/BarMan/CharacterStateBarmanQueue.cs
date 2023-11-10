@@ -7,7 +7,7 @@ public class CharacterStateBarmanQueue : CharacterState
     public override void OnBeat()
     {
         base.OnBeat();
-        StateMachine.SpriteRenderer.sprite = StateMachine.Animation.GetAnimationSprite(ANIMATION_TYPE.IDLE);
+        StateMachine.Animation.SetAnim(ANIMATION_TYPE.IDLE);
     }
     public override void EnterState()
     {

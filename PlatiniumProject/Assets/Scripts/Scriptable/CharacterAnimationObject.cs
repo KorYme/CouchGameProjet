@@ -10,7 +10,9 @@ public enum ANIMATION_TYPE
     DANCING,
     IDLE,
     MOVE,
-    EXORCIZE    
+    EXORCIZE,
+    CORRECT_INPUT,
+    WRONG_INPUT,
 }
 [System.Serializable]
 public struct Animation
@@ -29,6 +31,14 @@ public struct Animation
         index %= animationSprites.Count;
         return animationSprites[index];
     }
+
+    public Sprite GetLastFrame()
+    {
+        if (animationSprites.Count <= 0)
+            throw new IndexOutOfRangeException(("The animation is empty"));
+
+        return animationSprites[^1];
+    } 
 
     public Animation(ANIMATION_TYPE type)
     {

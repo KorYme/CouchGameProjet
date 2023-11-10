@@ -5,16 +5,17 @@ using UnityEngine;
 
 public class BouncerMovement : PlayerMovement, IQTEable
 {
-    public enum BouncerState
+    public enum BOUNCER_STATE
     {
-        Moving,
-        Checking
+        MOVING,
+        CHECKING,
+        IDLE
     }
 
     [Space, Header("Bouncer Parameters")]
     [SerializeField] private AreaManager _areaManager;
 
-    private BouncerState _currentState = BouncerState.Moving;
+    private BOUNCER_STATE _currentState = BOUNCER_STATE.MOVING;
 
     private SlotInformation _currentSlot;
 
@@ -48,7 +49,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     protected override void OnInputMove(Vector2 vector)
     {
-        if (_currentState == BouncerState.Moving)
+        if (_currentState == BOUNCER_STATE.MOVING)
         {
             Move((int)GetClosestDirectionFromVector(vector));
         }
@@ -56,7 +57,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     public void CheckMode(CharacterStateMachine chara)
     {
-        _currentState = BouncerState.Checking;
+        _currentState = BOUNCER_STATE.CHECKING;
         StartCoroutine(TestCheck(chara.transform.position));
     }
     
@@ -148,22 +149,27 @@ public class BouncerMovement : PlayerMovement, IQTEable
     {
         CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
         chara.BouncerAction(true);
-        _currentState = BouncerState.Moving;
+        _currentState = BOUNCER_STATE.MOVING;
         transform.position = _currentSlot.transform.position;
-    }
-    public void OnQTEStarted(){}
+    }
+
+    public void OnQTEStarted(){}
+
     public void OnQTEComplete()
     {
         RefuseCharacterEnterBox();
-    }
+    }
+
     private void RefuseCharacterEnterBox()
     {
         CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
         chara.BouncerAction(false);
-        _currentState = BouncerState.Moving;
+        _currentState = BOUNCER_STATE.MOVING;
         transform.position = _currentSlot.transform.position;
-    }
-    public void OnQTECorrectInput() {}
+    }
+
+    public void OnQTECorrectInput() {}
+
     public void OnQTEWrongInput()
     {
         LetCharacterEnterBox();

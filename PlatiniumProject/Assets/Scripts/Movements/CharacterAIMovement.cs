@@ -11,7 +11,7 @@ public class CharacterAIMovement : EntityMovement
         _stateMachine = GetComponent<CharacterStateMachine>();
         OnMove += AnimationSetter;
     }
-
+    
     private void OnDisable()
     {
         OnMove -= AnimationSetter;
@@ -24,8 +24,7 @@ public class CharacterAIMovement : EntityMovement
 
     private void AnimationSetter()
     {
-        _stateMachine.SpriteRenderer.sprite =
-            _stateMachine.Animation.GetAnimationSprite(ANIMATION_TYPE.MOVE);
+        _stateMachine.Animation.SetAnim(ANIMATION_TYPE.MOVE);
     }
 
 
