@@ -12,9 +12,6 @@ public class DisplayDJQTE : MonoBehaviour
     private void Awake()
     {
         _bubbleObject.SetActive(false);
-    }
-    private void Start()
-    {
         _qteController.OnDJQTEStarted += OnDJQTEStarted;
         _qteController.OnDJQTEEnded += OnDJQTEEnded;
         _qteController.OnDJQTEChanged += OnDJQTEChanged;

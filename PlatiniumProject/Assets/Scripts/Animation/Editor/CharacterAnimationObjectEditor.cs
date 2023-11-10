@@ -1,12 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-[CustomEditor(typeof(CharacterAnimationObject))]
+[CustomEditor(typeof(CharacterAnimationObject)),CanEditMultipleObjects]
 public class CharacterAnimationObjectEditor : Editor
 {
     private bool isPreviewing;
@@ -14,10 +9,17 @@ public class CharacterAnimationObjectEditor : Editor
 
     private double _timer;
     private double _timeBetweenframe = .5f;
-    
+    CharacterAnimationObject anim ;
+
+    private void OnEnable()
+    {
+        anim = (CharacterAnimationObject)target;
+    }
+
     public override void OnInspectorGUI()
     {
-        CharacterAnimationObject anim = (CharacterAnimationObject)target;
+        serializedObject.Update();
+        
         GUILayout.Label($"Custom Animatooor", new GUIStyle(GUI.skin.label)
         {
             alignment = TextAnchor.MiddleCenter,
@@ -87,8 +89,7 @@ public class CharacterAnimationObjectEditor : Editor
                         });
                     }
                 }
-
-                GUILayout.Label(anim.animationsList[i].AnimationType.ToString());
+                
                 
                 if (GUILayout.Button("Add Frame"))
                 {
@@ -114,8 +115,12 @@ public class CharacterAnimationObjectEditor : Editor
             }
         }
         GUILayout.EndVertical();
-        
-        EditorUtility.SetDirty(target);
+
+        if (GUI.changed)
+        {
+            EditorUtility.SetDirty(anim);
+            AssetDatabase.SaveAssets();
+        }
     }
     
     private void AnimRoutine()

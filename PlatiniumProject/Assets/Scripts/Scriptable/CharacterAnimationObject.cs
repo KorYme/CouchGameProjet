@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+[System.Serializable]
 public enum ANIMATION_TYPE
 {
     DANCING,
@@ -15,8 +16,7 @@ public enum ANIMATION_TYPE
 public struct Animation
 {
     public List<Sprite> animationSprites;
-    private bool _isActive;
-    private ANIMATION_TYPE _animationType;
+    [SerializeField] private ANIMATION_TYPE _animationType;
     
     public ANIMATION_TYPE AnimationType => _animationType;
 
@@ -34,7 +34,6 @@ public struct Animation
     {
         _animationType = type;
         animationSprites = new List<Sprite>();
-        _isActive = false;
     }
     
 }
