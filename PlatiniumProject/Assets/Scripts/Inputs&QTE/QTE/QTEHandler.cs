@@ -26,10 +26,12 @@ public class QTEHandler : MonoBehaviour
     List<InputClass> _inputsQTE;
 
     public int LengthInputs { get; private set; }
-
-    private IEnumerator Start()
+    private void Awake()
     {
         _currentListSequences = new QTEListSequences();
+    }
+    private IEnumerator Start()
+    {
         _timingable = Globals.BeatManager;
         _checkInputThisBeat = new CheckHasInputThisBeat(_timingable);
         yield return new WaitUntil(() => Players.PlayersController[(int)_role] != null);
