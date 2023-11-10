@@ -6,8 +6,6 @@ using UnityEngine;
 public class DJQTEController : MonoBehaviour, IQTEable
 {
     QTEHandler _qteHandler;
-    //[SerializeField] TextMeshProUGUI _QTEDisplay;
-    //[SerializeField] GameObject _bubbleObject;
     List<SlotInformation> _shapesLightCopy;
 
     #region Events
@@ -19,10 +17,6 @@ public class DJQTEController : MonoBehaviour, IQTEable
     private void Awake()
     {
         _qteHandler = GetComponent<QTEHandler>();
-        //_bubbleObject.SetActive(false);
-    }
-    private void Start()
-    {
         if (_qteHandler != null)
         {
             _qteHandler.RegisterQTEable(this);
@@ -49,8 +43,9 @@ public class DJQTEController : MonoBehaviour, IQTEable
         return nbPlayers;
     }
 
-    public void UpdateQTE()
+    public void UpdateQTE(List<SlotInformation> shapesLightCopy)
     {
+        _shapesLightCopy = shapesLightCopy;
         int nbCharactersInLight = NbCharactersInLight();
         if (nbCharactersInLight > 0)
         {
@@ -66,7 +61,6 @@ public class DJQTEController : MonoBehaviour, IQTEable
                 }
             }
             _qteHandler.StartNewQTE(clientsData);
-            //OnDJQTEStarted?.Invoke(_qteHandler.GetQTEString());
         }
         else
         {
@@ -74,11 +68,6 @@ public class DJQTEController : MonoBehaviour, IQTEable
             OnDJQTEEnded?.Invoke(_qteHandler.GetQTEString());
         }
     }
-    public void UpdateShape(List<SlotInformation> shape)
-    {
-        _shapesLightCopy = shape;
-    }
-
     #region IQTEable
     public void OnQTEStarted()
     {
