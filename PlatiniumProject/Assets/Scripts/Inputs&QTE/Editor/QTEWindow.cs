@@ -69,15 +69,18 @@ public class QTEWindow : EditorWindow
             _listQTE.Clear();
         }
         string[] fileGuids = AssetDatabase.FindAssets("t:" + typeof(QTESequence));
+        int maxIndex = 0;
         if (fileGuids.Length > 0)
         {
             for (int i = 0; i < fileGuids.Length; i++)
             {
                 string assetPath = AssetDatabase.GUIDToAssetPath(fileGuids[i]);
-                _listQTE.Add(AssetDatabase.LoadAssetAtPath<QTESequence>(assetPath));
+                QTESequence sequence = AssetDatabase.LoadAssetAtPath<QTESequence>(assetPath);
+                maxIndex = Mathf.Max(maxIndex, sequence.Index);
+                _listQTE.Add(sequence);
             }
         }
-        _indexNewSequence = _listQTE.Count;
+        _indexNewSequence = maxIndex + 1;
     }
 
     void DrawSideBar()
@@ -160,7 +163,7 @@ public class QTEWindow : EditorWindow
             }
             if (AssetDatabase.IsValidFolder("Assets/ScriptableObjects") && AssetDatabase.IsValidFolder("Assets/ScriptableObjects/QTE"))
             {
-                if (AssetDatabase.DeleteAsset($"Assets/ScriptableObjects/QTE/QTEInput{_selectedQTE.Index}.asset"))
+                if (AssetDatabase.DeleteAsset($"Assets/ScriptableObjects/QTE/QTE{_selectedQTE.Index}.asset"))
                 {
                     Debug.Log("File of QTE has been deleted.");
                 }
