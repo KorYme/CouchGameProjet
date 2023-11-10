@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class QTEWindow : EditorWindow
 {
-    List<QTESequence> _drinks;
+    List<QTESequence> _listQTE;
     QTESequence _selectedQTE = null;
     bool _isATemporaryQTE = false;
     int _indexNewSequence = 0;//Used to have different names for file sequences
@@ -41,6 +41,7 @@ public class QTEWindow : EditorWindow
         _styleButtonAddQTE = new GUIStyle()
         {
             fontStyle = FontStyle.Bold,
+            fontSize = 12,
             alignment = TextAnchor.MiddleCenter,
             padding = new RectOffset(3,5,1,1),
             margin = new RectOffset(3,5,1,1),
@@ -49,13 +50,13 @@ public class QTEWindow : EditorWindow
     }
     void LoadQTE()
     {
-        if (_drinks == null)
+        if (_listQTE == null)
         {
-            _drinks = new List<QTESequence>();
+            _listQTE = new List<QTESequence>();
         }
         else
         {
-            _drinks.Clear();
+            _listQTE.Clear();
         }
         string[] fileGuids = AssetDatabase.FindAssets("t:" + typeof(QTESequence));
         if (fileGuids.Length > 0)
@@ -63,29 +64,29 @@ public class QTEWindow : EditorWindow
             for (int i = 0; i < fileGuids.Length; i++)
             {
                 string assetPath = AssetDatabase.GUIDToAssetPath(fileGuids[i]);
-                _drinks.Add(AssetDatabase.LoadAssetAtPath<QTESequence>(assetPath));
+                _listQTE.Add(AssetDatabase.LoadAssetAtPath<QTESequence>(assetPath));
             }
         }
-        _indexNewSequence = _drinks.Count;
+        _indexNewSequence = _listQTE.Count;
     }
 
     void DrawSideBar()
     {
-        if (_drinks != null)
+        if (_listQTE != null)
         {
-            for (int i = 0; i < _drinks.Count; i++)
+            for (int i = 0; i < _listQTE.Count; i++)
             {
-                if (_selectedQTE != null && _selectedQTE.Index == i)
+                if (_selectedQTE != null && _listQTE.IndexOf(_selectedQTE) == i)
                 {
                     GUI.backgroundColor = Color.green;
                 } else
                 {
                     GUI.backgroundColor = Color.white;
                 }
-                string name = Enum.GetName(typeof(PlayerRole), _drinks[i].PlayerRole);
+                string name = Enum.GetName(typeof(PlayerRole), _listQTE[i].PlayerRole);
                 if (GUILayout.Button($"QTE {name}", GUILayout.MinHeight(30)))
                 {
-                    _selectedQTE = _drinks[i];
+                    _selectedQTE = _listQTE[i];
                     _isATemporaryQTE = false;
                 }
             }
@@ -157,6 +158,9 @@ public class QTEWindow : EditorWindow
                 {
                     Debug.Log("File of QTE not found");
                 }
+            } else
+            {
+                Debug.Log("File of QTE not found");
             }
             AssetDatabase.SaveAssets();
             _selectedQTE = null;
@@ -200,10 +204,11 @@ public class QTEWindow : EditorWindow
     }
     private void DisplayMainView()
     {
-        GUILayout.BeginVertical("GroupBox");
-        EditorGUILayout.Space();
+        
         if (_selectedQTE != null)
         {
+            GUILayout.BeginVertical("GroupBox");
+            EditorGUILayout.Space();
             //GUILayout.FlexibleSpace();
             GUILayout.BeginVertical(EditorStyles.helpBox);
             GUILayout.BeginHorizontal();
@@ -233,10 +238,11 @@ public class QTEWindow : EditorWindow
             _selectedQTE.PlayerRole = (PlayerRole)EditorGUILayout.EnumPopup(_selectedQTE.PlayerRole);
             GUILayout.EndHorizontal();
             EditorGUILayout.Space();
+            _selectedQTE.Evilness = (Evilness)EditorGUILayout.EnumPopup("Evilness level", _selectedQTE.Evilness);
+            
             if (_selectedQTE.PlayerRole == PlayerRole.DJ)
             {
                 _selectedQTE.ClientType = (CharacterColor)EditorGUILayout.EnumPopup("Client type", _selectedQTE.ClientType);
-                _selectedQTE.Evilness = (Evilness)EditorGUILayout.EnumPopup("Evilness level", _selectedQTE.Evilness);
                 _selectedQTE.QTELevel = EditorGUILayout.IntField("Level", _selectedQTE.QTELevel);
             }
 
@@ -248,12 +254,15 @@ public class QTEWindow : EditorWindow
                 SaveQTEFile();
                 _isATemporaryQTE = false;
             }
+            GUILayout.EndVertical();
         }
         else // No QTE selected
         {
+            GUILayout.BeginVertical();
             GUILayout.Label("Select a QTE or add a new one");
+            GUILayout.EndVertical();
         }
-        GUILayout.EndVertical();
+
     }
     private void SaveChangements()
     {
