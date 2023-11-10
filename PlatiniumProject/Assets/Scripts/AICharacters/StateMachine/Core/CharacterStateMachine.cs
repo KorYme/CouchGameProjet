@@ -88,21 +88,6 @@ public class CharacterStateMachine : MonoBehaviour
     public void PullCharacter(CharacterState startState = null)
     {
         Animation.SetAnim(ANIMATION_TYPE.IDLE);
-        switch (TypeData.ClientType)
-        {
-            case CharacterColor.BLUE:
-                Animation.SpriteRenderer.color = Color.blue;
-                break;
-            case CharacterColor.RED:
-                Animation.SpriteRenderer.color = Color.red;
-                break;
-            case CharacterColor.YELLOW:
-                Animation.SpriteRenderer.color = Color.yellow;
-                break;
-            case CharacterColor.GREEN:
-                Animation.SpriteRenderer.color = Color.green;
-                break;
-        }
         if (startState == null)
         {
             SlotInformation firstQueueSlot = AreaManager.BouncerTransit.Slots[0];

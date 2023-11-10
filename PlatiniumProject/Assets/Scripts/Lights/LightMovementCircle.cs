@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestLightMovementCircle : MonoBehaviour
+public class LightMovementCircle : MonoBehaviour
 {
     //Circle movements
     [SerializeField, Range(0f, 10f)] float _circleRadius = 1, _speed = 1;
