@@ -15,8 +15,7 @@ public class CharacterStateMoveTo : CharacterState
 
     private void AnimationSetter()
     {
-        StateMachine.SpriteRenderer.sprite =
-            StateMachine.Animation.GetAnimationSprite(ANIMATION_TYPE.MOVE);
+        StateMachine.Animation.SetAnim(ANIMATION_TYPE.MOVE);
     }
     IEnumerator MoveRoutine()
     {

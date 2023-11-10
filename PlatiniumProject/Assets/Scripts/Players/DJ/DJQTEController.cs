@@ -7,6 +7,8 @@ public class DJQTEController : MonoBehaviour, IQTEable
 {
     QTEHandler _qteHandler;
     List<SlotInformation> _shapesLightCopy;
+    private CharacterAnimation _characterAnimation;
+    [SerializeField] private SpriteRenderer _sp;
 
     #region Events
     public event Action<string> OnDJQTEStarted;
@@ -17,13 +19,25 @@ public class DJQTEController : MonoBehaviour, IQTEable
     private void Awake()
     {
         _qteHandler = GetComponent<QTEHandler>();
+        _characterAnimation = GetComponent<CharacterAnimation>();
+        //_bubbleObject.SetActive(false);
+    }
+    private void Start()
+    {
+        Globals.BeatManager.OnBeatEvent.AddListener(OnBeat);
         if (_qteHandler != null)
         {
             _qteHandler.RegisterQTEable(this);
         }
     }
+
+    private void OnBeat()
+    {
+        _sp.sprite = _characterAnimation.GetAnimationSprite(ANIMATION_TYPE.IDLE);
+    }
     private void OnDestroy()
     {
+        Globals.BeatManager.OnBeatEvent.RemoveListener(OnBeat);
         if (_qteHandler != null)
         {
             _qteHandler.UnregisterQTEable(this);
@@ -94,11 +108,13 @@ public class DJQTEController : MonoBehaviour, IQTEable
             }
         }
         OnDJQTEChanged?.Invoke(_qteHandler.GetQTEString());
+        _sp.sprite = _characterAnimation.GetAnimationSprite(ANIMATION_TYPE.CORRECT_INPUT);
     }
 
     public void OnQTEWrongInput()
     {
         OnDJQTEChanged?.Invoke(_qteHandler.GetQTEString());
+        _sp.sprite = _characterAnimation.GetAnimationSprite(ANIMATION_TYPE.WRONG_INPUT);
     }
     #endregion
 }

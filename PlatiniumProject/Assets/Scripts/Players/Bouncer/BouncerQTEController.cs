@@ -5,12 +5,19 @@ using UnityEngine;
 public class BouncerQTEController : MonoBehaviour, IQTEable
 {
     QTEHandler _qteHandler;
+    private CharacterAnimation _characterAnimation;
 
     #region Events
     public event Action<string> OnBouncerQTEStarted;
     public event Action<string> OnBouncerQTEEnded; //Arg1 peut être enlevé
     public event Action<string> OnBouncerQTEChanged;
     #endregion
+
+    private void Awake()
+    {
+        _characterAnimation = GetComponent<CharacterAnimation>();
+    }
+
     void Start()
     {
         TryGetComponent(out _qteHandler);
@@ -40,6 +47,8 @@ public class BouncerQTEController : MonoBehaviour, IQTEable
     public void OnQTECorrectInput()
     {
         OnBouncerQTEChanged?.Invoke(_qteHandler.GetCurrentInputString());
+        _characterAnimation.SetAnim(ANIMATION_TYPE.CORRECT_INPUT);
+        
     }
 
     public void OnQTEStarted()
@@ -52,5 +61,6 @@ public class BouncerQTEController : MonoBehaviour, IQTEable
     {
         _qteHandler.DeleteCurrentCoroutine();
         OnBouncerQTEEnded?.Invoke(_qteHandler.GetCurrentInputString());
+        _characterAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT);
     }
 }

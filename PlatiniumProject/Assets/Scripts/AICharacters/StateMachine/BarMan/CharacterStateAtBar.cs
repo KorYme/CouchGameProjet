@@ -21,7 +21,7 @@ public class CharacterStateAtBar : CharacterState
     public override void OnBeat()
     {
         StateMachine.Satisafaction.DecreaseSatisfaction(StateMachine.CharacterDataObject.decrementationValueOnBarMan);
-        StateMachine.SpriteRenderer.sprite = StateMachine.Animation.GetAnimationSprite(ANIMATION_TYPE.IDLE);
+        StateMachine.Animation.SetAnim(ANIMATION_TYPE.IDLE);
     }
 
     public override void ExitState()

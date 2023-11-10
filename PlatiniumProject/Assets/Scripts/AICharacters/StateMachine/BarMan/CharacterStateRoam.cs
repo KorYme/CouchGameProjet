@@ -18,7 +18,7 @@ public class CharacterStateRoam : CharacterState
     public override void OnBeat()
     {
         StateMachine.CurrentBeatAmount++;
-        StateMachine.SpriteRenderer.sprite = StateMachine.Animation.GetAnimationSprite(ANIMATION_TYPE.IDLE);
+        StateMachine.Animation.SetAnim(ANIMATION_TYPE.IDLE);
         if (StateMachine.CurrentBeatAmount >= StateMachine.CharacterDataObject.beatAmountUnitlAction)
         {
             StateMachine.CurrentBeatAmount = 0;

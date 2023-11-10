@@ -135,7 +135,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterData: {fileID: 11400000, guid: fc4c4a7d8a27a084fac635a3837223e0, type: 2}
   _spriteRenderer: {fileID: 1155010087064724784}
-  _currentType: {fileID: 0}
 --- !u!114 &6601924391975132163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterAnimationData: {fileID: 11400000, guid: 4fb544f641d7b9d4f9a63dc2bb208fe9, type: 2}
+  _sp: {fileID: 1155010087064724784}
 --- !u!114 &1711434393512898582
 MonoBehaviour:
   m_ObjectHideFlags: 0
