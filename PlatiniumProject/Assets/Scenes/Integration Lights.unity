@@ -185,6 +185,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &785177523 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 771261643079926100, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+  m_PrefabInstance: {fileID: 9139922703549223136}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2006511123
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -831,6 +836,10 @@ PrefabInstance:
       propertyPath: _position.y
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4142891071216717307, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _characterAnimationData
+      value: 
+      objectReference: {fileID: 11400000, guid: 5c5cf1dc7975bc2488dfaf9c4c3fa4ed, type: 2}
     - target: {fileID: 4198724841753119578, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _useShader
       value: 0
@@ -855,6 +864,14 @@ PrefabInstance:
       propertyPath: _position.y
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4325489996845694339, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _sp
+      value: 
+      objectReference: {fileID: 785177523}
+    - target: {fileID: 4325489996845694339, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _characterAnimationData
+      value: 
+      objectReference: {fileID: 11400000, guid: 5c5cf1dc7975bc2488dfaf9c4c3fa4ed, type: 2}
     - target: {fileID: 4361420412987960386, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _position.x
       value: 7
@@ -1007,6 +1024,10 @@ PrefabInstance:
       propertyPath: _position.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5519420641253564840, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _characterAnimationData
+      value: 
+      objectReference: {fileID: 11400000, guid: 5c5cf1dc7975bc2488dfaf9c4c3fa4ed, type: 2}
     - target: {fileID: 5636392992862213721, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _useShader
       value: 0

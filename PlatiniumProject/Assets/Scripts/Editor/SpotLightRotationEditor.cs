@@ -51,8 +51,10 @@ public class SpotLightRotationEditor : Editor
         EditorGUILayout.EndHorizontal();
 
         serializedObject.ApplyModifiedProperties();
-
-        EditorUtility.SetDirty(target);
+        if (GUI.changed)
+        {
+            EditorUtility.SetDirty(target);
+        }
     }
 }
 

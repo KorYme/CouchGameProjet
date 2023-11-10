@@ -544,7 +544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterAnimationData: {fileID: 11400000, guid: 5c5cf1dc7975bc2488dfaf9c4c3fa4ed, type: 2}
-  _sp: {fileID: 0}
+  _sp: {fileID: 7748299721026644492}
 --- !u!114 &881585525306280625
 MonoBehaviour:
   m_ObjectHideFlags: 0
