@@ -27,7 +27,8 @@ public class SlotRenderer : MonoBehaviour
             _spriteRenderer.material = _materialDanceFloorShared;
             _spriteRenderer.material.SetVector("_Dimension", new Vector2(0.9f, 0.9f));
             _spriteRenderer.material.SetVector("_Offset", new Vector2(_position.x + 0.05f, _position.y + 0.05f));
-            _nbColors = (int)_spriteRenderer.material.GetFloat("_NbColors");
+            if (_spriteRenderer.material.HasFloat("_NbColors"))
+                _nbColors = (int)_spriteRenderer.material.GetFloat("_NbColors");
             _materialDanceFloor = _spriteRenderer.material;
         }
         ChangeColor(false);
@@ -68,7 +69,10 @@ public class SlotRenderer : MonoBehaviour
 
     private void ChangeOnBeat()
     {
-        _index = (_index + 1) % _nbColors;
+        if (_nbColors > 0)
+        {
+            _index = (_index + 1) % _nbColors;
+        }
         if (!_isLit)
         {
             _spriteRenderer.material.SetFloat("_ChangeColorsPosition", _index);
