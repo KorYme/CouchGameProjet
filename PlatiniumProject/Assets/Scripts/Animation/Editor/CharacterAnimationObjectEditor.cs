@@ -14,11 +14,17 @@ public class CharacterAnimationObjectEditor : Editor
 
     private double _timer;
     private double _timeBetweenframe = .5f;
-    
+    CharacterAnimationObject anim ;
+
+    private void OnEnable()
+    {
+        anim = (CharacterAnimationObject)target;
+    }
+
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
-        CharacterAnimationObject anim = (CharacterAnimationObject)target;
+        
         GUILayout.Label($"Custom Animatooor", new GUIStyle(GUI.skin.label)
         {
             alignment = TextAnchor.MiddleCenter,
@@ -114,9 +120,12 @@ public class CharacterAnimationObjectEditor : Editor
             }
         }
         GUILayout.EndVertical();
-        
-        EditorUtility.SetDirty(target);
-        serializedObject.ApplyModifiedProperties();
+
+        if (GUI.changed)
+        {
+            EditorUtility.SetDirty(anim);
+            AssetDatabase.SaveAssets();
+        }
     }
     
     private void AnimRoutine()

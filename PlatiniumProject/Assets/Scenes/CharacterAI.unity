@@ -5669,7 +5669,7 @@ PrefabInstance:
     - target: {fileID: 6716087328787060443, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
       propertyPath: _characterAnimationData
       value: 
-      objectReference: {fileID: 11400000, guid: fbe032a35a0427942bd9ed39327bc538, type: 2}
+      objectReference: {fileID: 11400000, guid: 00405c43ec9bc90448855faceae4e263, type: 2}
     - target: {fileID: 7340047238265229073, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
       propertyPath: m_Name
       value: Bouncer
@@ -10538,7 +10538,7 @@ PrefabInstance:
     - target: {fileID: 9119380374867281263, guid: 7c529a488a751df4a9749ebcbee0ced4, type: 3}
       propertyPath: _characterAnimationData
       value: 
-      objectReference: {fileID: 11400000, guid: fbe032a35a0427942bd9ed39327bc538, type: 2}
+      objectReference: {fileID: 11400000, guid: 00405c43ec9bc90448855faceae4e263, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12435,7 +12435,7 @@ PrefabInstance:
     - target: {fileID: 2380923746897791189, guid: de8a1a06ec295c34ca39912836976177, type: 3}
       propertyPath: _characterAnimationData
       value: 
-      objectReference: {fileID: 11400000, guid: fbe032a35a0427942bd9ed39327bc538, type: 2}
+      objectReference: {fileID: 11400000, guid: 00405c43ec9bc90448855faceae4e263, type: 2}
     - target: {fileID: 3598487020168188391, guid: de8a1a06ec295c34ca39912836976177, type: 3}
       propertyPath: m_Name
       value: DJ
@@ -12653,7 +12653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7029082207090183600, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
       propertyPath: _listQTE.Array.size
-      value: 3
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7029082207090183600, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
       propertyPath: _listQTE.Array.data[0]
@@ -12666,19 +12666,19 @@ PrefabInstance:
     - target: {fileID: 7029082207090183600, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
       propertyPath: _listQTE.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 2f5dab6c82f84944db6232bfce323435, type: 2}
+      objectReference: {fileID: 11400000, guid: 0bba734e73560b34f94c28648e054650, type: 2}
     - target: {fileID: 7029082207090183600, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
       propertyPath: _listQTE.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: 2f5dab6c82f84944db6232bfce323435, type: 2}
+      objectReference: {fileID: 11400000, guid: 72d1a05273da3ac4dbdccb701a9964b3, type: 2}
     - target: {fileID: 7029082207090183600, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
       propertyPath: _listQTE.Array.data[4]
       value: 
-      objectReference: {fileID: 11400000, guid: 2f5dab6c82f84944db6232bfce323435, type: 2}
+      objectReference: {fileID: 11400000, guid: 909610bd066cb0e43a22d20beec2d864, type: 2}
     - target: {fileID: 7029082207090183600, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
       propertyPath: _listQTE.Array.data[5]
       value: 
-      objectReference: {fileID: 11400000, guid: 2f5dab6c82f84944db6232bfce323435, type: 2}
+      objectReference: {fileID: 11400000, guid: 3909753e6a876764cb2a545bcaaacf42, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
