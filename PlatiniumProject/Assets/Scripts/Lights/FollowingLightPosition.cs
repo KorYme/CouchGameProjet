@@ -5,7 +5,7 @@ using UnityEngine;
 public class FollowingLightPosition : MonoBehaviour
 {
     [SerializeField] Transform _target;
-    [SerializeField] float _timeToReachPosition = 1;
+    [SerializeField] float _timeToReachPosition = .2f;
 
     Vector3 _velocity;
 
@@ -14,7 +14,7 @@ public class FollowingLightPosition : MonoBehaviour
         _velocity = Vector3.zero;
         while (true)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, _target.position, ref _velocity, 1f);
+            transform.position = Vector3.SmoothDamp(transform.position, _target.position, ref _velocity, _timeToReachPosition);
             yield return null;
         }
     }
