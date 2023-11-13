@@ -393,6 +393,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1424870653087248758, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _maxPlaces
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1595107485616717937, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -521,6 +525,10 @@ PrefabInstance:
       propertyPath: _sp
       value: 
       objectReference: {fileID: 1617451318}
+    - target: {fileID: 7587305074899040253, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _maxPlaces
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8484154248070721880, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _baseClientInDj
       value: 15
@@ -548,6 +556,10 @@ PrefabInstance:
     - target: {fileID: 8484154248070721880, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _minMaxSpawnPerMinutes.y
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130841928319023021, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _maxPlaces
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

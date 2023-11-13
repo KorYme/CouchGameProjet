@@ -13,7 +13,13 @@ public class CharacterDieState : CharacterState
         {
             StateMachine.CurrentSlot.Occupant = null;
         }
-        
+        StateMachine.CharacterMove.MoveTo(Globals.ExitPoints.FindClosestExitPoint(StateMachine.transform.position));
+        StateMachine.StartCoroutine(ExitRoutine());
+    }
+
+    IEnumerator ExitRoutine()
+    {
+        yield return new WaitUntil(() => !StateMachine.CharacterMove.IsMoving);
         StateMachine.GoBackInPull();
     }
 }
