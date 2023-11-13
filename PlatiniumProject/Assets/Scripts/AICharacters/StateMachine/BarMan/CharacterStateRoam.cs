@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -25,10 +26,39 @@ public class CharacterStateRoam : CharacterState
             BeatAction();
         }
     }
+    
+    private void FindLine()
+    {
+        if (StateMachine.WaitingLines.Length > 0) 
+        {
+            int indexLine = 0;
+            int nbCharactersInLine = StateMachine.WaitingLines[0].NbCharactersWaiting;
+        
+            for (int i = 1; i < StateMachine.WaitingLines.Length; i++)
+            {
+                if (nbCharactersInLine > StateMachine.WaitingLines[i].NbCharactersWaiting) {
+                    nbCharactersInLine = StateMachine.WaitingLines[i].NbCharactersWaiting;
+                    indexLine = i;
+                }
+            }
+            StateMachine.WaitingLines[indexLine].AddToWaitingLine(StateMachine);
+            StateMachine.CurrentWaitingLine = StateMachine.WaitingLines[indexLine];
+        }
+    }
+
+    public bool AreLinesFree()
+    {
+        foreach (var line in StateMachine.WaitingLines)
+        {
+            if (!line.IsFull)
+                return true;
+        }
+        return false;
+    }
 
     public override void BeatAction()
     {
-        if (StateMachine.AreaManager.RoamQueue[0] == StateMachine)
+        if (StateMachine.AreaManager.RoamQueue[0] == StateMachine && AreLinesFree())
         {
             StateMachine.AreaManager.RoamQueue.Remove(StateMachine);
             StateMachine.ChangeState(StateMachine.BarManQueueState);
