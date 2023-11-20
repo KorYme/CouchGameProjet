@@ -8,4 +8,5 @@ public static class Globals
     public static DropManager DropManager = null;
     public static SpawnManager SpawnManager = null;
     public static PriestCalculator PriestCalculator = null;
+    public static ExitPoints ExitPoints = null;
 }

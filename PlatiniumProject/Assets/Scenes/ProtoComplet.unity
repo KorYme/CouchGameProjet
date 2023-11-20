@@ -478,6 +478,18 @@ PrefabInstance:
       propertyPath: _characterAnimationData
       value: 
       objectReference: {fileID: 11400000, guid: 5c5cf1dc7975bc2488dfaf9c4c3fa4ed, type: 2}
+    - target: {fileID: 4976499995342045857, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _musicIndex
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5232184419642157544, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_PointLightInnerAngle
+      value: 33.34593
+      objectReference: {fileID: 0}
+    - target: {fileID: 5232184419642157544, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_PointLightOuterAngle
+      value: 33.34593
+      objectReference: {fileID: 0}
     - target: {fileID: 5519420641253564840, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _sp
       value: 
