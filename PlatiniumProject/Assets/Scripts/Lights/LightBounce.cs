@@ -17,18 +17,22 @@ public class LightBounce : MonoBehaviour
         _light = GetComponent<Light2D>();
     }
 
-    private IEnumerator Start()
+    private void Start()
     {
         _beatManager = Globals.BeatManager;
-        yield return new WaitWhile(() => _beatManager.BeatDurationInMilliseconds == 0);
+        _beatManager.OnNextBeat += () => StartCoroutine(BouncingLight());
+    }
+
+    IEnumerator BouncingLight()
+    {
         float timer = 0f;
-        float initialRadius = _light.pointLightOuterAngle;
-        float radiusRatio = _light.pointLightOuterAngle == 0f ? 1f : _light.pointLightInnerAngle / _light.pointLightOuterAngle;
+        float initialAngle = _light.pointLightOuterAngle;
+        float angleRatio = _light.pointLightOuterAngle == 0f ? 1f : _light.pointLightInnerAngle / _light.pointLightOuterAngle;
         while (true)
         {
             timer += Time.deltaTime * _Speed;
-            _light.pointLightOuterAngle = initialRadius + _angleAddition * (Mathf.Cos(timer * Mathf.PI * _Speed) + 1f) / 2f;
-            _light.pointLightInnerAngle = _light.pointLightOuterAngle * radiusRatio;
+            _light.pointLightOuterAngle = initialAngle + _angleAddition * (Mathf.Sin(timer * Mathf.PI * 2f) + 1f) / 2f;
+            _light.pointLightInnerAngle = _light.pointLightOuterAngle * angleRatio;
             yield return null;
         }
     }

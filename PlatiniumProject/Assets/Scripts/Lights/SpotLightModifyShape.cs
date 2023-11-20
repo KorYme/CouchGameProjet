@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class SpotLightSetup : MonoBehaviour
+public class SpotLightModifyShape : MonoBehaviour
 {
     [SerializeField] Light2D _parentLight;
 
