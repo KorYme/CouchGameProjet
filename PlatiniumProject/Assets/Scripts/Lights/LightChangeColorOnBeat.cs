@@ -1,13 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using static Rewired.ComponentControls.Effects.RotateAroundAxis;
 
-public class LightChangeOnBeat : MonoBehaviour
+public class LightChangeColorOnBeat : MonoBehaviour
 {
     [SerializeField] Light2D _light2D;
     [SerializeField] List<Color> _colors = new List<Color>();
+
 
     private void Reset()
     {
