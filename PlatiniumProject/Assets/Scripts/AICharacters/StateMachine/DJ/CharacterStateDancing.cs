@@ -12,7 +12,6 @@ public class CharacterStateDancing : CharacterState
 
         Globals.PriestCalculator.OnPriestNearToExorcize += StartExorcize;
         
-        Debug.Log(StateMachine.CharacterTypeData.Evilness);
         if (StateMachine.CharacterTypeData.Evilness == Evilness.EVIL &&
             (Globals.PriestCalculator.ExorcizeState == PriestCalculator.EXORCIZE_STATE.EXORCIZING || Globals.PriestCalculator.ExorcizeState == PriestCalculator.EXORCIZE_STATE.EXORCIZED))
         {

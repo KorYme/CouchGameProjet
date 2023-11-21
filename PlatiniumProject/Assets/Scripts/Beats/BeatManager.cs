@@ -32,7 +32,7 @@ public class BeatManager : MonoBehaviour, ITimingable
     [SerializeField, Tooltip("This event is called on the first frame an input cannot be received anymore")] 
     UnityEvent _onBeatEndEvent;
 
-    int _beatDurationInMilliseconds;
+    int _beatDurationInMilliseconds = 0;
     DateTime _lastBeatTime;
     Coroutine _beatCoroutine;
 
