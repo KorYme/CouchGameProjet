@@ -221,4 +221,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1f64ec699531c1488a4a6ae11d51e1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _parentLight: {fileID: 0}
+  _parentLight: {fileID: 2553288626468390349}
+  _childLight: {fileID: 7623216301490928797}
