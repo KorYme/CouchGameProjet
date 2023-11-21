@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data.Common;
-using TMPro;
 using UnityEngine;
 
 public enum Direction

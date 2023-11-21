@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class QTEHandler : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class QTEHandler : MonoBehaviour
     int _durationHold = 0;
     CheckHasInputThisBeat _checkInputThisBeat;
     List<InputClass> _inputsQTE;
+    JoystickShake _joystickShake;
 
     public int LengthInputs { get; private set; }
     private void Awake()
@@ -35,8 +37,8 @@ public class QTEHandler : MonoBehaviour
         _timingable = Globals.BeatManager;
         _checkInputThisBeat = new CheckHasInputThisBeat(_timingable);
         yield return new WaitUntil(() => Players.PlayersController[(int)_role] != null);
-        _playerController = Players.PlayersController[(int)_role];
-        _inputsQTE = new List<InputClass>()        {            _playerController.Action1,            _playerController.Action2,            _playerController.Action3,            _playerController.Action4,            _playerController.LT,            _playerController.RT,            _playerController.LeftJoystick,            _playerController.RightJoystick,        };    }
+        _playerController = Players.PlayersController[(int)_role];        _inputsQTE = new List<InputClass>()        {            _playerController.Action1,            _playerController.Action2,            _playerController.Action3,            _playerController.Action4,            _playerController.LT,            _playerController.RT,            _playerController.LeftJoystick,            _playerController.RightJoystick,        };        _joystickShake = new JoystickShake(_playerController.RightJoystick.InputClassX, 10);
+    }
     #region QTEable
     public void RegisterQTEable(IQTEable QTEable)
     {
@@ -47,7 +49,6 @@ public class QTEHandler : MonoBehaviour
     {
         _events?.UnregisterQTEable(QTEable);
     }
-    
     #endregion
     #region SetUpQTE
     public void StartQTE()    {        if (_currentQTESequence != null)        {            _indexOfSequence = 0;            StartSequenceDependingOntype();        }     }
@@ -84,6 +85,7 @@ public class QTEHandler : MonoBehaviour
         _currentListSequences.Clear();
     }
     #endregion
+
     public string GetQTEString()
     {
         if (_currentListSequences != null && _currentListSequences.Length > 0)
@@ -115,30 +117,7 @@ public class QTEHandler : MonoBehaviour
         }
     }
 
-    IEnumerator CheckInputsShakeSequence(QTESequence sequence)
-    {
-        yield return new WaitUntil(() => _playerController != null);
-        _isSequenceComplete = false;        InputClass[] inputs = new InputClass[_currentQTESequence.ListSubHandlers.Count];
-        for (int i = 0; i < inputs.Length; i++)        {            inputs[i] = _playerController.GetInputClassWithID(_currentQTESequence.ListSubHandlers[i].ActionIndex, true);        }        _durationHold = 0;
-        
-        while ((!_isSequenceComplete && _currentQTESequence.Status == InputStatus.SHORT) || _durationHold < (_currentQTESequence.DurationHold * _timingable.BeatDurationInMilliseconds))        {            for (int i = 0; i < _currentQTESequence.ListSubHandlers.Count; i++)            {                if (inputs[i] != null)                {                    if (_currentQTESequence.ListSubHandlers[i].UseRotation)                    {                        InputVector2 vectAxis = inputs[i] as InputVector2;
-                        if (vectAxis != null)                        {                            _inputsSucceeded[i] = vectAxis.IsMoving;                            _currentListSequences.SetInputSucceeded(i, _inputsSucceeded[i]);
-                            if (_inputsSucceeded[i])
-                            {                                _events?.CallOnCorrectInput();
-                            }
-                            else
-                            {
-                                _events?.CallOnWrongInput();
-                            }                        }                    }
-                    else if (_inputsSucceeded[i] != inputs[i].IsPerformed)                    {                        _inputsSucceeded[i] = inputs[i].IsPerformed;                        _currentListSequences.SetInputSucceeded(i, _inputsSucceeded[i]);
-                        if (_inputsSucceeded[i])
-                        {                            _events?.CallOnCorrectInput();                        }
-                        else
-                        {
-                            _events?.CallOnWrongInput();
-                        }                    }                }            }            yield return null;            _isSequenceComplete = CheckSequence();
-            if (_isSequenceComplete && _currentQTESequence.Status == InputStatus.LONG)            {                _durationHold += (int)(Time.deltaTime * 1000);            }        }
-    }
+    
 
     void CheckLongInput(UnitInput input)
     {
@@ -155,7 +134,6 @@ public class QTEHandler : MonoBehaviour
 
     void CheckInputType(UnitInput input)
     {
-
     }
 
     IEnumerator CheckInputsLong()
