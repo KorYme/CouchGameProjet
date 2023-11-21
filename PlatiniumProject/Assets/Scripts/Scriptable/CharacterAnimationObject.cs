@@ -54,7 +54,7 @@ public class CharacterAnimationObject : ScriptableObject
     public ANIMATION_TYPE selectedAnimationType;
     public List<Animation> animationsList = new List<Animation>();
     private Dictionary<ANIMATION_TYPE, Animation> _animations = new Dictionary<ANIMATION_TYPE, Animation>();
-
+    public int animBpm;
     public Dictionary<ANIMATION_TYPE, Animation> Animations => _animations;
     
     public void Init()

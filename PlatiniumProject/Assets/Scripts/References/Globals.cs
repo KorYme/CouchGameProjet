@@ -9,4 +9,5 @@ public static class Globals
     public static SpawnManager SpawnManager = null;
     public static PriestCalculator PriestCalculator = null;
     public static ExitPoints ExitPoints = null;
+    public static CameraProfileManager CameraProfileManager = null;
 }
