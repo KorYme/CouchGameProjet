@@ -137,12 +137,12 @@ public class SpawnManager : MonoBehaviour
     
     private bool IsBadClient()
     {
-        _instanciationCount = (_instanciationCount + 1) % (int)_badClientRatio.y;
-
         if (_instanciationCount == 0)
         {
             SetClientRatio();
         }
+        
+        _instanciationCount = (_instanciationCount + 1) % (int)_badClientRatio.y;
         
         if (_badClientsBools[_instanciationCount]) return true;
         return false;
