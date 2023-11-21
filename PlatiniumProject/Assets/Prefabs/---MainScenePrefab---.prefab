@@ -815,6 +815,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4349089593066170630}
+  - component: {fileID: 415680244780460758}
   m_Layer: 0
   m_Name: Lights
   m_TagString: Untagged
@@ -835,6 +836,26 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8178673555787626113}
+  - {fileID: 5792072066837834084}
+  - {fileID: 492811620243928753}
+  - {fileID: 9001384222870186280}
+  - {fileID: 5729517162227262181}
+  - {fileID: 1038758773698987215}
+  - {fileID: 3012461709124766010}
+  - {fileID: 3184996723685103076}
+  - {fileID: 2626331247672645512}
+  - {fileID: 8255714658728938468}
+  - {fileID: 6939472265215056110}
+  - {fileID: 9141717487975612027}
+  - {fileID: 123251892688141284}
+  - {fileID: 575537609263020967}
+  - {fileID: 3005851518607016611}
+  - {fileID: 5949467476856908681}
+  - {fileID: 3490716679368754597}
+  - {fileID: 8110799530916300640}
+  - {fileID: 3596435520596960137}
+  - {fileID: 8588526261328954926}
   - {fileID: 2893562573505471815}
   - {fileID: 1110015299848694833}
   - {fileID: 3487604932869216441}
@@ -855,26 +876,6 @@ Transform:
   - {fileID: 6165811882401153531}
   - {fileID: 3265483644752909084}
   - {fileID: 1976392385789446962}
-  - {fileID: 8178673555787626113}
-  - {fileID: 5792072066837834084}
-  - {fileID: 492811620243928753}
-  - {fileID: 9001384222870186280}
-  - {fileID: 5729517162227262181}
-  - {fileID: 1038758773698987215}
-  - {fileID: 3012461709124766010}
-  - {fileID: 8588526261328954926}
-  - {fileID: 3596435520596960137}
-  - {fileID: 8110799530916300640}
-  - {fileID: 3490716679368754597}
-  - {fileID: 5949467476856908681}
-  - {fileID: 3005851518607016611}
-  - {fileID: 575537609263020967}
-  - {fileID: 123251892688141284}
-  - {fileID: 9141717487975612027}
-  - {fileID: 6939472265215056110}
-  - {fileID: 3184996723685103076}
-  - {fileID: 2626331247672645512}
-  - {fileID: 8255714658728938468}
   - {fileID: 3289437242805005688}
   - {fileID: 6653539282937295641}
   - {fileID: 776116491531932005}
@@ -882,6 +883,61 @@ Transform:
   - {fileID: 1190113263228094151}
   m_Father: {fileID: 2619603497741536774}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &415680244780460758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665435989756873022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2a771aaad766d4ea64bd7d38488341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lights:
+  - {fileID: 9004588718854323829}
+  - {fileID: 6608706344694281987}
+  - {fileID: 7257322488079860619}
+  - {fileID: 3354796092474387292}
+  - {fileID: 990559745473812820}
+  - {fileID: 2234229793192926267}
+  - {fileID: 9001719612746786591}
+  - {fileID: 2835329624756969525}
+  - {fileID: 4750046081455654311}
+  - {fileID: 3575875849434582990}
+  - {fileID: 7094193934500367931}
+  - {fileID: 1236866108061506908}
+  - {fileID: 3148378789293235436}
+  - {fileID: 7141346531703037299}
+  - {fileID: 8134804388250403285}
+  - {fileID: 6163608569395907125}
+  - {fileID: 9062686269049465349}
+  - {fileID: 90102033503410889}
+  - {fileID: 8755018006234253358}
+  - {fileID: 5745687161389305856}
+  - {fileID: 2688994410829426099}
+  - {fileID: 338003842277929558}
+  - {fileID: 5910860032650997123}
+  - {fileID: 2898648195877712410}
+  - {fileID: 1968657908558920151}
+  - {fileID: 6537872020607311869}
+  - {fileID: 9015977317377020424}
+  - {fileID: 8710568379853639382}
+  - {fileID: 8116573076175244474}
+  - {fileID: 2757178043853410518}
+  - {fileID: 3791101994042917852}
+  - {fileID: 3029974708409247049}
+  - {fileID: 6153226191910707414}
+  - {fileID: 5993725986395021461}
+  - {fileID: 9036376344132737425}
+  - {fileID: 450790186493554875}
+  - {fileID: 7251008963216137879}
+  - {fileID: 2620566513615002706}
+  - {fileID: 7293682273359165627}
+  - {fileID: 2585582193015643420}
+  _beatBeforeChangePattern: 10
+  _followingDots: 7
 --- !u!1 &1723869449293542194
 GameObject:
   m_ObjectHideFlags: 0
@@ -5587,7 +5643,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (22)
+      value: BlinkingLight37
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -5649,7 +5705,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -5674,7 +5731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 3373645532705892129}
+  _lights2D: []
   _colors:
   - {r: 0, g: 1, b: 0.35382843, a: 1}
   - {r: 1, g: 0, b: 0.9193015, a: 1}
@@ -5682,17 +5739,6 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 0.9270077, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 0.37443805, b: 1, a: 1}
---- !u!114 &3373645532705892129 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 192742300109484214}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 90102033503410889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &6165811882401153531 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6286355635895333197, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -6157,7 +6203,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (8)
+      value: BlinkingLight15
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -6215,7 +6261,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -6240,7 +6287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 3012913269869923667}
+  _lights2D: []
   _colors:
   - {r: 1, g: 0.9175914, b: 0, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
@@ -6248,17 +6295,6 @@ MonoBehaviour:
   - {r: 1, g: 0, b: 0.9193015, a: 1}
   - {r: 0, g: 1, b: 0.9270077, a: 1}
   - {r: 0, g: 1, b: 0.35382843, a: 1}
---- !u!114 &3012913269869923667 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 409086508031236804}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 450790186493554875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &5949467476856908681 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6286355635895333197, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -6557,7 +6593,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (18)
+      value: BlinkingLight1
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -6615,7 +6651,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -6640,7 +6677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 3107861264139227070}
+  _lights2D: []
   _colors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 0.37443805, b: 1, a: 1}
@@ -6648,17 +6685,6 @@ MonoBehaviour:
   - {r: 1, g: 0.9175914, b: 0, a: 1}
   - {r: 1, g: 0, b: 0.9193015, a: 1}
   - {r: 0, g: 1, b: 0.35382843, a: 1}
---- !u!114 &3107861264139227070 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 530314247541102633}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 338003842277929558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &5792072066837834084 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6286355635895333197, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -7388,7 +7414,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (35)
+      value: BlinkingLight24
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -7450,7 +7476,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -7475,7 +7502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 2463098708758291644}
+  _lights2D: []
   _colors:
   - {r: 0, g: 0.37443805, b: 1, a: 1}
   - {r: 0, g: 1, b: 0.35382843, a: 1}
@@ -7483,17 +7510,6 @@ MonoBehaviour:
   - {r: 1, g: 0.9175914, b: 0, a: 1}
   - {r: 1, g: 0, b: 0.9193015, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
---- !u!114 &2463098708758291644 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 1032438792687055659}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 990559745473812820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &6444205456714957414 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6286355635895333197, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -8727,7 +8743,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (28)
+      value: BlinkingLight31
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -8785,7 +8801,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -8810,7 +8827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 4520409797282996404}
+  _lights2D: []
   _colors:
   - {r: 1, g: 0, b: 0.9193015, a: 1}
   - {r: 1, g: 0.9175914, b: 0, a: 1}
@@ -8818,17 +8835,6 @@ MonoBehaviour:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 1, b: 0.9270077, a: 1}
   - {r: 0, g: 1, b: 0.35382843, a: 1}
---- !u!114 &4520409797282996404 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 1353017673068099363}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1236866108061506908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &5042761935617803886 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6286355635895333197, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -9524,7 +9530,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (15)
+      value: BlinkingLight4
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Intensity
@@ -9574,7 +9580,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -9599,7 +9606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 3802040845883704383}
+  _lights2D: []
   _colors:
   - {r: 0, g: 1, b: 0.35382843, a: 1}
   - {r: 0, g: 1, b: 0.9270077, a: 1}
@@ -9607,17 +9614,6 @@ MonoBehaviour:
   - {r: 1, g: 0.9175914, b: 0, a: 1}
   - {r: 0, g: 0.37443805, b: 1, a: 1}
   - {r: 1, g: 0, b: 0.9193015, a: 1}
---- !u!114 &3802040845883704383 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 1783085309355856808}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1968657908558920151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &5729517162227262181 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6286355635895333197, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -10474,7 +10470,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (34)
+      value: BlinkingLight25
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -10536,7 +10532,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -10561,7 +10558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 3499323051556577747}
+  _lights2D: []
   _colors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 0.37443805, b: 1, a: 1}
@@ -10569,17 +10566,6 @@ MonoBehaviour:
   - {r: 1, g: 0.9175914, b: 0, a: 1}
   - {r: 1, g: 0, b: 0.9193015, a: 1}
   - {r: 0, g: 1, b: 0.35382843, a: 1}
---- !u!114 &3499323051556577747 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 2084407291992258116}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2234229793192926267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &5463097553056581385 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6286355635895333197, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -10963,7 +10949,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (12)
+      value: BlinkingLight19
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -11025,7 +11011,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -11033,17 +11020,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6344128399233768621}
   m_SourcePrefab: {fileID: 100100000, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
---- !u!114 &896311573654774004 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 2309515401806002019}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2585582193015643420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2585582193015643420 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -11061,7 +11037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 896311573654774004}
+  _lights2D: []
   _colors:
   - {r: 0, g: 1, b: 0.35382843, a: 1}
   - {r: 1, g: 0, b: 0.9193015, a: 1}
@@ -11557,7 +11533,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (32)
+      value: BlinkingLight27
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -11611,7 +11587,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -11619,17 +11596,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 374534245200073825}
   m_SourcePrefab: {fileID: 100100000, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
---- !u!114 &632930205513653725 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 2645235921623091786}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2835329624756969525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2835329624756969525 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -11647,7 +11613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 632930205513653725}
+  _lights2D: []
   _colors:
   - {r: 1, g: 0, b: 0.9193015, a: 1}
   - {r: 0, g: 1, b: 0.35382843, a: 1}
@@ -11763,7 +11729,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight
+      value: BlinkingLight9
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Intensity
@@ -11813,7 +11779,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -11821,17 +11788,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3116060594847661024}
   m_SourcePrefab: {fileID: 100100000, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
---- !u!114 &707897730535910718 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 2715582172560292521}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2757178043853410518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2757178043853410518 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -11849,7 +11805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 707897730535910718}
+  _lights2D: []
   _colors:
   - {r: 1, g: 0, b: 0.9193015, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
@@ -11957,7 +11913,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (19)
+      value: BlinkingLight0
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -12019,7 +11975,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -12027,17 +11984,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4813149997151930445}
   m_SourcePrefab: {fileID: 100100000, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
---- !u!114 &774823395290894427 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 2791637348915005388}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2688994410829426099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2688994410829426099 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -12055,7 +12001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 774823395290894427}
+  _lights2D: []
   _colors:
   - {r: 0, g: 0.37443805, b: 1, a: 1}
   - {r: 1, g: 0.9175914, b: 0, a: 1}
@@ -12175,7 +12121,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (10)
+      value: BlinkingLight17
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -12237,7 +12183,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -12245,17 +12192,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1674933018744264266}
   m_SourcePrefab: {fileID: 100100000, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
---- !u!114 &851071146031325626 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 2860566518204937773}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2620566513615002706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2620566513615002706 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -12273,7 +12209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 851071146031325626}
+  _lights2D: []
   _colors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 1, b: 0.9270077, a: 1}
@@ -12296,7 +12232,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (27)
+      value: BlinkingLight32
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -12358,7 +12294,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -12366,17 +12303,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8237680347794130156}
   m_SourcePrefab: {fileID: 100100000, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
---- !u!114 &297459940253294852 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 2908639918027175571}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3148378789293235436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3148378789293235436 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -12394,7 +12320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 297459940253294852}
+  _lights2D: []
   _colors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 0.37443805, b: 1, a: 1}
@@ -12571,7 +12497,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (4)
+      value: BlinkingLight11
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -12633,7 +12559,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -12641,17 +12568,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8012092200702996090}
   m_SourcePrefab: {fileID: 100100000, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
---- !u!114 &404517059123271841 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 3017544491177594678}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3029974708409247049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3029974708409247049 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -12669,7 +12585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 404517059123271841}
+  _lights2D: []
   _colors:
   - {r: 0, g: 1, b: 0.35382843, a: 1}
   - {r: 1, g: 0.9175914, b: 0, a: 1}
@@ -12955,7 +12871,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (16)
+      value: BlinkingLight3
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -13017,7 +12933,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -13025,17 +12942,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3015727130213860577}
   m_SourcePrefab: {fileID: 100100000, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
---- !u!114 &552696747908419570 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 3158932531536681061}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2898648195877712410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2898648195877712410 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -13053,7 +12959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 552696747908419570}
+  _lights2D: []
   _colors:
   - {r: 0, g: 1, b: 0.35382843, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
@@ -13076,7 +12982,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (36)
+      value: BlinkingLight23
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -13130,7 +13036,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -13138,17 +13045,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5441433449055118569}
   m_SourcePrefab: {fileID: 100100000, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
---- !u!114 &80821436860307124 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 3270308281863143715}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3354796092474387292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3354796092474387292 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -13166,7 +13062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 80821436860307124}
+  _lights2D: []
   _colors:
   - {r: 0, g: 1, b: 0.35382843, a: 1}
   - {r: 0, g: 0.37443805, b: 1, a: 1}
@@ -14103,7 +13999,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (30)
+      value: BlinkingLight29
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Intensity
@@ -14153,7 +14049,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -14161,17 +14058,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 93958603280858894}
   m_SourcePrefab: {fileID: 100100000, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
---- !u!114 &2175682603774128678 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 3624493249072670129}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3575875849434582990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3575875849434582990 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -14189,7 +14075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 2175682603774128678}
+  _lights2D: []
   _colors:
   - {r: 1, g: 0.9175914, b: 0, a: 1}
   - {r: 0, g: 1, b: 0.35382843, a: 1}
@@ -15017,7 +14903,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (3)
+      value: BlinkingLight10
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -15079,7 +14965,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -15087,17 +14974,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8667287277905032512}
   m_SourcePrefab: {fileID: 100100000, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
---- !u!114 &1949267831249075764 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 3994809859311757731}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3791101994042917852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3791101994042917852 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -15115,7 +14991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 1949267831249075764}
+  _lights2D: []
   _colors:
   - {r: 0, g: 1, b: 0.35382843, a: 1}
   - {r: 1, g: 0.9175914, b: 0, a: 1}
@@ -16931,7 +16807,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (31)
+      value: BlinkingLight28
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -16993,7 +16869,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -17023,7 +16900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 7960691028701280335}
+  _lights2D: []
   _colors:
   - {r: 1, g: 0.9175914, b: 0, a: 1}
   - {r: 0, g: 0.37443805, b: 1, a: 1}
@@ -17031,17 +16908,6 @@ MonoBehaviour:
   - {r: 1, g: 0, b: 0.9193015, a: 1}
   - {r: 0, g: 1, b: 0.35382843, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
---- !u!114 &7960691028701280335 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 4757864943528964056}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4750046081455654311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4829963059933888674
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18891,7 +18757,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (20)
+      value: BlinkingLight39
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -18953,7 +18819,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -18983,7 +18850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 6930278855603629544}
+  _lights2D: []
   _colors:
   - {r: 0, g: 1, b: 0.35382843, a: 1}
   - {r: 0, g: 1, b: 0.9270077, a: 1}
@@ -18991,17 +18858,6 @@ MonoBehaviour:
   - {r: 1, g: 0.9175914, b: 0, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 0.37443805, b: 1, a: 1}
---- !u!114 &6930278855603629544 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 5498914127610165887}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5745687161389305856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5626317229226592787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19277,7 +19133,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (6)
+      value: BlinkingLight13
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -19331,7 +19187,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -19361,7 +19218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 8988197400025505149}
+  _lights2D: []
   _colors:
   - {r: 1, g: 0, b: 0.9193015, a: 1}
   - {r: 0, g: 1, b: 0.35382843, a: 1}
@@ -19369,17 +19226,6 @@ MonoBehaviour:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 1, b: 0.9270077, a: 1}
   - {r: 0, g: 0.37443805, b: 1, a: 1}
---- !u!114 &8988197400025505149 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 5818975404998724330}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5993725986395021461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5827306137195677641
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19560,7 +19406,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (17)
+      value: BlinkingLight2
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -19622,7 +19468,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -19652,7 +19499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 9049442557258436715}
+  _lights2D: []
   _colors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 0.37443805, b: 1, a: 1}
@@ -19660,17 +19507,6 @@ MonoBehaviour:
   - {r: 1, g: 0.9175914, b: 0, a: 1}
   - {r: 1, g: 0, b: 0.9193015, a: 1}
   - {r: 0, g: 1, b: 0.35382843, a: 1}
---- !u!114 &9049442557258436715 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 5902898229934163964}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5910860032650997123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5970807366960200734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20309,7 +20145,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (24)
+      value: BlinkingLight35
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -20371,7 +20207,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -20401,7 +20238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 8797793660996679645}
+  _lights2D: []
   _colors:
   - {r: 0, g: 1, b: 0.9270077, a: 1}
   - {r: 0, g: 0.37443805, b: 1, a: 1}
@@ -20409,17 +20246,6 @@ MonoBehaviour:
   - {r: 1, g: 0.9175914, b: 0, a: 1}
   - {r: 1, g: 0, b: 0.9193015, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
---- !u!114 &8797793660996679645 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 6225470148863647818}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6163608569395907125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6235374238791027369
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20430,7 +20256,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (5)
+      value: BlinkingLight12
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -20488,7 +20314,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -20518,7 +20345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 8860029006715673918}
+  _lights2D: []
   _colors:
   - {r: 0, g: 1, b: 0.35382843, a: 1}
   - {r: 1, g: 0.9175914, b: 0, a: 1}
@@ -20526,17 +20353,6 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 0.9270077, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 0.37443805, b: 1, a: 1}
---- !u!114 &8860029006715673918 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 6235374238791027369}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6153226191910707414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6289492951713191327
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20621,7 +20437,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (38)
+      value: BlinkingLight21
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -20683,7 +20499,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -20713,7 +20530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 8369751381352450795}
+  _lights2D: []
   _colors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 0.37443805, b: 1, a: 1}
@@ -20721,17 +20538,6 @@ MonoBehaviour:
   - {r: 1, g: 0.9175914, b: 0, a: 1}
   - {r: 1, g: 0, b: 0.9193015, a: 1}
   - {r: 0, g: 1, b: 0.35382843, a: 1}
---- !u!114 &8369751381352450795 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 6366416606656601468}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6608706344694281987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6378857992567609294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20978,7 +20784,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (14)
+      value: BlinkingLight5
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Intensity
@@ -21028,7 +20834,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -21058,7 +20865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 8442749670752903701}
+  _lights2D: []
   _colors:
   - {r: 1, g: 0.9175914, b: 0, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
@@ -21066,17 +20873,6 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 0.9270077, a: 1}
   - {r: 0, g: 0.37443805, b: 1, a: 1}
   - {r: 1, g: 0, b: 0.9193015, a: 1}
---- !u!114 &8442749670752903701 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 6437885484243285378}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6537872020607311869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6516522292163285933
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23015,7 +22811,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (26)
+      value: BlinkingLight33
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -23073,7 +22869,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -23086,17 +22883,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6286355635895333197, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
   m_PrefabInstance: {fileID: 6987319008728315660}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5515408964292370587 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 6987319008728315660}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7141346531703037299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7141346531703037299 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -23114,7 +22900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 5515408964292370587}
+  _lights2D: []
   _colors:
   - {r: 0, g: 1, b: 0.35382843, a: 1}
   - {r: 0, g: 0.37443805, b: 1, a: 1}
@@ -23318,7 +23104,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (29)
+      value: BlinkingLight30
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -23376,7 +23162,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -23389,17 +23176,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6286355635895333197, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
   m_PrefabInstance: {fileID: 7034475834326213700}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5612083430455407571 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 7034475834326213700}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7094193934500367931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7094193934500367931 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -23417,7 +23193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 5612083430455407571}
+  _lights2D: []
   _colors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 0.37443805, b: 1, a: 1}
@@ -24094,7 +23870,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (11)
+      value: BlinkingLight18
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Intensity
@@ -24144,7 +23920,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -24157,17 +23934,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6286355635895333197, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
   m_PrefabInstance: {fileID: 7409692602579522244}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5380075926835201363 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 7409692602579522244}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7293682273359165627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7293682273359165627 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -24185,7 +23951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 5380075926835201363}
+  _lights2D: []
   _colors:
   - {r: 0, g: 1, b: 0.9270077, a: 1}
   - {r: 0, g: 0.37443805, b: 1, a: 1}
@@ -24389,7 +24155,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (9)
+      value: BlinkingLight16
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Intensity
@@ -24439,7 +24205,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -24452,17 +24219,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6286355635895333197, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
   m_PrefabInstance: {fileID: 7443354485073556712}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5418184199723918207 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 7443354485073556712}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7251008963216137879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7251008963216137879 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -24480,7 +24236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 5418184199723918207}
+  _lights2D: []
   _colors:
   - {r: 1, g: 0.9175914, b: 0, a: 1}
   - {r: 0, g: 1, b: 0.35382843, a: 1}
@@ -24498,7 +24254,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (37)
+      value: BlinkingLight22
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -24560,7 +24316,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -24573,17 +24330,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6286355635895333197, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
   m_PrefabInstance: {fileID: 7447802670791862772}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5415213190754745955 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 7447802670791862772}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7257322488079860619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7257322488079860619 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -24601,7 +24347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 5415213190754745955}
+  _lights2D: []
   _colors:
   - {r: 0, g: 1, b: 0.35382843, a: 1}
   - {r: 1, g: 0, b: 0.9193015, a: 1}
@@ -25767,7 +25513,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (25)
+      value: BlinkingLight34
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Intensity
@@ -25817,7 +25563,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -25830,17 +25577,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6286355635895333197, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
   m_PrefabInstance: {fileID: 8289007287654230954}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6878442020993645629 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 8289007287654230954}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8134804388250403285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8134804388250403285 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -25858,7 +25594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 6878442020993645629}
+  _lights2D: []
   _colors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 0.37443805, b: 1, a: 1}
@@ -25962,7 +25698,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (1)
+      value: BlinkingLight8
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -26024,7 +25760,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -26037,17 +25774,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6286355635895333197, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
   m_PrefabInstance: {fileID: 8308865876939613893}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6859650577537347922 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 8308865876939613893}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8116573076175244474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8116573076175244474 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -26065,7 +25791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 6859650577537347922}
+  _lights2D: []
   _colors:
   - {r: 1, g: 0, b: 0.9193015, a: 1}
   - {r: 0, g: 1, b: 0.35382843, a: 1}
@@ -27399,7 +27125,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (21)
+      value: BlinkingLight38
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -27457,7 +27183,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -27470,17 +27197,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6286355635895333197, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
   m_PrefabInstance: {fileID: 8821649203572286033}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6201898223288432070 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 8821649203572286033}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8755018006234253358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8755018006234253358 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -27498,7 +27214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 6201898223288432070}
+  _lights2D: []
   _colors:
   - {r: 0, g: 1, b: 0.35382843, a: 1}
   - {r: 0, g: 0.37443805, b: 1, a: 1}
@@ -27756,7 +27472,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (2)
+      value: BlinkingLight7
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -27814,7 +27530,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -27827,17 +27544,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6286355635895333197, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
   m_PrefabInstance: {fileID: 8867304549687780521}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6301560781828485950 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 8867304549687780521}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8710568379853639382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8710568379853639382 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -27855,7 +27561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 6301560781828485950}
+  _lights2D: []
   _colors:
   - {r: 1, g: 0.9175914, b: 0, a: 1}
   - {r: 0, g: 1, b: 0.35382843, a: 1}
@@ -28330,7 +28036,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (23)
+      value: BlinkingLight36
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -28388,7 +28094,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -28401,17 +28108,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6286355635895333197, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
   m_PrefabInstance: {fileID: 9091070478419067002}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5932545605707929581 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 9091070478419067002}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9062686269049465349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &9062686269049465349 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -28429,7 +28125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 5932545605707929581}
+  _lights2D: []
   _colors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 0.37443805, b: 1, a: 1}
@@ -28447,7 +28143,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (7)
+      value: BlinkingLight14
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -28509,7 +28205,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -28522,17 +28219,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6286355635895333197, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
   m_PrefabInstance: {fileID: 9118506266744009710}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5978013410497930361 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 9118506266744009710}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9036376344132737425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &9036376344132737425 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -28550,7 +28236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 5978013410497930361}
+  _lights2D: []
   _colors:
   - {r: 0, g: 1, b: 0.35382843, a: 1}
   - {r: 1, g: 0.9175914, b: 0, a: 1}
@@ -28642,7 +28328,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (13)
+      value: BlinkingLight6
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -28704,7 +28390,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -28717,17 +28404,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6286355635895333197, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
   m_PrefabInstance: {fileID: 9147926651106621559}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5948881786426290144 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 9147926651106621559}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9015977317377020424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &9015977317377020424 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -28745,7 +28421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 5948881786426290144}
+  _lights2D: []
   _colors:
   - {r: 0, g: 1, b: 0.9270077, a: 1}
   - {r: 0, g: 0.37443805, b: 1, a: 1}
@@ -28763,7 +28439,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (33)
+      value: BlinkingLight26
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -28825,7 +28501,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -28838,17 +28515,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6286355635895333197, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
   m_PrefabInstance: {fileID: 9151403506794827104}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6015977484006595319 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 9151403506794827104}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9001719612746786591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &9001719612746786591 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -28866,7 +28532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 6015977484006595319}
+  _lights2D: []
   _colors:
   - {r: 0, g: 1, b: 0.35382843, a: 1}
   - {r: 1, g: 0.9175914, b: 0, a: 1}
@@ -28884,7 +28550,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (39)
+      value: BlinkingLight20
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -28942,7 +28608,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -28955,17 +28622,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6286355635895333197, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
   m_PrefabInstance: {fileID: 9158739378275111946}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6009836367118025629 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
-  m_PrefabInstance: {fileID: 9158739378275111946}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9004588718854323829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &9004588718854323829 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
@@ -28983,7 +28639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591fc6fd4e679cd43a8216f74d25dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light2D: {fileID: 6009836367118025629}
+  _lights2D: []
   _colors:
   - {r: 0, g: 1, b: 0.35382843, a: 1}
   - {r: 0, g: 0.37443805, b: 1, a: 1}
