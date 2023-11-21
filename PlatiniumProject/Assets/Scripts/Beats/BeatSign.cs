@@ -7,7 +7,8 @@ public class BeatSign : MonoBehaviour
 {
     private float _currentBeatDuration;
     [SerializeField] private Slider _slider;
-    private float _currenSliderValue; 
+    private float _currenSliderValue;
+    private float _pingPong;
 
     private float CurrentSliderValue
     
@@ -24,15 +25,19 @@ public class BeatSign : MonoBehaviour
     }
     void Start()
     {
-        //Globals.BeatManager.onne
-        _currentBeatDuration = Globals.BeatManager.BeatDurationInMilliseconds / 1000;
-        Debug.Log(Globals.BeatManager.BeatDurationInMilliseconds);
-    }
+        Globals.BeatManager.OnNextBeat += () => StartCoroutine(Routine());
 
-    // Update is called once per frame
-    void Update()
+    }
+    
+    IEnumerator Routine()
     {
-        CurrentSliderValue = Mathf.PingPong(Time.deltaTime, _currentBeatDuration) / _currentBeatDuration;
-        Debug.Log(_currentBeatDuration);
+        _currentBeatDuration = Globals.BeatManager.BeatDurationInMilliseconds / 1000f;
+        _slider.maxValue = _currentBeatDuration / 2;
+        while (true)
+        {
+            _pingPong = Mathf.Repeat( Time.time, _currentBeatDuration);
+            CurrentSliderValue = Mathf.Lerp(0f, _currentBeatDuration, _pingPong);
+            yield return null;
+        }
     }
 }
