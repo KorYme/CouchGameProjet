@@ -13,10 +13,14 @@ public class FollowingLightPosition : MonoBehaviour
     private IEnumerator Start()
     {
         _velocity = Vector3.zero;
-        while (true)
+        if (_target != null)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, _target.position + (Vector3)_offset, ref _velocity, _timeToReachPosition);
-            yield return null;
+            while (true)
+            {
+                transform.position = Vector3.SmoothDamp(transform.position, _target.position + (Vector3)_offset, ref _velocity, _timeToReachPosition);
+                yield return null;
+            }
         }
+        yield return null;
     }
 }

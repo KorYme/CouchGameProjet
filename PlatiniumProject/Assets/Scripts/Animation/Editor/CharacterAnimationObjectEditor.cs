@@ -8,7 +8,7 @@ public class CharacterAnimationObjectEditor : Editor
     private int animIndex;
 
     private double _timer;
-    private double _timeBetweenframe = .5f;
+    private double _timeBetweenframe;
     CharacterAnimationObject anim ;
 
     private void OnEnable()
@@ -44,8 +44,10 @@ public class CharacterAnimationObjectEditor : Editor
         
         GUILayout.BeginHorizontal();
         {
+            anim.animBpm = Mathf.Max(90,EditorGUILayout.IntField("BPM", anim.animBpm));
             if (GUILayout.Button("Preview Anim"))
             {
+                _timeBetweenframe = 60f / anim.animBpm;
                 EditorApplication.update += AnimRoutine;
                 isPreviewing = true;
                 _timer = EditorApplication.timeSinceStartup + _timeBetweenframe;
