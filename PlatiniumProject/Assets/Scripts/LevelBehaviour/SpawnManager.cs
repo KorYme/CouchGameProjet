@@ -66,6 +66,7 @@ public class SpawnManager : MonoBehaviour
         for (int i = 0; i < _objectsToPoolNumber; ++i)
         {
             GameObject go = Instantiate(_pnj, _poolingSpawn.position, Quaternion.identity);
+            go.transform.parent = _poolingSpawn;
             go.transform.position += new Vector3(1f, 0f, 0f) * i;
             CharacterAiPuller puller = go.GetComponent<CharacterAiPuller>();
             puller.PullPos = go.transform.position += new Vector3(1f, 0f, 0f) * i;

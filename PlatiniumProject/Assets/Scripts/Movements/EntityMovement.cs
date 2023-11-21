@@ -77,7 +77,6 @@ public class EntityMovement : MonoBehaviour, IMovable
     {
         for (int i = 0; i < loop - 1; i++)
         {
-            Debug.Log("Anim");
             callBack?.Invoke();
             yield return new WaitForSeconds(duration);
         }

@@ -6,19 +6,23 @@ using UnityEngine.Rendering.Universal;
 
 public class SpotLightRotation : MonoBehaviour
 {
-    [SerializeField, Range(0f, 10f)] float _speed = 1;
     [HideInInspector] public float firstLocationRotation, secondLocationRotation;
 
     public float FirstLocationRotation => firstLocationRotation + 90;
     public float SecondLocationRotation => secondLocationRotation + 90;
 
+    float _Speed => _beatManager == null ? 0f : 1000f / _beatManager.BeatDurationInMilliseconds;
+    ITimingable _beatManager;
+
     private IEnumerator Start()
     {
+        _beatManager = Globals.BeatManager;
         float timer = 0f;
+        yield return new WaitWhile(() => _beatManager.BeatDurationInMilliseconds == 0);
         while (true)
         {
-            timer += Time.deltaTime * _speed;
-            transform.eulerAngles = new Vector3(0, 0, Mathf.LerpAngle(firstLocationRotation, secondLocationRotation, (Mathf.Cos(timer) + 1) / 2));
+            timer += Time.deltaTime * _Speed;
+            transform.eulerAngles = new Vector3(0, 0, Mathf.LerpAngle(firstLocationRotation, secondLocationRotation, (Mathf.Cos(timer * Mathf.PI) + 1) / 2));
             yield return null;
         }
     }

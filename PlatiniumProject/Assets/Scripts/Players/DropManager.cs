@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,6 +18,9 @@ public class DropManager : MonoBehaviour
     }
 
     [SerializeField, Range(0f, 1f)] private float _inputDeadZone = .8f;
+    [SerializeField] TMP_Text _text;
+    [SerializeField] GameObject _dropSuccess;
+
     public float InputDeadZone => _inputDeadZone;
 
     DROP_STATE _dropState;
@@ -25,6 +30,7 @@ public class DropManager : MonoBehaviour
         private set
         {
             OnDropStateChange?.Invoke(value);
+            _text.text = value.ToString();
             _dropState = value;
         }
     }
@@ -46,7 +52,8 @@ public class DropManager : MonoBehaviour
     private void Start()
     {
         _triggerPressedNumber = 0;
-        _dropState = DROP_STATE.OUT_OF_DROP;
+        DropState = DROP_STATE.OUT_OF_DROP;
+        _dropSuccess.SetActive(false);
         _beatManager = Globals.BeatManager as BeatManager;
         _beatManager.OnUserCueReceived += CheckUserCueName;
         OnDropStateChange += DropStateChange;
@@ -82,7 +89,6 @@ public class DropManager : MonoBehaviour
 
     void CheckUserCueName(string userCueName)
     {
-        //Debug.Log(userCueName);
         switch (userCueName)
         {
             case "BuildUpStart":
@@ -118,7 +124,7 @@ public class DropManager : MonoBehaviour
 
     public void UpdateTriggerValue(bool triggerPressed)
     {
-        switch (_dropState)
+        switch (DropState)
         {
             case DROP_STATE.ON_DROP_PRESSING:
                 if (!_beatManager.IsInsideBeatWindow) return;
@@ -141,6 +147,8 @@ public class DropManager : MonoBehaviour
                 if (_triggerPressedNumber == 0)
                 {
                     Debug.Log("Success Drop");
+                    _dropSuccess.SetActive(true);
+                    StartCoroutine(SuccessDisplay());
                     DropState = DROP_STATE.OUT_OF_DROP;
                     OnDropSuccess?.Invoke();
                 }
@@ -148,6 +156,12 @@ public class DropManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    IEnumerator SuccessDisplay()
+    {
+        yield return new WaitForSeconds(7f);
+        _dropSuccess.SetActive(false);
     }
 
     void AllTriggerRelease()
