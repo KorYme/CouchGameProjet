@@ -248,6 +248,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc94ff4af77f3044c9fa0f45f56114e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cameraProfiles:
+  - {fileID: 1016459739}
+  - {fileID: 2103076156}
+  - {fileID: 1153616666}
+  - {fileID: 1261080690}
+  - {fileID: 1659137363}
 --- !u!1 &770656059 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8605841693048097846, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
@@ -446,6 +452,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62c25c8c96b6ab418a628e7d37f8cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _profileData: {fileID: 11400000, guid: aad03eb7238d198499fc97f4e0d81131, type: 2}
+  _cameraType: 0
 --- !u!212 &1082957784 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 2212512567729938694, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
@@ -468,6 +476,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62c25c8c96b6ab418a628e7d37f8cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _profileData: {fileID: 11400000, guid: aad03eb7238d198499fc97f4e0d81131, type: 2}
+  _cameraType: 2
 --- !u!1 &1261080684 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6985030773642134929, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
@@ -485,6 +495,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62c25c8c96b6ab418a628e7d37f8cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _profileData: {fileID: 11400000, guid: aad03eb7238d198499fc97f4e0d81131, type: 2}
+  _cameraType: 3
 --- !u!1001 &1353082137
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -500,6 +512,10 @@ PrefabInstance:
     - target: {fileID: 242773553941807351, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -1.301
+      objectReference: {fileID: 0}
+    - target: {fileID: 355355532619818057, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_Name
+      value: BouncerP
       objectReference: {fileID: 0}
     - target: {fileID: 837508718520239595, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_AnchorMax.x
@@ -841,6 +857,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62c25c8c96b6ab418a628e7d37f8cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _profileData: {fileID: 11400000, guid: aad03eb7238d198499fc97f4e0d81131, type: 2}
+  _cameraType: 4
 --- !u!224 &1895050983 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2049147101528859463, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
@@ -868,6 +886,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62c25c8c96b6ab418a628e7d37f8cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _profileData: {fileID: 11400000, guid: aad03eb7238d198499fc97f4e0d81131, type: 2}
+  _cameraType: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
