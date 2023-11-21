@@ -62,7 +62,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ChangeColorsPosition: 2
+    - _ChangeColorsPosition: 0
     - _ErrorColorCompensation: 0.02
     - _NbColors: 5
     - _Radius: 1.21
