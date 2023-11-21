@@ -128,6 +128,12 @@
 }
 
 {
+    "m_SGVersion": 2,
+    "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalUnlitSubTarget",
+    "m_ObjectId": "251c65c824df4e9aa3794385d53b343f"
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.TangentMaterialSlot",
     "m_ObjectId": "38558d1423c94020990ea8d2755b3fe0",
@@ -349,18 +355,12 @@
 }
 
 {
-    "m_SGVersion": 2,
-    "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalUnlitSubTarget",
-    "m_ObjectId": "a524b21f55e74d4692d48d6db4051709"
-}
-
-{
     "m_SGVersion": 1,
     "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalTarget",
     "m_ObjectId": "c71238ad3c74487d81449fa6c86a0d22",
     "m_Datas": [],
     "m_ActiveSubTarget": {
-        "m_Id": "a524b21f55e74d4692d48d6db4051709"
+        "m_Id": "251c65c824df4e9aa3794385d53b343f"
     },
     "m_AllowMaterialOverride": false,
     "m_SurfaceType": 0,
@@ -442,8 +442,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -156.0,
-            "y": 216.0,
+            "x": -175.0,
+            "y": 239.0,
             "width": 105.0,
             "height": 34.0
         }
