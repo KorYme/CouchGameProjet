@@ -123,7 +123,7 @@ public class QTEHandler : MonoBehaviour
         
         while ((!_isSequenceComplete && _currentQTESequence.Status == InputStatus.SHORT) || _durationHold < (_currentQTESequence.DurationHold * _timingable.BeatDurationInMilliseconds))        {            for (int i = 0; i < _currentQTESequence.ListSubHandlers.Count; i++)            {                if (inputs[i] != null)                {                    if (_currentQTESequence.ListSubHandlers[i].UseRotation)                    {                        InputVector2 vectAxis = inputs[i] as InputVector2;
                         if (vectAxis != null)                        {                            _inputsSucceeded[i] = vectAxis.IsMoving;                            _currentListSequences.SetInputSucceeded(i, _inputsSucceeded[i]);
-                            if (_inputsSucceeded[i])// TO DO : CHANGE
+                            if (_inputsSucceeded[i])
                             {                                _events?.CallOnCorrectInput();
                             }
                             else
@@ -131,7 +131,7 @@ public class QTEHandler : MonoBehaviour
                                 _events?.CallOnWrongInput();
                             }                        }                    }
                     else if (_inputsSucceeded[i] != inputs[i].IsPerformed)                    {                        _inputsSucceeded[i] = inputs[i].IsPerformed;                        _currentListSequences.SetInputSucceeded(i, _inputsSucceeded[i]);
-                        if (_inputsSucceeded[i]) // TO DO : CHANGE
+                        if (_inputsSucceeded[i])
                         {                            _events?.CallOnCorrectInput();                        }
                         else
                         {

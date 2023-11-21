@@ -184,7 +184,6 @@ public class QTEWindow : EditorWindow
 
     void RenameSequences(int indexSequence)
     {
-        int indexLast = _listQTE.Last().Index;
         for (int i = indexSequence + 1; i < _listQTE.Count; i++)
         {
             AssetDatabase.RenameAsset($"Assets/ScriptableObjects/QTE/QTE{i}.asset", $"QTE{i - 1}.asset");
