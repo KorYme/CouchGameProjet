@@ -10,4 +10,5 @@ public class UnitInput : ScriptableObject
     public int ActionIndex = 0; //Input action index
     public bool UseRotation = false;
     public int NbTurns = 1;
+    public LongInputType LongInputType = LongInputType.HOLD;
 }

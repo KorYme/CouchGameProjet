@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: QTEInput11_2
   m_EditorClassIdentifier: 
   Index: 2
-  ActionIndex: 4
+  ActionIndex: 2
   UseRotation: 0
   NbTurns: 1
+  LongInputType: 0

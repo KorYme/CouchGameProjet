@@ -2,6 +2,7 @@ using DG.DOTweenEditor.UI;
 using Rewired;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -52,6 +53,20 @@ public class QTEWindow : EditorWindow
             margin = new RectOffset(3,5,1,1),
             normal = new GUIStyleState() { background = Texture2D.whiteTexture}
         };
+    }
+
+    private void OrganizeAndRenameQTE()
+    {
+        for (int i = 0; i < _listQTE.Count; i++)
+        {
+            AssetDatabase.RenameAsset($"Assets/ScriptableObjects/QTE/QTE{_listQTE[i].Index}.asset", $"QTE{i}.asset");
+            for (int j = 0; j < _listQTE[i].ListSubHandlers.Count; j++)
+            {
+                AssetDatabase.RenameAsset($"Assets/ScriptableObjects/QTE/QTEInput{_listQTE[i].Index}_{_listQTE[i].ListSubHandlers[j].Index}.asset", $"QTEInput{i}_{j}.asset");
+                _listQTE[i].ListSubHandlers[j].Index = j;
+            }
+            _listQTE[i].Index = i;
+        }
     }
     private void OnDestroy()
     {
@@ -137,19 +152,49 @@ public class QTEWindow : EditorWindow
     #endregion
 
     #region Delete
-    void RemoveUnitAtIndex(int indexUnit)
+    void RemoveUnitAtIndex(int indexUnit, bool moveElements)
     {
         if (AssetDatabase.IsValidFolder("Assets/ScriptableObjects") && AssetDatabase.IsValidFolder("Assets/ScriptableObjects/QTE"))
         {
             if (AssetDatabase.DeleteAsset($"Assets/ScriptableObjects/QTE/QTEInput{_selectedQTE.Index}_{indexUnit}.asset"))
             {
                 Debug.Log("File of unit has been deleted.");
-            }else
+                if (moveElements)
+                    RenameUnits(indexUnit);
+            }
+            else
             {
                 Debug.Log("File not found");
             }
         }
         AssetDatabase.SaveAssets();
+    }
+
+    void RenameUnits(int indexUnit)
+    {
+        //TO DO change naming convention to guid
+        for (int i = indexUnit + 1; i < _selectedQTE.ListSubHandlers.Count; i++)
+        {
+            AssetDatabase.RenameAsset($"Assets/ScriptableObjects/QTE/QTEInput{_selectedQTE.Index}_{i}.asset", $"QTEInput{_selectedQTE.Index}_{i-1}.asset");
+            _selectedQTE.ListSubHandlers[i].Index--; 
+        }
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+    }
+
+    void RenameSequences(int indexSequence)
+    {
+        int indexLast = _listQTE.Last().Index;
+        for (int i = indexSequence + 1; i < _listQTE.Count; i++)
+        {
+            AssetDatabase.RenameAsset($"Assets/ScriptableObjects/QTE/QTE{i}.asset", $"QTE{i - 1}.asset");
+            _listQTE[i].Index--;
+            for (int j = 0; j < _listQTE[i].ListSubHandlers.Count; j++)
+            {
+                AssetDatabase.RenameAsset($"Assets/ScriptableObjects/QTE/QTEInput{i}_{_listQTE[i].ListSubHandlers[j].Index}.asset", $"QTEInput{i - 1}_{_listQTE[i].ListSubHandlers[j].Index}.asset");
+            }
+        }
+        AssetDatabase.Refresh();
     }
 
     void RemoveSelectedSequence()
@@ -159,13 +204,15 @@ public class QTEWindow : EditorWindow
         {
             for (int i = _selectedQTE.ListSubHandlers.Count - 1; i >= 0; i--)
             {
-                RemoveUnitAtIndex(i);
+                RemoveUnitAtIndex(i,false);
             }
             if (AssetDatabase.IsValidFolder("Assets/ScriptableObjects") && AssetDatabase.IsValidFolder("Assets/ScriptableObjects/QTE"))
             {
+                int index = _selectedQTE.Index;
                 if (AssetDatabase.DeleteAsset($"Assets/ScriptableObjects/QTE/QTE{_selectedQTE.Index}.asset"))
                 {
                     Debug.Log("File of QTE has been deleted.");
+                    RenameSequences(index);
                 }
                 else
                 {
@@ -176,6 +223,8 @@ public class QTEWindow : EditorWindow
                 Debug.Log("File of QTE not found");
             }
             AssetDatabase.SaveAssets();
+            _listQTE.Remove(_selectedQTE);
+            _indexNewSequence = _listQTE.Last().Index;
             _selectedQTE = null;
         }
     }
@@ -208,7 +257,6 @@ public class QTEWindow : EditorWindow
     }
     private void DisplayMainView()
     {
-        
         if (_selectedQTE != null)
         {
             GUILayout.BeginVertical("GroupBox");
@@ -216,47 +264,54 @@ public class QTEWindow : EditorWindow
             //GUILayout.FlexibleSpace();
             GUILayout.BeginVertical(EditorStyles.helpBox);
             GUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("Sequence", GUILayout.Width(70));
-            _selectedQTE.SequenceType = (InputsSequence)EditorGUILayout.EnumPopup(_selectedQTE.SequenceType);
-            GUI.backgroundColor = Color.red;
-            if (GUILayout.Button("Delete QTE", GUILayout.MaxWidth(100), GUILayout.MinHeight(30)))
-            {
-                RemoveSelectedSequence();
-            }
-            GUI.backgroundColor = Color.white;
-            GUILayout.EndHorizontal();
-            EditorGUILayout.Space();
-            GUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("Status", GUILayout.Width(50));
-            _selectedQTE.Status = (InputStatus)EditorGUILayout.EnumPopup(_selectedQTE.Status);
-            if (_selectedQTE.Status == InputStatus.HOLD)
-            {
-                EditorGUILayout.Space(20, true);
-                EditorGUILayout.LabelField("Duration", GUILayout.Width(70));
-                _selectedQTE.DurationHold = EditorGUILayout.IntField(_selectedQTE.DurationHold);
-            }
-            GUILayout.EndHorizontal();
-            EditorGUILayout.Space();
-            GUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("Role", GUILayout.Width(50));
-            _selectedQTE.PlayerRole = (PlayerRole)EditorGUILayout.EnumPopup(_selectedQTE.PlayerRole);
-            GUILayout.EndHorizontal();
-            EditorGUILayout.Space();
-            _selectedQTE.Evilness = (Evilness)EditorGUILayout.EnumPopup("Evilness level", _selectedQTE.Evilness);
-            
-            if (_selectedQTE.PlayerRole == PlayerRole.DJ)
-            {
-                _selectedQTE.ClientType = (CharacterColor)EditorGUILayout.EnumPopup("Client type", _selectedQTE.ClientType);
-                _selectedQTE.QTELevel = EditorGUILayout.IntField("Level", _selectedQTE.QTELevel);
-            }
+                EditorGUILayout.LabelField("Sequence", GUILayout.Width(70));
+                _selectedQTE.SequenceType = (InputsSequence)EditorGUILayout.EnumPopup(_selectedQTE.SequenceType);
+                GUI.backgroundColor = Color.red;
+                if (GUILayout.Button("Delete QTE", GUILayout.MaxWidth(100), GUILayout.MinHeight(30)))
+                {
+                    RemoveSelectedSequence();
+                }
 
-            GUILayout.EndVertical();
-            EditorGUILayout.Space();
-            DrawListInputs();
-            if (_isATemporaryQTE && GUILayout.Button("Save QTE"))
+                GUI.backgroundColor = Color.white;
+            GUILayout.EndHorizontal();
+            if (_selectedQTE != null)
             {
-                SaveQTEFile();
-                _isATemporaryQTE = false;
+                EditorGUILayout.Space();
+                GUILayout.BeginHorizontal();
+                    EditorGUILayout.LabelField("Status", GUILayout.Width(50));
+                    _selectedQTE.Status = (InputStatus)EditorGUILayout.EnumPopup(_selectedQTE.Status);
+                    if (_selectedQTE.Status == InputStatus.LONG)
+                    {
+                        EditorGUILayout.Space(20, true);
+                        EditorGUILayout.LabelField("Duration", GUILayout.Width(70));
+                        _selectedQTE.DurationHold = EditorGUILayout.IntField(_selectedQTE.DurationHold);
+                    }
+                GUILayout.EndHorizontal();
+                EditorGUILayout.Space();
+                GUILayout.BeginHorizontal();
+                    EditorGUILayout.LabelField("Role", GUILayout.Width(50));
+                    _selectedQTE.PlayerRole = (PlayerRole)EditorGUILayout.EnumPopup(_selectedQTE.PlayerRole);
+                GUILayout.EndHorizontal();
+                EditorGUILayout.Space();
+                _selectedQTE.Evilness = (Evilness)EditorGUILayout.EnumPopup("Evilness level", _selectedQTE.Evilness);
+
+                if (_selectedQTE.PlayerRole == PlayerRole.DJ)
+                {
+                    _selectedQTE.ClientType = (CharacterColor)EditorGUILayout.EnumPopup("Client type", _selectedQTE.ClientType);
+                    _selectedQTE.QTELevel = EditorGUILayout.IntField("Level", _selectedQTE.QTELevel);
+                }
+
+                GUILayout.EndVertical();
+                EditorGUILayout.Space();
+                DrawListInputs();
+                if (_isATemporaryQTE && GUILayout.Button("Save QTE"))
+                {
+                    SaveQTEFile();
+                    _isATemporaryQTE = false;
+                }
+            } else
+            {
+                GUILayout.EndVertical();
             }
             GUILayout.EndVertical();
         }
@@ -327,7 +382,7 @@ public class QTEWindow : EditorWindow
         if (GUILayout.Button("X",GUILayout.Width(30), GUILayout.Height(30)) && EditorUtility.DisplayDialog("Delete input",
                 "Are you sure you want to delete this input ?", "Yes", "No"))
         {
-            RemoveUnitAtIndex(input.Index);
+            RemoveUnitAtIndex(input.Index,true);
             _selectedQTE.ListSubHandlers.Remove(input);
         }
         GUI.backgroundColor = Color.white;
