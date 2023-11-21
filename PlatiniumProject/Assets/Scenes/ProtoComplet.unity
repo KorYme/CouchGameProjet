@@ -374,7 +374,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 4, g: 4, b: 4, a: 1}
-    - _Color: {r: 0, g: 0, b: 0, a: 0}
+    - _Color: {r: 4, g: 4, b: 4, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
@@ -1097,6 +1097,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4600131990202503890, guid: 088deccc9e999214f8c3bc442311f467, type: 3}
+      propertyPath: m_Positions.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4600131990202503890, guid: 088deccc9e999214f8c3bc442311f467, type: 3}
       propertyPath: m_ApplyActiveColorSpace
       value: 1
       objectReference: {fileID: 0}
@@ -1104,6 +1108,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c1ba75ebf0c43fb4da8182f8f7d0aecb, type: 2}
+    - target: {fileID: 4600131990202503890, guid: 088deccc9e999214f8c3bc442311f467, type: 3}
+      propertyPath: m_Positions.Array.data[5].x
+      value: -0.16774368
+      objectReference: {fileID: 0}
+    - target: {fileID: 4600131990202503890, guid: 088deccc9e999214f8c3bc442311f467, type: 3}
+      propertyPath: m_Positions.Array.data[5].y
+      value: -0.07800621
+      objectReference: {fileID: 0}
     - target: {fileID: 4600131990202503890, guid: 088deccc9e999214f8c3bc442311f467, type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
       value: 0
@@ -1113,9 +1125,25 @@ PrefabInstance:
       value: 0.018354416
       objectReference: {fileID: 0}
     - target: {fileID: 6899846823543553149, guid: 088deccc9e999214f8c3bc442311f467, type: 3}
+      propertyPath: m_Positions.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6899846823543553149, guid: 088deccc9e999214f8c3bc442311f467, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 299349101}
+    - target: {fileID: 6899846823543553149, guid: 088deccc9e999214f8c3bc442311f467, type: 3}
+      propertyPath: m_Positions.Array.data[5].x
+      value: -0.16774368
+      objectReference: {fileID: 0}
+    - target: {fileID: 6899846823543553149, guid: 088deccc9e999214f8c3bc442311f467, type: 3}
+      propertyPath: m_Positions.Array.data[5].y
+      value: -0.07800621
+      objectReference: {fileID: 0}
+    - target: {fileID: 6899846823543553149, guid: 088deccc9e999214f8c3bc442311f467, type: 3}
+      propertyPath: m_Positions.Array.data[5].z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7955970416132418881, guid: 088deccc9e999214f8c3bc442311f467, type: 3}
       propertyPath: m_Name
       value: Neon

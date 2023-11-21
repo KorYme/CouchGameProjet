@@ -35,13 +35,18 @@ public class SetUpNeonLight : MonoBehaviour
         _childLineRenderer.material.color = _childLineColor;
     }
 
-    public void SetUpAllVertex()
+    public void SetUpAllVertices()
     {
         if (_parentLineRenderer == null) return;
+        if (_childLineRenderer != null)
+        {
+            _childLineRenderer.positionCount = _parentLineRenderer.positionCount;
+            _childLineRenderer.loop = _parentLineRenderer.loop;
+        }
         for (int i = 0; i < _parentLineRenderer.positionCount; i++)
         {
             _parentLineRenderer.SetPosition(i, (Vector2)_parentLineRenderer.GetPosition(i));
-            _childLineRenderer.SetPosition(i, _parentLineRenderer.GetPosition(i));
-        } 
+            _childLineRenderer?.SetPosition(i, _parentLineRenderer.GetPosition(i));
+        }
     }
 }

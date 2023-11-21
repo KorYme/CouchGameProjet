@@ -11,7 +11,6 @@ public class LightChangeColorOnBeat : MonoBehaviour
     private void Reset()
     {
         _light2D = GetComponent<Light2D>();
-
     }
 
     private void Start()

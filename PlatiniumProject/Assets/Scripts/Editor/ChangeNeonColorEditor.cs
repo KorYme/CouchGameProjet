@@ -22,9 +22,9 @@ public class ChangeNeonColorEditor : Editor
             _neonColor.SetMaterialColor();
         }
         EditorGUILayout.Space();
-        if (GUILayout.Button("Set Up Vertex Z"))
+        if (GUILayout.Button("Set Up Vertices"))
         {
-            _neonColor.SetUpAllVertex();
+            _neonColor.SetUpAllVertices();
         }
         if (GUI.changed) EditorUtility.SetDirty(target);
     }
