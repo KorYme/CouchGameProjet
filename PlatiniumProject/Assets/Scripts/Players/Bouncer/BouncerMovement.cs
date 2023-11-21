@@ -59,6 +59,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
     {
         _currentState = BOUNCER_STATE.CHECKING;
         StartCoroutine(TestCheck(chara.transform.position));
+        Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.BOUNCER).StartFocus(.3f, .5f, transform);
     }
     
     public void Move(int index)
@@ -72,22 +73,6 @@ public class BouncerMovement : PlayerMovement, IQTEable
             _currentSlot = _currentSlot.Neighbours[index];
             _currentSlot.PlayerOccupant = this;
         }
-        // if (_currentSlot.Neighbours[index].Occupant != null && _currentSlot.Neighbours[index].Occupant.CurrentState == _currentSlot.Neighbours[index].Occupant.IdleBouncerState)
-        // {
-        //     // if (MoveTo(_currentSlot.Neighbours[index].transform.position + new Vector3(_areaManager.BouncerBoard.HorizontalSpacing / 2, 0, 0)))
-        //     // {
-        //     //     currentState = BouncerState.Checking;
-        //     //     _currentSlot.Neighbours[index].Occupant.ChangeState(_currentSlot.Neighbours[index].Occupant.BouncerCheckState);
-        //     //
-        //     //     _currentSlot.PlayerOccupant = null;
-        //     //     _currentSlot = _currentSlot.Neighbours[index];
-        //     //     _currentSlot.PlayerOccupant = this;
-        //     //     StartCoroutine(TestCheck());
-        //     // }
-        // }
-        // else
-        // {
-        // }
     }
 
     private Direction GetClosestDirectionFromVector(Vector2 vector)
@@ -147,9 +132,10 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     public void LetCharacterEnterBox()
     {
-        CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
+        CharacterCheckByBouncerState chara = _currentSlot.Occupant.BouncerCheckState as CharacterCheckByBouncerState;
         chara.BouncerAction(true);
         _currentState = BOUNCER_STATE.MOVING;
+        Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.BOUNCER).StopFocus();
         transform.position = _currentSlot.transform.position;
     }
 
@@ -165,6 +151,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
         CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
         chara.BouncerAction(false);
         _currentState = BOUNCER_STATE.MOVING;
+        Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.BOUNCER).StopFocus();
         transform.position = _currentSlot.transform.position;
     }
 
