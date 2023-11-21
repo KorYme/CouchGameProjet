@@ -157,6 +157,7 @@ public class QTEHandler : MonoBehaviour
     {
 
     }
+
     IEnumerator CheckInputsLong()
     {
         yield return new WaitUntil(() => _playerController != null);
