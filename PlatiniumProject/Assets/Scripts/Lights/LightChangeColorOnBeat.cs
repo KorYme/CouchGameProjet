@@ -4,14 +4,22 @@ using UnityEngine.Rendering.Universal;
 
 public class LightChangeColorOnBeat : MonoBehaviour
 {
-    [SerializeField] Light2D _light2D;
+    [SerializeField] List<Light2D> _lights2D;
     [SerializeField] List<Color> _colors = new List<Color>();
 
 
     private void Reset()
     {
-        _light2D = GetComponent<Light2D>();
+        SetUpLights();
+    }
 
+    public void SetUpLights()
+    {
+        _lights2D.Add(GetComponent<Light2D>());
+        foreach (var item in GetComponentsInChildren<Light2D>())
+        {
+            _lights2D.Add(item);
+        }
     }
 
     private void Start()
@@ -26,7 +34,12 @@ public class LightChangeColorOnBeat : MonoBehaviour
 
     private void ChangeToRandomColor()
     {
-        if (_colors.Count == 0) return;
-        _light2D.color = _colors[Random.Range(0, _colors.Count - 1)];
+        if (_colors.Count == 0 || _lights2D.Count == 0) return;
+        Color color = _colors[Random.Range(0, _colors.Count - 1)];
+        foreach (var item in _lights2D)
+        {
+            if (item == null) continue;
+            item.color = color;
+        }
     }
 }

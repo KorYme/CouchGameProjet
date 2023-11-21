@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class SpotLightModifyShape : MonoBehaviour
+public class SpotLightModifyValue : MonoBehaviour
 {
     [SerializeField] Light2D _parentLight;
+    [SerializeField] Light2D _childLight;
+
+    private void Reset()
+    {
+        _parentLight = transform.parent.GetComponent<Light2D>();
+        _childLight = GetComponent<Light2D>();
+    }
 
     private IEnumerator Start()
     {

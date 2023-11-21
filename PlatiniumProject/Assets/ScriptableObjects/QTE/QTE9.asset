@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: QTE9
   m_EditorClassIdentifier: 
   Index: 9
-  PlayerRole: 1
-  SequenceType: 0
-  ClientType: 2
+  PlayerRole: 2
+  SequenceType: 1
+  ClientType: 0
   Evilness: 0
-  QTELevel: 2
-  Status: 0
+  QTELevel: 1
+  Status: 1
   DurationHold: 1
   ListSubHandlers:
-  - {fileID: 11400000, guid: c38538ee8d1655046803c06e4b75dc20, type: 2}
-  - {fileID: 11400000, guid: 651ea72481b5454438851e154f64e2c2, type: 2}
+  - {fileID: 11400000, guid: 35af4dfff7cf2c84a91d65328f78a41b, type: 2}
+  - {fileID: 11400000, guid: 9e040f5c4f8fe0d4283f869150077ce6, type: 2}
+  - {fileID: 11400000, guid: 4663c5cd990a9ff48bf25def4d288f0e, type: 2}
