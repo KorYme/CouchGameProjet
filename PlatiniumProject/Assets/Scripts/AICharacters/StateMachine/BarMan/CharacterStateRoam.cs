@@ -18,13 +18,8 @@ public class CharacterStateRoam : CharacterState
     }
     public override void OnBeat()
     {
-        StateMachine.CurrentBeatAmount++;
+        base.OnBeat();
         StateMachine.Animation.SetAnim(ANIMATION_TYPE.IDLE);
-        if (StateMachine.CurrentBeatAmount >= StateMachine.CharacterDataObject.beatAmountUnitlAction)
-        {
-            StateMachine.CurrentBeatAmount = 0;
-            BeatAction();
-        }
     }
     
     private void FindLine()
