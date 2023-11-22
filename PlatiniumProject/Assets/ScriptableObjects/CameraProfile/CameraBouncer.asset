@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba187ef95edeb541882976996f76366, type: 3}
   m_Name: CameraBouncer
   m_EditorClassIdentifier: 
+  shakeDuration: 0
+  shakeIntensity: 0
+  shakeSpeed: 0
+  focusDuration: 0
+  focusPercentage: 0.95
   snapDuration: 0.2
   snapCurve:
     serializedVersion: 2
