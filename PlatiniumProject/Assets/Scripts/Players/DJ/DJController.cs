@@ -31,7 +31,6 @@ public class DJController : MonoBehaviour
     //TO CHECK
     private IEnumerator Start()
     {
-        
         _djQTEController = GetComponent<DJQTEController>();
         UpdateLightTiles(_shapesLight);
         
