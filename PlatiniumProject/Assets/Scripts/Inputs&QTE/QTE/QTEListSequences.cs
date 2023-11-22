@@ -113,7 +113,7 @@ public class QTEListSequences
             {
                 if (_sequences[indexOfSequence].Status == InputStatus.LONG && _sequences[indexOfSequence].LongInputType == LongInputType.SHAKE)
                 {
-                    str.Append(action.descriptiveName);
+                    str.Append("Shake "+action.descriptiveName);
                     //_sequences[indexOfSequence].ListSubHandlers[indexInSequence].PositiveValue
                 } else
                 {
