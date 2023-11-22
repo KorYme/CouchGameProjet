@@ -42,5 +42,6 @@ public class MessageDisplay : MonoBehaviour
         sequence.Append(animator.DOOffsetChar(animator.textInfo.characterCount - 1, Vector3.one * _offSetValue, 0f).SetDelay(.25f));
         sequence.Append(animator.DOColorChar(animator.textInfo.characterCount - 1, Color.red, .1f));
         sequence.Append(animator.DOScaleChar(animator.textInfo.characterCount - 1, Vector3.one * 2, .5f)).SetLoops(2, LoopType.Yoyo);
+        sequence.Join(animator.DOPunchCharRotation(animator.textInfo.characterCount - 1, new Vector3(0,0,75), .5f, 10, 50f).SetEase(Ease.InOutFlash)).SetLoops(2, LoopType.Yoyo);
     }
 }
