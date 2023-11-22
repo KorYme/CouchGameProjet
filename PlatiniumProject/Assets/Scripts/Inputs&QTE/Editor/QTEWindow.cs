@@ -293,6 +293,7 @@ public class QTEWindow : EditorWindow
                 GUILayout.EndHorizontal();
                 EditorGUILayout.Space();
                 _selectedQTE.Evilness = (Evilness)EditorGUILayout.EnumPopup("Evilness level", _selectedQTE.Evilness);
+                _selectedQTE.LongInputType = (LongInputType)EditorGUILayout.EnumPopup("Specific input type", _selectedQTE.LongInputType);
 
                 if (_selectedQTE.PlayerRole == PlayerRole.DJ)
                 {
