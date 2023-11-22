@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: 1
   ActionIndex: 4
-  UseRotation: 0
-  NbTurns: 1
-  NbShake: 5
+  UseforShake: 0
+  PositiveValue: 0
