@@ -47,6 +47,8 @@ public class CharacterAnimation : MonoBehaviour
 
     public void SetAnim(ANIMATION_TYPE type)
     {
+        if(Globals.DropManager.CanYouLetMeMove)
+            return;
         _sp.sprite = GetAnimationSprite(type);
     }
 }

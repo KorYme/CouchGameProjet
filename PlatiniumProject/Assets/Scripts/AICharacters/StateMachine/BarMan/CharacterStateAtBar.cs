@@ -20,7 +20,7 @@ public class CharacterStateAtBar : CharacterState
     }
     public override void OnBeat()
     {
-        StateMachine.Satisafaction.DecreaseSatisfaction(StateMachine.CharacterDataObject.decrementationValueOnBarMan);
+        //Decraped  StateMachine.Satisafaction.DecreaseSatisfaction(StateMachine.CharacterDataObject.decrementationValueOnBarMan);
         StateMachine.Animation.SetAnim(ANIMATION_TYPE.IDLE);
     }
 
