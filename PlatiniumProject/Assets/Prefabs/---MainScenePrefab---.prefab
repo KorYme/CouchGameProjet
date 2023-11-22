@@ -815,6 +815,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4349089593066170630}
+  - component: {fileID: 415680244780460758}
   m_Layer: 0
   m_Name: Lights
   m_TagString: Untagged
@@ -835,6 +836,26 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8178673555787626113}
+  - {fileID: 5792072066837834084}
+  - {fileID: 492811620243928753}
+  - {fileID: 9001384222870186280}
+  - {fileID: 5729517162227262181}
+  - {fileID: 1038758773698987215}
+  - {fileID: 3012461709124766010}
+  - {fileID: 3184996723685103076}
+  - {fileID: 2626331247672645512}
+  - {fileID: 8255714658728938468}
+  - {fileID: 6939472265215056110}
+  - {fileID: 9141717487975612027}
+  - {fileID: 123251892688141284}
+  - {fileID: 575537609263020967}
+  - {fileID: 3005851518607016611}
+  - {fileID: 5949467476856908681}
+  - {fileID: 3490716679368754597}
+  - {fileID: 8110799530916300640}
+  - {fileID: 3596435520596960137}
+  - {fileID: 8588526261328954926}
   - {fileID: 2893562573505471815}
   - {fileID: 1110015299848694833}
   - {fileID: 3487604932869216441}
@@ -855,26 +876,6 @@ Transform:
   - {fileID: 6165811882401153531}
   - {fileID: 3265483644752909084}
   - {fileID: 1976392385789446962}
-  - {fileID: 8178673555787626113}
-  - {fileID: 5792072066837834084}
-  - {fileID: 492811620243928753}
-  - {fileID: 9001384222870186280}
-  - {fileID: 5729517162227262181}
-  - {fileID: 1038758773698987215}
-  - {fileID: 3012461709124766010}
-  - {fileID: 8588526261328954926}
-  - {fileID: 3596435520596960137}
-  - {fileID: 8110799530916300640}
-  - {fileID: 3490716679368754597}
-  - {fileID: 5949467476856908681}
-  - {fileID: 3005851518607016611}
-  - {fileID: 575537609263020967}
-  - {fileID: 123251892688141284}
-  - {fileID: 9141717487975612027}
-  - {fileID: 6939472265215056110}
-  - {fileID: 3184996723685103076}
-  - {fileID: 2626331247672645512}
-  - {fileID: 8255714658728938468}
   - {fileID: 3289437242805005688}
   - {fileID: 7432840347561391584}
   - {fileID: 6653539282937295641}
@@ -884,6 +885,61 @@ Transform:
   - {fileID: 1190113263228094151}
   m_Father: {fileID: 2619603497741536774}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &415680244780460758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665435989756873022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2a771aaad766d4ea64bd7d38488341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lights:
+  - {fileID: 2688994410829426099}
+  - {fileID: 338003842277929558}
+  - {fileID: 5910860032650997123}
+  - {fileID: 2898648195877712410}
+  - {fileID: 1968657908558920151}
+  - {fileID: 6537872020607311869}
+  - {fileID: 9015977317377020424}
+  - {fileID: 8710568379853639382}
+  - {fileID: 8116573076175244474}
+  - {fileID: 2757178043853410518}
+  - {fileID: 3791101994042917852}
+  - {fileID: 3029974708409247049}
+  - {fileID: 6153226191910707414}
+  - {fileID: 5993725986395021461}
+  - {fileID: 9036376344132737425}
+  - {fileID: 450790186493554875}
+  - {fileID: 7251008963216137879}
+  - {fileID: 2620566513615002706}
+  - {fileID: 7293682273359165627}
+  - {fileID: 2585582193015643420}
+  - {fileID: 9004588718854323829}
+  - {fileID: 6608706344694281987}
+  - {fileID: 7257322488079860619}
+  - {fileID: 3354796092474387292}
+  - {fileID: 990559745473812820}
+  - {fileID: 2234229793192926267}
+  - {fileID: 9001719612746786591}
+  - {fileID: 2835329624756969525}
+  - {fileID: 4750046081455654311}
+  - {fileID: 3575875849434582990}
+  - {fileID: 7094193934500367931}
+  - {fileID: 1236866108061506908}
+  - {fileID: 3148378789293235436}
+  - {fileID: 7141346531703037299}
+  - {fileID: 8134804388250403285}
+  - {fileID: 6163608569395907125}
+  - {fileID: 9062686269049465349}
+  - {fileID: 90102033503410889}
+  - {fileID: 8755018006234253358}
+  - {fileID: 5745687161389305856}
+  _beatBeforeChangePattern: 10
+  _followingDots: 7
 --- !u!1 &1723869449293542194
 GameObject:
   m_ObjectHideFlags: 0
@@ -5813,7 +5869,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (22)
+      value: BlinkingLight37
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -5875,7 +5931,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -6458,7 +6515,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (8)
+      value: BlinkingLight15
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -6516,7 +6573,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -6997,7 +7055,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (18)
+      value: BlinkingLight1
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -7055,7 +7113,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -7977,7 +8036,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (35)
+      value: BlinkingLight24
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -8039,7 +8098,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -9543,7 +9603,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (28)
+      value: BlinkingLight31
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -9601,7 +9661,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -10847,7 +10908,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (15)
+      value: BlinkingLight4
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Intensity
@@ -10897,7 +10958,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -11872,7 +11934,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (34)
+      value: BlinkingLight25
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -11934,7 +11996,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -12762,7 +12825,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (12)
+      value: BlinkingLight19
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -12824,7 +12887,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -13345,7 +13409,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (32)
+      value: BlinkingLight27
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -13399,7 +13463,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -13540,7 +13605,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight
+      value: BlinkingLight9
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Intensity
@@ -13590,7 +13655,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -13805,7 +13871,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (19)
+      value: BlinkingLight0
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -13867,7 +13933,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -14012,7 +14079,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (10)
+      value: BlinkingLight17
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -14074,7 +14141,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -14122,7 +14190,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (27)
+      value: BlinkingLight32
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -14184,7 +14252,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -14386,7 +14455,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (4)
+      value: BlinkingLight11
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -14448,7 +14517,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -14833,7 +14903,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (16)
+      value: BlinkingLight3
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -14895,7 +14965,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -14943,7 +15014,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (36)
+      value: BlinkingLight23
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -14997,7 +15068,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -16115,7 +16187,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (30)
+      value: BlinkingLight29
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Intensity
@@ -16165,7 +16237,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -17018,7 +17091,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (3)
+      value: BlinkingLight10
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -17080,7 +17153,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -19459,7 +19533,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (31)
+      value: BlinkingLight28
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -19521,7 +19595,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -22216,7 +22291,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (20)
+      value: BlinkingLight39
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -22278,7 +22353,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -22747,7 +22823,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (6)
+      value: BlinkingLight13
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -22801,7 +22877,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -23019,7 +23096,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (17)
+      value: BlinkingLight2
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -23081,7 +23158,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -23987,7 +24065,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (24)
+      value: BlinkingLight35
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -24049,7 +24127,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -24247,7 +24326,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (5)
+      value: BlinkingLight12
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -24305,7 +24384,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -24509,7 +24589,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (38)
+      value: BlinkingLight21
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -24571,7 +24651,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -24941,7 +25022,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (14)
+      value: BlinkingLight5
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Intensity
@@ -24991,7 +25072,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -27053,7 +27135,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (26)
+      value: BlinkingLight33
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -27111,7 +27193,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -27345,7 +27428,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (29)
+      value: BlinkingLight30
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -27403,7 +27486,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -28602,7 +28686,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (11)
+      value: BlinkingLight18
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Intensity
@@ -28652,7 +28736,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -28972,7 +29057,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (9)
+      value: BlinkingLight16
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Intensity
@@ -29022,7 +29107,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -29144,7 +29230,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (37)
+      value: BlinkingLight22
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -29206,7 +29292,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -30554,7 +30641,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (25)
+      value: BlinkingLight34
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Intensity
@@ -30604,7 +30691,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -30738,7 +30826,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (1)
+      value: BlinkingLight8
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -30800,7 +30888,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -32706,7 +32795,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (21)
+      value: BlinkingLight38
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -32764,7 +32853,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -33052,7 +33142,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (2)
+      value: BlinkingLight7
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -33110,7 +33200,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -33615,7 +33706,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (23)
+      value: BlinkingLight36
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -33673,7 +33764,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -33721,7 +33813,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (7)
+      value: BlinkingLight14
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -33783,7 +33875,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -33905,7 +33998,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (13)
+      value: BlinkingLight6
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -33967,7 +34060,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -34015,7 +34109,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (33)
+      value: BlinkingLight26
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -34077,7 +34171,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -34125,7 +34220,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282839795979610751, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Name
-      value: BlinkingLight (39)
+      value: BlinkingLight20
       objectReference: {fileID: 0}
     - target: {fileID: 3205818174946875287, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
       propertyPath: m_Color.b
@@ -34183,7 +34278,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2243493562978271714, guid: 149bb147d0e6c9647ae9da78be6606ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:

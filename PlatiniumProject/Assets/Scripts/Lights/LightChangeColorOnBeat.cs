@@ -7,7 +7,6 @@ public class LightChangeColorOnBeat : MonoBehaviour
     [SerializeField] List<Light2D> _lights2D;
     [SerializeField] List<Color> _colors = new List<Color>();
 
-
     private void Reset()
     {
         SetUpLights();
