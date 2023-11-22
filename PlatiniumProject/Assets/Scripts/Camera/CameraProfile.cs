@@ -25,14 +25,16 @@ public class CameraProfile : MonoBehaviour
     private Camera _cam;
     private Vector3 _initPos;
     private Vector3 _offset;
+    private float _zoomOffset;
     private float _initSize;
+    private float _currentInitSize;
     private Transform _target;
     
     [Header("Coroutines")]
     private Coroutine _shakeRoutine;
     private Coroutine _moveRoutine;
     private Coroutine _zoomRoutine;
-    private Coroutine _bounceZoomRoutine;
+    private Coroutine _pulseRoutine;
     private Coroutine _followMoveRoutine;
 
     private void Awake()
@@ -44,7 +46,14 @@ public class CameraProfile : MonoBehaviour
     private void Start()
     {
         StartCoroutine(FollowRoutine());
-        StartBounceZoom();
+        StartPulseZoom();
+        _currentInitSize = _initSize;
+        //StartShake();   
+    }
+
+    private void LateUpdate()
+    {
+        _zoomOffset = 0;
     }
 
     #region Shake
@@ -109,26 +118,9 @@ public class CameraProfile : MonoBehaviour
         _target = target;
     }
 
-    public void StartBounceZoom()
-    {
-        _bounceZoomRoutine = StartCoroutine(BeatBounceZoom(_profileData.focusPercentage));
-    }
-
     public void StopFocus()
     {
         canDezoom = true;
-    }
-
-    IEnumerator BeatBounceZoom(float percentage)
-    {
-        float pingPong;
-        float timer;
-        while (true)
-        {
-            pingPong = Mathf.PingPong(Time.time, (Globals.BeatManager.BeatDurationInMilliseconds / 2000f));
-            _cam.orthographicSize = Mathf.Lerp(_initSize, _initSize * percentage, pingPong);
-            yield return new WaitForEndOfFrame();
-        }
     }
     
     IEnumerator ZoomRoutine(float duration, float percentage, Transform target)
@@ -137,10 +129,14 @@ public class CameraProfile : MonoBehaviour
         while (timer < duration)
         {
             timer += Time.deltaTime;
-            _cam.orthographicSize = Mathf.Lerp(_initSize, _initSize * percentage, timer / duration);    
+            _cam.orthographicSize = Mathf.Lerp(_initSize, _initSize * percentage, timer / duration);
+            _currentInitSize = Mathf.Lerp(_initSize, _initSize * percentage, timer / duration);
             yield return new WaitForEndOfFrame();
         }
+        
+
         yield return new WaitUntil(() => canDezoom);
+
         _target = null;
         StartCoroutine(FollowMoveRoutine());
         canDezoom = false;
@@ -149,9 +145,11 @@ public class CameraProfile : MonoBehaviour
         while (timer < duration)
         {
             timer += Time.deltaTime;
-            _cam.orthographicSize = Mathf.Lerp(size, _initSize, timer / duration);    
+            _cam.orthographicSize = Mathf.Lerp(size, _initSize, timer / duration);  
+            _currentInitSize = Mathf.Lerp(size, _initSize, timer / duration); 
             yield return new WaitForEndOfFrame();
         }
+        
 
         _zoomRoutine = null;
     }
@@ -175,10 +173,10 @@ public class CameraProfile : MonoBehaviour
         Vector3 pos = transform.localPosition;
         Vector3 target;
         
-        target = _target != null ? _target.position : _initPos;
         
         while (timer < _profileData.snapDuration)
         {
+            target = _target != null ? _target.position : _initPos;
             timer += Time.deltaTime; 
             float percentage = _profileData.snapCurve.Evaluate(timer / _profileData.snapDuration);
             transform.localPosition = Vector3.Lerp(pos, target, percentage);
@@ -189,6 +187,38 @@ public class CameraProfile : MonoBehaviour
         _followMoveRoutine = null;
     }
     
+
+    #endregion
+
+    #region Pulse
+
+    public void StartPulseZoom()
+    {
+        if (_pulseRoutine != null)
+        {
+            StopPulseZoom();
+        }
+        _pulseRoutine = StartCoroutine(BeatPulseZoom(_profileData.pulsePercentage));
+    }
+    
+    public void StopPulseZoom()
+    {
+        StopCoroutine(_pulseRoutine);
+        _pulseRoutine = null;
+    }
+    
+    IEnumerator BeatPulseZoom(float percentage)
+    {
+        float pingPong;
+        while (true)
+        {
+            pingPong = Mathf.PingPong(Time.time, (Globals.BeatManager.BeatDurationInMilliseconds / 2000f));
+            pingPong = _profileData.pulseCurve.Evaluate(pingPong);
+            _cam.orthographicSize = Mathf.Lerp(_currentInitSize, _currentInitSize * percentage, pingPong);
+            yield return new WaitForEndOfFrame();
+            //yield return new WaitUntil(() => _zoomRoutine == null);
+        }
+    }
 
     #endregion
 

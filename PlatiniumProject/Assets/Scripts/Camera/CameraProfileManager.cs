@@ -15,19 +15,7 @@ public class CameraProfileManager : MonoBehaviour
             _cameraProfilesDict[v.CameraType] = v;
         }
     }
-
-    private void Start()
-    {
-        // for (int i = 0; i < _cameraProfiles.Length; ++i)
-        // {
-        //     if (i % 2 == 0)
-        //     {
-        //         _cameraProfiles[i].StartShake(10f, 5f, .1f);
-        //     }
-        // }
-        //
-        // _cameraProfiles[1].StartFocus(5f, .5f, GameObject.Find("BouncerP").transform);
-    }
+    
 
     public CameraProfile FindCamera(CAMERA_TYPE type)
     {
