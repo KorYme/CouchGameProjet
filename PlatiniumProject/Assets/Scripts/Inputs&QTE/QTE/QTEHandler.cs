@@ -2,6 +2,7 @@ using Rewired;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Windows;
 
@@ -10,6 +11,8 @@ public class QTEHandler : MonoBehaviour
     [SerializeField] float thresholdDirectionJoystick = 0.9f;
     [SerializeField] PlayerRole _role;
     [SerializeField] bool _inputsAreOnBeat = true;
+    [SerializeField] bool _includeLeftJoystick = true;
+    [SerializeField] bool _includeRightJoystick = true;
 
     protected PlayerInputController _playerController;
     ITimingable _timingable;
@@ -28,6 +31,7 @@ public class QTEHandler : MonoBehaviour
     CheckHasInputThisBeat _checkInputThisBeat;
     List<InputClass> _inputsQTE;
 
+
     public int LengthInputs { get; private set; }
     private void Awake()
     {
@@ -38,7 +42,7 @@ public class QTEHandler : MonoBehaviour
         _timingable = Globals.BeatManager;
         _checkInputThisBeat = new CheckHasInputThisBeat(_timingable);
         yield return new WaitUntil(() => Players.PlayersController[(int)_role] != null);
-        _playerController = Players.PlayersController[(int)_role];        _inputsQTE = new List<InputClass>()        {            _playerController.LeftJoystick.InputClassX,            _playerController.LeftJoystick.InputClassY,            _playerController.RightJoystick.InputClassX,            _playerController.RightJoystick.InputClassY,            _playerController.Action1,            _playerController.Action2,            _playerController.Action3,            _playerController.Action4,            _playerController.LT,            _playerController.RT        };    }
+        _playerController = Players.PlayersController[(int)_role];        _inputsQTE = new List<InputClass>();    }
     #region QTEable
     public void RegisterQTEable(IQTEable QTEable)
     {
@@ -85,6 +89,28 @@ public class QTEHandler : MonoBehaviour
         _currentListSequences.Clear();
     }
     #endregion
+
+    public void CreateListInputsListened()
+    {
+        if (_includeLeftJoystick)
+        {
+            _inputsQTE.AddRange(new List<InputClass>()
+            {
+                _playerController.LeftJoystick.InputClassX,                _playerController.LeftJoystick.InputClassY
+            });
+        }
+        if (_includeRightJoystick)
+        {
+            _inputsQTE.AddRange(new List<InputClass>()
+            {
+                _playerController.RightJoystick.InputClassX,                _playerController.RightJoystick.InputClassY
+            });
+        }
+        _inputsQTE.AddRange(new List<InputClass>()
+        {
+            _playerController.Action1,            _playerController.Action2,            _playerController.Action3,            _playerController.Action4,            _playerController.LT,            _playerController.RT
+        });
+           }
 
     public string GetQTEString()
     {
