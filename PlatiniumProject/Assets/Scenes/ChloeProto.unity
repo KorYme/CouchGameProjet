@@ -212,6 +212,14 @@ PrefabInstance:
       propertyPath: _position.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 837508718520239595, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 837508718520239595, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 852186145401362891, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _useShader
       value: 0
@@ -712,6 +720,14 @@ PrefabInstance:
       propertyPath: _useShader
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4579975950890863893, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579975950890863893, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4641059050109362362, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _position.x
       value: 0
@@ -846,15 +862,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6081387226888926224, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _playerRoles.Array.data[0]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6081387226888926224, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: _playerRoles.Array.data[1]
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6081387226888926224, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: _playerRoles.Array.data[2]
+      propertyPath: _playerRoles.Array.data[1]
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081387226888926224, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _playerRoles.Array.data[2]
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6229798151861601484, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _position.y
@@ -959,6 +975,14 @@ PrefabInstance:
     - target: {fileID: 7220234706009802944, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _position.y
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274024101826458577, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274024101826458577, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7288488659776300899, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _position.x

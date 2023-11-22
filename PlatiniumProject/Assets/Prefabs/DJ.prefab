@@ -190,8 +190,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b9d9b51482de34cbea1169054abc08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thresholdDirectionJoystick: 0.9
   _role: 1
   _inputsAreOnBeat: 1
+  _includeLeftJoystick: 0
+  _includeRightJoystick: 0
 --- !u!114 &2380923746897791189
 MonoBehaviour:
   m_ObjectHideFlags: 0
