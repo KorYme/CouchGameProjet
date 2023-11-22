@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data.Common;
-using TMPro;
 using UnityEngine;
 
 public enum Direction
@@ -31,7 +29,6 @@ public class DJController : MonoBehaviour
     //TO CHECK
     private IEnumerator Start()
     {
-        
         _djQTEController = GetComponent<DJQTEController>();
         UpdateLightTiles(_shapesLight);
         

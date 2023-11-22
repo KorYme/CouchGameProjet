@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class SlotRenderer : MonoBehaviour
 {
@@ -53,16 +52,8 @@ public class SlotRenderer : MonoBehaviour
     {
         if (_spriteRenderer != null && _useShader)
         {
-            if (isEnlighten)
-            {
-                _spriteRenderer.material = _materialTileEnlighten;
-                _spriteRenderer.color = Color.red;
-            }
-            else
-            {
-                _spriteRenderer.material = _materialDanceFloor;
-                _spriteRenderer.color = Color.white;
-            }
+            _spriteRenderer.material = _materialDanceFloor;
+            _spriteRenderer.color = Color.white;
         }
         _isLit = isEnlighten;
     }
@@ -73,9 +64,6 @@ public class SlotRenderer : MonoBehaviour
         {
             _index = (_index + 1) % _nbColors;
         }
-        if (!_isLit)
-        {
-            _spriteRenderer.material.SetFloat("_ChangeColorsPosition", _index);
-        }
+        _spriteRenderer.material.SetFloat("_ChangeColorsPosition", _index);
     }
 }
