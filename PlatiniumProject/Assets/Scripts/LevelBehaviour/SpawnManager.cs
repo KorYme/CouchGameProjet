@@ -37,7 +37,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private CharacterObject[] _goodClients;
     [SerializeField] private CharacterObject[] _badClients;
     
-    public bool CanSpawnClients { get; set; }
+    public bool CanYouLetMeMove { get; set; }
 
     public enum STARTPOINT
     {
@@ -73,7 +73,6 @@ public class SpawnManager : MonoBehaviour
             _characterList[i] = puller;
             _availableCharcters.Add(puller);
         }
-        CanSpawnClients = true;
         Globals.SpawnManager ??= this;
     }
 
@@ -193,7 +192,7 @@ public class SpawnManager : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= _minMaxSpawnPerMinutes.x)
             {
-                yield return new WaitUntil(() => CanSpawnClients && _areaManager.BouncerTransit.Slots[0].Occupant == null);
+                yield return new WaitUntil(() => Globals.DropManager.CanYouLetMeMove && _areaManager.BouncerTransit.Slots[0].Occupant == null);
                 timer = 0f;
                 PullACharacter();
             }
