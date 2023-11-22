@@ -7,6 +7,7 @@ using UnityEngine.Windows;
 
 public class QTEHandler : MonoBehaviour
 {
+    [SerializeField] float thresholdDirectionJoystick = 0.9f;
     [SerializeField] PlayerRole _role;
     [SerializeField] bool _inputsAreOnBeat = true;
 
@@ -37,7 +38,7 @@ public class QTEHandler : MonoBehaviour
         _timingable = Globals.BeatManager;
         _checkInputThisBeat = new CheckHasInputThisBeat(_timingable);
         yield return new WaitUntil(() => Players.PlayersController[(int)_role] != null);
-        _playerController = Players.PlayersController[(int)_role];        _inputsQTE = new List<InputClass>()        {            _playerController.Action1,            _playerController.Action2,            _playerController.Action3,            _playerController.Action4,            _playerController.LT,            _playerController.RT,            _playerController.LeftJoystick.InputClassX,            _playerController.LeftJoystick.InputClassY,            _playerController.RightJoystick.InputClassX,            _playerController.RightJoystick.InputClassY        };    }
+        _playerController = Players.PlayersController[(int)_role];        _inputsQTE = new List<InputClass>()        {            _playerController.LeftJoystick.InputClassX,            _playerController.LeftJoystick.InputClassY,            _playerController.RightJoystick.InputClassX,            _playerController.RightJoystick.InputClassY,            _playerController.Action1,            _playerController.Action2,            _playerController.Action3,            _playerController.Action4,            _playerController.LT,            _playerController.RT        };    }
     #region QTEable
     public void RegisterQTEable(IQTEable QTEable)
     {
@@ -104,11 +105,11 @@ public class QTEHandler : MonoBehaviour
             foreach (InputClass inputRef in _inputsQTE)            {                if (!_checkInputThisBeat.HadInputThisBeat && inputRef != null)                {                    inputBool = inputRef as InputBool;
                     if (inputBool != null && inputBool.IsJustPressed)                    {                        ChangeInput(inputRef.ActionID, expectedActionID);                    }                    inputFloat = inputRef as InputFloat;                    if (inputFloat != null)
                     {
-                        if (_currentQTESequence.ListSubHandlers[_indexInSequence].PositiveValue && inputFloat.InputValue > 0.9f)
+                        if (_currentQTESequence.ListSubHandlers[_indexInSequence].PositiveValue && inputFloat.InputValue > thresholdDirectionJoystick)
                         {
                             ChangeInput(inputRef.ActionID, expectedActionID);
                             
-                        } else if (!_currentQTESequence.ListSubHandlers[_indexInSequence].PositiveValue && inputFloat.InputValue < - 0.9f)
+                        } else if (!_currentQTESequence.ListSubHandlers[_indexInSequence].PositiveValue && inputFloat.InputValue < - thresholdDirectionJoystick)
                         {
                             ChangeInput(inputRef.ActionID, expectedActionID);
                         }
@@ -123,6 +124,7 @@ public class QTEHandler : MonoBehaviour
 
         if (currentActionID == expectedActionID)
         {
+            Debug.Log("Input ok");
             _inputsSucceeded[_indexInSequence] = true;
             _currentListSequences.SetInputSucceeded(_indexInListSequences, true);
             _indexInSequence++;

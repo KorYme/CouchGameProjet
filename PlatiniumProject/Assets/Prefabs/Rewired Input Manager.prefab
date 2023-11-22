@@ -379,18 +379,18 @@ MonoBehaviour:
     - _id: 0
       _name: Move Horizontal
       _type: 0
-      _descriptiveName: Move Horizontal
-      _positiveDescriptiveName: MoveRight
-      _negativeDescriptiveName: MoveLeft
+      _descriptiveName: JS L Horizontal
+      _positiveDescriptiveName: JS L Right
+      _negativeDescriptiveName: JS L Left
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 0
     - _id: 1
       _name: Move Vertical
       _type: 0
-      _descriptiveName: Move Vertical
-      _positiveDescriptiveName: MoveUp
-      _negativeDescriptiveName: MoveDown
+      _descriptiveName: JS L Vertical
+      _positiveDescriptiveName: JS L Up
+      _negativeDescriptiveName: JS L Down
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 0
@@ -433,18 +433,18 @@ MonoBehaviour:
     - _id: 6
       _name: AxisX
       _type: 0
-      _descriptiveName: AxisX
-      _positiveDescriptiveName: Right
-      _negativeDescriptiveName: Left
+      _descriptiveName: JS R X
+      _positiveDescriptiveName: JS R Right
+      _negativeDescriptiveName: JS R Left
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 0
     - _id: 7
       _name: AxisY
       _type: 0
-      _descriptiveName: AxisY
-      _positiveDescriptiveName: Top
-      _negativeDescriptiveName: Bottom
+      _descriptiveName: JS R Y
+      _positiveDescriptiveName: JS R Up
+      _negativeDescriptiveName: JS R Down
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 0

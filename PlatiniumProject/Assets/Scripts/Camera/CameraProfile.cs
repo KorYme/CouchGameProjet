@@ -126,7 +126,6 @@ public class CameraProfile : MonoBehaviour
         while (true)
         {
             pingPong = Mathf.PingPong(Time.time, (Globals.BeatManager.BeatDurationInMilliseconds / 2000f));
-            Debug.Log(Globals.BeatManager.BeatDurationInMilliseconds / 500f);
             _cam.orthographicSize = Mathf.Lerp(_initSize, _initSize * percentage, pingPong);
             yield return new WaitForEndOfFrame();
         }

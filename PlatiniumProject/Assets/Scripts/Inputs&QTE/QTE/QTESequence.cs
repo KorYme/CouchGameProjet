@@ -10,7 +10,6 @@ public enum InputStatus
 public enum LongInputType
 {
     HOLD,
-    ROTATION,
     SHAKE
 }
 
@@ -30,6 +29,7 @@ public class QTESequence : ScriptableObject
     public Evilness Evilness;
     public int QTELevel = 1;
     public InputStatus Status = InputStatus.SHORT;
+    public LongInputType LongInputType = LongInputType.HOLD;
     public int DurationHold = 1;
     public List<UnitInput> ListSubHandlers = new List<UnitInput>();
 
