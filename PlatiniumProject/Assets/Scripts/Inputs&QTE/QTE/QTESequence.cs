@@ -26,7 +26,6 @@ public class QTESequence : ScriptableObject
     public int Index;
     public PlayerRole PlayerRole;
     public InputsSequence SequenceType;
-    public LongInputType LongInputType = LongInputType.HOLD;
     public CharacterColor ClientType;
     public Evilness Evilness;
     public int QTELevel = 1;
