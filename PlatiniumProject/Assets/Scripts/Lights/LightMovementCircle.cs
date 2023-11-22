@@ -5,18 +5,27 @@ using UnityEngine;
 public class LightMovementCircle : MonoBehaviour
 {
     //Circle movements
-    [SerializeField, Range(0f, 10f)] float _circleRadius = 1, _speed = 1;
+    [SerializeField, Range(0f, 10f)] float _circleRadius = 1f;
+    [SerializeField, Range(0f, 1f)] float _speed = 1f, _timeOffset = 0f;
 
-    Vector3 center;
+    ITimingable _beatManager;
+    float _BeatSpeed => _beatManager == null ? 0f : 1000f / _beatManager.BeatDurationInMilliseconds;
+    Vector3 _center;
 
-    private IEnumerator Start()
+    private void Start()
     {
-        center = transform.position;
-        float timer = 0f;
+        _center = transform.position;
+        _beatManager = Globals.BeatManager;
+        _beatManager.OnNextBeatStart += () => StartCoroutine(MovementCoroutine());
+    }
+
+    IEnumerator MovementCoroutine()
+    {
+        float timer = _BeatSpeed * _timeOffset * Mathf.PI * 2f * _speed;
         while (true)
         {
-            timer += Time.deltaTime * Mathf.PI * _speed;
-            transform.position = center + new Vector3(Mathf.Cos(timer), Mathf.Sin(timer)) * _circleRadius;
+            timer += Time.deltaTime * Mathf.PI * 2f * _BeatSpeed;
+            transform.position = _center + new Vector3(Mathf.Cos(timer), Mathf.Sin(timer)) * _circleRadius;
             yield return null;
         }
     }
@@ -24,6 +33,6 @@ public class LightMovementCircle : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(Application.isPlaying ? center : transform.position, _circleRadius);
+        Gizmos.DrawWireSphere(Application.isPlaying ? _center : transform.position, _circleRadius);
     }
 }

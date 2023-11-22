@@ -36,8 +36,11 @@ public class DropManager : MonoBehaviour
     }
     event Action<DROP_STATE> OnDropStateChange;
 
+    public bool CanYouLetMeMove => _dropState == DROP_STATE.OUT_OF_DROP;
+
     public event Action OnDropSuccess;
     public event Action OnDropFail;
+    public event Action OnBeginBuildUp;
 
     int _triggerPressedNumber;
     BeatManager _beatManager;
@@ -71,11 +74,9 @@ public class DropManager : MonoBehaviour
         switch (newState)
         {
             case DROP_STATE.OUT_OF_DROP:
-                Globals.SpawnManager.CanSpawnClients = true;
                 _allDropControllers.ForEach(x => x.DisplayTriggers(false));
                 break;
-            case DROP_STATE.ON_DROP_PRESSING:
-                Globals.SpawnManager.CanSpawnClients = false;
+            case DROP_STATE.ON_DROP_PRESSING:   
                 _allDropControllers.ForEach(x => x.DisplayTriggers(true));
                 break;
             case DROP_STATE.ON_DROP_MISSED:
@@ -96,6 +97,7 @@ public class DropManager : MonoBehaviour
                 {
                     DropState = DROP_STATE.ON_DROP_PRESSING;
                     _beatManager.OnBeatEndEvent.AddListener(AllTriggerRelease);
+                    OnBeginBuildUp?.Invoke();
                 };
                 break;
             case "DropStart":

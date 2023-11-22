@@ -21,7 +21,9 @@ public class CharacterStateDancing : CharacterState
 
     public override void OnBeat()
     {
-        //StateMachine.SpriteRenderer.color = Random.ColorHSV();
+        if(Globals.DropManager.CanYouLetMeMove)
+            return;
+        
         StateMachine.Animation.SetAnim(ANIMATION_TYPE.DANCING);
         if (!StateMachine.CurrentSlot.IsEnlighted)
         {

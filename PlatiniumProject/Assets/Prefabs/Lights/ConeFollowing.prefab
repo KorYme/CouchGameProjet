@@ -204,5 +204,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1f64ec699531c1488a4a6ae11d51e1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _parentLight: {fileID: 0}
-  _childLight: {fileID: 0}
+  _parentLight: {fileID: 2957558167643187989}
+  _childLight: {fileID: 2410619976718045325}

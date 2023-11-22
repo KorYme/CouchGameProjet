@@ -96,4 +96,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _circleRadius: 1
-  _speed: 1
+  _speed: 0.333
+  _timeOffset: 0

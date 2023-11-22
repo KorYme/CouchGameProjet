@@ -50,7 +50,7 @@ TagManager:
   - name: LD
     uniqueID: 1806788807
     locked: 0
-  - name: Players
+  - name: Characters
     uniqueID: 1021743411
     locked: 0
   - name: Foreground
