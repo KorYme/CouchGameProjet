@@ -40,23 +40,32 @@ public class CameraProfile : MonoBehaviour
         _initPos = transform.position;
         _initSize = _cam.orthographicSize;
     }
-
-    private void Update()
-    {
-        Debug.Log(_initPos);
-    }
-
     private void Start()
     {
         StartCoroutine(FollowRoutine());
+        StartShake();
     }
 
     #region Shake
-    public void StartShake(float duration, float intensity, float speed)
+    public void StartShake(bool isInfinite = true)
     {
-        _shakeRoutine = StartCoroutine(ShakeRoutine(duration, intensity, speed));
+        if (_shakeRoutine != null)
+        {
+            StopCoroutine(_shakeRoutine);
+            _shakeRoutine = null;
+            transform.position = _initPos;
+        }
+
+        _shakeRoutine = StartCoroutine(ShakeRoutine(isInfinite, _profileData.shakeDuration, _profileData.shakeIntensity, _profileData.shakeSpeed));
     }
-    IEnumerator ShakeRoutine(float duration, float intensity, float speed)
+    
+    public void StopShake()
+    {
+        StopCoroutine(_shakeRoutine);
+        _shakeRoutine = null;
+        transform.position = _initPos;
+    }
+    IEnumerator ShakeRoutine(bool isIninite, float duration, float intensity, float speed)
     {
         float timer = 0;
         while (timer < duration)
@@ -64,7 +73,12 @@ public class CameraProfile : MonoBehaviour
             _offset = Vector3.one + new Vector3(Random.Range(-intensity,intensity+1),Random.Range(-intensity,intensity+1),0);
             _moveRoutine = StartCoroutine(MoveRoutine(speed));
             yield return new WaitUntil(() => _moveRoutine == null);
-            timer += speed;
+            
+            if(!isIninite)
+            {
+                timer += speed;
+            }
+            
         }
 
         transform.position = _initPos;
@@ -88,9 +102,9 @@ public class CameraProfile : MonoBehaviour
 
     #region Zoom
 
-    public void StartFocus(float duration, float percentage, Transform target)
+    public void StartFocus(Transform target)
     {
-        _zoomRoutine = StartCoroutine(ZoomRoutine(duration, percentage, target));
+        _zoomRoutine = StartCoroutine(ZoomRoutine(_profileData.focusDuration, _profileData.focusPercentage, target));
         _target = target;
     }
 
