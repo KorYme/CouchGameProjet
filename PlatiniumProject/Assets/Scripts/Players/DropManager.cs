@@ -69,7 +69,6 @@ public class DropManager : MonoBehaviour
 
     private void DropStateChange(DROP_STATE newState)
     {
-        Debug.Log(newState.ToString());
         switch (newState)
         {
             case DROP_STATE.OUT_OF_DROP:

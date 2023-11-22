@@ -28,10 +28,11 @@ public class QTEListSequences
         _inputsSucceeded = new bool[TotalLengthInputs];
     }
 
-    public void SetInputSucceeded(int index, bool isSucceeded)
+    public void SetInputSucceeded(int index, QTE_STATE qteState)
     {
-        _inputsSucceeded[index] = isSucceeded;
+        _inputsSucceeded[index] = qteState == QTE_STATE.IS_PRESSED;
     }
+
     public int Length
     {
         get { return _sequences.Count; }

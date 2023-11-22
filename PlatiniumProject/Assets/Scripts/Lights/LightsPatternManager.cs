@@ -39,7 +39,6 @@ public class LightsPatternManager : MonoBehaviour
         if (_beatCount < _beatBeforeChangePattern) return;
         _beatCount = 0;
         _currentState = (PATTERN_TYPE)((((int)_currentState) + 1) % 2);
-        Debug.Log($"Changement de state : {_currentState}");
     }
 
     private void UpdateLights()
