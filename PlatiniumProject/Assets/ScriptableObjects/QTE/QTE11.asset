@@ -15,9 +15,8 @@ MonoBehaviour:
   Index: 12
   PlayerRole: 2
   SequenceType: 0
-  LongInputType: 0
   ClientType: 0
-  Evilness: 0
+  Evilness: 1
   QTELevel: 1
   Status: 0
   DurationHold: 1

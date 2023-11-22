@@ -40,6 +40,7 @@ public class DropManager : MonoBehaviour
 
     public event Action OnDropSuccess;
     public event Action OnDropFail;
+    public event Action OnBeginBuildUp;
 
     int _triggerPressedNumber;
     BeatManager _beatManager;
@@ -95,6 +96,7 @@ public class DropManager : MonoBehaviour
                 {
                     DropState = DROP_STATE.ON_DROP_PRESSING;
                     _beatManager.OnBeatEndEvent.AddListener(AllTriggerRelease);
+                    OnBeginBuildUp?.Invoke();
                 };
                 break;
             case "DropStart":

@@ -32,6 +32,7 @@ public class CameraProfile : MonoBehaviour
     private Coroutine _shakeRoutine;
     private Coroutine _moveRoutine;
     private Coroutine _zoomRoutine;
+    private Coroutine _bounceZoomRoutine;
     private Coroutine _followMoveRoutine;
 
     private void Awake()
@@ -43,7 +44,7 @@ public class CameraProfile : MonoBehaviour
     private void Start()
     {
         StartCoroutine(FollowRoutine());
-        StartShake();
+        StartBounceZoom();
     }
 
     #region Shake
@@ -108,15 +109,31 @@ public class CameraProfile : MonoBehaviour
         _target = target;
     }
 
+    public void StartBounceZoom()
+    {
+        _bounceZoomRoutine = StartCoroutine(BeatBounceZoom(_profileData.focusPercentage));
+    }
+
     public void StopFocus()
     {
         canDezoom = true;
     }
 
+    IEnumerator BeatBounceZoom(float percentage)
+    {
+        float pingPong;
+        float timer;
+        while (true)
+        {
+            pingPong = Mathf.PingPong(Time.time, (Globals.BeatManager.BeatDurationInMilliseconds / 2000f));
+            _cam.orthographicSize = Mathf.Lerp(_initSize, _initSize * percentage, pingPong);
+            yield return new WaitForEndOfFrame();
+        }
+    }
+    
     IEnumerator ZoomRoutine(float duration, float percentage, Transform target)
     {
         float timer = 0;
-        
         while (timer < duration)
         {
             timer += Time.deltaTime;

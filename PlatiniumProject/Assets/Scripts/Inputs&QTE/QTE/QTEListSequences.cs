@@ -1,10 +1,6 @@
 using Rewired;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using UnityEngine;
-using UnityEngine.Windows;
 
 public class QTEListSequences
 {
@@ -106,18 +102,6 @@ public class QTEListSequences
         }
         return str.ToString();
     }
-    public IEnumerable<UnitInput> Iterator()
-    {
-        foreach(QTESequence sequence in _sequences)
-        {
-            foreach (UnitInput input in sequence.ListSubHandlers)
-            {
-                // Returning the element after every iteration
-                yield return input;
-            }
-        }
-    }
-
     public string GetInputString(int indexOfSequence,int indexInSequence)
     {
         StringBuilder str = new StringBuilder();
@@ -126,7 +110,25 @@ public class QTEListSequences
         {
             str.Append("<color=\"red\">");
             InputAction action = ReInput.mapping.GetAction(_sequences[indexOfSequence].ListSubHandlers[indexInSequence].ActionIndex);
-            str.Append(action.descriptiveName);
+            if (action.type == InputActionType.Axis)
+            {
+                if (_sequences[indexOfSequence].Status == InputStatus.LONG && _sequences[indexOfSequence].LongInputType == LongInputType.SHAKE)
+                {
+                    str.Append("Shake "+action.descriptiveName);
+                } else
+                {
+                    if (_sequences[indexOfSequence].ListSubHandlers[indexInSequence].PositiveValue)
+                    {
+                        str.Append(action.positiveDescriptiveName);
+                    } else
+                    {
+                        str.Append(action.negativeDescriptiveName);
+                    }
+                }
+            } else
+            {
+                str.Append(action.descriptiveName);
+            }
             str.Append("</color> ");
         }
         return str.ToString();
