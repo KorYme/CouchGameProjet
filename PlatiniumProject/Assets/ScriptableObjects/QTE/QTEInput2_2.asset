@@ -16,4 +16,4 @@ MonoBehaviour:
   ActionIndex: 4
   UseRotation: 0
   NbTurns: 1
-  LongInputType: 0
+  NbShake: 5

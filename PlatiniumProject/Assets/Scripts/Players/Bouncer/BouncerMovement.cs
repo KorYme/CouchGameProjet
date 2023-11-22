@@ -59,7 +59,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
     {
         _currentState = BOUNCER_STATE.CHECKING;
         StartCoroutine(TestCheck(chara.transform.position));
-        Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.BOUNCER).StartFocus(.3f, .5f, transform);
+        Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.BOUNCER).StartFocus(transform);
     }
     
     public void Move(int index)

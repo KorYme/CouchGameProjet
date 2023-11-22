@@ -350,29 +350,14 @@ public class QTEWindow : EditorWindow
             _serializedObject.Update();
             EditorGUILayout.PropertyField(_propertyName, true); // draw property with its children
             _serializedObject.ApplyModifiedProperties();
-            bool isAxisInput;
             if (_rewiredInputManager != null)
             {
                 InputActionType rewiredInputType = ReInput.mapping.GetAction(input.ActionIndex).type;
-                isAxisInput = rewiredInputType == InputActionType.Axis;
                 EditorGUILayout.LabelField(Enum.GetName(typeof(InputActionType), rewiredInputType));
-                
             } else
             {
                 EditorGUILayout.LabelField("Rewired inputs not loaded. Please run Rewired Input Manager in edit mode.", new GUIStyle() { normal = new GUIStyleState() { textColor = Color.red } });
-                isAxisInput = input.ActionIndex == RewiredConsts.Action.AXISX || 
-                    input.ActionIndex == RewiredConsts.Action.AXISY;
-            }
-            
 
-                
-            if (isAxisInput)
-            {
-                input.UseRotation = EditorGUILayout.Toggle("Use rotation",input.UseRotation);
-            }
-            if (input.UseRotation)
-            {
-                input.NbTurns = EditorGUILayout.IntField("Number of turns", input.NbTurns);
             }
         }
 

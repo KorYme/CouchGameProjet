@@ -5,9 +5,9 @@ using UnityEngine;
 public class CharacterAnimation : MonoBehaviour
 {
     [SerializeField] private CharacterAnimationObject _characterAnimationData;
-    private int _animationIndex;
-    private ANIMATION_TYPE lastAnimationType;
     [SerializeField] private SpriteRenderer _sp;
+    private ANIMATION_TYPE _lastAnimationType;
+    private int _animationIndex;
 
     public SpriteRenderer SpriteRenderer => _sp;
 
@@ -28,10 +28,10 @@ public class CharacterAnimation : MonoBehaviour
     }
     public Sprite GetAnimationSprite(ANIMATION_TYPE animation)
     {
-        if (animation != lastAnimationType)
+        if (animation != _lastAnimationType)
         {
             _animationIndex = 0;
-            lastAnimationType = animation;
+            _lastAnimationType = animation;
         }
         
         if (!_characterAnimationData.Animations.ContainsKey(animation))
@@ -47,6 +47,8 @@ public class CharacterAnimation : MonoBehaviour
 
     public void SetAnim(ANIMATION_TYPE type)
     {
+        if(!Globals.DropManager.CanYouLetMeMove)
+            return;
         _sp.sprite = GetAnimationSprite(type);
     }
 }
