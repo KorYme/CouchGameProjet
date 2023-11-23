@@ -714,6 +714,7 @@ GameObject:
   - component: {fileID: 6716087328787060443}
   - component: {fileID: 881585525306280625}
   - component: {fileID: 6167636063803828289}
+  - component: {fileID: 4268781023386130297}
   m_Layer: 0
   m_Name: Bouncer
   m_TagString: Untagged
@@ -826,6 +827,22 @@ MonoBehaviour:
   _playerRole: 2
   _rtImage: {fileID: 296049199607108539}
   _ltImage: {fileID: 5884056189645991784}
+--- !u!114 &4268781023386130297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7340047238265229073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f314b23923af9248b4370310b319b4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _role: 2
+  _allRumbles:
+  - {fileID: 11400000, guid: e5df8f419ed1ad644b561441541a931c, type: 2}
+  - {fileID: 11400000, guid: e5df8f419ed1ad644b561441541a931c, type: 2}
 --- !u!1 &9070746095559610444
 GameObject:
   m_ObjectHideFlags: 0
