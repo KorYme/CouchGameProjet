@@ -15,11 +15,11 @@ MonoBehaviour:
   Index: 3
   PlayerRole: 1
   SequenceType: 0
-  LongInputType: 0
   ClientType: 0
   Evilness: 0
   QTELevel: 1
   Status: 0
+  LongInputType: 0
   DurationHold: 1
   ListSubHandlers:
   - {fileID: 11400000, guid: ec38dedc05f1eb84aa704779eed2eb80, type: 2}
