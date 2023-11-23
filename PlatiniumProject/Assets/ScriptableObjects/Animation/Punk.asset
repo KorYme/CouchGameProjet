@@ -12,12 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221e7a1d53d37874394b67d10fe9257d, type: 3}
   m_Name: Punk
   m_EditorClassIdentifier: 
-  dancingAnimation:
-    _animationSprites:
+  selectedAnimationType: 0
+  animationsList:
+  - animationSprites:
     - {fileID: 21300000, guid: fcd4522e94aafe74cb045ac06984a08e, type: 3}
-  idleAnimation:
-    _animationSprites:
+    _animationType: 1
+  - animationSprites:
+    - {fileID: 21300000, guid: 9fc0fb30fb8691b41a101f3c4f0b6f63, type: 3}
+    - {fileID: 21300000, guid: 07d8596018c55e449935c4355c4a4de4, type: 3}
+    - {fileID: 21300000, guid: c098c1b6b97327d42a969d541b11bc06, type: 3}
+    - {fileID: 21300000, guid: 98e9461f6d9361646b887924ac2e1d48, type: 3}
+    - {fileID: 21300000, guid: 712b5051db248534995f347c2f9dce19, type: 3}
+    - {fileID: 21300000, guid: 9fc0fb30fb8691b41a101f3c4f0b6f63, type: 3}
+    _animationType: 2
+  - animationSprites:
     - {fileID: 21300000, guid: fcd4522e94aafe74cb045ac06984a08e, type: 3}
-  walkAnimation:
-    _animationSprites:
-    - {fileID: 21300000, guid: fcd4522e94aafe74cb045ac06984a08e, type: 3}
+    _animationType: 0

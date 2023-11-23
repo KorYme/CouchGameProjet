@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data.Common;
-using TMPro;
 using UnityEngine;
 
 public enum Direction
@@ -31,13 +29,13 @@ public class DJController : MonoBehaviour
     //TO CHECK
     private IEnumerator Start()
     {
-        
         _djQTEController = GetComponent<DJQTEController>();
         UpdateLightTiles(_shapesLight);
         
         yield return new WaitUntil(()=> Players.PlayersController[(int)PlayerRole.DJ] != null);
         _djInputController = Players.PlayersController[(int)PlayerRole.DJ];
         SetUpInputs();
+        
         Debug.Log("DJ Initialise");
     }
 
@@ -73,7 +71,7 @@ public class DJController : MonoBehaviour
             _shapesLight.ForEach(x => newList.Add(x.Neighbours[(int)direction]));
             UpdateLightTiles(newList);
             _shapesLight = newList;
-            _djQTEController.UpdateQTE();
+            
         }
     }
 
@@ -109,10 +107,10 @@ public class DJController : MonoBehaviour
                 slot.SpriteRenderer.color = Color.red;
             }
         }
-        _djQTEController.UpdateShape(newSlots);
+        _djQTEController.UpdateQTE(newSlots);
     }
     private void DeactivateQTE()
     {
-        _djQTEController.UpdateQTE();
+        _djQTEController.UpdateQTE(_shapesLight);
     }
 }

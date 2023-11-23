@@ -14,4 +14,7 @@ public interface ITimingable
     public UnityEvent OnBeatEvent { get; }
     public UnityEvent OnBeatStartEvent { get; }
     public UnityEvent OnBeatEndEvent { get; }
+    public event Action OnNextBeatStart;
+    public event Action OnNextBeat;
+    public event Action OnNextBeatEnd;
 }

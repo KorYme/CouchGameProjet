@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Punk
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: fc4c4a7d8a27a084fac635a3837223e0, type: 2}
-  animation: {fileID: 11400000, guid: f7926bceedc045a499df1882b2a0de9c, type: 2}
+  animation: {fileID: 11400000, guid: 194568781a2477c499a60647f2091b4b, type: 2}
   type: {fileID: 11400000, guid: 9305c13ea32710a42987b19c4659a5b0, type: 2}
   movement: {fileID: 11400000, guid: c205aac937c5b25478495ab06937bc4d, type: 2}

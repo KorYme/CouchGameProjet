@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _qteHandler: {fileID: 8571109586739665489}
-  _indexText: {fileID: 0}
+  _maxPlaces: 10
   IsInPause: 1
 --- !u!114 &8571109586739665489
 MonoBehaviour:
@@ -75,5 +75,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b9d9b51482de34cbea1169054abc08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thresholdDirectionJoystick: 0.9
   _role: 0
-  _inputsAreOnBeat: 1
+  _inputsAreOnBeat: 0
+  _includeLeftJoystick: 0
+  _includeRightJoystick: 1

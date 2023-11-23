@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class SlotRenderer : MonoBehaviour
 {
@@ -27,7 +26,8 @@ public class SlotRenderer : MonoBehaviour
             _spriteRenderer.material = _materialDanceFloorShared;
             _spriteRenderer.material.SetVector("_Dimension", new Vector2(0.9f, 0.9f));
             _spriteRenderer.material.SetVector("_Offset", new Vector2(_position.x + 0.05f, _position.y + 0.05f));
-            _nbColors = (int)_spriteRenderer.material.GetFloat("_NbColors");
+            if (_spriteRenderer.material.HasFloat("_NbColors"))
+                _nbColors = (int)_spriteRenderer.material.GetFloat("_NbColors");
             _materialDanceFloor = _spriteRenderer.material;
         }
         ChangeColor(false);
@@ -52,26 +52,18 @@ public class SlotRenderer : MonoBehaviour
     {
         if (_spriteRenderer != null && _useShader)
         {
-            if (isEnlighten)
-            {
-                _spriteRenderer.material = _materialTileEnlighten;
-                _spriteRenderer.color = Color.red;
-            }
-            else
-            {
-                _spriteRenderer.material = _materialDanceFloor;
-                _spriteRenderer.color = Color.white;
-            }
+            _spriteRenderer.material = _materialDanceFloor;
+            _spriteRenderer.color = Color.white;
         }
         _isLit = isEnlighten;
     }
 
     private void ChangeOnBeat()
     {
-        _index = (_index + 1) % _nbColors;
-        if (!_isLit)
+        if (_nbColors > 0)
         {
-            _spriteRenderer.material.SetFloat("_ChangeColorsPosition", _index);
+            _index = (_index + 1) % _nbColors;
         }
+        _spriteRenderer.material.SetFloat("_ChangeColorsPosition", _index);
     }
 }
