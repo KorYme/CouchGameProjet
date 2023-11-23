@@ -28,3 +28,4 @@ MonoBehaviour:
   - animationSprites:
     - {fileID: 21300000, guid: cbbc6a0f2c9716c4995ae2042887788b, type: 3}
     _animationType: 0
+  animBpm: 90
