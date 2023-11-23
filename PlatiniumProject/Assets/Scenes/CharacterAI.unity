@@ -276,6 +276,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 2.24
       objectReference: {fileID: 0}
+    - target: {fileID: 355355532619818057, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_Name
+      value: Bouncer
+      objectReference: {fileID: 0}
     - target: {fileID: 526540283650328194, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
