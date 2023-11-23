@@ -85,6 +85,10 @@ public class QTEListSequences
                             //Debug.Log($"{index} WRONG");
                             str.Append("<color=\"red\">");
                         }
+                        if (action.type == InputActionType.Axis && sequence.Status == InputStatus.LONG && sequence.LongInputType == LongInputType.SHAKE)
+                        {
+                            str.Append("Shake ");
+                        }
                         str.Append(action.descriptiveName);
                         str.Append("</color> ");
                     }
