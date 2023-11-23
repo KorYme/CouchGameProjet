@@ -1,7 +1,7 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public enum QTE_STATE
@@ -42,6 +42,7 @@ public class QTEHandler : MonoBehaviour
     {
         _currentListSequences = new QTEListSequences();
     }
+
     private IEnumerator Start()
     {
         _timingable = Globals.BeatManager;
@@ -159,8 +160,8 @@ public class QTEHandler : MonoBehaviour
         if (currentActionID == expectedActionID)
         {
             Debug.Log("Input ok");
-            _inputsSucceeded[_indexInSequence] = true;
-            _currentListSequences.SetInputSucceeded(_indexInListSequences, true);
+            _inputsSucceeded[_indexInSequence] = QTE_STATE.IS_PRESSED;
+            _currentListSequences.SetInputSucceeded(_indexInListSequences, QTE_STATE.IS_PRESSED);
             _indexInSequence++;
             _indexInListSequences++;
             _events?.CallOnCorrectInput();
