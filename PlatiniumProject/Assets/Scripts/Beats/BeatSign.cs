@@ -16,7 +16,9 @@ public class BeatSign : MonoBehaviour
     private float _currentBeatDuration;
     [SerializeField] private DISPLAY_STYLE _displayStyle;
     [SerializeField] private Slider _sliderLeft;
+    [SerializeField] private RectTransform _fillLeft;
     [SerializeField] private Slider _sliderRight;
+    [SerializeField] private RectTransform _fillRight;
     private float _currenSliderValue;
     private float _pingPong;
     
@@ -52,10 +54,14 @@ public class BeatSign : MonoBehaviour
                 break;
             case DISPLAY_STYLE.EDGE_TO_CENTER_DECREMENTAL:
                 _sliderLeft.transform.localScale = new Vector3(-_sliderLeft.transform.localScale.x,_sliderLeft.transform.localScale.y, _sliderLeft.transform.localScale.z);
+                _fillLeft.localScale = new Vector3(-_fillLeft.localScale.x,_fillLeft.localScale.y, _fillLeft.localScale.z);
+                _fillRight.localScale = new Vector3(-_fillRight.localScale.x,_fillRight.localScale.y, _fillRight.localScale.z);
                 StartCoroutine(SliderDecrementalRoutine());
                 break;
             case DISPLAY_STYLE.CENTER_TO_EDGE_INCREMENTAL:
                 _sliderLeft.transform.localScale = new Vector3(-_sliderLeft.transform.localScale.x,_sliderLeft.transform.localScale.y, _sliderLeft.transform.localScale.z);
+                _fillLeft.localScale = new Vector3(-_fillLeft.localScale.x,_fillLeft.localScale.y, _fillLeft.localScale.z);
+                _fillRight.localScale = new Vector3(-_fillRight.localScale.x,_fillRight.localScale.y, _fillRight.localScale.z);
                 StartCoroutine(SliderIncrementalRoutine());
                 break;
             case DISPLAY_STYLE.CENTER_TO_EDGE_DECREMENTAL:
