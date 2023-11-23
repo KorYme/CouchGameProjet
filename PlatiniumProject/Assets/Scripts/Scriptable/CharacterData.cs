@@ -6,9 +6,10 @@ using UnityEngine.Serialization;
 [CreateAssetMenu()]
 public class CharacterData : ScriptableObject
 {
+    public int beatAmountUnitlAction;
+    
     [Header("Bouncer")]
     public int movementAmountInQueue;
-    public int beatAmountUnitlAction;
 
     [FormerlySerializedAs("maxSatisafactionBar")]
     [Header("BarMan")] 
