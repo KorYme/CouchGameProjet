@@ -16,4 +16,8 @@ public class CameraProfileData : ScriptableObject
     public float focusPercentage;
     public float snapDuration;
     public AnimationCurve snapCurve;
+
+    [Header("Camera pulse value")] 
+    public float pulsePercentage;
+    public AnimationCurve pulseCurve;
 }
