@@ -491,14 +491,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1604014851263713326, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: _listQTE.Array.size
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 1604014851263713326, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: _listQTE.Array.data[15]
-      value: 
-      objectReference: {fileID: 11400000, guid: 85d36d35260d97b49bedad5af4e887a8, type: 2}
     - target: {fileID: 1876061551124879114, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_Name
       value: ---MainScenePrefab---
@@ -510,6 +502,10 @@ PrefabInstance:
     - target: {fileID: 1980982121051236805, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268863251625885047, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _priestAmountToStartExorcize
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3707359314484860181, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -685,7 +681,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8484154248070721880, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _badClientRatio.x
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8484154248070721880, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _badClientRatio.y
