@@ -32,7 +32,7 @@ public class BeatManager : MonoBehaviour, ITimingable
     [SerializeField, Tooltip("This event is called on the first frame an input cannot be received anymore")] 
     UnityEvent _onBeatEndEvent;
 
-    int _beatDurationInMilliseconds;
+    int _beatDurationInMilliseconds = 0;
     DateTime _lastBeatTime;
     Coroutine _beatCoroutine;
 
@@ -59,18 +59,21 @@ public class BeatManager : MonoBehaviour, ITimingable
     #region PROCEDURES
     private void Awake()
     {
-        if (Globals.BeatTimer != null)
+        if (Globals.BeatManager != null)
         {
             Destroy(gameObject);
             return;
         }
-        Globals.BeatTimer = this;
+        Globals.BeatManager = this;
     }
 
+    #if UNITY_EDITOR
     private void Reset()
     {
         _allWwiseEvents = (AllWwiseEvents)AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/WwiseEvents/WwiseEvents.asset", typeof(AllWwiseEvents));
     }
+        
+    #endif
 
     private IEnumerator Start()
     {

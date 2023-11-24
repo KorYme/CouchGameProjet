@@ -65,7 +65,7 @@ public class BarmanMovement : PlayerMovement
 
     protected override void OnInputMove(Vector2 vector)
     {
-        ChangeIndexToReach(vector.y);
+        ChangeIndexToReach(vector.x);
     }
 
     void ActivateCurrentQTE()

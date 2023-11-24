@@ -20,7 +20,7 @@ public class TestBeat : MonoBehaviour
     private void Start()
     {
         _lastBeatTiming = DateTime.Now;
-        _beatManager = Globals.BeatTimer as BeatManager;
+        _beatManager = Globals.BeatManager as BeatManager;
     }
 
     private void Update()

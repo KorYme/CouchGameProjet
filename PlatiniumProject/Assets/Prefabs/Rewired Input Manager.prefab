@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8160778979726971435}
   - component: {fileID: 137556889911350516}
   - component: {fileID: 4714637834579531949}
+  - component: {fileID: 8925105499494906979}
   m_Layer: 0
   m_Name: Rewired Input Manager
   m_TagString: Untagged
@@ -45,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 581b3e3c96df0ef42aef16b63b27b87f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dontDestroyOnLoad: 1
+  _dontDestroyOnLoad: 0
   _userData:
     configVars:
       updateLoop: 1
@@ -378,25 +379,25 @@ MonoBehaviour:
     - _id: 0
       _name: Move Horizontal
       _type: 0
-      _descriptiveName: Move Horizontal
-      _positiveDescriptiveName: MoveRight
-      _negativeDescriptiveName: MoveLeft
+      _descriptiveName: Horizontal
+      _positiveDescriptiveName: LS Right
+      _negativeDescriptiveName: LS Left
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 0
     - _id: 1
       _name: Move Vertical
       _type: 0
-      _descriptiveName: Move Vertical
-      _positiveDescriptiveName: MoveUp
-      _negativeDescriptiveName: MoveDown
+      _descriptiveName: ' Vertical'
+      _positiveDescriptiveName: LS Up
+      _negativeDescriptiveName: LS Down
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 0
     - _id: 2
       _name: Action1
       _type: 1
-      _descriptiveName: ButtonDown
+      _descriptiveName: A
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
@@ -405,7 +406,7 @@ MonoBehaviour:
     - _id: 3
       _name: Action2
       _type: 1
-      _descriptiveName: ButtonLeft
+      _descriptiveName: X
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
@@ -414,7 +415,7 @@ MonoBehaviour:
     - _id: 4
       _name: Action3
       _type: 1
-      _descriptiveName: ButtonRight
+      _descriptiveName: B
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
@@ -423,7 +424,7 @@ MonoBehaviour:
     - _id: 5
       _name: Action4
       _type: 1
-      _descriptiveName: ButtonUp
+      _descriptiveName: Y
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
@@ -432,18 +433,18 @@ MonoBehaviour:
     - _id: 6
       _name: AxisX
       _type: 0
-      _descriptiveName: AxisX
-      _positiveDescriptiveName: Right
-      _negativeDescriptiveName: Left
+      _descriptiveName: JS R X
+      _positiveDescriptiveName: JS R Right
+      _negativeDescriptiveName: JS R Left
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 0
     - _id: 7
       _name: AxisY
       _type: 0
-      _descriptiveName: AxisY
-      _positiveDescriptiveName: Top
-      _negativeDescriptiveName: Bottom
+      _descriptiveName: JS R Y
+      _positiveDescriptiveName: JS R Up
+      _negativeDescriptiveName: JS R Down
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 0
@@ -486,7 +487,7 @@ MonoBehaviour:
     - _id: 12
       _name: LT
       _type: 0
-      _descriptiveName: 
+      _descriptiveName: LT
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
@@ -495,7 +496,7 @@ MonoBehaviour:
     - _id: 13
       _name: RT
       _type: 0
-      _descriptiveName: 
+      _descriptiveName: RT
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
@@ -504,7 +505,7 @@ MonoBehaviour:
     - _id: 14
       _name: LB
       _type: 1
-      _descriptiveName: 
+      _descriptiveName: LB
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
@@ -513,7 +514,7 @@ MonoBehaviour:
     - _id: 15
       _name: RB
       _type: 1
-      _descriptiveName: 
+      _descriptiveName: RB
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
@@ -1060,3 +1061,15 @@ MonoBehaviour:
   - Player2
   - Player3
   _playerRoles: 020000000000000001000000
+--- !u!114 &8925105499494906979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059430416358908833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa99891a841b6d54ba544339a6a75e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

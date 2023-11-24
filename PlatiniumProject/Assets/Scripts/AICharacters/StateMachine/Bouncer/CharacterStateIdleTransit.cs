@@ -9,7 +9,7 @@ public class CharacterStateIdleTransit : CharacterState
     public override void OnBeat()
     {
         base.OnBeat();
-        StateMachine.SpriteRenderer.sprite = StateMachine.Animation.GetAnimationSprite(CharacterAnimation.ANIMATION_TYPE.IDLE);
+        StateMachine.Animation.SetAnim(ANIMATION_TYPE.IDLE);
     }
 
     public override void BeatAction()

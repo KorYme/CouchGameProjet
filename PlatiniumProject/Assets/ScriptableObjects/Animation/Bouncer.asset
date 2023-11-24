@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 221e7a1d53d37874394b67d10fe9257d, type: 3}
+  m_Name: Bouncer
+  m_EditorClassIdentifier: 
+  selectedAnimationType: 3
+  animationsList:
+  - animationSprites:
+    - {fileID: 21300000, guid: c139d2f4903dd1e4194e6d20234fc27f, type: 3}
+    - {fileID: 21300000, guid: 14045772c64df2149b2dac5880b47e42, type: 3}
+    - {fileID: 21300000, guid: 303a08ad74ceca846ba82ae8c8d3f680, type: 3}
+    - {fileID: 21300000, guid: c139d2f4903dd1e4194e6d20234fc27f, type: 3}
+    _animationType: 2
+  - animationSprites:
+    - {fileID: 21300000, guid: c139d2f4903dd1e4194e6d20234fc27f, type: 3}
+    - {fileID: 21300000, guid: 893990e7da7876e4ea7af6a271b28e17, type: 3}
+    _animationType: 1
+  - animationSprites:
+    - {fileID: 21300000, guid: 168ae8424e55b874789bf0ad55be3ce6, type: 3}
+    - {fileID: 21300000, guid: be7c2579d0ce7e04fa2a34eb94ab9598, type: 3}
+    - {fileID: 21300000, guid: e086dff909181d54db1028bc9667b25b, type: 3}
+    _animationType: 4
+  - animationSprites:
+    - {fileID: 21300000, guid: 5816d0dfa349d3d4f8762650e537dff9, type: 3}
+    _animationType: 5
+  animBpm: 90
