@@ -52,7 +52,7 @@ public class CharacterAIStatisfaction : MonoBehaviour
 
         CurrentStatisafction -= amount;
         
-        if (CurrentStatisafction <= 0 && _characterTypeData.Evilness == Evilness.GOOD)
+        if (CurrentStatisafction <= 0)
         {
             OnSatsifactionZero?.Invoke();
         }

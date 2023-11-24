@@ -5946,6 +5946,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 1936654074}
+    - target: {fileID: 4698107095415380637, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _role
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698107095415380637, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _allRumbles.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4731980905440600827, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

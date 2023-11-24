@@ -5,10 +5,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rumble : MonoBehaviour
+public class RumbleTest : MonoBehaviour
 {
     [SerializeField] RumbleValue _singlePressRumble;
     [SerializeField] RumbleValue _holdRumble;
+
+    public RumbleValue SinglePressRumble => _singlePressRumble;
+    public RumbleValue HoldRumble => _holdRumble;
 
     Coroutine _singlePressCoroutine;
     Coroutine _holdCoroutine;
@@ -39,8 +42,8 @@ public class Rumble : MonoBehaviour
         float timer = 0;
         while (timer <= 1)
         {
-            timer += Time.deltaTime / _singlePressRumble._time;
-            Players.PlayersController[playerId].newPlayer.SetVibration(0, _singlePressRumble._rumbleCurve.Evaluate(timer));
+            timer += Time.deltaTime / _singlePressRumble.time;
+            Players.PlayersController[playerId].newPlayer.SetVibration(0, _singlePressRumble.rumbleCurve.Evaluate(timer));
             yield return null;
         }
         Players.PlayersController[playerId].newPlayer.SetVibration(0, 0f);
@@ -52,8 +55,8 @@ public class Rumble : MonoBehaviour
         float timer = 0;
         while (true)
         {
-            timer += Time.deltaTime / _holdRumble._time;
-            Players.PlayersController[playerId].newPlayer.SetVibration(0, _holdRumble._rumbleCurve.Evaluate(timer));
+            timer += Time.deltaTime / _holdRumble.time;
+            Players.PlayersController[playerId].newPlayer.SetVibration(0, _holdRumble.rumbleCurve.Evaluate(timer));
             yield return null;
         }
     }
@@ -62,6 +65,7 @@ public class Rumble : MonoBehaviour
 [Serializable]
 public struct RumbleValue
 {
-    [Range(.1f, 10f)] public float _time;
-    public AnimationCurve _rumbleCurve;
+    public string rumbleName;
+    [Range(.1f, 10f)] public float time;
+    public AnimationCurve rumbleCurve;
 }
