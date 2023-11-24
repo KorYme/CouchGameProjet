@@ -247,6 +247,9 @@ MonoBehaviour:
         _categoryId: 1
         _layoutId: 0
       - _enabled: 0
+        _categoryId: 2
+        _layoutId: 0
+      - _enabled: 0
         _categoryId: 0
         _layoutId: 0
       _defaultMouseMaps: []
@@ -303,6 +306,9 @@ MonoBehaviour:
         _categoryId: 1
         _layoutId: 0
       - _enabled: 0
+        _categoryId: 2
+        _layoutId: 0
+      - _enabled: 0
         _categoryId: 0
         _layoutId: 0
       _defaultMouseMaps: []
@@ -357,6 +363,9 @@ MonoBehaviour:
       _defaultJoystickMaps:
       - _enabled: 1
         _categoryId: 1
+        _layoutId: 0
+      - _enabled: 0
+        _categoryId: 2
         _layoutId: 0
       - _enabled: 0
         _categoryId: 0
@@ -1061,6 +1070,7 @@ MonoBehaviour:
   - Player2
   - Player3
   _playerRoles: 020000000000000001000000
+  _characterSelectionInGame: 0
 --- !u!114 &8925105499494906979
 MonoBehaviour:
   m_ObjectHideFlags: 0
