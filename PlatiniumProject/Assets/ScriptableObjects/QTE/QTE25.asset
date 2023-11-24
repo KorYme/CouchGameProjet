@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8333e8bf53b1c2409b30abd1787e784, type: 3}
+  m_Name: QTE25
+  m_EditorClassIdentifier: 
+  Index: 25
+  PlayerRole: 0
+  SequenceType: 0
+  ClientType: 0
+  Evilness: 1
+  QTELevel: 1
+  Status: 0
+  LongInputType: 0
+  DurationHold: 1
+  ListSubHandlers:
+  - {fileID: 11400000, guid: e50eecdce4bd6fc4ea76be05062f0a2f, type: 2}
+  - {fileID: 11400000, guid: ca62abd2083f1b6468cda56dd716eb9c, type: 2}
+  - {fileID: 11400000, guid: 8a84924898e84da4d81443221ff090e3, type: 2}
+  - {fileID: 11400000, guid: 2549706f73b922940971dfbe203804b9, type: 2}
+  - {fileID: 11400000, guid: f72d6bdc43a385b43abd03c60986ce9b, type: 2}
+  - {fileID: 11400000, guid: 11c1f4e8833e47043a0cf6a1bcf26682, type: 2}
+  - {fileID: 11400000, guid: 0c188e450f464d445a1932de24d82e61, type: 2}
