@@ -90,12 +90,12 @@ public class PlayerInputsAssigner : MonoBehaviour {
 
     void Awake() {
         playerMap = new List<PlayerMap>();
-        if (instance != null)
-        {
-            Destroy(gameObject);
-            return;
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+            return;
         }
-        instance = this;
+        _instance = this;
     }
 
     void Update() {
