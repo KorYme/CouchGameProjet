@@ -5,10 +5,5 @@ using UnityEngine;
 public class PlayerSelectionManager : MonoBehaviour
 {
     [SerializeField] GameObject[] _objectsSelectionable;
-    int _indexSelection = 0;
-
-    private IEnumerator Start()
-    {
-        
-    }
+    [SerializeField] int[] _idPlayerSelected;
 }
