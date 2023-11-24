@@ -12,12 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221e7a1d53d37874394b67d10fe9257d, type: 3}
   m_Name: Punk
   m_EditorClassIdentifier: 
-  dancingAnimation:
-    _animationSprites:
-    - {fileID: 21300000, guid: fcd4522e94aafe74cb045ac06984a08e, type: 3}
-  idleAnimation:
-    _animationSprites:
-    - {fileID: 21300000, guid: fcd4522e94aafe74cb045ac06984a08e, type: 3}
-  walkAnimation:
-    _animationSprites:
-    - {fileID: 21300000, guid: fcd4522e94aafe74cb045ac06984a08e, type: 3}
+  selectedAnimationType: 5
+  animationsList:
+  - animationSprites:
+    - {fileID: 21300000, guid: e8825e821fc1dfd4bb5bfb16dedf26d2, type: 3}
+    - {fileID: 21300000, guid: ceabd54810fe43b40a52f12eea33ec2e, type: 3}
+    _animationType: 1
+  - animationSprites:
+    - {fileID: 21300000, guid: aeda313bf44ed2e46b4b80a73294271e, type: 3}
+    - {fileID: 21300000, guid: 8be9d856f086d9642bc0cba738d26260, type: 3}
+    _animationType: 2
+  - animationSprites:
+    - {fileID: 21300000, guid: 19b1a86ca1951a045ac3b80ab112f1ed, type: 3}
+    - {fileID: 21300000, guid: 63de3d394e5ef4b4ea870f1dba8aaec2, type: 3}
+    _animationType: 0
+  - animationSprites:
+    - {fileID: 21300000, guid: aa59b8f029d2e3f4d91198c78f01e372, type: 3}
+    _animationType: 5
+  animBpm: 90

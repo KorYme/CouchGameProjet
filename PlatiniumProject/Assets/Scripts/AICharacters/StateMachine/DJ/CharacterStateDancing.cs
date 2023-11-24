@@ -9,15 +9,33 @@ public class CharacterStateDancing : CharacterState
         base.EnterState();
         StateMachine.Satisafaction.InitializeStatisfaction(StateMachine.CharacterDataObject.maxSatisafactionDJ);
         StateMachine.Satisafaction.OnSatsifactionZero += RunOutOfSatisfaction;
+
+        Globals.PriestCalculator.OnPriestNearToExorcize += StartExorcize;
+        
+        if (StateMachine.CharacterTypeData.Evilness == Evilness.EVIL &&
+            (Globals.PriestCalculator.ExorcizeState == PriestCalculator.EXORCIZE_STATE.EXORCIZING || Globals.PriestCalculator.ExorcizeState == PriestCalculator.EXORCIZE_STATE.EXORCIZED))
+        {
+            StateMachine.ChangeState(StateMachine.ExorcizeState);
+        }
     }
 
     public override void OnBeat()
     {
-        //StateMachine.SpriteRenderer.color = Random.ColorHSV();
-        StateMachine.SpriteRenderer.sprite = StateMachine.Animation.GetAnimationSprite(CharacterAnimation.ANIMATION_TYPE.DANCING);
-        if (!StateMachine.CurrentSlot.IsEnlighted)
+        if(!Globals.DropManager.CanYouLetMeMove)
+            return;
+        
+        StateMachine.Animation.SetAnim(ANIMATION_TYPE.DANCING);
+        if (!StateMachine.CurrentSlot.IsEnlighted && StateMachine.CharacterTypeData.Evilness == Evilness.GOOD)
         {
             StateMachine.Satisafaction.DecreaseSatisfaction(StateMachine.CharacterDataObject.decrementationValueOnFloor);
+        }
+    }
+
+    private void StartExorcize()
+    {
+        if (StateMachine.CharacterTypeData.Evilness == Evilness.EVIL)
+        {
+            StateMachine.ChangeState(StateMachine.ExorcizeState);
         }
     }
 
@@ -37,5 +55,6 @@ public class CharacterStateDancing : CharacterState
     public override void ExitState()
     {
         StateMachine.Satisafaction.OnSatsifactionZero -= RunOutOfSatisfaction;
+        Globals.PriestCalculator.OnPriestNearToExorcize -= StartExorcize;
     }
 }

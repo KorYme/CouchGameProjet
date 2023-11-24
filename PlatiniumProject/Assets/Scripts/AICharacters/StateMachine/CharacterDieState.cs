@@ -13,9 +13,13 @@ public class CharacterDieState : CharacterState
         {
             StateMachine.CurrentSlot.Occupant = null;
         }
-        StateMachine.SpriteRenderer.DOColor(Vector4.zero, 1.5f).SetEase(Ease.InCubic).OnComplete(() =>
-        {
-            StateMachine.GoBackInPull();
-        });
+        StateMachine.CharacterMove.MoveTo(Globals.ExitPoints.FindClosestExitPoint(StateMachine.transform.position));
+        StateMachine.StartCoroutine(ExitRoutine());
+    }
+
+    IEnumerator ExitRoutine()
+    {
+        yield return new WaitUntil(() => !StateMachine.CharacterMove.IsMoving);
+        StateMachine.GoBackInPull();
     }
 }

@@ -275,6 +275,54 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
+				<Folder Name="PlaceHolderMusic" ID="{6E550C15-0040-447E-8E00-875C3D888D63}" ShortID="394773582">
+					<ChildrenList>
+						<Event Name="Music_Metronome" ID="{650ECBCC-909F-4E11-96C5-3A2910212AF5}">
+							<ChildrenList>
+								<Action Name="" ID="{F8892F5B-8932-4A5E-9EB3-4D7177363FF1}" ShortID="780588332">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="60 BPM Metronome" ID="{E8E62256-2EDA-4A8A-8EC2-C9911386DB10}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Music_Mage" ID="{AC5B2908-7457-4615-9A5A-A1D59EF44DB2}">
+							<ChildrenList>
+								<Action Name="" ID="{B85ADE88-8400-4112-801E-65090EE73FED}" ShortID="932124678">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MageBattle" ID="{3441DE68-26FA-4A74-9806-D4745AB82F51}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Music_Crypt" ID="{C5E5E1C1-CD96-429B-BAC0-BB976F5D491A}">
+							<ChildrenList>
+								<Action Name="" ID="{9B9519B3-0ECE-46C2-A5A4-1B5153121F55}" ShortID="360829173">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Crypt of the Necrodancer OST - Crypteque (1-2)" ID="{B9D4578D-B6E9-4FE1-8934-0A2F3172C6C7}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Music_PayDay" ID="{2242DA44-CBD4-4E67-A956-F3FABF4D3CFD}">
+							<ChildrenList>
+								<Action Name="" ID="{42BEEF33-2076-4F2F-8364-23C510B33AC7}" ShortID="282274565">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Alesso Payday" ID="{693A3023-6DFB-4776-8EC2-731FF11A5541}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

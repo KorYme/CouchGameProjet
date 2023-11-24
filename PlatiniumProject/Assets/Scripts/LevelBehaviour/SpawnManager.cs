@@ -37,7 +37,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private CharacterObject[] _goodClients;
     [SerializeField] private CharacterObject[] _badClients;
     
-    
+    public bool CanYouLetMeMove { get; set; }
 
     public enum STARTPOINT
     {
@@ -47,6 +47,17 @@ public class SpawnManager : MonoBehaviour
 
     private void Awake()
     {
+
+        foreach (var g in _goodClients)
+        {
+            g.animation.Init();
+        }
+
+        foreach (var b in _badClients)
+        {
+            b.animation.Init();
+        }
+        
         _areaManager = FindObjectOfType<AreaManager>();
         GdTest();
         
@@ -55,12 +66,14 @@ public class SpawnManager : MonoBehaviour
         for (int i = 0; i < _objectsToPoolNumber; ++i)
         {
             GameObject go = Instantiate(_pnj, _poolingSpawn.position, Quaternion.identity);
+            go.transform.parent = _poolingSpawn;
             go.transform.position += new Vector3(1f, 0f, 0f) * i;
             CharacterAiPuller puller = go.GetComponent<CharacterAiPuller>();
             puller.PullPos = go.transform.position += new Vector3(1f, 0f, 0f) * i;
             _characterList[i] = puller;
             _availableCharcters.Add(puller);
         }
+        Globals.SpawnManager ??= this;
     }
 
     private void GdTest()
@@ -68,13 +81,13 @@ public class SpawnManager : MonoBehaviour
         if (_minMaxSpawnPerMinutes.x <= 0 || _minMaxSpawnPerMinutes.y <= 0)
             Debug.LogException(new DataException("SpawnIntervalle must be positive integer"), this);
 
-        if (_minMaxSpawnPerMinutes.x >= _minMaxSpawnPerMinutes.y)
+        if (_minMaxSpawnPerMinutes.x > _minMaxSpawnPerMinutes.y)
             Debug.LogException(new DataException("SpawnIntervalle first value must be higher than the second"), this);
 
         if (_badClientRatio.x <= 0 || _badClientRatio.y <= 0)
             Debug.LogException(new DataException("badclientRation must be positive integer"), this);
 
-        if (_badClientRatio.x >= _badClientRatio.y)
+        if (_badClientRatio.x > _badClientRatio.y)
             Debug.LogException(new DataException("badclientRation first value must be higher than the second"), this);
     }
 
@@ -124,12 +137,12 @@ public class SpawnManager : MonoBehaviour
     
     private bool IsBadClient()
     {
-        _instanciationCount = (_instanciationCount + 1) % (int)_badClientRatio.y;
-
         if (_instanciationCount == 0)
         {
             SetClientRatio();
         }
+        
+        _instanciationCount = (_instanciationCount + 1) % (int)_badClientRatio.y;
         
         if (_badClientsBools[_instanciationCount]) return true;
         return false;
@@ -179,7 +192,7 @@ public class SpawnManager : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= _minMaxSpawnPerMinutes.x)
             {
-                yield return new WaitUntil(() => _areaManager.BouncerTransit.Slots[0].Occupant == null);
+                yield return new WaitUntil(() => Globals.DropManager.CanYouLetMeMove && _areaManager.BouncerTransit.Slots[0].Occupant == null);
                 timer = 0f;
                 PullACharacter();
             }

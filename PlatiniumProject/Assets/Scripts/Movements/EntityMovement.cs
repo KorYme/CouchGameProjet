@@ -14,8 +14,9 @@ public class EntityMovement : MonoBehaviour, IMovable
     [SerializeField] protected Transform _transformToModify;
 
     protected Coroutine _movementCoroutine;
+    private Coroutine _animRoutine;
     protected Action OnMove;
-    protected ITimingable _timingable => Globals.BeatTimer;
+    protected ITimingable _timingable => Globals.BeatManager;
     public bool IsMoving => _movementCoroutine != null;
 
     private Vector3 _destination;
@@ -42,24 +43,17 @@ public class EntityMovement : MonoBehaviour, IMovable
     protected virtual IEnumerator MovementCoroutineAnimation (Vector3 positionToGo, Action callBack, int animationsFrames)
     {
         float timer = 0;
+        animationsFrames++;
         Vector3 initialPosition = _transformToModify.position;
         Vector3 initialScale = _transformToModify.localScale;
-        float timeBetweenAnims = _TimeBetweenMovements / animationsFrames;
-        float animTimer = 0f;
         _destination = positionToGo;
-        
-        callBack?.Invoke();
+
+        _animRoutine =
+            StartCoroutine(AnimationRoutine(animationsFrames, _TimeBetweenMovements / animationsFrames, callBack));
         
         while (timer < _TimeBetweenMovements)
         {
             timer += Time.deltaTime;
-            animTimer += Time.deltaTime;
-
-            if (animTimer >= timeBetweenAnims )
-            {
-                animTimer = 0f;
-                callBack?.Invoke();
-            }
             
             _transformToModify.position = Vector3.LerpUnclamped(initialPosition, _destination, 
                 _movementData.MovementCurve.Evaluate(timer / _TimeBetweenMovements));
@@ -70,8 +64,22 @@ public class EntityMovement : MonoBehaviour, IMovable
             
             yield return null;
         }
+
+        yield return new WaitUntil(() => _animRoutine == null);
+        
+        //OnMoveEnd?.Invoke();
         _transformToModify.localScale = initialScale;
         _transformToModify.position = _destination;
         _movementCoroutine = null;
+    }
+
+    private IEnumerator AnimationRoutine(int loop, float duration, Action callBack)
+    {
+        for (int i = 0; i < loop - 1; i++)
+        {
+            callBack?.Invoke();
+            yield return new WaitForSeconds(duration);
+        }
+        _animRoutine = null;
     }
 }

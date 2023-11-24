@@ -5,8 +5,6 @@ using Random = UnityEngine.Random;
 public class CharacterStateMachine : MonoBehaviour
 {
     [SerializeField] private CharacterData _characterData;
-    [SerializeField] private SpriteRenderer _spriteRenderer;
-    [SerializeField] private CharacterTypeData _currentType;
     private SpawnManager _spawnManager;
     private BeatManager _beatManager;
     public Vector3 PullPos { get; set; }
@@ -24,6 +22,7 @@ public class CharacterStateMachine : MonoBehaviour
     public CharacterState BarManQueueState { get; } = new CharacterStateBarmanQueue();
     public CharacterState BarManAtBar { get; } = new CharacterStateAtBar();
     public CharacterState DancingState { get; } = new CharacterStateDancing();
+    public CharacterState ExorcizeState { get; } = new CharacterStateExorcize();
     #endregion
     private CharacterState[] _allState => new CharacterState[]
     {
@@ -35,7 +34,8 @@ public class CharacterStateMachine : MonoBehaviour
         RoamState,
         BarManQueueState,
         BarManAtBar,
-        DancingState
+        DancingState,
+        ExorcizeState
     };
     
     #region Propreties
@@ -52,10 +52,9 @@ public class CharacterStateMachine : MonoBehaviour
     }
     public CharacterTypeData CharacterTypeData
     {
-        get { return _currentType; }
-        set { if(value != null) _currentType = value; }
+        get { return TypeData; }
+        set { if(value != null) TypeData = value; }
     }
-    public SpriteRenderer SpriteRenderer => _spriteRenderer;
     public SlotInformation CurrentSlot { get; set; }
     public int CurrentBeatAmount { get; set; }
     public int CurrentMovementInBouncer { get; set; }
@@ -65,10 +64,8 @@ public class CharacterStateMachine : MonoBehaviour
 
     public CharacterAIStatisfaction Satisafaction { get; private set; }
     public CharacterAnimation Animation { get; private set; }
-
     public CharacterTypeData TypeData { get; set; }
     public CharacterAiPuller Puller { get; private set; }
-
     #endregion
 
     #region Events
@@ -90,22 +87,7 @@ public class CharacterStateMachine : MonoBehaviour
 
     public void PullCharacter(CharacterState startState = null)
     {
-        _spriteRenderer.sprite = Animation.GetAnimationSprite(CharacterAnimation.ANIMATION_TYPE.IDLE);
-        switch (TypeData.ClientType)
-        {
-            case CharacterColor.BLUE:
-                _spriteRenderer.color = Color.blue;
-                break;
-            case CharacterColor.RED:
-                _spriteRenderer.color = Color.red;
-                break;
-            case CharacterColor.YELLOW:
-                _spriteRenderer.color = Color.yellow;
-                break;
-            case CharacterColor.GREEN:
-                _spriteRenderer.color = Color.green;
-                break;
-        }
+        Animation.SetAnim(ANIMATION_TYPE.IDLE);
         if (startState == null)
         {
             SlotInformation firstQueueSlot = AreaManager.BouncerTransit.Slots[0];
@@ -149,8 +131,6 @@ public class CharacterStateMachine : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException(nameof(startState));
         }
-        // CurrentSlot = AreaManager.BouncerTransit.Slots[0];
-        // ChangeState(StartState);
     }
 
     private void Update()
@@ -181,27 +161,15 @@ public class CharacterStateMachine : MonoBehaviour
             cs.InitState(this);
         }
     }
-
     public void GoBackInPull()
     {
         _spawnManager.ReInsertCharacterInPull(Puller);
         ChangeState(null);
-        _spriteRenderer.color = Color.white;
+        Animation.SpriteRenderer.color = Color.white;
         CurrentBeatAmount = 0;
         CurrentMovementInBouncer = 0;
         MoveToLocation = Vector3.zero;
         CurrentState = null;
         NextState = null;
     }
-
-    // private void GetRandomCharacterTypeData()
-    // {
-    //     if (_typesDataAvailable.Length == 0)
-    //     {
-    //         Debug.LogWarning("List of type of character available is empty");
-    //     } else
-    //     {
-    //         TypeData = _typesDataAvailable[Random.Range(0, _typesDataAvailable.Length)];
-    //     }
-    // }
 }

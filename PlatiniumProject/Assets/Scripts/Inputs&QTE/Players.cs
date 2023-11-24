@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using UnityEngine;
 
 public static class Players
 {
@@ -12,7 +13,7 @@ public static class Players
     public static event Action<int> OnPlayerConnect;
     public static event Action<int> OnPlayerDisconnect;
 
-    public static void AddPlayerToList(PlayerInputController playerController,int index)
+    public static void AddPlayerToList(PlayerInputController playerController, int index)
     {
         PlayerConnected++;
         _playersController[index] = playerController;
