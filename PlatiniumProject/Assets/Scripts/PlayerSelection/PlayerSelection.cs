@@ -1,91 +1,59 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 public class PlayerSelection : MonoBehaviour
 {
-    Rewired.Player _player;
-    public int PlayerId { get; set; } = 0;
-    [SerializeField] float _repeatDelay = 0.2f;
-    int _lastDirection = 0;
-    bool _canMove = true;
-    Coroutine _routineWaitMoveMenu;
+    [SerializeField]PlayerSelectionController _controller;
 
     #region Events
-    public event Action<int> OnLeftInput;
-    public event Action<int> OnRightInput;
-    public event Action<int> OnAccept;
-    public event Action<int> OnReturn;
+    public event Action<int,int> OnAccept;
+    public event Action<int,int> OnReturn;
+    public event Action<int,int> OnMove; // id player, position
     #endregion
-    IEnumerator Start()
-    {
-        yield return new WaitUntil(() => PlayerInputsAssigner.GetRewiredPlayerById(PlayerId) != null);
-        _player = PlayerInputsAssigner.GetRewiredPlayerById(PlayerId);
-    }
+    int _indexCharacter = 0;
+    int _maxCharacterPlayable = 1;
+    public bool CanAccept { get; set; } = true;
 
-    private void Update()
+    private void Awake()
     {
-        if (_player != null)
+        _controller = GetComponent<PlayerSelectionController>();
+        if (_controller == null)
         {
-            CheckInputs();
-        }
-    }
-
-    private void CheckInputs()
-    {
-        if (_player.GetButtonDown(RewiredConsts.Action.ACCEPT))
+            Debug.LogWarning("Player Selection Controller not found");
+        } else
         {
-            Debug.Log("ACCEPT");
-            OnAccept?.Invoke(PlayerId);
-        }
-        if (_player.GetButtonDown(RewiredConsts.Action.RETURN))
-        {
-            Debug.Log("RETURN");
-            OnAccept?.Invoke(PlayerId);
-        }
-        if (_player.GetAxis(RewiredConsts.Action.MOVEMENU) != 0f)
-        {
-            int direction = _player.GetAxis(RewiredConsts.Action.MOVEMENU) > 0f ? 1 : -1;
-            if (_repeatDelay > 0f) {
-                
-                if (_canMove)
-                {
-                    CallOnMoveMenu(direction);
-                    _lastDirection = direction ;
-                    _routineWaitMoveMenu = StartCoroutine(RoutineMoveMenu());
-                } else if (_lastDirection != direction)
-                {
-                    StopCoroutine(_routineWaitMoveMenu);
-                    CallOnMoveMenu(direction);
-                    _lastDirection = direction;
-                    _routineWaitMoveMenu = StartCoroutine(RoutineMoveMenu());
-                }
-            } else
-            {
-                CallOnMoveMenu(direction);
-            }
+            _controller.OnAccept += OnAcceptController;
+            _controller.OnReturn += OnReturnController;
+            _controller.OnMoveInput += OnMoveController;
         }
     }
 
-    private IEnumerator RoutineMoveMenu()
+    public void SetUp(int indexStart, int maxCharacters)
     {
-        _canMove = false;
-        yield return new WaitForSeconds(_repeatDelay);
-        _lastDirection = 0;
-        _canMove = true;
-    } 
+        _indexCharacter = indexStart;
+        _controller.PlayerId = _indexCharacter;
+        _maxCharacterPlayable = maxCharacters;
+    }
 
-    private void CallOnMoveMenu(int direction)
+    private void OnReturnController(int indexPlayer)
     {
-        if (direction > 0)
+        OnReturn?.Invoke(indexPlayer, _indexCharacter);
+    }
+
+    private void OnAcceptController(int indexPlayer)
+    {
+        if (CanAccept)
         {
-            Debug.Log("RIGHT");
-            OnRightInput?.Invoke(PlayerId);
+            OnAccept?.Invoke(indexPlayer, _indexCharacter);
         }
-        else
+    }
+
+    private void OnMoveController(int indexPlayer, int direction)
+    {
+        if (CanAccept)
         {
-            Debug.Log("LEFT");
-            OnLeftInput?.Invoke(PlayerId);
+            _indexCharacter = Mathf.Clamp(_indexCharacter + direction, 0, _maxCharacterPlayable);
+            OnMove?.Invoke(indexPlayer, _indexCharacter);
         }
     }
 }
