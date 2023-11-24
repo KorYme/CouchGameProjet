@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 2380923746897791189}
   - component: {fileID: 5158429038718605109}
   - component: {fileID: 5266241032662133365}
+  - component: {fileID: 7928612141699995362}
   m_Layer: 0
   m_Name: DJ
   m_TagString: Untagged
@@ -239,6 +240,22 @@ MonoBehaviour:
   _playerRole: 1
   _rtImage: {fileID: 982119411064220759}
   _ltImage: {fileID: 6346322458142363780}
+--- !u!114 &7928612141699995362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3598487020168188391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f314b23923af9248b4370310b319b4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _role: 1
+  _allRumbles:
+  - {fileID: 11400000, guid: d2509bcea857a644eae99438aab77314, type: 2}
+  - {fileID: 11400000, guid: e5df8f419ed1ad644b561441541a931c, type: 2}
 --- !u!1 &4413337472137634139
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,7 +33,7 @@ public class FollowingLightRotation : MonoBehaviour
             if (_isResizable)
             {
                 _light2D.pointLightOuterRadius = Vector2.Distance(_target.position, transform.position) + _radiusAdded;
-                _light2D.pointLightInnerRadius = Vector2.Distance(_target.position, transform.position) + _radiusAdded - _outerInnerPercent;
+                _light2D.pointLightInnerRadius = _light2D.pointLightOuterRadius * _outerInnerPercent;
             }
             //transform.eulerAngles = Vector3.SmoothDamp(transform.eulerAngles, new(0, 0, Mathf.Atan2((_target.position - transform.position).y, (_target.position - transform.position).x) * Mathf.Rad2Deg - 90), ref _velocity, _damping);
             yield return null;
