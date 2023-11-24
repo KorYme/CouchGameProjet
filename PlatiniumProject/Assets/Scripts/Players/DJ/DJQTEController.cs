@@ -33,7 +33,7 @@ public class DJQTEController : MonoBehaviour, IQTEable
 
     private void OnBeat()
     {
-        _sp.sprite = _characterAnimation.GetAnimationSprite(ANIMATION_TYPE.IDLE);
+        _characterAnimation.SetAnim(ANIMATION_TYPE.IDLE);
     }
     private void OnDestroy()
     {
@@ -108,13 +108,13 @@ public class DJQTEController : MonoBehaviour, IQTEable
             }
         }
         OnDJQTEChanged?.Invoke(_qteHandler.GetQTEString());
-        _sp.sprite = _characterAnimation.GetAnimationSprite(ANIMATION_TYPE.CORRECT_INPUT);
+        _characterAnimation.SetAnim(ANIMATION_TYPE.CORRECT_INPUT);
     }
 
     public void OnQTEWrongInput()
     {
         OnDJQTEChanged?.Invoke(_qteHandler.GetQTEString());
-        _sp.sprite = _characterAnimation.GetAnimationSprite(ANIMATION_TYPE.WRONG_INPUT);
+        _characterAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT);
     }
     #endregion
 }
