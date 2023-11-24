@@ -21,10 +21,10 @@ public class LightMovementCircle : MonoBehaviour
 
     IEnumerator MovementCoroutine()
     {
-        float timer = _BeatSpeed * _timeOffset * Mathf.PI * 2f * _speed;
+        float timer = _BeatSpeed * _timeOffset * Mathf.PI * 2f;
         while (true)
         {
-            timer += Time.deltaTime * Mathf.PI * 2f * _BeatSpeed;
+            timer += Time.deltaTime * Mathf.PI * 2f * _BeatSpeed * _speed;
             transform.position = _center + new Vector3(Mathf.Cos(timer), Mathf.Sin(timer)) * _circleRadius;
             yield return null;
         }

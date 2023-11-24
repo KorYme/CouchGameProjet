@@ -47,7 +47,7 @@ public class BouncerQTEController : MonoBehaviour, IQTEable
     public void OnQTECorrectInput()
     {
         OnBouncerQTEChanged?.Invoke(_qteHandler.GetCurrentInputString());
-        _characterAnimation.SetAnim(ANIMATION_TYPE.CORRECT_INPUT);
+        _characterAnimation.SetAnim(ANIMATION_TYPE.FIGHT, false);
         
     }
 

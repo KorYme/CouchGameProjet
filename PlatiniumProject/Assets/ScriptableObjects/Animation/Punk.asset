@@ -19,6 +19,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: ceabd54810fe43b40a52f12eea33ec2e, type: 3}
     _animationType: 1
   - animationSprites:
+    - {fileID: 21300000, guid: be27409161331e54c8f9525d878bf7f5, type: 3}
     - {fileID: 21300000, guid: aeda313bf44ed2e46b4b80a73294271e, type: 3}
     - {fileID: 21300000, guid: 8be9d856f086d9642bc0cba738d26260, type: 3}
     _animationType: 2

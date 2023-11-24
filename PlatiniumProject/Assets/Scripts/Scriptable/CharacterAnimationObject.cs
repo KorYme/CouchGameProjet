@@ -13,6 +13,8 @@ public enum ANIMATION_TYPE
     EXORCIZE,
     CORRECT_INPUT,
     WRONG_INPUT,
+    FIGHT,
+    FIGHT_IDLE
 }
 [System.Serializable]
 public struct Animation

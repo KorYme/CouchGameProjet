@@ -399,12 +399,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 252390620736253688, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: _speed
-      value: 0.486
-      objectReference: {fileID: 0}
-    - target: {fileID: 252390620736253688, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _timeOffset
       value: 0.814
+      objectReference: {fileID: 0}
+    - target: {fileID: 415680244780460758, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _beatBeforeChangePattern
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 510494453476561319, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _timeOffset
@@ -417,10 +417,6 @@ PrefabInstance:
     - target: {fileID: 526540283650328194, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 777332051159281820, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: _speed
-      value: 0.486
       objectReference: {fileID: 0}
     - target: {fileID: 777332051159281820, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _timeOffset
@@ -443,10 +439,6 @@ PrefabInstance:
       value: 0.6523142
       objectReference: {fileID: 0}
     - target: {fileID: 925955151290207600, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: _speed
-      value: 0.486
-      objectReference: {fileID: 0}
-    - target: {fileID: 925955151290207600, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _timeOffset
       value: 0.431
       objectReference: {fileID: 0}
@@ -465,10 +457,6 @@ PrefabInstance:
     - target: {fileID: 1595107485616717937, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1787691999867293632, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: _speed
-      value: 0.486
       objectReference: {fileID: 0}
     - target: {fileID: 1787691999867293632, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _timeOffset
@@ -491,10 +479,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2205866055693663753, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: _speed
-      value: 0.486
-      objectReference: {fileID: 0}
-    - target: {fileID: 2205866055693663753, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _timeOffset
       value: 0.261
       objectReference: {fileID: 0}
@@ -505,10 +489,6 @@ PrefabInstance:
     - target: {fileID: 3032492687187276902, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_Color.r
       value: 0.6523142
-      objectReference: {fileID: 0}
-    - target: {fileID: 3226323056681346652, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: _speed
-      value: 0.486
       objectReference: {fileID: 0}
     - target: {fileID: 3226323056681346652, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _timeOffset
@@ -623,10 +603,6 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5094427102982567662, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: _speed
-      value: 0.486
-      objectReference: {fileID: 0}
-    - target: {fileID: 5094427102982567662, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _timeOffset
       value: 0.854
       objectReference: {fileID: 0}
@@ -637,10 +613,6 @@ PrefabInstance:
     - target: {fileID: 5232184419642157544, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_PointLightOuterAngle
       value: 33.34593
-      objectReference: {fileID: 0}
-    - target: {fileID: 5331627858126727560, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: _speed
-      value: 0.636
       objectReference: {fileID: 0}
     - target: {fileID: 5331627858126727560, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _timeOffset
@@ -654,10 +626,6 @@ PrefabInstance:
       propertyPath: _characterAnimationData
       value: 
       objectReference: {fileID: 11400000, guid: 5c5cf1dc7975bc2488dfaf9c4c3fa4ed, type: 2}
-    - target: {fileID: 5689043639057447133, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: _speed
-      value: 0.486
-      objectReference: {fileID: 0}
     - target: {fileID: 5689043639057447133, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _timeOffset
       value: 0.17
@@ -764,7 +732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7085496114356204942, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _speed
-      value: 0.636
+      value: 0.291
       objectReference: {fileID: 0}
     - target: {fileID: 7085496114356204942, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _timeOffset
@@ -834,13 +802,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9168465381805928781, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: _speed
-      value: 0.486
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6352150311021524143, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+    - {fileID: 8394259748204833806, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2049147101528859463, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       insertIndex: -1
