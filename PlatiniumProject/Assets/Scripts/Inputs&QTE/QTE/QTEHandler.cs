@@ -48,7 +48,7 @@ public class QTEHandler : MonoBehaviour
         _timingable = Globals.BeatManager;
         _checkInputThisBeat = new CheckHasInputThisBeat(_timingable);
         yield return new WaitUntil(() => Players.PlayersController[(int)_role] != null);
-        _playerController = Players.PlayersController[(int)_role];        _inputsQTE = new List<InputClass>();    }
+        _playerController = Players.PlayersController[(int)_role];        _inputsQTE = new List<InputClass>();        CreateListInputsListened();    }
     #region QTEable
     public void RegisterQTEable(IQTEable QTEable)
     {

@@ -12,20 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221e7a1d53d37874394b67d10fe9257d, type: 3}
   m_Name: DiscoMom
   m_EditorClassIdentifier: 
-  selectedAnimationType: 0
+  selectedAnimationType: 5
   animationsList:
   - animationSprites:
-    - {fileID: 21300000, guid: cbbc6a0f2c9716c4995ae2042887788b, type: 3}
+    - {fileID: 21300000, guid: 4f2d3072572a60d4d9a19ed15e7d9f7b, type: 3}
+    - {fileID: 21300000, guid: c6374f78196ed0a4eb599fbf54b88a8f, type: 3}
     _animationType: 1
   - animationSprites:
-    - {fileID: 21300000, guid: 9fc0fb30fb8691b41a101f3c4f0b6f63, type: 3}
-    - {fileID: 21300000, guid: 07d8596018c55e449935c4355c4a4de4, type: 3}
-    - {fileID: 21300000, guid: c098c1b6b97327d42a969d541b11bc06, type: 3}
-    - {fileID: 21300000, guid: 98e9461f6d9361646b887924ac2e1d48, type: 3}
-    - {fileID: 21300000, guid: 712b5051db248534995f347c2f9dce19, type: 3}
-    - {fileID: 21300000, guid: 9fc0fb30fb8691b41a101f3c4f0b6f63, type: 3}
+    - {fileID: 21300000, guid: 740229aefd9e90d4a9140d95193ec256, type: 3}
+    - {fileID: 21300000, guid: e32d6a9c1f7ff6d40b927eb6aee85a9a, type: 3}
     _animationType: 2
   - animationSprites:
-    - {fileID: 21300000, guid: cbbc6a0f2c9716c4995ae2042887788b, type: 3}
+    - {fileID: 21300000, guid: cbd3d1f2b7d602e4b91d5ea39af4eec8, type: 3}
+    - {fileID: 21300000, guid: 0db26075283ae7d48adbddbd9b06bfc2, type: 3}
+    - {fileID: 21300000, guid: 4894e7c1580acce409088e9c6825fba2, type: 3}
+    - {fileID: 21300000, guid: 1cd1b5b93e874e94cbeef6321857276c, type: 3}
     _animationType: 0
+  - animationSprites:
+    - {fileID: 21300000, guid: 0ecaab9599551344b9405e4b8453c936, type: 3}
+    _animationType: 5
   animBpm: 90
