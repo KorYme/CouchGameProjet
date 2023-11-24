@@ -26,7 +26,6 @@ public class SlotInformation : MonoBehaviour
         get => _isEnlighted; 
         set
         {
-            Debug.Log(value);
             _isEnlighted = value;
             _fireLight?.SetActive(value);
         }
