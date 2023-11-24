@@ -41,14 +41,28 @@ public class PlayerInputsAssigner : MonoBehaviour {
     private static PlayerInputsAssigner instance;
     int indexRoleKB = 0;
 
-    public static Rewired.Player GetRewiredPlayer(int gamePlayerId) {
+    public static Rewired.Player GetRewiredPlayerByRole(int role) {
         if(!Rewired.ReInput.isReady) return null;
         if(instance == null) {
             Debug.LogError("Not initialized.");
             return null;
         }
         for(int i = 0; i < instance.playerMap.Count; i++) {
-            if(((int)instance.playerMap[i].role) == gamePlayerId) return ReInput.players.GetPlayer(instance.playerMap[i].rewiredPlayerId);
+            if(((int)instance.playerMap[i].role) == role) return ReInput.players.GetPlayer(instance.playerMap[i].rewiredPlayerId);
+        }
+        return null;
+    }
+    public static Rewired.Player GetRewiredPlayerById(int playerId)
+    {
+        if (!Rewired.ReInput.isReady) return null;
+        if (instance == null)
+        {
+            Debug.LogError("Not initialized.");
+            return null;
+        }
+        for (int i = 0; i < instance.playerMap.Count; i++)
+        {
+            if ((instance.playerMap[i].gamePlayerId) == playerId) return ReInput.players.GetPlayer(instance.playerMap[i].rewiredPlayerId);
         }
         return null;
     }
