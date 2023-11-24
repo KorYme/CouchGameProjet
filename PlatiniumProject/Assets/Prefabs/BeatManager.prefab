@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 154433516714874544}
-  - component: {fileID: 5587659796852208841}
   - component: {fileID: 2475575777112969248}
   - component: {fileID: 1020801392736537925}
   - component: {fileID: 3001707074899246954}
@@ -35,31 +34,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5587659796852208841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2994801982979645308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e66dced33b46024186ec14eb3a728c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InitializationSettings: {fileID: 11400000, guid: 62be05d2322bd6745a83acea4592a46a, type: 2}
-  basePath: 
-  language: 
-  defaultPoolSize: 0
-  lowerPoolSize: 0
-  streamingPoolSize: 0
-  memoryCutoffThreshold: 0
-  monitorPoolSize: 0
-  monitorQueuePoolSize: 0
-  callbackManagerBufferSize: 0
-  spatialAudioPoolSize: 0
-  maxSoundPropagationDepth: 0
-  engineLogging: 0
 --- !u!114 &2475575777112969248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,20 +70,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e573ed85ee043f4989ff9b486aa2aad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _beatWwiseEvent:
-  - idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: e1ef30e0388fba047aa4874e3b7338a1, type: 2}
-  - idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: c22cd34a7118d6544a37279f46b72383, type: 2}
-  - idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 41dfb6b1e975a79488eb2986c27ae82e, type: 2}
-  - idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: d1807f620afa38e438e6b10419d18610, type: 2}
-  _musicIndex: 1
+  _allWwiseEvents: {fileID: 11400000, guid: cf58975faf770dd4cbcef333a05f99a6, type: 2}
+  _musicIndex: 3
   _timingBeforeBeat: 0.1
   _timingAfterBeat: 0.3
   _onBeatEvent:
@@ -134,3 +96,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputDeadZone: 0.8
+  _text: {fileID: 0}
+  _dropSuccess: {fileID: 0}

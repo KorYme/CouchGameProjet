@@ -4,6 +4,10 @@ using UnityEngine;
 
 public static class Globals
 {
-    public static ITimingable BeatTimer = null;
-    public static DropController DropController = null;
+    public static ITimingable BeatManager = null;
+    public static DropManager DropManager = null;
+    public static SpawnManager SpawnManager = null;
+    public static PriestCalculator PriestCalculator = null;
+    public static ExitPoints ExitPoints = null;
+    public static CameraProfileManager CameraProfileManager = null;
 }

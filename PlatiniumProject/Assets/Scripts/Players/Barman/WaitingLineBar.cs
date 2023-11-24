@@ -5,24 +5,33 @@ using UnityEngine;
 public class WaitingLineBar : MonoBehaviour,IQTEable
 {
     [SerializeField] QTEHandler _qteHandler;
-
-    [SerializeField] TextMeshProUGUI _indexText;
-    List<CharacterStateMachine> _waitingCharactersList;
+    List<CharacterStateMachine> _waitingCharactersList; // Convert to queue
+    private DjUsher _djUsher;
+    private PriestCalculator _priestCalculator;
+    BarmanQTEController _barmanController;
+    [SerializeField] int _maxPlaces = 10;
+    Vector3 Direction => Vector3.down;
+    Vector3 Offset => Direction * 2.5f;
 
     public int NbCharactersWaiting { get => _waitingCharactersList.Count; }
     public bool IsInPause = true;
+    public bool IsFull => _waitingCharactersList == null ? true : _waitingCharactersList.Count >= _maxPlaces;
 
     private void Awake()
     {
+        _djUsher = FindObjectOfType<DjUsher>();
+        _priestCalculator = FindObjectOfType<PriestCalculator>();
+        _barmanController = FindObjectOfType<BarmanQTEController>();
         _waitingCharactersList = new List<CharacterStateMachine>();
-    }
-
-    private void Start()
-    {
         if (_qteHandler != null)
         {
             _qteHandler.RegisterQTEable(this);
         }
+    }
+
+    private void Start()
+    {
+        _djUsher.SetNextSlot();
     }
 
     private void OnDestroy()
@@ -32,30 +41,36 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             _qteHandler.UnregisterQTEable(this);
         }
     }
-    private void OnInputCorrect()
+    private void OnInputChange()
     {
-        _indexText.text = _qteHandler.GetQTEString();
+        if (!IsInPause)
+        {
+            _barmanController.ModifyQTE(_qteHandler.GetQTEString());
+        }
+
     }
 
-     void OnDrinkComplete()
+     public void OnDrinkComplete()
     {
-        _indexText.text = string.Empty;
         CharacterStateMachine stateMachine = _waitingCharactersList[0];
         if (stateMachine != null)
         {
-            stateMachine.CurrentSlot = stateMachine.AreaManager.DjBoard.GetRandomAvailableSlot();
+            stateMachine.CurrentSlot = _djUsher.NextSlot;
             stateMachine.MoveToLocation = stateMachine.CurrentSlot.transform.position;
-            
             stateMachine.NextState = stateMachine.DancingState;
             stateMachine.ChangeState(stateMachine.MoveToState);
 
+            if (stateMachine.TypeData.Evilness == Evilness.EVIL)
+            {
+                _priestCalculator.PriestOnDanceFloor(stateMachine);
+            }
         }
         GetNextCharacter();
+        _djUsher.SetNextSlot();
     }
 
      public void OnFailDrink()
      {
-         _indexText.text = _qteHandler.GetQTEString();
          _qteHandler.DeleteCurrentCoroutine();
          GetNextCharacter();
      }
@@ -68,51 +83,52 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
         {
             if (IsInPause)
             {
-                _qteHandler.StoreNewQTE();
+                _qteHandler.StoreNewQTE(_waitingCharactersList[0].TypeData);
             }
             else
             {
-                _qteHandler.StartNewQTE();
+                _qteHandler.StartNewQTE(_waitingCharactersList[0].TypeData);
             }
             for (int i = 0;i < _waitingCharactersList.Count; i++)
             {
-                _waitingCharactersList[i].CharacterMove.MoveTo(transform.position + Vector3.left * (i + 1));
+                _waitingCharactersList[i].CharacterMove.MoveTo(transform.position + Direction * (i + 1) + Offset);
             }
             UpdatePositions();
             _waitingCharactersList[0].ChangeState(_waitingCharactersList[0].BarManAtBar);
+        } else if (!IsInPause)
+        {
+            _barmanController.EndQTE(_qteHandler.GetQTEString());
         }
-        _indexText.text = _qteHandler.GetQTEString();
     }
 
     void UpdatePositions()
     {
         for (int i = 0; i < _waitingCharactersList.Count; i++)
         {
-            _waitingCharactersList[i].CharacterMove.MoveTo(transform.position + Vector3.left * (i + 1));
+            _waitingCharactersList[i].CharacterMove.MoveTo(transform.position + Direction * (i + 1) + Offset);
         }
     }
     public void AddToWaitingLine(CharacterStateMachine character)
     {
-        character.CharacterMove.MoveTo(transform.position + Vector3.left * (_waitingCharactersList.Count + 1));
+        character.CharacterMove.MoveTo(transform.position + Offset + Direction * (_waitingCharactersList.Count + 1));
         if (_waitingCharactersList.Count == 0) //If first person in line
         {
             if (IsInPause)
             {
-                _qteHandler.StoreNewQTE();
+                _qteHandler.StoreNewQTE(character.TypeData);
             }
             else
             {
-                _qteHandler.StartNewQTE();
+                _qteHandler.StartNewQTE(character.TypeData);
             }
             character.ChangeState(character.BarManAtBar);
         }
         _waitingCharactersList.Add(character);
-        _indexText.text = _qteHandler.GetQTEString();
     }
 
-    void IQTEable.OnQTEStarted(QTESequence sequence)
+    void IQTEable.OnQTEStarted()
     {
-        _indexText.text = _qteHandler.GetQTEString();
+        _barmanController.StartQTE(_qteHandler.GetQTEString());
     }
 
     void IQTEable.OnQTEComplete()
@@ -122,7 +138,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
 
     void IQTEable.OnQTECorrectInput()
     {
-        OnInputCorrect();
+        OnInputChange();
     }
 
     public void PauseQTE(bool value) {
@@ -131,5 +147,10 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
         {
             _qteHandler.PauseQTE(value);
         }
+    }
+
+    public void OnQTEWrongInput()
+    {
+        OnInputChange();
     }
 }

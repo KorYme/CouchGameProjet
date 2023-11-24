@@ -8,6 +8,8 @@ public abstract class CharacterState
 {
     public CharacterStateMachine StateMachine {get; private set; }
 
+    public bool CanLetMeMove => Globals.DropManager.CanYouLetMeMove;
+
     public virtual void InitState(CharacterStateMachine sm)
     {
         StateMachine = sm;
@@ -21,8 +23,8 @@ public abstract class CharacterState
     public virtual void ExitState(){}
     public virtual void OnBeat()
     {
-        //StateMachine.gameObject.transform.DOShakeScale(.15f, 1.25f).SetEase(Ease.InOutBounce)
-            //.SetLoops(2, LoopType.Yoyo).OnComplete(() => StateMachine.gameObject.transform.localScale = Vector3.one);
+        if(!CanLetMeMove)
+            return;
         
         StateMachine.CurrentBeatAmount++;
         if (StateMachine.CurrentBeatAmount >= StateMachine.CharacterDataObject.beatAmountUnitlAction)

@@ -6,21 +6,20 @@ using Random = UnityEngine.Random;
 
 public class CharacterStateIdleTransit : CharacterState
 {
-    List<SlotInformation> availableSlots;
-    
     public override void OnBeat()
     {
         base.OnBeat();
-        StateMachine.SpriteRenderer.sprite = StateMachine.Animation.GetAnimationSprite(CharacterAnimation.ANIMATION_TYPE.IDLE);
+        StateMachine.Animation.SetAnim(ANIMATION_TYPE.IDLE);
     }
 
     public override void BeatAction()
     {
-        if (StateMachine.CurrentSlot == StateMachine.AreaManager.BouncerTransit.Slots[^1] && StateMachine.AreaManager.BouncerBoard.Board[0].Occupant == null && StateMachine.AreaManager.BouncerBoard.Board[0].PlayerOccupant == null)
+        if (StateMachine.CurrentSlot == StateMachine.AreaManager.BouncerTransit.Slots[^1] && StateMachine.AreaManager.BouncerBoard.AreAnyEntryFree())
         {
+            SlotInformation newSlot = StateMachine.AreaManager.BouncerBoard.GetFreeEntrySlot();
             StateMachine.CurrentSlot.Occupant = null;
-            StateMachine.MoveToLocation = StateMachine.AreaManager.BouncerBoard.Board[0].transform.position;
-            StateMachine.CurrentSlot = StateMachine.AreaManager.BouncerBoard.Board[0];
+            StateMachine.MoveToLocation = newSlot.transform.position;
+            StateMachine.CurrentSlot = newSlot;
             StateMachine.CurrentSlot.Occupant = StateMachine;
             StateMachine.NextState = StateMachine.IdleBouncerState;
 

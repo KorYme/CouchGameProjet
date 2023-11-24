@@ -8,29 +8,39 @@ public abstract class PlayerMovement : EntityMovement
     [Header("Player Movements Parameters")]
     [SerializeField, Range(0f, 1f)] protected float _inputDeadZone = .5f;
 
-    protected abstract PlayerRole _playerRole { get; }
+    protected abstract PlayerRole PlayerRole { get; }
     protected PlayerInputController _playerController;
     protected bool _isInputReset = true;
     protected bool _hasAlreadyMovedThisBeat;
 
     protected CharacterAnimation _animation;
     protected SpriteRenderer _sp;
-
-    private void Awake()
-    {
-    }
-
+    
     protected virtual IEnumerator Start()
     {
+        Globals.BeatManager.OnBeatEvent.AddListener(OnBeat);
         _sp = GetComponentInChildren<SpriteRenderer>();
         _animation = GetComponent<CharacterAnimation>();
         OnMove += AnimationSetter;
-        yield return new WaitUntil(() => Players.PlayersController[(int)_playerRole] != null);
-        _playerController = Players.PlayersController[(int)_playerRole];
+        yield return new WaitUntil(() => Players.PlayersController[(int)PlayerRole] != null);
+        _playerController = Players.PlayersController[(int)PlayerRole];
         _playerController.LeftJoystick.OnInputChange += CheckJoystickValue;
         _timingable.OnBeatStartEvent.AddListener(AllowNewMovement);
+        
     }
 
+    private void MoveEnded()
+    {
+        _sp.sprite = _animation.CharacterAnimationObject.Animations[ANIMATION_TYPE.MOVE].GetLastFrame();
+    }
+    protected virtual void OnBeat()
+    {
+        if (!IsMoving)
+        {
+            _sp.sprite = _animation.GetAnimationSprite(ANIMATION_TYPE.IDLE);
+        }
+    }
+    
     protected virtual void OnDestroy()
     {
         OnMove -= AnimationSetter;
@@ -38,7 +48,7 @@ public abstract class PlayerMovement : EntityMovement
         {
             _playerController.LeftJoystick.OnInputChange -= CheckJoystickValue;
             _timingable.OnBeatStartEvent.RemoveListener(AllowNewMovement);
-        }
+        }Globals.BeatManager.OnBeatEvent.RemoveListener(OnBeat);
     }
 
     protected abstract void OnInputMove(Vector2 vector);
@@ -48,7 +58,8 @@ public abstract class PlayerMovement : EntityMovement
     public bool MoveTo(Vector3 position)
     {
         if (_hasAlreadyMovedThisBeat || !_timingable.IsInsideBeatWindow) return false;
-        if (MoveToPosition(position, _animation.CharacterAnimationObject.walkAnimation.AnimationLenght))
+
+        if (MoveToPosition(position, _animation.CharacterAnimationObject.Animations[ANIMATION_TYPE.MOVE].AnimationLenght))
         {
             _hasAlreadyMovedThisBeat = true;
             return true;
@@ -58,7 +69,7 @@ public abstract class PlayerMovement : EntityMovement
     
     private void AnimationSetter()
     {
-        _sp.sprite = _animation.GetAnimationSprite(CharacterAnimation.ANIMATION_TYPE.MOVING);
+        _sp.sprite = _animation.GetAnimationSprite(ANIMATION_TYPE.MOVE);
     }
     
     protected virtual void CheckJoystickValue()

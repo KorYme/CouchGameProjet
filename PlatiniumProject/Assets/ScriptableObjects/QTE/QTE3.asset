@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8333e8bf53b1c2409b30abd1787e784, type: 3}
   m_Name: QTE3
   m_EditorClassIdentifier: 
-  Index: 3
+  Index: 6
   PlayerRole: 1
   SequenceType: 0
-  ClientType: 0
+  ClientType: 2
   Evilness: 0
   QTELevel: 1
   Status: 0
+  LongInputType: 0
   DurationHold: 1
   ListSubHandlers:
-  - {fileID: 11400000, guid: ec38dedc05f1eb84aa704779eed2eb80, type: 2}
+  - {fileID: 11400000, guid: 75a9451ea46dfff46ac81ffa179458ff, type: 2}

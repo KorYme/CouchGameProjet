@@ -10,7 +10,7 @@ public class BarmanMovement : PlayerMovement
     int _indexPosition;
     public int IndexPosition { get => _indexPosition;}
 
-    protected override PlayerRole _playerRole => PlayerRole.Barman;
+    protected override PlayerRole PlayerRole => PlayerRole.Barman;
 
     private void Awake()
     {
@@ -65,7 +65,7 @@ public class BarmanMovement : PlayerMovement
 
     protected override void OnInputMove(Vector2 vector)
     {
-        ChangeIndexToReach(vector.y);
+        ChangeIndexToReach(vector.x);
     }
 
     void ActivateCurrentQTE()

@@ -13,7 +13,6 @@ public class InputBool : InputClass
     }
 
     public bool InputValue { get; private set; }
-    public bool IsJustPressed { get; private set; }
     public bool IsJustUnpressed { get; private set; }
 
     public override bool IsPerformed => InputValue;

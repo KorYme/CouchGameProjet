@@ -25,21 +25,29 @@ public class InputFloat : InputClass
         }
     }
 
+    public float DeltaValue { get; private set; }
+    public bool IsMoving => DeltaValue != 0f;
+
     public override void InputCallback(InputActionEventData data)
     {
         InputDuration = data.GetAxisTimeActive();
+        DeltaValue = data.GetAxisDelta();
+        IsJustPressed = false;
         float tmp = data.GetAxis();
         if (!IsPerformed && tmp != 0f)
         {
             InputValue = tmp;
             OnInputStart?.Invoke();
+            IsJustPressed = true;
         } else if (IsPerformed && tmp == 0f)
         {
             InputValue = tmp;
             OnInputEnd?.Invoke();
+            IsJustPressed = false;
         } else
         {
             InputValue = tmp;
+            IsJustPressed = false;
         }
     }
 

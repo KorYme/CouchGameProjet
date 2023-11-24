@@ -1,17 +1,15 @@
 using System;
+using System.Data;
 using UnityEngine;
 
 public class CharacterAnimation : MonoBehaviour
 {
-    public enum ANIMATION_TYPE
-    {
-        DANCING,
-        IDLE,
-        MOVING,
-    }
     [SerializeField] private CharacterAnimationObject _characterAnimationData;
+    [SerializeField] private SpriteRenderer _sp;
+    private ANIMATION_TYPE _lastAnimationType;
     private int _animationIndex;
-    private ANIMATION_TYPE lastAnimationType;
+
+    public SpriteRenderer SpriteRenderer => _sp;
 
     public CharacterAnimationObject CharacterAnimationObject
     {
@@ -19,6 +17,10 @@ public class CharacterAnimation : MonoBehaviour
         set { if(value != null) _characterAnimationData = value; }
     }
 
+    private void Awake()
+    {
+        _characterAnimationData?.Init();
+    }
 
     public void ResetAnimation()
     {
@@ -26,35 +28,27 @@ public class CharacterAnimation : MonoBehaviour
     }
     public Sprite GetAnimationSprite(ANIMATION_TYPE animation)
     {
-        if (animation != lastAnimationType)
+        if (animation != _lastAnimationType)
         {
             _animationIndex = 0;
-            lastAnimationType = animation;
+            _lastAnimationType = animation;
+        }
+        
+        if (!_characterAnimationData.Animations.ContainsKey(animation))
+        {
+            throw new DataException($"There is no animation of type {animation} in {gameObject.name}");
         }
 
-        Sprite result;
-        switch (animation)
-        {
-            case ANIMATION_TYPE.DANCING:
-                result = _characterAnimationData.dancingAnimation.GetNextAnimationSprite(ref _animationIndex);
-                if(result == null)
-                    throw new ArgumentOutOfRangeException("there is no sprite for animation");
-                return result;
-                break;
-            case ANIMATION_TYPE.IDLE:
-                result = _characterAnimationData.idleAnimation.GetNextAnimationSprite(ref _animationIndex);
-                if(result == null)
-                    throw new ArgumentOutOfRangeException("there is no sprite for animation");
-                return result;
-                break;
-            case ANIMATION_TYPE.MOVING:
-                result = _characterAnimationData.walkAnimation.GetNextAnimationSprite(ref _animationIndex);
-                if(result == null)
-                    throw new ArgumentOutOfRangeException("there is no sprite for animation");
-                return result;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(animation), animation, null);
-        }
+        Sprite result = _characterAnimationData.Animations[animation].GetNextAnimationSprite(ref _animationIndex);
+        if (result == null)
+            throw new ArgumentOutOfRangeException("there is no sprite for animation");
+        return result;
+    }
+
+    public void SetAnim(ANIMATION_TYPE type)
+    {
+        if(!Globals.DropManager.CanYouLetMeMove)
+            return;
+        _sp.sprite = GetAnimationSprite(type);
     }
 }

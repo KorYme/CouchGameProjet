@@ -20,14 +20,22 @@ public class TestBeat : MonoBehaviour
     private void Start()
     {
         _lastBeatTiming = DateTime.Now;
-        _beatManager = Globals.BeatTimer as BeatManager;
+        _beatManager = Globals.BeatManager as BeatManager;
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log(_beatManager.BeatDeltaTime);
+            double deltaTime = _beatManager.BeatDeltaTime;
+            if (deltaTime < _beatManager.BeatDurationInMilliseconds / 2f)
+            {
+                Debug.Log($"Input at {deltaTime}");
+            }
+            else
+            {
+                Debug.Log($"Input at {deltaTime - _beatManager.BeatDurationInMilliseconds}");
+            }
             if (_beatManager.IsInsideBeatWindow)
             {
                 StartCoroutine(ChangeColorOnBeat());

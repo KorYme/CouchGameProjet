@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,8 +10,8 @@ public class BeatManager : MonoBehaviour, ITimingable
 {
     #region FIELDS
     [Header("References"), Space]
-    [SerializeField, Tooltip("Wwise play event to launch the sound and the beat\nDon't need to be modified by GDs"), Space] 
-    List<AK.Wwise.Event> _beatWwiseEvent;
+    [SerializeField]
+    AllWwiseEvents _allWwiseEvents;
 
     [SerializeField, Range(0,3)]
     int _musicIndex;
@@ -31,7 +32,7 @@ public class BeatManager : MonoBehaviour, ITimingable
     [SerializeField, Tooltip("This event is called on the first frame an input cannot be received anymore")] 
     UnityEvent _onBeatEndEvent;
 
-    int _beatDurationInMilliseconds;
+    int _beatDurationInMilliseconds = 0;
     DateTime _lastBeatTime;
     Coroutine _beatCoroutine;
 
@@ -58,13 +59,21 @@ public class BeatManager : MonoBehaviour, ITimingable
     #region PROCEDURES
     private void Awake()
     {
-        if (Globals.BeatTimer != null)
+        if (Globals.BeatManager != null)
         {
             Destroy(gameObject);
             return;
         }
-        Globals.BeatTimer = this;
+        Globals.BeatManager = this;
     }
+
+    #if UNITY_EDITOR
+    private void Reset()
+    {
+        _allWwiseEvents = (AllWwiseEvents)AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/WwiseEvents/WwiseEvents.asset", typeof(AllWwiseEvents));
+    }
+        
+    #endif
 
     private IEnumerator Start()
     {
@@ -85,7 +94,7 @@ public class BeatManager : MonoBehaviour, ITimingable
             OnNextBeatEnd = null;
         });
         yield return null;
-        _beatWwiseEvent[_musicIndex].Post(gameObject, (uint)AkCallbackType.AK_MusicSyncGrid | (uint)AkCallbackType.AK_MusicSyncUserCue, BeatCallBack);
+        _allWwiseEvents.AllMusicEvents[_musicIndex]?.Post(gameObject, (uint)AkCallbackType.AK_MusicSyncGrid | (uint)AkCallbackType.AK_MusicSyncUserCue, BeatCallBack);
     }
 
     private void OnDestroy()
@@ -104,6 +113,7 @@ public class BeatManager : MonoBehaviour, ITimingable
         switch (in_type)
         { 
             case AkCallbackType.AK_MusicSyncGrid:
+                
                 _beatCoroutine ??= StartCoroutine(BeatCoroutine());
                 _lastBeatTime = DateTime.Now;
                 _beatDurationInMilliseconds = (int)((info?.segmentInfo_fGridDuration ?? 1) * 1000);

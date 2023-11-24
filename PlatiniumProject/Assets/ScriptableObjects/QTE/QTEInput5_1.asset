@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: 1
   ActionIndex: 3
-  IsInputPositive: 1
+  UseforShake: 0
+  PositiveValue: 1
