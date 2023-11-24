@@ -38,31 +38,31 @@ public class PlayerInputsAssigner : MonoBehaviour {
     [SerializeField] PlayerRole[] _playerRoles = new PlayerRole[MAXPLAYERS];
     [SerializeField] bool _characterSelectionInGame = false;
 
-    private static PlayerInputsAssigner instance;
+    private static PlayerInputsAssigner _instance;
     int indexRoleKB = 0;
 
     public static Rewired.Player GetRewiredPlayerByRole(int role) {
         if(!Rewired.ReInput.isReady) return null;
-        if(instance == null) {
+        if(_instance == null) {
             Debug.LogError("Not initialized.");
             return null;
         }
-        for(int i = 0; i < instance.playerMap.Count; i++) {
-            if(((int)instance.playerMap[i].role) == role) return ReInput.players.GetPlayer(instance.playerMap[i].rewiredPlayerId);
+        for(int i = 0; i < _instance.playerMap.Count; i++) {
+            if(((int)_instance.playerMap[i].role) == role) return ReInput.players.GetPlayer(_instance.playerMap[i].rewiredPlayerId);
         }
         return null;
     }
     public static Rewired.Player GetRewiredPlayerById(int playerId)
     {
         if (!Rewired.ReInput.isReady) return null;
-        if (instance == null)
+        if (_instance == null)
         {
             Debug.LogError("Not initialized.");
             return null;
         }
-        for (int i = 0; i < instance.playerMap.Count; i++)
+        for (int i = 0; i < _instance.playerMap.Count; i++)
         {
-            if ((instance.playerMap[i].gamePlayerId) == playerId) return ReInput.players.GetPlayer(instance.playerMap[i].rewiredPlayerId);
+            if (_instance.playerMap[i].gamePlayerId == playerId) return ReInput.players.GetPlayer(_instance.playerMap[i].rewiredPlayerId);
         }
         return null;
     }
@@ -70,16 +70,16 @@ public class PlayerInputsAssigner : MonoBehaviour {
     public static PlayerRole GetRolePlayer(int gamePlayerId)
     {
         if (!Rewired.ReInput.isReady) return PlayerRole.None;
-        if (instance == null)
+        if (_instance == null)
         {
             Debug.LogError("Not initialized.");
             return PlayerRole.None;
         }
-        for (int i = 0; i < instance.playerMap.Count; i++)
+        for (int i = 0; i < _instance.playerMap.Count; i++)
         {
-            if (instance.playerMap[i].gamePlayerId == gamePlayerId)
+            if (_instance.playerMap[i].gamePlayerId == gamePlayerId)
             {
-                return instance.playerMap[i].role;
+                return _instance.playerMap[i].role;
             }
         }
         return PlayerRole.None;
@@ -90,7 +90,7 @@ public class PlayerInputsAssigner : MonoBehaviour {
 
     void Awake() {
         playerMap = new List<PlayerMap>();
-        instance = this;
+        _instance = this;
     }
     void Update() {
 
