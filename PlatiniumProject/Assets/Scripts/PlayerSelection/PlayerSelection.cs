@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSelection : MonoBehaviour
 {
     Rewired.Player _player;
-    public int PlayerId { get; set; }
+    public int PlayerId { get; set; } = 0;
     [SerializeField] float _repeatDelay = 0.2f;
     int _lastDirection = 0;
     bool _canMove = true;
@@ -35,26 +35,34 @@ public class PlayerSelection : MonoBehaviour
     {
         if (_player.GetButtonDown(RewiredConsts.Action.ACCEPT))
         {
+            Debug.Log("ACCEPT");
             OnAccept?.Invoke(PlayerId);
         }
         if (_player.GetButtonDown(RewiredConsts.Action.RETURN))
         {
+            Debug.Log("RETURN");
             OnAccept?.Invoke(PlayerId);
         }
         if (_player.GetAxis(RewiredConsts.Action.MOVEMENU) != 0f)
         {
+            int direction = _player.GetAxis(RewiredConsts.Action.MOVEMENU) > 0f ? 1 : -1;
             if (_repeatDelay > 0f) {
+                
                 if (_canMove)
                 {
-                    float direction = _player.GetAxis(RewiredConsts.Action.MOVEMENU);
                     CallOnMoveMenu(direction);
+                    _lastDirection = direction ;
                     _routineWaitMoveMenu = StartCoroutine(RoutineMoveMenu());
-                } else
+                } else if (_lastDirection != direction)
                 {
+                    StopCoroutine(_routineWaitMoveMenu);
+                    CallOnMoveMenu(direction);
+                    _lastDirection = direction;
+                    _routineWaitMoveMenu = StartCoroutine(RoutineMoveMenu());
                 }
             } else
             {
-                CallOnMoveMenu(_player.GetAxis(RewiredConsts.Action.MOVEMENU));
+                CallOnMoveMenu(direction);
             }
         }
     }
@@ -63,17 +71,20 @@ public class PlayerSelection : MonoBehaviour
     {
         _canMove = false;
         yield return new WaitForSeconds(_repeatDelay);
+        _lastDirection = 0;
         _canMove = true;
     } 
 
-    private void CallOnMoveMenu(float direction)
+    private void CallOnMoveMenu(int direction)
     {
-        if (direction > 0f)
+        if (direction > 0)
         {
+            Debug.Log("RIGHT");
             OnRightInput?.Invoke(PlayerId);
         }
         else
         {
+            Debug.Log("LEFT");
             OnLeftInput?.Invoke(PlayerId);
         }
     }

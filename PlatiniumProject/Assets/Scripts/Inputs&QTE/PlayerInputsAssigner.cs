@@ -146,7 +146,8 @@ public class PlayerInputsAssigner : MonoBehaviour {
         // Enable UI control for this Player now that he has joined
         if (_characterSelectionInGame)
         {
-            rewiredPlayer.controllers.maps.SetMapsEnabled(true, RewiredConsts.Category.UI);
+
+            Debug.Log($"nb map changed { rewiredPlayer.controllers.maps.SetMapsEnabled(true, RewiredConsts.Category.UI)}");
         } else
         {
             rewiredPlayer.controllers.maps.SetMapsEnabled(true, "Default", "Default");
