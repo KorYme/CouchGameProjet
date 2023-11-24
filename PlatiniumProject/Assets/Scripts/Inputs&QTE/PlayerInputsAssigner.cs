@@ -90,8 +90,14 @@ public class PlayerInputsAssigner : MonoBehaviour {
 
     void Awake() {
         playerMap = new List<PlayerMap>();
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         instance = this;
     }
+
     void Update() {
 
         // Watch for JoinGame action in each Player

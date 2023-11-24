@@ -9,6 +9,8 @@ public class PlayerSelectionManager : MonoBehaviour
 
     private IEnumerator Start()
     {
+        yield return null;
+        
         
     }
 }
