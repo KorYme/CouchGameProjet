@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{BFC0B761-B0B9-4376-9727-9EFA9FAE32B2}" SchemaVersion="110" RootDocumentID="{C7CEF3A6-1C3C-48A0-AEBD-F4C120A62D79}" ParentDocumentID="{C7CEF3A6-1C3C-48A0-AEBD-F4C120A62D79}">
+	<AudioObjects>
+		<WorkUnit Name="Character" ID="{BFC0B761-B0B9-4376-9727-9EFA9FAE32B2}" OwnerID="{C7CEF3A6-1C3C-48A0-AEBD-F4C120A62D79}" PersistMode="Nested">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="10"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<ActorMixer Name="Character" ID="{D83836E8-A395-43E4-9287-F35DF63E81F1}" ShortID="364509705">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<ActorMixer Name="Videur" ID="{8ED7C25E-C28C-4BB2-852F-5FF2A4EEA588}" ShortID="689443996">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<RandomSequenceContainer Name="BouncerDecline" ID="{8C0A12E0-010F-4268-B6D3-AB16EC9C9FC3}" ShortID="393361078">
+									<PropertyList>
+										<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+										<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+										</Reference>
+									</ReferenceList>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="BouncerSuccess" ID="{94C1DA55-071E-497C-89AB-A48729C0A0F8}" ShortID="1045164837">
+									<PropertyList>
+										<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+										<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+										</Reference>
+									</ReferenceList>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="BouncerFail" ID="{DA3BB081-976E-45FA-9121-A73234451310}" ShortID="6038108">
+									<PropertyList>
+										<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+										<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+										</Reference>
+									</ReferenceList>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="BouncerCheck" ID="{5F98729E-0A59-4110-AAEE-2C2337A51156}" ShortID="680680796">
+									<PropertyList>
+										<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+										<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+										</Reference>
+									</ReferenceList>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="BouncerAccept" ID="{56C9C631-28F7-4862-AC65-AD0ED784E121}" ShortID="919876244">
+									<PropertyList>
+										<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+										<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+										</Reference>
+									</ReferenceList>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="BouncerMovement" ID="{F1A009F9-A1B8-42E4-BBDA-9774D29ED034}" ShortID="977650064">
+									<PropertyList>
+										<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+										<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+										</Reference>
+									</ReferenceList>
+								</RandomSequenceContainer>
+							</ChildrenList>
+						</ActorMixer>
+						<ActorMixer Name="DJ" ID="{2696A971-644D-4D2A-BC48-9DE986D36935}" ShortID="924292243">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<RandomSequenceContainer Name="DJSuccess" ID="{908225CC-D547-4345-81C4-CC6B89993C2E}" ShortID="702932244">
+									<PropertyList>
+										<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+										<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+										</Reference>
+									</ReferenceList>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="DJFail" ID="{539A49D4-91EE-4EDB-9495-9190B20B8F42}" ShortID="724144232">
+									<PropertyList>
+										<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+										<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+										</Reference>
+									</ReferenceList>
+								</RandomSequenceContainer>
+							</ChildrenList>
+						</ActorMixer>
+						<ActorMixer Name="Barman" ID="{E420425B-2363-4054-BD05-4475D7CD936D}" ShortID="708319365">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<RandomSequenceContainer Name="BarmanSuccess" ID="{B4982227-9056-4035-B16C-57D6C9187303}" ShortID="210689237">
+									<PropertyList>
+										<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+										<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+										</Reference>
+									</ReferenceList>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="BarmanFail" ID="{94DDC8A0-E851-4C93-AAB1-09A522354BAB}" ShortID="164293273">
+									<PropertyList>
+										<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+										<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="CHAR_Barman_QTE_Fail_1" ID="{A48C694D-0108-4F16-BA05-786BD65F010E}" ShortID="429657599">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="CHAR_Barman_QTE_Fail_1" ID="{D6FA8809-64EE-4F6B-832D-BC43C611F748}">
+													<Language>SFX</Language>
+													<AudioFile>CHAR_Barman_QTE_Fail_1.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="951572609"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="CHAR_Barman_QTE_Fail_1" ID="{D6FA8809-64EE-4F6B-832D-BC43C611F748}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="CHAR_Barman_QTE_Fail_2" ID="{D55465E0-63DB-408C-B067-B5CC188BAC63}" ShortID="811370069">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="CHAR_Barman_QTE_Fail_2" ID="{B58C2448-3B52-464F-A7D5-4D24036D336F}">
+													<Language>SFX</Language>
+													<AudioFile>CHAR_Barman_QTE_Fail_2.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="708415869"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="CHAR_Barman_QTE_Fail_2" ID="{B58C2448-3B52-464F-A7D5-4D24036D336F}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="CHAR_Barman_QTE_Fail_3" ID="{135BFA02-393D-4BDC-AB7E-5BD5EE11C524}" ShortID="802522665">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="CHAR_Barman_QTE_Fail_3" ID="{BF2C8D83-E953-4271-A188-79F786D0C03A}">
+													<Language>SFX</Language>
+													<AudioFile>CHAR_Barman_QTE_Fail_3.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="90839694"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="CHAR_Barman_QTE_Fail_3" ID="{BF2C8D83-E953-4271-A188-79F786D0C03A}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="CHAR_Barman_QTE_Fail_4" ID="{FE3057ED-B80C-49D3-AC8B-14F774B3D7C8}" ShortID="592969730">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="CHAR_Barman_QTE_Fail_4" ID="{6D32BC6E-0F0C-4049-A909-72D0FFC628B9}">
+													<Language>SFX</Language>
+													<AudioFile>CHAR_Barman_QTE_Fail_4.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="464441156"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="CHAR_Barman_QTE_Fail_4" ID="{6D32BC6E-0F0C-4049-A909-72D0FFC628B9}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="BarmanMovement" ID="{027577B5-501B-44A0-9241-9B84C8483048}" ShortID="1006755350">
+									<PropertyList>
+										<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+										<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+										</Reference>
+									</ReferenceList>
+								</RandomSequenceContainer>
+							</ChildrenList>
+						</ActorMixer>
+					</ChildrenList>
+				</ActorMixer>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>
