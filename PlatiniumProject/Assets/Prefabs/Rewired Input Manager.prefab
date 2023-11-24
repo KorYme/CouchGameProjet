@@ -379,25 +379,25 @@ MonoBehaviour:
     - _id: 0
       _name: Move Horizontal
       _type: 0
-      _descriptiveName: JS L Horizontal
-      _positiveDescriptiveName: JS L Right
-      _negativeDescriptiveName: JS L Left
+      _descriptiveName: Horizontal
+      _positiveDescriptiveName: LS Right
+      _negativeDescriptiveName: LS Left
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 0
     - _id: 1
       _name: Move Vertical
       _type: 0
-      _descriptiveName: JS L Vertical
-      _positiveDescriptiveName: JS L Up
-      _negativeDescriptiveName: JS L Down
+      _descriptiveName: ' Vertical'
+      _positiveDescriptiveName: LS Up
+      _negativeDescriptiveName: LS Down
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 0
     - _id: 2
       _name: Action1
       _type: 1
-      _descriptiveName: ButtonDown
+      _descriptiveName: A
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
@@ -406,7 +406,7 @@ MonoBehaviour:
     - _id: 3
       _name: Action2
       _type: 1
-      _descriptiveName: ButtonLeft
+      _descriptiveName: X
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
@@ -415,7 +415,7 @@ MonoBehaviour:
     - _id: 4
       _name: Action3
       _type: 1
-      _descriptiveName: ButtonRight
+      _descriptiveName: B
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
@@ -424,7 +424,7 @@ MonoBehaviour:
     - _id: 5
       _name: Action4
       _type: 1
-      _descriptiveName: ButtonUp
+      _descriptiveName: Y
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
