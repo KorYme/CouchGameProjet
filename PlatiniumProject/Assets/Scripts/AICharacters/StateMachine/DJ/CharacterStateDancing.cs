@@ -21,11 +21,11 @@ public class CharacterStateDancing : CharacterState
 
     public override void OnBeat()
     {
-        if(Globals.DropManager.CanYouLetMeMove)
+        if(!Globals.DropManager.CanYouLetMeMove)
             return;
         
         StateMachine.Animation.SetAnim(ANIMATION_TYPE.DANCING);
-        if (!StateMachine.CurrentSlot.IsEnlighted)
+        if (!StateMachine.CurrentSlot.IsEnlighted && StateMachine.CharacterTypeData.Evilness == Evilness.GOOD)
         {
             StateMachine.Satisafaction.DecreaseSatisfaction(StateMachine.CharacterDataObject.decrementationValueOnFloor);
         }
