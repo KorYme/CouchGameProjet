@@ -14,6 +14,8 @@ public class AllWwiseEvents : ScriptableObject
     public List<AK.Wwise.Event> AllEvents => _allSFXEvents.Concat(_allMusicEvents).ToList();
 
     public AK.Wwise.Event GetMusicEvent(string str) => _allMusicEvents.FirstOrDefault(music => music.Name == str);
+    public AK.Wwise.Event GetMusicEvent(WwiseEventEnumMusic music) => _allMusicEvents[(int)music];
     public AK.Wwise.Event GetSFXEvent(string str) => _allSFXEvents.FirstOrDefault(sfx => sfx.Name == str);
+    public AK.Wwise.Event GetSFXEvent(WwiseEventEnumSFX sfx) => _allMusicEvents[(int)sfx];
     public AK.Wwise.Event GetAnyEvent(string str) => _allSFXEvents.FirstOrDefault(wwiseEvent => wwiseEvent.Name == str);
 }

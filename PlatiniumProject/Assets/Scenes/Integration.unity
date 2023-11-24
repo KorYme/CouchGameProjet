@@ -5909,7 +5909,7 @@ PrefabInstance:
     - target: {fileID: 4142891071216717307, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _characterAnimationData
       value: 
-      objectReference: {fileID: 11400000, guid: 5c5cf1dc7975bc2488dfaf9c4c3fa4ed, type: 2}
+      objectReference: {fileID: 11400000, guid: ee2af4066ca9acd4bb820c278d11eca3, type: 2}
     - target: {fileID: 4188905237328650670, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -5977,7 +5977,7 @@ PrefabInstance:
     - target: {fileID: 5519420641253564840, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _characterAnimationData
       value: 
-      objectReference: {fileID: 11400000, guid: 5c5cf1dc7975bc2488dfaf9c4c3fa4ed, type: 2}
+      objectReference: {fileID: 11400000, guid: e11d08b6307b32045afe35bf7c7cfaff, type: 2}
     - target: {fileID: 5529876362484771011, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
