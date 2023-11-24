@@ -10,11 +10,8 @@ public class BeatManager : MonoBehaviour, ITimingable
 {
     #region FIELDS
     [Header("References"), Space]
-    [SerializeField]
-    AllWwiseEvents _allWwiseEvents;
-
-    [SerializeField, Range(0,3)]
-    int _musicIndex;
+    [SerializeField] WwiseEventPlayer _wwisePlayer;
+    [SerializeField] WwiseEventEnumMusic _wiseMusic;
 
     [Header("Parameters"), Space]
     [SerializeField, Range(0f, .5f), Tooltip("Timing window before the beat which allows input")]
@@ -67,13 +64,10 @@ public class BeatManager : MonoBehaviour, ITimingable
         Globals.BeatManager = this;
     }
 
-    #if UNITY_EDITOR
     private void Reset()
     {
-        _allWwiseEvents = (AllWwiseEvents)AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/WwiseEvents/WwiseEvents.asset", typeof(AllWwiseEvents));
+        _wwisePlayer = GetComponent<WwiseEventPlayer>();
     }
-        
-    #endif
 
     private IEnumerator Start()
     {
@@ -94,7 +88,7 @@ public class BeatManager : MonoBehaviour, ITimingable
             OnNextBeatEnd = null;
         });
         yield return null;
-        _allWwiseEvents.AllMusicEvents[_musicIndex]?.Post(gameObject, (uint)AkCallbackType.AK_MusicSyncGrid | (uint)AkCallbackType.AK_MusicSyncUserCue, BeatCallBack);
+        _wwisePlayer.GetMusicEvent(_wiseMusic)?.Post(gameObject, (uint)AkCallbackType.AK_MusicSyncGrid | (uint)AkCallbackType.AK_MusicSyncUserCue, BeatCallBack);
     }
 
     private void OnDestroy()

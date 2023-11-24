@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2475575777112969248}
   - component: {fileID: 1020801392736537925}
   - component: {fileID: 3001707074899246954}
+  - component: {fileID: 2176409364034723870}
   m_Layer: 0
   m_Name: BeatManager
   m_TagString: Untagged
@@ -70,8 +71,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e573ed85ee043f4989ff9b486aa2aad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _allWwiseEvents: {fileID: 11400000, guid: cf58975faf770dd4cbcef333a05f99a6, type: 2}
-  _musicIndex: 3
+  _wwisePlayer: {fileID: 2176409364034723870}
+  _wiseMusic: 3
   _timingBeforeBeat: 0.1
   _timingAfterBeat: 0.3
   _onBeatEvent:
@@ -98,3 +99,16 @@ MonoBehaviour:
   _inputDeadZone: 0.8
   _text: {fileID: 0}
   _dropSuccess: {fileID: 0}
+--- !u!114 &2176409364034723870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2994801982979645308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcc46cd70152b9044b919b1d5a390dd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _allWwiseEvents: {fileID: 11400000, guid: cf58975faf770dd4cbcef333a05f99a6, type: 2}

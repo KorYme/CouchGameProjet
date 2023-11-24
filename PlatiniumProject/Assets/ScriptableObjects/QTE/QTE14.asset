@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8333e8bf53b1c2409b30abd1787e784, type: 3}
   m_Name: QTE14
   m_EditorClassIdentifier: 
-  Index: 14
+  Index: 15
   PlayerRole: 0
   SequenceType: 1
   ClientType: 0
@@ -20,7 +20,8 @@ MonoBehaviour:
   QTELevel: 1
   Status: 1
   LongInputType: 0
-  DurationHold: 1
+  DurationHold: 2
   ListSubHandlers:
-  - {fileID: 11400000, guid: f95ebb5158039794abeda21944269619, type: 2}
-  - {fileID: 11400000, guid: db663d1c43eeecf4a9458850702c766f, type: 2}
+  - {fileID: 11400000, guid: 0318bcfcd76cae547af2a6289b42538f, type: 2}
+  - {fileID: 11400000, guid: 934cad22784c7a44083a58aa97a33b62, type: 2}
+  - {fileID: 11400000, guid: 09b757f595c19ab4c894e776b79a9b48, type: 2}
