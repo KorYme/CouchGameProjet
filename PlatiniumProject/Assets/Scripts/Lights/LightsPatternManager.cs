@@ -11,13 +11,12 @@ public class LightsPatternManager : MonoBehaviour
     }
 
     [SerializeField] List<GameObject> _lights =  new List<GameObject>();
-    [SerializeField, Range(1, 50f)] int _beatBeforeChangePattern;
+    [SerializeField, Range(0, 50)] int _beatBeforeChangePattern;
     [Header("Following Dots Pattern")]
-    [SerializeField, Range(1, 9f)] int _followingDots;
+    [SerializeField, Range(1, 9)] int _followingDots;
 
     int _beatCount;
     PATTERN_TYPE _currentState;
-    Coroutine _patternCoroutine;
 
     Dictionary<PATTERN_TYPE, LightsPattern> _allPatterns = new();
     
@@ -35,6 +34,7 @@ public class LightsPatternManager : MonoBehaviour
     private void UpdateValue()
     {
         UpdateLights();
+        if (_beatBeforeChangePattern == 0) return;
         _beatCount++;
         if (_beatCount < _beatBeforeChangePattern) return;
         _beatCount = 0;

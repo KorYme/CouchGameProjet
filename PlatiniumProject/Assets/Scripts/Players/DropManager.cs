@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class DropManager : MonoBehaviour
 {
@@ -107,14 +106,12 @@ public class DropManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Not enough triggers pushed, drop missed");
                     DropState = DROP_STATE.ON_DROP_MISSED;
                 }
                 break;
             case "DropEnd":
                 if (DropState != DROP_STATE.OUT_OF_DROP)
                 {
-                    Debug.Log("Not enough triggers released, drop missed");
                     DropState = DROP_STATE.ON_DROP_MISSED;
                 }
                 break;
@@ -147,7 +144,6 @@ public class DropManager : MonoBehaviour
                 _triggerPressedNumber = _allDropControllers.Sum(x => x.TriggerPressed);
                 if (_triggerPressedNumber == 0)
                 {
-                    Debug.Log("Success Drop");
                     _dropSuccess.SetActive(true);
                     StartCoroutine(SuccessDisplay());
                     DropState = DROP_STATE.OUT_OF_DROP;
