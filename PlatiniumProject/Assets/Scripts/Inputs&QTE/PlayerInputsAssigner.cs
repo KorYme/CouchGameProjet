@@ -63,7 +63,10 @@ public class PlayerInputsAssigner : MonoBehaviour {
         }
         for (int i = 0; i < _instance.playerMap.Count; i++)
         {
-            if (_instance.playerMap[i].gamePlayerId == playerId) return ReInput.players.GetPlayer(_instance.playerMap[i].rewiredPlayerId);
+            if (_instance.playerMap[i].gamePlayerId == playerId)
+            {
+                return ReInput.players.GetPlayer(_instance.playerMap[i].rewiredPlayerId);
+            }
         }
         return null;
     }
@@ -109,16 +112,18 @@ public class PlayerInputsAssigner : MonoBehaviour {
                 if (ReInput.players.GetPlayer(i).GetButtonDown("JoinGame"))
                 {
                     AssignNextPlayer(i);
+                    
                     switch (ReInput.players.GetPlayer(i).controllers.GetLastActiveController().type)
                     {
                         case ControllerType.Joystick:
                             ChangeMapJoystick(i);
+                            OnPlayerJoined?.Invoke();
                             break;
                         case ControllerType.Keyboard:
                             ChangeMapKeyboard(i);
+                            OnPlayerJoined?.Invoke();
                             return;
                     }
-                    OnPlayerJoined?.Invoke();
                 }
             }
         }
@@ -172,8 +177,8 @@ public class PlayerInputsAssigner : MonoBehaviour {
         else
         {
             rewiredPlayer.controllers.maps.SetMapsEnabled(true, RewiredConsts.Category.DEFAULT, _rolesKB[indexRoleKB]);
+            ++indexRoleKB;
         }
-        ++indexRoleKB;
     }
 
     private int GetNextGamePlayerId() {

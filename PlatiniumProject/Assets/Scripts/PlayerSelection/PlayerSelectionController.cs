@@ -16,11 +16,12 @@ public class PlayerSelectionController : MonoBehaviour
     public event Action<int> OnAccept;
     public event Action<int> OnReturn;
     #endregion
-    IEnumerator Start()
+
+    public IEnumerator ChangePlayer(int playerId)
     {
+        PlayerId = playerId;
         yield return new WaitUntil(() => PlayerInputsAssigner.GetRewiredPlayerById(PlayerId) != null);
         _player = PlayerInputsAssigner.GetRewiredPlayerById(PlayerId);
-        Debug.Log("PLAYER "+PlayerId);
     }
 
     private void Update()
@@ -35,19 +36,16 @@ public class PlayerSelectionController : MonoBehaviour
     {
         if (_player.GetButtonDown(RewiredConsts.Action.ACCEPT))
         {
-            Debug.Log("ACCEPT");
             OnAccept?.Invoke(PlayerId);
         }
         if (_player.GetButtonDown(RewiredConsts.Action.RETURN))
         {
-            Debug.Log("RETURN");
-            OnAccept?.Invoke(PlayerId);
+            OnReturn?.Invoke(PlayerId);
         }
         if (_player.GetAxis(RewiredConsts.Action.MOVEMENU) != 0f)
         {
             int direction = _player.GetAxis(RewiredConsts.Action.MOVEMENU) > 0f ? 1 : -1;
             if (_repeatDelay > 0f) {
-                
                 if (_canMove)
                 {
                     CallOnMoveMenu(direction);
@@ -64,6 +62,11 @@ public class PlayerSelectionController : MonoBehaviour
             {
                 CallOnMoveMenu(direction);
             }
+        } else if (_routineWaitMoveMenu != null)
+        {
+            StopCoroutine(RoutineMoveMenu());
+            _routineWaitMoveMenu = null;
+            ResetRoutine();
         }
     }
 
@@ -71,10 +74,14 @@ public class PlayerSelectionController : MonoBehaviour
     {
         _canMove = false;
         yield return new WaitForSeconds(_repeatDelay);
-        _lastDirection = 0;
-        _canMove = true;
+        ResetRoutine();
     } 
 
+    private void ResetRoutine()
+    {
+        _lastDirection = 0;
+        _canMove = true;
+    }
     private void CallOnMoveMenu(int direction)
     {
         OnMoveInput?.Invoke(PlayerId, direction);

@@ -57,7 +57,7 @@ public class PlayerSelectionManager : MonoBehaviour
 
     private void OnAcceptPlayer(int indexPlayer,int indexCurrentCharacter)
     {
-        if (_idPlayerSelected[indexCurrentCharacter] == -1) //Check if character not already chosen
+        if (_idPlayerSelected[indexCurrentCharacter] == -1) //Check if character is not already chosen
         {
             _idPlayerSelected[indexCurrentCharacter] = indexPlayer;
             _playersController[indexPlayer].CanAccept = false;

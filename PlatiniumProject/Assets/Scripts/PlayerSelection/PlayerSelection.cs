@@ -31,7 +31,7 @@ public class PlayerSelection : MonoBehaviour
     public void SetUp(int indexStart, int maxCharacters)
     {
         _indexCharacter = indexStart;
-        _controller.PlayerId = _indexCharacter;
+        StartCoroutine(_controller.ChangePlayer(_indexCharacter));
         _maxCharacterPlayable = maxCharacters;
     }
 
@@ -52,7 +52,7 @@ public class PlayerSelection : MonoBehaviour
     {
         if (CanAccept)
         {
-            _indexCharacter = Mathf.Clamp(_indexCharacter + direction, 0, _maxCharacterPlayable);
+            _indexCharacter = Mathf.Clamp(_indexCharacter + direction, 0, _maxCharacterPlayable - 1);
             OnMove?.Invoke(indexPlayer, _indexCharacter);
         }
     }
