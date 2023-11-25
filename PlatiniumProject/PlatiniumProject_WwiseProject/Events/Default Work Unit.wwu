@@ -323,6 +323,133 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
+				<Folder Name="Music" ID="{74E004F1-3593-4675-9F8D-0EA6E3091C36}" ShortID="753531991">
+					<ChildrenList>
+						<Event Name="Play_Music_DND" ID="{6F2BEBE1-B67A-42E0-8B55-7D82A05C989F}">
+							<ChildrenList>
+								<Action Name="" ID="{09014585-056E-4DD0-90A3-57B7E6E568E1}" ShortID="631480691">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Music_DND" ID="{9CE00F95-AD7F-4C32-B167-08A7B26751A0}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Set_State_Drop_3" ID="{3D00AD4C-0F60-4BE3-AC64-0F6A356B8D4E}">
+							<ChildrenList>
+								<Action Name="" ID="{D983D187-F171-48A3-859D-1F535BB921C7}" ShortID="284678903">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Drop_3" ID="{2719F756-914C-4A39-8798-E85F1FEC8289}" WorkUnitID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Set_State_Musique_Intro" ID="{18CCAA0D-977C-46B6-A647-7C634F31F811}">
+							<ChildrenList>
+								<Action Name="" ID="{43885ECB-9292-4FB4-AF2A-465A75DD1F1A}" ShortID="986570939">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Musique_Intro" ID="{4672D8F4-C676-4695-8340-5A22B64A896C}" WorkUnitID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Set_State_Drop_1" ID="{9E577120-7728-43C0-B761-64D1458776C7}">
+							<ChildrenList>
+								<Action Name="" ID="{2AD3B195-E65B-4363-9158-6BBF88FBA17B}" ShortID="847994653">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Drop_1" ID="{FCA0E1AF-D517-4841-A894-2914DFB5DB30}" WorkUnitID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Set_State_Musique_End" ID="{4900C373-7698-4D81-A34C-322BAAD43294}">
+							<ChildrenList>
+								<Action Name="" ID="{69D101B8-0FA2-4D6A-B549-2D312EF776FA}" ShortID="305273549">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Musique_End" ID="{48AA7F08-7329-4227-A759-7946187CEB0B}" WorkUnitID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Set_State_Musique_1" ID="{801B5C9A-0B01-41E3-AACC-9FE3BA5692E3}">
+							<ChildrenList>
+								<Action Name="" ID="{50927162-BA8A-4955-B316-8421BF0A773D}" ShortID="337301660">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Musique_1" ID="{07001DB6-4F40-4AA4-B66D-3D6464C860D7}" WorkUnitID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Set_State_Musique_2" ID="{5DEEE679-6687-4350-A394-863A687078EF}">
+							<ChildrenList>
+								<Action Name="" ID="{458F7F4A-83D4-4687-9D78-AD5FCA88B8A8}" ShortID="28835989">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Musique_2" ID="{C8D0BD07-4F60-47A0-BB58-51A97EB8D52C}" WorkUnitID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Set_State_Musique_3" ID="{F3958473-8987-4FC7-BE59-CA9ADD58354B}">
+							<ChildrenList>
+								<Action Name="" ID="{4FDD1B3D-111E-4882-AEE6-2245A09FFCA7}" ShortID="1003856939">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Musique_3" ID="{DE4DE939-F21A-4497-A624-61E58F766939}" WorkUnitID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Set_State_Drop_2" ID="{856F3006-A941-463E-8F9A-CCCCA171E02A}">
+							<ChildrenList>
+								<Action Name="" ID="{07640D7A-93A8-4A3C-9836-9F4B27F13ED4}" ShortID="426825113">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Drop_2" ID="{58C08921-01EE-47CB-9822-4A604897E4FB}" WorkUnitID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
