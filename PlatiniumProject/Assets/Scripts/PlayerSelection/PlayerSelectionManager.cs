@@ -99,7 +99,7 @@ public class PlayerSelectionManager : MonoBehaviour
     {
         if (CheckAllCharactersChosen() && indexPlayer == 0)
         {
-
+            ChangeScene();
         } else 
         { 
             if (_idPlayerSelected[indexCurrentCharacter] == -1) //Check if character is not already chosen
@@ -118,5 +118,15 @@ public class PlayerSelectionManager : MonoBehaviour
     private bool CheckAllCharactersChosen()
     {
         return _idPlayerSelected.ToList().TrueForAll(value => value != -1);
+    }
+
+    private void ChangeScene()
+    {
+        for (int i = 0; i < _idPlayerSelected.Length; i++)
+        {
+            _playersAssigner.SetRoleOfPlayer(_idPlayerSelected[i],_selectionHandlers[i].Role);
+            _playersAssigner.ChangeMap(_idPlayerSelected[i]);
+            Debug.Log($"ASSIGNMENT PLAYER{_idPlayerSelected[i]} {_selectionHandlers[i].Role}");
+        }
     }
 }
