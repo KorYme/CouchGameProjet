@@ -58,6 +58,27 @@
 							</ReferenceList>
 						</RandomSequenceContainer>
 					</ChildrenList>
+					<StateInfo>
+						<StateGroupList>
+							<StateGroupInfo>
+								<StateGroupRef Name="LowPass_Menu" ID="{B3DA9FAB-E597-4E00-AA2B-D50F1833D3E4}"/>
+							</StateGroupInfo>
+						</StateGroupList>
+						<CustomStateList>
+							<CustomState>
+								<StateRef Name="Menu_Open" ID="{6DD9BD10-F55E-4754-8AFC-0093589EC733}"/>
+								<CustomState Name="" ID="{E406D947-9591-4EBD-ADB3-585D4AEB39F6}" ShortID="616437956">
+									<PropertyList>
+										<Property Name="Lowpass" Type="int16" Value="44"/>
+									</PropertyList>
+								</CustomState>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="Menu_Close" ID="{3723DA8D-5A3C-4774-8B8D-FFD9B69FE076}"/>
+								<CustomState Name="" ID="{795292F1-7786-42F5-B8B0-6D5BB5AEB85A}" ShortID="141342643"/>
+							</CustomState>
+						</CustomStateList>
+					</StateInfo>
 				</ActorMixer>
 			</ChildrenList>
 		</WorkUnit>
