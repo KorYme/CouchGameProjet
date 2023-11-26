@@ -10,8 +10,8 @@ public class BeatManager : MonoBehaviour, ITimingable
 {
     #region FIELDS
     [Header("References"), Space]
-    [SerializeField] WwiseEventPlayer _wwisePlayer;
-    [SerializeField] WwiseEventEnumMusic _wiseMusic;
+    [SerializeField] AK.Wwise.Event _mainMusicEvent;
+    [SerializeField] AK.Wwise.Event _firstStateEvent;
 
     [Header("Parameters"), Space]
     [SerializeField, Range(0f, .5f), Tooltip("Timing window before the beat which allows input")]
@@ -24,7 +24,7 @@ public class BeatManager : MonoBehaviour, ITimingable
     [Header("Events"), Space]
     [SerializeField, Tooltip("This event is called exactly on the thiming of the beat")] 
     UnityEvent _onBeatEvent;
-    [SerializeField, Tooltip("This event is called on the first frame an input can be received")] 
+    [SerializeField, Tooltip("This event is called on the first frame an input can be received")]
     UnityEvent _onBeatStartEvent;
     [SerializeField, Tooltip("This event is called on the first frame an input cannot be received anymore")] 
     UnityEvent _onBeatEndEvent;
@@ -64,11 +64,6 @@ public class BeatManager : MonoBehaviour, ITimingable
         Globals.BeatManager = this;
     }
 
-    private void Reset()
-    {
-        _wwisePlayer = GetComponent<WwiseEventPlayer>();
-    }
-
     private IEnumerator Start()
     {
         _beatDurationInMilliseconds = 1000;
@@ -88,7 +83,8 @@ public class BeatManager : MonoBehaviour, ITimingable
             OnNextBeatEnd = null;
         });
         yield return null;
-        _wwisePlayer.GetMusicEvent(_wiseMusic)?.Post(gameObject, (uint)AkCallbackType.AK_MusicSyncGrid | (uint)AkCallbackType.AK_MusicSyncUserCue, BeatCallBack);
+        _mainMusicEvent?.Post(gameObject, (uint)AkCallbackType.AK_MusicSyncGrid | (uint)AkCallbackType.AK_MusicSyncUserCue, BeatCallBack);
+        _firstStateEvent?.Post(gameObject);
     }
 
     private void OnDestroy()
@@ -103,6 +99,7 @@ public class BeatManager : MonoBehaviour, ITimingable
 
     private void BeatCallBack(object in_cookie, AkCallbackType in_type, AkCallbackInfo in_info)
     {
+        Debug.Log("Beat");
         AkMusicSyncCallbackInfo info = in_info as AkMusicSyncCallbackInfo;
         switch (in_type)
         { 

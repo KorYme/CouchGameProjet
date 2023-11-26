@@ -72,7 +72,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wwisePlayer: {fileID: 2176409364034723870}
-  _wiseMusic: 3
+  _wwiseMusic:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  _stateEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
   _timingBeforeBeat: 0.1
   _timingAfterBeat: 0.3
   _onBeatEvent:
@@ -111,5 +118,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcc46cd70152b9044b919b1d5a390dd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _allWwiseEvents: {fileID: 11400000, guid: cf58975faf770dd4cbcef333a05f99a6, type: 2}
-  _eventSFX: 0
+  _eventsSFX:
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 453be10df51f7414db38651047dd8ab8, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: c8d899a8093b91f4dbd5322802f7a875, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: dc95b68d3af73f04091f8dccf3fa3e92, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: cd8c81d857ffefe4aa7c911883faf67f, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 22740ae721d03ff48a7798cdb37c9c1f, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 9948849a5862d0a44a3f72252b48fe9e, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 9ff6c089f08c6da4baccfbc9cd28cd7e, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 37a9c8260cad227448ad92f855a06eca, type: 2}
+  _eventSFX:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 5298782d780800d4db8ed284058057ae, type: 2}
+  _count: 0
