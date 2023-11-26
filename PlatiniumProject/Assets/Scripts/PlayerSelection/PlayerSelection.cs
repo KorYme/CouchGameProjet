@@ -1,80 +1,63 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 public class PlayerSelection : MonoBehaviour
 {
-    Rewired.Player _player;
-    public int PlayerId { get; set; }
-    [SerializeField] float _repeatDelay = 0.2f;
-    int _lastDirection = 0;
-    bool _canMove = true;
-    Coroutine _routineWaitMoveMenu;
+    [SerializeField]PlayerSelectionController _controller;
 
     #region Events
-    public event Action<int> OnLeftInput;
-    public event Action<int> OnRightInput;
-    public event Action<int> OnAccept;
-    public event Action<int> OnReturn;
+    public event Action<int,int> OnAccept;
+    public event Action<int,int> OnReturn;
+    public event Action<int,int> OnMove; // id player, position
     #endregion
-    IEnumerator Start()
+    int _indexCharacter = 0;
+    int _maxCharacterPlayable = 1;
+    public bool CanAccept { get; set; } = true;
+
+    private void Awake()
     {
-        yield return new WaitUntil(() => PlayerInputsAssigner.GetRewiredPlayerById(PlayerId) != null);
-        _player = PlayerInputsAssigner.GetRewiredPlayerById(PlayerId);
+        _controller = GetComponent<PlayerSelectionController>();
+        if (_controller == null)
+        {
+            Debug.LogWarning("Player Selection Controller not found");
+        } else
+        {
+            _controller.OnAccept += OnAcceptController;
+            _controller.OnReturn += OnReturnController;
+            _controller.OnMoveInput += OnMoveController;
+        }
     }
 
-    private void Update()
+    public void SetUp(int indexStart, int maxCharacters)
     {
-        if (_player != null)
+        _indexCharacter = indexStart;
+        StartCoroutine(_controller.ChangePlayer(_indexCharacter));
+        _maxCharacterPlayable = maxCharacters;
+    }
+
+    private void OnReturnController(int indexPlayer)
+    {
+        OnReturn?.Invoke(indexPlayer, _indexCharacter);
+    }
+
+    private void OnAcceptController(int indexPlayer)
+    {
+        if (CanAccept)
         {
-            CheckInputs();
+            OnAccept?.Invoke(indexPlayer, _indexCharacter);
         }
     }
 
-    private void CheckInputs()
+    private void OnMoveController(int indexPlayer, int direction)
     {
-        if (_player.GetButtonDown(RewiredConsts.Action.ACCEPT))
+        if (CanAccept)
         {
-            OnAccept?.Invoke(PlayerId);
-        }
-        if (_player.GetButtonDown(RewiredConsts.Action.RETURN))
-        {
-            OnAccept?.Invoke(PlayerId);
-        }
-        if (_player.GetAxis(RewiredConsts.Action.MOVEMENU) != 0f)
-        {
-            if (_repeatDelay > 0f) {
-                if (_canMove)
-                {
-                    float direction = _player.GetAxis(RewiredConsts.Action.MOVEMENU);
-                    CallOnMoveMenu(direction);
-                    _routineWaitMoveMenu = StartCoroutine(RoutineMoveMenu());
-                } else
-                {
-                }
-            } else
+            int newIndex = Mathf.Clamp(_indexCharacter + direction, 0, _maxCharacterPlayable - 1);
+            if (_indexCharacter !=  newIndex)
             {
-                CallOnMoveMenu(_player.GetAxis(RewiredConsts.Action.MOVEMENU));
+                _indexCharacter = newIndex;
+                OnMove?.Invoke(indexPlayer, _indexCharacter);
             }
-        }
-    }
-
-    private IEnumerator RoutineMoveMenu()
-    {
-        _canMove = false;
-        yield return new WaitForSeconds(_repeatDelay);
-        _canMove = true;
-    } 
-
-    private void CallOnMoveMenu(float direction)
-    {
-        if (direction > 0f)
-        {
-            OnRightInput?.Invoke(PlayerId);
-        }
-        else
-        {
-            OnLeftInput?.Invoke(PlayerId);
         }
     }
 }
