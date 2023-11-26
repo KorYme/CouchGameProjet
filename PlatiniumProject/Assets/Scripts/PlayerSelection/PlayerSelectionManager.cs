@@ -5,11 +5,28 @@ using UnityEngine;
 public class PlayerSelectionManager : MonoBehaviour
 {
     [SerializeField] LerpTargetLight[] _objectsSelectionable;
+    [SerializeField] CharacterSelectionHandler[] _selectionHandlers;
     int[] _idPlayerSelected; // -1 if player not selected else index of player 
     PlayerInputsAssigner _playersAssigner;
     [SerializeField] PlayerSelection _prefabPlayerSelection;
     List<PlayerSelection> _playersController;
+    /// <summary>
+    /// Parameters : indexPlayer in order of connexion
+    /// </summary>
     public event Action<int> OnPlayerJoined;
+    /// <summary>
+    /// Parameters : indexPlayer, indexCharacterChosen (barman, dj, bouncer)
+    /// </summary>
+    public event Action<int,int,PlayerRole> OnPlayerChooseCharacter;
+    /// <summary>
+    /// Parameters : indexPlayer, indexCharacterChosen (barman, dj, bouncer)
+    /// </summary>
+    public event Action<int,int, PlayerRole> OnPlayerUnchooseCharacter;
+    /// <summary>
+    /// Parameters : indexPlayer, indexCharacterChosen (barman, dj, bouncer)
+    /// </summary>
+    public event Action<int,int> OnPlayerMove;
+
     private void Start()
     {
         _playersController = new List<PlayerSelection>();
@@ -29,21 +46,36 @@ public class PlayerSelectionManager : MonoBehaviour
         {
             _playersAssigner.OnPlayerJoined += PlayerJoin;
         }
+        if (_selectionHandlers.Length != _objectsSelectionable.Length)
+        {
+            Debug.LogWarning("List of character roles (handlers) is not matching selectables");
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (_playersAssigner != null)
+        {
+            _playersAssigner.OnPlayerJoined -= PlayerJoin;
+        }
     }
 
     private void PlayerJoin()
     {
         PlayerSelection instancePrefab = Instantiate(_prefabPlayerSelection,transform);
+        int indexPlayer = _playersController.Count;
         instancePrefab.SetUp(_playersController.Count, _objectsSelectionable.Length);
         instancePrefab.OnAccept += OnAcceptPlayer;
         instancePrefab.OnReturn += OnReturnPlayer;
         instancePrefab.OnMove += OnMovePlayer;
         _playersController.Add(instancePrefab);
+        OnPlayerJoined?.Invoke(indexPlayer);
     }
 
     private void OnMovePlayer(int indexPlayer, int indexCurrentCharacter)
     {
         _objectsSelectionable[indexPlayer].MoveToIndex(indexCurrentCharacter);
+        OnPlayerMove?.Invoke(indexPlayer, indexCurrentCharacter);
     }
 
     private void OnReturnPlayer(int indexPlayer, int indexCurrentCharacter)
@@ -52,6 +84,7 @@ public class PlayerSelectionManager : MonoBehaviour
         {
             _idPlayerSelected[indexCurrentCharacter] = -1;
             _playersController[indexPlayer].CanAccept = true;
+            OnPlayerUnchooseCharacter?.Invoke(indexPlayer, indexCurrentCharacter, _selectionHandlers[indexCurrentCharacter].Role);
         }
     }
 
@@ -61,6 +94,7 @@ public class PlayerSelectionManager : MonoBehaviour
         {
             _idPlayerSelected[indexCurrentCharacter] = indexPlayer;
             _playersController[indexPlayer].CanAccept = false;
+            OnPlayerChooseCharacter?.Invoke(indexPlayer,indexCurrentCharacter, _selectionHandlers[indexCurrentCharacter].Role);
         }
     }
 }

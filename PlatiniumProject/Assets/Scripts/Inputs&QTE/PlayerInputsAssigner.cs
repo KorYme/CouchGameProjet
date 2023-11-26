@@ -35,7 +35,7 @@ public class PlayerInputsAssigner : MonoBehaviour {
     }
     const int MAXPLAYERS = 3;
 
-    [SerializeField] string[] _rolesKB = new string[MAXPLAYERS] { "Player1", "Player2", "Player3" };
+    readonly int[] _rolesKB = new int[MAXPLAYERS] { RewiredConsts.Layout.Keyboard.PLAYER1, RewiredConsts.Layout.Keyboard.PLAYER2, RewiredConsts.Layout.Keyboard.PLAYER3 };
     [SerializeField] PlayerRole[] _playerRoles = new PlayerRole[MAXPLAYERS];
     [SerializeField] bool _characterSelectionInGame = false;
     public event Action OnPlayerJoined;
@@ -172,13 +172,13 @@ public class PlayerInputsAssigner : MonoBehaviour {
         // Enable UI control for this Player now that he has joined
         if (_characterSelectionInGame)
         {
-            rewiredPlayer.controllers.maps.SetMapsEnabled(true, RewiredConsts.Category.UI);
+            rewiredPlayer.controllers.maps.SetMapsEnabled(true, ControllerType.Keyboard, RewiredConsts.Category.UI, _rolesKB[indexRoleKB]);
         }
         else
         {
-            rewiredPlayer.controllers.maps.SetMapsEnabled(true, RewiredConsts.Category.DEFAULT, _rolesKB[indexRoleKB]);
-            ++indexRoleKB;
+            rewiredPlayer.controllers.maps.SetMapsEnabled(true, ControllerType.Keyboard, RewiredConsts.Category.DEFAULT, _rolesKB[indexRoleKB]);
         }
+        ++indexRoleKB;
     }
 
     private int GetNextGamePlayerId() {

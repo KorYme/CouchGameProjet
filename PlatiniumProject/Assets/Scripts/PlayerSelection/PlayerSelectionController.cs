@@ -7,7 +7,6 @@ public class PlayerSelectionController : MonoBehaviour
     Rewired.Player _player;
     public int PlayerId { get; set; } = 0;
     [SerializeField] float _repeatDelay = 0.2f;
-    int _lastDirection = 0;
     bool _canMove = true;
     Coroutine _routineWaitMoveMenu;
 
@@ -49,22 +48,15 @@ public class PlayerSelectionController : MonoBehaviour
                 if (_canMove)
                 {
                     CallOnMoveMenu(direction);
-                    _lastDirection = direction ;
                     _routineWaitMoveMenu = StartCoroutine(RoutineMoveMenu());
-                } else if (_lastDirection != direction)
-                {
-                    StopCoroutine(_routineWaitMoveMenu);
-                    CallOnMoveMenu(direction);
-                    _lastDirection = direction;
-                    _routineWaitMoveMenu = StartCoroutine(RoutineMoveMenu());
-                }
+                } 
             } else
             {
                 CallOnMoveMenu(direction);
             }
         } else if (_routineWaitMoveMenu != null)
         {
-            StopCoroutine(RoutineMoveMenu());
+            StopCoroutine(_routineWaitMoveMenu);
             _routineWaitMoveMenu = null;
             ResetRoutine();
         }
@@ -79,7 +71,6 @@ public class PlayerSelectionController : MonoBehaviour
 
     private void ResetRoutine()
     {
-        _lastDirection = 0;
         _canMove = true;
     }
     private void CallOnMoveMenu(int direction)

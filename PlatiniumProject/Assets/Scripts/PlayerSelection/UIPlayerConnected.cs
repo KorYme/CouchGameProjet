@@ -9,7 +9,7 @@ public class UIPlayerConnected : MonoBehaviour
     [SerializeField] TextMeshProUGUI _textDisplay;
     PlayerSelectionManager _selectionManager;
 
-    private void Awake()
+    private void Start()
     {
         _selectionManager = FindObjectOfType<PlayerSelectionManager>();
         if( _selectionManager != null)
@@ -23,6 +23,14 @@ public class UIPlayerConnected : MonoBehaviour
         if (indexPlayer == _indexPlayer )
         {
             _textDisplay.text = "Player " + (_indexPlayer + 1) + " connected";
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (_selectionManager != null)
+        {
+            _selectionManager.OnPlayerJoined -= ChangeDisplay;
         }
     }
 }

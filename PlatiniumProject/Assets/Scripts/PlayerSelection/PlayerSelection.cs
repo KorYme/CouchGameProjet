@@ -52,8 +52,12 @@ public class PlayerSelection : MonoBehaviour
     {
         if (CanAccept)
         {
-            _indexCharacter = Mathf.Clamp(_indexCharacter + direction, 0, _maxCharacterPlayable - 1);
-            OnMove?.Invoke(indexPlayer, _indexCharacter);
+            int newIndex = Mathf.Clamp(_indexCharacter + direction, 0, _maxCharacterPlayable - 1);
+            if (_indexCharacter !=  newIndex)
+            {
+                _indexCharacter = newIndex;
+                OnMove?.Invoke(indexPlayer, _indexCharacter);
+            }
         }
     }
 }
