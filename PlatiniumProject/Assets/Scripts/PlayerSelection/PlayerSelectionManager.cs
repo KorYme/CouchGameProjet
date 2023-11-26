@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class PlayerSelectionManager : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class PlayerSelectionManager : MonoBehaviour
     PlayerInputsAssigner _playersAssigner;
     [SerializeField] PlayerSelection _prefabPlayerSelection;
     List<PlayerSelection> _playersController;
+
+    #region Events
     /// <summary>
     /// Parameters : indexPlayer in order of connexion
     /// </summary>
@@ -28,19 +32,24 @@ public class PlayerSelectionManager : MonoBehaviour
     /// </summary>
     public event Action<int,int> OnPlayerMove;
     public event Action<bool> OnAllCharacterChosen;
-
-    private void Start()
+    [SerializeField] UnityEvent OnChangeScene;
+    #endregion
+    private void Awake()
     {
         _playersController = new List<PlayerSelection>();
-        _playersAssigner = FindObjectOfType<PlayerInputsAssigner>();
         if (_objectsSelectionable != null)
         {
             _idPlayerSelected = new int[_objectsSelectionable.Length];
         }
-        for (int i = 0;i  < _idPlayerSelected.Length; i++)
+        for (int i = 0; i < _idPlayerSelected.Length; i++)
         {
             _idPlayerSelected[i] = -1;
         }
+    }
+    private void Start()
+    {
+        _playersAssigner = FindObjectOfType<PlayerInputsAssigner>();
+
         if (_playersAssigner == null)
         {
             Debug.LogWarning("No Player assigner instance found in the scene");
@@ -126,7 +135,8 @@ public class PlayerSelectionManager : MonoBehaviour
         {
             _playersAssigner.SetRoleOfPlayer(_idPlayerSelected[i],_selectionHandlers[i].Role);
             _playersAssigner.ChangeMap(_idPlayerSelected[i]);
-            Debug.Log($"ASSIGNMENT PLAYER{_idPlayerSelected[i]} {_selectionHandlers[i].Role}");
         }
+        OnChangeScene.Invoke();
+        SceneManager.LoadScene(1);
     }
 }
