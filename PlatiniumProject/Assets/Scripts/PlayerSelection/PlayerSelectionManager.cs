@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerSelectionManager : MonoBehaviour
@@ -26,6 +27,7 @@ public class PlayerSelectionManager : MonoBehaviour
     /// Parameters : indexPlayer, indexCharacterChosen (barman, dj, bouncer)
     /// </summary>
     public event Action<int,int> OnPlayerMove;
+    public event Action<bool> OnAllCharacterChosen;
 
     private void Start()
     {
@@ -82,19 +84,39 @@ public class PlayerSelectionManager : MonoBehaviour
     {
         if (_idPlayerSelected[indexCurrentCharacter] == indexPlayer) //Check if character is already chosen
         {
+            bool allPlayersWereChosen = CheckAllCharactersChosen();
             _idPlayerSelected[indexCurrentCharacter] = -1;
             _playersController[indexPlayer].CanAccept = true;
             OnPlayerUnchooseCharacter?.Invoke(indexPlayer, indexCurrentCharacter, _selectionHandlers[indexCurrentCharacter].Role);
+            if (allPlayersWereChosen)
+            {
+                OnAllCharacterChosen?.Invoke(false);
+            }
         }
     }
 
     private void OnAcceptPlayer(int indexPlayer,int indexCurrentCharacter)
     {
-        if (_idPlayerSelected[indexCurrentCharacter] == -1) //Check if character is not already chosen
+        if (CheckAllCharactersChosen() && indexPlayer == 0)
         {
-            _idPlayerSelected[indexCurrentCharacter] = indexPlayer;
-            _playersController[indexPlayer].CanAccept = false;
-            OnPlayerChooseCharacter?.Invoke(indexPlayer,indexCurrentCharacter, _selectionHandlers[indexCurrentCharacter].Role);
+
+        } else 
+        { 
+            if (_idPlayerSelected[indexCurrentCharacter] == -1) //Check if character is not already chosen
+            {
+                _idPlayerSelected[indexCurrentCharacter] = indexPlayer;
+                _playersController[indexPlayer].CanAccept = false;
+                OnPlayerChooseCharacter?.Invoke(indexPlayer,indexCurrentCharacter, _selectionHandlers[indexCurrentCharacter].Role);
+                if (CheckAllCharactersChosen())
+                {
+                    OnAllCharacterChosen?.Invoke(true);
+                }
+            }
         }
+    }
+
+    private bool CheckAllCharactersChosen()
+    {
+        return _idPlayerSelected.ToList().TrueForAll(value => value != -1);
     }
 }
