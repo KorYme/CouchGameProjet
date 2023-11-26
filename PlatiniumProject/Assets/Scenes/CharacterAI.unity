@@ -203,63 +203,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 804795739}
   m_CullTransparentMesh: 1
---- !u!1001 &1126165572
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1307051827475980772, guid: 9aa80bdd6c04ef14e810ca8a1f7f5597, type: 3}
-      propertyPath: m_Name
-      value: Pawn
-      objectReference: {fileID: 0}
-    - target: {fileID: 3774042573209187967, guid: 9aa80bdd6c04ef14e810ca8a1f7f5597, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -21.491293
-      objectReference: {fileID: 0}
-    - target: {fileID: 3774042573209187967, guid: 9aa80bdd6c04ef14e810ca8a1f7f5597, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -19.528904
-      objectReference: {fileID: 0}
-    - target: {fileID: 3774042573209187967, guid: 9aa80bdd6c04ef14e810ca8a1f7f5597, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.10121147
-      objectReference: {fileID: 0}
-    - target: {fileID: 3774042573209187967, guid: 9aa80bdd6c04ef14e810ca8a1f7f5597, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3774042573209187967, guid: 9aa80bdd6c04ef14e810ca8a1f7f5597, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3774042573209187967, guid: 9aa80bdd6c04ef14e810ca8a1f7f5597, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3774042573209187967, guid: 9aa80bdd6c04ef14e810ca8a1f7f5597, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3774042573209187967, guid: 9aa80bdd6c04ef14e810ca8a1f7f5597, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3774042573209187967, guid: 9aa80bdd6c04ef14e810ca8a1f7f5597, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3774042573209187967, guid: 9aa80bdd6c04ef14e810ca8a1f7f5597, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9aa80bdd6c04ef14e810ca8a1f7f5597, type: 3}
 --- !u!1001 &1353082137
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -288,6 +231,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 771261643079926100, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c139d2f4903dd1e4194e6d20234fc27f, type: 3}
     - target: {fileID: 837508718520239595, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -320,6 +267,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2212512567729938694, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 413ffa6a43b7f5d4787a5af6d3ed6824, type: 3}
     - target: {fileID: 2403203747448806723, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_Name
       value: BeatBarleft
@@ -432,6 +383,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6081387226888926224, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _playerRoles.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081387226888926224, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _playerRoles.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242979318035588061, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2c821945593b66146b8df715cfd6d602, type: 3}
     - target: {fileID: 6978157547789861800, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_LocalPosition.y
       value: 12.19
@@ -536,4 +499,3 @@ SceneRoots:
   m_Roots:
   - {fileID: 1656496198}
   - {fileID: 1353082137}
-  - {fileID: 1126165572}
