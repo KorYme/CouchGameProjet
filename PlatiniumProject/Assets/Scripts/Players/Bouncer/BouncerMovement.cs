@@ -16,6 +16,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
     [SerializeField] private AreaManager _areaManager;
 
     private BOUNCER_STATE _currentState = BOUNCER_STATE.MOVING;
+    private CharacterCheckByBouncerState _currentClient;
 
     private SlotInformation _currentSlot;
 
@@ -27,6 +28,21 @@ public class BouncerMovement : PlayerMovement, IQTEable
         _qteController = GetComponent<BouncerQTEController>();
     }
 
+    protected override void SetAnimation()
+    {
+        switch (_currentState)
+        {
+            case BOUNCER_STATE.CHECKING:
+                _sp.flipX = true;
+                _animation.SetAnim(ANIMATION_TYPE.FIGHT_IDLE);
+                
+                break;
+            case BOUNCER_STATE.MOVING:
+                _sp.flipX = false;
+                _animation.SetAnim(ANIMATION_TYPE.IDLE);
+                break;
+        }
+    }
     protected override IEnumerator Start()
     {
         yield return base.Start();
@@ -55,8 +71,9 @@ public class BouncerMovement : PlayerMovement, IQTEable
         }
     }
 
-    public void CheckMode(CharacterStateMachine chara)
+    public void CheckMode(CharacterStateMachine chara, CharacterCheckByBouncerState state)
     {
+        _currentClient = state;
         _currentState = BOUNCER_STATE.CHECKING;
         StartCoroutine(TestCheck(chara.transform.position));
         Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.BOUNCER).StartFocus(transform);
@@ -132,11 +149,11 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     public void LetCharacterEnterBox()
     {
-        CharacterCheckByBouncerState chara = _currentSlot.Occupant.BouncerCheckState as CharacterCheckByBouncerState;
-        chara.BouncerAction(true);
+        _currentClient.BouncerAction(true);
         _currentState = BOUNCER_STATE.MOVING;
         Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.BOUNCER).StopFocus();
         transform.position = _currentSlot.transform.position;
+        _currentClient = null;
     }
 
     public void OnQTEStarted(){}
@@ -148,11 +165,11 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     private void RefuseCharacterEnterBox()
     {
-        CharacterCheckByBouncerState chara = _currentSlot.Occupant.CurrentState as CharacterCheckByBouncerState;
-        chara.BouncerAction(false);
+        _currentClient.BouncerAction(false);
         _currentState = BOUNCER_STATE.MOVING;
         Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.BOUNCER).StopFocus();
         transform.position = _currentSlot.transform.position;
+        _currentClient = null;
     }
 
     public void OnQTECorrectInput() {}

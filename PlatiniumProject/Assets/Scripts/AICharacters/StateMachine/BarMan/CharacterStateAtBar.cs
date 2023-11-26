@@ -15,12 +15,19 @@ public class CharacterStateAtBar : CharacterState
 
     private void RunOutOfSatisfaction()
     {
-        StateMachine.ChangeState(StateMachine.DieState);
-        StateMachine.CurrentWaitingLine.OnFailDrink();
+        if (StateMachine.CharacterTypeData.Evilness == Evilness.GOOD)
+        {
+            StateMachine.ChangeState(StateMachine.DieState);
+            StateMachine.CurrentWaitingLine.OnFailDrink();
+        }
+        else
+        {
+            StateMachine.CurrentWaitingLine.OnDrinkComplete();
+        }
     }
     public override void OnBeat()
     {
-        //Decraped  StateMachine.Satisafaction.DecreaseSatisfaction(StateMachine.CharacterDataObject.decrementationValueOnBarMan);
+        StateMachine.Satisafaction.DecreaseSatisfaction(StateMachine.CharacterDataObject.decrementationValueOnBarMan);
         StateMachine.Animation.SetAnim(ANIMATION_TYPE.IDLE);
     }
 

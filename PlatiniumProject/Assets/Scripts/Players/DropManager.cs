@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class DropManager : MonoBehaviour
 {
@@ -42,6 +41,7 @@ public class DropManager : MonoBehaviour
     public event Action OnDropFail;
     public event Action OnBeginBuildUp;
 
+    int _dropPassed;
     int _triggerPressedNumber;
     BeatManager _beatManager;
     List<DropController> _allDropControllers = new();
@@ -60,6 +60,7 @@ public class DropManager : MonoBehaviour
         _beatManager = Globals.BeatManager as BeatManager;
         _beatManager.OnUserCueReceived += CheckUserCueName;
         OnDropStateChange += DropStateChange;
+        _dropPassed = 0;
     }
 
     private void OnDestroy()
@@ -107,15 +108,18 @@ public class DropManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Not enough triggers pushed, drop missed");
                     DropState = DROP_STATE.ON_DROP_MISSED;
                 }
                 break;
             case "DropEnd":
                 if (DropState != DROP_STATE.OUT_OF_DROP)
                 {
-                    Debug.Log("Not enough triggers released, drop missed");
                     DropState = DROP_STATE.ON_DROP_MISSED;
+                }
+                _dropPassed++;
+                if (_dropPassed >= 3)
+                {
+                    Time.timeScale = 0f;
                 }
                 break;
             default:
@@ -147,7 +151,6 @@ public class DropManager : MonoBehaviour
                 _triggerPressedNumber = _allDropControllers.Sum(x => x.TriggerPressed);
                 if (_triggerPressedNumber == 0)
                 {
-                    Debug.Log("Success Drop");
                     _dropSuccess.SetActive(true);
                     StartCoroutine(SuccessDisplay());
                     DropState = DROP_STATE.OUT_OF_DROP;

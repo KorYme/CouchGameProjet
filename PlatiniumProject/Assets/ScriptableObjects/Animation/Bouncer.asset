@@ -12,23 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221e7a1d53d37874394b67d10fe9257d, type: 3}
   m_Name: Bouncer
   m_EditorClassIdentifier: 
-  selectedAnimationType: 3
+  selectedAnimationType: 7
   animationsList:
   - animationSprites:
-    - {fileID: 21300000, guid: 9fc0fb30fb8691b41a101f3c4f0b6f63, type: 3}
-    - {fileID: 21300000, guid: 07d8596018c55e449935c4355c4a4de4, type: 3}
-    - {fileID: 21300000, guid: c098c1b6b97327d42a969d541b11bc06, type: 3}
-    - {fileID: 21300000, guid: 98e9461f6d9361646b887924ac2e1d48, type: 3}
-    - {fileID: 21300000, guid: 712b5051db248534995f347c2f9dce19, type: 3}
-    - {fileID: 21300000, guid: 9fc0fb30fb8691b41a101f3c4f0b6f63, type: 3}
+    - {fileID: 21300000, guid: c139d2f4903dd1e4194e6d20234fc27f, type: 3}
+    - {fileID: 21300000, guid: 14045772c64df2149b2dac5880b47e42, type: 3}
+    - {fileID: 21300000, guid: 303a08ad74ceca846ba82ae8c8d3f680, type: 3}
+    - {fileID: 21300000, guid: c139d2f4903dd1e4194e6d20234fc27f, type: 3}
     _animationType: 2
   - animationSprites:
-    - {fileID: 21300000, guid: 9fc0fb30fb8691b41a101f3c4f0b6f63, type: 3}
+    - {fileID: 21300000, guid: c139d2f4903dd1e4194e6d20234fc27f, type: 3}
+    - {fileID: 21300000, guid: 893990e7da7876e4ea7af6a271b28e17, type: 3}
     _animationType: 1
   - animationSprites:
-    - {fileID: 21300000, guid: a29898adbcfeacb438ad390d9e925afe, type: 3}
+    - {fileID: 21300000, guid: 168ae8424e55b874789bf0ad55be3ce6, type: 3}
+    - {fileID: 21300000, guid: be7c2579d0ce7e04fa2a34eb94ab9598, type: 3}
+    - {fileID: 21300000, guid: e086dff909181d54db1028bc9667b25b, type: 3}
     _animationType: 4
   - animationSprites:
-    - {fileID: 21300000, guid: 87529e0fd28c3774fa086315a42b1860, type: 3}
+    - {fileID: 21300000, guid: 5816d0dfa349d3d4f8762650e537dff9, type: 3}
     _animationType: 5
-  animBpm: 90
+  - animationSprites:
+    - {fileID: 21300000, guid: 0efd573653e21f04f9138e05081ba2fe, type: 3}
+    - {fileID: 21300000, guid: f26de11f07bf34142947ac4d51066eae, type: 3}
+    - {fileID: 21300000, guid: 8d16a88f10053f94baade6fc011ed85b, type: 3}
+    _animationType: 6
+  - animationSprites:
+    - {fileID: 21300000, guid: e0c8aa6788feab747b286410b8904091, type: 3}
+    - {fileID: 21300000, guid: e28dd5856b592c44c8e343e9c82b5b49, type: 3}
+    _animationType: 7
+  animBpm: 120

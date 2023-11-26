@@ -16,9 +16,10 @@ MonoBehaviour:
   PlayerRole: 2
   SequenceType: 0
   ClientType: 0
-  Evilness: 0
+  Evilness: 1
   QTELevel: 1
   Status: 0
+  LongInputType: 0
   DurationHold: 1
   ListSubHandlers:
   - {fileID: 11400000, guid: da865023d5c85c64cb318210ab9b56ed, type: 2}

@@ -76,7 +76,6 @@ public class QTELoader : MonoBehaviour
             {
                 listQTEForRole = listQTEForRole.Where(x => x.QTELevel == level).ToList();
             }
-            Debug.Log(listQTEForRole.Count() + " " + level+" "+listQTEForRole[0].name);
         }
         else
         {

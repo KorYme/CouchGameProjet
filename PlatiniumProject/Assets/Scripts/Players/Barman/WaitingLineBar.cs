@@ -50,7 +50,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
 
     }
 
-     void OnDrinkComplete()
+     public void OnDrinkComplete()
     {
         CharacterStateMachine stateMachine = _waitingCharactersList[0];
         if (stateMachine != null)

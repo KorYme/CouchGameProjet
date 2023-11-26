@@ -12,19 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221e7a1d53d37874394b67d10fe9257d, type: 3}
   m_Name: Dad
   m_EditorClassIdentifier: 
-  selectedAnimationType: 0
+  selectedAnimationType: 5
   animationsList:
   - animationSprites:
-    - {fileID: 21300000, guid: 41a3d2731f05b3148b698d224f9f57cc, type: 3}
+    - {fileID: 21300000, guid: 913986ad4354f44479d7c28b4cbd4ffb, type: 3}
+    - {fileID: 21300000, guid: 70cf45a49355ef04ea0029479533e9a0, type: 3}
     _animationType: 1
   - animationSprites:
-    - {fileID: 21300000, guid: 9fc0fb30fb8691b41a101f3c4f0b6f63, type: 3}
-    - {fileID: 21300000, guid: 07d8596018c55e449935c4355c4a4de4, type: 3}
-    - {fileID: 21300000, guid: c098c1b6b97327d42a969d541b11bc06, type: 3}
-    - {fileID: 21300000, guid: 98e9461f6d9361646b887924ac2e1d48, type: 3}
-    - {fileID: 21300000, guid: 712b5051db248534995f347c2f9dce19, type: 3}
-    - {fileID: 21300000, guid: 9fc0fb30fb8691b41a101f3c4f0b6f63, type: 3}
+    - {fileID: 21300000, guid: 253496a1c65fc7540aa6f7c92152cd29, type: 3}
+    - {fileID: 21300000, guid: c0c9ebc68f8d70c43affb4dbaa1e1531, type: 3}
+    - {fileID: 21300000, guid: a3264033fcfb1ec47aa0dc09f8ac8351, type: 3}
     _animationType: 2
   - animationSprites:
-    - {fileID: 21300000, guid: 41a3d2731f05b3148b698d224f9f57cc, type: 3}
+    - {fileID: 21300000, guid: 9f54f127bcdc7de4f9b92a73a4128fa5, type: 3}
+    - {fileID: 21300000, guid: 2636d8c52eb771146a71a382f299d2a4, type: 3}
+    - {fileID: 21300000, guid: 77b8553c42937184394aee757e902b39, type: 3}
+    - {fileID: 21300000, guid: 588a123c3e7203648b5358e888333ad5, type: 3}
     _animationType: 0
+  - animationSprites:
+    - {fileID: 21300000, guid: 657a276832f964a41a1048bcf60bb421, type: 3}
+    _animationType: 5
+  animBpm: 90

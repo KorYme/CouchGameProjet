@@ -39,11 +39,10 @@ public class PriestCalculator : MonoBehaviour
         Globals.DropManager.OnDropSuccess += DropSucced;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         Globals.DropManager.OnDropSuccess -= DropSucced;
     }
-
 
     public void DropSucced()
     {
@@ -52,6 +51,10 @@ public class PriestCalculator : MonoBehaviour
     }
     public void CleanPriests()
     {
+        foreach (CharacterStateMachine m in CurrentPriestList)
+        {
+            m.ChangeState(m.DieState);
+        }
         CurrentPriestList.Clear();
     }
 

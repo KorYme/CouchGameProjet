@@ -28,16 +28,17 @@ public abstract class PlayerMovement : EntityMovement
         _timingable.OnBeatStartEvent.AddListener(AllowNewMovement);
         
     }
-
-    private void MoveEnded()
-    {
-        _sp.sprite = _animation.CharacterAnimationObject.Animations[ANIMATION_TYPE.MOVE].GetLastFrame();
-    }
+    
     protected virtual void OnBeat()
+    {
+        SetAnimation();
+    }
+
+    protected virtual void SetAnimation()
     {
         if (!IsMoving)
         {
-            _sp.sprite = _animation.GetAnimationSprite(ANIMATION_TYPE.IDLE);
+            _animation.SetAnim(ANIMATION_TYPE.IDLE);
         }
     }
     
@@ -69,7 +70,7 @@ public abstract class PlayerMovement : EntityMovement
     
     private void AnimationSetter()
     {
-        _sp.sprite = _animation.GetAnimationSprite(ANIMATION_TYPE.MOVE);
+        _animation.SetAnim(ANIMATION_TYPE.MOVE);
     }
     
     protected virtual void CheckJoystickValue()

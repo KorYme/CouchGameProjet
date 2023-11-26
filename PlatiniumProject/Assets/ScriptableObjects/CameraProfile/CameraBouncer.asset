@@ -15,29 +15,29 @@ MonoBehaviour:
   shakeDuration: 2
   shakeIntensity: 10
   shakeSpeed: 0.2
-  focusDuration: 0.5
+  focusDuration: 0.3
   focusPercentage: 0.5
-  snapDuration: 0.5
+  snapDuration: 0.3
   snapCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      value: 0.0012817383
+      inSlope: 2.241507
+      outSlope: 2.241507
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.020833332
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0.8374634
+      outSlope: 0.8374634
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.024122894
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
