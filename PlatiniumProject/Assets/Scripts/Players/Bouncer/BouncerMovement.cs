@@ -39,7 +39,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
                 break;
             case BOUNCER_STATE.MOVING:
                 _sp.flipX = false;
-                _animation.SetAnim(ANIMATION_TYPE.IDLE);
+                _animation.SetAnim(ANIMATION_TYPE.IDLE, false);
                 break;
         }
     }
@@ -133,9 +133,10 @@ public class BouncerMovement : PlayerMovement, IQTEable
             }
             if (_playerController.Action3.InputValue)//REFUSE + evil character
             {
-                if (_currentSlot.Occupant.TypeData.Evilness == Evilness.EVIL)
+                
+                if (_currentClient.StateMachine.TypeData.Evilness == Evilness.EVIL)
                 {
-                    _qteController?.StartQTE(_currentSlot.Occupant.TypeData);
+                    _qteController?.StartQTE(_currentClient.StateMachine.TypeData);
                 } else
                 {
                     RefuseCharacterEnterBox();
@@ -151,6 +152,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
     {
         _currentClient.BouncerAction(true);
         _currentState = BOUNCER_STATE.MOVING;
+        //_animation.SetAnim(ANIMATION_TYPE.IDLE);
         Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.BOUNCER).StopFocus();
         transform.position = _currentSlot.transform.position;
         _currentClient = null;
@@ -167,6 +169,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
     {
         _currentClient.BouncerAction(false);
         _currentState = BOUNCER_STATE.MOVING;
+        //_animation.SetAnim(ANIMATION_TYPE.IDLE);
         Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.BOUNCER).StopFocus();
         transform.position = _currentSlot.transform.position;
         _currentClient = null;

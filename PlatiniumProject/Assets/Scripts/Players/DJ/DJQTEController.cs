@@ -114,7 +114,8 @@ public class DJQTEController : MonoBehaviour, IQTEable
     public void OnQTEWrongInput()
     {
         OnDJQTEChanged?.Invoke(_qteHandler.GetQTEString());
-        _characterAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT);
+        _characterAnimation.SetLatency(2);
+        _characterAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT, false);
     }
     #endregion
 }

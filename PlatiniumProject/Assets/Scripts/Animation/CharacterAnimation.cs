@@ -9,6 +9,7 @@ public class CharacterAnimation : MonoBehaviour
     [SerializeField] private SpriteRenderer _sp;
     private Dictionary<ANIMATION_TYPE, int> _animDict = new Dictionary<ANIMATION_TYPE, int>();
     private ANIMATION_TYPE _lastAnimationType;
+    private int _animLatency;
 
     public SpriteRenderer SpriteRenderer => _sp;
 
@@ -27,6 +28,14 @@ public class CharacterAnimation : MonoBehaviour
             _animDict[v.AnimationType] = 0;
         }
     }
+
+    public void SetLatency(int value)
+    {
+        if(value <= 0)
+            return;
+
+        _animLatency = value;
+    }
     
     public void ResetAnimation(ANIMATION_TYPE animType)
     {
@@ -35,6 +44,14 @@ public class CharacterAnimation : MonoBehaviour
     public void ResetLastAnimation()
     {
         _animDict[_lastAnimationType] = 0;
+    }
+
+    public int DecreaseLatency()
+    {
+        if (_animLatency <= 0)
+            return 0;
+        _animLatency -= 1;
+        return _animLatency;
     }
     public Sprite GetAnimationSprite(ANIMATION_TYPE animation, bool canInterupt)
     {
@@ -49,6 +66,11 @@ public class CharacterAnimation : MonoBehaviour
             {
                 ResetAnimation(_lastAnimationType);
                 _lastAnimationType = animation;
+            }
+
+            if (DecreaseLatency() > 0)
+            {
+                return null;
             }
         }
         
@@ -68,8 +90,10 @@ public class CharacterAnimation : MonoBehaviour
 
     public void SetAnim(ANIMATION_TYPE type, bool canInterupt = true)
     {
-        if(!Globals.DropManager.CanYouLetMeMove)
-            return;
-        _sp.sprite = GetAnimationSprite(type, canInterupt);
+        Sprite result = GetAnimationSprite(type, canInterupt);
+        if (result != null)
+        {
+            _sp.sprite = result;
+        }
     }
 }

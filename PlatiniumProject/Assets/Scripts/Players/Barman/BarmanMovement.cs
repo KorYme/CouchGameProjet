@@ -11,6 +11,8 @@ public class BarmanMovement : PlayerMovement
     public int IndexPosition { get => _indexPosition;}
 
     protected override PlayerRole PlayerRole => PlayerRole.Barman;
+    
+    public bool IsInQte { get; set; }
 
     private void Awake()
     {
@@ -27,6 +29,11 @@ public class BarmanMovement : PlayerMovement
         
         yield return base.Start();
         Debug.Log("Barman Initialisé");
+    }
+
+    protected override void OnBeat()
+    {
+        _animation.SetAnim(IsInQte ? ANIMATION_TYPE.CORRECT_INPUT : ANIMATION_TYPE.IDLE);
     }
 
     public void MoveBarmanToIndex()
