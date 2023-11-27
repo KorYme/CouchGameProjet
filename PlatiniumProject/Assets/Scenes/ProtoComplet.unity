@@ -683,6 +683,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 09cd1426a7cc6ee429848c5b6dbd3da9, type: 2}
     - target: {fileID: 4976499995342045857, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _mainMusicEvent.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 09cd1426a7cc6ee429848c5b6dbd3da9, type: 2}
+    - target: {fileID: 4976499995342045857, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _firstStateEvent.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: c8d899a8093b91f4dbd5322802f7a875, type: 2}
+    - target: {fileID: 4976499995342045857, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _onBeatEvent.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
