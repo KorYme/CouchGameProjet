@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Rewired;
 using System;
+using Unity.VisualScripting;
 
 public enum PlayerRole
 {
@@ -11,23 +12,22 @@ public enum PlayerRole
     Bouncer = 2,
     None
 }
-
+public class PlayerMap
+{
+    public int rewiredPlayerId;
+    public int gamePlayerId;
+    public PlayerRole role;
+    public ControllerType type;
+    public PlayerMap(int rewiredPlayerId, int gamePlayerId, ControllerType type, PlayerRole role)
+    {
+        this.rewiredPlayerId = rewiredPlayerId;
+        this.gamePlayerId = gamePlayerId;
+        this.type = type;
+        this.role = role;
+    }
+}
 public class PlayerInputsAssigner : MonoBehaviour {
 
-    public class PlayerMap
-    {
-        public int rewiredPlayerId;
-        public int gamePlayerId;
-        public PlayerRole role;
-        public ControllerType type;
-        public PlayerMap(int rewiredPlayerId, int gamePlayerId, ControllerType type, PlayerRole role)
-        {
-            this.rewiredPlayerId = rewiredPlayerId;
-            this.gamePlayerId = gamePlayerId;
-            this.type = type;
-            this.role = role;
-        }
-    }
     const int MAXPLAYERS = 3;
 
     readonly int[] _rolesKB = new int[MAXPLAYERS] { RewiredConsts.Layout.Keyboard.PLAYER1, RewiredConsts.Layout.Keyboard.PLAYER2, RewiredConsts.Layout.Keyboard.PLAYER3 };
@@ -85,6 +85,7 @@ public class PlayerInputsAssigner : MonoBehaviour {
     }
     #endregion
     private List<PlayerMap> _playerMap; // Maps Rewired Player ids to game player ids
+    public IList<PlayerMap> PlayersMap => _playerMap.AsReadOnlyList();
     private int gamePlayerIdCounter = 0;
 
     void Awake() {
@@ -94,6 +95,7 @@ public class PlayerInputsAssigner : MonoBehaviour {
             Destroy(gameObject);
             return;
         }
+        Globals.PlayerInputsAssigner ??= this;
         _instance = this;
     }
 

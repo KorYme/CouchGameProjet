@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -10,9 +12,15 @@ public class PlayerSelectionManager : MonoBehaviour
     [SerializeField] LerpTargetLight[] _objectsSelectionable;
     [SerializeField] CharacterSelectionHandler[] _selectionHandlers;
     int[] _idPlayerSelected; // -1 if player not selected else index of player 
+    public IList<int> IdPlayerSelected {
+        get {
+            return _idPlayerSelected == null ? null : _idPlayerSelected.AsReadOnlyList();
+        }
+    }
     PlayerInputsAssigner _playersAssigner;
     [SerializeField] PlayerSelection _prefabPlayerSelection;
     List<PlayerSelection> _playersController;
+    public bool IsSetUp { get; private set; } = false;
 
     #region Events
     /// <summary>
@@ -48,14 +56,15 @@ public class PlayerSelectionManager : MonoBehaviour
     }
     private void Start()
     {
-        _playersAssigner = FindObjectOfType<PlayerInputsAssigner>();
+        _playersAssigner = Globals.PlayerInputsAssigner;
 
         if (_playersAssigner == null)
         {
             Debug.LogWarning("No Player assigner instance found in the scene");
         } else
         {
-            _playersAssigner.OnPlayerJoined += PlayerJoin;
+            ReloadData();
+            _playersAssigner.OnPlayerJoined += AddPlayerSelectionToList;
         }
         if (_selectionHandlers.Length != _objectsSelectionable.Length)
         {
@@ -63,26 +72,56 @@ public class PlayerSelectionManager : MonoBehaviour
         }
     }
 
+    public void ReloadData()
+    {
+        foreach(PlayerMap playermap in _playersAssigner.PlayersMap)
+        {
+            int indexHandler = RoleToPlayerIndex(playermap.role);
+            if (indexHandler != -1)
+            {
+                CreateInstancePlayerSelection(indexHandler);
+            } else
+            {
+                CreateInstancePlayerSelection(playermap.gamePlayerId);
+            }
+            if (indexHandler != -1) //Check if player has chosen a role before
+            {
+                _objectsSelectionable[playermap.gamePlayerId].TargetIndex = indexHandler; //SetUp light 
+                _idPlayerSelected[indexHandler] = playermap.gamePlayerId;
+            }
+        }
+        IsSetUp = true;
+    }
+    public int RoleToPlayerIndex(PlayerRole role)
+    {
+        int indexHandler = _selectionHandlers.ToList().FindIndex(handler => handler.Role == role);
+        return indexHandler;
+    }
     private void OnDestroy()
     {
         if (_playersAssigner != null)
         {
-            _playersAssigner.OnPlayerJoined -= PlayerJoin;
+            _playersAssigner.OnPlayerJoined -= AddPlayerSelectionToList;
         }
     }
 
-    private void PlayerJoin()
+    private void AddPlayerSelectionToList()
     {
-        PlayerSelection instancePrefab = Instantiate(_prefabPlayerSelection,transform);
         int indexPlayer = _playersController.Count;
-        instancePrefab.SetUp(_playersController.Count, _objectsSelectionable.Length);
+        CreateInstancePlayerSelection(indexPlayer);
+        OnPlayerJoined?.Invoke(indexPlayer);
+    }
+
+    private void CreateInstancePlayerSelection(int indexCharacterAtStart)
+    {
+        PlayerSelection instancePrefab = Instantiate(_prefabPlayerSelection, transform);
+        int indexPlayer = _playersController.Count;
+        instancePrefab.SetUp(indexCharacterAtStart, _objectsSelectionable.Length);
         instancePrefab.OnAccept += OnAcceptPlayer;
         instancePrefab.OnReturn += OnReturnPlayer;
         instancePrefab.OnMove += OnMovePlayer;
         _playersController.Add(instancePrefab);
-        OnPlayerJoined?.Invoke(indexPlayer);
     }
-
     private void OnMovePlayer(int indexPlayer, int indexCurrentCharacter)
     {
         _objectsSelectionable[indexPlayer].MoveToIndex(indexCurrentCharacter);
@@ -109,26 +148,20 @@ public class PlayerSelectionManager : MonoBehaviour
         if (CheckAllCharactersChosen() && indexPlayer == 0)
         {
             ChangeScene();
-        } else 
-        { 
-            if (_idPlayerSelected[indexCurrentCharacter] == -1) //Check if character is not already chosen
+        } else if (_idPlayerSelected[indexCurrentCharacter] == -1) //Check if character is not already chosen
+        {
+            _idPlayerSelected[indexCurrentCharacter] = indexPlayer;
+            _playersController[indexPlayer].CanAccept = false;
+            OnPlayerChooseCharacter?.Invoke(indexPlayer,indexCurrentCharacter, _selectionHandlers[indexCurrentCharacter].Role);
+            if (CheckAllCharactersChosen())
             {
-                _idPlayerSelected[indexCurrentCharacter] = indexPlayer;
-                _playersController[indexPlayer].CanAccept = false;
-                OnPlayerChooseCharacter?.Invoke(indexPlayer,indexCurrentCharacter, _selectionHandlers[indexCurrentCharacter].Role);
-                if (CheckAllCharactersChosen())
-                {
-                    OnAllCharacterChosen?.Invoke(true);
-                }
+                OnAllCharacterChosen?.Invoke(true);
             }
         }
     }
 
-    private bool CheckAllCharactersChosen()
-    {
-        return _idPlayerSelected.ToList().TrueForAll(value => value != -1);
-    }
-
+    private bool CheckAllCharactersChosen() => _idPlayerSelected.ToList().TrueForAll(value => value != -1);
+    
     private void ChangeScene()
     {
         for (int i = 0; i < _idPlayerSelected.Length; i++)
