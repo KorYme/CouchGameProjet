@@ -17,11 +17,11 @@ MonoBehaviour:
   SequenceType: 0
   ClientType: 3
   Evilness: 1
-  QTELevel: 2
+  QTELevel: 1
   Status: 0
   LongInputType: 0
   DurationHold: 1
   ListSubHandlers:
   - {fileID: 11400000, guid: 15a67d67e2236094a8043486e6ca1255, type: 2}
   - {fileID: 11400000, guid: 1000be947bc348d48aba1f07cb90a6b0, type: 2}
-  - {fileID: 11400000, guid: 07d935f214741c44982ca9703c9079a1, type: 2}
+  - {fileID: 11400000, guid: b498c26bf76b7a9408397b34c1542472, type: 2}

@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8333e8bf53b1c2409b30abd1787e784, type: 3}
-  m_Name: QTE1
+  m_Name: QTE28
   m_EditorClassIdentifier: 
-  Index: 4
+  Index: 28
   PlayerRole: 1
   SequenceType: 0
-  ClientType: 3
-  Evilness: 1
-  QTELevel: 2
+  ClientType: 2
+  Evilness: 0
+  QTELevel: 3
   Status: 0
   LongInputType: 0
   DurationHold: 1
   ListSubHandlers:
-  - {fileID: 11400000, guid: ad10fe15d52c30e499d4cdc3be2a96c8, type: 2}
-  - {fileID: 11400000, guid: 7d40ab3b7c04abc4ab906b1873f48515, type: 2}
-  - {fileID: 11400000, guid: 00e372ff07301984f9cb76e5a613a521, type: 2}
+  - {fileID: 11400000, guid: 1e867eda07ce3d347b5e00b611bcb4c9, type: 2}
+  - {fileID: 11400000, guid: c47b8e389cb71544b90a83575f15b236, type: 2}
+  - {fileID: 11400000, guid: ef79056058a0eb640bee0a9e258efa45, type: 2}
