@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: d9478fc11e33bcf4a8f96b9e4f9921f4
-  - enabled: 1
-    path: Assets/Scenes/Integration Lights.unity
-    guid: ae66392772d0f6a4fb5b32711a732499
+    path: Assets/Scenes/CharacterAI.unity
+    guid: bc1f05da76263ad468c5fa8df6712d74
   m_configObjects: {}

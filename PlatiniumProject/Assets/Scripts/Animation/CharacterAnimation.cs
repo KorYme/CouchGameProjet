@@ -21,6 +21,7 @@ public class CharacterAnimation : MonoBehaviour
     private void Awake()
     {
         _characterAnimationData?.Init();
+        
         foreach (var v in _characterAnimationData.animationsList)
         {
             _animDict[v.AnimationType] = 0;
@@ -37,6 +38,11 @@ public class CharacterAnimation : MonoBehaviour
     }
     public Sprite GetAnimationSprite(ANIMATION_TYPE animation, bool canInterupt)
     {
+        if (!_animDict.ContainsKey(animation))
+        {
+            _animDict[animation] = 0;
+        }
+
         if (canInterupt)
         {
             if (animation != _lastAnimationType)
