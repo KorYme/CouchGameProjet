@@ -24,3 +24,5 @@ MonoBehaviour:
   ListSubHandlers:
   - {fileID: 11400000, guid: c38538ee8d1655046803c06e4b75dc20, type: 2}
   - {fileID: 11400000, guid: 651ea72481b5454438851e154f64e2c2, type: 2}
+  - {fileID: 11400000, guid: 4663c5cd990a9ff48bf25def4d288f0e, type: 2}
+  - {fileID: 11400000, guid: 18840e89ec7bef94abdc19cc039f4310, type: 2}
