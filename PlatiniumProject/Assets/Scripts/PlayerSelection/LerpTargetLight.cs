@@ -8,6 +8,17 @@ public class LerpTargetLight : MonoBehaviour
     [SerializeField] int _targetIndex = 0;
     [SerializeField] Transform[] _targetPlayers;
     Coroutine _routineMove;
+
+    public int TargetIndex { 
+        get => _targetIndex;
+        set { if (_targetIndex >= 0 && _targetIndex < _targetPlayers.Length)
+            {
+                _targetIndex = value;
+                SetTargetLight();
+            } 
+        }
+    }
+
     void Start()
     {
         SetTargetLight();
