@@ -1054,92 +1054,6 @@
 									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
 								</Reference>
 							</ReferenceList>
-							<ChildrenList>
-								<MusicSegment Name="Drop_1" ID="{63E3E0B4-366B-448F-9E7D-22E321970978}" ShortID="424124137">
-									<PropertyList>
-										<Property Name="EndPosition" Type="Real64" Value="134400"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<MusicTrack Name="DND_Musique_1_Placeholder" ID="{1F525683-839A-4FD1-B12C-B05F65956C67}" ShortID="156330649">
-											<ReferenceList>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="DND_Musique_1_Placeholder" ID="{6CE2E893-F299-477D-AD71-AAB7481F98A1}">
-													<Language>SFX</Language>
-													<AudioFile>DND_Musique_1_Placeholder.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="773269899"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<TransitionList>
-												<MusicTransition Name="Root" ID="{31F93B64-4B40-4C7A-947B-2F8F53CCAB66}">
-													<PropertyList>
-														<Property Name="IsFolder" Type="bool" Value="True"/>
-													</PropertyList>
-													<TransitionInfo/>
-												</MusicTransition>
-											</TransitionList>
-											<ObjectLists>
-												<ObjectList Name="Sequences">
-													<Reference>
-														<Local>
-															<MusicTrackSequence Name="" ID="{00016B7D-4994-42D5-8BE4-3791C9AD27AD}">
-																<ObjectLists>
-																	<ObjectList Name="Clips">
-																		<Reference>
-																			<Local>
-																				<MusicClip Name="DND_Musique_1_Placeholder" ID="{20AFFD95-312C-408A-85A0-7A292935668D}">
-																					<PropertyList>
-																						<Property Name="EndTrimOffset" Type="Real64" Value="134400"/>
-																						<Property Name="FadeInMode" Type="int16" Value="0"/>
-																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
-																					</PropertyList>
-																					<AudioSourceRef Name="DND_Musique_1_Placeholder" ID="{6CE2E893-F299-477D-AD71-AAB7481F98A1}"/>
-																				</MusicClip>
-																			</Local>
-																		</Reference>
-																	</ObjectList>
-																</ObjectLists>
-															</MusicTrackSequence>
-														</Local>
-													</Reference>
-												</ObjectList>
-											</ObjectLists>
-										</MusicTrack>
-									</ChildrenList>
-									<ObjectLists>
-										<ObjectList Name="Cues">
-											<Reference>
-												<Local>
-													<MusicCue Name="Entry Cue" ID="{29A8D234-D90E-423C-A56B-DEE183AB848A}"/>
-												</Local>
-											</Reference>
-											<Reference>
-												<Local>
-													<MusicCue Name="Exit Cue" ID="{2A992893-A3A5-4D66-8091-DDB91B1C71AD}">
-														<PropertyList>
-															<Property Name="CueType" Type="int16" Value="1"/>
-															<Property Name="TimeMs" Type="Real64" Value="1000"/>
-														</PropertyList>
-													</MusicCue>
-												</Local>
-											</Reference>
-										</ObjectList>
-									</ObjectLists>
-								</MusicSegment>
-							</ChildrenList>
 							<TransitionList>
 								<MusicTransition Name="Root" ID="{0774E23C-AD00-4263-89B6-C24F1D7E9027}">
 									<PropertyList>
@@ -1391,6 +1305,92 @@
 								<MusicPlaylistItem Name="" ID="{29289F55-0C94-4978-B47B-9549B58D1261}" ShortID="402262265"/>
 							</Playlist>
 						</MusicPlaylistContainer>
+						<MusicSegment Name="Drop_1_Test" ID="{63E3E0B4-366B-448F-9E7D-22E321970978}" ShortID="424124137">
+							<PropertyList>
+								<Property Name="EndPosition" Type="Real64" Value="134400"/>
+								<Property Name="GridFrequencyPreset" Type="int16" Value="53"/>
+								<Property Name="Tempo" Type="Real64" Value="100"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="DND_Musique_1_Placeholder" ID="{1F525683-839A-4FD1-B12C-B05F65956C67}" ShortID="156330649">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="DND_Musique_1_Placeholder" ID="{6CE2E893-F299-477D-AD71-AAB7481F98A1}">
+											<Language>SFX</Language>
+											<AudioFile>DND_Musique_1_Placeholder.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="773269899"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{31F93B64-4B40-4C7A-947B-2F8F53CCAB66}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{00016B7D-4994-42D5-8BE4-3791C9AD27AD}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="DND_Musique_1_Placeholder" ID="{20AFFD95-312C-408A-85A0-7A292935668D}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="134400"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="DND_Musique_1_Placeholder" ID="{6CE2E893-F299-477D-AD71-AAB7481F98A1}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="Cues">
+									<Reference>
+										<Local>
+											<MusicCue Name="Entry Cue" ID="{29A8D234-D90E-423C-A56B-DEE183AB848A}"/>
+										</Local>
+									</Reference>
+									<Reference>
+										<Local>
+											<MusicCue Name="Exit Cue" ID="{2A992893-A3A5-4D66-8091-DDB91B1C71AD}">
+												<PropertyList>
+													<Property Name="CueType" Type="int16" Value="1"/>
+													<Property Name="TimeMs" Type="Real64" Value="1000"/>
+												</PropertyList>
+											</MusicCue>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</MusicSegment>
 					</ChildrenList>
 					<StateInfo>
 						<StateGroupList>
