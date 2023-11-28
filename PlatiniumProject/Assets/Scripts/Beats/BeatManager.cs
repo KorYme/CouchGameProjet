@@ -99,7 +99,6 @@ public class BeatManager : MonoBehaviour, ITimingable
 
     private void BeatCallBack(object in_cookie, AkCallbackType in_type, AkCallbackInfo in_info)
     {
-        Debug.Log("Beat");
         AkMusicSyncCallbackInfo info = in_info as AkMusicSyncCallbackInfo;
         switch (in_type)
         { 

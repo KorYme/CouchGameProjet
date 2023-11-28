@@ -27,8 +27,11 @@ public class CharacterStateAtBar : CharacterState
     }
     public override void OnBeat()
     {
-        StateMachine.Satisafaction.DecreaseSatisfaction(StateMachine.CharacterDataObject.decrementationValueOnBarMan);
         StateMachine.Animation.SetAnim(ANIMATION_TYPE.IDLE);
+        if (Globals.DropManager.CanYouLetMeMove && !StateMachine.CharacterDataObject.isTutorialNpc)
+        {
+            StateMachine.Satisafaction.DecreaseSatisfaction(StateMachine.CharacterDataObject.decrementationValueOnBarMan);
+        }
     }
 
     public override void ExitState()
