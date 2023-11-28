@@ -41,9 +41,9 @@ public class PlayerSelectionController : MonoBehaviour
         {
             OnReturn?.Invoke(PlayerId);
         }
-        if (_player.GetAxis(RewiredConsts.Action.MOVEMENU) != 0f)
+        if (_player.GetAxis(RewiredConsts.Action.MOVEMENUHORIZONTAL) != 0f)
         {
-            int direction = _player.GetAxis(RewiredConsts.Action.MOVEMENU) > 0f ? 1 : -1;
+            int direction = _player.GetAxis(RewiredConsts.Action.MOVEMENUHORIZONTAL) > 0f ? 1 : -1;
             if (_repeatDelay > 0f) {
                 if (_canMove)
                 {
