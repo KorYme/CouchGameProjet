@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 493905053067369962}
   - component: {fileID: 2199069222171610668}
   - component: {fileID: 2531434923138599333}
+  - component: {fileID: 7235066784701184644}
   m_Layer: 0
   m_Name: CircleFollowing
   m_TagString: Untagged
@@ -98,3 +99,16 @@ MonoBehaviour:
   _target: {fileID: 0}
   _timeToReachPosition: 0.2
   _offset: {x: 0, y: 1}
+--- !u!114 &7235066784701184644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4033037709455222516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c4b01b1fe314a4ebd3579dfa5e4cf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _light2D: {fileID: 2199069222171610668}

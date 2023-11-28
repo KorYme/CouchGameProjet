@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6286355635895333197}
   - component: {fileID: 3205818174946875287}
   - component: {fileID: 2243493562978271714}
+  - component: {fileID: 1286308313177761785}
   m_Layer: 0
   m_Name: BlinkingLight
   m_TagString: Untagged
@@ -98,6 +99,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _light: {fileID: 3205818174946875287}
   _radiusAddition: 0.1
+--- !u!114 &1286308313177761785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282839795979610751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c4b01b1fe314a4ebd3579dfa5e4cf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _light2D: {fileID: 3205818174946875287}
 --- !u!1 &9062100294596992736
 GameObject:
   m_ObjectHideFlags: 0
