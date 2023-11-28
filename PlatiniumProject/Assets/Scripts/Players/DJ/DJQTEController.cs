@@ -8,7 +8,8 @@ public class DJQTEController : MonoBehaviour, IQTEable
 {
     QTEHandler _qteHandler;
     List<SlotInformation> _shapesLightCopy;
-    private CharacterAnimation _characterAnimation;
+    [SerializeField] private CharacterAnimation _characterAnimation;
+    [SerializeField] private CharacterAnimation _characterArmAnimation;
 
     #region Events
     public event Action<string> OnDJQTEStarted;
@@ -21,7 +22,8 @@ public class DJQTEController : MonoBehaviour, IQTEable
     private void Awake()
     {
         _qteHandler = GetComponent<QTEHandler>();
-        _characterAnimation = GetComponent<CharacterAnimation>();
+        if(_characterAnimation == null)
+            _characterAnimation = GetComponent<CharacterAnimation>();
         //_bubbleObject.SetActive(false);
     }
     private void Start()
@@ -36,6 +38,7 @@ public class DJQTEController : MonoBehaviour, IQTEable
     private void OnBeat()
     {
         _characterAnimation.SetAnim(ANIMATION_TYPE.IDLE);
+        _characterArmAnimation.SetAnim(ANIMATION_TYPE.IDLE);
     }
 
     private void OnDestroy()
@@ -98,6 +101,7 @@ public class DJQTEController : MonoBehaviour, IQTEable
 
     public void OnQTECorrectInput()
     {
+        Debug.Log("qdSSSSSSSSSSSSSSSSSSSSSSS");
         foreach (SlotInformation information in _shapesLightCopy)
         {
             if (information.Occupant != null)
@@ -110,16 +114,19 @@ public class DJQTEController : MonoBehaviour, IQTEable
             }
         }
         OnDJQTEChanged?.Invoke(_qteHandler.GetQTEString());
-        _characterAnimation.SetAnim(ANIMATION_TYPE.CORRECT_INPUT);
-        _characterAnimation.SetAnim(ANIMATION_TYPE.CORRECT_INPUT_ARM,true,1);
+        _characterAnimation.SetLatency(2);
+        _characterArmAnimation.SetLatency(2);
+        _characterAnimation.SetAnim(ANIMATION_TYPE.CORRECT_INPUT, false);
+        _characterArmAnimation.SetAnim(ANIMATION_TYPE.CORRECT_INPUT, false);
     }
 
     public void OnQTEWrongInput()
     {
         OnDJQTEChanged?.Invoke(_qteHandler.GetQTEString());
         _characterAnimation.SetLatency(2);
+        _characterArmAnimation.SetLatency(2);
         _characterAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT, false);
-        _characterAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT_ARM, false,1);
+        _characterArmAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT, false);
     }
     #endregion
 }

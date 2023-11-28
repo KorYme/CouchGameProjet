@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 public class CharacterAnimation : MonoBehaviour
 {
     [SerializeField] private CharacterAnimationObject _characterAnimationData;
-    [SerializeField] private SpriteRenderer[] _sps;
+    [SerializeField] private SpriteRenderer _sp;
     private Dictionary<ANIMATION_TYPE, int> _animDict = new Dictionary<ANIMATION_TYPE, int>();
     private ANIMATION_TYPE _lastAnimationType;
     private int _animLatency;
@@ -88,12 +88,12 @@ public class CharacterAnimation : MonoBehaviour
         return result;
     }
 
-    public void SetAnim(ANIMATION_TYPE type, bool canInterupt = true, int id = 0)
+    public void SetAnim(ANIMATION_TYPE type, bool canInterupt = true)
     {
         Sprite result = GetAnimationSprite(type, canInterupt);
         if (result != null)
         {
-            _sps[id].sprite = result;
+            _sp.sprite = result;
         }
     }
 }

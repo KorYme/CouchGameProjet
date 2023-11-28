@@ -173,8 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterAnimationData: {fileID: 11400000, guid: 5c5cf1dc7975bc2488dfaf9c4c3fa4ed, type: 2}
-  _sps:
-  - {fileID: 1155010087064724784}
+  _sp: {fileID: 1155010087064724784}
 --- !u!114 &1711434393512898582
 MonoBehaviour:
   m_ObjectHideFlags: 0
