@@ -165,7 +165,6 @@ public class CharacterStateMachine : MonoBehaviour
     {
         _spawnManager.ReInsertCharacterInPull(Puller);
         ChangeState(null);
-        Animation.SpriteRenderer.color = Color.white;
         CurrentBeatAmount = 0;
         CurrentMovementInBouncer = 0;
         MoveToLocation = Vector3.zero;

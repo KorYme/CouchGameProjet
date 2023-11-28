@@ -52,6 +52,8 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
 
      public void OnDrinkComplete()
     {
+        //if(stateMachine.TypeData.Evilness)
+        
         CharacterStateMachine stateMachine = _waitingCharactersList[0];
         if (stateMachine != null)
         {
