@@ -16,7 +16,7 @@ public class UIPlayerTagSelection : MonoBehaviour
         _indexCharacter = Mathf.Max(0, _indexCharacter);
     }
 
-    IEnumerator Start()
+    void Start()
     {
         _selectionManager = FindObjectOfType<PlayerSelectionManager>();
         _selectionManager.OnPlayerChooseCharacter += OnPlayerChooseCharacter;
@@ -25,12 +25,6 @@ public class UIPlayerTagSelection : MonoBehaviour
         {
             _image.transform.localScale = Vector3.zero;
             _image.sprite = null;
-        }
-        yield return new WaitUntil(() => _selectionManager.IsSetUp);
-        if (_selectionManager.IdPlayerSelected[_indexCharacter] != -1)
-        {
-            _image.sprite = _tagList.PlayerTagSprites[_selectionManager.IdPlayerSelected[_indexCharacter]];
-            _image.transform.localScale = Vector3.one;
         }
     }
 

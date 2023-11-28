@@ -1,6 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -20,6 +20,7 @@ public class PlayerSelectionManager : MonoBehaviour
     PlayerInputsAssigner _playersAssigner;
     [SerializeField] PlayerSelection _prefabPlayerSelection;
     List<PlayerSelection> _playersController;
+    public ReadOnlyCollection<PlayerSelection> PlayersController => _playersController.AsReadOnly();
     public bool IsSetUp { get; private set; } = false;
 
     #region Events
@@ -76,26 +77,15 @@ public class PlayerSelectionManager : MonoBehaviour
     {
         foreach(PlayerMap playermap in _playersAssigner.PlayersMap)
         {
-            int indexHandler = RoleToPlayerIndex(playermap.role);
-            if (indexHandler != -1)
-            {
-                CreateInstancePlayerSelection(indexHandler);
-            } else
-            {
-                CreateInstancePlayerSelection(playermap.gamePlayerId);
-            }
-            if (indexHandler != -1) //Check if player has chosen a role before
+            _playersAssigner.SetRoleOfPlayer(playermap.gamePlayerId, PlayerRole.None);
+            CreateInstancePlayerSelection(playermap.gamePlayerId);
+            /*if (indexHandler != -1) //Check if player has chosen a role before
             {
                 _objectsSelectionable[playermap.gamePlayerId].TargetIndex = indexHandler; //SetUp light 
                 _idPlayerSelected[indexHandler] = playermap.gamePlayerId;
-            }
+            }*/
         }
         IsSetUp = true;
-    }
-    public int RoleToPlayerIndex(PlayerRole role)
-    {
-        int indexHandler = _selectionHandlers.ToList().FindIndex(handler => handler.Role == role);
-        return indexHandler;
     }
     private void OnDestroy()
     {
@@ -167,7 +157,7 @@ public class PlayerSelectionManager : MonoBehaviour
         for (int i = 0; i < _idPlayerSelected.Length; i++)
         {
             _playersAssigner.SetRoleOfPlayer(_idPlayerSelected[i],_selectionHandlers[i].Role);
-            _playersAssigner.ChangeMap(_idPlayerSelected[i]);
+            _playersAssigner.ChangeMapUIToNormal(_idPlayerSelected[i]);
         }
         OnChangeScene.Invoke();
         SceneManager.LoadScene(1);

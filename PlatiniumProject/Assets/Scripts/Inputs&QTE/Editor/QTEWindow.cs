@@ -353,7 +353,10 @@ public class QTEWindow : EditorWindow
             if (_rewiredInputManager != null)
             {
                 InputActionType rewiredInputType = ReInput.mapping.GetAction(input.ActionIndex).type;
-                EditorGUILayout.LabelField(Enum.GetName(typeof(InputActionType), rewiredInputType));
+                if (rewiredInputType == InputActionType.Axis && _selectedQTE.Status == InputStatus.SHORT)
+                {
+                    input.PositiveValue = EditorGUILayout.Toggle("Is a positive value",input.PositiveValue);
+                }
             } else
             {
                 EditorGUILayout.LabelField("Rewired inputs not loaded. Please run Rewired Input Manager in edit mode.", new GUIStyle() { normal = new GUIStyleState() { textColor = Color.red } });
