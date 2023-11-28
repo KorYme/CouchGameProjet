@@ -1,11 +1,12 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BarmanMovement : PlayerMovement
 {
-    [Space, Header("Bouncer Parameters")]
+    [Space, Header("Barman Parameters")]
     [SerializeField] BarmanPosition[] _barmanPositions;
-    [SerializeField] SpriteRenderer _renderer;
+    [SerializeField] UnityEvent _onBarmanMove;
 
     int _indexPosition;
     public int IndexPosition { get => _indexPosition;}
@@ -54,6 +55,7 @@ public class BarmanMovement : PlayerMovement
             {
                 if (MoveTo(_barmanPositions[_indexPosition-1].transform.position))
                 {
+                    _onBarmanMove?.Invoke();
                     DeactivateCurrentQTE();
                     _indexPosition--;
                     ActivateCurrentQTE();
