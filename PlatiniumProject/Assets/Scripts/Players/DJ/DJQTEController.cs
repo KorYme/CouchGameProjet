@@ -8,7 +8,6 @@ public class DJQTEController : MonoBehaviour, IQTEable
     QTEHandler _qteHandler;
     List<SlotInformation> _shapesLightCopy;
     private CharacterAnimation _characterAnimation;
-    [SerializeField] private SpriteRenderer _sp;
 
     #region Events
     public event Action<string> OnDJQTEStarted;
@@ -109,6 +108,7 @@ public class DJQTEController : MonoBehaviour, IQTEable
         }
         OnDJQTEChanged?.Invoke(_qteHandler.GetQTEString());
         _characterAnimation.SetAnim(ANIMATION_TYPE.CORRECT_INPUT);
+        _characterAnimation.SetAnim(ANIMATION_TYPE.CORRECT_INPUT_ARM,true,1);
     }
 
     public void OnQTEWrongInput()
@@ -116,6 +116,7 @@ public class DJQTEController : MonoBehaviour, IQTEable
         OnDJQTEChanged?.Invoke(_qteHandler.GetQTEString());
         _characterAnimation.SetLatency(2);
         _characterAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT, false);
+        _characterAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT_ARM, false,1);
     }
     #endregion
 }

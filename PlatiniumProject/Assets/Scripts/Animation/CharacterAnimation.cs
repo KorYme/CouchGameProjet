@@ -2,16 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CharacterAnimation : MonoBehaviour
 {
     [SerializeField] private CharacterAnimationObject _characterAnimationData;
-    [SerializeField] private SpriteRenderer _sp;
+    [SerializeField] private SpriteRenderer[] _sps;
     private Dictionary<ANIMATION_TYPE, int> _animDict = new Dictionary<ANIMATION_TYPE, int>();
     private ANIMATION_TYPE _lastAnimationType;
     private int _animLatency;
-
-    public SpriteRenderer SpriteRenderer => _sp;
+    
 
     public CharacterAnimationObject CharacterAnimationObject
     {
@@ -88,12 +88,12 @@ public class CharacterAnimation : MonoBehaviour
         return result;
     }
 
-    public void SetAnim(ANIMATION_TYPE type, bool canInterupt = true)
+    public void SetAnim(ANIMATION_TYPE type, bool canInterupt = true, int id = 0)
     {
         Sprite result = GetAnimationSprite(type, canInterupt);
         if (result != null)
         {
-            _sp.sprite = result;
+            _sps[id].sprite = result;
         }
     }
 }
