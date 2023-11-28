@@ -198,6 +198,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ---MainScenePrefab---
       objectReference: {fileID: 0}
+    - target: {fileID: 1918882622757028134, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 1980982121051236805, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -286,6 +290,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8484154248070721880, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _tutoClients.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484154248070721880, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _tutoClients.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2a7886928aeb2f443ba29c6ff4ccc8ab, type: 2}
+    - target: {fileID: 8484154248070721880, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _tutoClients.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6f98fd871f9f3184ca472a31930f2549, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
