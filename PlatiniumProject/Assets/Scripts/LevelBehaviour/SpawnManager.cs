@@ -89,6 +89,7 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator TutoRoutine()
     {
+        LightIntensityTrigger.ActivateLight(false);
         for (int i = 0; i < _tutoClients.Length; ++i)
         {
             if (_availableCharcters.Count <= 0)
@@ -110,9 +111,9 @@ public class SpawnManager : MonoBehaviour
                 if (!_availableCharcters.Contains(c))
                     return false;
             }
-            Debug.Log("pipi");
             return true;
         });
+        LightIntensityTrigger.ActivateLight(true);
         LaunchGame();
     }
         

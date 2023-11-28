@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TutoCharacter
   m_EditorClassIdentifier: 
   beatAmountUnitlAction: 3
-  isTutorialNpc: 0
+  isTutorialNpc: 1
   movementAmountInQueue: 4
   maxBarManSatisafactionBar: 20
   decrementationValueOnBarMan: 1
