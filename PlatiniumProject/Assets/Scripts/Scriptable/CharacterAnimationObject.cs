@@ -14,7 +14,10 @@ public enum ANIMATION_TYPE
     CORRECT_INPUT,
     WRONG_INPUT,
     FIGHT,
-    FIGHT_IDLE
+    FIGHT_IDLE,
+    CORRECT_INPUT_ARM,
+    WRONG_INPUT_ARM,
+    
 }
 [System.Serializable]
 public struct Animation

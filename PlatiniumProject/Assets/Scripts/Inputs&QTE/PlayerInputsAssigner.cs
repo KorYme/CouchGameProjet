@@ -163,11 +163,7 @@ public class PlayerInputsAssigner : MonoBehaviour {
         {
             rewiredPlayer.controllers.maps.SetMapsEnabled(true, "Default", "Default");
         }
-    }
-
-
-    //TO DO enleve assignment au démarrage => que ans la scène de selection
-    
+    }    
     
     void ChangeMapKeyboard(int rewiredPlayerId)
     {
