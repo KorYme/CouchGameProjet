@@ -42,10 +42,7 @@ public class PlayerSelection : MonoBehaviour
 
     private void OnAcceptController(int indexPlayer)
     {
-        if (CanAccept)
-        {
-            OnAccept?.Invoke(indexPlayer, _indexCharacter);
-        }
+        OnAccept?.Invoke(indexPlayer, _indexCharacter);
     }
 
     private void OnMoveController(int indexPlayer, int direction)

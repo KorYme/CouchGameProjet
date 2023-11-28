@@ -20,6 +20,12 @@ public class DropManager : MonoBehaviour
     [SerializeField] TMP_Text _text;
     [SerializeField] GameObject _dropSuccess;
 
+    [SerializeField] AK.Wwise.Event _firstDropEvent;
+    [SerializeField] AK.Wwise.Event _secondStateEvent;
+    [SerializeField] AK.Wwise.Event _secondDropEvent;
+    [SerializeField] AK.Wwise.Event _thirdStateEvent;
+    [SerializeField] AK.Wwise.Event _thirdDropEvent;
+
     public float InputDeadZone => _inputDeadZone;
 
     DROP_STATE _dropState;

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DJQTEController : MonoBehaviour, IQTEable
 {
@@ -13,6 +14,8 @@ public class DJQTEController : MonoBehaviour, IQTEable
     public event Action<string> OnDJQTEStarted;
     public event Action<string> OnDJQTEEnded;
     public event Action<string> OnDJQTEChanged;
+    [SerializeField] UnityEvent _onDJSuccess; 
+    [SerializeField] UnityEvent _onDJFail;
     #endregion
 
     private void Awake()
@@ -34,6 +37,7 @@ public class DJQTEController : MonoBehaviour, IQTEable
     {
         _characterAnimation.SetAnim(ANIMATION_TYPE.IDLE);
     }
+
     private void OnDestroy()
     {
         Globals.BeatManager.OnBeatEvent.RemoveListener(OnBeat);
@@ -89,7 +93,6 @@ public class DJQTEController : MonoBehaviour, IQTEable
 
     public void OnQTEComplete()
     {
-        //_bubbleObject.SetActive(false);
         OnDJQTEEnded?.Invoke(_qteHandler.GetQTEString());
     }
 

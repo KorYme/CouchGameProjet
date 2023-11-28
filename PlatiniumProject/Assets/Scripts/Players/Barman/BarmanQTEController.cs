@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BarmanQTEController : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class BarmanQTEController : MonoBehaviour
     public event Action<string> OnBarmanQTEStarted;
     public event Action<string> OnBarmanQTEEnded;
     public event Action<string> OnBarmanQTEChanged;
+
+    public UnityEvent onDrinkComplete;
     #endregion
 
     private void Awake()
