@@ -77,6 +77,7 @@ public class PlayerSelectionManager : MonoBehaviour
     {
         foreach(PlayerMap playermap in _playersAssigner.PlayersMap)
         {
+            Debug.Log("ZDZDD "+playermap.gamePlayerId);
             _playersAssigner.SetRoleOfPlayer(playermap.gamePlayerId, PlayerRole.None);
             CreateInstancePlayerSelection(playermap.gamePlayerId);
             /*if (indexHandler != -1) //Check if player has chosen a role before
@@ -160,6 +161,5 @@ public class PlayerSelectionManager : MonoBehaviour
             _playersAssigner.ChangeMapUIToNormal(_idPlayerSelected[i]);
         }
         OnChangeScene.Invoke();
-        SceneManager.LoadScene(1);
     }
 }
