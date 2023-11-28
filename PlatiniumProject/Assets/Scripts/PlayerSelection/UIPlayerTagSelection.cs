@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ public class UIPlayerTagSelection : MonoBehaviour
     [SerializeField] ListPlayerTag _tagList;
     [SerializeField] Image _image;
     [SerializeField] float _timeToAppear = 0.5f;
-    PlayerSelectionManager _selectionManager;
+    [SerializeField]PlayerSelectionManager _selectionManager;
 
     private void OnValidate()
     {
