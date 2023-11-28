@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1707466153288651455}
   - component: {fileID: 4768211539129235414}
+  - component: {fileID: 8456272498665821484}
   m_Layer: 0
   m_Name: CharacterManager
   m_TagString: Untagged
@@ -82,3 +83,34 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f34499c5ae44ea944bf758664c01d05a, type: 2}
   _badClients:
   - {fileID: 11400000, guid: 5d42f79c1b4fd6d45a9a5ee212036938, type: 2}
+--- !u!114 &8456272498665821484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4683678858438232760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de7522a7d8fa7f6418e343f088b60fdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _priestAmountToStartExorcize: 2
+  _priestAmountToExorcize: 4
+  _danceFloor: {fileID: 0}
+  CurrentPriestList: []
+  OnLoose:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
