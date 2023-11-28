@@ -21,7 +21,4 @@ MonoBehaviour:
   Status: 1
   LongInputType: 0
   DurationHold: 3
-  ListSubHandlers:
-  - {fileID: 11400000, guid: 0057d527ce065534994dc35882d11462, type: 2}
-  - {fileID: 11400000, guid: f197df34552faa442a9612f8c930ff39, type: 2}
-  - {fileID: 11400000, guid: d9ed3dd59637e514bbf3752f3e3a1f10, type: 2}
+  ListSubHandlers: []
