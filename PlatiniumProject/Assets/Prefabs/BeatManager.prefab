@@ -112,3 +112,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _allWwiseEvents: {fileID: 11400000, guid: cf58975faf770dd4cbcef333a05f99a6, type: 2}
+  _eventSFX: 0

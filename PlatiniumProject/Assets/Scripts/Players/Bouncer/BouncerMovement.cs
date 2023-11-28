@@ -71,9 +71,9 @@ public class BouncerMovement : PlayerMovement, IQTEable
         }
     }
 
-    public void CheckMode(CharacterStateMachine chara)
+    public void CheckMode(CharacterStateMachine chara, CharacterCheckByBouncerState state)
     {
-        _currentClient = _currentSlot.Occupant.BouncerCheckState as CharacterCheckByBouncerState;
+        _currentClient = state;
         _currentState = BOUNCER_STATE.CHECKING;
         StartCoroutine(TestCheck(chara.transform.position));
         Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.BOUNCER).StartFocus(transform);

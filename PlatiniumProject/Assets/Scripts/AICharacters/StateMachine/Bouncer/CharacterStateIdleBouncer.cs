@@ -19,7 +19,7 @@ public class CharacterStateIdleBouncer : CharacterState
         if (StateMachine.CurrentSlot.PlayerOccupant != null)
         {
             StateMachine.ChangeState(StateMachine.BouncerCheckState);
-            StateMachine.CurrentSlot.PlayerOccupant.CheckMode(StateMachine);
+            StateMachine.CurrentSlot.PlayerOccupant.CheckMode(StateMachine, StateMachine.BouncerCheckState as CharacterCheckByBouncerState);
         }
     }
 

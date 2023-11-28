@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: 12
   PlayerRole: 2
-  SequenceType: 1
+  SequenceType: 0
   ClientType: 0
   Evilness: 1
   QTELevel: 1

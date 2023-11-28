@@ -41,6 +41,7 @@ public class DropManager : MonoBehaviour
     public event Action OnDropFail;
     public event Action OnBeginBuildUp;
 
+    int _dropPassed;
     int _triggerPressedNumber;
     BeatManager _beatManager;
     List<DropController> _allDropControllers = new();
@@ -59,6 +60,7 @@ public class DropManager : MonoBehaviour
         _beatManager = Globals.BeatManager as BeatManager;
         _beatManager.OnUserCueReceived += CheckUserCueName;
         OnDropStateChange += DropStateChange;
+        _dropPassed = 0;
     }
 
     private void OnDestroy()
@@ -113,6 +115,11 @@ public class DropManager : MonoBehaviour
                 if (DropState != DROP_STATE.OUT_OF_DROP)
                 {
                     DropState = DROP_STATE.ON_DROP_MISSED;
+                }
+                _dropPassed++;
+                if (_dropPassed >= 3)
+                {
+                    Time.timeScale = 0f;
                 }
                 break;
             default:
