@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}" SchemaVersion="110">
 	<States>
-		<WorkUnit Name="Default Work Unit" ID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}" PersistMode="Standalone">
+			<ChildrenList>
+				<StateGroup Name="Music_State" ID="{C434A267-4848-4F08-A12D-73B4DF58E127}">
+					<ChildrenList>
+						<State Name="None" ID="{3138FAE3-C6F8-426A-8974-221E0D3F2EDC}"/>
+						<State Name="Musique_1" ID="{07001DB6-4F40-4AA4-B66D-3D6464C860D7}"/>
+						<State Name="Musique_2" ID="{C8D0BD07-4F60-47A0-BB58-51A97EB8D52C}"/>
+						<State Name="Musique_3" ID="{DE4DE939-F21A-4497-A624-61E58F766939}"/>
+						<State Name="Musique_Intro" ID="{4672D8F4-C676-4695-8340-5A22B64A896C}"/>
+						<State Name="Musique_End" ID="{48AA7F08-7329-4227-A759-7946187CEB0B}"/>
+						<State Name="Drop_1" ID="{FCA0E1AF-D517-4841-A894-2914DFB5DB30}"/>
+						<State Name="Drop_2" ID="{58C08921-01EE-47CB-9822-4A604897E4FB}"/>
+						<State Name="Drop_3" ID="{2719F756-914C-4A39-8798-E85F1FEC8289}"/>
+					</ChildrenList>
+				</StateGroup>
+				<StateGroup Name="LowPass_Menu" ID="{B3DA9FAB-E597-4E00-AA2B-D50F1833D3E4}">
+					<ChildrenList>
+						<State Name="None" ID="{FD7EECE2-F8F4-45B8-B9CB-AAC92B501AAB}"/>
+						<State Name="Menu_Open" ID="{6DD9BD10-F55E-4754-8AFC-0093589EC733}"/>
+						<State Name="Menu_Close" ID="{3723DA8D-5A3C-4774-8B8D-FFD9B69FE076}"/>
+					</ChildrenList>
+				</StateGroup>
+			</ChildrenList>
+		</WorkUnit>
 	</States>
 </WwiseDocument>
