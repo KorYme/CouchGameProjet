@@ -129,6 +129,8 @@ public class BouncerMovement : PlayerMovement, IQTEable
             {
                 LetCharacterEnterBox();
                 _qteController?.CloseBubble();
+                _animation.SetLatency(2);
+                _animation.SetAnim(ANIMATION_TYPE.ACCEPT, false);
                 yield break;
             }
             if (_playerController.Action3.InputValue)//REFUSE + evil character
@@ -139,6 +141,8 @@ public class BouncerMovement : PlayerMovement, IQTEable
                     _qteController?.StartQTE(_currentClient.StateMachine.TypeData);
                 } else
                 {
+                    _animation.SetLatency(2);
+                    _animation.SetAnim(ANIMATION_TYPE.REFUSE, false);
                     RefuseCharacterEnterBox();
                     _qteController?.CloseBubble();
                 }

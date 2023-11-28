@@ -26,7 +26,7 @@ public class CharacterStateIdleBouncer : CharacterState
     public override void BeatAction()
     {
 
-        if (StateMachine.CurrentMovementInBouncer > StateMachine.CharacterDataObject.movementAmountInQueue)
+        if (!StateMachine.CharacterDataObject.isTutorialNpc && StateMachine.CurrentMovementInBouncer > StateMachine.CharacterDataObject.movementAmountInQueue)
         {
             StateMachine.CurrentSlot.Occupant = null;
             StateMachine.ChangeState(StateMachine.RoamState);

@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 public class CharacterData : ScriptableObject
 {
     public int beatAmountUnitlAction;
+    public bool isTutorialNpc;
     
     [Header("Bouncer")]
     public int movementAmountInQueue;

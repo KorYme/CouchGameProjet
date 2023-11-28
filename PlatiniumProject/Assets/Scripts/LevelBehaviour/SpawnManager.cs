@@ -36,8 +36,13 @@ public class SpawnManager : MonoBehaviour
     [Header("Clients")]
     [SerializeField] private CharacterObject[] _goodClients;
     [SerializeField] private CharacterObject[] _badClients;
+    [SerializeField] private CharacterObject[] _tutoClients;
     
     public bool CanYouLetMeMove { get; set; }
+    
+    [Header("Tuto")]
+    private Coroutine _tutoRoutine;
+    private List<CharacterAiPuller> _tutoCharacters = new List<CharacterAiPuller>();
 
     public enum STARTPOINT
     {
@@ -76,6 +81,86 @@ public class SpawnManager : MonoBehaviour
         Globals.SpawnManager ??= this;
     }
 
+
+    private void Start()
+    {
+        _tutoRoutine = StartCoroutine(TutoRoutine());
+    }
+
+    private IEnumerator TutoRoutine()
+    {
+        LightIntensityTrigger.ActivateLight(false);
+        for (int i = 0; i < _tutoClients.Length; ++i)
+        {
+            if (_availableCharcters.Count <= 0)
+            {
+                Debug.LogWarning("No more pullable character");
+                yield break;
+            }
+
+            CharacterAiPuller chara = _availableCharcters[0];
+            _tutoCharacters.Add(chara);
+            _availableCharcters.Remove(chara);
+            chara.PullCharacter(_tutoClients[i], chara.StateMachine.IdleTransitState);
+        }
+
+        yield return new WaitUntil(() =>
+        {
+            foreach (var c in _tutoCharacters)
+            {
+                if (!_availableCharcters.Contains(c))
+                    return false;
+            }
+            return true;
+        });
+        LightIntensityTrigger.ActivateLight(true);
+        LaunchGame();
+    }
+        
+    private void LaunchGame()
+    {
+        for (int i = 0; i < _baseClientInBouncer; ++i)
+        {
+            if (_availableCharcters.Count <= 0)
+            {
+                Debug.LogWarning("No more pullable character");
+                return;
+            }
+
+            CharacterAiPuller chara = _availableCharcters[0];
+            _availableCharcters.Remove(chara);
+            chara.PullCharacter(GetClientType(), chara.StateMachine.IdleTransitState);
+        }
+
+        for (int i = 0; i < _baseClientInBarMan; ++i)
+        {
+            if (_availableCharcters.Count <= 0)
+            {
+                Debug.LogWarning("No more pullable character");
+                return;
+            }
+
+            CharacterAiPuller chara = _availableCharcters[0];
+            _availableCharcters.Remove(chara);
+            chara.PullCharacter(GetClientType(), chara.StateMachine.BarManQueueState);
+        }
+
+        for (int i = 0; i < _baseClientInDj; ++i)
+        {
+            if (_availableCharcters.Count <= 0)
+            {
+                Debug.LogWarning("No more pullable character");
+                return;
+            }
+
+            CharacterAiPuller chara = _availableCharcters[0];
+            _availableCharcters.Remove(chara);
+            chara.PullCharacter(GetClientType(), chara.StateMachine.DancingState);
+        }
+
+        StartCoroutine(PullRoutine());
+    }
+
     private void GdTest()
     {
         if (_minMaxSpawnPerMinutes.x <= 0 || _minMaxSpawnPerMinutes.y <= 0)
@@ -90,46 +175,6 @@ public class SpawnManager : MonoBehaviour
         if (_badClientRatio.x > _badClientRatio.y)
             Debug.LogException(new DataException("badclientRation first value must be higher than the second"), this);
     }
-
-    private void Start()
-    {
-        for (int i = 0; i < _baseClientInBouncer; ++i)
-        {
-            if (_availableCharcters.Count <= 0)
-            {
-                Debug.LogWarning("No more pullable character");
-                return;
-            }
-            CharacterAiPuller chara = _availableCharcters[0];
-            _availableCharcters.Remove(chara);
-            chara.PullCharacter(GetClientType(), chara.StateMachine.IdleTransitState);
-        }
-        for (int i = 0; i < _baseClientInBarMan; ++i)
-        {
-            if (_availableCharcters.Count <= 0)
-            {
-                Debug.LogWarning("No more pullable character");
-                return;
-            }
-            CharacterAiPuller chara = _availableCharcters[0];
-            _availableCharcters.Remove(chara);
-            chara.PullCharacter(GetClientType(), chara.StateMachine.BarManQueueState);
-        }
-        for (int i = 0; i < _baseClientInDj; ++i)
-        {
-            if (_availableCharcters.Count <= 0)
-            {
-                Debug.LogWarning("No more pullable character");
-                return;
-            }
-            CharacterAiPuller chara = _availableCharcters[0];
-            _availableCharcters.Remove(chara);
-            chara.PullCharacter(GetClientType(), chara.StateMachine.DancingState);
-        }
-
-        StartCoroutine(PullRoutine());
-    }
-    
     private CharacterObject GetClientType(bool isBadClient = false)
     {
         return isBadClient? _badClients[Random.Range(0, _badClients.Length)] : _goodClients[Random.Range(0, _goodClients.Length)];

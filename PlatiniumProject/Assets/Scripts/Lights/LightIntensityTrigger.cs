@@ -9,10 +9,20 @@ public class LightIntensityTrigger : MonoBehaviour
     public static event Action TurnOffLights;
     public static event Action TurnOnLights;
 
+
     [SerializeField] Light2D _light2D;
 
     float _initialIntensity;
 
+    public static void ActivateLight(bool isOn)
+    {
+        if (isOn)
+        {
+            TurnOnLights?.Invoke();
+            return;
+        }
+        TurnOffLights?.Invoke();
+    }
     private void Reset()
     {
         _light2D = GetComponent<Light2D>();
