@@ -53,6 +53,7 @@ public class SpawnManager : MonoBehaviour
     private void Awake()
     {
 
+        Globals.SpawnManager ??= this;
         foreach (var g in _goodClients)
         {
             g.animation.Init();
@@ -78,28 +79,29 @@ public class SpawnManager : MonoBehaviour
             _characterList[i] = puller;
             _availableCharcters.Add(puller);
         }
-        Globals.SpawnManager ??= this;
     }
 
 
     private void Start()
     {
-        //_tutoRoutine = StartCoroutine(TutoRoutine());
-        LaunchGame();
+        Debug.Log("sqedsdsqdqs");
+        Globals.TutorialManager.CharcterTutoAmount = _tutoClients.Length;
+        Globals.TutorialManager.OnTutorial += TutoSetup;
+        Globals.TutorialManager.OnTutorialFinish += LaunchGame;
+        if (!Globals.TutorialManager.UseTutorial)
+        {
+            LaunchGame();
+        }
     }
 
-    private IEnumerator TutoRoutine()
+    private void TutoSetup()
     {
-        LightIntensityTrigger.ActivateLight(false);
-        Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.DJ).SetShadowMaterial(true);
-        Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.DANCEFLOOR).SetShadowMaterial(true);
-        Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.BARMAN).SetShadowMaterial(true);
         for (int i = 0; i < _tutoClients.Length; ++i)
         {
             if (_availableCharcters.Count <= 0)
             {
                 Debug.LogWarning("No more pullable character");
-                yield break;
+                return;
             }
 
             CharacterAiPuller chara = _availableCharcters[0];
@@ -107,22 +109,11 @@ public class SpawnManager : MonoBehaviour
             _availableCharcters.Remove(chara);
             chara.PullCharacter(_tutoClients[i], chara.StateMachine.IdleTransitState);
         }
-
-        yield return new WaitUntil(() =>
-        {
-            foreach (var c in _tutoCharacters)
-            {
-                if (!_availableCharcters.Contains(c))
-                    return false;
-            }
-            return true;
-        });
-        LightIntensityTrigger.ActivateLight(true);
-        LaunchGame();
     }
         
     private void LaunchGame()
     {
+        Debug.Log("prout");
         for (int i = 0; i < _baseClientInBouncer; ++i)
         {
             if (_availableCharcters.Count <= 0)

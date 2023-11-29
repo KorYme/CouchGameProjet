@@ -45,7 +45,7 @@ public class CharacterStateDancing : CharacterState
             default:
                 throw new ArgumentOutOfRangeException();
         }
-        if (!StateMachine.CurrentSlot.IsEnlighted && StateMachine.CharacterTypeData.Evilness == Evilness.GOOD)
+        if (!StateMachine.CurrentSlot.IsEnlighted && StateMachine.CharacterTypeData.Evilness == Evilness.GOOD && !StateMachine.CharacterDataObject.isTutorialNpc)
         {
             StateMachine.Satisafaction.DecreaseSatisfaction(StateMachine.CharacterDataObject.decrementationValueOnFloor);
         }
