@@ -23,7 +23,7 @@ public class SwitchLightOnOff : MonoBehaviour
         _selectionManager.OnPlayerJoined += OnPlayerJoined;
     }
 
-    private void OnPlayerJoined(int indexPlayer)
+    private void OnPlayerJoined(int indexPlayer,int indexCharacter)
     {
         if (indexPlayer == _playerIndex)
         {

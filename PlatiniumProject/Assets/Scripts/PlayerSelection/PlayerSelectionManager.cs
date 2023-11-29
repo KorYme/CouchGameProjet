@@ -25,9 +25,9 @@ public class PlayerSelectionManager : MonoBehaviour
 
     #region Events
     /// <summary>
-    /// Parameters : indexPlayer in order of connexion
+    /// Parameters : indexPlayer in order of connexion, indexCharacter
     /// </summary>
-    public event Action<int> OnPlayerJoined;
+    public event Action<int,int> OnPlayerJoined;
     /// <summary>
     /// Parameters : indexPlayer, indexCharacterChosen (barman, dj, bouncer)
     /// </summary>
@@ -37,9 +37,9 @@ public class PlayerSelectionManager : MonoBehaviour
     /// </summary>
     public event Action<int,int, PlayerRole> OnPlayerUnchooseCharacter;
     /// <summary>
-    /// Parameters : indexPlayer, indexCharacterChosen (barman, dj, bouncer)
+    /// Parameters : indexPlayer, indexCharacterChosen (barman, dj, bouncer), indexLastCharacter
     /// </summary>
-    public event Action<int,int> OnPlayerMove;
+    public event Action<int,int,int> OnPlayerMove;
     public event Action<bool> OnAllCharacterChosen;
     [SerializeField] UnityEvent OnChangeScene;
     #endregion
@@ -77,17 +77,25 @@ public class PlayerSelectionManager : MonoBehaviour
     {
         foreach(PlayerMap playermap in _playersAssigner.PlayersMap)
         {
-            Debug.Log("ZDZDD "+playermap.gamePlayerId);
             _playersAssigner.SetRoleOfPlayer(playermap.gamePlayerId, PlayerRole.None);
             CreateInstancePlayerSelection(playermap.gamePlayerId);
-            /*if (indexHandler != -1) //Check if player has chosen a role before
-            {
-                _objectsSelectionable[playermap.gamePlayerId].TargetIndex = indexHandler; //SetUp light 
-                _idPlayerSelected[indexHandler] = playermap.gamePlayerId;
-            }*/
         }
         IsSetUp = true;
     }
+
+    public int NbPlayersHoverOnCharacter(int indexCharacter)
+    {
+        LerpTargetLight light;
+        int total = 0;
+        for (int i =0; i < _objectsSelectionable.Length; i++)
+        {
+            light = _objectsSelectionable[i];
+            if (light.TargetIndex == indexCharacter && _playersController.Count > i)
+                total++;
+        }
+        return total;
+    }
+
     private void OnDestroy()
     {
         if (_playersAssigner != null)
@@ -100,7 +108,7 @@ public class PlayerSelectionManager : MonoBehaviour
     {
         int indexPlayer = _playersController.Count;
         CreateInstancePlayerSelection(indexPlayer);
-        OnPlayerJoined?.Invoke(indexPlayer);
+        OnPlayerJoined?.Invoke(indexPlayer, indexPlayer);
     }
 
     private void CreateInstancePlayerSelection(int indexCharacterAtStart)
@@ -113,10 +121,10 @@ public class PlayerSelectionManager : MonoBehaviour
         instancePrefab.OnMove += OnMovePlayer;
         _playersController.Add(instancePrefab);
     }
-    private void OnMovePlayer(int indexPlayer, int indexCurrentCharacter)
+    private void OnMovePlayer(int indexPlayer, int indexCurrentCharacter,int indexLastCharacter)
     {
         _objectsSelectionable[indexPlayer].MoveToIndex(indexCurrentCharacter);
-        OnPlayerMove?.Invoke(indexPlayer, indexCurrentCharacter);
+        OnPlayerMove?.Invoke(indexPlayer, indexCurrentCharacter, indexLastCharacter);
     }
 
     private void OnReturnPlayer(int indexPlayer, int indexCurrentCharacter)
