@@ -84,12 +84,16 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
-        _tutoRoutine = StartCoroutine(TutoRoutine());
+        //_tutoRoutine = StartCoroutine(TutoRoutine());
+        LaunchGame();
     }
 
     private IEnumerator TutoRoutine()
     {
         LightIntensityTrigger.ActivateLight(false);
+        Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.DJ).SetShadowMaterial(true);
+        Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.DANCEFLOOR).SetShadowMaterial(true);
+        Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.BARMAN).SetShadowMaterial(true);
         for (int i = 0; i < _tutoClients.Length; ++i)
         {
             if (_availableCharcters.Count <= 0)

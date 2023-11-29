@@ -9,7 +9,7 @@ public class CharacterStateAtBar : CharacterState
     public override void EnterState()
     {
         base.EnterState();
-        StateMachine.Satisafaction.InitializeStatisfaction(StateMachine.CharacterDataObject.maxBarManSatisafactionBar);
+        StateMachine.Satisafaction.InitializeStatisfaction(StateMachine.CharacterDataObject.maxBarManSatisafactionBar, StateMachine.CharacterDataObject.satisfactionAmountToGetLoyal);
         StateMachine.Satisafaction.OnSatsifactionZero += RunOutOfSatisfaction;
     }
 
@@ -27,7 +27,7 @@ public class CharacterStateAtBar : CharacterState
     }
     public override void OnBeat()
     {
-        StateMachine.Animation.SetAnim(ANIMATION_TYPE.IDLE);
+        StateMachine.CharacterAnimation.SetAnim(ANIMATION_TYPE.IDLE);
         if (Globals.DropManager.CanYouLetMeMove && !StateMachine.CharacterDataObject.isTutorialNpc)
         {
             StateMachine.Satisafaction.DecreaseSatisfaction(StateMachine.CharacterDataObject.decrementationValueOnBarMan);
