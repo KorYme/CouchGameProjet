@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public enum CAMERA_TYPE
@@ -17,6 +18,9 @@ public class CameraProfile : MonoBehaviour
 {
     [SerializeField] private CameraProfileData _profileData;
     [SerializeField] private CAMERA_TYPE _cameraType;
+    [SerializeField] private Image _renderTexture;
+    [SerializeField] private Material _baseMaterial;
+    [SerializeField] private Material _shadowMaterial;
 
     private bool canDezoom;
 
@@ -49,6 +53,11 @@ public class CameraProfile : MonoBehaviour
         StartPulseZoom();
         _currentInitSize = _initSize;
         //StartShake();   
+    }
+
+    public void SetShadowMaterial(bool isShadowed)
+    {
+        _renderTexture.material = isShadowed ? _shadowMaterial : _baseMaterial;
     }
 
     private void LateUpdate()

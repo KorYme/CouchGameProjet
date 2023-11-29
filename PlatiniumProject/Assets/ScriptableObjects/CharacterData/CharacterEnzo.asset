@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: CharacterEnzo
   m_EditorClassIdentifier: 
   beatAmountUnitlAction: 3
+  isTutorialNpc: 0
   movementAmountInQueue: 4
   maxBarManSatisafactionBar: 20
   decrementationValueOnBarMan: 1
-  maxSatisafactionDJ: 40
+  maxSatisafactionDJ: 60
+  satisfactionAmountToGetLoyal: 61
   decrementationValueOnFloor: 1
   incrementationValueOnFloor: 5

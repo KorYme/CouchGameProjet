@@ -6,6 +6,7 @@ public class BouncerQTEController : MonoBehaviour, IQTEable
 {
     QTEHandler _qteHandler;
     private CharacterAnimation _characterAnimation;
+    private BouncerMovement _bouncerMovement;
 
     #region Events
     public event Action<string> OnBouncerQTEStarted;
@@ -16,6 +17,7 @@ public class BouncerQTEController : MonoBehaviour, IQTEable
     private void Awake()
     {
         _characterAnimation = GetComponent<CharacterAnimation>();
+        _bouncerMovement = GetComponent<BouncerMovement>();
     }
 
     void Start()
@@ -60,9 +62,12 @@ public class BouncerQTEController : MonoBehaviour, IQTEable
 
     public void OnQTEWrongInput()
     {
-        _qteHandler.DeleteCurrentCoroutine();
-        OnBouncerQTEEnded?.Invoke(_qteHandler.GetCurrentInputString());
+        if (!_bouncerMovement.CurrentClient.StateMachine.CharacterDataObject.isTutorialNpc)
+        {
+            _qteHandler.DeleteCurrentCoroutine();
+            OnBouncerQTEEnded?.Invoke(_qteHandler.GetCurrentInputString());
+        }
         _characterAnimation.SetLatency(2);
-        _characterAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT);
+        _characterAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT, false);
     }
 }
