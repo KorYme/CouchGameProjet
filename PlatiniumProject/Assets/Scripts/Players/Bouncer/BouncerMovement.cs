@@ -17,6 +17,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     private BOUNCER_STATE _currentState = BOUNCER_STATE.MOVING;
     private CharacterCheckByBouncerState _currentClient;
+    public CharacterCheckByBouncerState CurrentClient => _currentClient;
 
     private SlotInformation _currentSlot;
 
@@ -193,6 +194,9 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     public void OnQTEWrongInput()
     {
-        LetCharacterEnterBox();
+        if (!_currentClient.StateMachine.CharacterDataObject.isTutorialNpc)
+        {
+            LetCharacterEnterBox();
+        }
     }
 }

@@ -46,6 +46,11 @@ public class CharacterAnimation : MonoBehaviour
         _animDict[_lastAnimationType] = 0;
     }
 
+    public void SetColor(Color color)
+    {
+        _sp.color = color;
+    }
+
     public int DecreaseLatency()
     {
         if (_animLatency <= 0)

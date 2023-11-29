@@ -18,5 +18,6 @@ MonoBehaviour:
   maxBarManSatisafactionBar: 20
   decrementationValueOnBarMan: 1
   maxSatisafactionDJ: 20
+  satisfactionAmountToGetLoyal: 30
   decrementationValueOnFloor: 1
   incrementationValueOnFloor: 5
