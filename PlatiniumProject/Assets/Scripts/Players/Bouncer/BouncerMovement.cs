@@ -127,26 +127,36 @@ public class BouncerMovement : PlayerMovement, IQTEable
         {
             if (_playerController.Action1.InputValue) //ACCEPT
             {
-                LetCharacterEnterBox();
-                _qteController?.CloseBubble();
-                _animation.SetLatency(2);
-                _animation.SetAnim(ANIMATION_TYPE.ACCEPT, false);
-                yield break;
+                if ((_currentClient.StateMachine.CharacterDataObject.isTutorialNpc &&
+                     _currentClient.StateMachine.TypeData.Evilness == Evilness.GOOD) ||
+                    !_currentClient.StateMachine.CharacterDataObject.isTutorialNpc)
+                {
+                    LetCharacterEnterBox();
+                    _qteController?.CloseBubble();
+                    _animation.SetLatency(2);
+                    _animation.SetAnim(ANIMATION_TYPE.ACCEPT, false);
+                    yield break;
+                }
+                
             }
             if (_playerController.Action3.InputValue)//REFUSE + evil character
             {
-                
-                if (_currentClient.StateMachine.TypeData.Evilness == Evilness.EVIL)
+                if ((_currentClient.StateMachine.CharacterDataObject.isTutorialNpc &&
+                     _currentClient.StateMachine.TypeData.Evilness == Evilness.EVIL) ||
+                    !_currentClient.StateMachine.CharacterDataObject.isTutorialNpc)
                 {
-                    _qteController?.StartQTE(_currentClient.StateMachine.TypeData);
-                } else
-                {
-                    _animation.SetLatency(2);
-                    _animation.SetAnim(ANIMATION_TYPE.REFUSE, false);
-                    RefuseCharacterEnterBox();
-                    _qteController?.CloseBubble();
+                    if (_currentClient.StateMachine.TypeData.Evilness == Evilness.EVIL)
+                    {
+                        _qteController?.StartQTE(_currentClient.StateMachine.TypeData);
+                    } else
+                    {
+                        _animation.SetLatency(2);
+                        _animation.SetAnim(ANIMATION_TYPE.REFUSE, false);
+                        RefuseCharacterEnterBox();
+                        _qteController?.CloseBubble();
+                    }
+                    yield break;
                 }
-                yield break;
             }
             yield return null;
         }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6900662313483259734}
   - component: {fileID: 4886740904803253177}
   - component: {fileID: 2380923746897791189}
+  - component: {fileID: 670282143055980353}
   - component: {fileID: 5158429038718605109}
   - component: {fileID: 5266241032662133365}
   - component: {fileID: 7928612141699995362}
@@ -106,6 +107,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterAnimationData: {fileID: 11400000, guid: 5c5cf1dc7975bc2488dfaf9c4c3fa4ed, type: 2}
   _sp: {fileID: 0}
+--- !u!114 &670282143055980353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3598487020168188391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86ee12c01a880ba4fb3c459e2744f37a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterAnimationData: {fileID: 11400000, guid: 222a5c1858791e04da1a4a123bf530f0, type: 2}
+  _sp: {fileID: 0}
 --- !u!114 &5158429038718605109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +133,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f083d48259fdba44e9b570aac39a13e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sp: {fileID: 5681212238203922163}
+  _characterAnimation: {fileID: 0}
+  _characterArmAnimation: {fileID: 0}
+  _onDJSuccess:
+    m_PersistentCalls:
+      m_Calls: []
+  _onDJFail:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5266241032662133365
 MonoBehaviour:
   m_ObjectHideFlags: 0
