@@ -18,7 +18,7 @@ public class UIPlayerConnected : MonoBehaviour
         }
     }
 
-    void ChangeDisplay(int indexPlayer)
+    void ChangeDisplay(int indexPlayer,int indexCharacter)
     {
         if (indexPlayer == _indexPlayer )
         {

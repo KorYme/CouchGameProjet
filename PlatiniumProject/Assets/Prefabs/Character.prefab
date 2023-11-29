@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8187101418395240629}
   - component: {fileID: 5186382758941170165}
   - component: {fileID: 9011843421239086831}
+  - component: {fileID: 5667070652861212674}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -53,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102,3 +103,21 @@ MonoBehaviour:
   _durationScale: 0.2
   _forceScale: 0.3
   _curveScale: 28
+--- !u!114 &5667070652861212674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8194912065568779684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e509ce245c85b344a18c20385096dde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectionManager: {fileID: 0}
+  _spriteRenderer: {fileID: 5186382758941170165}
+  _unlitSpriteColor: {r: 0.1792453, g: 0.1792453, b: 0.1792453, a: 1}
+  _litSpriteColor: {r: 1, g: 1, b: 1, a: 1}
+  _indexCharacter: 0
+  _colorTransitionDuration: 0.2
