@@ -62,6 +62,10 @@ public class CharacterAIStatisfaction : MonoBehaviour
         else if (CurrentStatisafction >= CurrentSatisactionToGetLoyal && _currentState != SATISFACTION_STATE.LOYAL)
         {
             _currentState = SATISFACTION_STATE.LOYAL;
+            if (_stateMachine.CharacterDataObject.isTutorialNpc)
+            {
+                Globals.TutorialManager.HandledTutoCharacter++;
+            }
         }
     }
     
@@ -75,7 +79,6 @@ public class CharacterAIStatisfaction : MonoBehaviour
             Debug.LogError("value must be positive");
             return;
         }
-        Debug.Log(CurrentStatisafction);
         CurrentStatisafction -= amount;
         
         if (CurrentStatisafction <= 0)

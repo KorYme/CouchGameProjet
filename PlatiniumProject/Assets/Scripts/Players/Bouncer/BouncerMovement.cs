@@ -182,6 +182,10 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     private void RefuseCharacterEnterBox()
     {
+        if (_currentClient.StateMachine.CharacterDataObject.isTutorialNpc)
+        {
+            Globals.TutorialManager.HandledTutoCharacter++;
+        }
         _currentClient.BouncerAction(false);
         _currentState = BOUNCER_STATE.MOVING;
         //_animation.SetAnim(ANIMATION_TYPE.IDLE);
