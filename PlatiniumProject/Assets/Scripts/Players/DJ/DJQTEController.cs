@@ -67,7 +67,6 @@ public class DJQTEController : MonoBehaviour, IQTEable
     {
         _shapesLightCopy = shapesLightCopy;
         int nbCharactersInLight = NbCharactersInLight();
-        Debug.Log(nbCharactersInLight);
         if (nbCharactersInLight > 0)
         {
             CharacterTypeData[] clientsData = new CharacterTypeData[nbCharactersInLight];

@@ -57,9 +57,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
         CharacterStateMachine stateMachine = _waitingCharactersList[0];
         if (stateMachine != null)
         {
-            Debug.Log("sqdqsdqsd"); 
             stateMachine.CurrentSlot = _djUsher.NextSlot;
-            _djUsher.NextSlot.Occupant = stateMachine;
             stateMachine.MoveToLocation = stateMachine.CurrentSlot.transform.position;
             stateMachine.NextState = stateMachine.DancingState;
             stateMachine.ChangeState(stateMachine.MoveToState);
