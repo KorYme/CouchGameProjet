@@ -84,7 +84,7 @@ public class QTEWindow : EditorWindow
             _listQTE.Clear();
         }
         string[] fileGuids = AssetDatabase.FindAssets("t:" + typeof(QTESequence));
-        int maxIndex = 0;
+        int maxIndex = -1;
         if (fileGuids.Length > 0)
         {
             for (int i = 0; i < fileGuids.Length; i++)
@@ -113,7 +113,7 @@ public class QTEWindow : EditorWindow
                     GUI.backgroundColor = Color.white;
                 }
                 string name = Enum.GetName(typeof(PlayerRole), _listQTE[i].PlayerRole);
-                if (GUILayout.Button($"QTE {name}", GUILayout.MinHeight(30)))
+                if (GUILayout.Button($"QTE {i + 1} {name}", GUILayout.MinHeight(30)))
                 {
                     _selectedQTE = _listQTE[i];
                     _isATemporaryQTE = false;
