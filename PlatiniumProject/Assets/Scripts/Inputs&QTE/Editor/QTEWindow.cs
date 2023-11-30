@@ -93,7 +93,6 @@ public class QTEWindow : EditorWindow
                 QTESequence sequence = AssetDatabase.LoadAssetAtPath<QTESequence>(assetPath);
                 maxIndex = Mathf.Max(maxIndex, sequence.Index);
                 _listQTE.Add(sequence);
-                
             }
         }
         _listQTE.OrderBy(sequence => sequence.Index);
