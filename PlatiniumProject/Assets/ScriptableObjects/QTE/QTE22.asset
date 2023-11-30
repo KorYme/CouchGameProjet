@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8333e8bf53b1c2409b30abd1787e784, type: 3}
   m_Name: QTE22
   m_EditorClassIdentifier: 
-  Index: 27
+  Index: 22
   PlayerRole: 1
   SequenceType: 0
-  ClientType: 1
+  ClientType: 2
   Evilness: 0
   QTELevel: 3
   Status: 0

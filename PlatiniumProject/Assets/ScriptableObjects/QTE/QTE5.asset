@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8333e8bf53b1c2409b30abd1787e784, type: 3}
   m_Name: QTE5
   m_EditorClassIdentifier: 
-  Index: 8
+  Index: 5
   PlayerRole: 1
   SequenceType: 0
   ClientType: 1

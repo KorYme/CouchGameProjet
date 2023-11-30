@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8333e8bf53b1c2409b30abd1787e784, type: 3}
   m_Name: QTE4
   m_EditorClassIdentifier: 
-  Index: 7
+  Index: 4
   PlayerRole: 1
   SequenceType: 0
   ClientType: 1
@@ -21,5 +21,4 @@ MonoBehaviour:
   Status: 0
   LongInputType: 0
   DurationHold: 1
-  ListSubHandlers:
-  - {fileID: 11400000, guid: 59a06bdfbec42784bac4a71b89c51ba9, type: 2}
+  ListSubHandlers: []
