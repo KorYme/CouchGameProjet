@@ -2,24 +2,28 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DJQTEController : MonoBehaviour, IQTEable
 {
     QTEHandler _qteHandler;
     List<SlotInformation> _shapesLightCopy;
-    private CharacterAnimation _characterAnimation;
-    [SerializeField] private SpriteRenderer _sp;
+    [SerializeField] private CharacterAnimation _characterAnimation;
+    [SerializeField] private CharacterAnimation _characterArmAnimation;
 
     #region Events
     public event Action<string> OnDJQTEStarted;
     public event Action<string> OnDJQTEEnded;
     public event Action<string> OnDJQTEChanged;
+    [SerializeField] UnityEvent _onDJSuccess; 
+    [SerializeField] UnityEvent _onDJFail;
     #endregion
 
     private void Awake()
     {
         _qteHandler = GetComponent<QTEHandler>();
-        _characterAnimation = GetComponent<CharacterAnimation>();
+        if(_characterAnimation == null)
+            _characterAnimation = GetComponent<CharacterAnimation>();
         //_bubbleObject.SetActive(false);
     }
     private void Start()
@@ -34,7 +38,9 @@ public class DJQTEController : MonoBehaviour, IQTEable
     private void OnBeat()
     {
         _characterAnimation.SetAnim(ANIMATION_TYPE.IDLE);
+        _characterArmAnimation.SetAnim(ANIMATION_TYPE.IDLE);
     }
+
     private void OnDestroy()
     {
         Globals.BeatManager.OnBeatEvent.RemoveListener(OnBeat);
@@ -61,6 +67,7 @@ public class DJQTEController : MonoBehaviour, IQTEable
     {
         _shapesLightCopy = shapesLightCopy;
         int nbCharactersInLight = NbCharactersInLight();
+        Debug.Log(nbCharactersInLight);
         if (nbCharactersInLight > 0)
         {
             CharacterTypeData[] clientsData = new CharacterTypeData[nbCharactersInLight];
@@ -90,12 +97,12 @@ public class DJQTEController : MonoBehaviour, IQTEable
 
     public void OnQTEComplete()
     {
-        //_bubbleObject.SetActive(false);
         OnDJQTEEnded?.Invoke(_qteHandler.GetQTEString());
     }
 
     public void OnQTECorrectInput()
     {
+        Debug.Log("qdSSSSSSSSSSSSSSSSSSSSSSS");
         foreach (SlotInformation information in _shapesLightCopy)
         {
             if (information.Occupant != null)
@@ -108,13 +115,19 @@ public class DJQTEController : MonoBehaviour, IQTEable
             }
         }
         OnDJQTEChanged?.Invoke(_qteHandler.GetQTEString());
-        _characterAnimation.SetAnim(ANIMATION_TYPE.CORRECT_INPUT);
+        _characterAnimation.SetLatency(2);
+        _characterArmAnimation.SetLatency(2);
+        _characterAnimation.SetAnim(ANIMATION_TYPE.CORRECT_INPUT, false);
+        _characterArmAnimation.SetAnim(ANIMATION_TYPE.CORRECT_INPUT, false);
     }
 
     public void OnQTEWrongInput()
     {
         OnDJQTEChanged?.Invoke(_qteHandler.GetQTEString());
-        _characterAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT);
+        _characterAnimation.SetLatency(2);
+        _characterArmAnimation.SetLatency(2);
+        _characterAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT, false);
+        _characterArmAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT, false);
     }
     #endregion
 }

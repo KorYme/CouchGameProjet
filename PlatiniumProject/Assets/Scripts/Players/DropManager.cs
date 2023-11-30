@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DropManager : MonoBehaviour
 {
@@ -19,6 +20,17 @@ public class DropManager : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float _inputDeadZone = .8f;
     [SerializeField] TMP_Text _text;
     [SerializeField] GameObject _dropSuccess;
+
+    [SerializeField] AK.Wwise.Event _firstDropEvent;
+    [SerializeField] AK.Wwise.Event _secondStateEvent;
+    [SerializeField] AK.Wwise.Event _secondDropEvent;
+    [SerializeField] AK.Wwise.Event _thirdStateEvent;
+    [SerializeField] AK.Wwise.Event _thirdDropEvent;
+    [Space]
+    [SerializeField] UnityEvent _onDropTriggering;
+    [SerializeField] UnityEvent _onDropSuccess;
+    [SerializeField] UnityEvent _onDropFail;
+    [SerializeField] UnityEvent _onDropEnd;
 
     public float InputDeadZone => _inputDeadZone;
 
@@ -54,6 +66,9 @@ public class DropManager : MonoBehaviour
 
     private void Start()
     {
+        OnDropSuccess += () => _onDropSuccess?.Invoke();
+        OnDropFail += () => _onDropFail?.Invoke();
+        OnBeginBuildUp += () => _onDropTriggering?.Invoke();
         _triggerPressedNumber = 0;
         DropState = DROP_STATE.OUT_OF_DROP;
         _dropSuccess.SetActive(false);
@@ -121,6 +136,7 @@ public class DropManager : MonoBehaviour
                 {
                     Time.timeScale = 0f;
                 }
+                _onDropEnd?.Invoke();
                 break;
             default:
                 break;

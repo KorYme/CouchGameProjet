@@ -494,7 +494,7 @@ MonoBehaviour:
       _userAssignable: 1
       _categoryId: 1
     - _id: 9
-      _name: MoveMenu
+      _name: UIHorizontal
       _type: 0
       _descriptiveName: 
       _positiveDescriptiveName: MoveRight
@@ -502,8 +502,17 @@ MonoBehaviour:
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 2
+    - _id: 16
+      _name: UIVertical
+      _type: 0
+      _descriptiveName: 
+      _positiveDescriptiveName: MoveUp
+      _negativeDescriptiveName: MoveDown
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
     - _id: 10
-      _name: Accept
+      _name: UISubmit
       _type: 1
       _descriptiveName: Accept
       _positiveDescriptiveName: 
@@ -512,7 +521,7 @@ MonoBehaviour:
       _userAssignable: 1
       _categoryId: 2
     - _id: 11
-      _name: Return
+      _name: UICancel
       _type: 1
       _descriptiveName: Return
       _positiveDescriptiveName: 
@@ -579,7 +588,7 @@ MonoBehaviour:
       - categoryId: 1
         actionIds: 08000000
       - categoryId: 2
-        actionIds: 090000000a0000000b000000
+        actionIds: 09000000100000000a0000000b000000
     inputBehaviors:
     - _id: 0
       _name: Default
@@ -849,6 +858,17 @@ MonoBehaviour:
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 16
+        _elementType: 0
+        _elementIdentifierId: 1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
     keyboardMaps:
     - id: 0
       categoryId: 1
@@ -1109,6 +1129,28 @@ MonoBehaviour:
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 16
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 119
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 16
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 1
+        _keyboardKeyCode: 115
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
     - id: 6
       categoryId: 2
       layoutId: 2
@@ -1157,6 +1199,28 @@ MonoBehaviour:
         _invert: 0
         _axisContribution: 0
         _keyboardKeyCode: 8
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 16
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 273
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 16
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 1
+        _keyboardKeyCode: 274
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
@@ -1211,13 +1275,35 @@ MonoBehaviour:
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 16
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 105
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 16
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 1
+        _keyboardKeyCode: 107
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
     mouseMaps: []
     customControllerMaps: []
     customControllers: []
     controllerMapLayoutManagerRuleSets: []
     controllerMapEnablerRuleSets: []
     playerIdCounter: 9
-    actionIdCounter: 16
+    actionIdCounter: 17
     actionCategoryIdCounter: 3
     inputBehaviorIdCounter: 1
     mapCategoryIdCounter: 3
@@ -1245,10 +1331,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933edeb4240301c478fa2c49b262e2c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rolesKB:
-  - Player1
-  - Player2
-  - Player3
   _playerRoles: 020000000000000001000000
   _characterSelectionInGame: 0
 --- !u!114 &8925105499494906979

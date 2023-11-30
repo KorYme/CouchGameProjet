@@ -17,6 +17,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     private BOUNCER_STATE _currentState = BOUNCER_STATE.MOVING;
     private CharacterCheckByBouncerState _currentClient;
+    public CharacterCheckByBouncerState CurrentClient => _currentClient;
 
     private SlotInformation _currentSlot;
 
@@ -39,7 +40,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
                 break;
             case BOUNCER_STATE.MOVING:
                 _sp.flipX = false;
-                _animation.SetAnim(ANIMATION_TYPE.IDLE);
+                _animation.SetAnim(ANIMATION_TYPE.IDLE, false);
                 break;
         }
     }
@@ -127,21 +128,36 @@ public class BouncerMovement : PlayerMovement, IQTEable
         {
             if (_playerController.Action1.InputValue) //ACCEPT
             {
-                LetCharacterEnterBox();
-                _qteController?.CloseBubble();
-                yield break;
+                if ((_currentClient.StateMachine.CharacterDataObject.isTutorialNpc &&
+                     _currentClient.StateMachine.TypeData.Evilness == Evilness.GOOD) ||
+                    !_currentClient.StateMachine.CharacterDataObject.isTutorialNpc)
+                {
+                    LetCharacterEnterBox();
+                    _qteController?.CloseBubble();
+                    _animation.SetLatency(2);
+                    _animation.SetAnim(ANIMATION_TYPE.ACCEPT, false);
+                    yield break;
+                }
+                
             }
             if (_playerController.Action3.InputValue)//REFUSE + evil character
             {
-                if (_currentSlot.Occupant.TypeData.Evilness == Evilness.EVIL)
+                if ((_currentClient.StateMachine.CharacterDataObject.isTutorialNpc &&
+                     _currentClient.StateMachine.TypeData.Evilness == Evilness.EVIL) ||
+                    !_currentClient.StateMachine.CharacterDataObject.isTutorialNpc)
                 {
-                    _qteController?.StartQTE(_currentSlot.Occupant.TypeData);
-                } else
-                {
-                    RefuseCharacterEnterBox();
-                    _qteController?.CloseBubble();
+                    if (_currentClient.StateMachine.TypeData.Evilness == Evilness.EVIL)
+                    {
+                        _qteController?.StartQTE(_currentClient.StateMachine.TypeData);
+                    } else
+                    {
+                        _animation.SetLatency(2);
+                        _animation.SetAnim(ANIMATION_TYPE.REFUSE, false);
+                        RefuseCharacterEnterBox();
+                        _qteController?.CloseBubble();
+                    }
+                    yield break;
                 }
-                yield break;
             }
             yield return null;
         }
@@ -151,6 +167,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
     {
         _currentClient.BouncerAction(true);
         _currentState = BOUNCER_STATE.MOVING;
+        //_animation.SetAnim(ANIMATION_TYPE.IDLE);
         Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.BOUNCER).StopFocus();
         transform.position = _currentSlot.transform.position;
         _currentClient = null;
@@ -165,8 +182,13 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     private void RefuseCharacterEnterBox()
     {
+        if (_currentClient.StateMachine.CharacterDataObject.isTutorialNpc)
+        {
+            Globals.TutorialManager.HandledTutoCharacter++;
+        }
         _currentClient.BouncerAction(false);
         _currentState = BOUNCER_STATE.MOVING;
+        //_animation.SetAnim(ANIMATION_TYPE.IDLE);
         Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.BOUNCER).StopFocus();
         transform.position = _currentSlot.transform.position;
         _currentClient = null;
@@ -176,6 +198,9 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     public void OnQTEWrongInput()
     {
-        LetCharacterEnterBox();
+        if (!_currentClient.StateMachine.CharacterDataObject.isTutorialNpc)
+        {
+            LetCharacterEnterBox();
+        }
     }
 }

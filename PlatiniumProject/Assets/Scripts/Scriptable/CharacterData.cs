@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 public class CharacterData : ScriptableObject
 {
     public int beatAmountUnitlAction;
+    public bool isTutorialNpc;
     
     [Header("Bouncer")]
     public int movementAmountInQueue;
@@ -20,6 +21,7 @@ public class CharacterData : ScriptableObject
     [Header("DJ")]
     [Tooltip("Max value of satisfaction when the character is on the dancefloor")]
     public int maxSatisafactionDJ;
+    public int satisfactionAmountToGetLoyal;
     public int decrementationValueOnFloor;
     public int incrementationValueOnFloor;
 }

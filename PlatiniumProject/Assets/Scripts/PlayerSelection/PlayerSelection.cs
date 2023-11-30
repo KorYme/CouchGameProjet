@@ -8,7 +8,7 @@ public class PlayerSelection : MonoBehaviour
     #region Events
     public event Action<int,int> OnAccept;
     public event Action<int,int> OnReturn;
-    public event Action<int,int> OnMove; // id player, position
+    public event Action<int,int,int> OnMove; // id player, position, last position
     #endregion
     int _indexCharacter = 0;
     int _maxCharacterPlayable = 1;
@@ -42,10 +42,7 @@ public class PlayerSelection : MonoBehaviour
 
     private void OnAcceptController(int indexPlayer)
     {
-        if (CanAccept)
-        {
-            OnAccept?.Invoke(indexPlayer, _indexCharacter);
-        }
+        OnAccept?.Invoke(indexPlayer, _indexCharacter);
     }
 
     private void OnMoveController(int indexPlayer, int direction)
@@ -55,8 +52,9 @@ public class PlayerSelection : MonoBehaviour
             int newIndex = Mathf.Clamp(_indexCharacter + direction, 0, _maxCharacterPlayable - 1);
             if (_indexCharacter !=  newIndex)
             {
+                int lastIndex = _indexCharacter;
                 _indexCharacter = newIndex;
-                OnMove?.Invoke(indexPlayer, _indexCharacter);
+                OnMove?.Invoke(indexPlayer, _indexCharacter, lastIndex);
             }
         }
     }

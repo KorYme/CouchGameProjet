@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2553288626468390349}
   - component: {fileID: 3100534169960444365}
   - component: {fileID: 3938933086206289534}
+  - component: {fileID: 1338077824162715092}
   m_Layer: 0
   m_Name: ConeRotation
   m_TagString: Untagged
@@ -118,6 +119,19 @@ MonoBehaviour:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0.74597883, g: 0, b: 1, a: 1}
   - {r: 0.19106627, g: 0, b: 1, a: 1}
+--- !u!114 &1338077824162715092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112766517287287785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c4b01b1fe314a4ebd3579dfa5e4cf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _light2D: {fileID: 2553288626468390349}
 --- !u!1 &1980358053771435230
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,6 +143,7 @@ GameObject:
   - component: {fileID: 7430690608573819104}
   - component: {fileID: 7623216301490928797}
   - component: {fileID: 3438636716489066592}
+  - component: {fileID: 3797386376031484324}
   m_Layer: 0
   m_Name: SpotlightCircle
   m_TagString: Untagged
@@ -223,3 +238,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _parentLight: {fileID: 2553288626468390349}
   _childLight: {fileID: 7623216301490928797}
+--- !u!114 &3797386376031484324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980358053771435230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c4b01b1fe314a4ebd3579dfa5e4cf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _light2D: {fileID: 7623216301490928797}

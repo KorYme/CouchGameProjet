@@ -1,16 +1,19 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BarmanMovement : PlayerMovement
 {
-    [Space, Header("Bouncer Parameters")]
+    [Space, Header("Barman Parameters")]
     [SerializeField] BarmanPosition[] _barmanPositions;
-    [SerializeField] SpriteRenderer _renderer;
+    [SerializeField] UnityEvent _onBarmanMove;
 
     int _indexPosition;
     public int IndexPosition { get => _indexPosition;}
 
     protected override PlayerRole PlayerRole => PlayerRole.Barman;
+    
+    public bool IsInQte { get; set; }
 
     private void Awake()
     {
@@ -27,6 +30,11 @@ public class BarmanMovement : PlayerMovement
         
         yield return base.Start();
         Debug.Log("Barman Initialisé");
+    }
+
+    protected override void OnBeat()
+    {
+        _animation.SetAnim(IsInQte ? ANIMATION_TYPE.CORRECT_INPUT : ANIMATION_TYPE.IDLE);
     }
 
     public void MoveBarmanToIndex()
@@ -54,6 +62,7 @@ public class BarmanMovement : PlayerMovement
             {
                 if (MoveTo(_barmanPositions[_indexPosition-1].transform.position))
                 {
+                    _onBarmanMove?.Invoke();
                     DeactivateCurrentQTE();
                     _indexPosition--;
                     ActivateCurrentQTE();

@@ -10,4 +10,6 @@ public static class Globals
     public static PriestCalculator PriestCalculator = null;
     public static ExitPoints ExitPoints = null;
     public static CameraProfileManager CameraProfileManager = null;
+    public static PlayerInputsAssigner PlayerInputsAssigner = null;
+    public static TutorialManager TutorialManager = null;
 }

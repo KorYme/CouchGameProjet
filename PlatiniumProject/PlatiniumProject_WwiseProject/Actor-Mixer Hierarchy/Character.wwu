@@ -298,6 +298,27 @@
 							</ChildrenList>
 						</ActorMixer>
 					</ChildrenList>
+					<StateInfo>
+						<StateGroupList>
+							<StateGroupInfo>
+								<StateGroupRef Name="LowPass_Menu" ID="{B3DA9FAB-E597-4E00-AA2B-D50F1833D3E4}"/>
+							</StateGroupInfo>
+						</StateGroupList>
+						<CustomStateList>
+							<CustomState>
+								<StateRef Name="Menu_Open" ID="{6DD9BD10-F55E-4754-8AFC-0093589EC733}"/>
+								<CustomState Name="" ID="{6563B32A-81F1-4378-B5C2-7D619681D127}" ShortID="408016063">
+									<PropertyList>
+										<Property Name="Lowpass" Type="int16" Value="55"/>
+									</PropertyList>
+								</CustomState>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="Menu_Close" ID="{3723DA8D-5A3C-4774-8B8D-FFD9B69FE076}"/>
+								<CustomState Name="" ID="{6CA05FB6-E622-43A9-A8AE-BD90F9C94925}" ShortID="881806006"/>
+							</CustomState>
+						</CustomStateList>
+					</StateInfo>
 				</ActorMixer>
 			</ChildrenList>
 		</WorkUnit>

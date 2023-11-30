@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221e7a1d53d37874394b67d10fe9257d, type: 3}
   m_Name: DJ
   m_EditorClassIdentifier: 
-  selectedAnimationType: 3
+  selectedAnimationType: 9
   animationsList:
   - animationSprites:
     - {fileID: 21300000, guid: 2c821945593b66146b8df715cfd6d602, type: 3}
@@ -24,6 +24,5 @@ MonoBehaviour:
     _animationType: 4
   - animationSprites:
     - {fileID: 21300000, guid: 632f20cfa00cae844819084a0079e9f0, type: 3}
-    - {fileID: 21300000, guid: 3478d3e0f01fcf84993948a95e46a7bf, type: 3}
     _animationType: 5
   animBpm: 90

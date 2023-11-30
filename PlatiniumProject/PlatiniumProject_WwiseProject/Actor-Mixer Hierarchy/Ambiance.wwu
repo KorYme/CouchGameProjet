@@ -12,6 +12,27 @@
 							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
 						</Reference>
 					</ReferenceList>
+					<StateInfo>
+						<StateGroupList>
+							<StateGroupInfo>
+								<StateGroupRef Name="LowPass_Menu" ID="{B3DA9FAB-E597-4E00-AA2B-D50F1833D3E4}"/>
+							</StateGroupInfo>
+						</StateGroupList>
+						<CustomStateList>
+							<CustomState>
+								<StateRef Name="Menu_Open" ID="{6DD9BD10-F55E-4754-8AFC-0093589EC733}"/>
+								<CustomState Name="" ID="{F8C2192D-DA0B-4AE9-BB6A-C72A86DCDB36}" ShortID="315646133">
+									<PropertyList>
+										<Property Name="Lowpass" Type="int16" Value="69"/>
+									</PropertyList>
+								</CustomState>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="Menu_Close" ID="{3723DA8D-5A3C-4774-8B8D-FFD9B69FE076}"/>
+								<CustomState Name="" ID="{04039CA6-24E8-423C-A1F1-78CAF96752C4}" ShortID="961056027"/>
+							</CustomState>
+						</CustomStateList>
+					</StateInfo>
 				</ActorMixer>
 			</ChildrenList>
 		</WorkUnit>

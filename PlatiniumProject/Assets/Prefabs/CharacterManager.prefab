@@ -82,3 +82,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f34499c5ae44ea944bf758664c01d05a, type: 2}
   _badClients:
   - {fileID: 11400000, guid: 5d42f79c1b4fd6d45a9a5ee212036938, type: 2}
+  _tutoClients:
+  - {fileID: 11400000, guid: 2a7886928aeb2f443ba29c6ff4ccc8ab, type: 2}
+  - {fileID: 11400000, guid: 6f98fd871f9f3184ca472a31930f2549, type: 2}

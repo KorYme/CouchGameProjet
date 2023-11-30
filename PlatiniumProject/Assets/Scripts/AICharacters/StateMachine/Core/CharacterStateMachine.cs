@@ -61,9 +61,9 @@ public class CharacterStateMachine : MonoBehaviour
     #endregion
 
     #region References
-
+    
     public CharacterAIStatisfaction Satisafaction { get; private set; }
-    public CharacterAnimation Animation { get; private set; }
+    public CharacterAnimation CharacterAnimation { get; private set; }
     public CharacterTypeData TypeData { get; set; }
     public CharacterAiPuller Puller { get; private set; }
     #endregion
@@ -81,13 +81,13 @@ public class CharacterStateMachine : MonoBehaviour
         WaitingLines = FindObjectsOfType<WaitingLineBar>();
         CharacterMove = GetComponent<CharacterAIMovement>();
         Satisafaction = GetComponent<CharacterAIStatisfaction>();
-        Animation = GetComponent<CharacterAnimation>();
+        CharacterAnimation = GetComponent<CharacterAnimation>();
         Puller = GetComponent<CharacterAiPuller>();
     }
 
     public void PullCharacter(CharacterState startState = null)
     {
-        Animation.SetAnim(ANIMATION_TYPE.IDLE);
+        CharacterAnimation.SetAnim(ANIMATION_TYPE.IDLE);
         if (startState == null)
         {
             SlotInformation firstQueueSlot = AreaManager.BouncerTransit.Slots[0];
@@ -165,8 +165,8 @@ public class CharacterStateMachine : MonoBehaviour
     {
         _spawnManager.ReInsertCharacterInPull(Puller);
         ChangeState(null);
-        Animation.SpriteRenderer.color = Color.white;
         CurrentBeatAmount = 0;
+        CharacterAnimation.SetColor(Color.white);
         CurrentMovementInBouncer = 0;
         MoveToLocation = Vector3.zero;
         CurrentState = null;

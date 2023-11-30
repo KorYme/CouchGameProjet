@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb1ca7b282e771c48b59a05dff5461ad, type: 3}
+  m_Name: CharacterEnzo
+  m_EditorClassIdentifier: 
+  beatAmountUnitlAction: 3
+  isTutorialNpc: 0
+  movementAmountInQueue: 4
+  maxBarManSatisafactionBar: 20
+  decrementationValueOnBarMan: 1
+  maxSatisafactionDJ: 60
+  satisfactionAmountToGetLoyal: 61
+  decrementationValueOnFloor: 1
+  incrementationValueOnFloor: 5

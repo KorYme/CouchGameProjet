@@ -11,7 +11,7 @@ public class CharacterStateExorcize : CharacterState
     public override void OnBeat()
     {
         base.OnBeat();
-        StateMachine.Animation.SetAnim(ANIMATION_TYPE.EXORCIZE);
+        StateMachine.CharacterAnimation.SetAnim(ANIMATION_TYPE.EXORCIZE);
     }
 
     private void RemovePriest()

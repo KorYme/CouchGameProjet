@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CharacterStateDancing : CharacterState
@@ -6,8 +7,13 @@ public class CharacterStateDancing : CharacterState
     
     public override void EnterState()
     {
+        if (StateMachine.CharacterDataObject.isTutorialNpc)
+        {
+            Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.DJ).SetShadowMaterial(false);
+            Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.DANCEFLOOR).SetShadowMaterial(false);
+        }
         base.EnterState();
-        StateMachine.Satisafaction.InitializeStatisfaction(StateMachine.CharacterDataObject.maxSatisafactionDJ);
+        StateMachine.Satisafaction.InitializeStatisfaction(StateMachine.CharacterDataObject.maxSatisafactionDJ, StateMachine.CharacterDataObject.satisfactionAmountToGetLoyal);
         StateMachine.Satisafaction.OnSatsifactionZero += RunOutOfSatisfaction;
 
         Globals.PriestCalculator.OnPriestNearToExorcize += StartExorcize;
@@ -23,9 +29,23 @@ public class CharacterStateDancing : CharacterState
     {
         if(!Globals.DropManager.CanYouLetMeMove)
             return;
-        
-        StateMachine.Animation.SetAnim(ANIMATION_TYPE.DANCING);
-        if (!StateMachine.CurrentSlot.IsEnlighted && StateMachine.CharacterTypeData.Evilness == Evilness.GOOD)
+
+        switch (StateMachine.Satisafaction.CurrentState)
+        {
+            case CharacterAIStatisfaction.SATISFACTION_STATE.BORED:
+                StateMachine.CharacterAnimation.SetAnim(ANIMATION_TYPE.IDLE);
+                break;
+            case CharacterAIStatisfaction.SATISFACTION_STATE.DANCING:
+                StateMachine.CharacterAnimation.SetAnim(ANIMATION_TYPE.DANCING);
+                break;
+            case CharacterAIStatisfaction.SATISFACTION_STATE.LOYAL:
+                StateMachine.CharacterAnimation.SetAnim(ANIMATION_TYPE.DANCING);
+                StateMachine.CharacterAnimation.SetColor(Color.green);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+        if (!StateMachine.CurrentSlot.IsEnlighted && StateMachine.CharacterTypeData.Evilness == Evilness.GOOD && !StateMachine.CharacterDataObject.isTutorialNpc)
         {
             StateMachine.Satisafaction.DecreaseSatisfaction(StateMachine.CharacterDataObject.decrementationValueOnFloor);
         }
