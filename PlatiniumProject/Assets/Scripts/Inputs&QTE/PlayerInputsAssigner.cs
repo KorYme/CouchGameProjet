@@ -37,14 +37,17 @@ public class PlayerInputsAssigner : MonoBehaviour {
     private static PlayerInputsAssigner _instance;
     int _indexRoleKB = 0;
     #region GetPlayer
-    public static Rewired.Player GetRewiredPlayerByRole(int role) {
+    public static Rewired.Player GetRewiredPlayerByRole(PlayerRole role) {
         if(!Rewired.ReInput.isReady) return null;
         if(_instance == null) {
             Debug.LogError("Not initialized.");
             return null;
         }
         for(int i = 0; i < _instance._playerMap.Count; i++) {
-            if(((int)_instance._playerMap[i].role) == role) return ReInput.players.GetPlayer(_instance._playerMap[i].rewiredPlayerId);
+            
+            if (_instance._playerMap[i].role == role) {
+                return ReInput.players.GetPlayer(_instance._playerMap[i].rewiredPlayerId); 
+            }
         }
         return null;
     }
@@ -187,10 +190,12 @@ public class PlayerInputsAssigner : MonoBehaviour {
         PlayerMap map = _playerMap[indexPlayer];
         Player rewiredPlayer = ReInput.players.GetPlayer(map.rewiredPlayerId);
         if (map.type == ControllerType.Keyboard) {
+            Debug.Log($"KB {indexPlayer} {_rolesKB[indexPlayer]}");
             rewiredPlayer.controllers.maps.SetMapsEnabled(false, ControllerType.Keyboard, RewiredConsts.Category.UI, _rolesKB[indexPlayer]);
             rewiredPlayer.controllers.maps.SetMapsEnabled(true, ControllerType.Keyboard, RewiredConsts.Category.DEFAULT, _rolesKB[indexPlayer]);
         } else if (map.type == ControllerType.Joystick)
         {
+            Debug.Log($"JS {indexPlayer}");
             rewiredPlayer.controllers.maps.SetMapsEnabled(false, RewiredConsts.Category.UI);
             rewiredPlayer.controllers.maps.SetMapsEnabled(true, "Default", "Default");
         }

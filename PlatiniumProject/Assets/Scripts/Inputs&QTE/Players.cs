@@ -13,11 +13,11 @@ public static class Players
     public static event Action<int> OnPlayerConnect;
     public static event Action<int> OnPlayerDisconnect;
 
-    public static void AddPlayerToList(PlayerInputController playerController, int index)
+    public static void AddPlayerToList(PlayerInputController playerController, int indexRole)
     {
         PlayerConnected++;
-        _playersController[index] = playerController;
-        OnPlayerConnect?.Invoke(index);
+        _playersController[indexRole] = playerController;
+        OnPlayerConnect?.Invoke(indexRole);
     }
 
     public static void RemovePlayerToList(int index)
