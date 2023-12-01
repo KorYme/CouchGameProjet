@@ -17,6 +17,15 @@ public class CheckerBoard : MonoBehaviour
     public int BoardLength => _boardDimension.x * _boardDimension.y;
     int[] Directions => new int[4] { 1, -1, _boardDimension.x, -_boardDimension.x };
     public float HorizontalSpacing => _horizontalSpacing;
+
+    public Vector3 Center
+    {
+        get
+        {
+            return transform.position +
+                   new Vector3(_horizontalSpacing * _boardDimension.x / 2f, -(_verticalSpacing * _boardDimension.y / 2f));
+        }
+    }
     public List <SlotInformation> AvailableSlots { get; private set; } = new List<SlotInformation>();
     public List<SlotInformation> EntrySlots { get; private set; } = new List<SlotInformation>();
     

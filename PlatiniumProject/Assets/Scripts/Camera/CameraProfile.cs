@@ -50,7 +50,6 @@ public class CameraProfile : MonoBehaviour
     private void Start()
     {
         StartCoroutine(FollowRoutine());
-        StartPulseZoom();
         _currentInitSize = _initSize;
         //StartShake();   
     }
@@ -201,13 +200,13 @@ public class CameraProfile : MonoBehaviour
 
     #region Pulse
 
-    public void StartPulseZoom()
+    public void StartPulseZoom(bool playOnce = false, float percentage = 0, float duration = 0)
     {
         if (_pulseRoutine != null)
         {
             StopPulseZoom();
         }
-        _pulseRoutine = StartCoroutine(BeatPulseZoom(_profileData.pulsePercentage));
+        _pulseRoutine = StartCoroutine(playOnce ? PulseZoomOnce(percentage, duration) : BeatPulseZoom(_profileData.pulsePercentage));
     }
     
     public void StopPulseZoom()
@@ -225,8 +224,23 @@ public class CameraProfile : MonoBehaviour
             pingPong = _profileData.pulseCurve.Evaluate(pingPong);
             _cam.orthographicSize = Mathf.Lerp(_currentInitSize, _currentInitSize * percentage, pingPong);
             yield return new WaitForEndOfFrame();
-            //yield return new WaitUntil(() => _zoomRoutine == null);
         }
+    }
+    
+    IEnumerator PulseZoomOnce(float percentage, float duration)
+    {
+        float pingPong;
+        float timer = 0;
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            pingPong = Mathf.PingPong(Time.time, (duration/2));
+            pingPong = _profileData.pulseCurve.Evaluate(pingPong);
+            _cam.orthographicSize = Mathf.Lerp(_currentInitSize, _currentInitSize * percentage, pingPong);
+            yield return new WaitForEndOfFrame();
+        }
+
+        _pulseRoutine = null;
     }
 
     #endregion

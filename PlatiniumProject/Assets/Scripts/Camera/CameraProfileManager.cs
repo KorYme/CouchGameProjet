@@ -15,6 +15,22 @@ public class CameraProfileManager : MonoBehaviour
             _cameraProfilesDict[v.CameraType] = v;
         }
     }
+
+    public void StartPulseForAll()
+    {
+        foreach (var cam in _cameraProfiles)
+        {
+            cam.StartPulseZoom();
+        }
+    }
+    
+    public void StartPulseForAllOnce(float percentage, float duration)
+    {
+        foreach (var cam in _cameraProfiles)
+        {
+            cam.StartPulseZoom(true, percentage, duration);
+        }
+    }
     
 
     public CameraProfile FindCamera(CAMERA_TYPE type)

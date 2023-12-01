@@ -67,7 +67,6 @@ public class DJQTEController : MonoBehaviour, IQTEable
     {
         _shapesLightCopy = shapesLightCopy;
         int nbCharactersInLight = NbCharactersInLight();
-        Debug.Log(nbCharactersInLight);
         if (nbCharactersInLight > 0)
         {
             CharacterTypeData[] clientsData = new CharacterTypeData[nbCharactersInLight];
@@ -102,7 +101,6 @@ public class DJQTEController : MonoBehaviour, IQTEable
 
     public void OnQTECorrectInput()
     {
-        Debug.Log("qdSSSSSSSSSSSSSSSSSSSSSSS");
         foreach (SlotInformation information in _shapesLightCopy)
         {
             if (information.Occupant != null)
