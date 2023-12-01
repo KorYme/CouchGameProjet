@@ -106,10 +106,6 @@ public class QTEListSequences
                         {
                             str.Append("color=#FFA500");
                         }
-                        else
-                        {
-                            //str.Append("color=#FF0000");
-                        }
                     }
                     else
                     {

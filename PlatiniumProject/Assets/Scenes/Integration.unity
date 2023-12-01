@@ -5828,7 +5828,7 @@ PrefabInstance:
       objectReference: {fileID: 352139430}
     - target: {fileID: 1244647166827759852, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_VerticalAlignment
-      value: 1024
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 1595853542793519124, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -6036,15 +6036,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6081387226888926224, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _playerRoles.Array.data[0]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6081387226888926224, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: _playerRoles.Array.data[1]
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6081387226888926224, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: _playerRoles.Array.data[2]
+      propertyPath: _playerRoles.Array.data[1]
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081387226888926224, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _playerRoles.Array.data[2]
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6231402434853330337, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -6123,8 +6123,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1984790399}
     - target: {fileID: 8715106590986315278, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_lineSpacing
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715106590986315278, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_VerticalAlignment
-      value: 1024
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163816495868546257, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 20.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
