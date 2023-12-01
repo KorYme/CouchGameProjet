@@ -15,6 +15,7 @@ public class DJController : MonoBehaviour
 {
     [SerializeField] List<SlotInformation> _shapesLight;
     [SerializeField, Range(0f, 1f)] float _inputDistance = .4f;
+    [SerializeField, Range(2, 5)] int _quarterChecked = 4;
     [SerializeField] Direction _rightJoystickClockwise = Direction.Down;
     [SerializeField] Direction _rightJoystickAntiClockwise = Direction.Up;
     [SerializeField] Direction _leftJoystickClockwise = Direction.Right;
@@ -42,8 +43,8 @@ public class DJController : MonoBehaviour
     //TO COMPLETE WITH OTHER INPUTS
     private void SetUpInputs()
     {
-        _rollLeftJoystick = new RollInputChecker(_djInputController.LeftJoystick, _inputDistance);
-        _rollRightJoystick = new RollInputChecker(_djInputController.RightJoystick, _inputDistance);
+        _rollLeftJoystick = new RollInputChecker(_djInputController.LeftJoystick, _inputDistance, _quarterChecked);
+        _rollRightJoystick = new RollInputChecker(_djInputController.RightJoystick, _inputDistance, _quarterChecked);
         _rollLeftJoystick.TurnClockWise += () => MoveLightShape(_leftJoystickClockwise);
         _rollLeftJoystick.TurnAntiClockWise += () => MoveLightShape(_leftJoystickAntiClockwise);
         _rollRightJoystick.TurnClockWise += () => MoveLightShape(_rightJoystickClockwise);

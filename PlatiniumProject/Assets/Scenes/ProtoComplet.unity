@@ -586,14 +586,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4142891071216717307, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: _sp
-      value: 
-      objectReference: {fileID: 1903591644}
-    - target: {fileID: 4142891071216717307, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: _characterAnimationData
-      value: 
-      objectReference: {fileID: 11400000, guid: 5c5cf1dc7975bc2488dfaf9c4c3fa4ed, type: 2}
     - target: {fileID: 4325489996845694339, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _sp
       value: 
@@ -617,6 +609,10 @@ PrefabInstance:
     - target: {fileID: 4605602961381727401, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761897190286513821, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _quarterChecked
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4812757489139114928, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_Color.b
@@ -772,11 +768,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6081387226888926224, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _playerRoles.Array.data[0]
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6081387226888926224, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _playerRoles.Array.data[1]
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6081387226888926224, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _playerRoles.Array.data[2]
@@ -878,6 +874,10 @@ PrefabInstance:
       propertyPath: _minMaxSpawnPerMinutes.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8566633219856345703, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useTutorial
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8679787539219833552, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_RenderPostProcessing
       value: 1
@@ -893,10 +893,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2049147101528859463, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1821557557}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2991612894830564553, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2074213166}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
 --- !u!224 &1903591641 stripped
 RectTransform:
@@ -918,30 +915,6 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 2212512567729938694, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
   m_PrefabInstance: {fileID: 1903591640}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2074213165 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2991612894830564553, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-  m_PrefabInstance: {fileID: 1903591640}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2074213166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2074213165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c0fff6976d0c424386246523e57de32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sfxEvent:
-  - idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 7d84e570a43de664ab571a29c97b649e, type: 2}
-  - idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 98e99235a9290a04dbdec9b96f8f6a0d, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
