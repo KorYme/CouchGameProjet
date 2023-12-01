@@ -59,7 +59,6 @@ public abstract class PlayerMovement : EntityMovement
     public bool MoveTo(Vector3 position)
     {
         if (_hasAlreadyMovedThisBeat || !_timingable.IsInsideBeatWindow) {
-            if (!_timingable.IsInsideBeatWindow) Debug.Log("IS NOT ON BEAT");
             return false;
         }
 

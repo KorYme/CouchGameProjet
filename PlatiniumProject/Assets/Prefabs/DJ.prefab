@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5158429038718605109}
   - component: {fileID: 5266241032662133365}
   - component: {fileID: 7928612141699995362}
+  - component: {fileID: 2329591207993352088}
   m_Layer: 0
   m_Name: DJ
   m_TagString: Untagged
@@ -59,6 +60,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _inputDistance: 0.5
+  _quarterChecked: 4
   _rightJoystickClockwise: 2
   _rightJoystickAntiClockwise: 3
   _leftJoystickClockwise: 0
@@ -172,6 +174,25 @@ MonoBehaviour:
   _allRumbles:
   - {fileID: 11400000, guid: d2509bcea857a644eae99438aab77314, type: 2}
   - {fileID: 11400000, guid: e5df8f419ed1ad644b561441541a931c, type: 2}
+--- !u!114 &2329591207993352088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3598487020168188391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c0fff6976d0c424386246523e57de32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxEvent:
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 7d84e570a43de664ab571a29c97b649e, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 98e99235a9290a04dbdec9b96f8f6a0d, type: 2}
 --- !u!1 &4413337472137634139
 GameObject:
   m_ObjectHideFlags: 0
