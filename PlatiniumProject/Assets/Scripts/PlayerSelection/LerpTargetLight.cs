@@ -6,6 +6,8 @@ public class LerpTargetLight : MonoBehaviour
     [SerializeField] float _timeToLerp = 0.5f;
     [SerializeField] float _distanceLightSnapToTarget = 0.2f;
     [SerializeField] int _targetIndex = 0;
+    [SerializeField] int _playerIndex = 0;
+    [SerializeField] float _offsetLight = 0.25f;
     [SerializeField] Transform[] _targetPlayers;
     Coroutine _routineMove;
 
@@ -34,12 +36,12 @@ public class LerpTargetLight : MonoBehaviour
 
     public IEnumerator SmoothlyMoveToIndex()
     {
-        while ((transform.position - _targetPlayers[_targetIndex].position).magnitude > _distanceLightSnapToTarget)
+        while (transform.position != _targetPlayers[_targetIndex].position)
         {
-            transform.position = Vector3.Lerp(transform.position, _targetPlayers[_targetIndex].position, Time.deltaTime / _timeToLerp);
+            transform.position = Vector3.Lerp(transform.position, _targetPlayers[_targetIndex].position + new Vector3(_offsetLight * (_targetIndex - _playerIndex),0f,0f), Time.deltaTime / _timeToLerp);
             yield return null;
         }
-        transform.position = _targetPlayers[_targetIndex].position;
+        transform.position = _targetPlayers[_targetIndex].position + new Vector3(_offsetLight * (_targetIndex - _playerIndex), 0f, 0f);
         _routineMove = null;
     }
     public void MoveToIndex(int indexCharacter)

@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToLerp: 0.2
-  _distanceLightSnapToTarget: 0.05
+  _distanceLightSnapToTarget: 0.001
   _targetIndex: 0
+  _playerIndex: 0
+  _offsetLight: 0.9
   _targetPlayers: []
