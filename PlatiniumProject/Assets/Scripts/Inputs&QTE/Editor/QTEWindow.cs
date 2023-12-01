@@ -188,7 +188,7 @@ public class QTEWindow : EditorWindow
     {
         for (int i = indexSequence + 1; i < _listQTE.Count; i++)
         {
-            Debug.Log($"Rename QTE {i} into {i - 1}");
+            Debug.Log($"Rename QTE {i} into {i - 1} with {_listQTE[i].ListSubHandlers.Count} {_listQTE.Count}");
             AssetDatabase.RenameAsset($"Assets/ScriptableObjects/QTE/QTE{i}.asset", $"QTE{i - 1}.asset");
             _listQTE[i].Index--;
             for (int j = 0; j < _listQTE[i].ListSubHandlers.Count; j++)
@@ -196,7 +196,9 @@ public class QTEWindow : EditorWindow
                 Debug.Log($"Rename INPUT {i}_{_listQTE[i].ListSubHandlers[j].Index} into {i - 1}_{_listQTE[i].ListSubHandlers[j].Index} TOTAL {_listQTE[i].ListSubHandlers.Count}");
                 Debug.Log(AssetDatabase.RenameAsset($"Assets/ScriptableObjects/QTE/QTEInput{i}_{_listQTE[i].ListSubHandlers[j].Index}.asset", $"QTEInput{i - 1}_{_listQTE[i].ListSubHandlers[j].Index}.asset"));
             }
-            AssetDatabase.Refresh();
+            //AssetDatabase.Refresh();
+            Debug.Log($"{i} {_listQTE[i].Index}");
+            EditorUtility.SetDirty(_listQTE[i]);
         }
     }
 
