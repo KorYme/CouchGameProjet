@@ -18551,14 +18551,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 811645365909671499}
     - target: {fileID: 4768211539129235414, guid: 6ed701891eef683438621f6642697cb5, type: 3}
-      propertyPath: _badClientRatio.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4768211539129235414, guid: 6ed701891eef683438621f6642697cb5, type: 3}
-      propertyPath: _badClientRatio.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4768211539129235414, guid: 6ed701891eef683438621f6642697cb5, type: 3}
       propertyPath: _minMaxSpawnPerMinutes.y
       value: 2
       objectReference: {fileID: 0}
