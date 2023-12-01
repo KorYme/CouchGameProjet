@@ -84,7 +84,6 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("sqedsdsqdqs");
         Globals.TutorialManager.CharcterTutoAmount = _tutoClients.Length;
         Globals.TutorialManager.OnTutorial += TutoSetup;
         Globals.TutorialManager.OnTutorialFinish += LaunchGame;
@@ -113,7 +112,7 @@ public class SpawnManager : MonoBehaviour
         
     private void LaunchGame()
     {
-        Debug.Log("prout");
+        Globals.CameraProfileManager.StartPulseForAll();
         for (int i = 0; i < _baseClientInBouncer; ++i)
         {
             if (_availableCharcters.Count <= 0)

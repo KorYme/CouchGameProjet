@@ -23,6 +23,7 @@ public class CharacterStateMachine : MonoBehaviour
     public CharacterState BarManAtBar { get; } = new CharacterStateAtBar();
     public CharacterState DancingState { get; } = new CharacterStateDancing();
     public CharacterState ExorcizeState { get; } = new CharacterStateExorcize();
+    public CharacterState DancingOffFloor { get; } = new CharacterStateDancingValidate();
     #endregion
     private CharacterState[] _allState => new CharacterState[]
     {
@@ -35,7 +36,8 @@ public class CharacterStateMachine : MonoBehaviour
         BarManQueueState,
         BarManAtBar,
         DancingState,
-        ExorcizeState
+        ExorcizeState,
+        DancingOffFloor
     };
     
     #region Propreties

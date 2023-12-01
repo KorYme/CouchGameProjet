@@ -58,7 +58,9 @@ public abstract class PlayerMovement : EntityMovement
 
     public bool MoveTo(Vector3 position)
     {
-        if (_hasAlreadyMovedThisBeat || !_timingable.IsInsideBeatWindow) return false;
+        if (_hasAlreadyMovedThisBeat || !_timingable.IsInsideBeatWindow) {
+            return false;
+        }
 
         if (MoveToPosition(position, _animation.CharacterAnimationObject.Animations[ANIMATION_TYPE.MOVE].AnimationLenght))
         {

@@ -66,7 +66,7 @@ public class CharacterStateDancing : CharacterState
 
     public void OnQTECorrectInput(int nbTotalInputs)
     {
-        if (StateMachine.CurrentSlot.IsEnlighted)
+        if (StateMachine.CurrentSlot.IsEnlighted && StateMachine.TypeData.Evilness == Evilness.GOOD)
         {
             StateMachine.Satisafaction.IncreaseSatisfaction(StateMachine.CharacterDataObject.maxSatisafactionDJ * 1 / nbTotalInputs);
         }
