@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ListSpritesPlayerTag
   m_EditorClassIdentifier: 
   _playerTagSprites:
-  - {fileID: 21300000, guid: 89ebf788a65bdc14fa170650c6483cf4, type: 3}
-  - {fileID: 21300000, guid: 65590cd6f7f912e4f872fb2d354aef3e, type: 3}
-  - {fileID: 21300000, guid: 7de4dbc6094729241803874fcf0db362, type: 3}
+  - {fileID: 21300000, guid: 0f0c1907d83dc78458c4a6fc06e08599, type: 3}
+  - {fileID: 21300000, guid: 7b89cb8e4a63fc043815c9ff922f44e4, type: 3}
+  - {fileID: 21300000, guid: 7e9edcfd587f9434fb9203ab40f0cda3, type: 3}
