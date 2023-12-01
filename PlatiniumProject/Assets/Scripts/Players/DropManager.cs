@@ -17,6 +17,7 @@ public class DropManager : MonoBehaviour
         ON_DROP_MISSED,
     }
 
+    [SerializeField, Range (0f, 5f)] float _synchronizationTime = 1f;
     [SerializeField, Range(0f, 1f)] private float _inputDeadZone = .8f;
     [SerializeField] TMP_Text _text;
     [SerializeField] GameObject _dropSuccess;
@@ -57,6 +58,8 @@ public class DropManager : MonoBehaviour
     int _triggerPressedNumber;
     BeatManager _beatManager;
     List<DropController> _allDropControllers = new();
+    Coroutine _triggerSyncCoroutine;
+
     public List<DropController> AllDropControllers => _allDropControllers;
 
     private void Awake()
@@ -76,6 +79,7 @@ public class DropManager : MonoBehaviour
         _beatManager.OnUserCueReceived += CheckUserCueName;
         OnDropStateChange += DropStateChange;
         _dropPassed = 0;
+        _triggerSyncCoroutine = null;
     }
 
     private void OnDestroy()
@@ -148,10 +152,17 @@ public class DropManager : MonoBehaviour
         switch (DropState)
         {
             case DROP_STATE.ON_DROP_PRESSING:
-                if (!_beatManager.IsInsideBeatWindow) return;
-                _triggerPressedNumber = _allDropControllers.Sum(x => x.TriggerPressed);
+                if (_triggerSyncCoroutine == null)
+                {
+                    _triggerSyncCoroutine = StartCoroutine(TriggerSynchronize());
+                }
+                else
+                {
+                    _triggerPressedNumber = _allDropControllers.Sum(x => x.TriggerPressed);
+                }
                 if (_triggerPressedNumber == Players.PlayerConnected * 2)
                 {
+                    StopCoroutine(_triggerSyncCoroutine);
                     DropState = DROP_STATE.ON_DROP_ALL_PRESSED;
                 }
                 break;
@@ -188,5 +199,12 @@ public class DropManager : MonoBehaviour
     {
         if (DropState == DROP_STATE.ON_DROP_ALL_PRESSED) return;
         _allDropControllers.ForEach(x => x.ForceTriggersRelease());
+    }
+
+    IEnumerator TriggerSynchronize()
+    {
+        yield return new WaitForSeconds(_synchronizationTime);
+        _allDropControllers.ForEach(x => x.ForceTriggersRelease());
+        _triggerSyncCoroutine = null;
     }
 }

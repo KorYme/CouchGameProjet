@@ -17,8 +17,8 @@ public class DropController : MonoBehaviour
         get
         {
             if (_triggerInputCheckRT == null) return 0;
-            return (_triggerInputCheckRT.TriggerState == TriggerInputCheck.TRIGGER_STATE.PRESSED_ON_BEAT ? 1 : 0) 
-                + (_triggerInputCheckLT.TriggerState == TriggerInputCheck.TRIGGER_STATE.PRESSED_ON_BEAT ? 1 : 0);
+            return (_triggerInputCheckRT.TriggerState == TriggerInputCheck.TRIGGER_STATE.PRESSED_ON_TIME ? 1 : 0) 
+                + (_triggerInputCheckLT.TriggerState == TriggerInputCheck.TRIGGER_STATE.PRESSED_ON_TIME ? 1 : 0);
         }
     }
 
@@ -52,7 +52,7 @@ public class DropController : MonoBehaviour
         {
             case TriggerInputCheck.TRIGGER_STATE.RELEASED:
                 return Color.yellow;
-            case TriggerInputCheck.TRIGGER_STATE.PRESSED_ON_BEAT:
+            case TriggerInputCheck.TRIGGER_STATE.PRESSED_ON_TIME:
                 return Color.green;
             case TriggerInputCheck.TRIGGER_STATE.NEED_TO_BE_RELEASED:
                 return Color.red;
