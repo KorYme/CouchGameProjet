@@ -504,7 +504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementData: {fileID: 11400000, guid: c205aac937c5b25478495ab06937bc4d, type: 2}
   _transformToModify: {fileID: 4017106879461392871}
-  _inputDeadZone: 0.5
+  _inputDeadZone: 0.98
   _areaManager: {fileID: 0}
 --- !u!114 &6699403960362053402
 MonoBehaviour:
@@ -536,6 +536,9 @@ MonoBehaviour:
   _inputsAreOnBeat: 1
   _includeLeftJoystick: 1
   _includeRightJoystick: 0
+  _onInputMissed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6716087328787060443
 MonoBehaviour:
   m_ObjectHideFlags: 0

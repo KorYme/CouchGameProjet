@@ -73,9 +73,9 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _badClientRatio: {x: 2, y: 7}
-  _baseClientInBouncer: 5
+  _baseClientInBouncer: 4
   _baseClientInBarMan: 5
-  _baseClientInDj: 10
+  _baseClientInDj: 8
   _goodClients:
   - {fileID: 11400000, guid: b2efc327949abde40b9ce71559e38fca, type: 2}
   - {fileID: 11400000, guid: 2e5673b9a8fec3d4ba2d547ff90cb43c, type: 2}
