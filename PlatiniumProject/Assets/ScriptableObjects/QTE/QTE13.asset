@@ -20,7 +20,7 @@ MonoBehaviour:
   QTELevel: 1
   Status: 1
   LongInputType: 1
-  DurationHold: 3
+  DurationHold: 2
   ListSubHandlers:
   - {fileID: 11400000, guid: 0318bcfcd76cae547af2a6289b42538f, type: 2}
   - {fileID: 11400000, guid: 934cad22784c7a44083a58aa97a33b62, type: 2}
