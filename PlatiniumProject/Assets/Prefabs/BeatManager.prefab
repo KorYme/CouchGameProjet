@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af7f1d791994e1e418d1513544522b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _synchronizationTime: 1
+  _synchronizationTime: 0.76
   _inputDeadZone: 0.8
   _text: {fileID: 0}
   _dropSuccess: {fileID: 0}
