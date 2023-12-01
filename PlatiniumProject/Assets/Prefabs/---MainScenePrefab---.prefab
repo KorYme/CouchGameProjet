@@ -4357,6 +4357,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2619603497741536774}
+  - component: {fileID: 2439083641481489938}
   m_Layer: 0
   m_Name: DanceFloor
   m_TagString: Untagged
@@ -4382,6 +4383,23 @@ Transform:
   - {fileID: 7479685300071028287}
   m_Father: {fileID: 9185119635257901509}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2439083641481489938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6754292603288523541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 345588d580732b14d9c253e0b867fe70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _danceFloor: {fileID: 1447748216813016775}
+  _offSet: {x: -0.5, y: 0.5, z: 0}
+  go: {fileID: 1307051827475980772, guid: 9aa80bdd6c04ef14e810ca8a1f7f5597, type: 3}
+  _firstBoxSize: 14
+  _secondBoxSize: 11.5
 --- !u!1 &6802382220371932256
 GameObject:
   m_ObjectHideFlags: 0
@@ -18533,10 +18551,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 811645365909671499}
     - target: {fileID: 4768211539129235414, guid: 6ed701891eef683438621f6642697cb5, type: 3}
-      propertyPath: _baseClientInDj
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4768211539129235414, guid: 6ed701891eef683438621f6642697cb5, type: 3}
       propertyPath: _badClientRatio.x
       value: 1
       objectReference: {fileID: 0}
@@ -29686,6 +29700,10 @@ PrefabInstance:
       propertyPath: _bouncerTransit
       value: 
       objectReference: {fileID: 4130247071592997725}
+    - target: {fileID: 3154288100716605872, guid: b290c3aff2349a7408e5d7004ed48a82, type: 3}
+      propertyPath: _danceFloorSideArea
+      value: 
+      objectReference: {fileID: 2439083641481489938}
     - target: {fileID: 3841915494933079562, guid: b290c3aff2349a7408e5d7004ed48a82, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

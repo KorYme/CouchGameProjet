@@ -60,7 +60,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _inputDistance: 0.5
-  _quarterChecked: 4
+  _quarterChecked: 3
   _rightJoystickClockwise: 2
   _rightJoystickAntiClockwise: 3
   _leftJoystickClockwise: 0
@@ -95,6 +95,9 @@ MonoBehaviour:
   _inputsAreOnBeat: 1
   _includeLeftJoystick: 0
   _includeRightJoystick: 0
+  _onInputMissed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2380923746897791189
 MonoBehaviour:
   m_ObjectHideFlags: 0

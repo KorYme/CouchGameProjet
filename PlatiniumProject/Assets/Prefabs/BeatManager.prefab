@@ -79,8 +79,8 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: c8d899a8093b91f4dbd5322802f7a875, type: 2}
-  _timingBeforeBeat: 0.1
-  _timingAfterBeat: 0.3
+  _timingBeforeBeat: 0.35
+  _timingAfterBeat: 0.35
   _onBeatEvent:
     m_PersistentCalls:
       m_Calls: []

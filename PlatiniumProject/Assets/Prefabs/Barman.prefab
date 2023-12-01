@@ -139,7 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementData: {fileID: 11400000, guid: c205aac937c5b25478495ab06937bc4d, type: 2}
   _transformToModify: {fileID: 2764838264077394712}
-  _inputDeadZone: 0.5
+  _inputDeadZone: 0.9
   _barmanPositions:
   - {fileID: 0}
   - {fileID: 0}
