@@ -629,7 +629,7 @@ PrefabInstance:
     - target: {fileID: 4813052223224714146, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _danceFloor
       value: 
-      objectReference: {fileID: 1903591643}
+      objectReference: {fileID: 0}
     - target: {fileID: 4813052223224714146, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: OnLoose.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -730,14 +730,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5754310267605908859, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5754310267605908859, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.56
-      objectReference: {fileID: 0}
     - target: {fileID: 5839444097650673895, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_RenderPostProcessing
       value: 1
@@ -753,6 +745,14 @@ PrefabInstance:
     - target: {fileID: 5877824139239118078, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5877824139239118078, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.364
+      objectReference: {fileID: 0}
+    - target: {fileID: 5877824139239118078, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.979
       objectReference: {fileID: 0}
     - target: {fileID: 5877824139239118078, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -826,10 +826,6 @@ PrefabInstance:
       propertyPath: _sp
       value: 
       objectReference: {fileID: 1903591644}
-    - target: {fileID: 6952021225142007452, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: m_Positions.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 7085496114356204942, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _speed
       value: 0.636
@@ -886,18 +882,13 @@ PrefabInstance:
       propertyPath: m_RenderPostProcessing
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8766382731357922094, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9168465381805928781, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _speed
       value: 0.486
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
-    m_RemovedGameObjects:
-    - {fileID: 6352150311021524143, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2049147101528859463, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       insertIndex: -1
@@ -917,17 +908,6 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 771261643079926100, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
   m_PrefabInstance: {fileID: 1903591640}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1903591643 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4812894558929117806, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-  m_PrefabInstance: {fileID: 1903591640}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba34506da9e05714394611ec7b903cd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1903591644 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 6242979318035588061, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
