@@ -106,7 +106,8 @@ public abstract class PlayerMovement : EntityMovement,IIsControllable
 
     public void ChangeController()
     {
-        _playerController.LeftJoystick.OnInputChange -= CheckJoystickValue;
+        if (_playerController != null)
+            _playerController.LeftJoystick.OnInputChange -= CheckJoystickValue;
         _playerController = Players.PlayersController[(int)PlayerRole];
         if (_playerController != null)
             _playerController.LeftJoystick.OnInputChange += CheckJoystickValue;

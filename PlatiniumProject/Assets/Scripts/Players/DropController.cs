@@ -77,18 +77,9 @@ public class DropController : MonoBehaviour, IIsControllable
 
     public void ChangeController()
     {
-        _triggerInputCheckRT.OnTriggerPerformed -= Globals.DropManager.UpdateTriggerValue;
-        _triggerInputCheckLT.OnTriggerPerformed -= Globals.DropManager.UpdateTriggerValue;
-        _triggerInputCheckRT.OnTriggerStateChange -= value => _rtImage.color = ChangeColor(value);
-        _triggerInputCheckLT.OnTriggerStateChange -= value => _ltImage.color = ChangeColor(value);
         if (Players.PlayersController[(int)_playerRole] != null) {
             _triggerInputCheckRT = new TriggerInputCheck(Players.PlayersController[(int)_playerRole].RT, Globals.DropManager.InputDeadZone);
             _triggerInputCheckLT = new TriggerInputCheck(Players.PlayersController[(int)_playerRole].LT, Globals.DropManager.InputDeadZone);
-
-            _triggerInputCheckRT.OnTriggerPerformed += Globals.DropManager.UpdateTriggerValue;
-            _triggerInputCheckLT.OnTriggerPerformed += Globals.DropManager.UpdateTriggerValue;
-            _triggerInputCheckRT.OnTriggerStateChange += value => _rtImage.color = ChangeColor(value);
-            _triggerInputCheckLT.OnTriggerStateChange += value => _ltImage.color = ChangeColor(value);
         }
     }
 }

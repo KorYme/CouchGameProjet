@@ -51,7 +51,8 @@ public class DJController : MonoBehaviour, IIsControllable
         _rollRightJoystick.TurnClockWise += () => MoveLightShape(_rightJoystickClockwise);
         _rollRightJoystick.TurnAntiClockWise += () => MoveLightShape(_rightJoystickAntiClockwise);
     }
-    private void RemoveInputs()
+    //TO COMPLETE WITH SETUPINPUTS
+    private void OnDestroy()
     {
         if (_rollLeftJoystick != null)
         {
@@ -60,11 +61,6 @@ public class DJController : MonoBehaviour, IIsControllable
             _rollRightJoystick.TurnClockWise -= () => MoveLightShape(_rightJoystickClockwise);
             _rollRightJoystick.TurnAntiClockWise -= () => MoveLightShape(_rightJoystickAntiClockwise);
         }
-    }
-    //TO COMPLETE WITH SETUPINPUTS
-    private void OnDestroy()
-    {
-        RemoveInputs();
         Players.RemoveListenerPlayerController(this);
     }
 
@@ -122,9 +118,11 @@ public class DJController : MonoBehaviour, IIsControllable
 
     public void ChangeController()
     {
-        RemoveInputs();
         _djInputController = Players.PlayersController[(int)PlayerRole.DJ];
         if (_djInputController != null)
-            SetUpInputs();
+        {
+            _rollLeftJoystick = new RollInputChecker(_djInputController.LeftJoystick, _inputDistance, _quarterChecked);
+            _rollRightJoystick = new RollInputChecker(_djInputController.RightJoystick, _inputDistance, _quarterChecked);
+        }
     }
 }

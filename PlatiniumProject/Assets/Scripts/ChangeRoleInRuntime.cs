@@ -18,7 +18,6 @@ public class ChangeRoleInRuntime : MonoBehaviour
         _indexMap = _playersAssigner.PlayersMap.ToList().FindIndex(playerMap => playerMap.gamePlayerId == _indexPlayer);
         _playerMap = _playersAssigner.PlayersMap[_indexMap];
         _player = PlayerInputsAssigner.GetRewiredPlayerById(_indexPlayer);
-        Debug.Log("PLAYERSETUP");
     }
 
     void Update()
