@@ -11,7 +11,7 @@ public enum Direction
     Up = 3,
 }
 
-public class DJController : MonoBehaviour
+public class DJController : MonoBehaviour, IIsControllable
 {
     [SerializeField] List<SlotInformation> _shapesLight;
     [SerializeField, Range(0f, 1f)] float _inputDistance = .4f;
@@ -34,6 +34,7 @@ public class DJController : MonoBehaviour
         UpdateLightTiles(_shapesLight);
         
         yield return new WaitUntil(()=> Players.PlayersController[(int)PlayerRole.DJ] != null);
+        Players.AddListenerPlayerController(this);
         _djInputController = Players.PlayersController[(int)PlayerRole.DJ];
         SetUpInputs();
         
@@ -50,9 +51,7 @@ public class DJController : MonoBehaviour
         _rollRightJoystick.TurnClockWise += () => MoveLightShape(_rightJoystickClockwise);
         _rollRightJoystick.TurnAntiClockWise += () => MoveLightShape(_rightJoystickAntiClockwise);
     }
-
-    //TO COMPLETE WITH SETUPINPUTS
-    private void OnDestroy()
+    private void RemoveInputs()
     {
         if (_rollLeftJoystick != null)
         {
@@ -61,6 +60,12 @@ public class DJController : MonoBehaviour
             _rollRightJoystick.TurnClockWise -= () => MoveLightShape(_rightJoystickClockwise);
             _rollRightJoystick.TurnAntiClockWise -= () => MoveLightShape(_rightJoystickAntiClockwise);
         }
+    }
+    //TO COMPLETE WITH SETUPINPUTS
+    private void OnDestroy()
+    {
+        RemoveInputs();
+        Players.RemoveListenerPlayerController(this);
     }
 
     //DONE
@@ -113,5 +118,13 @@ public class DJController : MonoBehaviour
     private void DeactivateQTE()
     {
         _djQTEController.UpdateQTE(_shapesLight);
+    }
+
+    public void ChangeController()
+    {
+        RemoveInputs();
+        _djInputController = Players.PlayersController[(int)PlayerRole.DJ];
+        if (_djInputController != null)
+            SetUpInputs();
     }
 }

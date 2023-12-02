@@ -42,11 +42,16 @@ public class PlayerInputController : MonoBehaviour
     private IEnumerator Start()
     {
         yield return new WaitUntil(() => ReInput.isReady && PlayerInputsAssigner.GetRewiredPlayerByRole(_gamePlayerRole) != null);
-        newPlayer = PlayerInputsAssigner.GetRewiredPlayerByRole(_gamePlayerRole);
+        SetPlayer();
         Players.AddPlayerToList(this, (int)_gamePlayerRole);
-        SetUpAllInputClasses();
     }
 
+    public void SetPlayer()
+    {
+        newPlayer = PlayerInputsAssigner.GetRewiredPlayerByRole(_gamePlayerRole);
+        if (newPlayer != null)
+            SetUpAllInputClasses();
+    }
     void SetUpAllInputClasses()
     {
         _allMainInputClasses.ForEach(inputClass =>

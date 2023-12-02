@@ -68,24 +68,6 @@ public class PlayerInputsAssigner : MonoBehaviour {
         }
         return null;
     }
-
-    public static PlayerRole GetRolePlayer(int gamePlayerId)
-    {
-        if (!Rewired.ReInput.isReady) return PlayerRole.None;
-        if (_instance == null)
-        {
-            Debug.LogError("Not initialized.");
-            return PlayerRole.None;
-        }
-        for (int i = 0; i < _instance._playerMap.Count; i++)
-        {
-            if (_instance._playerMap[i].gamePlayerId == gamePlayerId)
-            {
-                return _instance._playerMap[i].role;
-            }
-        }
-        return PlayerRole.None;
-    }
     #endregion
     private List<PlayerMap> _playerMap; // Maps Rewired Player ids to game player ids
     public IList<PlayerMap> PlayersMap => _playerMap.AsReadOnlyList();
