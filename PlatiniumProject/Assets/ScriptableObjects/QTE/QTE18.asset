@@ -19,7 +19,7 @@ MonoBehaviour:
   Evilness: 0
   QTELevel: 1
   Status: 1
-  LongInputType: 0
+  LongInputType: 1
   DurationHold: 3
   ListSubHandlers:
   - {fileID: 11400000, guid: 11cda856b155ef548aa11825d703ba09, type: 2}

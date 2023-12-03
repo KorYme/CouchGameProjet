@@ -15,7 +15,7 @@ MonoBehaviour:
   beatAmountUnitlAction: 3
   isTutorialNpc: 0
   movementAmountInQueue: 4
-  maxBarManSatisafactionBar: 20
+  maxBarManSatisafactionBar: 50
   decrementationValueOnBarMan: 1
   maxSatisafactionDJ: 60
   satisfactionAmountToGetLoyal: 120
