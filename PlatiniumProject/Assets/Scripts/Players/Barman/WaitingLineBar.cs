@@ -47,11 +47,12 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
         {
             _barmanController.ModifyQTE(_qteHandler.GetQTEString());
         }
-
     }
 
      public void OnDrinkComplete()
     {
+        //if(stateMachine.TypeData.Evilness)
+        if (_waitingCharactersList.Count > 0)
         CharacterStateMachine stateMachine = _waitingCharactersList[0];
         if (stateMachine != null)
         {
@@ -98,7 +99,8 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
 
     public void GetNextCharacter()
     {
-        _waitingCharactersList.RemoveAt(0);
+        if (_waitingCharactersList.Count > 0)
+            _waitingCharactersList.RemoveAt(0);
 
         if (_waitingCharactersList.Count > 0)
         {
@@ -167,6 +169,9 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
         if (_waitingCharactersList.Count > 0)
         {
             _qteHandler.PauseQTE(value);
+        } else
+        {
+            OnInputChange();
         }
     }
 
