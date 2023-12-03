@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DropController : MonoBehaviour
+public class DropController : MonoBehaviour, IIsControllable
 {
     [SerializeField] PlayerRole _playerRole;
     [SerializeField] Image _rtImage, _ltImage;
@@ -27,6 +27,7 @@ public class DropController : MonoBehaviour
         _ltImage.enabled = false;
         _rtImage.enabled = false;
         yield return new WaitWhile(() => Players.PlayersController[(int)_playerRole] == null);
+        Players.AddListenerPlayerController(this);
         _triggerInputCheckRT = new TriggerInputCheck(Players.PlayersController[(int)_playerRole].RT, Globals.DropManager.InputDeadZone);
         _triggerInputCheckLT = new TriggerInputCheck(Players.PlayersController[(int)_playerRole].LT, Globals.DropManager.InputDeadZone);
         _triggerInputCheckRT.OnTriggerPerformed += Globals.DropManager.UpdateTriggerValue;
@@ -39,6 +40,7 @@ public class DropController : MonoBehaviour
     private void OnDestroy()
     {
         if (Players.PlayersController[(int)_playerRole] == null) return;
+        Players.RemoveListenerPlayerController(this);
         _triggerInputCheckRT.OnTriggerPerformed -= Globals.DropManager.UpdateTriggerValue;
         _triggerInputCheckLT.OnTriggerPerformed -= Globals.DropManager.UpdateTriggerValue;
         Globals.DropManager?.AllDropControllers.Remove(this);
@@ -71,5 +73,13 @@ public class DropController : MonoBehaviour
     {
         _ltImage.gameObject.SetActive(enableTriggers);
         _rtImage.gameObject.SetActive(enableTriggers);
+    }
+
+    public void ChangeController()
+    {
+        if (Players.PlayersController[(int)_playerRole] != null) {
+            _triggerInputCheckRT = new TriggerInputCheck(Players.PlayersController[(int)_playerRole].RT, Globals.DropManager.InputDeadZone);
+            _triggerInputCheckLT = new TriggerInputCheck(Players.PlayersController[(int)_playerRole].LT, Globals.DropManager.InputDeadZone);
+        }
     }
 }
