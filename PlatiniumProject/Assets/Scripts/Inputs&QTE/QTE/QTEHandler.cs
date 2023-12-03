@@ -123,7 +123,7 @@ public class QTEHandler : MonoBehaviour, IIsControllable
         {
             _playerController.Action1,            _playerController.Action2,            _playerController.Action3,            _playerController.Action4,            _playerController.LB,            _playerController.RB
         });
-           }
+    }
 
     public string GetQTEString()
     {
