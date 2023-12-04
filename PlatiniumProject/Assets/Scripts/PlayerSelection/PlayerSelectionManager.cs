@@ -166,8 +166,6 @@ public class PlayerSelectionManager : MonoBehaviour
         for (int i = 0; i < _idPlayerSelected.Length; i++)
         {
             _playersAssigner.SetRoleOfPlayer(_idPlayerSelected[i],_selectionHandlers[i].Role);
-            Debug.Log($"PLAYER {_idPlayerSelected[i]}, role {_selectionHandlers[i].Role}");
-            Debug.Log($"PLAYER {_idPlayerSelected[i]}, role {_selectionHandlers[i].Role}");
             _playersAssigner.ChangeMapUIToNormal(_idPlayerSelected[i]);
         }
         OnChangeScene.Invoke();

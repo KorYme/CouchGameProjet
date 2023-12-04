@@ -47,10 +47,6 @@ public class BouncerMovement : PlayerMovement, IQTEable
     protected override IEnumerator Start()
     {
         yield return base.Start();
-        Players.PlayersController[(int)PlayerRole].RB.OnInputChange += () =>
-        {
-            Debug.Log(Players.PlayersController[(int)PlayerRole].LT.InputValue);
-        };
         _currentSlot = _areaManager.BouncerBoard.Board[_areaManager.BouncerBoard.BoardDimension.x
             * Mathf.Max(1,_areaManager.BouncerBoard.BoardDimension.y / 2 + _areaManager.BouncerBoard.BoardDimension.y % 2) -1];
         _currentSlot.PlayerOccupant = this;

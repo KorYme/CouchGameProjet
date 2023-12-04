@@ -12,7 +12,7 @@ public enum QTE_STATE
     IS_PRESSED
 }
 
-public class QTEHandler : MonoBehaviour
+public class QTEHandler : MonoBehaviour, IIsControllable
 {
     [SerializeField] float thresholdDirectionJoystick = 0.9f;
     [SerializeField] PlayerRole _role;
@@ -49,7 +49,10 @@ public class QTEHandler : MonoBehaviour
         _timingable = Globals.BeatManager;
         _checkInputThisBeat = new CheckHasInputThisBeat(_timingable);
         yield return new WaitUntil(() => Players.PlayersController[(int)_role] != null);
-        _playerController = Players.PlayersController[(int)_role];        _inputsQTE = new List<InputClass>();        CreateListInputsListened();    }
+        _playerController = Players.PlayersController[(int)_role];        Players.AddListenerPlayerController(this);        _inputsQTE = new List<InputClass>();        CreateListInputsListened();    }    private void OnDestroy()
+    {
+        Players.RemoveListenerPlayerController(this);
+    }
     #region QTEable
     public void RegisterQTEable(IQTEable QTEable)
     {
@@ -120,7 +123,7 @@ public class QTEHandler : MonoBehaviour
         {
             _playerController.Action1,            _playerController.Action2,            _playerController.Action3,            _playerController.Action4,            _playerController.LB,            _playerController.RB
         });
-           }
+    }
 
     public string GetQTEString()
     {
@@ -221,5 +224,14 @@ public class QTEHandler : MonoBehaviour
             if (_isSequenceComplete && _currentQTESequence.Status == InputStatus.LONG)            {                _durationHold += (int)(Time.deltaTime * 1000);            }        }        ClearRoutine();    }
     void ClearRoutine()    {        _indexOfSequence++;        _currentQTESequence = null;
         _inputsSucceeded = null;
-        if (_indexOfSequence < _currentListSequences.Length) // There is a next sequence        {            StartSequenceDependingOntype();        } else // End of the list of sequences        {            _currentListSequences.Clear();            _events?.CallOnQTEComplete();        }    }    #endregion
+        if (_indexOfSequence < _currentListSequences.Length) // There is a next sequence        {            StartSequenceDependingOntype();        } else // End of the list of sequences        {            _currentListSequences.Clear();            _events?.CallOnQTEComplete();        }    }
+
+    public void ChangeController()
+    {
+        _playerController = Players.PlayersController[(int)_role];
+        if (_playerController == null)
+            DeleteCurrentCoroutine();
+
+    }
+    #endregion
 }
