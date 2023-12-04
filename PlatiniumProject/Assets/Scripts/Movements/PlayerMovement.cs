@@ -21,7 +21,6 @@ public abstract class PlayerMovement : EntityMovement,IIsControllable
         Globals.BeatManager.OnBeatEvent.AddListener(OnBeat);
         _sp = GetComponentInChildren<SpriteRenderer>();
         _animation = GetComponent<CharacterAnimation>();
-        OnMove += AnimationSetter;
         yield return new WaitUntil(() => Players.PlayersController[(int)PlayerRole] != null);
         _playerController = Players.PlayersController[(int)PlayerRole];
         Players.AddListenerPlayerController(this);
@@ -45,7 +44,6 @@ public abstract class PlayerMovement : EntityMovement,IIsControllable
     
     protected virtual void OnDestroy()
     {
-        OnMove -= AnimationSetter;
         if (_playerController != null)
         {
             _playerController.LeftJoystick.OnInputChange -= CheckJoystickValue;
@@ -64,19 +62,13 @@ public abstract class PlayerMovement : EntityMovement,IIsControllable
             return false;
         }
 
-        if (MoveToPosition(position, _animation.CharacterAnimationObject.Animations[ANIMATION_TYPE.MOVE].AnimationLenght))
+        if (MoveToPosition(position))
         {
             _hasAlreadyMovedThisBeat = true;
             return true;
         }
         return false;
     }
-    
-    private void AnimationSetter()
-    {
-        _animation.SetAnim(ANIMATION_TYPE.MOVE);
-    }
-    
     protected virtual void CheckJoystickValue()
     {
         Vector2 vector = GetClosestUnitVectorFromVector(_playerController.LeftJoystick.InputValue);

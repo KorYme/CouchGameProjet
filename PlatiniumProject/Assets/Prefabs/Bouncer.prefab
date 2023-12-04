@@ -504,6 +504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementData: {fileID: 11400000, guid: c205aac937c5b25478495ab06937bc4d, type: 2}
   _transformToModify: {fileID: 4017106879461392871}
+  _characterAnimation: {fileID: 6716087328787060443}
   _inputDeadZone: 0.98
   _areaManager: {fileID: 0}
 --- !u!114 &6699403960362053402
