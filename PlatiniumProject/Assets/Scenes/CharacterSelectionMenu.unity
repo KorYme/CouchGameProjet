@@ -1633,7 +1633,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 176}
+  m_AnchoredPosition: {x: 0, y: 232}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1072377097
@@ -1733,9 +1733,21 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9011843421239086831, guid: 193830dab94ad8d418d379ad93bc43c8, type: 3}
+      propertyPath: _curveScale
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011843421239086831, guid: 193830dab94ad8d418d379ad93bc43c8, type: 3}
+      propertyPath: _selectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9124a178c0e1c604f813306f73a5c0cd, type: 3}
+    - target: {fileID: 9011843421239086831, guid: 193830dab94ad8d418d379ad93bc43c8, type: 3}
       propertyPath: _selectionManager
       value: 
       objectReference: {fileID: 403438254}
+    - target: {fileID: 9011843421239086831, guid: 193830dab94ad8d418d379ad93bc43c8, type: 3}
+      propertyPath: _unselectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4aefdd14eaad96547b5be29d123e611c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3036,9 +3048,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9011843421239086831, guid: 193830dab94ad8d418d379ad93bc43c8, type: 3}
+      propertyPath: _curveScale
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011843421239086831, guid: 193830dab94ad8d418d379ad93bc43c8, type: 3}
+      propertyPath: _selectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a0b4987f03f13a641a659002bc08d233, type: 3}
+    - target: {fileID: 9011843421239086831, guid: 193830dab94ad8d418d379ad93bc43c8, type: 3}
       propertyPath: _selectionManager
       value: 
       objectReference: {fileID: 403438254}
+    - target: {fileID: 9011843421239086831, guid: 193830dab94ad8d418d379ad93bc43c8, type: 3}
+      propertyPath: _unselectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 413ffa6a43b7f5d4787a5af6d3ed6824, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3272,9 +3296,21 @@ PrefabInstance:
       value: Character1
       objectReference: {fileID: 0}
     - target: {fileID: 9011843421239086831, guid: 193830dab94ad8d418d379ad93bc43c8, type: 3}
+      propertyPath: _curveScale
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011843421239086831, guid: 193830dab94ad8d418d379ad93bc43c8, type: 3}
+      propertyPath: _selectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8e7bad4a4e6d9a642abf4f9f205d7000, type: 3}
+    - target: {fileID: 9011843421239086831, guid: 193830dab94ad8d418d379ad93bc43c8, type: 3}
       propertyPath: _selectionManager
       value: 
       objectReference: {fileID: 403438254}
+    - target: {fileID: 9011843421239086831, guid: 193830dab94ad8d418d379ad93bc43c8, type: 3}
+      propertyPath: _unselectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8e7bad4a4e6d9a642abf4f9f205d7000, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
