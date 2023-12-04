@@ -13,7 +13,6 @@ public class CharacterStateRoam : CharacterState
         if (StateMachine.CharacterDataObject.isTutorialNpc)
         {
             Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.BARMAN).SetShadowMaterial(false);
-            Debug.Log("PROUT");
         }
         base.EnterState();
         Vector2 destination = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * Random.Range(0f, StateMachine.AreaManager.CircleRadius);

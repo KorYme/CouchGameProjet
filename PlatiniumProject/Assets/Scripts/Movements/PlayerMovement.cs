@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PlayerMovement : EntityMovement
+public abstract class PlayerMovement : EntityMovement,IIsControllable
 {
     [Header("Player Movements Parameters")]
     [SerializeField, Range(0f, 1f)] protected float _inputDeadZone = .5f;
@@ -24,6 +24,7 @@ public abstract class PlayerMovement : EntityMovement
         OnMove += AnimationSetter;
         yield return new WaitUntil(() => Players.PlayersController[(int)PlayerRole] != null);
         _playerController = Players.PlayersController[(int)PlayerRole];
+        Players.AddListenerPlayerController(this);
         _playerController.LeftJoystick.OnInputChange += CheckJoystickValue;
         _timingable.OnBeatStartEvent.AddListener(AllowNewMovement);
         
@@ -50,6 +51,7 @@ public abstract class PlayerMovement : EntityMovement
             _playerController.LeftJoystick.OnInputChange -= CheckJoystickValue;
             _timingable.OnBeatStartEvent.RemoveListener(AllowNewMovement);
         }Globals.BeatManager.OnBeatEvent.RemoveListener(OnBeat);
+        Players.RemoveListenerPlayerController(this);
     }
 
     protected abstract void OnInputMove(Vector2 vector);
@@ -58,7 +60,9 @@ public abstract class PlayerMovement : EntityMovement
 
     public bool MoveTo(Vector3 position)
     {
-        if (_hasAlreadyMovedThisBeat || !_timingable.IsInsideBeatWindow) return false;
+        if (_hasAlreadyMovedThisBeat || !_timingable.IsInsideBeatWindow) {
+            return false;
+        }
 
         if (MoveToPosition(position, _animation.CharacterAnimationObject.Animations[ANIMATION_TYPE.MOVE].AnimationLenght))
         {
@@ -98,5 +102,14 @@ public abstract class PlayerMovement : EntityMovement
         {
             return new Vector2(0f, Mathf.Sign(vector.y));
         }
+    }
+
+    public void ChangeController()
+    {
+        if (_playerController != null)
+            _playerController.LeftJoystick.OnInputChange -= CheckJoystickValue;
+        _playerController = Players.PlayersController[(int)PlayerRole];
+        if (_playerController != null)
+            _playerController.LeftJoystick.OnInputChange += CheckJoystickValue;
     }
 }

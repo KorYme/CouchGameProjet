@@ -47,4 +47,13 @@ public class QTEHandlerEvents
             reciever.OnQTEStarted();
         }
     }
+
+    public void CallOnMissedInput()
+    {
+        Debug.Log("MISS");
+        /*foreach (IQTEable reciever in _QTEables)
+        {
+            reciever.OnQTEMissedInput();
+        }*/
+    }
 }

@@ -14,9 +14,11 @@ public class AreaManager : MonoBehaviour
 
     [Header("DJ")] 
     [SerializeField] private CheckerBoard _djBoard;
+    [SerializeField] private DanceFloorSideArea _danceFloorSideArea;
 
     public CheckerBoard BouncerBoard => _bouncerBoard;
     public CheckerBoard DjBoard => _djBoard;
+    public DanceFloorSideArea DanceFloorSideArea => _danceFloorSideArea;
     public TransitQueue BouncerTransit => _bouncerTransit;
 
     public Transform CircleOrigin => _circleOrigin;

@@ -17,9 +17,11 @@ public class DropManager : MonoBehaviour
         ON_DROP_MISSED,
     }
 
+    [SerializeField, Range (0f, 5f)] float _synchronizationTime = 1f;
     [SerializeField, Range(0f, 1f)] private float _inputDeadZone = .8f;
     [SerializeField] TMP_Text _text;
     [SerializeField] GameObject _dropSuccess;
+    [SerializeField] DropAnimationBehaviour _dropAnimationBehaviour;
 
     [SerializeField] AK.Wwise.Event _firstDropEvent;
     [SerializeField] AK.Wwise.Event _secondStateEvent;
@@ -28,6 +30,7 @@ public class DropManager : MonoBehaviour
     [SerializeField] AK.Wwise.Event _thirdDropEvent;
     [Space]
     [SerializeField] UnityEvent _onDropTriggering;
+    [SerializeField] UnityEvent _onDropTriggered;
     [SerializeField] UnityEvent _onDropSuccess;
     [SerializeField] UnityEvent _onDropFail;
     [SerializeField] UnityEvent _onDropEnd;
@@ -49,15 +52,18 @@ public class DropManager : MonoBehaviour
 
     public bool CanYouLetMeMove => _dropState == DROP_STATE.OUT_OF_DROP;
 
+    public event Action OnBeginBuildUp;
+    public event Action OnDropLoaded;
     public event Action OnDropSuccess;
     public event Action OnDropFail;
-    public event Action OnBeginBuildUp;
+    public List<DropController> AllDropControllers => _allDropControllers;
 
     int _dropPassed;
     int _triggerPressedNumber;
     BeatManager _beatManager;
     List<DropController> _allDropControllers = new();
-    public List<DropController> AllDropControllers => _allDropControllers;
+    Coroutine _triggerSyncCoroutine;
+
 
     private void Awake()
     {
@@ -69,6 +75,11 @@ public class DropManager : MonoBehaviour
         OnDropSuccess += () => _onDropSuccess?.Invoke();
         OnDropFail += () => _onDropFail?.Invoke();
         OnBeginBuildUp += () => _onDropTriggering?.Invoke();
+        OnDropLoaded += () =>
+        {
+            _onDropTriggered?.Invoke();
+            _dropAnimationBehaviour.gameObject.SetActive(true);
+        };
         _triggerPressedNumber = 0;
         DropState = DROP_STATE.OUT_OF_DROP;
         _dropSuccess.SetActive(false);
@@ -76,12 +87,12 @@ public class DropManager : MonoBehaviour
         _beatManager.OnUserCueReceived += CheckUserCueName;
         OnDropStateChange += DropStateChange;
         _dropPassed = 0;
+        _triggerSyncCoroutine = null;
     }
 
     private void OnDestroy()
     {
         _beatManager.OnUserCueReceived -= CheckUserCueName;
-        OnDropStateChange -= DropStateChange;
     }
 
     private void DropStateChange(DROP_STATE newState)
@@ -120,6 +131,7 @@ public class DropManager : MonoBehaviour
                 if (_triggerPressedNumber >= Players.PlayerConnected * 2)
                 {
                     DropState = DROP_STATE.ON_DROP_RELEASING;
+                    OnDropLoaded?.Invoke();
                 }
                 else
                 {
@@ -148,10 +160,17 @@ public class DropManager : MonoBehaviour
         switch (DropState)
         {
             case DROP_STATE.ON_DROP_PRESSING:
-                if (!_beatManager.IsInsideBeatWindow) return;
-                _triggerPressedNumber = _allDropControllers.Sum(x => x.TriggerPressed);
+                if (_triggerSyncCoroutine == null)
+                {
+                    _triggerSyncCoroutine = StartCoroutine(TriggerSynchronize());
+                }
+                else
+                {
+                    _triggerPressedNumber = _allDropControllers.Sum(x => x.TriggerPressed);
+                }
                 if (_triggerPressedNumber == Players.PlayerConnected * 2)
                 {
+                    StopCoroutine(_triggerSyncCoroutine);
                     DropState = DROP_STATE.ON_DROP_ALL_PRESSED;
                 }
                 break;
@@ -188,5 +207,12 @@ public class DropManager : MonoBehaviour
     {
         if (DropState == DROP_STATE.ON_DROP_ALL_PRESSED) return;
         _allDropControllers.ForEach(x => x.ForceTriggersRelease());
+    }
+
+    IEnumerator TriggerSynchronize()
+    {
+        yield return new WaitForSeconds(_synchronizationTime);
+        _allDropControllers.ForEach(x => x.ForceTriggersRelease());
+        _triggerSyncCoroutine = null;
     }
 }

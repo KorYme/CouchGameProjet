@@ -11,10 +11,11 @@ public enum Direction
     Up = 3,
 }
 
-public class DJController : MonoBehaviour
+public class DJController : MonoBehaviour, IIsControllable
 {
     [SerializeField] List<SlotInformation> _shapesLight;
     [SerializeField, Range(0f, 1f)] float _inputDistance = .4f;
+    [SerializeField, Range(2, 5)] int _quarterChecked = 4;
     [SerializeField] Direction _rightJoystickClockwise = Direction.Down;
     [SerializeField] Direction _rightJoystickAntiClockwise = Direction.Up;
     [SerializeField] Direction _leftJoystickClockwise = Direction.Right;
@@ -33,6 +34,7 @@ public class DJController : MonoBehaviour
         UpdateLightTiles(_shapesLight);
         
         yield return new WaitUntil(()=> Players.PlayersController[(int)PlayerRole.DJ] != null);
+        Players.AddListenerPlayerController(this);
         _djInputController = Players.PlayersController[(int)PlayerRole.DJ];
         SetUpInputs();
         
@@ -42,14 +44,13 @@ public class DJController : MonoBehaviour
     //TO COMPLETE WITH OTHER INPUTS
     private void SetUpInputs()
     {
-        _rollLeftJoystick = new RollInputChecker(_djInputController.LeftJoystick, _inputDistance);
-        _rollRightJoystick = new RollInputChecker(_djInputController.RightJoystick, _inputDistance);
+        _rollLeftJoystick = new RollInputChecker(_djInputController.LeftJoystick, _inputDistance, _quarterChecked);
+        _rollRightJoystick = new RollInputChecker(_djInputController.RightJoystick, _inputDistance, _quarterChecked);
         _rollLeftJoystick.TurnClockWise += () => MoveLightShape(_leftJoystickClockwise);
         _rollLeftJoystick.TurnAntiClockWise += () => MoveLightShape(_leftJoystickAntiClockwise);
         _rollRightJoystick.TurnClockWise += () => MoveLightShape(_rightJoystickClockwise);
         _rollRightJoystick.TurnAntiClockWise += () => MoveLightShape(_rightJoystickAntiClockwise);
     }
-
     //TO COMPLETE WITH SETUPINPUTS
     private void OnDestroy()
     {
@@ -60,6 +61,7 @@ public class DJController : MonoBehaviour
             _rollRightJoystick.TurnClockWise -= () => MoveLightShape(_rightJoystickClockwise);
             _rollRightJoystick.TurnAntiClockWise -= () => MoveLightShape(_rightJoystickAntiClockwise);
         }
+        Players.RemoveListenerPlayerController(this);
     }
 
     //DONE
@@ -112,5 +114,15 @@ public class DJController : MonoBehaviour
     private void DeactivateQTE()
     {
         _djQTEController.UpdateQTE(_shapesLight);
+    }
+
+    public void ChangeController()
+    {
+        _djInputController = Players.PlayersController[(int)PlayerRole.DJ];
+        if (_djInputController != null)
+        {
+            _rollLeftJoystick = new RollInputChecker(_djInputController.LeftJoystick, _inputDistance, _quarterChecked);
+            _rollRightJoystick = new RollInputChecker(_djInputController.RightJoystick, _inputDistance, _quarterChecked);
+        }
     }
 }
