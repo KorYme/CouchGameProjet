@@ -1,8 +1,6 @@
 using Rewired;
 using System.Collections.Generic;
 using System.Text;
-using Unity.Burst.CompilerServices;
-using UnityEngine;
 
 public class QTEListSequences
 {
@@ -70,51 +68,35 @@ public class QTEListSequences
                     input = sequence.ListSubHandlers[j];
 
                     InputAction action = ReInput.mapping.GetAction(input.ActionIndex);
-                    str.Append("<sprite name=\"");
                     if (action != null)
                     {
-                        if (action.type == InputActionType.Axis)
-                        {
-                            if (sequence.Status == InputStatus.LONG && sequence.LongInputType == LongInputType.SHAKE)
-                            {
-                                str.Append("RS");
-                            }
-                            else
-                            {
-                                if (input.PositiveValue)
-                                {
-                                    str.Append(action.positiveDescriptiveName);
-                                }
-                                else
-                                {
-                                    str.Append(action.negativeDescriptiveName);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            str.Append(action.descriptiveName);
-                        }
-                        str.Append("\" ");
-                        //<sprite name="A" color=#FF0000>
                         if (_inputsSucceeded[index])
                         {
-                            str.Append("color=#008600");
+                            str.Append("<color=\"green\">");
                         }
                         else if (currentIndex == j && currentIndexSequence == i
                             && sequence.SequenceType == InputsSequence.SEQUENCE)
                         {
-                            str.Append("color=#FFA500");
+                            str.Append("<color=\"orange\">");
                         }
+                        else
+                        {
+                            str.Append("<color=\"red\">");
+                        }
+                        if (action.type == InputActionType.Axis && sequence.Status == InputStatus.LONG && sequence.LongInputType == LongInputType.SHAKE)
+                        {
+                            str.Append("Shake ");
+                        }
+                        str.Append(action.descriptiveName);
+                        str.Append("</color> ");
                     }
                     else
                     {
                         str.Append("(Not found) ");
                     }
-                    str.Append(">");
                     if (sequence.SequenceType == InputsSequence.SIMULTANEOUS && input.Index != sequence.ListSubHandlers.Count - 1 && sequence.Index != _sequences.Count - 1)
                     {
-                        str.Append("+");
+                        str.Append("+ ");
                     }
                     ++index;
                 }
@@ -128,14 +110,13 @@ public class QTEListSequences
         if (indexOfSequence >= 0 && indexOfSequence < _sequences.Count &&
             indexInSequence >= 0 && indexInSequence < _sequences[indexOfSequence].ListSubHandlers.Count)
         {
-            //<sprite name = "A" tint = 0 color =#FF0000>
-            str.Append("<sprite name=\"");
+            str.Append("<color=\"red\">");
             InputAction action = ReInput.mapping.GetAction(_sequences[indexOfSequence].ListSubHandlers[indexInSequence].ActionIndex);
             if (action.type == InputActionType.Axis)
             {
                 if (_sequences[indexOfSequence].Status == InputStatus.LONG && _sequences[indexOfSequence].LongInputType == LongInputType.SHAKE)
                 {
-                    str.Append("RS");
+                    str.Append("Shake "+action.descriptiveName);
                 } else
                 {
                     if (_sequences[indexOfSequence].ListSubHandlers[indexInSequence].PositiveValue)
@@ -150,7 +131,7 @@ public class QTEListSequences
             {
                 str.Append(action.descriptiveName);
             }
-            str.Append("\">");
+            str.Append("</color> ");
         }
         return str.ToString();
     }
