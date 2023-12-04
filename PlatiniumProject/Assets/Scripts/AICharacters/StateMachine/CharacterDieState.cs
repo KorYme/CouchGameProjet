@@ -13,13 +13,28 @@ public class CharacterDieState : CharacterState
         {
             StateMachine.CurrentSlot.Occupant = null;
         }
-        StateMachine.CharacterMove.MoveTo(Globals.ExitPoints.FindClosestExitPoint(StateMachine.transform.position));
+
+        if (StateMachine.TypeData.Evilness == Evilness.GOOD)
+        {
+            StateMachine.CharacterMove.MoveTo(Globals.ExitPoints.FindClosestExitPoint(StateMachine.transform.position));
+        }
+        else
+        {
+            StateMachine.CharacterAnimation.SetFullAnim(ANIMATION_TYPE.DIE, 1f);
+        }
         StateMachine.StartCoroutine(ExitRoutine());
     }
 
     IEnumerator ExitRoutine()
     {
-        yield return new WaitUntil(() => !StateMachine.CharacterMove.IsMoving);
+        if (StateMachine.TypeData.Evilness == Evilness.GOOD)
+        {
+            yield return new WaitUntil(() => !StateMachine.CharacterMove.IsMoving);
+        }
+        else
+        {
+            yield return new WaitUntil(() => !StateMachine.CharacterAnimation.IsAnimationPlaying);
+        }
         StateMachine.GoBackInPull();
     }
 }

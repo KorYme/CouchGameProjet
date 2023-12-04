@@ -148,6 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementData: {fileID: 11400000, guid: c205aac937c5b25478495ab06937bc4d, type: 2}
   _transformToModify: {fileID: 3774042573209187967}
+  _characterAnimation: {fileID: 4495835406083628837}
 --- !u!114 &1392426080973553348
 MonoBehaviour:
   m_ObjectHideFlags: 0
