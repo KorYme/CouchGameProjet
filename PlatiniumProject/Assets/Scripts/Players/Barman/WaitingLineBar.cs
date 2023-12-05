@@ -53,21 +53,23 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     {
         //if(stateMachine.TypeData.Evilness)
         if (_waitingCharactersList.Count > 0)
-        CharacterStateMachine stateMachine = _waitingCharactersList[0];
-        if (stateMachine != null)
         {
-            if (stateMachine.TypeData.Evilness == Evilness.GOOD)
+            CharacterStateMachine stateMachine = _waitingCharactersList[0];
+            if (stateMachine != null)
             {
-                stateMachine.CurrentSlot = _djUsher.NextSlot;
-                _djUsher.NextSlot.Occupant = stateMachine;
-                stateMachine.MoveToLocation = stateMachine.CurrentSlot.transform.position;
-                stateMachine.NextState = stateMachine.DancingState;
-                stateMachine.ChangeState(stateMachine.MoveToState);
-                _djUsher.SetNextSlot();
-            }
-            else
-            {
-                stateMachine.ChangeState(stateMachine.DieState);
+                if (stateMachine.TypeData.Evilness == Evilness.GOOD)
+                {
+                    stateMachine.CurrentSlot = _djUsher.NextSlot;
+                    _djUsher.NextSlot.Occupant = stateMachine;
+                    stateMachine.MoveToLocation = stateMachine.CurrentSlot.transform.position;
+                    stateMachine.NextState = stateMachine.DancingState;
+                    stateMachine.ChangeState(stateMachine.MoveToState);
+                    _djUsher.SetNextSlot();
+                }
+                else
+                {
+                    stateMachine.ChangeState(stateMachine.DieState);
+                }
             }
         }
         GetNextCharacter();
