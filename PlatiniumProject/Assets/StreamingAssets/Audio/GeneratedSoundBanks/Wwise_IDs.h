@@ -17,6 +17,7 @@ namespace AK
         static const AkUniqueID MUSIC_MAGE = 1716433435U;
         static const AkUniqueID MUSIC_METRONOME = 1823217099U;
         static const AkUniqueID MUSIC_PAYDAY = 3926639385U;
+        static const AkUniqueID MUSIC_PH = 3047207357U;
         static const AkUniqueID PLAY_BARMANFAIL = 1537570307U;
         static const AkUniqueID PLAY_BARMANMOVEMENT = 293490316U;
         static const AkUniqueID PLAY_BARMANSUCCESS = 3367986140U;

@@ -12,6 +12,7 @@
 						<ObjectRef Name="Music" ID="{74E004F1-3593-4675-9F8D-0EA6E3091C36}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Ambiance" ID="{16234DAC-407B-4728-83AC-53640D11B520}" WorkUnitID="{16234DAC-407B-4728-83AC-53640D11B520}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Alesso Payday" ID="{693A3023-6DFB-4776-8EC2-731FF11A5541}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PlaceHolder" ID="{8473C8E8-4D5D-484F-B123-40F0FD9E6F25}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Drop" ID="{9730BAC3-245C-487C-A223-4DDA01449540}" WorkUnitID="{9730BAC3-245C-487C-A223-4DDA01449540}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Ambiance" ID="{A9E4BA3A-5ACF-48FE-B5AB-BD8C8926CCF1}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="MageBattle" ID="{3441DE68-26FA-4A74-9806-D4745AB82F51}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}" Origin="Manual" Filter="7"/>

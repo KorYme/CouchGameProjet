@@ -8,6 +8,7 @@ using UnityEngine.Events;
 
 public class BeatManager : MonoBehaviour, ITimingable
 {
+
     #region FIELDS
     [Header("References"), Space]
     [SerializeField] AK.Wwise.Event _mainMusicEvent;
@@ -36,6 +37,7 @@ public class BeatManager : MonoBehaviour, ITimingable
     public event Action OnNextBeatStart;
     public event Action OnNextBeat;
     public event Action OnNextBeatEnd;
+    public event Action OnNextEntryCue;
     public event Action<string> OnUserCueReceived;
     #endregion
 
@@ -83,7 +85,7 @@ public class BeatManager : MonoBehaviour, ITimingable
             OnNextBeatEnd = null;
         });
         yield return null;
-        _mainMusicEvent?.Post(gameObject, (uint)AkCallbackType.AK_MusicSyncGrid | (uint)AkCallbackType.AK_MusicSyncUserCue, BeatCallBack);
+        _mainMusicEvent?.Post(gameObject, (uint)AkCallbackType.AK_MusicSyncGrid | (uint)AkCallbackType.AK_MusicSyncUserCue | (uint)AkCallbackType.AK_MusicSyncEntry, BeatCallBack);
         _firstStateEvent?.Post(gameObject);
     }
 
@@ -103,7 +105,6 @@ public class BeatManager : MonoBehaviour, ITimingable
         switch (in_type)
         { 
             case AkCallbackType.AK_MusicSyncGrid:
-                
                 _beatCoroutine ??= StartCoroutine(BeatCoroutine());
                 _lastBeatTime = DateTime.Now;
                 _beatDurationInMilliseconds = (int)((info?.segmentInfo_fGridDuration ?? 1) * 1000);
@@ -116,6 +117,10 @@ public class BeatManager : MonoBehaviour, ITimingable
                 break;
             case AkCallbackType.AK_MusicSyncUserCue:
                 OnUserCueReceived?.Invoke(info?.userCueName ?? "");
+                break;
+            case AkCallbackType.AK_MusicSyncEntry:
+                OnNextEntryCue?.Invoke();
+                OnNextEntryCue = null;
                 break;
             default:
                 break;
