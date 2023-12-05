@@ -16366,10 +16366,6 @@ PrefabInstance:
       propertyPath: _sps.Array.data[0]
       value: 
       objectReference: {fileID: 2212512567729938694}
-    - target: {fileID: 9119380374867281263, guid: 7c529a488a751df4a9749ebcbee0ced4, type: 3}
-      propertyPath: _characterAnimationData
-      value: 
-      objectReference: {fileID: 11400000, guid: 5c5cf1dc7975bc2488dfaf9c4c3fa4ed, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -24637,7 +24633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7556468217539159939, guid: aff64b997f1cb184ab99b6540eb058a3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7779245063879279323, guid: aff64b997f1cb184ab99b6540eb058a3, type: 3}
       propertyPath: m_AnchoredPosition.x

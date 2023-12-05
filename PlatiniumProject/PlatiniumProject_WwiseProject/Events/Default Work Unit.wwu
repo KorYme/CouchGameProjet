@@ -321,6 +321,17 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="Music_PH" ID="{94834CEA-87BD-40B1-94B6-7D28512D6218}">
+							<ChildrenList>
+								<Action Name="" ID="{EF7C7DA6-07F7-4B1C-8EF5-4E22D3DBE606}" ShortID="713383678">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PlaceHolder" ID="{8473C8E8-4D5D-484F-B123-40F0FD9E6F25}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Music" ID="{74E004F1-3593-4675-9F8D-0EA6E3091C36}" ShortID="753531991">
