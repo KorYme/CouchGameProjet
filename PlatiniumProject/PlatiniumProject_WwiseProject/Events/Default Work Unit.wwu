@@ -130,6 +130,17 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="Play_DJMovement" ID="{29E63C5F-0527-46CE-AE55-4C101A3700DD}">
+							<ChildrenList>
+								<Action Name="" ID="{822D3A86-3406-4940-8354-BC39AE4482FB}" ShortID="881161528">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="DJMovement" ID="{8215FDE6-5D87-496B-BF4D-72D0A6AF3810}" WorkUnitID="{BFC0B761-B0B9-4376-9727-9EFA9FAE32B2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="UI" ID="{8C473F2E-0A94-454F-A136-7CEF352D0325}" ShortID="924862317">
@@ -210,6 +221,28 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="VolumeBar" ID="{5F8B0003-D0CE-4C82-B5AF-0DB0C6B3E600}" WorkUnitID="{D768933A-3A49-4F59-8040-626EAE6A38BE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_MenuValidChara" ID="{68C03198-A7B7-476A-A0AA-1784230B7F8F}">
+							<ChildrenList>
+								<Action Name="" ID="{29547F69-C275-4210-BA6D-D2310A0BB65D}" ShortID="926683523">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MenuValidChara" ID="{75713C41-DFF3-41FD-A4C3-CA2893E802E5}" WorkUnitID="{D768933A-3A49-4F59-8040-626EAE6A38BE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_MenuChooseChara" ID="{BB92EB88-BE1C-458A-A080-17CD646A26C4}">
+							<ChildrenList>
+								<Action Name="" ID="{6A86B640-E6C7-499E-91B4-D5F5860A9357}" ShortID="832769453">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MenuChooseChara" ID="{1C4B77F7-27E0-469B-A15B-4C8C6E3A9EDB}" WorkUnitID="{D768933A-3A49-4F59-8040-626EAE6A38BE}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
