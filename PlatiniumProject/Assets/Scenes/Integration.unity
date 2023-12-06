@@ -6032,7 +6032,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6081387226888926224, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _characterSelectionInGame
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6081387226888926224, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _playerRoles.Array.data[0]
