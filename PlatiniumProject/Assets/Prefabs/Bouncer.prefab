@@ -487,6 +487,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7056813333780234165}
+  - {fileID: 7968747110245873503}
   - {fileID: 3131849971425630260}
   - {fileID: 5057656730819636646}
   m_Father: {fileID: 0}
@@ -555,6 +556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterAnimationData: {fileID: 11400000, guid: 5c5cf1dc7975bc2488dfaf9c4c3fa4ed, type: 2}
   _sp: {fileID: 7748299721026644492}
+  _vfxHandeler: {fileID: 4453488246805600389}
 --- !u!114 &881585525306280625
 MonoBehaviour:
   m_ObjectHideFlags: 0
