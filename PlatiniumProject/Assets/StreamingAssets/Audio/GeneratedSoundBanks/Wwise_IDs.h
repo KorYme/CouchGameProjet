@@ -107,6 +107,7 @@ namespace AK
             namespace STATE
             {
                 static const AkUniqueID NO = 1668749452U;
+                static const AkUniqueID NONE = 748895195U;
                 static const AkUniqueID YES = 979470758U;
             } // namespace STATE
         } // namespace PLAYER1_SYNC
@@ -118,6 +119,7 @@ namespace AK
             namespace STATE
             {
                 static const AkUniqueID NO = 1668749452U;
+                static const AkUniqueID NONE = 748895195U;
                 static const AkUniqueID YES = 979470758U;
             } // namespace STATE
         } // namespace PLAYER2_SYNC
@@ -129,6 +131,7 @@ namespace AK
             namespace STATE
             {
                 static const AkUniqueID NO = 1668749452U;
+                static const AkUniqueID NONE = 748895195U;
                 static const AkUniqueID YES = 979470758U;
             } // namespace STATE
         } // namespace PLAYER3_SYNC

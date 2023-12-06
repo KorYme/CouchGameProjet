@@ -30,18 +30,21 @@
 				</StateGroup>
 				<StateGroup Name="Player1_Sync" ID="{561195C5-B9FC-4968-A7AC-78C37B17D531}">
 					<ChildrenList>
+						<State Name="None" ID="{AF64F748-CA5A-4360-A379-4F2B0C883054}"/>
 						<State Name="Yes" ID="{76F613B8-0539-4F71-BA66-DD5E996E1A6B}"/>
 						<State Name="No" ID="{BB8A4A28-E909-4E78-84F8-DD7C69897827}"/>
 					</ChildrenList>
 				</StateGroup>
 				<StateGroup Name="Player2_Sync" ID="{4640023F-4498-4CB6-B14C-9E2BDE9DD4AD}">
 					<ChildrenList>
+						<State Name="None" ID="{8F1B7F54-EA21-427F-9B0B-E25FB881C933}"/>
 						<State Name="Yes" ID="{F4CD86B9-6B90-42D5-9B22-DA4C72390C08}"/>
 						<State Name="No" ID="{FD76BA71-31F8-46AA-AB57-13A7589800A3}"/>
 					</ChildrenList>
 				</StateGroup>
 				<StateGroup Name="Player3_Sync" ID="{3E3A74CC-142F-4944-86C0-7055526D0A44}">
 					<ChildrenList>
+						<State Name="None" ID="{289FDEEA-708B-4F10-BBB7-25A32CA9C76F}"/>
 						<State Name="Yes" ID="{ECA49FCF-ED94-4622-A017-CBEC86654ED2}"/>
 						<State Name="No" ID="{1A95BD9C-2862-44A3-B66B-BE1300F23746}"/>
 					</ChildrenList>

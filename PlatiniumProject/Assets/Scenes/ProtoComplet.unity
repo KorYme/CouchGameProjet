@@ -248,6 +248,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4231232237416555254, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.23
+      objectReference: {fileID: 0}
     - target: {fileID: 4605602961381727401, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -260,10 +264,6 @@ PrefabInstance:
       propertyPath: _testState.WwiseObjectReference
       value: 
       objectReference: {fileID: 11400000, guid: 3b1c7379899ffd440a76f2cdeb8fccaa, type: 2}
-    - target: {fileID: 4976499995342045857, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: _mainMusicEvent.WwiseObjectReference
-      value: 
-      objectReference: {fileID: 11400000, guid: a2c0e3b102ce27b4fbd0209c11360d36, type: 2}
     - target: {fileID: 4976499995342045857, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _secondStateEvent.WwiseObjectReference
       value: 
@@ -282,6 +282,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5988946452918948255, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081387226888926224, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _playerRoles.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081387226888926224, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _playerRoles.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7102948169154359438, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _musicEvents.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7102948169154359438, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}

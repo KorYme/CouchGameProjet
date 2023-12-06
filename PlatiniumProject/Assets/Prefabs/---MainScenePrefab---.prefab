@@ -2850,7 +2850,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _useTutorial: 0
   _timer: {fileID: 7691332706565540856}
-  _tutorialBPM: 126
   _zoomValues:
   - 0.5
   - 0.6
@@ -21442,7 +21441,11 @@ PrefabInstance:
     - target: {fileID: 3001707074899246954, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _dropSuccess
       value: 
-      objectReference: {fileID: 6680281085585410216}
+      objectReference: {fileID: 0}
+    - target: {fileID: 3001707074899246954, guid: 43b8848140f1758428d3b77851546651, type: 3}
+      propertyPath: _dropStateText
+      value: 
+      objectReference: {fileID: 8226415887059930506}
     - target: {fileID: 3001707074899246954, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _dropAnimationBehaviour
       value: 
@@ -24707,11 +24710,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &6680281085585410216 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 302693132484681574, guid: aff64b997f1cb184ab99b6540eb058a3, type: 3}
-  m_PrefabInstance: {fileID: 6378857992567609294}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7691332706565540856 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3619587694021680182, guid: aff64b997f1cb184ab99b6540eb058a3, type: 3}
