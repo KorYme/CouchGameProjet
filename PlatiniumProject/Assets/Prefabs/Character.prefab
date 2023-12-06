@@ -101,8 +101,11 @@ MonoBehaviour:
   _role: 2
   _selectionManager: {fileID: 0}
   _durationScale: 0.2
-  _forceScale: 0.3
+  _forceScale: 0.2
   _curveScale: 28
+  _spriteRenderer: {fileID: 5186382758941170165}
+  _unselectedSprite: {fileID: 0}
+  _selectedSprite: {fileID: 0}
 --- !u!114 &5667070652861212674
 MonoBehaviour:
   m_ObjectHideFlags: 0

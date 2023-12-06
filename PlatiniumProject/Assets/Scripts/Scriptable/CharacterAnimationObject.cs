@@ -16,7 +16,8 @@ public enum ANIMATION_TYPE
     FIGHT,
     FIGHT_IDLE,
     ACCEPT,
-    REFUSE
+    REFUSE,
+    DIE
     
 }
 [System.Serializable]
