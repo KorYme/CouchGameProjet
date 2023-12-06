@@ -9,11 +9,13 @@ public class CharacterAnimation : MonoBehaviour
 {
     [SerializeField] private CharacterAnimationObject _characterAnimationData;
     [SerializeField] private SpriteRenderer _sp;
+    [SerializeField] private VfxHandeler _vfxHandeler;
     private Dictionary<ANIMATION_TYPE, int> _animDict = new Dictionary<ANIMATION_TYPE, int>();
     private Coroutine _animRoutine;
     private ANIMATION_TYPE _lastAnimationType;
     private int _animLatency;
 
+    public VfxHandeler VfxHandeler => _vfxHandeler;
     public bool IsAnimationPlaying => _animRoutine != null;
     
 
