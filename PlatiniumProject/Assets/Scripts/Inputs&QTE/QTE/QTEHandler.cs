@@ -28,17 +28,28 @@ public class QTEHandler : MonoBehaviour, IIsControllable
     protected QTEListSequences _currentListSequences;
     protected QTESequence _currentQTESequence;
     protected QTE_STATE[] _inputsSucceeded;
+    List<InputClass> _inputsQTE;
 
     protected int _indexOfSequence = 0;
     protected int _indexInSequence = 0;
     protected int _indexInListSequences = 0;
     protected bool _isSequenceComplete = false;
     protected int _durationHold = 0;
+
     CheckHasInputThisBeat _checkInputThisBeat;
-    List<InputClass> _inputsQTE;
+    bool _waitForCorrectInput = false;
+    public bool WaitForCorrectInput {
+        get => _waitForCorrectInput;
+        set
+        {
+            Debug.Log("CHANGE WAIT QTE ");
+            _waitForCorrectInput = value;
+        }
+    }
 
     [SerializeField] UnityEvent _onInputMissed;
     public int LengthInputs { get; private set; }
+
     private void Awake()
     {
         _currentListSequences = new QTEListSequences();
@@ -74,9 +85,9 @@ public class QTEHandler : MonoBehaviour, IIsControllable
     {
         _indexOfSequence = 0;        _indexInListSequences = 0;        StoreNewQTE(character);        StartSequenceDependingOntype();    }
 
-    public void StoreNewQTE(CharacterTypeData character)    {        if (_coroutineQTE != null)        {            DeleteCurrentCoroutine();        }        _currentQTESequence = QTELoader.Instance.GetRandomQTE(_role, character.Evilness);        _currentListSequences.AddSequence(_currentQTESequence);        _currentListSequences.SetUpList();        LengthInputs = _currentListSequences.TotalLengthInputs;    }
+    public void StoreNewQTE(CharacterTypeData character)    {        if (_coroutineQTE != null)        {            DeleteCurrentCoroutine();        }        _currentQTESequence = QTELoader.Instance.GetRandomQTE(_role, character.Evilness);        _currentListSequences.Clear();        _currentListSequences.AddSequence(_currentQTESequence);        _currentListSequences.SetUpList();        LengthInputs = _currentListSequences.TotalLengthInputs;    }
 
-    public void StoreNewQTE(CharacterTypeData[] characters)    {        if (_coroutineQTE != null)        {            DeleteCurrentCoroutine();        }        int[] charactersCount = new int[Enum.GetNames(typeof(CharacterColor)).Length];        int indexEvil = 0;        int nbEvilCharacters = GetNbOfEvilCharacters(characters);        foreach (CharacterTypeData character in characters)        {            if (character.Evilness == Evilness.GOOD)            {                charactersCount[(int)character.ClientType] += 1; // SI GENTIL SINON + 0                _currentQTESequence = QTELoader.Instance.GetRandomQTE(character.ClientType, character.Evilness, charactersCount[(int)character.ClientType] + nbEvilCharacters, _role);            } else            {                indexEvil++;                _currentQTESequence = QTELoader.Instance.GetRandomQTE(character.ClientType, character.Evilness, indexEvil, _role);            }            _currentListSequences.AddSequence(_currentQTESequence);        }        _currentListSequences.SetUpList();        LengthInputs = _currentListSequences.TotalLengthInputs;    }
+    public void StoreNewQTE(CharacterTypeData[] characters)    {        if (_coroutineQTE != null)        {            DeleteCurrentCoroutine();        }        int[] charactersCount = new int[Enum.GetNames(typeof(CharacterColor)).Length];        int indexEvil = 0;        int nbEvilCharacters = GetNbOfEvilCharacters(characters);        _currentListSequences.Clear();        foreach (CharacterTypeData character in characters)        {            if (character.Evilness == Evilness.GOOD)            {                charactersCount[(int)character.ClientType] += 1; // SI GENTIL SINON + 0                _currentQTESequence = QTELoader.Instance.GetRandomQTE(character.ClientType, character.Evilness, charactersCount[(int)character.ClientType] + nbEvilCharacters, _role);            } else            {                indexEvil++;                _currentQTESequence = QTELoader.Instance.GetRandomQTE(character.ClientType, character.Evilness, indexEvil, _role);            }            _currentListSequences.AddSequence(_currentQTESequence);        }        _currentListSequences.SetUpList();        LengthInputs = _currentListSequences.TotalLengthInputs;    }
 
     public int GetNbOfEvilCharacters(CharacterTypeData[] characters)    {        int total = 0;        foreach (CharacterTypeData character in characters)        {            if (character.Evilness == Evilness.EVIL) total++;        }        return total;    }
     private void StartSequenceDependingOntype()    {        _indexInSequence = 0;        _currentQTESequence = _currentListSequences.GetSequence(_indexOfSequence);        _inputsSucceeded = new QTE_STATE[_currentQTESequence.ListSubHandlers.Count];        for (int i = 0; i < _inputsSucceeded.Length; i++)
@@ -123,7 +134,7 @@ public class QTEHandler : MonoBehaviour, IIsControllable
         {
             _playerController.Action1,            _playerController.Action2,            _playerController.Action3,            _playerController.Action4,            _playerController.LB,            _playerController.RB
         });
-           }
+    }
 
     public string GetQTEString()
     {
@@ -161,7 +172,6 @@ public class QTEHandler : MonoBehaviour, IIsControllable
         {
             if (currentActionID == expectedActionID)
             {
-                Debug.Log("Input ok");
                 _inputsSucceeded[_indexInSequence] = QTE_STATE.IS_PRESSED;
                 _currentListSequences.SetInputSucceeded(_indexInListSequences, QTE_STATE.IS_PRESSED);
                 _indexInSequence++;
@@ -170,9 +180,12 @@ public class QTEHandler : MonoBehaviour, IIsControllable
             }
             else
             {
-                Debug.Log("Input failed");
-                _indexInSequence++;
-                _indexInListSequences++;
+                if (!_waitForCorrectInput)
+                {
+                    Debug.Log("NOT GOOD");
+                    _indexInSequence++;
+                    _indexInListSequences++;
+                }
                 _events?.CallOnWrongInput();
             }
         } else //Input miss (not during timing)
