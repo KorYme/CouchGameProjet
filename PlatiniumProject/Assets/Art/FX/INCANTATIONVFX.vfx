@@ -20,7 +20,7 @@ MonoBehaviour:
     x: 928
     y: -423
     width: 1519
-    height: 1837
+    height: 1948
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -31,7 +31,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4c867f6b72b714dbb5fd1780afe208, type: 3}
-  m_Name: SimpleParticleSystem
+  m_Name: INCANTATIONVFX
   m_EditorClassIdentifier: 
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 0}
@@ -967,7 +967,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 941, y: 755}
+  m_UIPosition: {x: 941, y: 866}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -1004,7 +1004,7 @@ MonoBehaviour:
   m_Children:
   - {fileID: 8926484042661614591}
   - {fileID: 8926484042661614593}
-  m_UIPosition: {x: 941, y: 907}
+  m_UIPosition: {x: 941, y: 1018}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -1702,7 +1702,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":2.0,"y":1.0,"z":1.0}'
+      m_SerializableObject: '{"x":4.0,"y":2.0,"z":2.0}'
     m_Space: 2147483647
   m_Property:
     name: Scale
@@ -3398,7 +3398,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":2.0,"y":1.0,"z":1.0}'
+      m_SerializableObject: '{"x":4.0,"y":2.0,"z":2.0}'
     m_Space: 2147483647
   m_Property:
     name: Scale
@@ -5149,7 +5149,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":2.0,"y":1.0,"z":1.0}'
+      m_SerializableObject: '{"x":4.0,"y":2.0,"z":2.0}'
     m_Space: 2147483647
   m_Property:
     name: Scale
