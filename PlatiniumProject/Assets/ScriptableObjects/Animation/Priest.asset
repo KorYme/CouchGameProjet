@@ -46,4 +46,4 @@ MonoBehaviour:
     - {fileID: 21300000, guid: f5325bcde8b43a14e9721362b03907dc, type: 3}
     - {fileID: 21300000, guid: fff072c2fd489d7449b6d977d7baa42f, type: 3}
     _animationType: 10
-  animBpm: 130
+  animBpm: 240
