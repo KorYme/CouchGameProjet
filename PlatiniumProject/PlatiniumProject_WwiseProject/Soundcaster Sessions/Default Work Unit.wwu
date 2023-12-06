@@ -95,14 +95,7 @@
 						</Module>
 					</ModuleList>
 					<RTPCValueList ShowAll="true"/>
-					<CurrentStateList ShowAll="true">
-						<CurrentStateRef Name="Music_Default" ID="{5D02A9DB-F961-4FC0-A66D-F257420C5EA0}"/>
-						<CurrentStateRef Name="No" ID="{1A95BD9C-2862-44A3-B66B-BE1300F23746}"/>
-						<CurrentStateRef Name="No" ID="{BB8A4A28-E909-4E78-84F8-DD7C69897827}"/>
-						<CurrentStateRef Name="No" ID="{FD76BA71-31F8-46AA-AB57-13A7589800A3}"/>
-						<CurrentStateRef Name="Menu_Close" ID="{3723DA8D-5A3C-4774-8B8D-FFD9B69FE076}"/>
-						<CurrentStateRef Name="Phase_2" ID="{C8D0BD07-4F60-47A0-BB58-51A97EB8D52C}"/>
-					</CurrentStateList>
+					<CurrentStateList ShowAll="true"/>
 					<CurrentSwitchList ShowAll="true"/>
 				</SoundcasterSession>
 			</ChildrenList>

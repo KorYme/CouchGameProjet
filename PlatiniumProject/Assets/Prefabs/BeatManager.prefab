@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2475575777112969248}
   - component: {fileID: 1020801392736537925}
   - component: {fileID: 3001707074899246954}
-  - component: {fileID: 5326486199215042295}
   m_Layer: 0
   m_Name: BeatManager
   m_TagString: Untagged
@@ -74,11 +73,15 @@ MonoBehaviour:
   _mainMusicEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 09cd1426a7cc6ee429848c5b6dbd3da9, type: 2}
-  _firstStateEvent:
+    WwiseObjectReference: {fileID: 11400000, guid: 015682f307ed2d945bc257fb9033885b, type: 2}
+  _introMusicStateEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: c8d899a8093b91f4dbd5322802f7a875, type: 2}
+    WwiseObjectReference: {fileID: 11400000, guid: 453be10df51f7414db38651047dd8ab8, type: 2}
+  _firstMusicStateEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 6e2d84f344115e044b8fbe8619a9d13d, type: 2}
   _timingBeforeBeat: 0.35
   _timingAfterBeat: 0.35
   _onBeatEvent:
@@ -102,31 +105,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af7f1d791994e1e418d1513544522b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _secondMusicStateEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: b77ff76a266eceb458249c9c7462a0c9, type: 2}
+  _thirdMusicStateEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 413bba000174b7f4e9fec2ca021f10bd, type: 2}
+  _endMusicStateEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 37a9c8260cad227448ad92f855a06eca, type: 2}
+  _dropDefaultEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 7415c4ca0a279574cb6659b3b1fca53d, type: 2}
+  _dropSucceededEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: b45f955cf7d7125488078ffe063510c2, type: 2}
+  _dropMissedEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 3481fdce26412f947aacfbff5723db23, type: 2}
+  _buildUpTime: 1
   _synchronizationTime: 0.76
+  _timeToReleaseAfterAnimation: 1
   _inputDeadZone: 0.8
   _text: {fileID: 0}
   _dropSuccess: {fileID: 0}
   _dropAnimationBehaviour: {fileID: 0}
-  _firstDropEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 22740ae721d03ff48a7798cdb37c9c1f, type: 2}
-  _secondStateEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: dc95b68d3af73f04091f8dccf3fa3e92, type: 2}
-  _secondDropEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 9948849a5862d0a44a3f72252b48fe9e, type: 2}
-  _thirdStateEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: cd8c81d857ffefe4aa7c911883faf67f, type: 2}
-  _thirdDropEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 9ff6c089f08c6da4baccfbc9cd28cd7e, type: 2}
   _onBeginBuildUp:
     m_PersistentCalls:
       m_Calls: []
@@ -135,95 +144,7 @@ MonoBehaviour:
       m_Calls: []
   _onDropSuccess:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5326486199215042295}
-        m_TargetAssemblyTypeName: WwiseSFXPlayer, Assembly-CSharp
-        m_MethodName: PlaySFX
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Play_DropSuccess
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5326486199215042295}
-        m_TargetAssemblyTypeName: WwiseSFXPlayer, Assembly-CSharp
-        m_MethodName: PlaySFX
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Play_DropEnd
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _onDropFail:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5326486199215042295}
-        m_TargetAssemblyTypeName: WwiseSFXPlayer, Assembly-CSharp
-        m_MethodName: PlaySFX
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Play_DropFail
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5326486199215042295}
-        m_TargetAssemblyTypeName: WwiseSFXPlayer, Assembly-CSharp
-        m_MethodName: PlaySFX
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Play_DropEnd
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onDropEnd:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5326486199215042295}
-        m_TargetAssemblyTypeName: WwiseSFXPlayer, Assembly-CSharp
-        m_MethodName: PlaySFX
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Play_DropEnd
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5326486199215042295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2994801982979645308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c0fff6976d0c424386246523e57de32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sfxEvent:
-  - idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 51f0c2d38d411db44b6459ba51f9421c, type: 2}
-  - idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 2ee658385b4b0fc429bb4d6d6b93c1fc, type: 2}
-  - idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: af6e3cf7868003b408545a1603b96006, type: 2}
-  - idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: a4426ccfdffde454abe77a53face81d4, type: 2}
+      m_Calls: []
