@@ -199,6 +199,11 @@
 						<RandomSequenceContainer Name="GameOver" ID="{0B397080-9B43-495C-9FA2-45EB9FF56BBA}" ShortID="826500895">
 							<PropertyList>
 								<Property Name="RandomAvoidRepeating" Type="bool" Value="False"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-2</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -236,6 +241,11 @@
 						<RandomSequenceContainer Name="NewGame" ID="{3BC4C3B7-A59D-4DAC-A7C4-4890B7326744}" ShortID="320142736">
 							<PropertyList>
 								<Property Name="RandomAvoidRepeating" Type="bool" Value="False"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-2</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">

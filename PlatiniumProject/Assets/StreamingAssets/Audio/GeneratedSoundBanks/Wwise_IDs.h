@@ -30,10 +30,6 @@ namespace AK
         static const AkUniqueID PLAY_DJFAIL = 515099352U;
         static const AkUniqueID PLAY_DJMOVEMENT = 2592697331U;
         static const AkUniqueID PLAY_DJSUCCESS = 3032600805U;
-        static const AkUniqueID PLAY_DROPEND = 681292744U;
-        static const AkUniqueID PLAY_DROPFAIL = 1105172925U;
-        static const AkUniqueID PLAY_DROPSUCCESS = 2682578994U;
-        static const AkUniqueID PLAY_DROPTRIGGERING = 2949936265U;
         static const AkUniqueID PLAY_GAMEOVER = 3174629258U;
         static const AkUniqueID PLAY_MENUCHOOSECHARA = 4197140521U;
         static const AkUniqueID PLAY_MENUCLICK = 2576276897U;
@@ -44,14 +40,22 @@ namespace AK
         static const AkUniqueID PLAY_MUSIC_DND = 3388161964U;
         static const AkUniqueID PLAY_NEWGAME = 1215962870U;
         static const AkUniqueID PLAY_VOLUMEBAR = 1570308127U;
-        static const AkUniqueID SET_STATE_DROP_1 = 2391209851U;
-        static const AkUniqueID SET_STATE_DROP_2 = 2391209848U;
-        static const AkUniqueID SET_STATE_DROP_3 = 2391209849U;
-        static const AkUniqueID SET_STATE_MUSIQUE_1 = 389274865U;
-        static const AkUniqueID SET_STATE_MUSIQUE_2 = 389274866U;
-        static const AkUniqueID SET_STATE_MUSIQUE_3 = 389274867U;
+        static const AkUniqueID SET_STATE_MENU_CLOSE = 2333309968U;
+        static const AkUniqueID SET_STATE_MENU_OPEN = 1622047140U;
+        static const AkUniqueID SET_STATE_MUSIC_DEFAULT = 1828656719U;
+        static const AkUniqueID SET_STATE_MUSIC_DEFEAT = 2537796481U;
+        static const AkUniqueID SET_STATE_MUSIC_SUCCESS = 1267005393U;
         static const AkUniqueID SET_STATE_MUSIQUE_END = 2226536039U;
         static const AkUniqueID SET_STATE_MUSIQUE_INTRO = 3234236150U;
+        static const AkUniqueID SET_STATE_P1_NO = 642897261U;
+        static const AkUniqueID SET_STATE_P1_YES = 3650991441U;
+        static const AkUniqueID SET_STATE_P2_NO = 1970882748U;
+        static const AkUniqueID SET_STATE_P2_YES = 2216763382U;
+        static const AkUniqueID SET_STATE_P3_NO = 3758195863U;
+        static const AkUniqueID SET_STATE_P3_YES = 530414635U;
+        static const AkUniqueID SET_STATE_PHASE_1 = 2127083549U;
+        static const AkUniqueID SET_STATE_PHASE_2 = 2127083550U;
+        static const AkUniqueID SET_STATE_PHASE_3 = 2127083551U;
     } // namespace EVENTS
 
     namespace STATES
@@ -74,17 +78,60 @@ namespace AK
 
             namespace STATE
             {
-                static const AkUniqueID DROP_1 = 3749925386U;
-                static const AkUniqueID DROP_2 = 3749925385U;
-                static const AkUniqueID DROP_3 = 3749925384U;
-                static const AkUniqueID MUSIQUE_1 = 3094479182U;
-                static const AkUniqueID MUSIQUE_2 = 3094479181U;
-                static const AkUniqueID MUSIQUE_3 = 3094479180U;
                 static const AkUniqueID MUSIQUE_END = 1803299556U;
                 static const AkUniqueID MUSIQUE_INTRO = 3387179977U;
                 static const AkUniqueID NONE = 748895195U;
+                static const AkUniqueID PHASE_1 = 1622949422U;
+                static const AkUniqueID PHASE_2 = 1622949421U;
+                static const AkUniqueID PHASE_3 = 1622949420U;
             } // namespace STATE
         } // namespace MUSIC_STATE
+
+        namespace MUSIC_WINLOSE
+        {
+            static const AkUniqueID GROUP = 4262019654U;
+
+            namespace STATE
+            {
+                static const AkUniqueID MUSIC_DEFAULT = 1927040848U;
+                static const AkUniqueID MUSIC_DEFEAT = 3125733004U;
+                static const AkUniqueID MUSIC_SUCCESS = 202658238U;
+                static const AkUniqueID NONE = 748895195U;
+            } // namespace STATE
+        } // namespace MUSIC_WINLOSE
+
+        namespace PLAYER1_SYNC
+        {
+            static const AkUniqueID GROUP = 3385868167U;
+
+            namespace STATE
+            {
+                static const AkUniqueID NO = 1668749452U;
+                static const AkUniqueID YES = 979470758U;
+            } // namespace STATE
+        } // namespace PLAYER1_SYNC
+
+        namespace PLAYER2_SYNC
+        {
+            static const AkUniqueID GROUP = 3001895274U;
+
+            namespace STATE
+            {
+                static const AkUniqueID NO = 1668749452U;
+                static const AkUniqueID YES = 979470758U;
+            } // namespace STATE
+        } // namespace PLAYER2_SYNC
+
+        namespace PLAYER3_SYNC
+        {
+            static const AkUniqueID GROUP = 1878346017U;
+
+            namespace STATE
+            {
+                static const AkUniqueID NO = 1668749452U;
+                static const AkUniqueID YES = 979470758U;
+            } // namespace STATE
+        } // namespace PLAYER3_SYNC
 
     } // namespace STATES
 
