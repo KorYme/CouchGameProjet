@@ -279,6 +279,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5519420641253564840, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _characterAnimationData
+      value: 
+      objectReference: {fileID: 11400000, guid: e11d08b6307b32045afe35bf7c7cfaff, type: 2}
     - target: {fileID: 5705632150679731928, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
