@@ -128,6 +128,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
                      _currentClient.StateMachine.TypeData.Evilness == Evilness.GOOD) ||
                     !_currentClient.StateMachine.CharacterDataObject.isTutorialNpc)
                 {
+                    _animation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.YEAH);
                     LetCharacterEnterBox();
                     _qteController?.CloseBubble();
                     _animation.SetLatency(2);
@@ -142,6 +143,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
                      _currentClient.StateMachine.TypeData.Evilness == Evilness.EVIL) ||
                     !_currentClient.StateMachine.CharacterDataObject.isTutorialNpc)
                 {
+                    _animation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.NO);
                     if (_currentClient.StateMachine.TypeData.Evilness == Evilness.EVIL)
                     {
                         _qteController?.StartQTE(_currentClient.StateMachine.TypeData);

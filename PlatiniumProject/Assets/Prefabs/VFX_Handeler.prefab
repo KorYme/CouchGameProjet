@@ -108,9 +108,9 @@ VFXRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1021743411
+  m_SortingLayer: 4
+  m_SortingOrder: 3
 --- !u!1 &3766133040548677433
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,9 +219,9 @@ VFXRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1021743411
+  m_SortingLayer: 4
+  m_SortingOrder: 3
 --- !u!1 &6015710107758846608
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,9 +330,9 @@ VFXRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1021743411
+  m_SortingLayer: 4
+  m_SortingOrder: 3
 --- !u!1 &7353512382884570658
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,6 +493,6 @@ VFXRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1021743411
+  m_SortingLayer: 4
+  m_SortingOrder: 3
