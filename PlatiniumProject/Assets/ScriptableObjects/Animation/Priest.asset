@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221e7a1d53d37874394b67d10fe9257d, type: 3}
   m_Name: Priest
   m_EditorClassIdentifier: 
-  selectedAnimationType: 3
+  selectedAnimationType: 10
   animationsList:
   - animationSprites:
     - {fileID: 21300000, guid: c3897e63438c32842bbdf30f2b7c96ab, type: 3}
@@ -35,4 +35,15 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 74857f5c733cd914cbff57569687dbe4, type: 3}
     - {fileID: 21300000, guid: 6b626b0b480e95a40898615c20db3a03, type: 3}
     _animationType: 3
-  animBpm: 130
+  - animationSprites:
+    - {fileID: 21300000, guid: ddb8917eab2f4c64fa91321ca89aee40, type: 3}
+    - {fileID: 21300000, guid: cd18b9d7abb4d8c4f86bf906d4f8fe76, type: 3}
+    - {fileID: 21300000, guid: 6c82e8358f2e0d847a70da90a4a33d88, type: 3}
+    - {fileID: 21300000, guid: 5c1bbe29959ffb4419b0ce4f492ab855, type: 3}
+    - {fileID: 21300000, guid: 5c1fb194dabb8ce4182d2c828d0dc611, type: 3}
+    - {fileID: 21300000, guid: 4cdcce2479fa58c4b97d6cfa64b96c74, type: 3}
+    - {fileID: 21300000, guid: a9d7f541387cc104880a33a593d4c3fc, type: 3}
+    - {fileID: 21300000, guid: f5325bcde8b43a14e9721362b03907dc, type: 3}
+    - {fileID: 21300000, guid: fff072c2fd489d7449b6d977d7baa42f, type: 3}
+    _animationType: 10
+  animBpm: 240

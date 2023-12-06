@@ -14,24 +14,28 @@ public class EntityMovement : MonoBehaviour, IMovable
     [SerializeField] protected Transform _transformToModify;
 
     protected Coroutine _movementCoroutine;
-    private Coroutine _animRoutine;
-    protected Action OnMove;
+    [SerializeField] protected CharacterAnimation _characterAnimation;
     protected ITimingable _timingable => Globals.BeatManager;
     public bool IsMoving => _movementCoroutine != null;
 
     private Vector3 _destination;
 
-    protected virtual float _TimeBetweenMovements => _movementData.MovementDurationPercent * _timingable.BeatDurationInMilliseconds / 1000f;
+    private void Awake()
+    {
+        _characterAnimation = GetComponent<CharacterAnimation>();
+    }
+
+    protected virtual float _TimeBetweenMovements => _movementData.MovementDurationPercent * (_timingable.BeatDurationInMilliseconds / 1000f);
     public MovementData MovementData
     {
         get { return _movementData; }
         set { if(value != null) _movementData = value; }
     }
     
-    public virtual bool MoveToPosition(Vector3 position, int animationFrames)
+    public virtual bool MoveToPosition(Vector3 position)
     {
         if (IsMoving) return false;
-        _movementCoroutine = StartCoroutine(MovementCoroutineAnimation(position, OnMove, animationFrames));
+        _movementCoroutine = StartCoroutine(MovementCoroutineAnimation(position));
         return true;
     }
 
@@ -40,16 +44,14 @@ public class EntityMovement : MonoBehaviour, IMovable
         _destination = newDestination;
     }
     
-    protected virtual IEnumerator MovementCoroutineAnimation (Vector3 positionToGo, Action callBack, int animationsFrames)
+    protected virtual IEnumerator MovementCoroutineAnimation (Vector3 positionToGo)
     {
         float timer = 0;
-        animationsFrames++;
         Vector3 initialPosition = _transformToModify.position;
         Vector3 initialScale = _transformToModify.localScale;
         _destination = positionToGo;
 
-        _animRoutine =
-            StartCoroutine(AnimationRoutine(animationsFrames, _TimeBetweenMovements / animationsFrames, callBack));
+        _characterAnimation.SetFullAnim(ANIMATION_TYPE.MOVE, _movementData.MovementDurationPercent * (Globals.BeatManager.BeatDurationInMilliseconds / 1000f));
         
         while (timer < _TimeBetweenMovements)
         {
@@ -65,21 +67,19 @@ public class EntityMovement : MonoBehaviour, IMovable
             yield return null;
         }
 
-        yield return new WaitUntil(() => _animRoutine == null);
-        
-        //OnMoveEnd?.Invoke();
+        yield return new WaitUntil(() => !_characterAnimation.IsAnimationPlaying);
         _transformToModify.localScale = initialScale;
         _transformToModify.position = _destination;
         _movementCoroutine = null;
     }
 
-    private IEnumerator AnimationRoutine(int loop, float duration, Action callBack)
-    {
-        for (int i = 0; i < loop - 1; i++)
-        {
-            callBack?.Invoke();
-            yield return new WaitForSeconds(duration);
-        }
-        _animRoutine = null;
-    }
+    // private IEnumerator AnimationRoutine(int loop, float duration, Action callBack)
+    // {
+    //     for (int i = 0; i < loop - 1; i++)
+    //     {
+    //         callBack?.Invoke();
+    //         yield return new WaitForSeconds(duration);
+    //     }
+    //     _animRoutine = null;
+    // }
 }
