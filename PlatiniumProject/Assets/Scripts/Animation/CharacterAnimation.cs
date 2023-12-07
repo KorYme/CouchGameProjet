@@ -120,7 +120,8 @@ public class CharacterAnimation : MonoBehaviour
 
     private IEnumerator AnimRoutine(ANIMATION_TYPE type, float duration)
     {
-        for (int i = 0; i < _characterAnimationData.Animations[type].AnimationLenght; ++i)
+        ResetAnimation(type);
+        for (int i = 0; i < _characterAnimationData.Animations[type].AnimationLenght - 1; ++i)
         {
             Sprite result = GetAnimationSprite(type, false);
             if (result != null)
