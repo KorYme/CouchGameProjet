@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ab4bff603db7b8419e4e1e1bc98b8db, type: 3}
-  m_Name: 9E577120-7728-43C0-B761-64D1458776C7
+  m_Name: 74FEB492-2655-4211-B6EC-20366242308B
   m_EditorClassIdentifier: 
-  objectName: Set_State_Drop_1
-  id: 2391209851
-  guid: 9E577120-7728-43C0-B761-64D1458776C7
+  objectName: Set_State_Music_Default
+  id: 1828656719
+  guid: 74FEB492-2655-4211-B6EC-20366242308B

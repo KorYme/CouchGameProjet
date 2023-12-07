@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ab4bff603db7b8419e4e1e1bc98b8db, type: 3}
-  m_Name: 7BFEC99D-7D3A-4724-83BC-62A87D06AA4D
+  m_Name: A7FF9B62-B49B-4A52-B6F8-142512B5ED8A
   m_EditorClassIdentifier: 
-  objectName: Play_DropSuccess
-  id: 2682578994
-  guid: 7BFEC99D-7D3A-4724-83BC-62A87D06AA4D
+  objectName: Set_State_P3_Yes
+  id: 530414635
+  guid: A7FF9B62-B49B-4A52-B6F8-142512B5ED8A

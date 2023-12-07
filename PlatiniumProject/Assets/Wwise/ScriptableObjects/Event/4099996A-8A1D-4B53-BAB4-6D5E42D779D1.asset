@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ab4bff603db7b8419e4e1e1bc98b8db, type: 3}
-  m_Name: 7C1CA71E-1190-4D4B-A8C8-A3767C2938F1
+  m_Name: 4099996A-8A1D-4B53-BAB4-6D5E42D779D1
   m_EditorClassIdentifier: 
-  objectName: Play_DropTriggering
-  id: 2949936265
-  guid: 7C1CA71E-1190-4D4B-A8C8-A3767C2938F1
+  objectName: Set_State_P1_Yes
+  id: 3650991441
+  guid: 4099996A-8A1D-4B53-BAB4-6D5E42D779D1

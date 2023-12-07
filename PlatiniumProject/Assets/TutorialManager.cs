@@ -8,12 +8,12 @@ public class TutorialManager : MonoBehaviour
 {
     [SerializeField] private bool _useTutorial;
     [SerializeField] private TMP_Text _timer;
-    [SerializeField] private float _tutorialBPM;
     private int _timerValue = 3;
     [SerializeField] private float[] _zoomValues;
     public Action OnTutorial;
     public Action OnTutorialFinish;
     private Coroutine _tutoRoutine;
+    BeatManager _beatManager;
     
     public int HandledTutoCharacter { get; set; }
     public int CharcterTutoAmount { get; set; }
@@ -29,9 +29,11 @@ public class TutorialManager : MonoBehaviour
 
     private IEnumerator Start()
     {
+        _beatManager = Globals.BeatManager as BeatManager;
         yield return null;
         if (_useTutorial)
         {
+            OnTutorialFinish += _beatManager.PlayFirstMusic;
             OnTutorial?.Invoke();
         }
     }
@@ -49,9 +51,9 @@ public class TutorialManager : MonoBehaviour
         Globals.CameraProfileManager.StartPulseForAll();
         for (int i = _timerValue; i > 0; --i)
         {
-            Globals.CameraProfileManager.StartPulseForAllOnce(_zoomValues[i - 1], 60f/_tutorialBPM);
+            Globals.CameraProfileManager.StartPulseForAllOnce(_zoomValues[i - 1], _beatManager.BeatDurationInMilliseconds/1000f);
             _timer.text = i.ToString();
-            yield return new WaitForSeconds(60f / _tutorialBPM);
+            yield return new WaitForSeconds(_beatManager.BeatDurationInMilliseconds / 1000f);
         }
         _timer.text = "";
         OnTutorialFinish?.Invoke();

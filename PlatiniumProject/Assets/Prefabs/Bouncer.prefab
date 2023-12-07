@@ -581,9 +581,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b842c1af6285048808629d4889451a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerRole: 2
+  _syncEvents: {fileID: 11400000, guid: 3d177a6915f7ab741a5d1e108a78e228, type: 2}
   _rtImage: {fileID: 296049199607108539}
   _ltImage: {fileID: 5884056189645991784}
+  _playerRole: 2
 --- !u!114 &4268781023386130297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -942,7 +943,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5152626733612693071, guid: 3a7cea3a957678f4ebb9d94b77217442, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 0.73
       objectReference: {fileID: 0}
     - target: {fileID: 5152626733612693071, guid: 3a7cea3a957678f4ebb9d94b77217442, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
