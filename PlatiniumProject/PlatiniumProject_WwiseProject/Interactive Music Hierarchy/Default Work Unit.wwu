@@ -1537,6 +1537,7 @@
 						</MusicSwitchContainer>
 						<MusicSwitchContainer Name="Phase2_Switch" ID="{DE4C8269-0D9A-444C-900D-3691EE82FE73}" ShortID="940745557">
 							<PropertyList>
+								<Property Name="GridFrequencyPreset" Type="int16" Value="53"/>
 								<Property Name="OverrideClockSettings" Type="bool" Value="True"/>
 								<Property Name="Tempo" Type="Real64" Value="115"/>
 							</PropertyList>

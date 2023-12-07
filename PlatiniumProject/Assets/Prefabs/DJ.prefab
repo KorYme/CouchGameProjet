@@ -161,9 +161,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b842c1af6285048808629d4889451a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerRole: 1
+  _syncEvents: {fileID: 11400000, guid: 3d177a6915f7ab741a5d1e108a78e228, type: 2}
   _rtImage: {fileID: 982119411064220759}
   _ltImage: {fileID: 6346322458142363780}
+  _playerRole: 1
 --- !u!114 &7928612141699995362
 MonoBehaviour:
   m_ObjectHideFlags: 0
