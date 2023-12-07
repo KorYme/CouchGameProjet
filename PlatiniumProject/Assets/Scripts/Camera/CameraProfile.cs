@@ -122,7 +122,7 @@ public class CameraProfile : MonoBehaviour
 
     public void StartFocus(Transform target)
     {
-        _zoomRoutine = StartCoroutine(ZoomRoutine(_profileData.focusDuration, _profileData.focusPercentage, target));
+        _zoomRoutine = StartCoroutine(ZoomRoutine(_profileData.focusDuration, _profileData.focusPercentage));
         _target = target;
     }
 
@@ -131,7 +131,7 @@ public class CameraProfile : MonoBehaviour
         canDezoom = true;
     }
     
-    IEnumerator ZoomRoutine(float duration, float percentage, Transform target)
+    IEnumerator ZoomRoutine(float duration, float percentage)
     {
         float timer = 0;
         while (timer < duration)
@@ -184,7 +184,7 @@ public class CameraProfile : MonoBehaviour
         
         while (timer < _profileData.snapDuration)
         {
-            target = _target != null ? _target.position : _initPos;
+            target = _target != null ? _target.position + _profileData.focusOffSet : _initPos;
             timer += Time.deltaTime; 
             float percentage = _profileData.snapCurve.Evaluate(timer / _profileData.snapDuration);
             transform.localPosition = Vector3.Lerp(pos, target, percentage);
