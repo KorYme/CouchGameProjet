@@ -10,8 +10,9 @@ public class CameraProfileData : ScriptableObject
     public float shakeDuration;
     public float shakeIntensity;
     public float shakeSpeed;
-    
-    [Header("Focus value")]
+
+    [Header("Focus value")] 
+    public Vector3 focusOffSet;
     public float focusDuration;
     public float focusPercentage;
     public float snapDuration;
