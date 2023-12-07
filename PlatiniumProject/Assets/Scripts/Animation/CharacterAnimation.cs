@@ -9,11 +9,13 @@ public class CharacterAnimation : MonoBehaviour
 {
     [SerializeField] private CharacterAnimationObject _characterAnimationData;
     [SerializeField] private SpriteRenderer _sp;
+    [SerializeField] private VfxHandeler _vfxHandeler;
     private Dictionary<ANIMATION_TYPE, int> _animDict = new Dictionary<ANIMATION_TYPE, int>();
     private Coroutine _animRoutine;
     private ANIMATION_TYPE _lastAnimationType;
     private int _animLatency;
 
+    public VfxHandeler VfxHandeler => _vfxHandeler;
     public bool IsAnimationPlaying => _animRoutine != null;
     
 
@@ -118,7 +120,8 @@ public class CharacterAnimation : MonoBehaviour
 
     private IEnumerator AnimRoutine(ANIMATION_TYPE type, float duration)
     {
-        for (int i = 0; i < _characterAnimationData.Animations[type].AnimationLenght; ++i)
+        ResetAnimation(type);
+        for (int i = 0; i < _characterAnimationData.Animations[type].AnimationLenght - 1; ++i)
         {
             Sprite result = GetAnimationSprite(type, false);
             if (result != null)
