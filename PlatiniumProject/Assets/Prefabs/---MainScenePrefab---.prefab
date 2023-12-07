@@ -27463,10 +27463,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bouncer
       objectReference: {fileID: 0}
-    - target: {fileID: 7748299721026644492, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: c139d2f4903dd1e4194e6d20234fc27f, type: 3}
     - target: {fileID: 7966797527361524524, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
       propertyPath: m_Color.b
       value: 0
