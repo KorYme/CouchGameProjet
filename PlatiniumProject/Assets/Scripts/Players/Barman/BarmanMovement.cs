@@ -34,7 +34,16 @@ public class BarmanMovement : PlayerMovement
 
     protected override void OnBeat()
     {
-        _animation.SetAnim(IsInQte ? ANIMATION_TYPE.CORRECT_INPUT : ANIMATION_TYPE.IDLE);
+        if (IsInQte)
+        {
+            _animation.SetAnim(ANIMATION_TYPE.CORRECT_INPUT);
+            _animation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.SHAKE);
+            _animation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.SHAKE2);
+        }
+        else
+        {
+            _animation.SetAnim(ANIMATION_TYPE.IDLE);
+        }
     }
 
     public void MoveBarmanToIndex()

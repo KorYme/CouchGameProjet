@@ -15,6 +15,7 @@ MonoBehaviour:
   shakeDuration: 2
   shakeIntensity: 10
   shakeSpeed: 0.2
+  focusOffSet: {x: 0, y: 1, z: 0}
   focusDuration: 0.3
   focusPercentage: 0.5
   snapDuration: 0.3
