@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -50,12 +51,14 @@ public class DJQTEController : MonoBehaviour, IQTEable
         }
     }
     //Return the number of players
-    private int NbCharactersInLight()
+    private int NbCharactersWithQTEInLight()
     {
         int nbPlayers = 0;
         foreach (SlotInformation information in _shapesLightCopy)
         {
-            if (information.Occupant != null)
+            if (information.Occupant != null && // Check if there is any character
+                information.Occupant.CharacterTypeData.Evilness != Evilness.EVIL && // Check if character is evil
+                information.Occupant.Satisafaction.CurrentState != CharacterAIStatisfaction.SATISFACTION_STATE.LOYAL) //Check if character is not already loyal
             {
                 nbPlayers++;
             }
@@ -63,13 +66,17 @@ public class DJQTEController : MonoBehaviour, IQTEable
         return nbPlayers;
     }
 
+    private int NbCharactersInLight()
+    {
+        return _shapesLightCopy.Count(info => info.Occupant != null);
+    }
+
     public void UpdateQTE(List<SlotInformation> shapesLightCopy)
     {
         _shapesLightCopy = shapesLightCopy;
-        int nbCharactersInLight = NbCharactersInLight();
-        if (nbCharactersInLight > 0)
+        if (NbCharactersWithQTEInLight() > 0)
         {
-            CharacterTypeData[] clientsData = new CharacterTypeData[nbCharactersInLight];
+            CharacterTypeData[] clientsData = new CharacterTypeData[NbCharactersInLight()];
             int index = 0;
             //Count the number of characters of each type
             foreach (SlotInformation info in _shapesLightCopy) 
