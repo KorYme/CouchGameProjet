@@ -3210,7 +3210,7 @@ PrefabInstance:
     - target: {fileID: 5186382758941170165, guid: 193830dab94ad8d418d379ad93bc43c8, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8e7bad4a4e6d9a642abf4f9f205d7000, type: 3}
+      objectReference: {fileID: 21300000, guid: c139d2f4903dd1e4194e6d20234fc27f, type: 3}
     - target: {fileID: 5186382758941170165, guid: 193830dab94ad8d418d379ad93bc43c8, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -3302,7 +3302,7 @@ PrefabInstance:
     - target: {fileID: 9011843421239086831, guid: 193830dab94ad8d418d379ad93bc43c8, type: 3}
       propertyPath: _selectedSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8e7bad4a4e6d9a642abf4f9f205d7000, type: 3}
+      objectReference: {fileID: 21300000, guid: e086dff909181d54db1028bc9667b25b, type: 3}
     - target: {fileID: 9011843421239086831, guid: 193830dab94ad8d418d379ad93bc43c8, type: 3}
       propertyPath: _selectionManager
       value: 
@@ -3310,7 +3310,7 @@ PrefabInstance:
     - target: {fileID: 9011843421239086831, guid: 193830dab94ad8d418d379ad93bc43c8, type: 3}
       propertyPath: _unselectedSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8e7bad4a4e6d9a642abf4f9f205d7000, type: 3}
+      objectReference: {fileID: 21300000, guid: c139d2f4903dd1e4194e6d20234fc27f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
