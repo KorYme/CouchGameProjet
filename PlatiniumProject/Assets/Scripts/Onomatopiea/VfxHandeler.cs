@@ -7,37 +7,48 @@ using UnityEngine.VFX;
 
 public class VfxHandeler : MonoBehaviour
 {
+    
+    [System.Serializable]
+    public struct Vfx
+    {
+        public VFX_TYPE vfxType;
+        public VisualEffect vfx;
+    }
     public enum VFX_TYPE
     {
         NO,
         YEAH,
         SHAK,
-        ZWIP
+        ZWIP,
+        AMEN,
+        CHOC,
+        ECLAIR,
+        EXCLAMATION,
+        RED_IMPACT,
+        RED_IMPACT_LIGHT,
+        BLUE_IMPACT,
+        INCANTATION,
+        SATISAFCTION,
+        SHAKE,
+        SHAKE2,
     }
 
-    [SerializeField] private VisualEffect _noVfx;
-    [SerializeField] private VisualEffect _yeahVfx;
-    [SerializeField] private VisualEffect _shakVfx;
-    [SerializeField] private VisualEffect _zwipVfx;
-    
-    public void PlayVfx(VFX_TYPE type)
+    [SerializeField] private Vfx[] _vfxs;
+    private Dictionary<VFX_TYPE, VisualEffect> _vfxDict = new Dictionary<VFX_TYPE, VisualEffect>();
+
+    private void Awake()
     {
-        switch (type)
+        foreach (var v in _vfxs)
         {
-            case VFX_TYPE.NO:
-                _noVfx.SendEvent("CustomPlay");
-                break;
-            case VFX_TYPE.YEAH:
-                _yeahVfx.SendEvent("CustomPlay");
-                break;
-            case VFX_TYPE.SHAK:
-                _shakVfx.SendEvent("CustomPlay");
-                break;
-            case VFX_TYPE.ZWIP:
-                _zwipVfx.SendEvent("CustomPlay");
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(type), type, null);
+            _vfxDict[v.vfxType] = v.vfx;
+        }
+    }
+
+    public void PlayVfx(VFX_TYPE type, int vfxCount = 1)
+    {
+        for (int i = 0; i < vfxCount; i++)
+        {
+            _vfxDict[type]?.SendEvent("CustomPlay");
         }
     }
 }
