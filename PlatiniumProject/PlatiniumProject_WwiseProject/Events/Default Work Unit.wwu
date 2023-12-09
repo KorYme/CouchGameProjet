@@ -372,6 +372,46 @@
 										</Reference>
 									</ReferenceList>
 								</Action>
+								<Action Name="" ID="{D1EA448A-4F88-4002-B36C-8AFEA11E6025}" ShortID="610574826">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="41"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Set_State_P2_No" ID="{1C0C83ED-8B0C-43B8-B939-E42C7DC40E6A}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{53DE6643-01F9-4E19-9D93-8BAD122E077E}" ShortID="559228336">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="41"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Set_State_P1_No" ID="{7902A23E-C0DD-47A5-8876-D941E24B1AF1}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{530F03F7-A720-469E-A4DC-653FA4F2B460}" ShortID="122722164">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="41"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Set_State_Music_Default" ID="{74FEB492-2655-4211-B6EC-20366242308B}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{479DD5A0-9391-46F0-9FB0-90D5550E8E03}" ShortID="309659746">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="41"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Set_State_P3_No" ID="{70367210-644C-49F7-AC8C-BFA3D297AF49}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
 							</ChildrenList>
 						</Event>
 						<Event Name="Set_State_Musique_End" ID="{4900C373-7698-4D81-A34C-322BAAD43294}">
@@ -383,6 +423,46 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="Musique_End" ID="{48AA7F08-7329-4227-A759-7946187CEB0B}" WorkUnitID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{201FEBF2-9C25-483B-9829-EC9D5040FD98}" ShortID="767477470">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="41"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Set_State_P2_No" ID="{1C0C83ED-8B0C-43B8-B939-E42C7DC40E6A}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{2F163268-C084-484F-9949-3D9BF517A18E}" ShortID="292599357">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="41"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Set_State_P1_No" ID="{7902A23E-C0DD-47A5-8876-D941E24B1AF1}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{2CFCCC24-8702-4D74-BD94-B356DBDFDEC1}" ShortID="876920791">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="41"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Set_State_Music_Default" ID="{74FEB492-2655-4211-B6EC-20366242308B}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{790EAAA8-DE7A-40C8-8AA3-07723BAEDEDA}" ShortID="618581213">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="41"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Set_State_P3_No" ID="{70367210-644C-49F7-AC8C-BFA3D297AF49}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
