@@ -1018,6 +1018,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _indexPlayer: 1
   _textDisplay: {fileID: 1088707031}
+  _selectionManager: {fileID: 403438254}
 --- !u!1 &437389266
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,6 +1276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _indexPlayer: 0
   _textDisplay: {fileID: 862319365}
+  _selectionManager: {fileID: 403438254}
 --- !u!1 &718944710
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,6 +1328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _indexPlayer: 2
   _textDisplay: {fileID: 1222723637}
+  _selectionManager: {fileID: 403438254}
 --- !u!1 &730838556
 GameObject:
   m_ObjectHideFlags: 0
