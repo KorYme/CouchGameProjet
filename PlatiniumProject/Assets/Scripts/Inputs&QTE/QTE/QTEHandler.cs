@@ -63,20 +63,20 @@ public class QTEHandler : MonoBehaviour, IIsControllable
         Players.RemoveListenerPlayerController(this);
     }
     #region QTEable
-    public void RegisterQTEable(IQTEable QTEable)
+    public void RegisterListener(IQTEable QTEable)
     {
         _events?.RegisterQTEable(QTEable);
     }
 
-    public void UnregisterQTEable(IQTEable QTEable)
+    public void UnregisterListener(IQTEable QTEable)
     {
         _events?.UnregisterQTEable(QTEable);
-    }    public void RegisterQTEable(IMissedInputListener QTEable)
+    }    public void RegisterListener(IMissedInputListener QTEable)
     {
         _events?.RegisterMissedInputListener(QTEable);
     }
 
-    public void UnregisterQTEable(IMissedInputListener QTEable)
+    public void UnregisterListener(IMissedInputListener QTEable)
     {
         _events?.UnregisterMissedInputListener(QTEable);
     }

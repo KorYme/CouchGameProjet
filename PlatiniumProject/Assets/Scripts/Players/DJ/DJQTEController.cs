@@ -32,7 +32,7 @@ public class DJQTEController : MonoBehaviour, IQTEable
         Globals.BeatManager.OnBeatEvent.AddListener(OnBeat);
         if (_qteHandler != null)
         {
-            _qteHandler.RegisterQTEable(this);
+            _qteHandler.RegisterListener(this);
         }
     }
 
@@ -47,7 +47,7 @@ public class DJQTEController : MonoBehaviour, IQTEable
         Globals.BeatManager.OnBeatEvent.RemoveListener(OnBeat);
         if (_qteHandler != null)
         {
-            _qteHandler.UnregisterQTEable(this);
+            _qteHandler.UnregisterListener(this);
         }
     }
     //Return the number of players

@@ -55,7 +55,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
         TryGetComponent(out qteHandler);
         if (qteHandler != null)
         {
-            qteHandler.RegisterQTEable(this);
+            qteHandler.RegisterListener(this);
         }
         Debug.Log("Bouncer Initialis�");
     }

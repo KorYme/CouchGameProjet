@@ -25,7 +25,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
         _waitingCharactersList = new List<CharacterStateMachine>();
         if (_qteHandler != null)
         {
-            _qteHandler.RegisterQTEable(this);
+            _qteHandler.RegisterListener(this);
         }
     }
 
@@ -38,7 +38,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     {
         if (_qteHandler != null)
         {
-            _qteHandler.UnregisterQTEable(this);
+            _qteHandler.UnregisterListener(this);
         }
     }
     private void OnInputChange()
