@@ -188,7 +188,6 @@ public class QTEHandler : MonoBehaviour, IIsControllable
             {
                 if (!_waitForCorrectInput)
                 {
-                    Debug.Log("NOT GOOD");
                     _indexInSequence++;
                     _indexInListSequences++;
                 }
