@@ -42,12 +42,10 @@ public class QTEHandler : MonoBehaviour, IIsControllable
         get => _waitForCorrectInput;
         set
         {
-            Debug.Log("CHANGE WAIT QTE ");
             _waitForCorrectInput = value;
         }
     }
 
-    [SerializeField] UnityEvent _onInputMissed;
     public int LengthInputs { get; private set; }
 
     private void Awake()
@@ -65,15 +63,23 @@ public class QTEHandler : MonoBehaviour, IIsControllable
         Players.RemoveListenerPlayerController(this);
     }
     #region QTEable
-    public void RegisterQTEable(IQTEable QTEable)
+    public void RegisterListener(IQTEable QTEable)
     {
         _events?.RegisterQTEable(QTEable);
     }
 
-    public void UnregisterQTEable(IQTEable QTEable)
+    public void UnregisterListener(IQTEable QTEable)
     {
         _events?.UnregisterQTEable(QTEable);
-    }
+    }    public void RegisterListener(IMissedInputListener QTEable)
+    {
+        _events?.RegisterMissedInputListener(QTEable);
+    }
+
+    public void UnregisterListener(IMissedInputListener QTEable)
+    {
+        _events?.UnregisterMissedInputListener(QTEable);
+    }
     #endregion
     #region SetUpQTE
     public void StartQTE()    {        if (_currentQTESequence != null)        {            _indexOfSequence = 0;            StartSequenceDependingOntype();        }     }
@@ -190,7 +196,6 @@ public class QTEHandler : MonoBehaviour, IIsControllable
             }
         } else //Input miss (not during timing)
         {
-            _onInputMissed.Invoke();
             _events?.CallOnMissedInput();
         }
     }
