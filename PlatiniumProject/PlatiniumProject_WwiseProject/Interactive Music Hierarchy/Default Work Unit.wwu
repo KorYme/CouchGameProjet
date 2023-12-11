@@ -1326,7 +1326,7 @@
 													<MusicCue Name="Exit Cue" ID="{BEAD224E-98E1-4F10-BE89-489C64BA8A9B}">
 														<PropertyList>
 															<Property Name="CueType" Type="int16" Value="1"/>
-															<Property Name="TimeMs" Type="Real64" Value="5656.03448887502"/>
+															<Property Name="TimeMs" Type="Real64" Value="1000"/>
 														</PropertyList>
 													</MusicCue>
 												</Local>
@@ -1421,7 +1421,7 @@
 													<MusicCue Name="Exit Cue" ID="{AD5A241E-1070-45AC-843B-46095411A070}">
 														<PropertyList>
 															<Property Name="CueType" Type="int16" Value="1"/>
-															<Property Name="TimeMs" Type="Real64" Value="1650"/>
+															<Property Name="TimeMs" Type="Real64" Value="1000"/>
 														</PropertyList>
 													</MusicCue>
 												</Local>
@@ -1662,7 +1662,7 @@
 										<MusicSegment Name="Phase2_Drop" ID="{97A97608-7C65-4968-B08B-7EF0724CD7A4}" ShortID="250354993">
 											<PropertyList>
 												<Property Name="EndPosition" Type="Real64" Value="125217.395833333"/>
-												<Property Name="GridFrequencyPreset" Type="int16" Value="53"/>
+												<Property Name="OverrideClockSettings" Type="bool" Value="True"/>
 												<Property Name="Tempo" Type="Real64" Value="115"/>
 											</PropertyList>
 											<ReferenceList>
