@@ -17,6 +17,7 @@ public class CharacterAnimation : MonoBehaviour
 
     public VfxHandeler VfxHandeler => _vfxHandeler;
     public bool IsAnimationPlaying => _animRoutine != null;
+    public SpriteRenderer Sp => _sp;
     
 
     public CharacterAnimationObject CharacterAnimationObject
