@@ -25,7 +25,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
         _waitingCharactersList = new List<CharacterStateMachine>();
         if (_qteHandler != null)
         {
-            _qteHandler.RegisterQTEable(this);
+            _qteHandler.RegisterListener(this);
         }
     }
 
@@ -38,7 +38,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     {
         if (_qteHandler != null)
         {
-            _qteHandler.UnregisterQTEable(this);
+            _qteHandler.UnregisterListener(this);
         }
     }
     private void OnInputChange()
@@ -47,26 +47,29 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
         {
             _barmanController.ModifyQTE(_qteHandler.GetQTEString());
         }
-
     }
 
      public void OnDrinkComplete()
     {
-        CharacterStateMachine stateMachine = _waitingCharactersList[0];
-        if (stateMachine != null)
+        //if(stateMachine.TypeData.Evilness)
+        if (_waitingCharactersList.Count > 0)
         {
-            if (stateMachine.TypeData.Evilness == Evilness.GOOD)
+            CharacterStateMachine stateMachine = _waitingCharactersList[0];
+            if (stateMachine != null)
             {
-                stateMachine.CurrentSlot = _djUsher.NextSlot;
-                _djUsher.NextSlot.Occupant = stateMachine;
-                stateMachine.MoveToLocation = stateMachine.CurrentSlot.transform.position;
-                stateMachine.NextState = stateMachine.DancingState;
-                stateMachine.ChangeState(stateMachine.MoveToState);
-                _djUsher.SetNextSlot();
-            }
-            else
-            {
-                stateMachine.ChangeState(stateMachine.DieState);
+                if (stateMachine.TypeData.Evilness == Evilness.GOOD)
+                {
+                    stateMachine.CurrentSlot = _djUsher.NextSlot;
+                    _djUsher.NextSlot.Occupant = stateMachine;
+                    stateMachine.MoveToLocation = stateMachine.CurrentSlot.transform.position;
+                    stateMachine.NextState = stateMachine.DancingState;
+                    stateMachine.ChangeState(stateMachine.MoveToState);
+                    _djUsher.SetNextSlot();
+                }
+                else
+                {
+                    stateMachine.ChangeState(stateMachine.DieState);
+                }
             }
         }
         GetNextCharacter();
@@ -98,7 +101,8 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
 
     public void GetNextCharacter()
     {
-        _waitingCharactersList.RemoveAt(0);
+        if (_waitingCharactersList.Count > 0)
+            _waitingCharactersList.RemoveAt(0);
 
         if (_waitingCharactersList.Count > 0)
         {
@@ -167,6 +171,9 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
         if (_waitingCharactersList.Count > 0)
         {
             _qteHandler.PauseQTE(value);
+        } else
+        {
+            OnInputChange();
         }
     }
 

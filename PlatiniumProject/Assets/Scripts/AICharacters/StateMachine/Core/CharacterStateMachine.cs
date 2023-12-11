@@ -5,6 +5,7 @@ using Random = UnityEngine.Random;
 public class CharacterStateMachine : MonoBehaviour
 {
     [SerializeField] private CharacterData _characterData;
+
     private SpawnManager _spawnManager;
     private BeatManager _beatManager;
     public Vector3 PullPos { get; set; }

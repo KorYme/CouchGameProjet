@@ -2850,7 +2850,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _useTutorial: 0
   _timer: {fileID: 7691332706565540856}
-  _tutorialBPM: 126
   _zoomValues:
   - 0.5
   - 0.6
@@ -16334,10 +16333,6 @@ PrefabInstance:
       propertyPath: _sps.Array.data[0]
       value: 
       objectReference: {fileID: 2212512567729938694}
-    - target: {fileID: 9119380374867281263, guid: 7c529a488a751df4a9749ebcbee0ced4, type: 3}
-      propertyPath: _characterAnimationData
-      value: 
-      objectReference: {fileID: 11400000, guid: 5c5cf1dc7975bc2488dfaf9c4c3fa4ed, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21446,7 +21441,11 @@ PrefabInstance:
     - target: {fileID: 3001707074899246954, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _dropSuccess
       value: 
-      objectReference: {fileID: 6680281085585410216}
+      objectReference: {fileID: 0}
+    - target: {fileID: 3001707074899246954, guid: 43b8848140f1758428d3b77851546651, type: 3}
+      propertyPath: _dropStateText
+      value: 
+      objectReference: {fileID: 8226415887059930506}
     - target: {fileID: 3001707074899246954, guid: 43b8848140f1758428d3b77851546651, type: 3}
       propertyPath: _dropAnimationBehaviour
       value: 
@@ -24605,7 +24604,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7556468217539159939, guid: aff64b997f1cb184ab99b6540eb058a3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7779245063879279323, guid: aff64b997f1cb184ab99b6540eb058a3, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -24711,11 +24710,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &6680281085585410216 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 302693132484681574, guid: aff64b997f1cb184ab99b6540eb058a3, type: 3}
-  m_PrefabInstance: {fileID: 6378857992567609294}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7691332706565540856 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3619587694021680182, guid: aff64b997f1cb184ab99b6540eb058a3, type: 3}
@@ -27463,10 +27457,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bouncer
       objectReference: {fileID: 0}
-    - target: {fileID: 7748299721026644492, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: c139d2f4903dd1e4194e6d20234fc27f, type: 3}
     - target: {fileID: 7966797527361524524, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
       propertyPath: m_Color.b
       value: 0

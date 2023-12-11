@@ -6,14 +6,11 @@
 				<StateGroup Name="Music_State" ID="{C434A267-4848-4F08-A12D-73B4DF58E127}">
 					<ChildrenList>
 						<State Name="None" ID="{3138FAE3-C6F8-426A-8974-221E0D3F2EDC}"/>
-						<State Name="Musique_1" ID="{07001DB6-4F40-4AA4-B66D-3D6464C860D7}"/>
-						<State Name="Musique_2" ID="{C8D0BD07-4F60-47A0-BB58-51A97EB8D52C}"/>
-						<State Name="Musique_3" ID="{DE4DE939-F21A-4497-A624-61E58F766939}"/>
+						<State Name="Phase_1" ID="{07001DB6-4F40-4AA4-B66D-3D6464C860D7}"/>
+						<State Name="Phase_2" ID="{C8D0BD07-4F60-47A0-BB58-51A97EB8D52C}"/>
+						<State Name="Phase_3" ID="{DE4DE939-F21A-4497-A624-61E58F766939}"/>
 						<State Name="Musique_Intro" ID="{4672D8F4-C676-4695-8340-5A22B64A896C}"/>
 						<State Name="Musique_End" ID="{48AA7F08-7329-4227-A759-7946187CEB0B}"/>
-						<State Name="Drop_1" ID="{FCA0E1AF-D517-4841-A894-2914DFB5DB30}"/>
-						<State Name="Drop_2" ID="{58C08921-01EE-47CB-9822-4A604897E4FB}"/>
-						<State Name="Drop_3" ID="{2719F756-914C-4A39-8798-E85F1FEC8289}"/>
 					</ChildrenList>
 				</StateGroup>
 				<StateGroup Name="LowPass_Menu" ID="{B3DA9FAB-E597-4E00-AA2B-D50F1833D3E4}">
@@ -21,6 +18,35 @@
 						<State Name="None" ID="{FD7EECE2-F8F4-45B8-B9CB-AAC92B501AAB}"/>
 						<State Name="Menu_Open" ID="{6DD9BD10-F55E-4754-8AFC-0093589EC733}"/>
 						<State Name="Menu_Close" ID="{3723DA8D-5A3C-4774-8B8D-FFD9B69FE076}"/>
+					</ChildrenList>
+				</StateGroup>
+				<StateGroup Name="Music_WinLose" ID="{FD3905A0-DBB6-4031-9EF9-A4A61828376D}">
+					<ChildrenList>
+						<State Name="None" ID="{07EB9E8E-4539-40CF-A8F9-54D41A8312C4}"/>
+						<State Name="Music_Success" ID="{289E4424-9D97-47AA-B413-21A95749C741}"/>
+						<State Name="Music_Defeat" ID="{1A89D263-AF69-453F-9507-C48318D6F481}"/>
+						<State Name="Music_Default" ID="{5D02A9DB-F961-4FC0-A66D-F257420C5EA0}"/>
+					</ChildrenList>
+				</StateGroup>
+				<StateGroup Name="Player1_Sync" ID="{561195C5-B9FC-4968-A7AC-78C37B17D531}">
+					<ChildrenList>
+						<State Name="None" ID="{AF64F748-CA5A-4360-A379-4F2B0C883054}"/>
+						<State Name="Yes" ID="{76F613B8-0539-4F71-BA66-DD5E996E1A6B}"/>
+						<State Name="No" ID="{BB8A4A28-E909-4E78-84F8-DD7C69897827}"/>
+					</ChildrenList>
+				</StateGroup>
+				<StateGroup Name="Player2_Sync" ID="{4640023F-4498-4CB6-B14C-9E2BDE9DD4AD}">
+					<ChildrenList>
+						<State Name="None" ID="{8F1B7F54-EA21-427F-9B0B-E25FB881C933}"/>
+						<State Name="Yes" ID="{F4CD86B9-6B90-42D5-9B22-DA4C72390C08}"/>
+						<State Name="No" ID="{FD76BA71-31F8-46AA-AB57-13A7589800A3}"/>
+					</ChildrenList>
+				</StateGroup>
+				<StateGroup Name="Player3_Sync" ID="{3E3A74CC-142F-4944-86C0-7055526D0A44}">
+					<ChildrenList>
+						<State Name="None" ID="{289FDEEA-708B-4F10-BBB7-25A32CA9C76F}"/>
+						<State Name="Yes" ID="{ECA49FCF-ED94-4622-A017-CBEC86654ED2}"/>
+						<State Name="No" ID="{1A95BD9C-2862-44A3-B66B-BE1300F23746}"/>
 					</ChildrenList>
 				</StateGroup>
 			</ChildrenList>

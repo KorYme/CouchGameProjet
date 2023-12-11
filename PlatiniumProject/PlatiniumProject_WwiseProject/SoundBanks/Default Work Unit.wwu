@@ -6,20 +6,21 @@
 				<SoundBank Name="MainSoundBank" ID="{18A2385C-CF11-4FF9-8772-2FAF85BBCD05}">
 					<ObjectInclusionList>
 						<ObjectRef Name="Character" ID="{88DDEFB0-A179-4087-9FFC-FE46E1F72F0C}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Interactive Music Hierarchy" ID="{49FED366-B530-42A8-993B-924873AAB707}" WorkUnitID="{49FED366-B530-42A8-993B-924873AAB707}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Character" ID="{BFC0B761-B0B9-4376-9727-9EFA9FAE32B2}" WorkUnitID="{BFC0B761-B0B9-4376-9727-9EFA9FAE32B2}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="PlaceHolderMusic" ID="{6E550C15-0040-447E-8E00-875C3D888D63}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Default Work Unit" ID="{661F7AB4-4896-453E-922E-FFB9DCE73304}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="UI" ID="{8C473F2E-0A94-454F-A136-7CEF352D0325}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Default Work Unit" ID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Music" ID="{74E004F1-3593-4675-9F8D-0EA6E3091C36}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Master-Mixer Hierarchy" ID="{2388DAEA-9775-46C6-A2ED-C5222A397756}" WorkUnitID="{2388DAEA-9775-46C6-A2ED-C5222A397756}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Ambiance" ID="{16234DAC-407B-4728-83AC-53640D11B520}" WorkUnitID="{16234DAC-407B-4728-83AC-53640D11B520}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Alesso Payday" ID="{693A3023-6DFB-4776-8EC2-731FF11A5541}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Drop" ID="{9730BAC3-245C-487C-A223-4DDA01449540}" WorkUnitID="{9730BAC3-245C-487C-A223-4DDA01449540}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PlaceHolder" ID="{8473C8E8-4D5D-484F-B123-40F0FD9E6F25}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Default Work Unit" ID="{C7CEF3A6-1C3C-48A0-AEBD-F4C120A62D79}" WorkUnitID="{C7CEF3A6-1C3C-48A0-AEBD-F4C120A62D79}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Ambiance" ID="{A9E4BA3A-5ACF-48FE-B5AB-BD8C8926CCF1}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="MageBattle" ID="{3441DE68-26FA-4A74-9806-D4745AB82F51}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="60 BPM Metronome" ID="{E8E62256-2EDA-4A8A-8EC2-C9911386DB10}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Default Work Unit" ID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Actor-Mixer Hierarchy" ID="{5EA7BBF8-64C0-4A50-8821-A07E8BE21D68}" WorkUnitID="{5EA7BBF8-64C0-4A50-8821-A07E8BE21D68}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Music_DND" ID="{9CE00F95-AD7F-4C32-B167-08A7B26751A0}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="UI" ID="{D768933A-3A49-4F59-8040-626EAE6A38BE}" WorkUnitID="{D768933A-3A49-4F59-8040-626EAE6A38BE}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Drop" ID="{AE9BC2FC-6F94-4F84-9244-CEFA64E26D59}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Crypt of the Necrodancer OST - Crypteque (1-2)" ID="{B9D4578D-B6E9-4FE1-8934-0A2F3172C6C7}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

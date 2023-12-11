@@ -29,7 +29,13 @@ public class DisplayBarmanQTE : MonoBehaviour
 
     private void OnDJQTEChanged(string qteString)
     {
-        _qteDisplay.text = qteString;
+        if (qteString == string.Empty)
+        {
+            OnDJQTEEnded(qteString);
+        } else
+        {
+            _qteDisplay.text = qteString;
+        }
     }
 
     private void OnDJQTEEnded(string qteString)
