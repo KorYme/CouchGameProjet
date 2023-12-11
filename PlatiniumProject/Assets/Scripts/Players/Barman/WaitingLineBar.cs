@@ -128,7 +128,11 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     {
         for (int i = 0; i < _waitingCharactersList.Count; i++)
         {
-            _waitingCharactersList[i].CharacterMove.MoveTo(transform.position + Direction * (i + 1) + Offset);
+            if (Vector3.Distance(_waitingCharactersList[i].transform.position,
+                    transform.position + Direction * (i + 1) + Offset) > 0.1f)
+            {
+                _waitingCharactersList[i].CharacterMove.MoveTo(transform.position + Direction * (i + 1) + Offset);
+            }
         }
     }
     public void AddToWaitingLine(CharacterStateMachine character)
@@ -147,6 +151,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             character.ChangeState(character.BarManAtBar);
         }
         _waitingCharactersList.Add(character);
+        UpdatePositions();
     }
 
     void IQTEable.OnQTEStarted()
