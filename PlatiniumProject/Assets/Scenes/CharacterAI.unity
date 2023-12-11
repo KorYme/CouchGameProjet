@@ -123,19 +123,9 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!2083052967 &755146802 stripped
-VisualEffect:
-  m_CorrespondingSourceObject: {fileID: 2968143451904576227, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-  m_PrefabInstance: {fileID: 1353082137}
-  m_PrefabAsset: {fileID: 0}
 --- !u!2083052967 &1078839240 stripped
 VisualEffect:
   m_CorrespondingSourceObject: {fileID: 3895050262047542170, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-  m_PrefabInstance: {fileID: 1353082137}
-  m_PrefabAsset: {fileID: 0}
---- !u!2083052967 &1322827864 stripped
-VisualEffect:
-  m_CorrespondingSourceObject: {fileID: 7377224250890606133, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
   m_PrefabInstance: {fileID: 1353082137}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1353082137
@@ -153,7 +143,7 @@ PrefabInstance:
     - target: {fileID: 305403279465842084, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _vfxs.Array.data[0].vfx
       value: 
-      objectReference: {fileID: 1322827864}
+      objectReference: {fileID: 0}
     - target: {fileID: 305403279465842084, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _vfxs.Array.data[0].vfxType
       value: 3
@@ -194,14 +184,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 771261643079926100, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: m_FlipX
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 771261643079926100, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f26de11f07bf34142947ac4d51066eae, type: 3}
     - target: {fileID: 1604014851263713326, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _listQTE.Array.size
       value: 22
@@ -429,7 +411,7 @@ PrefabInstance:
     - target: {fileID: 4703980962448888397, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _vfxs.Array.data[0].vfx
       value: 
-      objectReference: {fileID: 755146802}
+      objectReference: {fileID: 0}
     - target: {fileID: 4703980962448888397, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _vfxs.Array.data[1].vfx
       value: 
