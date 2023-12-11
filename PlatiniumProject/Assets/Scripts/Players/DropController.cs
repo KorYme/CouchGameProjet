@@ -13,6 +13,8 @@ public class DropController : MonoBehaviour, IIsControllable
     TriggerInputCheck _triggerInputCheckRT;
     TriggerInputCheck _triggerInputCheckLT;
 
+    Coroutine _syncCoroutine;
+
     public int TriggerPressed
     {
         get
@@ -31,43 +33,11 @@ public class DropController : MonoBehaviour, IIsControllable
         Players.AddListenerPlayerController(this);
         _triggerInputCheckRT = new TriggerInputCheck(Players.PlayersController[(int)_playerRole].RT, Globals.DropManager.InputDeadZone);
         _triggerInputCheckLT = new TriggerInputCheck(Players.PlayersController[(int)_playerRole].LT, Globals.DropManager.InputDeadZone);
-        _triggerInputCheckRT.OnTriggerPerformed += Globals.DropManager.UpdateTriggerValue;
-        _triggerInputCheckLT.OnTriggerPerformed += Globals.DropManager.UpdateTriggerValue;
-        _triggerInputCheckRT.OnTriggerPerformed += value =>
-        {
-            if (value)
-            {
-                if (_triggerInputCheckLT.TriggerState == TriggerInputCheck.TRIGGER_STATE.PRESSED_ON_TIME)
-                {
-                    _syncEvents[_playerRole].isSyncEvent?.Post(gameObject);
-                    Debug.Log("Performed");
-                }
-            }
-            else
-            {
-                _syncEvents[_playerRole].isNotSyncEvent?.Post(gameObject);
-                Debug.Log("Unperformed");
-            }
-        };
-        _triggerInputCheckLT.OnTriggerPerformed += value =>
-        {
-            if (value)
-            {
-                if (_triggerInputCheckRT.TriggerState == TriggerInputCheck.TRIGGER_STATE.PRESSED_ON_TIME)
-                {
-                    _syncEvents[_playerRole].isSyncEvent?.Post(gameObject);
-                    Debug.Log("Performed");
-                }
-            }
-            else
-            {
-                Debug.Log("Unperformed");
-                _syncEvents[_playerRole].isNotSyncEvent?.Post(gameObject);
-            }
-        };
+        _triggerInputCheckRT.OnTriggerPerformed += value => CheckTriggerState(_triggerInputCheckLT, value);
+        _triggerInputCheckLT.OnTriggerPerformed += value => CheckTriggerState(_triggerInputCheckRT, value);
         Globals.DropManager.AllDropControllers.Add(this);
-        _triggerInputCheckRT.OnTriggerStateChange += value => _rtImage.color = ChangeColor(value);
-        _triggerInputCheckLT.OnTriggerStateChange += value => _ltImage.color = ChangeColor(value);
+        _triggerInputCheckRT.OnTriggerStateChange += state => _rtImage.color = ChangeColor(state);
+        _triggerInputCheckLT.OnTriggerStateChange += state => _ltImage.color = ChangeColor(state);
         _syncEvents[_playerRole].isNotSyncEvent?.Post(gameObject);
     }
 
@@ -75,11 +45,46 @@ public class DropController : MonoBehaviour, IIsControllable
     {
         if (Players.PlayersController[(int)_playerRole] == null) return;
         Players.RemoveListenerPlayerController(this);
-        _triggerInputCheckRT.OnTriggerPerformed -= Globals.DropManager.UpdateTriggerValue;
-        _triggerInputCheckLT.OnTriggerPerformed -= Globals.DropManager.UpdateTriggerValue;
+        _triggerInputCheckRT.OnTriggerPerformed -= value => CheckTriggerState(_triggerInputCheckLT, value);
+        _triggerInputCheckLT.OnTriggerPerformed -= value => CheckTriggerState(_triggerInputCheckRT, value);
         Globals.DropManager?.AllDropControllers.Remove(this);
-        _triggerInputCheckRT.OnTriggerStateChange -= value => _rtImage.color = ChangeColor(value);
-        _triggerInputCheckLT.OnTriggerStateChange -= value => _ltImage.color = ChangeColor(value);
+        _triggerInputCheckRT.OnTriggerStateChange -= state => _rtImage.color = ChangeColor(state);
+        _triggerInputCheckLT.OnTriggerStateChange -= state => _ltImage.color = ChangeColor(state);
+    }
+
+    void CheckTriggerState(TriggerInputCheck trigger, bool value)
+    {
+        Globals.DropManager.UpdateTriggerValue(value);
+        if (_syncCoroutine == null)
+        {
+            _syncCoroutine = StartCoroutine(TriggerSynchronize());
+        }
+        if (value)
+        {
+            if (trigger.TriggerState == TriggerInputCheck.TRIGGER_STATE.PRESSED_ON_TIME)
+            {
+                _syncEvents[_playerRole].isSyncEvent?.Post(gameObject);
+                StopCoroutine(_syncCoroutine);
+                _syncCoroutine = null;
+            }
+        }
+        else
+        {
+            _syncEvents[_playerRole].isNotSyncEvent?.Post(gameObject);
+            if (_syncCoroutine == null)
+            {
+                trigger.TriggerState = TriggerInputCheck.TRIGGER_STATE.NEED_TO_BE_RELEASED;
+            }
+        }
+    }
+
+    IEnumerator TriggerSynchronize()
+    {
+        yield return new WaitForSeconds(Globals.DropManager.PressingSynchronizationTime);
+        _triggerInputCheckLT.TriggerState = TriggerInputCheck.TRIGGER_STATE.NEED_TO_BE_RELEASED;
+        _triggerInputCheckRT.TriggerState = TriggerInputCheck.TRIGGER_STATE.NEED_TO_BE_RELEASED;
+        _syncEvents[_playerRole].isNotSyncEvent?.Post(gameObject);
+        _syncCoroutine = null;
     }
 
     Color ChangeColor(TriggerInputCheck.TRIGGER_STATE state)
@@ -95,13 +100,6 @@ public class DropController : MonoBehaviour, IIsControllable
             default:
                 return Color.white;
         }
-    }
-
-    public void ForceTriggersRelease()
-    {
-        _triggerInputCheckLT.TriggerState = TriggerInputCheck.TRIGGER_STATE.NEED_TO_BE_RELEASED;
-        _triggerInputCheckRT.TriggerState = TriggerInputCheck.TRIGGER_STATE.NEED_TO_BE_RELEASED;
-        _syncEvents[_playerRole].isNotSyncEvent?.Post(gameObject);
     }
 
     public void DisplayTriggers(bool enableTriggers)

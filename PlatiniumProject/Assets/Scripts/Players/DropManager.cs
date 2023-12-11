@@ -65,9 +65,8 @@ public class DropManager : MonoBehaviour
     int _triggerPressedNumber;
     BeatManager _beatManager;
     List<DropController> _allDropControllers = new();
-    Coroutine _triggerSyncCoroutine;
-    Coroutine _buildUpCoroutine;
     public List<DropController> AllDropControllers => _allDropControllers;
+    public float PressingSynchronizationTime => _pressingSynchronizationTime;
 
 
     private void Awake()
@@ -80,8 +79,6 @@ public class DropManager : MonoBehaviour
         _beatManager = Globals.BeatManager as BeatManager;
         _triggerPressedNumber = 0;
         _currentPhase = 0;
-        _triggerSyncCoroutine = null;
-        _buildUpCoroutine = null;
         DropState = DROP_STATE.OUT_OF_DROP;
         OnDropSuccess += () => _onDropSuccess?.Invoke();
         OnDropFail += () => _onDropFail?.Invoke();
@@ -124,7 +121,7 @@ public class DropManager : MonoBehaviour
             case "BuildUpStart":
                 _beatManager.OnNextEntryCue += () =>
                 {
-                    _buildUpCoroutine = StartCoroutine(BuildUpCoroutine());
+                    StartCoroutine(BuildUpCoroutine());
                 };
                 break;
             case "MusicStart":
@@ -158,34 +155,22 @@ public class DropManager : MonoBehaviour
         switch (DropState)
         {
             case DROP_STATE.ON_DROP_PRESSING:
-                if (_triggerSyncCoroutine == null)
-                {
-                    _triggerSyncCoroutine = StartCoroutine(TriggerSynchronize());
-                }
-                else
-                {
-                    _triggerPressedNumber = _allDropControllers.Sum(x => x.TriggerPressed);
-                }
+                if (!triggerPressed) break;
+                _triggerPressedNumber = _allDropControllers.Sum(x => x.TriggerPressed);
                 if (_triggerPressedNumber == Players.PlayerConnected * 2)
                 {
-                    StopCoroutine(_triggerSyncCoroutine);
                     DropState = DROP_STATE.ON_DROP_ALL_PRESSED;
                 }
                 break;
             case DROP_STATE.ON_DROP_ALL_PRESSED:
-                if (!triggerPressed)
-                {
-                    _allDropControllers.ForEach(x => x.ForceTriggersRelease());
-                    _triggerPressedNumber = 0;
-                    DropState = DROP_STATE.ON_DROP_PRESSING;
-                }
+                if (triggerPressed) break;
+                _triggerPressedNumber = 0;
+                DropState = DROP_STATE.ON_DROP_PRESSING;
                 break;
             case DROP_STATE.ON_DROP_WAIT_FOR_RELEASE:
-                if (!triggerPressed)
-                {
-                    _dropMissedEvent?.Post(gameObject);
-                    DropState = DROP_STATE.ON_DROP_MISSED;
-                }
+                if (triggerPressed) break;
+                _dropMissedEvent?.Post(gameObject);
+                DropState = DROP_STATE.ON_DROP_MISSED;
                 break;
             case DROP_STATE.ON_DROP_RELEASING:
                 _triggerPressedNumber = _allDropControllers.Sum(x => x.TriggerPressed);
@@ -200,14 +185,6 @@ public class DropManager : MonoBehaviour
                 break;
         }
     }
-
-    IEnumerator TriggerSynchronize()
-    {
-        yield return new WaitForSeconds(_pressingSynchronizationTime);
-        _allDropControllers.ForEach(x => x.ForceTriggersRelease());
-        _triggerSyncCoroutine = null;
-    }
-
 
     IEnumerator BuildUpCoroutine()
     {

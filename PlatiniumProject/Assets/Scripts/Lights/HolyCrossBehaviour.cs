@@ -8,7 +8,6 @@ using UnityEngine.Rendering.Universal;
 public class HolyCrossBehaviour : MonoBehaviour
 {
     [SerializeField] Light2D _light;
-    [SerializeField] CharacterStateMachine _charaSM;
 
     [Header("First Apperance Tween")]
     [SerializeField] AnimationCurve _fadeInCurve;
@@ -23,17 +22,23 @@ public class HolyCrossBehaviour : MonoBehaviour
 
     private void Start()
     {
-        (_charaSM.ExorcizeState as CharacterStateExorcize).OnCharacterStartExorcize += () => StartCoroutine(PlayAnim());
+        Globals.PriestCalculator.OnPriestExorcize += () => StartCoroutine(PlayAnim());
+    }
+
+    private void OnDestroy()
+    {
+        Globals.PriestCalculator.OnPriestExorcize -= () => StartCoroutine(PlayAnim());
     }
 
     public IEnumerator PlayAnim()
     {
+        transform.localScale = Vector3.zero;
         _light.enabled = true;
         float timer = _fadeInDuration == 0f ? 1f : 0f;
         while (timer < 1f)
         {
             timer += Time.deltaTime / _fadeInDuration;
-            transform.localScale = Vector3.one * _fadeInCurve.Evaluate(timer) * _fadeInEndValue;
+            transform.localScale = _fadeInCurve.Evaluate(timer) * _fadeInEndValue * Vector3.one;
             yield return null;
         }
         transform.localScale = Vector3.one * _fadeInEndValue;

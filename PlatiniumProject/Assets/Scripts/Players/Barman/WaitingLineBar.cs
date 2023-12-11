@@ -73,7 +73,6 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             }
         }
         GetNextCharacter();
-        _barmanController.onDrinkComplete?.Invoke();
     }
 
      public void PriestForceEnterance()
@@ -90,7 +89,6 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
          }
          GetNextCharacter();
          _djUsher.SetNextSlot();
-         _barmanController.onDrinkComplete?.Invoke();
      }
 
      public void OnFailDrink()
