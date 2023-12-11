@@ -208,6 +208,12 @@ MonoBehaviour:
   _inputsAreOnBeat: 1
   _includeLeftJoystick: 0
   _includeRightJoystick: 0
+  _onMissedInput:
+    m_PersistentCalls:
+      m_Calls: []
+  _onMissedInputDisableNextBeat:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2380923746897791189
 MonoBehaviour:
   m_ObjectHideFlags: 0
