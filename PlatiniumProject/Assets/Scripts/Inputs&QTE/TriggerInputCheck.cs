@@ -9,7 +9,7 @@ public class TriggerInputCheck
     public enum TRIGGER_STATE
     {
         RELEASED,
-        PRESSED_ON_BEAT,
+        PRESSED_ON_TIME,
         NEED_TO_BE_RELEASED,
     }
 
@@ -24,7 +24,14 @@ public class TriggerInputCheck
         get => _triggerState;
         set
         {
-            _triggerState = value;
+            if (value == TRIGGER_STATE.NEED_TO_BE_RELEASED && !_inputTrigger.IsPerformed)
+            {
+                _triggerState = TRIGGER_STATE.RELEASED;
+            }
+            else
+            {
+                _triggerState = value;
+            }
             OnTriggerStateChange?.Invoke(value);
         }
     }
@@ -57,7 +64,7 @@ public class TriggerInputCheck
         {
             if (TriggerState == TRIGGER_STATE.RELEASED)
             {
-                TriggerState = Globals.BeatManager.IsInsideBeatWindow ? TRIGGER_STATE.PRESSED_ON_BEAT : TRIGGER_STATE.NEED_TO_BE_RELEASED;
+                TriggerState = TRIGGER_STATE.PRESSED_ON_TIME;
                 OnTriggerPerformed?.Invoke(true);
             }
         }

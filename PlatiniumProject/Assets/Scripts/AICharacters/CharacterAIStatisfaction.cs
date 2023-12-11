@@ -62,12 +62,6 @@ public class CharacterAIStatisfaction : MonoBehaviour
         else if (CurrentStatisafction >= CurrentSatisactionToGetLoyal && _currentState != SATISFACTION_STATE.LOYAL)
         {
             _currentState = SATISFACTION_STATE.LOYAL;
-            _stateMachine.MoveToLocation = _stateMachine.AreaManager.DanceFloorSideArea.GetOffDanceFloorPostion(_stateMachine.transform.position);
-            _stateMachine.CharacterAnimation.SetColor(Color.green);
-            _stateMachine.CurrentSlot.Occupant = null;
-            _stateMachine.NextState = _stateMachine.DancingOffFloor;
-            _stateMachine.ChangeState(_stateMachine.MoveToState);
-            
             if (_stateMachine.CharacterDataObject.isTutorialNpc)
             {
                 Globals.TutorialManager.HandledTutoCharacter++;

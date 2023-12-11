@@ -6,6 +6,7 @@ public class QTEHandlerEvents
 {
     //List of listener on QTEHandler
     List<IQTEable> _QTEables = new List<IQTEable>();
+    List<IMissedInputListener> _missedInputListeners = new List<IMissedInputListener>();
 
     public void RegisterQTEable(IQTEable QTEable)
     {
@@ -14,6 +15,14 @@ public class QTEHandlerEvents
     public void UnregisterQTEable(IQTEable QTEable)
     {
         _QTEables.Remove(QTEable);
+    }
+    public void RegisterMissedInputListener(IMissedInputListener listener)
+    {
+        _missedInputListeners.Add(listener);
+    }
+    public void UnregisterMissedInputListener(IMissedInputListener listener)
+    {
+        _missedInputListeners.Remove(listener);
     }
 
     public void CallOnCorrectInput()
@@ -50,9 +59,10 @@ public class QTEHandlerEvents
 
     public void CallOnMissedInput()
     {
-        /*foreach (IQTEable reciever in _QTEables)
+        foreach (IMissedInputListener reciever in _missedInputListeners)
         {
+            Debug.Log("MISS");
             reciever.OnQTEMissedInput();
-        }*/
+        }
     }
 }

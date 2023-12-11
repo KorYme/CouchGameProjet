@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,27 +14,35 @@ public class DropManager : MonoBehaviour
         OUT_OF_DROP,
         ON_DROP_PRESSING,
         ON_DROP_ALL_PRESSED,
+        ON_DROP_WAIT_FOR_RELEASE,
         ON_DROP_RELEASING,
+        ON_DROP_ALL_RELEASED,
         ON_DROP_MISSED,
     }
 
-    [SerializeField, Range(0f, 1f)] private float _inputDeadZone = .8f;
-    [SerializeField] TMP_Text _text;
-    [SerializeField] GameObject _dropSuccess;
+    [Header("Wwise Event References"), Space]
+    [SerializeField] AK.Wwise.Event _secondMusicStateEvent;
+    [SerializeField] AK.Wwise.Event _thirdMusicStateEvent;
+    [SerializeField] AK.Wwise.Event _endMusicStateEvent;
+    [SerializeField] AK.Wwise.Event _dropSucceededEvent;
+    [SerializeField] AK.Wwise.Event _dropMissedEvent;
 
-    [SerializeField] AK.Wwise.Event _firstDropEvent;
-    [SerializeField] AK.Wwise.Event _secondStateEvent;
-    [SerializeField] AK.Wwise.Event _secondDropEvent;
-    [SerializeField] AK.Wwise.Event _thirdStateEvent;
-    [SerializeField] AK.Wwise.Event _thirdDropEvent;
-    [Space]
-    [SerializeField] UnityEvent _onDropTriggering;
+    [Header("Drop Parameters"), Space]
+    [SerializeField, Range(0f, 1f)] float _inputDeadZone = .8f;
+    [SerializeField, Range (0f, 5f)] float _pressingSynchronizationTime = 1f;
+    [SerializeField, Range(.1f, 20)] float _pressingBuildUpTime = 3;
+    [SerializeField, Range(.1f, 20)] float _releasingBuildUpTime = 3;
+    [Header("Other References"), Space]
+    [SerializeField] TMP_Text _dropStateText;
+    [SerializeField] DropAnimationBehaviour _dropAnimationBehaviour;
+    [Header("Unity Events"), Space]
+    [SerializeField] UnityEvent _onBeginBuildUp;
+    [SerializeField] UnityEvent _onDropTriggered;
     [SerializeField] UnityEvent _onDropSuccess;
     [SerializeField] UnityEvent _onDropFail;
-    [SerializeField] UnityEvent _onDropEnd;
+
 
     public float InputDeadZone => _inputDeadZone;
-
     DROP_STATE _dropState;
     public DROP_STATE DropState
     {
@@ -41,23 +50,25 @@ public class DropManager : MonoBehaviour
         private set
         {
             OnDropStateChange?.Invoke(value);
-            _text.text = value.ToString();
+            _dropStateText.text = value.ToString();
             _dropState = value;
         }
     }
     event Action<DROP_STATE> OnDropStateChange;
-
     public bool CanYouLetMeMove => _dropState == DROP_STATE.OUT_OF_DROP;
-
+    public event Action OnBeginBuildUp;
+    public event Action OnDropLoaded;
     public event Action OnDropSuccess;
     public event Action OnDropFail;
-    public event Action OnBeginBuildUp;
-
-    int _dropPassed;
+    public event Action OnGameEnd;
+    int _currentPhase;
     int _triggerPressedNumber;
     BeatManager _beatManager;
     List<DropController> _allDropControllers = new();
+    Coroutine _triggerSyncCoroutine;
+    Coroutine _buildUpCoroutine;
     public List<DropController> AllDropControllers => _allDropControllers;
+
 
     private void Awake()
     {
@@ -66,37 +77,40 @@ public class DropManager : MonoBehaviour
 
     private void Start()
     {
+        _beatManager = Globals.BeatManager as BeatManager;
+        _triggerPressedNumber = 0;
+        _currentPhase = 0;
+        _triggerSyncCoroutine = null;
+        _buildUpCoroutine = null;
+        DropState = DROP_STATE.OUT_OF_DROP;
         OnDropSuccess += () => _onDropSuccess?.Invoke();
         OnDropFail += () => _onDropFail?.Invoke();
-        OnBeginBuildUp += () => _onDropTriggering?.Invoke();
-        _triggerPressedNumber = 0;
-        DropState = DROP_STATE.OUT_OF_DROP;
-        _dropSuccess.SetActive(false);
-        _beatManager = Globals.BeatManager as BeatManager;
-        _beatManager.OnUserCueReceived += CheckUserCueName;
+        OnBeginBuildUp += () => _onBeginBuildUp?.Invoke();
+        OnDropLoaded += () => _onDropTriggered?.Invoke();
+        OnDropLoaded += () => _dropAnimationBehaviour.gameObject.SetActive(true);
         OnDropStateChange += DropStateChange;
-        _dropPassed = 0;
+        _beatManager.OnUserCueReceived += CheckUserCueName;
+        _dropAnimationBehaviour.OnDropAnimationClimax += () => DropState = DROP_STATE.ON_DROP_RELEASING;
     }
 
     private void OnDestroy()
     {
         _beatManager.OnUserCueReceived -= CheckUserCueName;
-        OnDropStateChange -= DropStateChange;
+        _dropAnimationBehaviour.OnDropAnimationClimax -= () => DropState = DROP_STATE.ON_DROP_RELEASING;
     }
 
     private void DropStateChange(DROP_STATE newState)
     {
         switch (newState)
         {
-            case DROP_STATE.OUT_OF_DROP:
-                _allDropControllers.ForEach(x => x.DisplayTriggers(false));
-                break;
             case DROP_STATE.ON_DROP_PRESSING:   
                 _allDropControllers.ForEach(x => x.DisplayTriggers(true));
                 break;
             case DROP_STATE.ON_DROP_MISSED:
                 OnDropFail?.Invoke();
-                _beatManager.OnNextBeatStart += () => DropState = DROP_STATE.OUT_OF_DROP;
+                break;
+            case DROP_STATE.OUT_OF_DROP:
+                _allDropControllers.ForEach(x => x.DisplayTriggers(false));
                 break;
             default:
                 break;
@@ -108,35 +122,31 @@ public class DropManager : MonoBehaviour
         switch (userCueName)
         {
             case "BuildUpStart":
-                _beatManager.OnNextBeatStart += () =>
+                _beatManager.OnNextEntryCue += () =>
                 {
-                    DropState = DROP_STATE.ON_DROP_PRESSING;
-                    _beatManager.OnBeatEndEvent.AddListener(AllTriggerRelease);
-                    OnBeginBuildUp?.Invoke();
+                    _buildUpCoroutine = StartCoroutine(BuildUpCoroutine());
                 };
                 break;
-            case "DropStart":
-                _beatManager.OnBeatEndEvent.RemoveListener(AllTriggerRelease);
-                if (_triggerPressedNumber >= Players.PlayerConnected * 2)
+            case "MusicStart":
+                _beatManager.OnNextExitCue += () =>
                 {
-                    DropState = DROP_STATE.ON_DROP_RELEASING;
-                }
-                else
-                {
-                    DropState = DROP_STATE.ON_DROP_MISSED;
-                }
-                break;
-            case "DropEnd":
-                if (DropState != DROP_STATE.OUT_OF_DROP)
-                {
-                    DropState = DROP_STATE.ON_DROP_MISSED;
-                }
-                _dropPassed++;
-                if (_dropPassed >= 3)
-                {
-                    Time.timeScale = 0f;
-                }
-                _onDropEnd?.Invoke();
+                    _currentPhase++;
+                    DropState = DROP_STATE.OUT_OF_DROP;
+                    switch (_currentPhase)
+                    {
+                        case 1:
+                            _secondMusicStateEvent?.Post(gameObject);
+                            break;
+                        case 2:
+                            _thirdMusicStateEvent?.Post(gameObject);
+                            break;
+                        case 3:
+                        default:
+                            OnGameEnd?.Invoke();
+                            _endMusicStateEvent?.Post(gameObject);
+                            break;
+                    }
+                };
                 break;
             default:
                 break;
@@ -148,10 +158,17 @@ public class DropManager : MonoBehaviour
         switch (DropState)
         {
             case DROP_STATE.ON_DROP_PRESSING:
-                if (!_beatManager.IsInsideBeatWindow) return;
-                _triggerPressedNumber = _allDropControllers.Sum(x => x.TriggerPressed);
+                if (_triggerSyncCoroutine == null)
+                {
+                    _triggerSyncCoroutine = StartCoroutine(TriggerSynchronize());
+                }
+                else
+                {
+                    _triggerPressedNumber = _allDropControllers.Sum(x => x.TriggerPressed);
+                }
                 if (_triggerPressedNumber == Players.PlayerConnected * 2)
                 {
+                    StopCoroutine(_triggerSyncCoroutine);
                     DropState = DROP_STATE.ON_DROP_ALL_PRESSED;
                 }
                 break;
@@ -163,13 +180,19 @@ public class DropManager : MonoBehaviour
                     DropState = DROP_STATE.ON_DROP_PRESSING;
                 }
                 break;
+            case DROP_STATE.ON_DROP_WAIT_FOR_RELEASE:
+                if (!triggerPressed)
+                {
+                    _dropMissedEvent?.Post(gameObject);
+                    DropState = DROP_STATE.ON_DROP_MISSED;
+                }
+                break;
             case DROP_STATE.ON_DROP_RELEASING:
                 _triggerPressedNumber = _allDropControllers.Sum(x => x.TriggerPressed);
                 if (_triggerPressedNumber == 0)
                 {
-                    _dropSuccess.SetActive(true);
-                    StartCoroutine(SuccessDisplay());
-                    DropState = DROP_STATE.OUT_OF_DROP;
+                    DropState = DROP_STATE.ON_DROP_ALL_RELEASED;
+                    _dropSucceededEvent?.Post(gameObject);
                     OnDropSuccess?.Invoke();
                 }
                 break;
@@ -178,15 +201,42 @@ public class DropManager : MonoBehaviour
         }
     }
 
-    IEnumerator SuccessDisplay()
+    IEnumerator TriggerSynchronize()
     {
-        yield return new WaitForSeconds(7f);
-        _dropSuccess.SetActive(false);
+        yield return new WaitForSeconds(_pressingSynchronizationTime);
+        _allDropControllers.ForEach(x => x.ForceTriggersRelease());
+        _triggerSyncCoroutine = null;
     }
 
-    void AllTriggerRelease()
+
+    IEnumerator BuildUpCoroutine()
     {
-        if (DropState == DROP_STATE.ON_DROP_ALL_PRESSED) return;
-        _allDropControllers.ForEach(x => x.ForceTriggersRelease());
+        DropState = DROP_STATE.ON_DROP_PRESSING;
+        OnBeginBuildUp?.Invoke();
+        yield return new WaitForSeconds(_pressingBuildUpTime);
+        if (_triggerPressedNumber >= Players.PlayerConnected * 2)
+        {
+            OnDropLoaded?.Invoke();
+            DropState = DROP_STATE.ON_DROP_WAIT_FOR_RELEASE;
+            yield return new WaitWhile(() => DropState == DROP_STATE.ON_DROP_WAIT_FOR_RELEASE);
+            if (DropState == DROP_STATE.ON_DROP_RELEASING)
+            {
+                yield return new WaitForSeconds(_releasingBuildUpTime);
+                if (DropState == DROP_STATE.ON_DROP_RELEASING)
+                {
+                    DropState = DROP_STATE.ON_DROP_MISSED;
+                }
+            }
+            else
+            {
+                _dropMissedEvent?.Post(gameObject);
+                DropState = DROP_STATE.ON_DROP_MISSED;
+            }
+        }
+        else
+        {
+            _dropMissedEvent?.Post(gameObject);
+            DropState = DROP_STATE.ON_DROP_MISSED;
+        }
     }
 }

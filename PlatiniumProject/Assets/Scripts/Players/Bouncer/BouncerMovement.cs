@@ -47,10 +47,6 @@ public class BouncerMovement : PlayerMovement, IQTEable
     protected override IEnumerator Start()
     {
         yield return base.Start();
-        Players.PlayersController[(int)PlayerRole].RB.OnInputChange += () =>
-        {
-            Debug.Log(Players.PlayersController[(int)PlayerRole].LT.InputValue);
-        };
         _currentSlot = _areaManager.BouncerBoard.Board[_areaManager.BouncerBoard.BoardDimension.x
             * Mathf.Max(1,_areaManager.BouncerBoard.BoardDimension.y / 2 + _areaManager.BouncerBoard.BoardDimension.y % 2) -1];
         _currentSlot.PlayerOccupant = this;
@@ -59,7 +55,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
         TryGetComponent(out qteHandler);
         if (qteHandler != null)
         {
-            qteHandler.RegisterQTEable(this);
+            qteHandler.RegisterListener(this);
         }
         Debug.Log("Bouncer Initialis�");
     }
@@ -132,6 +128,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
                      _currentClient.StateMachine.TypeData.Evilness == Evilness.GOOD) ||
                     !_currentClient.StateMachine.CharacterDataObject.isTutorialNpc)
                 {
+                    _animation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.YEAH);
                     LetCharacterEnterBox();
                     _qteController?.CloseBubble();
                     _animation.SetLatency(2);
@@ -146,6 +143,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
                      _currentClient.StateMachine.TypeData.Evilness == Evilness.EVIL) ||
                     !_currentClient.StateMachine.CharacterDataObject.isTutorialNpc)
                 {
+                    _animation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.NO);
                     if (_currentClient.StateMachine.TypeData.Evilness == Evilness.EVIL)
                     {
                         _qteController?.StartQTE(_currentClient.StateMachine.TypeData);
@@ -194,7 +192,11 @@ public class BouncerMovement : PlayerMovement, IQTEable
         _currentClient = null;
     }
 
-    public void OnQTECorrectInput() {}
+    public void OnQTECorrectInput()
+    {
+        _animation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.CHOC);
+        _animation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.ECLAIR, 3);
+    }
 
     public void OnQTEWrongInput()
     {

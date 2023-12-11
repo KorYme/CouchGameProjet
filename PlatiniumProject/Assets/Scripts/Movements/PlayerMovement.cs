@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PlayerMovement : EntityMovement
+public abstract class PlayerMovement : EntityMovement,IIsControllable
 {
     [Header("Player Movements Parameters")]
     [SerializeField, Range(0f, 1f)] protected float _inputDeadZone = .5f;
@@ -21,9 +21,9 @@ public abstract class PlayerMovement : EntityMovement
         Globals.BeatManager.OnBeatEvent.AddListener(OnBeat);
         _sp = GetComponentInChildren<SpriteRenderer>();
         _animation = GetComponent<CharacterAnimation>();
-        OnMove += AnimationSetter;
         yield return new WaitUntil(() => Players.PlayersController[(int)PlayerRole] != null);
         _playerController = Players.PlayersController[(int)PlayerRole];
+        Players.AddListenerPlayerController(this);
         _playerController.LeftJoystick.OnInputChange += CheckJoystickValue;
         _timingable.OnBeatStartEvent.AddListener(AllowNewMovement);
         
@@ -44,12 +44,12 @@ public abstract class PlayerMovement : EntityMovement
     
     protected virtual void OnDestroy()
     {
-        OnMove -= AnimationSetter;
         if (_playerController != null)
         {
             _playerController.LeftJoystick.OnInputChange -= CheckJoystickValue;
             _timingable.OnBeatStartEvent.RemoveListener(AllowNewMovement);
         }Globals.BeatManager.OnBeatEvent.RemoveListener(OnBeat);
+        Players.RemoveListenerPlayerController(this);
     }
 
     protected abstract void OnInputMove(Vector2 vector);
@@ -62,19 +62,13 @@ public abstract class PlayerMovement : EntityMovement
             return false;
         }
 
-        if (MoveToPosition(position, _animation.CharacterAnimationObject.Animations[ANIMATION_TYPE.MOVE].AnimationLenght))
+        if (MoveToPosition(position))
         {
             _hasAlreadyMovedThisBeat = true;
             return true;
         }
         return false;
     }
-    
-    private void AnimationSetter()
-    {
-        _animation.SetAnim(ANIMATION_TYPE.MOVE);
-    }
-    
     protected virtual void CheckJoystickValue()
     {
         Vector2 vector = GetClosestUnitVectorFromVector(_playerController.LeftJoystick.InputValue);
@@ -100,5 +94,14 @@ public abstract class PlayerMovement : EntityMovement
         {
             return new Vector2(0f, Mathf.Sign(vector.y));
         }
+    }
+
+    public void ChangeController()
+    {
+        if (_playerController != null)
+            _playerController.LeftJoystick.OnInputChange -= CheckJoystickValue;
+        _playerController = Players.PlayersController[(int)PlayerRole];
+        if (_playerController != null)
+            _playerController.LeftJoystick.OnInputChange += CheckJoystickValue;
     }
 }

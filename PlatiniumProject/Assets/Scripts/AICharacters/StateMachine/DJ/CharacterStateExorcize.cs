@@ -1,11 +1,15 @@
+using System;
 using UnityEngine;
 
 
 public class CharacterStateExorcize : CharacterState
 {
+    public Action OnCharacterStartExorcize;
+
     public override void EnterState()
     {
         Globals.DropManager.OnDropSuccess += RemovePriest;
+        OnCharacterStartExorcize?.Invoke();
     }
     
     public override void OnBeat()

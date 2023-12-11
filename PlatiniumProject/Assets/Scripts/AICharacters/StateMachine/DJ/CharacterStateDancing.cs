@@ -23,6 +23,8 @@ public class CharacterStateDancing : CharacterState
         {
             StateMachine.ChangeState(StateMachine.ExorcizeState);
         }
+
+        Globals.DropManager.OnDropSuccess += Validate;
     }
 
     public override void OnBeat()
@@ -59,6 +61,17 @@ public class CharacterStateDancing : CharacterState
         }
     }
 
+    public void Validate()
+    {
+        if (StateMachine.Satisafaction.CurrentState == CharacterAIStatisfaction.SATISFACTION_STATE.LOYAL)
+        {
+            StateMachine.MoveToLocation = StateMachine.AreaManager.DanceFloorSideArea.GetOffDanceFloorPostion(StateMachine.transform.position);
+            StateMachine.CurrentSlot.Occupant = null;
+            StateMachine.NextState = StateMachine.DancingOffFloor;
+            StateMachine.ChangeState(StateMachine.MoveToState);
+        }
+    }
+
     private void RunOutOfSatisfaction()
     {
         StateMachine.ChangeState(StateMachine.DieState);
@@ -76,5 +89,6 @@ public class CharacterStateDancing : CharacterState
     {
         StateMachine.Satisafaction.OnSatsifactionZero -= RunOutOfSatisfaction;
         Globals.PriestCalculator.OnPriestNearToExorcize -= StartExorcize;
+        Globals.DropManager.OnDropSuccess -= Validate;
     }
 }

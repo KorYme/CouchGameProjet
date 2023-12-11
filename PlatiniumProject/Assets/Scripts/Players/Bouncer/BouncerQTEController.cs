@@ -25,7 +25,7 @@ public class BouncerQTEController : MonoBehaviour, IQTEable
         TryGetComponent(out _qteHandler);
         if (_qteHandler != null)
         {
-            _qteHandler.RegisterQTEable(this);
+            _qteHandler.RegisterListener(this);
         }
     }
     public void StartQTE(CharacterTypeData typeData)

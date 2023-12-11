@@ -22,7 +22,7 @@ public class CharacterStateAtBar : CharacterState
         }
         else
         {
-            StateMachine.CurrentWaitingLine.OnDrinkComplete();
+            StateMachine.CurrentWaitingLine.PriestForceEnterance();
         }
     }
     public override void OnBeat()
