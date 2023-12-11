@@ -24,7 +24,6 @@ public class CharacterStateIdleTransit : CharacterState
             StateMachine.NextState = StateMachine.IdleBouncerState;
 
             StateMachine.ChangeState(StateMachine.MoveToState);
-            return;
         }
         else if (StateMachine.CurrentSlot.Next != null && StateMachine.CurrentSlot.Next.Occupant == null)
         {

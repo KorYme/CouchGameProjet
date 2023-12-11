@@ -70,4 +70,8 @@ public class BouncerQTEController : MonoBehaviour, IQTEable
         _characterAnimation.SetLatency(2);
         _characterAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT, false);
     }
+    public void OnQTEMissedInput()
+    {
+
+    }
 }

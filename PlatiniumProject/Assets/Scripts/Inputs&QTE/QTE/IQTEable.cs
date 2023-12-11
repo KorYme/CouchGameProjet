@@ -8,4 +8,5 @@ public interface IQTEable
     void OnQTEComplete();
     void OnQTECorrectInput();
     void OnQTEWrongInput();
+    void OnQTEMissedInput();
 }

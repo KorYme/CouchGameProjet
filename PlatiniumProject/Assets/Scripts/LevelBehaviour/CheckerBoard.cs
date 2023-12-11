@@ -39,7 +39,7 @@ public class CheckerBoard : MonoBehaviour
 
     private void SetEnterySlots()
     {
-        for (int i = 0; i < _boardDimension.x; ++i)
+        for (int i = 0; i < BoardLength; ++i)
         {
             EntrySlots.Add(Board[i]);
         }

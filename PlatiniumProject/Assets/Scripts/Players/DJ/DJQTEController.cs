@@ -127,5 +127,10 @@ public class DJQTEController : MonoBehaviour, IQTEable
         _characterAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT, false);
         _characterArmAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT, false);
     }
+
+    public void OnQTEMissedInput()
+    {
+
+    }
     #endregion
 }
