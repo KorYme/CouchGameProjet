@@ -53,6 +53,7 @@ public class BarmanMovement : PlayerMovement
 
     void ChangeIndexToReach(float value)
     {
+        IsInQte = false;
         if (value > 0f)
         {
             if (_indexPosition < _barmanPositions.Length - 1)
