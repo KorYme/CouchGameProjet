@@ -117,6 +117,7 @@ public class DJQTEController : MonoBehaviour, IQTEable
         _characterAnimation.SetAnim(ANIMATION_TYPE.CORRECT_INPUT, false);
         _characterArmAnimation.SetAnim(ANIMATION_TYPE.CORRECT_INPUT, false);
         _characterArmAnimation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.ZWIP);
+        _characterArmAnimation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.ECLAIR);
     }
 
     public void OnQTEWrongInput()
@@ -126,6 +127,11 @@ public class DJQTEController : MonoBehaviour, IQTEable
         _characterArmAnimation.SetLatency(2);
         _characterAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT, false);
         _characterArmAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT, false);
+    }
+
+    public void OnQTEMissedInput()
+    {
+
     }
     #endregion
 }

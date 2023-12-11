@@ -371,6 +371,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &962046677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 962046679}
+  - component: {fileID: 962046678}
+  m_Layer: 0
+  m_Name: WwiseGlobal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &962046678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962046677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e66dced33b46024186ec14eb3a728c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationSettings: {fileID: 11400000, guid: 62be05d2322bd6745a83acea4592a46a, type: 2}
+  basePath: 
+  language: 
+  defaultPoolSize: 0
+  lowerPoolSize: 0
+  streamingPoolSize: 0
+  memoryCutoffThreshold: 0
+  monitorPoolSize: 0
+  monitorQueuePoolSize: 0
+  callbackManagerBufferSize: 0
+  spatialAudioPoolSize: 0
+  maxSoundPropagationDepth: 0
+  engineLogging: 0
+--- !u!4 &962046679
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962046677}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1058237664
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,9 +439,8 @@ GameObject:
   - component: {fileID: 1058237666}
   - component: {fileID: 1058237665}
   - component: {fileID: 1058237667}
-  - component: {fileID: 1058237668}
   m_Layer: 0
-  m_Name: Square
+  m_Name: TestBeat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -469,21 +525,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 396b480537a128548a0b4eff7c32b42c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _offsetTest: 0
   _spriteRenderer: {fileID: 1058237665}
---- !u!114 &1058237668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1058237664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3149ebeed96217a40b20c0fdc1acb46a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _movementData: {fileID: 11400000, guid: 8a0c4926c0b12264eb354cb3b49aa5f4, type: 2}
-  _transformToModify: {fileID: 1058237666}
+  _musicEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 015682f307ed2d945bc257fb9033885b, type: 2}
+  _phaseEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 6e2d84f344115e044b8fbe8619a9d13d, type: 2}
 --- !u!1001 &4959255830665905526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -716,7 +767,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeatManager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1020801392736537925, guid: 43b8848140f1758428d3b77851546651, type: 3}
+    - {fileID: 3001707074899246954, guid: 43b8848140f1758428d3b77851546651, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -729,3 +782,4 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 4959255830665905526}
   - {fileID: 1058237666}
+  - {fileID: 962046679}

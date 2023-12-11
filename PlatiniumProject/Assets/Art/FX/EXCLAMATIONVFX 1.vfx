@@ -18,9 +18,9 @@ MonoBehaviour:
   uiBounds:
     serializedVersion: 2
     x: 655
-    y: -523
+    y: -547
     width: 1573
-    height: 2255
+    height: 2279
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2147,7 +2147,9 @@ MonoBehaviour:
   m_Label: Spawn system
   m_Data: {fileID: 8926484042661614772}
   m_InputFlowSlot:
-  - link: []
+  - link:
+    - context: {fileID: 8926484042661614841}
+      slotIndex: 0
   - link: []
   m_OutputFlowSlot:
   - link:
@@ -4413,7 +4415,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 901, y: -523}
+  m_UIPosition: {x: 1202, y: -547}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -4425,6 +4427,8 @@ MonoBehaviour:
   m_OutputFlowSlot:
   - link:
     - context: {fileID: 8926484042661614555}
+      slotIndex: 0
+    - context: {fileID: 8926484042661614771}
       slotIndex: 0
   eventName: CustomPlay
 --- !u!114 &8926484042661614842

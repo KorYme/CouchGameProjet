@@ -3324,7 +3324,7 @@ Transform:
   m_GameObject: {fileID: 6345053164697669140}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.67, z: 0}
+  m_LocalPosition: {x: 0, y: -1.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3367,37 +3367,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba34506da9e05714394611ec7b903cd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _boardDimension: {x: 5, y: 5}
-  _horizontalSpacing: 1.3
-  _verticalSpacing: 1.1
+  _boardDimension: {x: 4, y: 4}
+  _horizontalSpacing: 1.5
+  _verticalSpacing: 1.3
   _slot: {fileID: 8862334621018384566, guid: 9aec76c18310e334288db65f58a95d3c, type: 3}
   _useShader: 0
   Board:
-  - {fileID: 2287226160662630892}
-  - {fileID: 7333270551887078867}
-  - {fileID: 4744124598771869781}
-  - {fileID: 4678468852378870561}
-  - {fileID: 5874807051929479815}
-  - {fileID: 6906183720227276843}
-  - {fileID: 5088132337456177317}
-  - {fileID: 5829589229679035378}
-  - {fileID: 6591633755765854466}
-  - {fileID: 7183271896087261939}
-  - {fileID: 1917503538903022570}
-  - {fileID: 5771800211350309072}
-  - {fileID: 5651949062897656639}
-  - {fileID: 4390219673706601424}
-  - {fileID: 2352318068867510934}
-  - {fileID: 4479578705598218055}
-  - {fileID: 8136728621131029922}
-  - {fileID: 367304185565405018}
-  - {fileID: 5722783162177650528}
-  - {fileID: 4126422879442258331}
-  - {fileID: 9059014786438836787}
-  - {fileID: 2817581992458943283}
-  - {fileID: 1376259655459287401}
-  - {fileID: 8064367671700851178}
-  - {fileID: 7759150214872696070}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &6355811022997671769
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,19 +10,17 @@ public class CheckHasInputThisBeat
     public CheckHasInputThisBeat(ITimingable timingable)
     {
         _timingable = timingable;
-        _timingable?.OnBeatStartEvent.AddListener(ResetInputThisBeat);
     }
 
     public void ChangeHadInputThisBeat(){
         HadInputThisBeat = true;
     }
-    void ResetInputThisBeat()
+    public void ResetInputThisBeat()
     {
+        if (HadInputThisBeat)
+        {
+            Debug.Log("ACTIVATE BEAT");
+        }
         HadInputThisBeat = false;
-    }
-
-    ~CheckHasInputThisBeat()
-    {
-        _timingable?.OnBeatStartEvent.RemoveListener(ResetInputThisBeat);
     }
 }
