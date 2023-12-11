@@ -180,4 +180,5 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     {
         OnInputChange();
     }
+    public void OnQTEMissedInput() {}
 }

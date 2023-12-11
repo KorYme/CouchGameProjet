@@ -207,4 +207,8 @@ public class BouncerMovement : PlayerMovement, IQTEable
             LetCharacterEnterBox();
         }
     }
+    public void OnQTEMissedInput()
+    {
+
+    }
 }

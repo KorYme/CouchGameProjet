@@ -61,7 +61,10 @@ public class QTEHandlerEvents
     {
         foreach (IMissedInputListener reciever in _missedInputListeners)
         {
-            Debug.Log("MISS");
+            reciever.OnQTEMissedInput();
+        }
+        foreach (IQTEable reciever in _QTEables)
+        {
             reciever.OnQTEMissedInput();
         }
     }
