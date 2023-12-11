@@ -284,6 +284,14 @@ PrefabInstance:
       propertyPath: _sp
       value: 
       objectReference: {fileID: 638873906}
+    - target: {fileID: 1604014851263713326, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _listQTE.Array.size
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604014851263713326, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _listQTE.Array.data[22]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2070372dd61a230488c174cc5182633d, type: 2}
     - target: {fileID: 1876061551124879114, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_Name
       value: ---MainScenePrefab---
@@ -295,6 +303,14 @@ PrefabInstance:
     - target: {fileID: 1980982121051236805, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268863251625885047, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _priestAmountToExorcize
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268863251625885047, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _priestAmountToStartExorcize
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4124807467455219230, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_LocalPosition.x
@@ -344,6 +360,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4976499995342045857, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _timingAfterBeat
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976499995342045857, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _timingBeforeBeat
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 5705632150679731928, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -368,6 +392,14 @@ PrefabInstance:
       propertyPath: _characterArmAnimation
       value: 
       objectReference: {fileID: 926597957}
+    - target: {fileID: 7102948169154359438, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _pressingBuildUpTime
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7102948169154359438, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _releasingBuildUpTime
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7762453092001221556, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -375,6 +407,10 @@ PrefabInstance:
     - target: {fileID: 7762453092001221556, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8566633219856345703, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _useTutorial
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
