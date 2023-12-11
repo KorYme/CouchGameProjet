@@ -12,6 +12,12 @@ public class BouncerMovement : PlayerMovement, IQTEable
         CHECKING,
         IDLE
     }
+    public enum CHECKING_STATE
+    {
+        CHECKING,
+        QTE,
+        NONE
+    }
 
     [Space, Header("Bouncer Parameters")]
     [SerializeField] private AreaManager _areaManager;
@@ -24,7 +30,8 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     protected override PlayerRole PlayerRole => PlayerRole.Bouncer;
     private BouncerQTEController _qteController;
-
+    private bool _isInDrop = false;
+    private CHECKING_STATE _checkingState = CHECKING_STATE.NONE;
     private void Awake()
     {
         _qteController = GetComponent<BouncerQTEController>();
@@ -63,7 +70,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     protected override void OnInputMove(Vector2 vector)
     {
-        if (_currentState == BOUNCER_STATE.MOVING)
+        if (_currentState == BOUNCER_STATE.MOVING && !_isInDrop)
         {
             Move((int)GetClosestDirectionFromVector(vector));
         }
@@ -121,9 +128,10 @@ public class BouncerMovement : PlayerMovement, IQTEable
     {
         CorrectDestination(pos + new Vector3(_areaManager.BouncerBoard.HorizontalSpacing , 0, 0));
         _qteController?.OpenBubble();
+        _checkingState = CHECKING_STATE.CHECKING;
         while (true)
         {
-            if (_playerController.Action1.InputValue) //ACCEPT
+            if (!_isInDrop && _playerController.Action1.InputValue) //ACCEPT
             {
                 if ((_currentClient.StateMachine.CharacterDataObject.isTutorialNpc &&
                      _currentClient.StateMachine.TypeData.Evilness == Evilness.GOOD) ||
@@ -138,7 +146,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
                 }
                 
             }
-            if (_playerController.Action3.InputValue)//REFUSE + evil character
+            if (!_isInDrop && _playerController.Action3.InputValue)//REFUSE + evil character
             {
                 if ((_currentClient.StateMachine.CharacterDataObject.isTutorialNpc &&
                      _currentClient.StateMachine.TypeData.Evilness == Evilness.EVIL) ||
@@ -149,6 +157,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
                     _currentClient.StateMachine.CharacterAnimation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.EXCLAMATION);
                     if (_currentClient.StateMachine.TypeData.Evilness == Evilness.EVIL)
                     {
+                        _checkingState = CHECKING_STATE.QTE;
                         _qteController?.StartQTE(_currentClient.StateMachine.TypeData);
                     } else
                     {
@@ -166,6 +175,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     public void LetCharacterEnterBox()
     {
+        _checkingState = CHECKING_STATE.NONE;
         _currentClient.BouncerAction(true);
         _currentState = BOUNCER_STATE.MOVING;
         //_animation.SetAnim(ANIMATION_TYPE.IDLE);
@@ -183,6 +193,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     private void RefuseCharacterEnterBox()
     {
+        _checkingState = CHECKING_STATE.NONE;
         if (_currentClient.StateMachine.CharacterDataObject.isTutorialNpc)
         {
             Globals.TutorialManager.HandledTutoCharacter++;
@@ -210,5 +221,18 @@ public class BouncerMovement : PlayerMovement, IQTEable
     public void OnQTEMissedInput()
     {
 
+    }
+
+    protected override void OnBeginDrop()
+    {
+        _isInDrop = true;
+        _qteController.OnBeginDrop();
+    }
+
+    protected override void OnDropEnd()
+    {
+        _isInDrop = false;
+        
+        _qteController.OnDropEnd(_checkingState);
     }
 }
