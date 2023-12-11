@@ -31,7 +31,7 @@ public class UIPlayerConnected : MonoBehaviour
 
     void ModifyText()
     {
-        _textDisplay.text = "Player " + (_indexPlayer + 1) + " connected";
+        _textDisplay.text = "PLAYER " + (_indexPlayer + 1) + " CONNECTED";
     }
 
     private void OnDestroy()
