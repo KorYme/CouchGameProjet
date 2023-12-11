@@ -46,6 +46,11 @@ public class VfxHandeler : MonoBehaviour
 
     public void PlayVfx(VFX_TYPE type, int vfxCount = 1)
     {
+        if (!_vfxDict.ContainsKey(type))
+        {
+            //Debug.LogWarning("BEBOU LE DICO EST VIDE");
+            return;
+        }
         for (int i = 0; i < vfxCount; i++)
         {
             _vfxDict[type]?.SendEvent("CustomPlay");

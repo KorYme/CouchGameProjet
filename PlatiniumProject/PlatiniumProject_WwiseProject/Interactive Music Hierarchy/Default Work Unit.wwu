@@ -910,7 +910,7 @@
 													</PropertyList>
 													<ReferenceList>
 														<Reference Name="DefaultSwitchOrState">
-															<ObjectRef Name="No" ID="{BB8A4A28-E909-4E78-84F8-DD7C69897827}" WorkUnitID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}"/>
+															<ObjectRef Name="None" ID="{AF64F748-CA5A-4360-A379-4F2B0C883054}" WorkUnitID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}"/>
 														</Reference>
 														<Reference Name="OutputBus">
 															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
@@ -1000,7 +1000,7 @@
 													</PropertyList>
 													<ReferenceList>
 														<Reference Name="DefaultSwitchOrState">
-															<ObjectRef Name="No" ID="{FD76BA71-31F8-46AA-AB57-13A7589800A3}" WorkUnitID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}"/>
+															<ObjectRef Name="None" ID="{8F1B7F54-EA21-427F-9B0B-E25FB881C933}" WorkUnitID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}"/>
 														</Reference>
 														<Reference Name="OutputBus">
 															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
@@ -1090,7 +1090,7 @@
 													</PropertyList>
 													<ReferenceList>
 														<Reference Name="DefaultSwitchOrState">
-															<ObjectRef Name="No" ID="{1A95BD9C-2862-44A3-B66B-BE1300F23746}" WorkUnitID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}"/>
+															<ObjectRef Name="None" ID="{289FDEEA-708B-4F10-BBB7-25A32CA9C76F}" WorkUnitID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}"/>
 														</Reference>
 														<Reference Name="OutputBus">
 															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
@@ -1187,7 +1187,7 @@
 															<MusicCue Name="Exit Cue" ID="{2A992893-A3A5-4D66-8091-DDB91B1C71AD}">
 																<PropertyList>
 																	<Property Name="CueType" Type="int16" Value="1"/>
-																	<Property Name="TimeMs" Type="Real64" Value="4800"/>
+																	<Property Name="TimeMs" Type="Real64" Value="19200"/>
 																</PropertyList>
 															</MusicCue>
 														</Local>
@@ -2007,7 +2007,7 @@
 															<MusicCue Name="Exit Cue" ID="{69164582-ED01-4C37-91FC-3B0B275EA179}">
 																<PropertyList>
 																	<Property Name="CueType" Type="int16" Value="1"/>
-																	<Property Name="TimeMs" Type="Real64" Value="4173.91304347826"/>
+																	<Property Name="TimeMs" Type="Real64" Value="16695.652173913"/>
 																</PropertyList>
 															</MusicCue>
 														</Local>
@@ -2819,7 +2819,7 @@
 															<MusicCue Name="Exit Cue" ID="{2FC6DF20-1008-4BFF-A64E-AA8986266212}">
 																<PropertyList>
 																	<Property Name="CueType" Type="int16" Value="1"/>
-																	<Property Name="TimeMs" Type="Real64" Value="3692.30769230769"/>
+																	<Property Name="TimeMs" Type="Real64" Value="14769.2307692308"/>
 																</PropertyList>
 															</MusicCue>
 														</Local>
