@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BouncerMovement : PlayerMovement, IQTEable
 {
@@ -144,6 +145,8 @@ public class BouncerMovement : PlayerMovement, IQTEable
                     !_currentClient.StateMachine.CharacterDataObject.isTutorialNpc)
                 {
                     _animation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.NO);
+                    _currentClient.StateMachine.CharacterAnimation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.CHOC);
+                    _currentClient.StateMachine.CharacterAnimation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.EXCLAMATION);
                     if (_currentClient.StateMachine.TypeData.Evilness == Evilness.EVIL)
                     {
                         _qteController?.StartQTE(_currentClient.StateMachine.TypeData);
@@ -194,8 +197,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     public void OnQTECorrectInput()
     {
-        _animation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.CHOC);
-        _animation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.ECLAIR, 3);
+        _currentClient.StateMachine.CharacterAnimation.VfxHandeler.PlayVfx( Random.Range(0,2) == 1 ? VfxHandeler.VFX_TYPE.BLUE_IMPACT : VfxHandeler.VFX_TYPE.RED_IMPACT);
     }
 
     public void OnQTEWrongInput()
