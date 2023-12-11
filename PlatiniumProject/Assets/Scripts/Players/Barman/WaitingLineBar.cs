@@ -73,7 +73,6 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             }
         }
         GetNextCharacter();
-        _barmanController.onDrinkComplete?.Invoke();
     }
 
      public void PriestForceEnterance()

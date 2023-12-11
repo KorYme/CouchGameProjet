@@ -470,16 +470,6 @@
 						</Event>
 						<Event Name="Set_State_Phase_2" ID="{4825D36E-9C71-49CF-B697-5FC4F66E4FB7}">
 							<ChildrenList>
-								<Action Name="" ID="{F2CAC971-0A96-43FC-B65F-A35B2EE4E39B}" ShortID="1045089422">
-									<PropertyList>
-										<Property Name="ActionType" Type="int16" Value="22"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Phase_2" ID="{C8D0BD07-4F60-47A0-BB58-51A97EB8D52C}" WorkUnitID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
 								<Action Name="" ID="{B96539DA-C492-4CE8-B229-F64A9A360D17}" ShortID="722425818">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="41"/>
@@ -487,6 +477,16 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="Set_State_Music_Default" ID="{74FEB492-2655-4211-B6EC-20366242308B}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{F2CAC971-0A96-43FC-B65F-A35B2EE4E39B}" ShortID="1045089422">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Phase_2" ID="{C8D0BD07-4F60-47A0-BB58-51A97EB8D52C}" WorkUnitID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -524,16 +524,6 @@
 						</Event>
 						<Event Name="Set_State_Phase_1" ID="{B7005640-9434-450F-8B58-09D35064A939}">
 							<ChildrenList>
-								<Action Name="" ID="{E2C92AC0-BF27-48EC-AC46-4FFBD274ACC1}" ShortID="24757072">
-									<PropertyList>
-										<Property Name="ActionType" Type="int16" Value="22"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Phase_1" ID="{07001DB6-4F40-4AA4-B66D-3D6464C860D7}" WorkUnitID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
 								<Action Name="" ID="{6F83C884-DFCA-47D0-8C19-D285A0103D4D}" ShortID="704604664">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="41"/>
@@ -541,6 +531,16 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="Set_State_Music_Default" ID="{74FEB492-2655-4211-B6EC-20366242308B}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{E2C92AC0-BF27-48EC-AC46-4FFBD274ACC1}" ShortID="24757072">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Phase_1" ID="{07001DB6-4F40-4AA4-B66D-3D6464C860D7}" WorkUnitID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -578,16 +578,6 @@
 						</Event>
 						<Event Name="Set_State_Phase_3" ID="{6A0C4743-B5AE-406F-9CE0-C0F60CBBA91B}">
 							<ChildrenList>
-								<Action Name="" ID="{40935A48-6E64-42FD-B068-13541B9E50B7}" ShortID="762539825">
-									<PropertyList>
-										<Property Name="ActionType" Type="int16" Value="22"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Phase_3" ID="{DE4DE939-F21A-4497-A624-61E58F766939}" WorkUnitID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
 								<Action Name="" ID="{F47F82EF-E07E-4323-A8C0-8D0FE1E91461}" ShortID="58860812">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="41"/>
@@ -595,6 +585,16 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="Set_State_Music_Default" ID="{74FEB492-2655-4211-B6EC-20366242308B}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{40935A48-6E64-42FD-B068-13541B9E50B7}" ShortID="762539825">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Phase_3" ID="{DE4DE939-F21A-4497-A624-61E58F766939}" WorkUnitID="{A9687EF0-C7A4-47BD-B4A5-52ABCE68F8AC}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

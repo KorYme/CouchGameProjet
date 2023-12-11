@@ -1,45 +1,44 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class TestBeat : MonoBehaviour
 {
     [SerializeField, Range(0f, 1f)] float _offsetTest;
     [SerializeField] SpriteRenderer _spriteRenderer;
+    [SerializeField] AK.Wwise.Event _musicEvent, _phaseEvent;
 
-    BeatManager _beatManager;
     DateTime _lastBeatTiming;
     Coroutine _offsetCoroutine;
+    float _timer;
 
     private void Reset()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Start()
+    IEnumerator Start()
     {
         _lastBeatTiming = DateTime.Now;
-        _beatManager = Globals.BeatManager as BeatManager;
+        yield return null;
+        Debug.Log("Salut");
+        _musicEvent?.Post(gameObject, (uint)AkCallbackType.AK_MusicSyncGrid | (uint)AkCallbackType.AK_MusicSyncEntry, BeatCallBack);
+        _phaseEvent?.Post(gameObject);
+    }
+
+    private void BeatCallBack(object in_cookie, AkCallbackType in_type, AkCallbackInfo in_info)
+    {
+        _timer = 0f;
     }
 
     private void Update()
     {
+        _timer += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            double deltaTime = _beatManager.BeatDeltaTime;
-            if (deltaTime < _beatManager.BeatDurationInMilliseconds / 2f)
-            {
-                Debug.Log($"Input at {deltaTime}");
-            }
-            else
-            {
-                Debug.Log($"Input at {deltaTime - _beatManager.BeatDurationInMilliseconds}");
-            }
-            if (_beatManager.IsInsideBeatWindow)
-            {
-                StartCoroutine(ChangeColorOnBeat());
-            }
+            Debug.Log(_timer);
         }
     }
 
