@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e34363c99762c408a85174f95cf067, type: 3}
   m_Name: HoldRumble_Barman_Sake
   m_EditorClassIdentifier: 
-  rumbleName: 
+  rumbleName: BarMan_Rumble
   isHolding: 1
   time: 0
   rumbleCurve:
