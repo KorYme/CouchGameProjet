@@ -45,10 +45,11 @@ public class DropManager : MonoBehaviour
         private set
         {
             _dropState = value;
-            DropStateChange(value);
+            OnDropStateChange?.Invoke(value);
         }
     }
     public bool CanYouLetMeMove => _dropState == DROP_STATE.OUT_OF_DROP;
+    public event Action<DROP_STATE> OnDropStateChange;
     public event Action OnBeginBuildUp;
     public event Action OnDropLoaded;
     public event Action OnDropSuccess;
@@ -64,6 +65,11 @@ public class DropManager : MonoBehaviour
     private void Awake()
     {
         Globals.DropManager ??= this;
+        OnDropSuccess += () => _onDropSuccess?.Invoke();
+        OnDropFail += () => _onDropFail?.Invoke();
+        OnBeginBuildUp += () => _onBeginBuildUp?.Invoke();
+        OnDropLoaded += () => _onDropTriggered?.Invoke();
+        OnDropStateChange += DropStateChange;
     }
 
     private void Start()
@@ -72,28 +78,27 @@ public class DropManager : MonoBehaviour
         _triggerPressedNumber = 0;
         _currentPhase = 0;
         DropState = DROP_STATE.OUT_OF_DROP;
-        OnDropSuccess += () => _onDropSuccess?.Invoke();
-        OnDropFail += () => _onDropFail?.Invoke();
-        OnBeginBuildUp += () => _onBeginBuildUp?.Invoke();
-        OnDropLoaded += () => _onDropTriggered?.Invoke();
         OnDropLoaded += () => _dropAnimationBehaviour.gameObject.SetActive(true);
         _beatManager.OnUserCueReceived += CheckUserCueName;
-        _dropAnimationBehaviour.OnDropAnimationClimax += () => DropState = DROP_STATE.ON_DROP_RELEASING;
+        _dropAnimationBehaviour.OnDropAnimationClimax += CheckAnimationClimax;
     }
 
     private void OnDestroy()
     {
         _beatManager.OnUserCueReceived -= CheckUserCueName;
-        _dropAnimationBehaviour.OnDropAnimationClimax -= () => DropState = DROP_STATE.ON_DROP_RELEASING;
+        _dropAnimationBehaviour.OnDropAnimationClimax -= CheckAnimationClimax;
+    }
+
+    void CheckAnimationClimax()
+    {
+        if (DropState != DROP_STATE.ON_DROP_WAIT_FOR_RELEASE) return;
+        DropState = DROP_STATE.ON_DROP_RELEASING;
     }
 
     private void DropStateChange(DROP_STATE newState)
     {
         switch (newState)
         {
-            case DROP_STATE.ON_DROP_PRESSING:   
-                _allDropControllers.ForEach(x => x.DisplayTriggers(true));
-                break;
             case DROP_STATE.ON_DROP_MISSED:
                 _dropMissEvent?.Post(gameObject);
                 OnDropFail?.Invoke();
@@ -101,9 +106,6 @@ public class DropManager : MonoBehaviour
             case DROP_STATE.ON_DROP_SUCCESS:
                 _dropSuccessEvent?.Post(gameObject);
                 OnDropSuccess?.Invoke();
-                break;
-            case DROP_STATE.OUT_OF_DROP:
-                _allDropControllers.ForEach(x => x.DisplayTriggers(false));
                 break;
             default:
                 break;
