@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum Direction
 {
@@ -24,6 +25,7 @@ public class DJController : MonoBehaviour, IIsControllable
 
     PlayerInputController _djInputController;
     DJQTEController _djQTEController;
+    [SerializeField] private UnityEvent _onMove;
 
     RollInputChecker _rollRightJoystick;
     RollInputChecker _rollLeftJoystick;
@@ -75,6 +77,7 @@ public class DJController : MonoBehaviour, IIsControllable
     {
         if (!_isInDrop && _shapesLight.TrueForAll(x => x.Neighbours[(int)direction] != null))
         {
+            _onMove?.Invoke();
             List<SlotInformation> newList = new();
             _shapesLight.ForEach(x => newList.Add(x.Neighbours[(int)direction]));
             UpdateLightTiles(newList);
