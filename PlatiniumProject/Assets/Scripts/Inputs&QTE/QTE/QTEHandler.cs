@@ -215,11 +215,9 @@ public class QTEHandler : MonoBehaviour, IIsControllable
             if (currentActionID == expectedActionID)
             {
                 _inputsSucceeded[_indexInSequence] = QTE_STATE.IS_PRESSED;
-                Debug.Log($"INDEX {_indexInListSequences} {_currentListSequences.Length} {_currentListSequences.TotalLengthInputs}");
                 _currentListSequences.SetInputSucceeded(_indexInListSequences, QTE_STATE.IS_PRESSED);
                 _indexInSequence++;
                 _indexInListSequences++;
-                Debug.Log($"INDEX {_indexInListSequences} BEAT");
                 _events?.CallOnCorrectInput();
             }
             else
@@ -228,7 +226,6 @@ public class QTEHandler : MonoBehaviour, IIsControllable
                 {
                     _indexInSequence++;
                     _indexInListSequences++;
-                    Debug.Log($"INDEX {_indexInListSequences} NOT BEAT");
                 }
                 _events?.CallOnWrongInput();
             }
