@@ -32,10 +32,10 @@ public class EntityMovement : MonoBehaviour, IMovable
         set { if(value != null) _movementData = value; }
     }
     
-    public virtual bool MoveToPosition(Vector3 position)
+    public virtual bool MoveToPosition(Vector3 position, bool mustTeleport = false)
     {
         if (IsMoving) return false;
-        _movementCoroutine = StartCoroutine(MovementCoroutineAnimation(position));
+        _movementCoroutine = StartCoroutine(mustTeleport ? MoveRoutineTP(position) : MovementCoroutineAnimation(position));
         return true;
     }
 
@@ -72,14 +72,31 @@ public class EntityMovement : MonoBehaviour, IMovable
         _transformToModify.position = _destination;
         _movementCoroutine = null;
     }
-
-    // private IEnumerator AnimationRoutine(int loop, float duration, Action callBack)
-    // {
-    //     for (int i = 0; i < loop - 1; i++)
-    //     {
-    //         callBack?.Invoke();
-    //         yield return new WaitForSeconds(duration);
-    //     }
-    //     _animRoutine = null;
-    // }
+    
+    IEnumerator MoveRoutineTP(Vector3 newDestination)
+    {
+        float timer = 0f;
+        float percentage = 0f;
+        while (timer < _TimeBetweenMovements)
+        {
+            timer += Time.deltaTime;
+            percentage = _movementData.MovementCurve.Evaluate(timer / _TimeBetweenMovements);
+            _characterAnimation.Sp.material.SetFloat("_Fade", Mathf.Lerp(1,0, percentage));
+            Debug.Log(_characterAnimation.Sp.material.GetFloat("_Fade"));
+            
+            yield return null;
+        }
+        transform.position = newDestination;
+        
+        timer = 0;
+        percentage = 0;
+        while (timer < _TimeBetweenMovements)
+        {
+            timer += Time.deltaTime;
+            percentage = _movementData.MovementCurve.Evaluate(timer/ _TimeBetweenMovements);
+            _characterAnimation.Sp.material.SetFloat("_Fade", Mathf.Lerp(0,1, percentage));
+            yield return null;
+        }
+        _movementCoroutine = null;
+    }
 }

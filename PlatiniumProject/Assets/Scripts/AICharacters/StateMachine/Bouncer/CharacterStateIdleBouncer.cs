@@ -29,6 +29,7 @@ public class CharacterStateIdleBouncer : CharacterState
         if (!StateMachine.CharacterDataObject.isTutorialNpc && StateMachine.CurrentMovementInBouncer > StateMachine.CharacterDataObject.movementAmountInQueue)
         {
             StateMachine.CurrentSlot.Occupant = null;
+            StateMachine.UseTp = true;
             StateMachine.ChangeState(StateMachine.RoamState);
             StateMachine.NextState = StateMachine.BarManQueueState;
         }
