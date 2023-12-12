@@ -312,9 +312,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _syncEvents: {fileID: 11400000, guid: 3d177a6915f7ab741a5d1e108a78e228, type: 2}
-  _rtImage: {fileID: 0}
-  _ltImage: {fileID: 0}
   _playerRole: 0
+  OnHoldDrop:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDropDrop:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8956483046599270321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,9 +363,6 @@ MonoBehaviour:
   - idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 5298782d780800d4db8ed284058057ae, type: 2}
-  - idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: ff3efe8f09e04be449efc6906b056206, type: 2}
 --- !u!1 &6454385579514867624
 GameObject:
   m_ObjectHideFlags: 0
