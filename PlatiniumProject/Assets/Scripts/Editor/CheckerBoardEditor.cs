@@ -22,7 +22,6 @@ public class CheckerBoardEditor : Editor
         {
             checkerBoard.RenameSlots();
         }
-
         if (GUI.changed)
             EditorUtility.SetDirty(target);
     }
