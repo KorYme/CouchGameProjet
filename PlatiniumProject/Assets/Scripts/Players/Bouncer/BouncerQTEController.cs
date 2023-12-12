@@ -1,6 +1,8 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 using static BouncerMovement;
 using static UnityEngine.Rendering.DebugUI;
 
@@ -9,7 +11,8 @@ public class BouncerQTEController : MonoBehaviour, IQTEable
     QTEHandler _qteHandler;
     private CharacterAnimation _characterAnimation;
     private BouncerMovement _bouncerMovement;
-
+    
+    [FormerlySerializedAs("_onPunch")] [SerializeField] UnityEvent OnPunch;
     #region Events
     public event Action<string> OnBouncerQTEStarted;
     public event Action<string> OnBouncerQTEEnded; //Arg1 peut être enlevé
@@ -53,6 +56,7 @@ public class BouncerQTEController : MonoBehaviour, IQTEable
         OnBouncerQTEChanged?.Invoke(_qteHandler.GetCurrentInputString());
         _characterAnimation.SetLatency(2);
         _characterAnimation.SetAnim(ANIMATION_TYPE.FIGHT, false);
+        OnPunch?.Invoke();
         
     }
 

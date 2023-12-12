@@ -16,8 +16,7 @@ public class DJQTEController : MonoBehaviour, IQTEable
     public event Action<string> OnDJQTEStarted;
     public event Action<string> OnDJQTEEnded;
     public event Action<string> OnDJQTEChanged;
-    [SerializeField] UnityEvent _onDJSuccess; 
-    [SerializeField] UnityEvent _onDJFail;
+    [SerializeField] UnityEvent _onDJSuccess;
     #endregion
 
     private void Awake()
