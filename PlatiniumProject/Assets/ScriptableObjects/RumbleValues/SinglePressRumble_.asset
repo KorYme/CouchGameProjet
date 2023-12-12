@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e34363c99762c408a85174f95cf067, type: 3}
+  m_Name: SinglePressRumble_
+  m_EditorClassIdentifier: 
+  rumbleName: Game_Over
+  isHolding: 0
+  time: 0
+  rumbleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.19862181
+      value: 0.9023054
+      inSlope: 0.45543298
+      outSlope: 0.45543298
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.3586746
+    - serializedVersion: 3
+      time: 0.54753554
+      value: 0.9017749
+      inSlope: -0.014762974
+      outSlope: -0.014762974
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.12866306
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.69855005
+      value: 0.009514809
+      inSlope: -0.32149684
+      outSlope: -0.32149684
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.114174165
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
