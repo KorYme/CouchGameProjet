@@ -45,10 +45,11 @@ public class DropManager : MonoBehaviour
         private set
         {
             _dropState = value;
-            DropStateChange(value);
+            OnDropStateChange?.Invoke(value);
         }
     }
     public bool CanYouLetMeMove => _dropState == DROP_STATE.OUT_OF_DROP;
+    public event Action<DROP_STATE> OnDropStateChange;
     public event Action OnBeginBuildUp;
     public event Action OnDropLoaded;
     public event Action OnDropSuccess;
@@ -60,10 +61,17 @@ public class DropManager : MonoBehaviour
     List<DropController> _allDropControllers = new();
     public List<DropController> AllDropControllers => _allDropControllers;
     public float PressingSynchronizationTime => _pressingSynchronizationTime;
+    public bool IsGamePlaying {  get; private set; }
 
     private void Awake()
     {
         Globals.DropManager ??= this;
+        OnDropSuccess += () => _onDropSuccess?.Invoke();
+        OnDropFail += () => _onDropFail?.Invoke();
+        OnBeginBuildUp += () => _onBeginBuildUp?.Invoke();
+        OnDropLoaded += () => _onDropTriggered?.Invoke();
+        OnDropStateChange += DropStateChange;
+        IsGamePlaying = true;
     }
 
     private void Start()
@@ -72,13 +80,14 @@ public class DropManager : MonoBehaviour
         _triggerPressedNumber = 0;
         _currentPhase = 0;
         DropState = DROP_STATE.OUT_OF_DROP;
-        OnDropSuccess += () => _onDropSuccess?.Invoke();
-        OnDropFail += () => _onDropFail?.Invoke();
-        OnBeginBuildUp += () => _onBeginBuildUp?.Invoke();
-        OnDropLoaded += () => _onDropTriggered?.Invoke();
         OnDropLoaded += () => _dropAnimationBehaviour.gameObject.SetActive(true);
         _beatManager.OnUserCueReceived += CheckUserCueName;
         _dropAnimationBehaviour.OnDropAnimationClimax += CheckAnimationClimax;
+        OnGameEnd += () =>
+        {
+            IsGamePlaying = false;
+            _beatManager.StopBeat();
+        };
     }
 
     private void OnDestroy()

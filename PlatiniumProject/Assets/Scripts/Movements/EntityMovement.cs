@@ -81,7 +81,7 @@ public class EntityMovement : MonoBehaviour, IMovable
         {
             timer += Time.deltaTime;
             percentage = _movementData.MovementCurve.Evaluate(timer / _TimeBetweenMovements);
-            _characterAnimation.Sp.material.SetFloat("_Fade", Mathf.Lerp(1,0, percentage));
+            _characterAnimation.Sp.material.SetFloat("_Fade", Mathf.Lerp(1,0, percentage));            
             yield return null;
         }
         transform.position = newDestination;
