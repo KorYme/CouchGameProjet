@@ -107,6 +107,7 @@ public class QTEHandler : MonoBehaviour, IIsControllable
     public void StartQTE()    {        if (_currentListSequences.Length > 0)
         {
             _indexOfSequence = 0;
+            _indexInListSequences = 0;
             _currentListSequences.SetUpList();
             StartSequenceDependingOntype();
         }    }
@@ -214,9 +215,11 @@ public class QTEHandler : MonoBehaviour, IIsControllable
             if (currentActionID == expectedActionID)
             {
                 _inputsSucceeded[_indexInSequence] = QTE_STATE.IS_PRESSED;
+                Debug.Log($"INDEX {_indexInListSequences} {_currentListSequences.Length} {_currentListSequences.TotalLengthInputs}");
                 _currentListSequences.SetInputSucceeded(_indexInListSequences, QTE_STATE.IS_PRESSED);
                 _indexInSequence++;
                 _indexInListSequences++;
+                Debug.Log($"INDEX {_indexInListSequences} BEAT");
                 _events?.CallOnCorrectInput();
             }
             else
@@ -225,6 +228,7 @@ public class QTEHandler : MonoBehaviour, IIsControllable
                 {
                     _indexInSequence++;
                     _indexInListSequences++;
+                    Debug.Log($"INDEX {_indexInListSequences} NOT BEAT");
                 }
                 _events?.CallOnWrongInput();
             }

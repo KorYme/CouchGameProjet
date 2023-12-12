@@ -36,7 +36,10 @@ public class DisplayDJQTE : MonoBehaviour
 
     private void OnDJQTEStarted(string qteString)
     {
-        _bubbleObject.SetActive(true);
-        _qteDisplay.text = qteString;
+        if (qteString != string.Empty)
+        {
+            _bubbleObject.SetActive(true);
+            _qteDisplay.text = qteString;
+        }
     }
 }

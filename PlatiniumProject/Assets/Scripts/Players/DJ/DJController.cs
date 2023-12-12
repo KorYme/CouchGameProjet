@@ -140,9 +140,11 @@ public class DJController : MonoBehaviour, IIsControllable
     private void OnBeginDrop()
     {
         _isInDrop = true;
+        _djQTEController.OnBeginDrop();
     }
     private void OnDropEnd()
     {
         _isInDrop = false;
+        _djQTEController.OnDropEnd();
     }
 }
