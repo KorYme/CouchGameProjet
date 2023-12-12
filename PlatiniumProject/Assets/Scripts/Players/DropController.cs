@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class DropController : MonoBehaviour, IIsControllable
 {
     [SerializeField] PlayerSyncEvents _syncEvents;
-    [SerializeField] Image _rtImage, _ltImage;
     [SerializeField] PlayerRole _playerRole;
 
     TriggerInputCheck _triggerInputCheckRT;
@@ -27,8 +26,6 @@ public class DropController : MonoBehaviour, IIsControllable
 
     private IEnumerator Start()
     {
-        _ltImage.enabled = false;
-        _rtImage.enabled = false;
         yield return new WaitWhile(() => Players.PlayersController[(int)_playerRole] == null);
         Players.AddListenerPlayerController(this);
         _triggerInputCheckRT = new TriggerInputCheck(Players.PlayersController[(int)_playerRole].RT, Globals.DropManager.InputDeadZone);
@@ -36,8 +33,6 @@ public class DropController : MonoBehaviour, IIsControllable
         _triggerInputCheckRT.OnTriggerPerformed += value => CheckTriggerState(_triggerInputCheckLT, value);
         _triggerInputCheckLT.OnTriggerPerformed += value => CheckTriggerState(_triggerInputCheckRT, value);
         Globals.DropManager.AllDropControllers.Add(this);
-        _triggerInputCheckRT.OnTriggerStateChange += state => _rtImage.color = ChangeColor(state);
-        _triggerInputCheckLT.OnTriggerStateChange += state => _ltImage.color = ChangeColor(state);
         _syncEvents[_playerRole].isNotSyncEvent?.Post(gameObject);
     }
 
@@ -48,8 +43,6 @@ public class DropController : MonoBehaviour, IIsControllable
         _triggerInputCheckRT.OnTriggerPerformed -= value => CheckTriggerState(_triggerInputCheckLT, value);
         _triggerInputCheckLT.OnTriggerPerformed -= value => CheckTriggerState(_triggerInputCheckRT, value);
         Globals.DropManager?.AllDropControllers.Remove(this);
-        _triggerInputCheckRT.OnTriggerStateChange -= state => _rtImage.color = ChangeColor(state);
-        _triggerInputCheckLT.OnTriggerStateChange -= state => _ltImage.color = ChangeColor(state);
     }
 
     void CheckTriggerState(TriggerInputCheck trigger, bool value)
@@ -100,12 +93,6 @@ public class DropController : MonoBehaviour, IIsControllable
             default:
                 return Color.white;
         }
-    }
-
-    public void DisplayTriggers(bool enableTriggers)
-    {
-        _ltImage.gameObject.SetActive(enableTriggers);
-        _rtImage.gameObject.SetActive(enableTriggers);
     }
 
     public void ChangeController()
