@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEngine.Rendering.DebugUI;
 
 public class BarmanMovement : PlayerMovement
 {
@@ -14,6 +15,7 @@ public class BarmanMovement : PlayerMovement
     protected override PlayerRole PlayerRole => PlayerRole.Barman;
     
     public bool IsInQte { get; set; }
+    private bool _isInDrop = false;
 
     private void Awake()
     {
@@ -84,15 +86,16 @@ public class BarmanMovement : PlayerMovement
 
     protected override void OnInputMove(Vector2 vector)
     {
-        ChangeIndexToReach(vector.x);
+        if (!_isInDrop)
+            ChangeIndexToReach(vector.x);
     }
 
-    void ActivateCurrentQTE()
+    public void ActivateCurrentQTE()
     {
         _barmanPositions[_indexPosition].WaitingLine.PauseQTE(false);
     }
     
-    void DeactivateCurrentQTE()
+    public void DeactivateCurrentQTE()
     {
         _barmanPositions[_indexPosition].WaitingLine.PauseQTE(true);
     }
@@ -103,5 +106,17 @@ public class BarmanMovement : PlayerMovement
         {
             _barmanPositions[i].WaitingLine.PauseQTE(true);
         }
+    }
+
+    protected override void OnBeginDrop()
+    {
+        _isInDrop = true;
+        _barmanPositions[_indexPosition].WaitingLine.PauseQTEForDrop(true);
+    }
+
+    protected override void OnDropEnd()
+    {
+        _isInDrop = false;
+        _barmanPositions[_indexPosition].WaitingLine.PauseQTEForDrop(false);
     }
 }

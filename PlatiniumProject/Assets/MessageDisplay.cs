@@ -7,7 +7,8 @@ using UnityEngine;
 
 public class MessageDisplay : MonoBehaviour
 {
-    [SerializeField] private TMP_Text text;
+    [SerializeField] private TMP_Text _text;
+    [SerializeField] private List<GameObject> _gameObjects;
 
     [SerializeField] private float _offSetValue;
     [SerializeField] private float _delayBetweenTween;
@@ -24,8 +25,9 @@ public class MessageDisplay : MonoBehaviour
 
     public void DisplayMessage()
     {
-        text.gameObject.SetActive(true);
-        DOTweenTMPAnimator animator = new DOTweenTMPAnimator(text);
+        _text.gameObject.SetActive(true);
+        _gameObjects.ForEach(gameObject => gameObject.SetActive(true));
+        DOTweenTMPAnimator animator = new DOTweenTMPAnimator(_text);
         Sequence sequence = DOTween.Sequence();
         for (int i = 0; i < animator.textInfo.characterCount; ++i)
         {
@@ -43,5 +45,10 @@ public class MessageDisplay : MonoBehaviour
         sequence.Append(animator.DOColorChar(animator.textInfo.characterCount - 1, Color.red, .1f));
         sequence.Append(animator.DOScaleChar(animator.textInfo.characterCount - 1, Vector3.one * 2, .5f)).SetLoops(2, LoopType.Yoyo);
         sequence.Join(animator.DOPunchCharRotation(animator.textInfo.characterCount - 1, new Vector3(0,0,75), .5f, 10, 50f).SetEase(Ease.InOutFlash)).SetLoops(2, LoopType.Yoyo);
+        sequence.onComplete += () =>
+        {
+            _text.gameObject.SetActive(false);
+            _gameObjects.ForEach(gameObject => gameObject.SetActive(false));
+        };
     }
 }

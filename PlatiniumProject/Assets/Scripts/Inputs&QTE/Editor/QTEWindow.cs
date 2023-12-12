@@ -293,6 +293,13 @@ public class QTEWindow : EditorWindow
                         _selectedQTE.DurationHold = EditorGUILayout.IntField(_selectedQTE.DurationHold);
                     }
                 GUILayout.EndHorizontal();
+                GUILayout.BeginHorizontal();
+                if (_selectedQTE.Status == InputStatus.LONG)
+                {
+                    EditorGUILayout.LabelField("Long input type", GUILayout.Width(100));
+                    _selectedQTE.LongInputType = (LongInputType)EditorGUILayout.EnumPopup(_selectedQTE.LongInputType);
+                }
+                GUILayout.EndHorizontal();
                 EditorGUILayout.Space();
                 GUILayout.BeginHorizontal();
                     EditorGUILayout.LabelField("Role", GUILayout.Width(50));
@@ -360,14 +367,19 @@ public class QTEWindow : EditorWindow
             if (_rewiredInputManager != null)
             {
                 InputActionType rewiredInputType = ReInput.mapping.GetAction(input.ActionIndex).type;
-                if (rewiredInputType == InputActionType.Axis && _selectedQTE.Status == InputStatus.SHORT)
+                if (rewiredInputType == InputActionType.Axis)
                 {
-                    input.PositiveValue = EditorGUILayout.Toggle("Is a positive value",input.PositiveValue);
+                    if (_selectedQTE.Status == InputStatus.SHORT)
+                    {
+                        input.PositiveValue = EditorGUILayout.Toggle("Is a positive value",input.PositiveValue);
+                    } else if (_selectedQTE.LongInputType == LongInputType.SHAKE)
+                    {
+                        input.UseForShake = EditorGUILayout.Toggle("Use for shaking", input.UseForShake);
+                    }
                 }
             } else
             {
                 EditorGUILayout.LabelField("Rewired inputs not loaded. Please run Rewired Input Manager in edit mode.", new GUIStyle() { normal = new GUIStyleState() { textColor = Color.red } });
-
             }
         }
 

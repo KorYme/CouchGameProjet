@@ -134,4 +134,15 @@ public class DJQTEController : MonoBehaviour, IQTEable
 
     }
     #endregion
+    public void OnBeginDrop()
+    {
+        OnDJQTEEnded?.Invoke(_qteHandler.GetQTEString());
+        _qteHandler.PauseQTE(true);
+    }
+
+    public void OnDropEnd()
+    {
+        _qteHandler.PauseQTE(false);
+        OnDJQTEStarted?.Invoke(_qteHandler.GetQTEString());
+    }
 }

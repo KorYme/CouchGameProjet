@@ -182,6 +182,21 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
         }
     }
 
+    public void PauseQTEForDrop(bool value)
+    {
+        IsInPause = value;
+        _qteHandler.PauseQTE(value);
+        if (value)
+        {
+            //_barmanController.ModifyQTE("");
+            _barmanController.EndQTE(_qteHandler.GetQTEString());
+        } else
+        {
+            //_barmanController.ModifyQTE(_qteHandler.GetQTEString());
+            _barmanController.StartQTE(_qteHandler.GetQTEString());
+        }
+    }
+
     public void OnQTEWrongInput()
     {
         OnInputChange();
