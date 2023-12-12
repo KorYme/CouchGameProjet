@@ -63,13 +63,13 @@ public abstract class PlayerMovement : EntityMovement,IIsControllable
 
     protected void AllowNewMovement() => _hasAlreadyMovedThisBeat = false;
 
-    public bool MoveTo(Vector3 position)
+    public bool MoveTo(Vector3 position, ANIMATION_TYPE moveAnim = ANIMATION_TYPE.MOVE)
     {
         if (_hasAlreadyMovedThisBeat || !_timingable.IsInsideBeatWindow) {
             return false;
         }
 
-        if (MoveToPosition(position))
+        if (MoveToPosition(position, false,moveAnim))
         {
             _hasAlreadyMovedThisBeat = true;
             return true;
