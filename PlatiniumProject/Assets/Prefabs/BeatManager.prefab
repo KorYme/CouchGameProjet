@@ -117,24 +117,19 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 37a9c8260cad227448ad92f855a06eca, type: 2}
-  _dropDefaultEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 7415c4ca0a279574cb6659b3b1fca53d, type: 2}
-  _dropSucceededEvent:
+  _dropSuccessEvent:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: b45f955cf7d7125488078ffe063510c2, type: 2}
-  _dropMissedEvent:
+  _dropMissEvent:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 3481fdce26412f947aacfbff5723db23, type: 2}
-  _buildUpTime: 1
-  _synchronizationTime: 0.76
-  _timeToReleaseAfterAnimation: 1
   _inputDeadZone: 0.8
-  _text: {fileID: 0}
-  _dropSuccess: {fileID: 0}
+  _pressingSynchronizationTime: 1
+  _pressingBuildUpTime: 12
+  _releasingBuildUpTime: 3
+  _dropStateText: {fileID: 0}
   _dropAnimationBehaviour: {fileID: 0}
   _onBeginBuildUp:
     m_PersistentCalls:

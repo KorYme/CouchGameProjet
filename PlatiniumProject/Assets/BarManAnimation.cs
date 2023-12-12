@@ -24,4 +24,8 @@ public class BarManAnimation : CharacterAnimation, IQTEable
     {
         throw new System.NotImplementedException();
     }
+    public void OnQTEMissedInput()
+    {
+        throw new System.NotImplementedException();
+    }
 }

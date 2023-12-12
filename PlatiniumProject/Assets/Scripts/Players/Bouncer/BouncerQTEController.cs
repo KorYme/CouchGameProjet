@@ -1,6 +1,8 @@
 using System;
 using TMPro;
 using UnityEngine;
+using static BouncerMovement;
+using static UnityEngine.Rendering.DebugUI;
 
 public class BouncerQTEController : MonoBehaviour, IQTEable
 {
@@ -69,5 +71,29 @@ public class BouncerQTEController : MonoBehaviour, IQTEable
         }
         _characterAnimation.SetLatency(2);
         _characterAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT, false);
+    }
+    public void OnQTEMissedInput()
+    {
+
+    }
+
+    public void OnBeginDrop()
+    {
+        CloseBubble();
+        _qteHandler.PauseQTE(true);
+    }
+
+    public void OnDropEnd(CHECKING_STATE checkingState)
+    {
+        _qteHandler.PauseQTE(false);
+        //INDICATION DE SI ON EST EN REFUSE/CHECKING
+        if (checkingState == CHECKING_STATE.CHECKING)
+        {
+            OnBouncerQTEStarted?.Invoke("<color=green>A</color> : Accept\n<color=red>B</color> : Refuse");
+        }
+        else if (checkingState == CHECKING_STATE.QTE)
+        {
+            OnBouncerQTEStarted?.Invoke(_qteHandler.GetCurrentInputString());
+        }
     }
 }

@@ -73,7 +73,6 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             }
         }
         GetNextCharacter();
-        _barmanController.onDrinkComplete?.Invoke();
     }
 
      public void PriestForceEnterance()
@@ -90,7 +89,6 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
          }
          GetNextCharacter();
          _djUsher.SetNextSlot();
-         _barmanController.onDrinkComplete?.Invoke();
      }
 
      public void OnFailDrink()
@@ -130,7 +128,11 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     {
         for (int i = 0; i < _waitingCharactersList.Count; i++)
         {
-            _waitingCharactersList[i].CharacterMove.MoveTo(transform.position + Direction * (i + 1) + Offset);
+            if (Vector3.Distance(_waitingCharactersList[i].transform.position,
+                    transform.position + Direction * (i + 1) + Offset) > 0.1f)
+            {
+                _waitingCharactersList[i].CharacterMove.MoveTo(transform.position + Direction * (i + 1) + Offset);
+            }
         }
     }
     public void AddToWaitingLine(CharacterStateMachine character)
@@ -149,6 +151,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             character.ChangeState(character.BarManAtBar);
         }
         _waitingCharactersList.Add(character);
+        UpdatePositions();
     }
 
     void IQTEable.OnQTEStarted()
@@ -177,8 +180,24 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
         }
     }
 
+    public void PauseQTEForDrop(bool value)
+    {
+        IsInPause = value;
+        _qteHandler.PauseQTE(value);
+        if (value)
+        {
+            //_barmanController.ModifyQTE("");
+            _barmanController.EndQTE(_qteHandler.GetQTEString());
+        } else
+        {
+            //_barmanController.ModifyQTE(_qteHandler.GetQTEString());
+            _barmanController.StartQTE(_qteHandler.GetQTEString());
+        }
+    }
+
     public void OnQTEWrongInput()
     {
         OnInputChange();
     }
+    public void OnQTEMissedInput() {}
 }

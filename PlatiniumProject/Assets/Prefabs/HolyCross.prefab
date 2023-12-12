@@ -148,7 +148,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _fadeInEndValue: 1
-  _fadeInDuration: 1.5
+  _fadeInDuration: 3
   _scaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -174,5 +174,5 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _scaleEndValue: 100
-  _scaleDuration: 3
+  _scaleDuration: 5
   _timeBetween: 2
