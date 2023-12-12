@@ -22,6 +22,7 @@ public class CharacterStateIdleTransit : CharacterState
             StateMachine.CurrentSlot = newSlot;
             StateMachine.CurrentSlot.Occupant = StateMachine;
             StateMachine.NextState = StateMachine.IdleBouncerState;
+            StateMachine.UseTp = true;
 
             StateMachine.ChangeState(StateMachine.MoveToState);
         }

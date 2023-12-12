@@ -43,6 +43,7 @@ public class CharacterStateMachine : MonoBehaviour
     
     #region Propreties
     private CharacterState StartState => IdleTransitState;
+    public bool UseTp { get; set; }
     public CharacterState CurrentState { get; private set; }
     public CharacterState PreviousState { get; private set; }
     public CharacterState NextState { get; set; }

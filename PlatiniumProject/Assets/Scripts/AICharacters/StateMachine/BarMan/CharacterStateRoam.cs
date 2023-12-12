@@ -17,7 +17,7 @@ public class CharacterStateRoam : CharacterState
         }
         base.EnterState();
         Vector2 destination = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * Random.Range(0f, StateMachine.AreaManager.CircleRadius);
-        StateMachine.CharacterMove.MoveTo(StateMachine.AreaManager.CircleOrigin.position + (Vector3) destination);
+        StateMachine.CharacterMove.MoveTo(StateMachine.AreaManager.CircleOrigin.position + (Vector3) destination, true);
         StateMachine.AreaManager.RoamQueue.Add(StateMachine);
         
     }
