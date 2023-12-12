@@ -104,7 +104,12 @@ public class QTEHandler : MonoBehaviour, IIsControllable
     }
     #endregion
     #region SetUpQTE
-    public void StartQTE()    {        if (_currentQTESequence != null)        {            _indexOfSequence = 0;            StartSequenceDependingOntype();        }     }
+    public void StartQTE()    {        if (_currentListSequences.Length > 0)
+        {
+            _indexOfSequence = 0;
+            _currentListSequences.SetUpList();
+            StartSequenceDependingOntype();
+        }    }
     public void StartNewQTE(CharacterTypeData[] characters)
     {
         _indexOfSequence = 0;        _indexInListSequences = 0;        StoreNewQTE(characters);        StartSequenceDependingOntype();    }
@@ -118,6 +123,15 @@ public class QTEHandler : MonoBehaviour, IIsControllable
     public void StoreNewQTE(CharacterTypeData[] characters)    {        if (_coroutineQTE != null)        {            DeleteCurrentCoroutine();        }        int[] charactersCount = new int[Enum.GetNames(typeof(CharacterColor)).Length];        int indexEvil = 0;        int nbEvilCharacters = GetNbOfEvilCharacters(characters);        _currentListSequences.Clear();        foreach (CharacterTypeData character in characters)        {            if (character.Evilness == Evilness.GOOD)            {                charactersCount[(int)character.ClientType] += 1; // SI GENTIL SINON + 0                _currentQTESequence = QTELoader.Instance.GetRandomQTE(character.ClientType, character.Evilness, charactersCount[(int)character.ClientType] + nbEvilCharacters, _role);            } else            {                indexEvil++;                _currentQTESequence = QTELoader.Instance.GetRandomQTE(character.ClientType, character.Evilness, indexEvil, _role);            }            _currentListSequences.AddSequence(_currentQTESequence);        }        _currentListSequences.SetUpList();        LengthInputs = _currentListSequences.TotalLengthInputs;    }
 
     public int GetNbOfEvilCharacters(CharacterTypeData[] characters)    {        int total = 0;        foreach (CharacterTypeData character in characters)        {            if (character.Evilness == Evilness.EVIL) total++;        }        return total;    }
+    public void ResetQTE()
+    {
+        if (_currentListSequences.Length > 0)
+        {
+            _indexOfSequence = 0;
+            _currentListSequences.SetUpList();
+            StartSequenceDependingOntype();
+        }
+    }
     private void StartSequenceDependingOntype()    {        _indexInSequence = 0;        _currentQTESequence = _currentListSequences.GetSequence(_indexOfSequence);        _inputsSucceeded = new QTE_STATE[_currentQTESequence.ListSubHandlers.Count];        for (int i = 0; i < _inputsSucceeded.Length; i++)
         {
             _inputsSucceeded[i] = QTE_STATE.NEED_RELEASE;

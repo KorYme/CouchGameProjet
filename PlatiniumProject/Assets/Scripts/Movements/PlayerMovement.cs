@@ -15,12 +15,15 @@ public abstract class PlayerMovement : EntityMovement,IIsControllable
 
     protected CharacterAnimation _animation;
     protected SpriteRenderer _sp;
-    
+    protected DropManager _dropManager;
+
     protected virtual IEnumerator Start()
     {
         Globals.BeatManager.OnBeatEvent.AddListener(OnBeat);
         _sp = GetComponentInChildren<SpriteRenderer>();
         _animation = GetComponent<CharacterAnimation>();
+        _dropManager = Globals.DropManager;
+        SetUpEventsDrop();
         yield return new WaitUntil(() => Players.PlayersController[(int)PlayerRole] != null);
         _playerController = Players.PlayersController[(int)PlayerRole];
         Players.AddListenerPlayerController(this);
@@ -48,8 +51,12 @@ public abstract class PlayerMovement : EntityMovement,IIsControllable
         {
             _playerController.LeftJoystick.OnInputChange -= CheckJoystickValue;
             _timingable.OnBeatStartEvent.RemoveListener(AllowNewMovement);
-        }Globals.BeatManager.OnBeatEvent.RemoveListener(OnBeat);
+        }
+        Globals.BeatManager.OnBeatEvent.RemoveListener(OnBeat);
         Players.RemoveListenerPlayerController(this);
+        _dropManager.OnBeginBuildUp -= OnBeginDrop;
+        _dropManager.OnDropSuccess -= OnDropEnd;
+        _dropManager.OnDropFail -= OnDropEnd;
     }
 
     protected abstract void OnInputMove(Vector2 vector);
@@ -104,4 +111,15 @@ public abstract class PlayerMovement : EntityMovement,IIsControllable
         if (_playerController != null)
             _playerController.LeftJoystick.OnInputChange += CheckJoystickValue;
     }
+
+    private void SetUpEventsDrop()
+    {
+        _dropManager.OnBeginBuildUp += OnBeginDrop;
+        _dropManager.OnDropSuccess += OnDropEnd;
+        _dropManager.OnDropFail += OnDropEnd;
+    }
+
+    protected abstract void OnBeginDrop();
+    protected abstract void OnDropEnd();
+
 }

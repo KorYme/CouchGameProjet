@@ -362,6 +362,16 @@
 						</Event>
 						<Event Name="Set_State_Musique_Intro" ID="{18CCAA0D-977C-46B6-A647-7C634F31F811}">
 							<ChildrenList>
+								<Action Name="" ID="{530F03F7-A720-469E-A4DC-653FA4F2B460}" ShortID="122722164">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="41"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Set_State_Music_Default" ID="{74FEB492-2655-4211-B6EC-20366242308B}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
 								<Action Name="" ID="{43885ECB-9292-4FB4-AF2A-465A75DD1F1A}" ShortID="986570939">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="22"/>
@@ -392,16 +402,6 @@
 										</Reference>
 									</ReferenceList>
 								</Action>
-								<Action Name="" ID="{530F03F7-A720-469E-A4DC-653FA4F2B460}" ShortID="122722164">
-									<PropertyList>
-										<Property Name="ActionType" Type="int16" Value="41"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Set_State_Music_Default" ID="{74FEB492-2655-4211-B6EC-20366242308B}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
 								<Action Name="" ID="{479DD5A0-9391-46F0-9FB0-90D5550E8E03}" ShortID="309659746">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="41"/>
@@ -416,6 +416,16 @@
 						</Event>
 						<Event Name="Set_State_Musique_End" ID="{4900C373-7698-4D81-A34C-322BAAD43294}">
 							<ChildrenList>
+								<Action Name="" ID="{2CFCCC24-8702-4D74-BD94-B356DBDFDEC1}" ShortID="876920791">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="41"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Set_State_Music_Default" ID="{74FEB492-2655-4211-B6EC-20366242308B}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
 								<Action Name="" ID="{69D101B8-0FA2-4D6A-B549-2D312EF776FA}" ShortID="305273549">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="22"/>
@@ -443,16 +453,6 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="Set_State_P1_No" ID="{7902A23E-C0DD-47A5-8876-D941E24B1AF1}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-								<Action Name="" ID="{2CFCCC24-8702-4D74-BD94-B356DBDFDEC1}" ShortID="876920791">
-									<PropertyList>
-										<Property Name="ActionType" Type="int16" Value="41"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Set_State_Music_Default" ID="{74FEB492-2655-4211-B6EC-20366242308B}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

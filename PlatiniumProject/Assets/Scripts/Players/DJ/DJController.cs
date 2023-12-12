@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum Direction
@@ -26,18 +27,20 @@ public class DJController : MonoBehaviour, IIsControllable
 
     RollInputChecker _rollRightJoystick;
     RollInputChecker _rollLeftJoystick;
+    private bool _isInDrop = false;
+    DropManager _dropManager;
 
     //TO CHECK
     private IEnumerator Start()
     {
         _djQTEController = GetComponent<DJQTEController>();
         UpdateLightTiles(_shapesLight);
-        
+        _dropManager = Globals.DropManager;
+        SetUpEventsDrop();
         yield return new WaitUntil(()=> Players.PlayersController[(int)PlayerRole.DJ] != null);
         Players.AddListenerPlayerController(this);
         _djInputController = Players.PlayersController[(int)PlayerRole.DJ];
         SetUpInputs();
-        
         Debug.Log("DJ Initialise");
     }
 
@@ -62,12 +65,15 @@ public class DJController : MonoBehaviour, IIsControllable
             _rollRightJoystick.TurnAntiClockWise -= () => MoveLightShape(_rightJoystickAntiClockwise);
         }
         Players.RemoveListenerPlayerController(this);
+        _dropManager.OnBeginBuildUp -= OnBeginDrop;
+        _dropManager.OnDropSuccess -= OnDropEnd;
+        _dropManager.OnDropFail -= OnDropEnd;
     }
 
     //DONE
     public void MoveLightShape(Direction direction)
     {
-        if (_shapesLight.TrueForAll(x => x.Neighbours[(int)direction] != null))
+        if (!_isInDrop && _shapesLight.TrueForAll(x => x.Neighbours[(int)direction] != null))
         {
             List<SlotInformation> newList = new();
             _shapesLight.ForEach(x => newList.Add(x.Neighbours[(int)direction]));
@@ -76,7 +82,6 @@ public class DJController : MonoBehaviour, IIsControllable
             
         }
     }
-
     
     //DONE
     private void UpdateLightTiles(List<SlotInformation> newSlots)
@@ -124,5 +129,20 @@ public class DJController : MonoBehaviour, IIsControllable
             _rollLeftJoystick = new RollInputChecker(_djInputController.LeftJoystick, _inputDistance, _quarterChecked);
             _rollRightJoystick = new RollInputChecker(_djInputController.RightJoystick, _inputDistance, _quarterChecked);
         }
+    }
+    private void SetUpEventsDrop()
+    {
+        _dropManager.OnBeginBuildUp += OnBeginDrop;
+        _dropManager.OnDropSuccess += OnDropEnd;
+        _dropManager.OnDropFail += OnDropEnd;
+    }
+
+    private void OnBeginDrop()
+    {
+        _isInDrop = true;
+    }
+    private void OnDropEnd()
+    {
+        _isInDrop = false;
     }
 }
