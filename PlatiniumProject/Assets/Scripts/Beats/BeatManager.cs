@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
 
 public class BeatManager : MonoBehaviour, ITimingable
 {
@@ -93,18 +94,9 @@ public class BeatManager : MonoBehaviour, ITimingable
         (Globals.TutorialManager.UseTutorial ? _introMusicStateEvent : _firstMusicStateEvent)?.Post(gameObject);
     }
 
-    private void OnDestroy()
-    {
-        _onBeatEvent.RemoveAllListeners();
-        _onBeatStartEvent.RemoveAllListeners();
-        _onBeatEndEvent.RemoveAllListeners();
-        OnNextBeatStart = null;
-        OnNextBeat = null;
-        OnNextBeatEnd = null;
-    }
-
     private void BeatCallBack(object in_cookie, AkCallbackType in_type, AkCallbackInfo in_info)
     {
+        if (!Globals.DropManager.IsGamePlaying) return;
         AkMusicSyncCallbackInfo info = in_info as AkMusicSyncCallbackInfo;
         switch (in_type)
         { 
@@ -149,5 +141,11 @@ public class BeatManager : MonoBehaviour, ITimingable
     }
 
     public void PlayFirstMusic() => _firstMusicStateEvent?.Post(gameObject);
+
+    public void StopBeat()
+    {
+        StopCoroutine(_beatCoroutine);
+        _lastBeatTime = DateTime.Now;   
+    }
     #endregion
 }
