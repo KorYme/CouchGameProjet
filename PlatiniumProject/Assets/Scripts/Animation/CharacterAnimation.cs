@@ -17,6 +17,7 @@ public class CharacterAnimation : MonoBehaviour
 
     public VfxHandeler VfxHandeler => _vfxHandeler;
     public bool IsAnimationPlaying => _animRoutine != null;
+    public SpriteRenderer Sp => _sp;
     
 
     public CharacterAnimationObject CharacterAnimationObject
@@ -123,12 +124,12 @@ public class CharacterAnimation : MonoBehaviour
         ResetAnimation(type);
         for (int i = 0; i < _characterAnimationData.Animations[type].AnimationLenght - 1; ++i)
         {
+            yield return new WaitForSeconds(duration / _characterAnimationData.Animations[type].AnimationLenght);
             Sprite result = GetAnimationSprite(type, false);
             if (result != null)
             {
                 _sp.sprite = result;
             }
-            yield return new WaitForSeconds(duration / _characterAnimationData.Animations[type].AnimationLenght);
         }
         _animRoutine = null;
     } 

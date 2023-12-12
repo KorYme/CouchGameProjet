@@ -19,9 +19,9 @@ public class CharacterStateMoveTo : CharacterState
     }
     IEnumerator MoveRoutine()
     {
-        StateMachine.CharacterMove.MoveToPosition(StateMachine.MoveToLocation);
+        StateMachine.CharacterMove.MoveToPosition(StateMachine.MoveToLocation, StateMachine.UseTp);
         StateMachine.MoveToLocation = Vector2.zero;
-
+    
         yield return new WaitUntil(() => !StateMachine.CharacterMove.IsMoving);
         
         StateMachine.ChangeState(StateMachine.NextState != null ? StateMachine.NextState : StateMachine.PreviousState);
@@ -30,6 +30,7 @@ public class CharacterStateMoveTo : CharacterState
 
     public override void ExitState()
     {
+        StateMachine.UseTp = false;
         OnAnim -= AnimationSetter;
     }
 }
