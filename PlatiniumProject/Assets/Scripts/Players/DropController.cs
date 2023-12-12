@@ -2,6 +2,7 @@ using Microsoft.Win32.SafeHandles;
 using System.Collections;
 using System.Collections.Generic;   
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class DropController : MonoBehaviour, IIsControllable
@@ -13,6 +14,9 @@ public class DropController : MonoBehaviour, IIsControllable
     TriggerInputCheck _triggerInputCheckLT;
 
     Coroutine _syncCoroutine;
+
+    public UnityEvent OnHoldDrop;
+    public UnityEvent OnDropDrop;
 
     public int TriggerPressed
     {
@@ -32,6 +36,7 @@ public class DropController : MonoBehaviour, IIsControllable
         _triggerInputCheckLT = new TriggerInputCheck(Players.PlayersController[(int)_playerRole].LT, Globals.DropManager.InputDeadZone);
         _triggerInputCheckRT.OnTriggerPerformed += value => CheckTriggerState(_triggerInputCheckLT, value);
         _triggerInputCheckLT.OnTriggerPerformed += value => CheckTriggerState(_triggerInputCheckRT, value);
+        Globals.DropManager.OnDropFail += () => OnDropDrop?.Invoke();
         Globals.DropManager.AllDropControllers.Add(this);
         _syncEvents[_playerRole].isNotSyncEvent?.Post(gameObject);
     }
@@ -56,6 +61,7 @@ public class DropController : MonoBehaviour, IIsControllable
         {
             if (trigger.TriggerState == TriggerInputCheck.TRIGGER_STATE.PRESSED_ON_TIME)
             {
+                OnHoldDrop?.Invoke();
                 _syncEvents[_playerRole].isSyncEvent?.Post(gameObject);
                 StopCoroutine(_syncCoroutine);
                 _syncCoroutine = null;
@@ -64,6 +70,7 @@ public class DropController : MonoBehaviour, IIsControllable
         else
         {
             _syncEvents[_playerRole].isNotSyncEvent?.Post(gameObject);
+            OnDropDrop?.Invoke();
             if (_syncCoroutine == null)
             {
                 trigger.TriggerState = TriggerInputCheck.TRIGGER_STATE.NEED_TO_BE_RELEASED;
