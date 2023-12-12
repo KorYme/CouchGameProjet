@@ -63,6 +63,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
                     _djUsher.NextSlot.Occupant = stateMachine;
                     stateMachine.MoveToLocation = stateMachine.CurrentSlot.transform.position;
                     stateMachine.NextState = stateMachine.DancingState;
+                    stateMachine.UseTp = true;
                     stateMachine.ChangeState(stateMachine.MoveToState);
                     _djUsher.SetNextSlot();
                 }
@@ -84,6 +85,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
              _djUsher.NextSlot.Occupant = stateMachine;
              stateMachine.MoveToLocation = stateMachine.CurrentSlot.transform.position;
              stateMachine.NextState = stateMachine.DancingState;
+             stateMachine.UseTp = true;
              stateMachine.ChangeState(stateMachine.MoveToState);
              _priestCalculator.PriestOnDanceFloor(stateMachine);
          }
