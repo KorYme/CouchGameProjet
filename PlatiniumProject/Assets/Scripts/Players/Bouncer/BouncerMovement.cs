@@ -32,6 +32,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
     private BouncerQTEController _qteController;
     private bool _isInDrop = false;
     private CHECKING_STATE _checkingState = CHECKING_STATE.NONE;
+    private ANIMATION_TYPE _moveAnim;
     private void Awake()
     {
         _qteController = GetComponent<BouncerQTEController>();
@@ -89,7 +90,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
         if (_currentSlot.Neighbours[index] == null)
             return;
 
-        if (MoveTo(_currentSlot.Neighbours[index].transform.position))
+        if (MoveTo(_currentSlot.Neighbours[index].transform.position, _moveAnim))
         {
             _currentSlot.PlayerOccupant = null;
             _currentSlot = _currentSlot.Neighbours[index];
@@ -103,15 +104,18 @@ public class BouncerMovement : PlayerMovement, IQTEable
         {
             if (vector.x > 0)
             {
+                _moveAnim = ANIMATION_TYPE.MOVE_RIGHT;
                 return Direction.Right;
             }
             else
             {
+                _moveAnim = ANIMATION_TYPE.MOVE_LEFT;
                 return Direction.Left;
             }
         }
         else
         {
+            _moveAnim = _moveAnim == ANIMATION_TYPE.MOVE_RIGHT ? ANIMATION_TYPE.MOVE_LEFT : ANIMATION_TYPE.MOVE_RIGHT;
             if (vector.y > 0)
             {
                 return Direction.Up;

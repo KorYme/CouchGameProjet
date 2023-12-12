@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e34363c99762c408a85174f95cf067, type: 3}
   m_Name: HoldRumble_Drop
   m_EditorClassIdentifier: 
-  rumbleName: 
+  rumbleName: Drop_Rumble
   isHolding: 1
-  time: 0
+  time: 0.5
   rumbleCurve:
     serializedVersion: 2
     m_Curve:

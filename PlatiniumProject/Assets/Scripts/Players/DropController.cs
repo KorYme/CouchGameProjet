@@ -2,18 +2,21 @@ using Microsoft.Win32.SafeHandles;
 using System.Collections;
 using System.Collections.Generic;   
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class DropController : MonoBehaviour, IIsControllable
 {
     [SerializeField] PlayerSyncEvents _syncEvents;
-    [SerializeField] Image _rtImage, _ltImage;
     [SerializeField] PlayerRole _playerRole;
 
     TriggerInputCheck _triggerInputCheckRT;
     TriggerInputCheck _triggerInputCheckLT;
 
     Coroutine _syncCoroutine;
+
+    public UnityEvent OnHoldDrop;
+    public UnityEvent OnDropDrop;
 
     public int TriggerPressed
     {
@@ -27,17 +30,14 @@ public class DropController : MonoBehaviour, IIsControllable
 
     private IEnumerator Start()
     {
-        _ltImage.enabled = false;
-        _rtImage.enabled = false;
         yield return new WaitWhile(() => Players.PlayersController[(int)_playerRole] == null);
         Players.AddListenerPlayerController(this);
         _triggerInputCheckRT = new TriggerInputCheck(Players.PlayersController[(int)_playerRole].RT, Globals.DropManager.InputDeadZone);
         _triggerInputCheckLT = new TriggerInputCheck(Players.PlayersController[(int)_playerRole].LT, Globals.DropManager.InputDeadZone);
         _triggerInputCheckRT.OnTriggerPerformed += value => CheckTriggerState(_triggerInputCheckLT, value);
         _triggerInputCheckLT.OnTriggerPerformed += value => CheckTriggerState(_triggerInputCheckRT, value);
+        Globals.DropManager.OnDropFail += () => OnDropDrop?.Invoke();
         Globals.DropManager.AllDropControllers.Add(this);
-        _triggerInputCheckRT.OnTriggerStateChange += state => _rtImage.color = ChangeColor(state);
-        _triggerInputCheckLT.OnTriggerStateChange += state => _ltImage.color = ChangeColor(state);
         _syncEvents[_playerRole].isNotSyncEvent?.Post(gameObject);
     }
 
@@ -48,8 +48,6 @@ public class DropController : MonoBehaviour, IIsControllable
         _triggerInputCheckRT.OnTriggerPerformed -= value => CheckTriggerState(_triggerInputCheckLT, value);
         _triggerInputCheckLT.OnTriggerPerformed -= value => CheckTriggerState(_triggerInputCheckRT, value);
         Globals.DropManager?.AllDropControllers.Remove(this);
-        _triggerInputCheckRT.OnTriggerStateChange -= state => _rtImage.color = ChangeColor(state);
-        _triggerInputCheckLT.OnTriggerStateChange -= state => _ltImage.color = ChangeColor(state);
     }
 
     void CheckTriggerState(TriggerInputCheck trigger, bool value)
@@ -63,6 +61,7 @@ public class DropController : MonoBehaviour, IIsControllable
         {
             if (trigger.TriggerState == TriggerInputCheck.TRIGGER_STATE.PRESSED_ON_TIME)
             {
+                OnHoldDrop?.Invoke();
                 _syncEvents[_playerRole].isSyncEvent?.Post(gameObject);
                 StopCoroutine(_syncCoroutine);
                 _syncCoroutine = null;
@@ -71,6 +70,7 @@ public class DropController : MonoBehaviour, IIsControllable
         else
         {
             _syncEvents[_playerRole].isNotSyncEvent?.Post(gameObject);
+            OnDropDrop?.Invoke();
             if (_syncCoroutine == null)
             {
                 trigger.TriggerState = TriggerInputCheck.TRIGGER_STATE.NEED_TO_BE_RELEASED;
@@ -100,12 +100,6 @@ public class DropController : MonoBehaviour, IIsControllable
             default:
                 return Color.white;
         }
-    }
-
-    public void DisplayTriggers(bool enableTriggers)
-    {
-        _ltImage.gameObject.SetActive(enableTriggers);
-        _rtImage.gameObject.SetActive(enableTriggers);
     }
 
     public void ChangeController()

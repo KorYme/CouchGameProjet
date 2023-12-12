@@ -11,9 +11,9 @@ public class CharacterAIMovement : EntityMovement
         _stateMachine = GetComponent<CharacterStateMachine>();
     }
 
-    public void MoveTo(Vector3 pos)
+    public void MoveTo(Vector3 pos, bool mustTp = false)
     {
-        MoveToPosition(pos);
+        MoveToPosition(pos, mustTp);
     }
 
     private void AnimationSetter()
