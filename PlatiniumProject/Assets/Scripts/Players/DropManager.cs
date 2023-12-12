@@ -61,6 +61,7 @@ public class DropManager : MonoBehaviour
     List<DropController> _allDropControllers = new();
     public List<DropController> AllDropControllers => _allDropControllers;
     public float PressingSynchronizationTime => _pressingSynchronizationTime;
+    public bool IsGamePlaying {  get; private set; }
 
     private void Awake()
     {
@@ -70,6 +71,7 @@ public class DropManager : MonoBehaviour
         OnBeginBuildUp += () => _onBeginBuildUp?.Invoke();
         OnDropLoaded += () => _onDropTriggered?.Invoke();
         OnDropStateChange += DropStateChange;
+        IsGamePlaying = true;
     }
 
     private void Start()
@@ -81,6 +83,11 @@ public class DropManager : MonoBehaviour
         OnDropLoaded += () => _dropAnimationBehaviour.gameObject.SetActive(true);
         _beatManager.OnUserCueReceived += CheckUserCueName;
         _dropAnimationBehaviour.OnDropAnimationClimax += CheckAnimationClimax;
+        OnGameEnd += () =>
+        {
+            IsGamePlaying = false;
+            _beatManager.StopBeat();
+        };
     }
 
     private void OnDestroy()
