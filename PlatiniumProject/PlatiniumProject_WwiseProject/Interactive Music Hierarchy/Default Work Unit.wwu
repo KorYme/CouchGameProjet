@@ -466,7 +466,7 @@
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
 						</Reference>
 						<Reference Name="OutputBus">
-							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+							<ObjectRef Name="Music" ID="{2641F86B-48BF-4EF4-B015-A761295BFF89}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
@@ -483,6 +483,8 @@
 								<MusicSegment Name="Musique_Intro" ID="{0AE5B48A-1749-472F-878C-7F239F8BE1FA}" ShortID="297323385">
 									<PropertyList>
 										<Property Name="EndPosition" Type="Real64" Value="177289.785624517"/>
+										<Property Name="OverrideClockSettings" Type="bool" Value="True"/>
+										<Property Name="Tempo" Type="Real64" Value="115"/>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -493,23 +495,23 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<MusicTrack Name="DND_Musique_2_Placeholder" ID="{8EDB1211-FDD6-4D9D-9F0E-9EFDED714606}" ShortID="460426335">
+										<MusicTrack Name="DND_Music_Intro_LP" ID="{E4759BC8-C57A-4634-AE88-BB9BD19A3326}" ShortID="996883159">
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="DND_Musique_2_Placeholder" ID="{1509C265-F65A-4315-897E-242A9D4ED835}">
+												<AudioFileSource Name="DND_Music_Intro_LP" ID="{C79420DE-9790-4821-B140-B86C8FB7B075}">
 													<Language>SFX</Language>
-													<AudioFile>DND_Musique_2_Placeholder.wav</AudioFile>
+													<AudioFile>DND_Music_Intro_LP.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="328388981"/>
+														<MediaID ID="832887922"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<TransitionList>
-												<MusicTransition Name="Root" ID="{209D535C-BFA2-4897-9A20-258F53523495}">
+												<MusicTransition Name="Root" ID="{5F253BF4-EDAB-49FC-A93B-3797A1CF3003}">
 													<PropertyList>
 														<Property Name="IsFolder" Type="bool" Value="True"/>
 													</PropertyList>
@@ -520,17 +522,18 @@
 												<ObjectList Name="Sequences">
 													<Reference>
 														<Local>
-															<MusicTrackSequence Name="" ID="{68B1CD19-116B-4346-8AEE-B9781B0075DA}">
+															<MusicTrackSequence Name="" ID="{48AF0E43-43E8-4C59-A388-594F4139E343}">
 																<ObjectLists>
 																	<ObjectList Name="Clips">
 																		<Reference>
 																			<Local>
-																				<MusicClip Name="DND_Musique_2_Placeholder" ID="{A6EDCB21-85B4-4BCF-8A84-1D0F9B40D2DD}">
+																				<MusicClip Name="DND_Music_Intro_LP" ID="{E25BB7DA-82CA-4DA4-ABBF-AE0CD94DCC67}">
 																					<PropertyList>
-																						<Property Name="EndTrimOffset" Type="Real64" Value="125217.395833333"/>
+																						<Property Name="EndTrimOffset" Type="Real64" Value="16695.6666666667"/>
+																						<Property Name="FadeInMode" Type="int16" Value="0"/>
 																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
 																					</PropertyList>
-																					<AudioSourceRef Name="DND_Musique_2_Placeholder" ID="{1509C265-F65A-4315-897E-242A9D4ED835}"/>
+																					<AudioSourceRef Name="DND_Music_Intro_LP" ID="{C79420DE-9790-4821-B140-B86C8FB7B075}"/>
 																				</MusicClip>
 																			</Local>
 																		</Reference>
@@ -555,7 +558,7 @@
 													<MusicCue Name="Exit Cue" ID="{EBFA0773-2D40-417E-8038-DABB7D3D8E87}">
 														<PropertyList>
 															<Property Name="CueType" Type="int16" Value="1"/>
-															<Property Name="TimeMs" Type="Real64" Value="116000"/>
+															<Property Name="TimeMs" Type="Real64" Value="16695.6666666667"/>
 														</PropertyList>
 													</MusicCue>
 												</Local>
@@ -586,6 +589,7 @@
 									<ChildrenList>
 										<MusicPlaylistItem Name="" ID="{0E0A051F-C004-40B8-9B1C-8B0DF4D751F9}" ShortID="970566260">
 											<PropertyList>
+												<Property Name="LoopCount" Type="int16" Value="0"/>
 												<Property Name="PlaylistItemType" Type="int16" Value="1"/>
 											</PropertyList>
 											<SegmentRef Name="Musique_Intro" ID="{0AE5B48A-1749-472F-878C-7F239F8BE1FA}"/>
@@ -607,6 +611,8 @@
 								<MusicSegment Name="Musique_End" ID="{CFFD6864-089D-4698-BE2A-FD5DD2D380C8}" ShortID="818197534">
 									<PropertyList>
 										<Property Name="EndPosition" Type="Real64" Value="134400"/>
+										<Property Name="OverrideClockSettings" Type="bool" Value="True"/>
+										<Property Name="Tempo" Type="Real64" Value="115"/>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -617,23 +623,23 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<MusicTrack Name="DND_Musique_1_Placeholder" ID="{E8A90F76-FECB-41A5-A8F6-5730E0442541}" ShortID="524232117">
+										<MusicTrack Name="DND_Music_End_LP" ID="{2CAA0B58-1289-46C1-8BF9-E51E82A4C0FA}" ShortID="12386755">
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="DND_Musique_1_Placeholder" ID="{A9922CF5-BFCF-4AA6-93A4-BC05C1B6A59C}">
+												<AudioFileSource Name="DND_Music_End_LP" ID="{D9283E06-99C9-4726-A8E5-5F6362E4F699}">
 													<Language>SFX</Language>
-													<AudioFile>DND_Musique_1_Placeholder.wav</AudioFile>
+													<AudioFile>DND_Music_End_LP.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="773269899"/>
+														<MediaID ID="535488542"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<TransitionList>
-												<MusicTransition Name="Root" ID="{7E77552F-E1CC-49D9-BF18-C2EAB573357C}">
+												<MusicTransition Name="Root" ID="{CB7C8EEA-BD79-444B-8EE5-9F8C1AA00E74}">
 													<PropertyList>
 														<Property Name="IsFolder" Type="bool" Value="True"/>
 													</PropertyList>
@@ -644,18 +650,18 @@
 												<ObjectList Name="Sequences">
 													<Reference>
 														<Local>
-															<MusicTrackSequence Name="" ID="{AACA1776-8CD1-4CD6-A36B-9F81D562E17E}">
+															<MusicTrackSequence Name="" ID="{9F57C02E-54C3-4A0A-B709-3D6E4DE353FF}">
 																<ObjectLists>
 																	<ObjectList Name="Clips">
 																		<Reference>
 																			<Local>
-																				<MusicClip Name="DND_Musique_1_Placeholder" ID="{43FB9D7B-0547-4464-82B3-805E625B2905}">
+																				<MusicClip Name="DND_Music_End_LP" ID="{BE2B2770-2DF4-41F7-9352-D162048EFA66}">
 																					<PropertyList>
-																						<Property Name="EndTrimOffset" Type="Real64" Value="134400"/>
+																						<Property Name="EndTrimOffset" Type="Real64" Value="33391.3125"/>
 																						<Property Name="FadeInMode" Type="int16" Value="0"/>
 																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
 																					</PropertyList>
-																					<AudioSourceRef Name="DND_Musique_1_Placeholder" ID="{A9922CF5-BFCF-4AA6-93A4-BC05C1B6A59C}"/>
+																					<AudioSourceRef Name="DND_Music_End_LP" ID="{D9283E06-99C9-4726-A8E5-5F6362E4F699}"/>
 																				</MusicClip>
 																			</Local>
 																		</Reference>
@@ -680,7 +686,7 @@
 													<MusicCue Name="Exit Cue" ID="{400B65F0-7F60-4085-952D-8C23D5A2D1A5}">
 														<PropertyList>
 															<Property Name="CueType" Type="int16" Value="1"/>
-															<Property Name="TimeMs" Type="Real64" Value="1000"/>
+															<Property Name="TimeMs" Type="Real64" Value="33391.3043478261"/>
 														</PropertyList>
 													</MusicCue>
 												</Local>
@@ -707,6 +713,7 @@
 									<ChildrenList>
 										<MusicPlaylistItem Name="" ID="{23B465C2-F581-478C-8EBB-6479986EB00D}" ShortID="1041172632">
 											<PropertyList>
+												<Property Name="LoopCount" Type="int16" Value="0"/>
 												<Property Name="PlaylistItemType" Type="int16" Value="1"/>
 											</PropertyList>
 											<SegmentRef Name="Musique_End" ID="{CFFD6864-089D-4698-BE2A-FD5DD2D380C8}"/>
@@ -821,7 +828,7 @@
 															<MusicCue Name="Exit Cue" ID="{8C9687DD-8FFE-4BC5-A21A-9B6382530EF7}">
 																<PropertyList>
 																	<Property Name="CueType" Type="int16" Value="1"/>
-																	<Property Name="TimeMs" Type="Real64" Value="14400"/>
+																	<Property Name="TimeMs" Type="Real64" Value="134400"/>
 																</PropertyList>
 															</MusicCue>
 														</Local>
@@ -1263,23 +1270,23 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<MusicTrack Name="Music_Jin_Fail" ID="{19106A0F-8C3B-46C8-8509-E6534A7B6069}" ShortID="14758970">
+										<MusicTrack Name="DND_DropDefeat_100bpm" ID="{26328A6C-EF86-40F6-8634-FA6694B50816}" ShortID="458840182">
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="Music_Jin_Fail" ID="{C36486A0-F2E9-463D-833E-2953DDA3E3E1}">
+												<AudioFileSource Name="DND_DropDefeat_100bpm" ID="{B9A0928A-EE96-45A4-B82B-46A0DF59BDC9}">
 													<Language>SFX</Language>
-													<AudioFile>Music_Jin_Fail.wav</AudioFile>
+													<AudioFile>DND_DropDefeat_100bpm.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="354893956"/>
+														<MediaID ID="816577794"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<TransitionList>
-												<MusicTransition Name="Root" ID="{17091B15-4C73-4963-8793-52CA66C6E94E}">
+												<MusicTransition Name="Root" ID="{1317F14C-8C4A-415D-A308-7DDED2EA1931}">
 													<PropertyList>
 														<Property Name="IsFolder" Type="bool" Value="True"/>
 													</PropertyList>
@@ -1290,18 +1297,18 @@
 												<ObjectList Name="Sequences">
 													<Reference>
 														<Local>
-															<MusicTrackSequence Name="" ID="{3B9E8FD4-1094-4D91-A04E-974273FEA7F5}">
+															<MusicTrackSequence Name="" ID="{1EDC3FD4-41D0-498F-9C7D-CA2F8017CA89}">
 																<ObjectLists>
 																	<ObjectList Name="Clips">
 																		<Reference>
 																			<Local>
-																				<MusicClip Name="Music_Jin_Fail" ID="{69E4C964-93F5-4BF7-8409-9B3D605C6C12}">
+																				<MusicClip Name="DND_DropDefeat_100bpm" ID="{80403182-A954-4FA9-AAE0-F356408B50D8}">
 																					<PropertyList>
-																						<Property Name="EndTrimOffset" Type="Real64" Value="11545.0416666667"/>
+																						<Property Name="EndTrimOffset" Type="Real64" Value="6300"/>
 																						<Property Name="FadeInMode" Type="int16" Value="0"/>
 																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
 																					</PropertyList>
-																					<AudioSourceRef Name="Music_Jin_Fail" ID="{C36486A0-F2E9-463D-833E-2953DDA3E3E1}"/>
+																					<AudioSourceRef Name="DND_DropDefeat_100bpm" ID="{B9A0928A-EE96-45A4-B82B-46A0DF59BDC9}"/>
 																				</MusicClip>
 																			</Local>
 																		</Reference>
@@ -1346,6 +1353,7 @@
 								</MusicSegment>
 								<MusicSegment Name="Phase1_Success" ID="{24C94327-882F-4E2B-816A-620C3D05BFE0}" ShortID="993949971">
 									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="5700"/>
 										<Property Name="GridFrequencyPreset" Type="int16" Value="53"/>
 										<Property Name="Tempo" Type="Real64" Value="100"/>
 									</PropertyList>
@@ -1358,23 +1366,23 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<MusicTrack Name="DND_Placeholder_DropSuccess" ID="{C091753A-B42B-4A14-9049-6BDA8BDB5C92}" ShortID="812237372">
+										<MusicTrack Name="DND_DropSuccess_100bpm" ID="{D2535C77-8D50-4377-8E05-D80B2BA964B1}" ShortID="707675002">
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="DND_Placeholder_DropSuccess" ID="{D2F02A6F-B5D0-4D41-AA4A-65D500075330}">
+												<AudioFileSource Name="DND_DropSuccess_100bpm" ID="{C9DD8C5C-92A9-4EDE-9663-9BD245202F61}">
 													<Language>SFX</Language>
-													<AudioFile>DND_Placeholder_DropSuccess.wav</AudioFile>
+													<AudioFile>DND_DropSuccess_100bpm.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="877464746"/>
+														<MediaID ID="48017048"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<TransitionList>
-												<MusicTransition Name="Root" ID="{5DC5DA4F-74B3-4CC4-AB5E-ACE10814C5AB}">
+												<MusicTransition Name="Root" ID="{87FD091F-4CB5-4FCC-AD4E-55C50C116148}">
 													<PropertyList>
 														<Property Name="IsFolder" Type="bool" Value="True"/>
 													</PropertyList>
@@ -1385,18 +1393,18 @@
 												<ObjectList Name="Sequences">
 													<Reference>
 														<Local>
-															<MusicTrackSequence Name="" ID="{09E32D03-107E-4BA7-AB25-46ED825748C4}">
+															<MusicTrackSequence Name="" ID="{979350E0-6655-449B-91ED-73143946041E}">
 																<ObjectLists>
 																	<ObjectList Name="Clips">
 																		<Reference>
 																			<Local>
-																				<MusicClip Name="DND_Placeholder_DropSuccess" ID="{62E1EFF6-F34D-4782-9B79-AC8C70C68B39}">
+																				<MusicClip Name="DND_DropSuccess_100bpm" ID="{3BCD46B7-6EE1-41C7-8B62-9E20040AE2C6}">
 																					<PropertyList>
-																						<Property Name="EndTrimOffset" Type="Real64" Value="3130.4375"/>
+																						<Property Name="EndTrimOffset" Type="Real64" Value="5700"/>
 																						<Property Name="FadeInMode" Type="int16" Value="0"/>
 																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
 																					</PropertyList>
-																					<AudioSourceRef Name="DND_Placeholder_DropSuccess" ID="{D2F02A6F-B5D0-4D41-AA4A-65D500075330}"/>
+																					<AudioSourceRef Name="DND_DropSuccess_100bpm" ID="{C9DD8C5C-92A9-4EDE-9663-9BD245202F61}"/>
 																				</MusicClip>
 																			</Local>
 																		</Reference>
@@ -1421,7 +1429,7 @@
 													<MusicCue Name="Exit Cue" ID="{AD5A241E-1070-45AC-843B-46095411A070}">
 														<PropertyList>
 															<Property Name="CueType" Type="int16" Value="1"/>
-															<Property Name="TimeMs" Type="Real64" Value="1650"/>
+															<Property Name="TimeMs" Type="Real64" Value="3300"/>
 														</PropertyList>
 													</MusicCue>
 												</Local>
@@ -2078,23 +2086,23 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<MusicTrack Name="Music_Jin_Fail" ID="{7570C4E0-ED15-4CAF-BA4D-6FCDC7400982}" ShortID="91551956">
+										<MusicTrack Name="DND_DropDefeat_115bpm" ID="{6F8D4B81-6726-460E-BD22-3AEBEC4A0525}" ShortID="1033797229">
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="Music_Jin_Fail" ID="{BDCC03E0-4210-427D-8DD2-08957C86F1AE}">
+												<AudioFileSource Name="DND_DropDefeat_115bpm" ID="{3634FF92-4413-44B8-9737-3BBA45BAC05C}">
 													<Language>SFX</Language>
-													<AudioFile>Music_Jin_Fail.wav</AudioFile>
+													<AudioFile>DND_DropDefeat_115bpm.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="354893956"/>
+														<MediaID ID="864874078"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<TransitionList>
-												<MusicTransition Name="Root" ID="{30268A26-1207-4088-8C2B-6AE88A132E36}">
+												<MusicTransition Name="Root" ID="{7D0A6C97-196E-4658-A446-432AC4E2B85C}">
 													<PropertyList>
 														<Property Name="IsFolder" Type="bool" Value="True"/>
 													</PropertyList>
@@ -2105,18 +2113,18 @@
 												<ObjectList Name="Sequences">
 													<Reference>
 														<Local>
-															<MusicTrackSequence Name="" ID="{509189FE-FA79-4BFF-81E5-B07822923138}">
+															<MusicTrackSequence Name="" ID="{E885AA86-45F2-4DD5-8396-5C323455BA17}">
 																<ObjectLists>
 																	<ObjectList Name="Clips">
 																		<Reference>
 																			<Local>
-																				<MusicClip Name="Music_Jin_Fail" ID="{3875B387-5301-4334-96BC-13576BFC14C2}">
+																				<MusicClip Name="DND_DropDefeat_115bpm" ID="{FE8611C9-B10A-4BA6-B43D-AD15C418C321}">
 																					<PropertyList>
-																						<Property Name="EndTrimOffset" Type="Real64" Value="11545.0416666667"/>
+																						<Property Name="EndTrimOffset" Type="Real64" Value="5739.14583333333"/>
 																						<Property Name="FadeInMode" Type="int16" Value="0"/>
 																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
 																					</PropertyList>
-																					<AudioSourceRef Name="Music_Jin_Fail" ID="{BDCC03E0-4210-427D-8DD2-08957C86F1AE}"/>
+																					<AudioSourceRef Name="DND_DropDefeat_115bpm" ID="{3634FF92-4413-44B8-9737-3BBA45BAC05C}"/>
 																				</MusicClip>
 																			</Local>
 																		</Reference>
@@ -2160,6 +2168,9 @@
 									</ObjectLists>
 								</MusicSegment>
 								<MusicSegment Name="Phase2_Success" ID="{BDC059BE-0539-44BB-8C7E-D19E13A42828}" ShortID="254473159">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="6127.72916666667"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
@@ -2169,23 +2180,23 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<MusicTrack Name="DND_Placeholder_DropSuccess" ID="{09F537F0-50CF-4F1E-8DB1-3665F86E9E1B}" ShortID="71963181">
+										<MusicTrack Name="DND_DropSuccess_115bpm" ID="{A71511B3-5372-476B-9376-0AEB90D6FA7F}" ShortID="279901491">
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="DND_Placeholder_DropSuccess" ID="{49057EDB-AF7E-4BE6-BBF2-05FA83032939}">
+												<AudioFileSource Name="DND_DropSuccess_115bpm" ID="{E3DAAC53-A3E8-4D1F-90C6-8F7BC226EA51}">
 													<Language>SFX</Language>
-													<AudioFile>DND_Placeholder_DropSuccess.wav</AudioFile>
+													<AudioFile>DND_DropSuccess_115bpm.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="877464746"/>
+														<MediaID ID="1054416164"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<TransitionList>
-												<MusicTransition Name="Root" ID="{230D2189-9DA1-4DD3-9FC7-3805B25F02DC}">
+												<MusicTransition Name="Root" ID="{E7485A2F-8C6F-4792-98CC-DA7F29630910}">
 													<PropertyList>
 														<Property Name="IsFolder" Type="bool" Value="True"/>
 													</PropertyList>
@@ -2196,18 +2207,18 @@
 												<ObjectList Name="Sequences">
 													<Reference>
 														<Local>
-															<MusicTrackSequence Name="" ID="{DBD46D52-CD77-434C-A8E5-A19BEB8DD952}">
+															<MusicTrackSequence Name="" ID="{B3055F93-2D6D-4C73-93E2-3FDF10B2F1A3}">
 																<ObjectLists>
 																	<ObjectList Name="Clips">
 																		<Reference>
 																			<Local>
-																				<MusicClip Name="DND_Placeholder_DropSuccess" ID="{6EE370CC-07A7-46E1-9073-69C8EBD38370}">
+																				<MusicClip Name="DND_DropSuccess_115bpm" ID="{F96EBB85-3E16-4233-97C2-C681D210344A}">
 																					<PropertyList>
-																						<Property Name="EndTrimOffset" Type="Real64" Value="3130.4375"/>
+																						<Property Name="EndTrimOffset" Type="Real64" Value="6127.72916666667"/>
 																						<Property Name="FadeInMode" Type="int16" Value="0"/>
 																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
 																					</PropertyList>
-																					<AudioSourceRef Name="DND_Placeholder_DropSuccess" ID="{49057EDB-AF7E-4BE6-BBF2-05FA83032939}"/>
+																					<AudioSourceRef Name="DND_DropSuccess_115bpm" ID="{E3DAAC53-A3E8-4D1F-90C6-8F7BC226EA51}"/>
 																				</MusicClip>
 																			</Local>
 																		</Reference>
@@ -2878,6 +2889,9 @@
 									</Playlist>
 								</MusicPlaylistContainer>
 								<MusicSegment Name="Phase3_Success" ID="{40CF9D07-E02E-4C13-9586-0A3F816D53E3}" ShortID="138163092">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="7938.47916666667"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
@@ -2887,23 +2901,23 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<MusicTrack Name="DND_Placeholder_DropSuccess" ID="{23D1CADF-D2A7-44CE-86C8-8E364DD7C131}" ShortID="326153665">
+										<MusicTrack Name="DND_DropSuccess_130bpm" ID="{91B662A9-455B-4BE7-ACFD-A1A0C3597DB4}" ShortID="462235407">
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="DND_Placeholder_DropSuccess" ID="{CB51D7AB-9383-45F3-9E02-BA03FDFCA1CA}">
+												<AudioFileSource Name="DND_DropSuccess_130bpm" ID="{2638914C-808F-408B-85EA-B6035A93EFFC}">
 													<Language>SFX</Language>
-													<AudioFile>DND_Placeholder_DropSuccess.wav</AudioFile>
+													<AudioFile>DND_DropSuccess_130bpm.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="877464746"/>
+														<MediaID ID="398522806"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<TransitionList>
-												<MusicTransition Name="Root" ID="{39180656-BEEC-46F1-838F-42C66E3D36B8}">
+												<MusicTransition Name="Root" ID="{216EC032-92F8-440F-8A36-D748A3219211}">
 													<PropertyList>
 														<Property Name="IsFolder" Type="bool" Value="True"/>
 													</PropertyList>
@@ -2914,18 +2928,18 @@
 												<ObjectList Name="Sequences">
 													<Reference>
 														<Local>
-															<MusicTrackSequence Name="" ID="{5906093B-C6F5-4F0B-A97C-6EBE904F78BB}">
+															<MusicTrackSequence Name="" ID="{4E13460C-9A22-41DF-9DBF-D35EC1D7566D}">
 																<ObjectLists>
 																	<ObjectList Name="Clips">
 																		<Reference>
 																			<Local>
-																				<MusicClip Name="DND_Placeholder_DropSuccess" ID="{4FF51E55-8B43-4310-920C-796811AA7C3D}">
+																				<MusicClip Name="DND_DropSuccess_130bpm" ID="{156C1A0A-6F98-431D-9A58-CCC67122C561}">
 																					<PropertyList>
-																						<Property Name="EndTrimOffset" Type="Real64" Value="3130.4375"/>
+																						<Property Name="EndTrimOffset" Type="Real64" Value="7938.47916666667"/>
 																						<Property Name="FadeInMode" Type="int16" Value="0"/>
 																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
 																					</PropertyList>
-																					<AudioSourceRef Name="DND_Placeholder_DropSuccess" ID="{CB51D7AB-9383-45F3-9E02-BA03FDFCA1CA}"/>
+																					<AudioSourceRef Name="DND_DropSuccess_130bpm" ID="{2638914C-808F-408B-85EA-B6035A93EFFC}"/>
 																				</MusicClip>
 																			</Local>
 																		</Reference>
@@ -2981,23 +2995,23 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<MusicTrack Name="Music_Jin_Fail" ID="{537D4572-FCA7-4F4A-AF61-A6513E7D51C3}" ShortID="830785757">
+										<MusicTrack Name="DND_DropDefeat_130bpm" ID="{EDA8FF3B-3818-4F63-B8A8-3914F020C84F}" ShortID="17148140">
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="Music_Jin_Fail" ID="{04FED5AB-42F2-4487-B867-49EC71B1DAF5}">
+												<AudioFileSource Name="DND_DropDefeat_130bpm" ID="{774FE017-82D1-48D5-AFA0-70AACD1ACC2F}">
 													<Language>SFX</Language>
-													<AudioFile>Music_Jin_Fail.wav</AudioFile>
+													<AudioFile>DND_DropDefeat_130bpm.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="354893956"/>
+														<MediaID ID="368274947"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<TransitionList>
-												<MusicTransition Name="Root" ID="{84FD13B5-D804-42AD-9EA8-6BADABEBE5D3}">
+												<MusicTransition Name="Root" ID="{D31AE894-1407-4022-8921-0DF0F745BDED}">
 													<PropertyList>
 														<Property Name="IsFolder" Type="bool" Value="True"/>
 													</PropertyList>
@@ -3008,18 +3022,18 @@
 												<ObjectList Name="Sequences">
 													<Reference>
 														<Local>
-															<MusicTrackSequence Name="" ID="{EA71C198-472C-4275-8D58-40918B300A0B}">
+															<MusicTrackSequence Name="" ID="{D39A2A02-767E-49B9-81E9-999E1422C67E}">
 																<ObjectLists>
 																	<ObjectList Name="Clips">
 																		<Reference>
 																			<Local>
-																				<MusicClip Name="Music_Jin_Fail" ID="{759A9D6F-0A06-45D4-8FFD-3A7738E95F66}">
+																				<MusicClip Name="DND_DropDefeat_130bpm" ID="{17B46B93-419E-4B65-A0A3-EA2BD42FF923}">
 																					<PropertyList>
-																						<Property Name="EndTrimOffset" Type="Real64" Value="11545.0416666667"/>
+																						<Property Name="EndTrimOffset" Type="Real64" Value="6000"/>
 																						<Property Name="FadeInMode" Type="int16" Value="0"/>
 																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
 																					</PropertyList>
-																					<AudioSourceRef Name="Music_Jin_Fail" ID="{04FED5AB-42F2-4487-B867-49EC71B1DAF5}"/>
+																					<AudioSourceRef Name="DND_DropDefeat_130bpm" ID="{774FE017-82D1-48D5-AFA0-70AACD1ACC2F}"/>
 																				</MusicClip>
 																			</Local>
 																		</Reference>

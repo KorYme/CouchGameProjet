@@ -10,6 +10,18 @@
 							<Position X="0" Y="0"/>
 						</Module>
 						<Module>
+							<ObjectRef Name="Set_State_Musique_Intro" ID="{18CCAA0D-977C-46B6-A647-7C634F31F811}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
+							<Position X="0" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Set_State_Musique_End" ID="{4900C373-7698-4D81-A34C-322BAAD43294}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
+							<Position X="0" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Set_State_Phase_1" ID="{B7005640-9434-450F-8B58-09D35064A939}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
+							<Position X="0" Y="3"/>
+						</Module>
+						<Module>
 							<ObjectRef Name="Play_BarmanFail" ID="{B03EE6B6-6126-4000-8508-153A6448F016}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
 							<Position X="1" Y="0"/>
 						</Module>
@@ -101,7 +113,7 @@
 						<CurrentStateRef Name="No" ID="{BB8A4A28-E909-4E78-84F8-DD7C69897827}"/>
 						<CurrentStateRef Name="No" ID="{FD76BA71-31F8-46AA-AB57-13A7589800A3}"/>
 						<CurrentStateRef Name="None" ID="{FD7EECE2-F8F4-45B8-B9CB-AAC92B501AAB}"/>
-						<CurrentStateRef Name="Phase_1" ID="{07001DB6-4F40-4AA4-B66D-3D6464C860D7}"/>
+						<CurrentStateRef Name="Musique_Intro" ID="{4672D8F4-C676-4695-8340-5A22B64A896C}"/>
 					</CurrentStateList>
 					<CurrentSwitchList ShowAll="true"/>
 				</SoundcasterSession>

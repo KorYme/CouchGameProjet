@@ -9,6 +9,42 @@
 							<ObjectRef Name="System" ID="{3AB656FB-5D26-4E39-BB6F-8ABD4E6F9AF8}" WorkUnitID="{7212CC63-CC86-4E23-A1A9-E91F6E135BB8}"/>
 						</Reference>
 					</ReferenceList>
+					<ChildrenList>
+						<Bus Name="SFX" ID="{F687A49E-BFA1-4C3C-95AC-1D83D4FA8DF7}">
+							<ChildrenList>
+								<Bus Name="Amb" ID="{E9C07666-89A1-422F-B819-D3BAEC251719}"/>
+								<Bus Name="Character" ID="{F0F5D5AE-5AAC-4379-B5BC-530DDC55820E}"/>
+								<Bus Name="UI" ID="{9B940FC9-5512-483F-9497-4ED30C8BD6F5}">
+									<PropertyList>
+										<Property Name="RecoveryTime" Type="Real64" Value="0.5"/>
+									</PropertyList>
+									<DuckingList>
+										<DuckItem>
+											<BusRef Name="Music" ID="{2641F86B-48BF-4EF4-B015-A761295BFF89}"/>
+											<DuckingParam>
+												<Volume>-9</Volume>
+												<FadeInTime>0.5</FadeInTime>
+												<FadeOutTime>0.5</FadeOutTime>
+												<FadeCurve>FadeExp2</FadeCurve>
+											</DuckingParam>
+										</DuckItem>
+									</DuckingList>
+								</Bus>
+							</ChildrenList>
+							<DuckingList>
+								<DuckItem>
+									<BusRef Name="Music" ID="{2641F86B-48BF-4EF4-B015-A761295BFF89}"/>
+									<DuckingParam>
+										<Volume>-1</Volume>
+										<FadeInTime>0.5</FadeInTime>
+										<FadeOutTime>0.5</FadeOutTime>
+										<FadeCurve>FadeLinear</FadeCurve>
+									</DuckingParam>
+								</DuckItem>
+							</DuckingList>
+						</Bus>
+						<Bus Name="Music" ID="{2641F86B-48BF-4EF4-B015-A761295BFF89}"/>
+					</ChildrenList>
 				</Bus>
 			</ChildrenList>
 		</WorkUnit>
