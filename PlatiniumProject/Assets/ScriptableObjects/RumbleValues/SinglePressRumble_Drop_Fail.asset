@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e34363c99762c408a85174f95cf067, type: 3}
+  m_Name: SinglePressRumble_Drop_Fail
+  m_EditorClassIdentifier: 
+  rumbleName: Drop_Fail
+  isHolding: 0
+  time: 0
+  rumbleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.002609253
+      value: 0.40776062
+      inSlope: -1.1728886
+      outSlope: -1.1728886
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.091529675
+      value: 0.29734614
+      inSlope: -0.28256822
+      outSlope: -0.28256822
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.4930582
+      value: 0.541376
+      inSlope: -0.0076731443
+      outSlope: -0.0076731443
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.7228427
+      value: 0.39819762
+      inSlope: -0.039567553
+      outSlope: -0.039567553
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.0254447
+      value: 0.35890615
+      inSlope: -1.9056568
+      outSlope: -1.9056568
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.40488973
+      outWeight: 0.15226084
+    - serializedVersion: 3
+      time: 1.5598278
+      value: 0.2689688
+      inSlope: -0.8349092
+      outSlope: -0.8349092
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.8968538
+      value: -0.0037384033
+      inSlope: -0.8091577
+      outSlope: -0.8091577
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
