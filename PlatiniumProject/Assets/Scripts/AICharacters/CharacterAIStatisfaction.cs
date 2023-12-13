@@ -41,6 +41,9 @@ public class CharacterAIStatisfaction : MonoBehaviour
         CurrentMaxStatisafction = maxSatisfction;
         CurrentStatisafction = !randomiseSatisfaction? CurrentMaxStatisafction : Random.Range(CurrentMaxStatisafction / 2, CurrentMaxStatisafction + 1);
         CurrentSatisactionToGetLoyal = maxLoyalSatisfaction;
+        
+        _stateMachine.CharacterAnimation.VfxHandeler.StopVfx(VfxHandeler.VFX_TYPE.ANGRY);
+        _stateMachine.CharacterAnimation.VfxHandeler.StopVfx(VfxHandeler.VFX_TYPE.ANGRY2);
     }
 
     public void IncreaseSatisfaction(int amount)
@@ -55,14 +58,21 @@ public class CharacterAIStatisfaction : MonoBehaviour
         }
 
         CurrentStatisafction += amount;
+        if (CurrentStatisafction > CurrentMaxStatisafction * (1f/3f) && CurrentStatisafction < CurrentMaxStatisafction)
+        {
+            _stateMachine.CharacterAnimation.VfxHandeler.StopVfx(VfxHandeler.VFX_TYPE.ANGRY2);
+        }
         if (CurrentStatisafction > CurrentMaxStatisafction && CurrentStatisafction < CurrentSatisactionToGetLoyal &&
             _currentState != SATISFACTION_STATE.DANCING)
         {
             _currentState = SATISFACTION_STATE.DANCING;
+            _stateMachine.CharacterAnimation.VfxHandeler.StopVfx(VfxHandeler.VFX_TYPE.ANGRY);
+            _stateMachine.CharacterAnimation.VfxHandeler.StopVfx(VfxHandeler.VFX_TYPE.ANGRY2);
         }
         else if (CurrentStatisafction >= CurrentSatisactionToGetLoyal && _currentState != SATISFACTION_STATE.LOYAL)
         {
             _currentState = SATISFACTION_STATE.LOYAL;
+            _stateMachine.CharacterAnimation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.SATISAFCTION);
             Globals.GameManager.SacrifiedClient++;
             if (_stateMachine.CharacterDataObject.isTutorialNpc)
             {
@@ -86,8 +96,19 @@ public class CharacterAIStatisfaction : MonoBehaviour
         if (CurrentStatisafction <= 0)
         {
             OnSatsifactionZero?.Invoke();
+            _stateMachine.CharacterAnimation.VfxHandeler.StopVfx(VfxHandeler.VFX_TYPE.ANGRY);
+            _stateMachine.CharacterAnimation.VfxHandeler.StopVfx(VfxHandeler.VFX_TYPE.ANGRY2);
         }
-        else if(CurrentStatisafction < CurrentMaxStatisafction && _currentState != SATISFACTION_STATE.BORED)
+        else if (CurrentStatisafction <= CurrentMaxStatisafction * (1f/3f))
+        {
+            _stateMachine.CharacterAnimation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.ANGRY2);
+        }
+        else if (CurrentStatisafction <= CurrentMaxStatisafction * (2f/3f))
+        {
+            _stateMachine.CharacterAnimation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.ANGRY);
+        }
+        
+        if(CurrentStatisafction < CurrentMaxStatisafction && _currentState != SATISFACTION_STATE.BORED)
         {
             _currentState = SATISFACTION_STATE.BORED;
         }
