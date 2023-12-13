@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rumbleName: Bouncer_punch
   isHolding: 0
-  time: 0.3
+  time: 0.2
   rumbleCurve:
     serializedVersion: 2
     m_Curve:

@@ -17,6 +17,8 @@ public class BouncerQTEController : MonoBehaviour, IQTEable
     public event Action<string> OnBouncerQTEStarted;
     public event Action<string> OnBouncerQTEEnded; //Arg1 peut être enlevé
     public event Action<string> OnBouncerQTEChanged;
+    [SerializeField] UnityEvent _onSucces;
+    [SerializeField] UnityEvent _onFail;
     #endregion
 
     private void Awake()
@@ -56,6 +58,7 @@ public class BouncerQTEController : MonoBehaviour, IQTEable
         OnBouncerQTEChanged?.Invoke(_qteHandler.GetCurrentInputString());
         _characterAnimation.SetLatency(2);
         _characterAnimation.SetAnim(ANIMATION_TYPE.FIGHT, false);
+        _onSucces?.Invoke();
         OnPunch?.Invoke();
         
     }
@@ -72,6 +75,7 @@ public class BouncerQTEController : MonoBehaviour, IQTEable
         {
             _qteHandler.DeleteCurrentCoroutine();
             OnBouncerQTEEnded?.Invoke(_qteHandler.GetCurrentInputString());
+            _onFail?.Invoke();
         }
         _characterAnimation.SetLatency(2);
         _characterAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT, false);

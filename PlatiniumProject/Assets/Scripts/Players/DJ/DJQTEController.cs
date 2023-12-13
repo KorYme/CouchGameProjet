@@ -17,6 +17,7 @@ public class DJQTEController : MonoBehaviour, IQTEable
     public event Action<string> OnDJQTEEnded;
     public event Action<string> OnDJQTEChanged;
     [SerializeField] UnityEvent _onDJSuccess;
+    [SerializeField] UnityEvent _onDJFail;
     #endregion
 
     private void Awake()
@@ -111,6 +112,7 @@ public class DJQTEController : MonoBehaviour, IQTEable
             }
         }
         OnDJQTEChanged?.Invoke(_qteHandler.GetQTEString());
+        _onDJSuccess?.Invoke();
         _characterAnimation.SetLatency(2);
         _characterArmAnimation.SetLatency(2);
         _characterAnimation.SetAnim(ANIMATION_TYPE.CORRECT_INPUT, false);
@@ -121,6 +123,7 @@ public class DJQTEController : MonoBehaviour, IQTEable
 
     public void OnQTEWrongInput()
     {
+        _onDJFail?.Invoke();
         OnDJQTEChanged?.Invoke(_qteHandler.GetQTEString());
         _characterAnimation.SetLatency(2);
         _characterArmAnimation.SetLatency(2);

@@ -312,9 +312,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _syncEvents: {fileID: 11400000, guid: 3d177a6915f7ab741a5d1e108a78e228, type: 2}
-  _rtImage: {fileID: 0}
-  _ltImage: {fileID: 0}
   _playerRole: 0
+  OnHoldDrop:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3832343337607226648}
+        m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
+        m_MethodName: PlayRumbles
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Drop_Rumble
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDropDrop:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3832343337607226648}
+        m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
+        m_MethodName: StopAllRumbles
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8956483046599270321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,8 +369,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _role: 0
   _allRumbles:
-  - {fileID: 11400000, guid: e5df8f419ed1ad644b561441541a931c, type: 2}
-  - {fileID: 11400000, guid: d2509bcea857a644eae99438aab77314, type: 2}
+  - {fileID: 11400000, guid: f3cc1a64abf5d5c4e85bd118ef04a379, type: 2}
+  - {fileID: 11400000, guid: e0789219a029ce243aba6c4556337af5, type: 2}
 --- !u!114 &3703407834551687810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,9 +387,6 @@ MonoBehaviour:
   - idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 5298782d780800d4db8ed284058057ae, type: 2}
-  - idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: ff3efe8f09e04be449efc6906b056206, type: 2}
 --- !u!1 &6454385579514867624
 GameObject:
   m_ObjectHideFlags: 0
