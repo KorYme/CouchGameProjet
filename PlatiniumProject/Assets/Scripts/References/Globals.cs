@@ -13,4 +13,5 @@ public static class Globals
     public static PlayerInputsAssigner PlayerInputsAssigner = null;
     public static TutorialManager TutorialManager = null;
     public static GameManager GameManager = null;
+    public static MainMenuMusic MainMenuMusic = null;
 }
