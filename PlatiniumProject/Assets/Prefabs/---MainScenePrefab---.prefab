@@ -17123,6 +17123,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1707466153288651455, guid: 6ed701891eef683438621f6642697cb5, type: 3}
   m_PrefabInstance: {fileID: 4004212955814495886}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2682674541586220227 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1345191178532553293, guid: 6ed701891eef683438621f6642697cb5, type: 3}
+  m_PrefabInstance: {fileID: 4004212955814495886}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8605841693048097846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f314b23923af9248b4370310b319b4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8605841693048097846 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4683678858438232760, guid: 6ed701891eef683438621f6642697cb5, type: 3}
@@ -17157,6 +17168,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2682674541586220227}
+        m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
+        m_MethodName: PlayRumbles
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Game_Over
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!1001 &4051036805286994097
