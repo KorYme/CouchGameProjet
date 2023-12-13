@@ -13,7 +13,7 @@ public class CharacterStateDancing : CharacterState
             Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.DANCEFLOOR).SetShadowMaterial(false);
         }
         base.EnterState();
-        StateMachine.Satisafaction.InitializeStatisfaction(StateMachine.CharacterDataObject.maxSatisafactionDJ, StateMachine.CharacterDataObject.satisfactionAmountToGetLoyal);
+        StateMachine.Satisafaction.InitializeStatisfaction(StateMachine.CharacterDataObject.maxSatisafactionDJ, StateMachine.CharacterDataObject.satisfactionAmountToGetLoyal, StateMachine.RandomiseSatisfaction);
         StateMachine.Satisafaction.OnSatsifactionZero += RunOutOfSatisfaction;
 
         Globals.PriestCalculator.OnPriestNearToExorcize += StartExorcize;
