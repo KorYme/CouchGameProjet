@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class BouncerMovement : PlayerMovement, IQTEable
@@ -33,6 +34,11 @@ public class BouncerMovement : PlayerMovement, IQTEable
     private bool _isInDrop = false;
     private CHECKING_STATE _checkingState = CHECKING_STATE.NONE;
     private ANIMATION_TYPE _moveAnim;
+    
+    [SerializeField] UnityEvent _onAccept;
+    [SerializeField] UnityEvent _onRefuse;
+    [SerializeField] UnityEvent _onCheck;
+    [SerializeField] UnityEvent _onMovement;
     private void Awake()
     {
         _qteController = GetComponent<BouncerQTEController>();
@@ -79,6 +85,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     public void CheckMode(CharacterStateMachine chara, CharacterCheckByBouncerState state)
     {
+        _onCheck?.Invoke();
         _currentClient = state;
         _currentState = BOUNCER_STATE.CHECKING;
         StartCoroutine(TestCheck(chara.transform.position));
@@ -92,6 +99,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
         if (MoveTo(_currentSlot.Neighbours[index].transform.position, _moveAnim))
         {
+            _onMovement?.Invoke();
             _currentSlot.PlayerOccupant = null;
             _currentSlot = _currentSlot.Neighbours[index];
             _currentSlot.PlayerOccupant = this;
@@ -141,6 +149,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
                      _currentClient.StateMachine.TypeData.Evilness == Evilness.GOOD) ||
                     !_currentClient.StateMachine.CharacterDataObject.isTutorialNpc)
                 {
+                    _onAccept?.Invoke();
                     _animation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.YEAH);
                     LetCharacterEnterBox();
                     _qteController?.CloseBubble();
@@ -156,6 +165,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
                      _currentClient.StateMachine.TypeData.Evilness == Evilness.EVIL) ||
                     !_currentClient.StateMachine.CharacterDataObject.isTutorialNpc)
                 {
+                    _onRefuse?.Invoke();
                     _animation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.NO);
                     _currentClient.StateMachine.CharacterAnimation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.CHOC);
                     _currentClient.StateMachine.CharacterAnimation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.EXCLAMATION);

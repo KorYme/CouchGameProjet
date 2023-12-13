@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WaitingLineBar : MonoBehaviour,IQTEable
 {
@@ -10,6 +11,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     private PriestCalculator _priestCalculator;
     BarmanQTEController _barmanController;
     [SerializeField] int _maxPlaces = 10;
+    [SerializeField] private UnityEvent _onDrinkFinished;
     Vector3 Direction => Vector3.down;
     Vector3 Offset => Direction * 2.5f;
 
@@ -57,6 +59,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             CharacterStateMachine stateMachine = _waitingCharactersList[0];
             if (stateMachine != null)
             {
+                _onDrinkFinished?.Invoke();
                 if (stateMachine.TypeData.Evilness == Evilness.GOOD)
                 {
                     stateMachine.CurrentSlot = _djUsher.NextSlot;

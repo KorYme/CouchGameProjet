@@ -62,6 +62,7 @@ public class BarmanMovement : PlayerMovement
             {
                 if (MoveTo(_barmanPositions[_indexPosition+1].transform.position))
                 {
+                    _onBarmanMove?.Invoke();
                     DeactivateCurrentQTE();
                     _indexPosition++;
                     ActivateCurrentQTE();

@@ -15607,10 +15607,6 @@ PrefabInstance:
       value: 1021743411
       objectReference: {fileID: 0}
     - target: {fileID: 3703407834551687810, guid: 7c529a488a751df4a9749ebcbee0ced4, type: 3}
-      propertyPath: _sfxEvent.Array.data[0].WwiseObjectReference
-      value: 
-      objectReference: {fileID: 11400000, guid: ff3efe8f09e04be449efc6906b056206, type: 2}
-    - target: {fileID: 3703407834551687810, guid: 7c529a488a751df4a9749ebcbee0ced4, type: 3}
       propertyPath: _sfxEvent.Array.data[1].WwiseObjectReference
       value: 
       objectReference: {fileID: 11400000, guid: 5298782d780800d4db8ed284058057ae, type: 2}
