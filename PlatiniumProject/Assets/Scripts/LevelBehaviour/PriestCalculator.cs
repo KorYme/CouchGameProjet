@@ -21,6 +21,9 @@ public class PriestCalculator : MonoBehaviour
     [Header("References")]
     [SerializeField] private CheckerBoard _danceFloor;
     public List<CharacterStateMachine> CurrentPriestList;
+
+    [Header("Lose")]
+    [SerializeField] private int _timeUntilDefeateScreen;
     
     public EXORCIZE_STATE ExorcizeState { get; private set; } = EXORCIZE_STATE.NORMAL;
     
@@ -28,6 +31,7 @@ public class PriestCalculator : MonoBehaviour
     public Action OnPriestExorcize;
 
     public UnityEvent OnLoose;
+    public UnityEvent OnDisplayLooseScreen;
 
     private void Awake()
     {
@@ -73,6 +77,9 @@ public class PriestCalculator : MonoBehaviour
             ExorcizeState = EXORCIZE_STATE.EXORCIZED;
             OnPriestExorcize?.Invoke();
             OnLoose?.Invoke();
+            Invoke("CallGameOverScreen", _timeUntilDefeateScreen);
         }
     }
+
+    public void CallGameOverScreen() => OnDisplayLooseScreen?.Invoke();
 }

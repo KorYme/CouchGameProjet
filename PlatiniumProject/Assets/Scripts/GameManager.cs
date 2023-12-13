@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
         Globals.DropManager.OnGameEnd += DisplayWinMenu;
     }
 
+    private void OnDisable()
+    {
+        Globals.DropManager.OnGameEnd -= DisplayWinMenu;
+    }
+
     private void DisplayWinMenu()
     {
         _winMenu.SetActive(true);

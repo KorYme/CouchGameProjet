@@ -17155,7 +17155,23 @@ MonoBehaviour:
   _priestAmountToExorcize: 10
   _danceFloor: {fileID: 1447748216813016775}
   CurrentPriestList: []
+  _timeUntilDefeateScreen: 10
   OnLoose:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2682674541586220227}
+        m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
+        m_MethodName: PlayRumbles
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Game_Over
+          m_BoolArgument: 1
+        m_CallState: 2
+  OnDisplayLooseScreen:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4485807349705820686}
@@ -17168,18 +17184,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 2682674541586220227}
-        m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
-        m_MethodName: PlayRumbles
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Game_Over
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!1001 &4051036805286994097
