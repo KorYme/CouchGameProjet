@@ -100,7 +100,7 @@ public class BeatManager : MonoBehaviour, ITimingable
         if (!Globals.DropManager.IsGamePlaying) return;
         AkMusicSyncCallbackInfo info = in_info as AkMusicSyncCallbackInfo;
         switch (in_type)
-        { 
+        {
             case AkCallbackType.AK_MusicSyncGrid:
                 _beatCoroutine ??= StartCoroutine(BeatCoroutine());
                 _lastBeatTime = DateTime.Now;
