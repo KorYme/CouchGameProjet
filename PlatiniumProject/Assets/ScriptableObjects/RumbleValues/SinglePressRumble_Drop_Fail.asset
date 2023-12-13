@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rumbleName: Drop_Fail
   isHolding: 0
-  time: 3
+  time: 2
   rumbleCurve:
     serializedVersion: 2
     m_Curve:
