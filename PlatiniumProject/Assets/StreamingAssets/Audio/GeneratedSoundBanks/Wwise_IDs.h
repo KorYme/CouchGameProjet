@@ -38,6 +38,7 @@ namespace AK
         static const AkUniqueID PLAY_MENUOPEN = 119142231U;
         static const AkUniqueID PLAY_MENUVALIDCHARA = 117953180U;
         static const AkUniqueID PLAY_MUSIC_DND = 3388161964U;
+        static const AkUniqueID PLAY_MUSIC_MENU = 1699343283U;
         static const AkUniqueID PLAY_NEWGAME = 1215962870U;
         static const AkUniqueID PLAY_VOLUMEBAR = 1570308127U;
         static const AkUniqueID SET_STATE_MENU_CLOSE = 2333309968U;
@@ -56,6 +57,7 @@ namespace AK
         static const AkUniqueID SET_STATE_PHASE_1 = 2127083549U;
         static const AkUniqueID SET_STATE_PHASE_2 = 2127083550U;
         static const AkUniqueID SET_STATE_PHASE_3 = 2127083551U;
+        static const AkUniqueID STOP_MUSIC_MENU = 106912753U;
     } // namespace EVENTS
 
     namespace STATES
