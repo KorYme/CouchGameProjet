@@ -26,6 +26,7 @@ public class RumbleEditor : Editor
         {
             RumbleValues asset = CreateInstance<RumbleValues>();
             asset.isHolding = false;
+            asset.time = _rumble.SinglePressRumble.time;
             asset.rumbleCurve = _rumble.SinglePressRumble.rumbleCurve;
             asset.rumbleName = _rumble.SinglePressRumble.rumbleName;
             AssetDatabase.CreateAsset(asset, $"Assets/ScriptableObjects/RumbleValues/SinglePressRumble_{_assetName}.asset");
@@ -35,6 +36,7 @@ public class RumbleEditor : Editor
         {
             RumbleValues asset = CreateInstance<RumbleValues>();
             asset.isHolding = true;
+            asset.time = _rumble.HoldRumble.time;
             asset.rumbleCurve = _rumble.HoldRumble.rumbleCurve;
             asset.rumbleName = _rumble.HoldRumble.rumbleName;
             AssetDatabase.CreateAsset(asset, $"Assets/ScriptableObjects/RumbleValues/HoldRumble_{_assetName}.asset");
