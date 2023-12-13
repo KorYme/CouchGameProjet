@@ -455,6 +455,7 @@
 						<Property Name="Color" Type="int16" Value="13"/>
 						<Property Name="GridFrequencyPreset" Type="int16" Value="53"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
+						<Property Name="Tempo" Type="Real64" Value="115"/>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
 								<Value>-11</Value>
@@ -828,7 +829,7 @@
 															<MusicCue Name="Exit Cue" ID="{8C9687DD-8FFE-4BC5-A21A-9B6382530EF7}">
 																<PropertyList>
 																	<Property Name="CueType" Type="int16" Value="1"/>
-																	<Property Name="TimeMs" Type="Real64" Value="134400"/>
+																	<Property Name="TimeMs" Type="Real64" Value="57600"/>
 																</PropertyList>
 															</MusicCue>
 														</Local>
@@ -1333,7 +1334,7 @@
 													<MusicCue Name="Exit Cue" ID="{BEAD224E-98E1-4F10-BE89-489C64BA8A9B}">
 														<PropertyList>
 															<Property Name="CueType" Type="int16" Value="1"/>
-															<Property Name="TimeMs" Type="Real64" Value="5656.03448887502"/>
+															<Property Name="TimeMs" Type="Real64" Value="4200"/>
 														</PropertyList>
 													</MusicCue>
 												</Local>
@@ -1429,7 +1430,7 @@
 													<MusicCue Name="Exit Cue" ID="{AD5A241E-1070-45AC-843B-46095411A070}">
 														<PropertyList>
 															<Property Name="CueType" Type="int16" Value="1"/>
-															<Property Name="TimeMs" Type="Real64" Value="3300"/>
+															<Property Name="TimeMs" Type="Real64" Value="4200"/>
 														</PropertyList>
 													</MusicCue>
 												</Local>
@@ -1649,7 +1650,7 @@
 															<MusicCue Name="Exit Cue" ID="{3FC7FD25-BAA0-4ACB-BB9B-78D91DD377C6}">
 																<PropertyList>
 																	<Property Name="CueType" Type="int16" Value="1"/>
-																	<Property Name="TimeMs" Type="Real64" Value="116869.565217391"/>
+																	<Property Name="TimeMs" Type="Real64" Value="50086.9565217391"/>
 																</PropertyList>
 															</MusicCue>
 														</Local>
@@ -1659,7 +1660,7 @@
 															<MusicCue Name="BuildUpStart" ID="{75CD6AC2-BEF2-4B15-A34A-874991A1C5A0}">
 																<PropertyList>
 																	<Property Name="CueType" Type="int16" Value="2"/>
-																	<Property Name="TimeMs" Type="Real64" Value="110988.146306818"/>
+																	<Property Name="TimeMs" Type="Real64" Value="12576.1786430099"/>
 																</PropertyList>
 															</MusicCue>
 														</Local>
@@ -2149,7 +2150,7 @@
 													<MusicCue Name="Exit Cue" ID="{2C7886CC-53B4-47BE-AF81-CA9FDC254BAC}">
 														<PropertyList>
 															<Property Name="CueType" Type="int16" Value="1"/>
-															<Property Name="TimeMs" Type="Real64" Value="1000"/>
+															<Property Name="TimeMs" Type="Real64" Value="3913.04347826087"/>
 														</PropertyList>
 													</MusicCue>
 												</Local>
@@ -2159,7 +2160,7 @@
 													<MusicCue Name="MusicStart" ID="{7D70BE99-83B8-4EBE-AAC0-751482F1641D}">
 														<PropertyList>
 															<Property Name="CueType" Type="int16" Value="2"/>
-															<Property Name="TimeMs" Type="Real64" Value="521.739130434783"/>
+															<Property Name="TimeMs" Type="Real64" Value="260.869565217391"/>
 														</PropertyList>
 													</MusicCue>
 												</Local>
@@ -2243,7 +2244,7 @@
 													<MusicCue Name="Exit Cue" ID="{3247D6EB-E0D1-470E-ACD8-9468F57961A3}">
 														<PropertyList>
 															<Property Name="CueType" Type="int16" Value="1"/>
-															<Property Name="TimeMs" Type="Real64" Value="1000"/>
+															<Property Name="TimeMs" Type="Real64" Value="3652.17391304348"/>
 														</PropertyList>
 													</MusicCue>
 												</Local>
@@ -2464,7 +2465,7 @@
 															<MusicCue Name="Exit Cue" ID="{512D0264-A5CF-43E6-9F29-D68AF0D8B114}">
 																<PropertyList>
 																	<Property Name="CueType" Type="int16" Value="1"/>
-																	<Property Name="TimeMs" Type="Real64" Value="103384.615384615"/>
+																	<Property Name="TimeMs" Type="Real64" Value="22153.8461538462"/>
 																</PropertyList>
 															</MusicCue>
 														</Local>
@@ -2474,7 +2475,7 @@
 															<MusicCue Name="BuildUpStart" ID="{EFE6AFFF-CA7F-412D-B2D9-4D00A500C46B}">
 																<PropertyList>
 																	<Property Name="CueType" Type="int16" Value="2"/>
-																	<Property Name="TimeMs" Type="Real64" Value="98000.5641666664"/>
+																	<Property Name="TimeMs" Type="Real64" Value="7384.61538461538"/>
 																</PropertyList>
 															</MusicCue>
 														</Local>
@@ -2964,7 +2965,7 @@
 													<MusicCue Name="Exit Cue" ID="{312EAA2A-4CEC-448D-8194-5D28A9024114}">
 														<PropertyList>
 															<Property Name="CueType" Type="int16" Value="1"/>
-															<Property Name="TimeMs" Type="Real64" Value="1000"/>
+															<Property Name="TimeMs" Type="Real64" Value="3692.30769230769"/>
 														</PropertyList>
 													</MusicCue>
 												</Local>
@@ -3058,7 +3059,7 @@
 													<MusicCue Name="Exit Cue" ID="{1B90CD76-93B9-46E7-8193-3FE38BFCFC7A}">
 														<PropertyList>
 															<Property Name="CueType" Type="int16" Value="1"/>
-															<Property Name="TimeMs" Type="Real64" Value="1000"/>
+															<Property Name="TimeMs" Type="Real64" Value="3692.30769230769"/>
 														</PropertyList>
 													</MusicCue>
 												</Local>
