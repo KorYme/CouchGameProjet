@@ -19,7 +19,7 @@ public class CheckHasInputThisBeat
     {
         if (HadInputThisBeat)
         {
-            Debug.Log("ACTIVATE BEAT");
+            //Debug.Log("ACTIVATE BEAT");
         }
         HadInputThisBeat = false;
     }

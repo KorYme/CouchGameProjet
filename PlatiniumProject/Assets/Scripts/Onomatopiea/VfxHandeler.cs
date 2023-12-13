@@ -31,6 +31,8 @@ public class VfxHandeler : MonoBehaviour
         SATISAFCTION,
         SHAKE,
         SHAKE2,
+        ANGRY,
+        ANGRY2
     }
 
     [SerializeField] private Vfx[] _vfxs;
@@ -44,16 +46,23 @@ public class VfxHandeler : MonoBehaviour
         }
     }
 
-    public void PlayVfx(VFX_TYPE type, int vfxCount = 1)
+    public void PlayVfx(VFX_TYPE type)
     {
         if (!_vfxDict.ContainsKey(type))
         {
             //Debug.LogWarning("BEBOU LE DICO EST VIDE");
             return;
         }
-        for (int i = 0; i < vfxCount; i++)
+        _vfxDict[type]?.SendEvent("CustomPlay");
+    }
+
+    public void StopVfx(VFX_TYPE type)
+    {
+        if (!_vfxDict.ContainsKey(type))
         {
-            _vfxDict[type]?.SendEvent("CustomPlay");
-        }
+            //Debug.LogWarning("BEBOU LE DICO EST VIDE");
+            return;
+        } 
+        _vfxDict[type]?.SendEvent("CustomStop");
     }
 }
