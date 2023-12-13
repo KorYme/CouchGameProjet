@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CharacterAIStatisfaction : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class CharacterAIStatisfaction : MonoBehaviour
         _characterData = _stateMachine.CharacterDataObject;
     }
 
-    public void InitializeStatisfaction(int maxSatisfction, int maxLoyalSatisfaction)
+    public void InitializeStatisfaction(int maxSatisfction, int maxLoyalSatisfaction, bool randomiseSatisfaction = false)
     {
         if (maxSatisfction <= 0)
         {
@@ -38,7 +39,7 @@ public class CharacterAIStatisfaction : MonoBehaviour
         }
         _characterTypeData = _stateMachine.TypeData;
         CurrentMaxStatisafction = maxSatisfction;
-        CurrentStatisafction = CurrentMaxStatisafction;
+        CurrentStatisafction = !randomiseSatisfaction? CurrentMaxStatisafction : Random.Range(CurrentMaxStatisafction / 2, CurrentMaxStatisafction + 1);
         CurrentSatisactionToGetLoyal = maxLoyalSatisfaction;
     }
 
