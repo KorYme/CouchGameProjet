@@ -34,6 +34,7 @@ public class DropManager : MonoBehaviour
     [Header("Unity Events"), Space]
     [SerializeField] UnityEvent _onBeginBuildUp;
     [SerializeField] UnityEvent _onDropTriggered;
+    [SerializeField] UnityEvent _onDropLaunched;
     [SerializeField] UnityEvent _onDropSuccess;
     [SerializeField] UnityEvent _onDropFail;
 
@@ -52,6 +53,7 @@ public class DropManager : MonoBehaviour
     public event Action<DROP_STATE> OnDropStateChange;
     public event Action OnBeginBuildUp;
     public event Action OnDropLoaded;
+    public event Action OnDropLaunched;
     public event Action OnDropSuccess;
     public event Action OnDropFail;
     public event Action OnGameEnd;
@@ -70,6 +72,7 @@ public class DropManager : MonoBehaviour
         OnDropFail += () => _onDropFail?.Invoke();
         OnBeginBuildUp += () => _onBeginBuildUp?.Invoke();
         OnDropLoaded += () => _onDropTriggered?.Invoke();
+        OnDropLaunched += () => _onDropLaunched?.Invoke();
         OnDropStateChange += DropStateChange;
         IsGamePlaying = true;
     }
@@ -113,6 +116,9 @@ public class DropManager : MonoBehaviour
             case DROP_STATE.ON_DROP_SUCCESS:
                 _dropSuccessEvent?.Post(gameObject);
                 OnDropSuccess?.Invoke();
+                break;
+            case DROP_STATE.ON_DROP_RELEASING:
+                OnDropLaunched?.Invoke();
                 break;
             default:
                 break;

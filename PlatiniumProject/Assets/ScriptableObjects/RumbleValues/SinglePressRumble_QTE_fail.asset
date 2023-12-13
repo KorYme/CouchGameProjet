@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rumbleName: QTE_fail
   isHolding: 0
-  time: 0
+  time: 0.5
   rumbleCurve:
     serializedVersion: 2
     m_Curve:
