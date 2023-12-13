@@ -472,6 +472,11 @@
 					</ReferenceList>
 					<ChildrenList>
 						<MusicPlaylistContainer Name="Musique_Intro" ID="{3FF5B05E-1F6B-428F-9F55-26BB32A5BCA2}" ShortID="904399098">
+							<PropertyList>
+								<Property Name="GridFrequencyPreset" Type="int16" Value="53"/>
+								<Property Name="OverrideClockSettings" Type="bool" Value="True"/>
+								<Property Name="Tempo" Type="Real64" Value="115"/>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{05639049-6F62-4B68-870E-939470CD4D36}"/>
@@ -484,7 +489,6 @@
 								<MusicSegment Name="Musique_Intro" ID="{0AE5B48A-1749-472F-878C-7F239F8BE1FA}" ShortID="297323385">
 									<PropertyList>
 										<Property Name="EndPosition" Type="Real64" Value="177289.785624517"/>
-										<Property Name="OverrideClockSettings" Type="bool" Value="True"/>
 										<Property Name="Tempo" Type="Real64" Value="115"/>
 									</PropertyList>
 									<ReferenceList>
