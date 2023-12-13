@@ -2014,7 +2014,7 @@ MonoBehaviour:
   m_GroupId: 0
   m_GroupMaxId: 0
   m_PositionMode: 0
-  m_AutoScaling: 1
+  m_AutoScaling: 0
   m_AutoScalingMode: 2
   m_ResetScaleOnEnable: 0
 --- !u!222 &950933975
@@ -9127,6 +9127,7 @@ MonoBehaviour:
   _priestAmountToExorcize: 4
   _danceFloor: {fileID: 0}
   CurrentPriestList: []
+  _timeUntilDefeateScreen: 0
   OnLoose:
     m_PersistentCalls:
       m_Calls:
@@ -9142,6 +9143,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  OnDisplayLooseScreen:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2004735592
 GameObject:
   m_ObjectHideFlags: 0
