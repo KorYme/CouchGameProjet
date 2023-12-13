@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rumbleName: Game_Over
   isHolding: 0
-  time: 0
+  time: 1.5
   rumbleCurve:
     serializedVersion: 2
     m_Curve:
