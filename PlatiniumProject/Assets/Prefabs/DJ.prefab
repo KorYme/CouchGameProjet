@@ -299,6 +299,18 @@ MonoBehaviour:
           m_StringArgument: Play_DJSuccess
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7928612141699995362}
+        m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
+        m_MethodName: PlayRumbles
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: DJ_QTE
+          m_BoolArgument: 0
+        m_CallState: 2
   _onDJFail:
     m_PersistentCalls:
       m_Calls:
@@ -312,6 +324,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Play_DJFail
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7928612141699995362}
+        m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
+        m_MethodName: PlayRumbles
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: QTE_fail
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &5266241032662133365
@@ -372,9 +396,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _role: 1
   _allRumbles:
-  - {fileID: 11400000, guid: f3cc1a64abf5d5c4e85bd118ef04a379, type: 2}
+  - {fileID: 11400000, guid: b4d50b05b4348e04b92d410d127c03e8, type: 2}
   - {fileID: 11400000, guid: e0789219a029ce243aba6c4556337af5, type: 2}
   - {fileID: 11400000, guid: 047dad1b650745f4c9a474f22b2f3ff2, type: 2}
+  - {fileID: 11400000, guid: 3cef622fc1ef1534f89792b53f9e3c28, type: 2}
+  - {fileID: 11400000, guid: 0630de30e6ddd7a44adf74b8dd4ae131, type: 2}
 --- !u!114 &2329591207993352088
 MonoBehaviour:
   m_ObjectHideFlags: 0
