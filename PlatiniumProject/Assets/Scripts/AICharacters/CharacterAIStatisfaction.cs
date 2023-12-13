@@ -62,6 +62,7 @@ public class CharacterAIStatisfaction : MonoBehaviour
         else if (CurrentStatisafction >= CurrentSatisactionToGetLoyal && _currentState != SATISFACTION_STATE.LOYAL)
         {
             _currentState = SATISFACTION_STATE.LOYAL;
+            Globals.GameManager.SacrifiedClient++;
             if (_stateMachine.CharacterDataObject.isTutorialNpc)
             {
                 Globals.TutorialManager.HandledTutoCharacter++;

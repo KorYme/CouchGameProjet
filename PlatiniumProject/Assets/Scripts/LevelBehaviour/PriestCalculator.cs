@@ -21,7 +21,7 @@ public class PriestCalculator : MonoBehaviour
     [Header("References")]
     [SerializeField] private CheckerBoard _danceFloor;
     public List<CharacterStateMachine> CurrentPriestList;
-
+    
     public EXORCIZE_STATE ExorcizeState { get; private set; } = EXORCIZE_STATE.NORMAL;
     
     public Action OnPriestNearToExorcize;
@@ -72,7 +72,6 @@ public class PriestCalculator : MonoBehaviour
             Debug.Log("GAME OVER");
             ExorcizeState = EXORCIZE_STATE.EXORCIZED;
             OnPriestExorcize?.Invoke();
-            Time.timeScale = 0f;
             OnLoose?.Invoke();
         }
     }
