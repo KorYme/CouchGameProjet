@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2475575777112969248}
   - component: {fileID: 1020801392736537925}
   - component: {fileID: 3001707074899246954}
+  - component: {fileID: 2423857602229449428}
   m_Layer: 0
   m_Name: BeatManager
   m_TagString: Untagged
@@ -129,7 +130,6 @@ MonoBehaviour:
   _pressingSynchronizationTime: 1
   _pressingBuildUpTime: 12
   _releasingBuildUpTime: 3
-  _dropStateText: {fileID: 0}
   _dropAnimationBehaviour: {fileID: 0}
   _onBeginBuildUp:
     m_PersistentCalls:
@@ -139,7 +139,47 @@ MonoBehaviour:
       m_Calls: []
   _onDropSuccess:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2423857602229449428}
+        m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
+        m_MethodName: PlayRumbles
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Drop_Success
+          m_BoolArgument: 0
+        m_CallState: 2
   _onDropFail:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2423857602229449428}
+        m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
+        m_MethodName: PlayRumbles
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Drop_Fail
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2423857602229449428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2994801982979645308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f314b23923af9248b4370310b319b4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _role: 3
+  _allRumbles:
+  - {fileID: 11400000, guid: 5acbf6a9b21b23b49aaecf0b7a6a4fc9, type: 2}
+  - {fileID: 11400000, guid: 176ac9614f7caa3469bdfe1b5a98dd7a, type: 2}

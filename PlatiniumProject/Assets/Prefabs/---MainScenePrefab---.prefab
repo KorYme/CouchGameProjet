@@ -17155,6 +17155,7 @@ MonoBehaviour:
   _priestAmountToExorcize: 10
   _danceFloor: {fileID: 1447748216813016775}
   CurrentPriestList: []
+  _timeUntilDefeateScreen: 10
   OnLoose:
     m_PersistentCalls:
       m_Calls:
