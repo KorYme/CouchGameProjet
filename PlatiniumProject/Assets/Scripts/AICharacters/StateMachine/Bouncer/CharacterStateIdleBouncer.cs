@@ -39,12 +39,12 @@ public class CharacterStateIdleBouncer : CharacterState
 
         if (!StateMachine.CharacterDataObject.isTutorialNpc && StateMachine.CurrentMovementInBouncer > StateMachine.CharacterDataObject.movementAmountInQueue)
         {
+            StateMachine.CharacterAnimation.VfxHandeler.StopVfx(VfxHandeler.VFX_TYPE.ANGRY);
+            StateMachine.CharacterAnimation.VfxHandeler.StopVfx(VfxHandeler.VFX_TYPE.ANGRY2);
             StateMachine.CurrentSlot.Occupant = null;
             StateMachine.UseTp = true;
             StateMachine.ChangeState(StateMachine.RoamState);
             StateMachine.NextState = StateMachine.BarManQueueState;
-            StateMachine.CharacterAnimation.VfxHandeler.StopVfx(VfxHandeler.VFX_TYPE.ANGRY);
-            StateMachine.CharacterAnimation.VfxHandeler.StopVfx(VfxHandeler.VFX_TYPE.ANGRY2);
         }
         else
         {

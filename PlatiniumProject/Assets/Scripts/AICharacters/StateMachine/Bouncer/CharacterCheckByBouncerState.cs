@@ -20,6 +20,8 @@ public class CharacterCheckByBouncerState : CharacterState
 
         public void BouncerAction(bool canEnter)
         {
+                StateMachine.CharacterAnimation.VfxHandeler.StopVfx(VfxHandeler.VFX_TYPE.ANGRY);
+                StateMachine.CharacterAnimation.VfxHandeler.StopVfx(VfxHandeler.VFX_TYPE.ANGRY2);
                 if (canEnter)
                 {
                         StateMachine.CurrentSlot.Occupant = null;
