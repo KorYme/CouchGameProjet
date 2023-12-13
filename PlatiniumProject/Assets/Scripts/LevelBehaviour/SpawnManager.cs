@@ -149,6 +149,7 @@ public class SpawnManager : MonoBehaviour
 
             CharacterAiPuller chara = _availableCharcters[0];
             _availableCharcters.Remove(chara);
+            chara.StateMachine.RandomiseSatisfaction = true;
             chara.PullCharacter(GetClientType(), chara.StateMachine.DancingState);
         }
 

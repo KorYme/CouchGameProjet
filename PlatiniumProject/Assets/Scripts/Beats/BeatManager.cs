@@ -67,6 +67,7 @@ public class BeatManager : MonoBehaviour, ITimingable
             return;
         }
         Globals.BeatManager = this;
+        Globals.MainMenuMusic?.StopMenuMusic();
     }
 
     private IEnumerator Start()
