@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rumbleName: (1)DJ_QTE
   isHolding: 0
-  time: 0
+  time: 1
   rumbleCurve:
     serializedVersion: 2
     m_Curve:
