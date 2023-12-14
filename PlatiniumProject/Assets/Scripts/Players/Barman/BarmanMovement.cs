@@ -14,7 +14,7 @@ public class BarmanMovement : PlayerMovement
 
     protected override PlayerRole PlayerRole => PlayerRole.Barman;
     
-    public bool IsInQte { get; set; }
+    public bool IsPlayingFullQte { get; set; }
     private bool _isInDrop = false;
 
     private void Awake()
@@ -36,7 +36,7 @@ public class BarmanMovement : PlayerMovement
 
     protected override void OnBeat()
     {
-        if (IsInQte)
+        if (IsPlayingFullQte)
         {
             _animation.SetAnim(ANIMATION_TYPE.CORRECT_INPUT);
             _animation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.SHAKE);
@@ -55,7 +55,6 @@ public class BarmanMovement : PlayerMovement
 
     void ChangeIndexToReach(float value)
     {
-        IsInQte = false;
         if (value > 0f)
         {
             if (_indexPosition < _barmanPositions.Length - 1)
