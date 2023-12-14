@@ -1,12 +1,8 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class UIQteBouncer : MonoBehaviour
+public class UIQteBouncer : UIQte
 {
-    [SerializeField] Image[] _imagesInput;
     [SerializeField] float _durationAnimation = 0.3f;
     [SerializeField] float _offset = 0.2f;
     int _currentIndex = 0;
@@ -27,7 +23,7 @@ public class UIQteBouncer : MonoBehaviour
         ResetDisplay();
     }
 
-    void ResetDisplay()
+    protected override void ResetDisplay()
     {
         _currentIndex = 0;
         for (int i = 0; i < _imagesInput.Length; i++)

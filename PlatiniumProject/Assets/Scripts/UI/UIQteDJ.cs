@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIQteDJ : MonoBehaviour
+public class UIQteDJ : UIQte
 {
     struct InputSprite
     {
@@ -14,7 +14,6 @@ public class UIQteDJ : MonoBehaviour
     [SerializeField] float _durationAnimation = 0.3f;
     #region Renderers
     [Header("Renderers")]
-    [SerializeField] Image[] _imagesInput;
     #endregion
     InputSprite[] _initialSpriteInfos;
 
@@ -112,13 +111,9 @@ public class UIQteDJ : MonoBehaviour
     {
         ChangeSprites(_exampleChangeSprites);
     }
-    void ChangeSprites(Sprite[] newSprites)
+
+    protected override void ResetDisplay()
     {
-        int countSprites = newSprites.Length;
-        for (int i = 0;i < _imagesInput.Length; i++)
-        {
-            _imagesInput[i].sprite = i < countSprites ? newSprites[i] : null;
-        }
         SnapImagesToEndAnimation();
     }
 }
