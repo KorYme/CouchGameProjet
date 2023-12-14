@@ -35,6 +35,8 @@ public class RumbleController : MonoBehaviour
     public void StopAllRumbles()
     {
         StopAllCoroutines();
+        _singlePressCoroutine = null;
+        _holdCoroutine = null;
         if (_role != PlayerRole.None)
         {
             Players.PlayersController[(int)_role].newPlayer.SetVibration(0, 0f);

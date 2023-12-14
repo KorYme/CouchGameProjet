@@ -25,9 +25,22 @@ public class CharacterStateIdleBouncer : CharacterState
 
     public override void BeatAction()
     {
+        
+        if (!StateMachine.CharacterDataObject.isTutorialNpc && StateMachine.CurrentMovementInBouncer >
+            (int)(StateMachine.CharacterDataObject.movementAmountInQueue * (2f / 3f)))
+        {
+            StateMachine.CharacterAnimation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.ANGRY2);
+        }
+        else if (!StateMachine.CharacterDataObject.isTutorialNpc && StateMachine.CurrentMovementInBouncer >
+                 (int)(StateMachine.CharacterDataObject.movementAmountInQueue * (1f / 3f)))
+        {
+            StateMachine.CharacterAnimation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.ANGRY);
+        }
 
         if (!StateMachine.CharacterDataObject.isTutorialNpc && StateMachine.CurrentMovementInBouncer > StateMachine.CharacterDataObject.movementAmountInQueue)
         {
+            StateMachine.CharacterAnimation.VfxHandeler.StopVfx(VfxHandeler.VFX_TYPE.ANGRY);
+            StateMachine.CharacterAnimation.VfxHandeler.StopVfx(VfxHandeler.VFX_TYPE.ANGRY2);
             StateMachine.CurrentSlot.Occupant = null;
             StateMachine.UseTp = true;
             StateMachine.ChangeState(StateMachine.RoamState);
@@ -48,6 +61,6 @@ public class CharacterStateIdleBouncer : CharacterState
 
             StateMachine.ChangeState(StateMachine.MoveToState);
         }
-
     }
+
 }

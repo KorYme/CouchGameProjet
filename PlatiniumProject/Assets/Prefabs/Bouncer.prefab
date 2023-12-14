@@ -559,7 +559,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!1 &7340047238265229073
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,6 +726,18 @@ MonoBehaviour:
           m_StringArgument: MissedInput
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8662088022857783439}
+        m_TargetAssemblyTypeName: WwiseSFXPlayer, Assembly-CSharp
+        m_MethodName: PlaySFX
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Play_BouncerFail
+          m_BoolArgument: 0
+        m_CallState: 2
   _onMissedInputDisableNextBeat:
     m_PersistentCalls:
       m_Calls: []
@@ -768,15 +780,51 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Bouncer_punch
+          m_StringArgument: (2)bouncer_punch
           m_BoolArgument: 0
         m_CallState: 2
   _onSucces:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8662088022857783439}
+        m_TargetAssemblyTypeName: WwiseSFXPlayer, Assembly-CSharp
+        m_MethodName: PlaySFX
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Play_BouncerSuccess
+          m_BoolArgument: 0
+        m_CallState: 2
   _onFail:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8662088022857783439}
+        m_TargetAssemblyTypeName: WwiseSFXPlayer, Assembly-CSharp
+        m_MethodName: PlaySFX
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Play_BouncerFail
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4268781023386130297}
+        m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
+        m_MethodName: PlayRumbles
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: QTE_fail
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6167636063803828289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -838,6 +886,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 047dad1b650745f4c9a474f22b2f3ff2, type: 2}
   - {fileID: 11400000, guid: fdcfebcbcc1d81242a1be62773ba1774, type: 2}
   - {fileID: 11400000, guid: e0789219a029ce243aba6c4556337af5, type: 2}
+  - {fileID: 11400000, guid: 3cef622fc1ef1534f89792b53f9e3c28, type: 2}
+  - {fileID: 11400000, guid: 8c5811d63d96f8c4c8136b0d865568b7, type: 2}
 --- !u!114 &795609652906986436
 MonoBehaviour:
   m_ObjectHideFlags: 0
