@@ -219,6 +219,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2832529658344230507, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _holdDelayAcceptance
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 2920406053063819046, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -363,6 +367,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5349791075551381680, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _holdDelayAcceptance
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5519420641253564840, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _characterAnimationData
       value: 
@@ -443,6 +451,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6756111086578632928, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _holdDelayAcceptance
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 7086862774966635358, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -505,7 +517,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8566633219856345703, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _useTutorial
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8660675035791511694, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _onInputMissed.m_PersistentCalls.m_Calls.Array.size
