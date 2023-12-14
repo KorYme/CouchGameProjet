@@ -1311,6 +1311,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 52889413143047197, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -24.86
+      objectReference: {fileID: 0}
     - target: {fileID: 104500040962719301, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _sfxEvent.Array.data[2].WwiseObjectReference
       value: 
