@@ -73,15 +73,15 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 413e26cc9ff702b489b8f6e9608dde83, type: 2}
-  _pauseMenuMusicEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: e20f6e525ca465544be6338ba508b946, type: 2}
-  _resumeMenuMusicEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: d605c1c409ecc9c4db7a987601cf689a, type: 2}
   _stopMenuMusicEvent:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: ffa9b681d386083469f3932174bee190, type: 2}
+  _menuOpenEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 3bd4d7cde8304ee4bbd2e4d0af5246a1, type: 2}
+  _menuClosedEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 431ba4545f3dd16478251c7fe2ec4175, type: 2}

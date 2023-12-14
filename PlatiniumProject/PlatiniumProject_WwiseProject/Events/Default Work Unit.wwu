@@ -284,65 +284,6 @@
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 				</Folder>
-				<Folder Name="PlaceHolderMusic" ID="{6E550C15-0040-447E-8E00-875C3D888D63}" ShortID="394773582">
-					<ChildrenList>
-						<Event Name="Music_Metronome" ID="{650ECBCC-909F-4E11-96C5-3A2910212AF5}">
-							<ChildrenList>
-								<Action Name="" ID="{F8892F5B-8932-4A5E-9EB3-4D7177363FF1}" ShortID="780588332">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="60 BPM Metronome" ID="{E8E62256-2EDA-4A8A-8EC2-C9911386DB10}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="Music_Mage" ID="{AC5B2908-7457-4615-9A5A-A1D59EF44DB2}">
-							<ChildrenList>
-								<Action Name="" ID="{B85ADE88-8400-4112-801E-65090EE73FED}" ShortID="932124678">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="MageBattle" ID="{3441DE68-26FA-4A74-9806-D4745AB82F51}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="Music_Crypt" ID="{C5E5E1C1-CD96-429B-BAC0-BB976F5D491A}">
-							<ChildrenList>
-								<Action Name="" ID="{9B9519B3-0ECE-46C2-A5A4-1B5153121F55}" ShortID="360829173">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Crypt of the Necrodancer OST - Crypteque (1-2)" ID="{B9D4578D-B6E9-4FE1-8934-0A2F3172C6C7}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="Music_PayDay" ID="{2242DA44-CBD4-4E67-A956-F3FABF4D3CFD}">
-							<ChildrenList>
-								<Action Name="" ID="{42BEEF33-2076-4F2F-8364-23C510B33AC7}" ShortID="282274565">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Alesso Payday" ID="{693A3023-6DFB-4776-8EC2-731FF11A5541}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="Music_PH" ID="{94834CEA-87BD-40B1-94B6-7D28512D6218}">
-							<ChildrenList>
-								<Action Name="" ID="{EF7C7DA6-07F7-4B1C-8EF5-4E22D3DBE606}" ShortID="713383678">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="PlaceHolder" ID="{8473C8E8-4D5D-484F-B123-40F0FD9E6F25}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-					</ChildrenList>
-				</Folder>
 				<Folder Name="Music" ID="{74E004F1-3593-4675-9F8D-0EA6E3091C36}" ShortID="753531991">
 					<PropertyList>
 						<Property Name="Color" Type="int16" Value="13"/>
@@ -765,16 +706,6 @@
 										</Reference>
 									</ReferenceList>
 								</Action>
-								<Action Name="" ID="{394D729D-8FDE-4A26-A838-294D22052D55}" ShortID="187990527">
-									<PropertyList>
-										<Property Name="ActionType" Type="int16" Value="41"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Set_State_Menu_Open" ID="{4747F496-44AA-4F15-B618-20F1CE6DB4C2}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
 							</ChildrenList>
 						</Event>
 						<Event Name="Stop_Music_Menu" ID="{BEA29C87-0C7C-4EC6-A241-F683E32B01AC}">
@@ -786,64 +717,6 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="Musique_Intro" ID="{BEB93C89-24C4-4B0B-90FA-76D146088BF7}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-								<Action Name="" ID="{734316EC-788B-4E44-BB3C-02E16122977B}" ShortID="466222614">
-									<PropertyList>
-										<Property Name="ActionType" Type="int16" Value="41"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Set_State_Menu_Close" ID="{186C7641-6285-41D5-BF73-261F8E5D64B5}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="Pause_Music_Menu" ID="{1C02B29B-4840-4A9A-A52F-4AF770D1DA21}">
-							<ChildrenList>
-								<Action Name="" ID="{BAE1EEBA-43E8-4C15-83A7-D4DC921DE33C}" ShortID="24635220">
-									<PropertyList>
-										<Property Name="ActionType" Type="int16" Value="7"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Musique_Intro" ID="{BEB93C89-24C4-4B0B-90FA-76D146088BF7}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-								<Action Name="" ID="{37BB72FA-E258-4713-8983-740B523E6790}" ShortID="571812468">
-									<PropertyList>
-										<Property Name="ActionType" Type="int16" Value="41"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Set_State_Menu_Close" ID="{186C7641-6285-41D5-BF73-261F8E5D64B5}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="Resume_Music_Menu" ID="{3991F5D5-9535-4090-8488-E6252A698D7B}">
-							<ChildrenList>
-								<Action Name="" ID="{33786B10-70AF-43EF-A6DA-DA8C9D4B0910}" ShortID="816166961">
-									<PropertyList>
-										<Property Name="ActionType" Type="int16" Value="9"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Musique_Intro" ID="{BEB93C89-24C4-4B0B-90FA-76D146088BF7}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-								<Action Name="" ID="{0E11B2F9-CFF9-4975-AB31-77B5EAC26DEB}" ShortID="21577129">
-									<PropertyList>
-										<Property Name="ActionType" Type="int16" Value="41"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Set_State_Menu_Open" ID="{4747F496-44AA-4F15-B618-20F1CE6DB4C2}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

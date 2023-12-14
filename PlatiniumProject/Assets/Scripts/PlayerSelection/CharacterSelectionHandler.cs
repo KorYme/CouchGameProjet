@@ -47,6 +47,7 @@ public class CharacterSelectionHandler : MonoBehaviour
             if (_spriteRenderer != null)
                 _spriteRenderer.sprite = _selectedSprite;
             transform.DOKill();
+            transform.localScale = _normalScale;
             transform.DOScale(_normalScale * (1 + _forceScale), _durationScale).SetEase(_curveScale).SetLoops(2,LoopType.Yoyo);
         }
     }

@@ -1183,6 +1183,14 @@ PrefabInstance:
       value: Options
       objectReference: {fileID: 0}
     - target: {fileID: 6049780635605184481, guid: 40d64c60815d9e146acd4617fa22ffeb, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 367213239}
+    - target: {fileID: 6049780635605184481, guid: 40d64c60815d9e146acd4617fa22ffeb, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 701439623}
+    - target: {fileID: 6049780635605184481, guid: 40d64c60815d9e146acd4617fa22ffeb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
