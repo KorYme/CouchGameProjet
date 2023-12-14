@@ -12,10 +12,6 @@ public class UIQteBarman : UIQte
     {
         UpdateDarkeningValue();
     }
-/*    void Start()
-    {
-        
-    }*/
 
     void UpdateDarkeningValue()
     {
