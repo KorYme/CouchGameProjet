@@ -1,27 +1,26 @@
 using DG.Tweening;
-using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIQteDJ : MonoBehaviour
 {
+    struct InputSprite
+    {
+        public Vector3 PositionSprite;
+        public Vector3 ScaleSprite;
+        public Color ColorSprite;
+    }
     [SerializeField] float _durationAnimation = 0.3f;
     #region Renderers
     [Header("Renderers")]
     [SerializeField] Image[] _imagesInput;
-    [SerializeField] Image _imageCurrentInput;
-    [SerializeField] Image _imageNextInput;
-    [SerializeField] Image _imageNextInput2;
-    [SerializeField] Image _imageTransition;
     #endregion
+    InputSprite[] _initialSpriteInfos;
 
-    #region InitialInfos
-    Vector3[] _initialPositions;
-    Vector3[] _initialScales;
-    Color[] _initialColors;
-    #endregion
+    public Sprite NextSprite { get; set; } = null;
 
-    Sprite _newSprite;
+    [SerializeField] Sprite[] _exampleChangeSprites;
 
     private void Start()
     {
@@ -29,82 +28,97 @@ public class UIQteDJ : MonoBehaviour
     }
     private void InitializeRenderers()
     {
-        _initialPositions = new Vector3[4];
-        _initialScales = new Vector3[4];
-        InitializeInfosFromRenderer(_imageCurrentInput, 0);
-        InitializeInfosFromRenderer(_imageNextInput, 1);
-        InitializeInfosFromRenderer(_imageNextInput2, 2);
-        InitializeInfosFromRenderer(_imageTransition, 3);
-    }
-    private void InitializeInfosFromRenderer(Image image,int index)
-    {
-        if (image != null)
+        if (_imagesInput.Length > 0)
         {
-            _initialPositions[index] = image.transform.localPosition;
-            _initialScales[index] = image.transform.localScale;
-            _initialColors[index] = image.color;
+            _initialSpriteInfos = new InputSprite[_imagesInput.Length];
+            InitializeInfosFromRenderers();
+            SnapImagesToEndAnimation();
+        }
+    }
+    private void InitializeInfosFromRenderers()
+    {
+        for (int i = 0; i < _imagesInput.Length; i++)
+        {
+            _initialSpriteInfos[i].PositionSprite = _imagesInput[i].transform.localPosition;
+            _initialSpriteInfos[i].ScaleSprite = _imagesInput[i].transform.localScale;
+            _initialSpriteInfos[i].ColorSprite = _imagesInput[i].color;
         }
     }
 
+    private void SnapImagesToEndAnimation()
+    {
+        for(int i = _imagesInput.Length - 1; i >= 0; i--)
+        {
+            if (i == 0)
+            {
+                _imagesInput[i].color = new Color(1,1,1,0);
+                _imagesInput[i].transform.localScale = Vector3.zero;
+            }
+            else
+            {
+                if (_imagesInput[i].sprite != null)
+                {
+                    _imagesInput[i].sprite = _imagesInput[i - 1].sprite;
+                    _imagesInput[i].color = _initialSpriteInfos[i - 1].ColorSprite;
+                }
+                _imagesInput[i].transform.localPosition = _initialSpriteInfos[i - 1].PositionSprite;
+                _imagesInput[i].transform.localScale = _initialSpriteInfos[i - 1].ScaleSprite;
+            }
+        }
+    }
     public void StartAnimation()
     {
         ResetInputs();
-
-        //Current disappearing
-        _imageCurrentInput.DOFade(0, _durationAnimation);
-        _imageCurrentInput.transform.DOScale(0, _durationAnimation);
-        //Next to current
-        _imageNextInput.DOColor(Color.white, _durationAnimation);
-        _imageNextInput.DOFade(1,_durationAnimation);
-        _imageNextInput.transform.DOLocalMove(_initialPositions[0],_durationAnimation);
-        _imageNextInput.transform.DOScale(_initialScales[0],_durationAnimation);
-
-        /*//Next2 to next
-        _imageNextInput2.DOColor(_taintNextInput, _durationAnimation);
-        _imageNextInput2.DOFade(_taintNextInput.a, _durationAnimation);
-        _imageNextInput2.transform.DOLocalMove(_initialPositions[1], _durationAnimation);
-        _imageNextInput2.transform.DOScale(_initialScales[1], _durationAnimation);
-
-        //Transition to next2
-        _imageTransition.DOColor(_taintNextInput, _durationAnimation);
-        _imageTransition.DOFade(_taintNextInput.a, _durationAnimation);
-        _imageTransition.transform.DOLocalMove(_initialPositions[2], _durationAnimation);
-        _imageTransition.transform.DOScale(_initialScales[2], _durationAnimation);*/
-
-        for(int i = 0; i < _imagesInput.Length; i++)
+        for (int i = 0; i < _imagesInput.Length; i++)
         {
             if (i == 0)
             {
                 _imagesInput[i].DOFade(0, _durationAnimation);
-                _imageCurrentInput.transform.DOScale(0, _durationAnimation);
-            } else
+                _imagesInput[i].transform.DOScale(0, _durationAnimation);
+            }
+            else
             {
-                _imagesInput[i].DOColor(_initialColors[i-1], _durationAnimation);
+                if (_imagesInput[i].sprite != null)
+                {
+                    _imagesInput[i].DOColor(_initialSpriteInfos[i - 1].ColorSprite, _durationAnimation);
+                    _imagesInput[i].DOFade(_initialSpriteInfos[i - 1].ColorSprite.a, _durationAnimation);
+
+                }
+                _imagesInput[i].transform.DOLocalMove(_initialSpriteInfos[i - 1].PositionSprite, _durationAnimation);
+                _imagesInput[i].transform.DOScale(_initialSpriteInfos[i - 1].ScaleSprite, _durationAnimation);
             }
         }
     }
-
     private void ResetInputs()
     {
-        Sprite sprite = _imageCurrentInput.sprite; //Changer par nouvel input
-        _imageCurrentInput.sprite = _imageNextInput.sprite;
-        _imageCurrentInput.color = _imageNextInput.color;
-        _imageCurrentInput.transform.localPosition = _initialPositions[0];
-        _imageCurrentInput.transform.localScale = _initialScales[0];
+        for (int i = 0; i < _imagesInput.Length; i++)
+        {
+            if (i != _imagesInput.Length - 1 && _imagesInput[i + 1].sprite != null)
+            {
+                _imagesInput[i].color = _initialSpriteInfos[i].ColorSprite;
+                _imagesInput[i].sprite = _imagesInput[i + 1].sprite;
+            }
+            else
+            {
+                _imagesInput[i].sprite = NextSprite;
+                _imagesInput[i].color = Color.clear;
+            }
+            _imagesInput[i].transform.localPosition = _initialSpriteInfos[i].PositionSprite;
+            _imagesInput[i].transform.localScale = _initialSpriteInfos[i].ScaleSprite;
+        }
+    }
 
-        _imageNextInput.sprite = _imageNextInput2.sprite;
-        _imageNextInput.color = _imageNextInput2.color;
-        _imageNextInput.transform.localPosition = _initialPositions[1];
-        _imageNextInput.transform.localScale = _initialScales[1];
-
-        _imageNextInput2.sprite = _imageTransition.sprite;
-        _imageNextInput2.color = _imageTransition.color;
-        _imageNextInput2.transform.localPosition = _initialPositions[2];
-        _imageNextInput2.transform.localScale = _initialScales[2];
-
-        _imageTransition.sprite = sprite;
-        _imageTransition.color = _taintNextInput;
-        _imageTransition.transform.localPosition = _initialPositions[3];
-        _imageTransition.transform.localScale = _initialScales[3];
+    public void ChangeSpritesTest()
+    {
+        ChangeSprites(_exampleChangeSprites);
+    }
+    void ChangeSprites(Sprite[] newSprites)
+    {
+        int countSprites = newSprites.Length;
+        for (int i = 0;i < _imagesInput.Length; i++)
+        {
+            _imagesInput[i].sprite = i < countSprites ? newSprites[i] : null;
+        }
+        SnapImagesToEndAnimation();
     }
 }
