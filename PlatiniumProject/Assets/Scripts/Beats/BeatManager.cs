@@ -67,7 +67,6 @@ public class BeatManager : MonoBehaviour, ITimingable
             return;
         }
         Globals.BeatManager = this;
-        Globals.MainMenuMusic?.StopMenuMusic();
     }
 
     private IEnumerator Start()
@@ -89,6 +88,7 @@ public class BeatManager : MonoBehaviour, ITimingable
             OnNextBeatEnd = null;
         });
         yield return null;
+        Globals.MainMenuMusic?.StopMenuMusic();
         _mainMusicEvent?.Post(gameObject, 
             (uint)AkCallbackType.AK_MusicSyncGrid | (uint)AkCallbackType.AK_MusicSyncUserCue | (uint)AkCallbackType.AK_MusicSyncEntry | (uint)AkCallbackType.AK_MusicSyncExit, 
             BeatCallBack);
@@ -100,7 +100,7 @@ public class BeatManager : MonoBehaviour, ITimingable
         if (!Globals.DropManager.IsGamePlaying) return;
         AkMusicSyncCallbackInfo info = in_info as AkMusicSyncCallbackInfo;
         switch (in_type)
-        { 
+        {
             case AkCallbackType.AK_MusicSyncGrid:
                 _beatCoroutine ??= StartCoroutine(BeatCoroutine());
                 _lastBeatTime = DateTime.Now;
