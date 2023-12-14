@@ -15,6 +15,8 @@ public class BeatManager : MonoBehaviour, ITimingable
     [SerializeField] AK.Wwise.Event _mainMusicEvent;
     [SerializeField] AK.Wwise.Event _introMusicStateEvent;
     [SerializeField] AK.Wwise.Event _firstMusicStateEvent;
+    [SerializeField] AK.Wwise.Event _pauseMusicEvent;
+    [SerializeField] AK.Wwise.Event _resumeMusicEvent;
 
     [Header("Parameters"), Space]
     [SerializeField, Range(0f, .5f), Tooltip("Timing window before the beat which allows input")]
@@ -34,6 +36,7 @@ public class BeatManager : MonoBehaviour, ITimingable
 
     int _beatDurationInMilliseconds = 0;
     DateTime _lastBeatTime;
+    DateTime _lastPauseTime;
     Coroutine _beatCoroutine;
 
     public event Action OnNextBeatStart;
@@ -45,16 +48,17 @@ public class BeatManager : MonoBehaviour, ITimingable
     #endregion
 
     #region PROPERTIES
+    public bool IsPlaying { get; private set; }
     public int BeatDurationInMilliseconds => _beatDurationInMilliseconds;
     public UnityEvent OnBeatEvent => _onBeatEvent;
     public UnityEvent OnBeatStartEvent => _onBeatStartEvent;
     public UnityEvent OnBeatEndEvent => _onBeatEndEvent;
 
     public bool IsInsideBeatWindow => IsInBeatWindowBefore || IsInBeatWindowAfter;
-    public bool IsInBeatWindowBefore => (DateTime.Now - _lastBeatTime).TotalMilliseconds < (_timingAfterBeat * _beatDurationInMilliseconds);
-    public bool IsInBeatWindowAfter => (DateTime.Now - _lastBeatTime).TotalMilliseconds > _beatDurationInMilliseconds - (_timingBeforeBeat * _beatDurationInMilliseconds);
+    public bool IsInBeatWindowBefore => BeatDeltaTime < (_timingAfterBeat * _beatDurationInMilliseconds);
+    public bool IsInBeatWindowAfter => BeatDeltaTime > _beatDurationInMilliseconds - (_timingBeforeBeat * _beatDurationInMilliseconds);
 
-    public double BeatDeltaTime => (DateTime.Now - _lastBeatTime).TotalMilliseconds;
+    public double BeatDeltaTime => (DateTime.Now - _lastBeatTime).TotalMilliseconds - (IsPlaying ? 0 : (DateTime.Now - _lastPauseTime).TotalMilliseconds);
 
     #endregion
 
@@ -67,6 +71,7 @@ public class BeatManager : MonoBehaviour, ITimingable
             return;
         }
         Globals.BeatManager = this;
+        IsPlaying = false;
     }
 
     private IEnumerator Start()
@@ -88,7 +93,8 @@ public class BeatManager : MonoBehaviour, ITimingable
             OnNextBeatEnd = null;
         });
         yield return null;
-        Globals.MainMenuMusic?.StopMenuMusic();
+        Globals.MenuMusicPlayer?.StopMenuMusic();
+        IsPlaying = true;
         _mainMusicEvent?.Post(gameObject, 
             (uint)AkCallbackType.AK_MusicSyncGrid | (uint)AkCallbackType.AK_MusicSyncUserCue | (uint)AkCallbackType.AK_MusicSyncEntry | (uint)AkCallbackType.AK_MusicSyncExit, 
             BeatCallBack);
@@ -130,6 +136,16 @@ public class BeatManager : MonoBehaviour, ITimingable
         }
     }
 
+    public void PauseOrResumeMainMusic(bool isGamePaused)
+    {
+        IsPlaying = !isGamePaused;
+        if (!IsPlaying)
+        {
+            _lastPauseTime = DateTime.Now;
+        }
+        (isGamePaused ? _pauseMusicEvent : _resumeMusicEvent)?.Post(gameObject);
+    }
+
     IEnumerator BeatCoroutine()
     {
         while (true)
@@ -146,7 +162,7 @@ public class BeatManager : MonoBehaviour, ITimingable
     public void StopBeat()
     {
         StopCoroutine(_beatCoroutine);
-        _lastBeatTime = DateTime.Now;   
+        _lastBeatTime = DateTime.Now;
     }
     #endregion
 }
