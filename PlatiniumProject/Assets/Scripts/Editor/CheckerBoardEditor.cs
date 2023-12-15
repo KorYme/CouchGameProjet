@@ -14,6 +14,11 @@ public class CheckerBoardEditor : Editor
         {
             checkerBoard.UpdateData();
         }
+
+        if (GUILayout.Button("ChangeTilesSprite"))
+        {
+            checkerBoard.RandomizeTilesSprites();
+        }
         if (GUILayout.Button("Delete"))
         {
             checkerBoard.Delete();
@@ -22,7 +27,6 @@ public class CheckerBoardEditor : Editor
         {
             checkerBoard.RenameSlots();
         }
-
         if (GUI.changed)
             EditorUtility.SetDirty(target);
     }

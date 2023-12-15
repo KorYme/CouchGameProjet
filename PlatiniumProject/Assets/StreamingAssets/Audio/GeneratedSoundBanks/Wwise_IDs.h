@@ -13,11 +13,7 @@ namespace AK
 {
     namespace EVENTS
     {
-        static const AkUniqueID MUSIC_CRYPT = 3058456287U;
-        static const AkUniqueID MUSIC_MAGE = 1716433435U;
-        static const AkUniqueID MUSIC_METRONOME = 1823217099U;
-        static const AkUniqueID MUSIC_PAYDAY = 3926639385U;
-        static const AkUniqueID MUSIC_PH = 3047207357U;
+        static const AkUniqueID PAUSE_MAIN_MUSIC = 2139815839U;
         static const AkUniqueID PLAY_BARMANFAIL = 1537570307U;
         static const AkUniqueID PLAY_BARMANMOVEMENT = 293490316U;
         static const AkUniqueID PLAY_BARMANSUCCESS = 3367986140U;
@@ -38,8 +34,10 @@ namespace AK
         static const AkUniqueID PLAY_MENUOPEN = 119142231U;
         static const AkUniqueID PLAY_MENUVALIDCHARA = 117953180U;
         static const AkUniqueID PLAY_MUSIC_DND = 3388161964U;
+        static const AkUniqueID PLAY_MUSIC_MENU = 1699343283U;
         static const AkUniqueID PLAY_NEWGAME = 1215962870U;
         static const AkUniqueID PLAY_VOLUMEBAR = 1570308127U;
+        static const AkUniqueID RESUME_MAIN_MUSIC = 4072670616U;
         static const AkUniqueID SET_STATE_MENU_CLOSE = 2333309968U;
         static const AkUniqueID SET_STATE_MENU_OPEN = 1622047140U;
         static const AkUniqueID SET_STATE_MUSIC_DEFAULT = 1828656719U;
@@ -56,6 +54,7 @@ namespace AK
         static const AkUniqueID SET_STATE_PHASE_1 = 2127083549U;
         static const AkUniqueID SET_STATE_PHASE_2 = 2127083550U;
         static const AkUniqueID SET_STATE_PHASE_3 = 2127083551U;
+        static const AkUniqueID STOP_MUSIC_MENU = 106912753U;
     } // namespace EVENTS
 
     namespace STATES
@@ -146,7 +145,12 @@ namespace AK
 
     namespace BUSSES
     {
+        static const AkUniqueID AMB = 1117531639U;
+        static const AkUniqueID CHARACTER = 436743010U;
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
+        static const AkUniqueID MUSIC = 3991942870U;
+        static const AkUniqueID SFX = 393239870U;
+        static const AkUniqueID UI = 1551306167U;
     } // namespace BUSSES
 
     namespace AUDIO_DEVICES

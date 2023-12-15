@@ -5,14 +5,7 @@ using Random = UnityEngine.Random;
 public class CharacterStateMachine : MonoBehaviour
 {
     [SerializeField] private CharacterData _characterData;
-
-    private SpawnManager _spawnManager;
-    private BeatManager _beatManager;
-    public Vector3 PullPos { get; set; }
-    public CharacterAIMovement CharacterMove { get; private set; }
-    public AreaManager AreaManager { get; private set; }
-    public WaitingLineBar[] WaitingLines { get; private set; }
-
+    
     #region States
     public CharacterState IdleTransitState { get; } = new CharacterStateIdleTransit();
     public CharacterState IdleBouncerState { get; } = new CharacterStateIdleBouncer();
@@ -42,7 +35,10 @@ public class CharacterStateMachine : MonoBehaviour
     };
     
     #region Propreties
+    public Vector3 PullPos { get; set; }
+    public bool RandomiseSatisfaction { get; set; }
     private CharacterState StartState => IdleTransitState;
+    public bool UseTp { get; set; }
     public CharacterState CurrentState { get; private set; }
     public CharacterState PreviousState { get; private set; }
     public CharacterState NextState { get; set; }
@@ -64,11 +60,15 @@ public class CharacterStateMachine : MonoBehaviour
     #endregion
 
     #region References
-    
+    private SpawnManager _spawnManager;
+    private BeatManager _beatManager;
     public CharacterAIStatisfaction Satisafaction { get; private set; }
     public CharacterAnimation CharacterAnimation { get; private set; }
     public CharacterTypeData TypeData { get; set; }
     public CharacterAiPuller Puller { get; private set; }
+    public CharacterAIMovement CharacterMove { get; private set; }
+    public AreaManager AreaManager { get; private set; }
+    public WaitingLineBar[] WaitingLines { get; private set; }
     #endregion
 
     #region Events
@@ -87,7 +87,7 @@ public class CharacterStateMachine : MonoBehaviour
         CharacterAnimation = GetComponent<CharacterAnimation>();
         Puller = GetComponent<CharacterAiPuller>();
     }
-
+    
     public void PullCharacter(CharacterState startState = null)
     {
         CharacterAnimation.SetAnim(ANIMATION_TYPE.IDLE);
@@ -174,5 +174,6 @@ public class CharacterStateMachine : MonoBehaviour
         MoveToLocation = Vector3.zero;
         CurrentState = null;
         NextState = null;
+        RandomiseSatisfaction = false;
     }
 }

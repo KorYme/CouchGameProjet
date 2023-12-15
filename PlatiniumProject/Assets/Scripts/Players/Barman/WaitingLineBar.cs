@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WaitingLineBar : MonoBehaviour,IQTEable
 {
@@ -10,6 +11,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     private PriestCalculator _priestCalculator;
     BarmanQTEController _barmanController;
     [SerializeField] int _maxPlaces = 10;
+    [SerializeField] private UnityEvent _onDrinkFinished;
     Vector3 Direction => Vector3.down;
     Vector3 Offset => Direction * 2.5f;
 
@@ -57,12 +59,14 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             CharacterStateMachine stateMachine = _waitingCharactersList[0];
             if (stateMachine != null)
             {
+                _onDrinkFinished?.Invoke();
                 if (stateMachine.TypeData.Evilness == Evilness.GOOD)
                 {
                     stateMachine.CurrentSlot = _djUsher.NextSlot;
                     _djUsher.NextSlot.Occupant = stateMachine;
                     stateMachine.MoveToLocation = stateMachine.CurrentSlot.transform.position;
                     stateMachine.NextState = stateMachine.DancingState;
+                    stateMachine.UseTp = true;
                     stateMachine.ChangeState(stateMachine.MoveToState);
                     _djUsher.SetNextSlot();
                 }
@@ -73,7 +77,6 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             }
         }
         GetNextCharacter();
-        _barmanController.onDrinkComplete?.Invoke();
     }
 
      public void PriestForceEnterance()
@@ -85,12 +88,12 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
              _djUsher.NextSlot.Occupant = stateMachine;
              stateMachine.MoveToLocation = stateMachine.CurrentSlot.transform.position;
              stateMachine.NextState = stateMachine.DancingState;
+             stateMachine.UseTp = true;
              stateMachine.ChangeState(stateMachine.MoveToState);
              _priestCalculator.PriestOnDanceFloor(stateMachine);
          }
          GetNextCharacter();
          _djUsher.SetNextSlot();
-         _barmanController.onDrinkComplete?.Invoke();
      }
 
      public void OnFailDrink()
@@ -130,7 +133,11 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     {
         for (int i = 0; i < _waitingCharactersList.Count; i++)
         {
-            _waitingCharactersList[i].CharacterMove.MoveTo(transform.position + Direction * (i + 1) + Offset);
+            if (Vector3.Distance(_waitingCharactersList[i].transform.position,
+                    transform.position + Direction * (i + 1) + Offset) > 0.1f)
+            {
+                _waitingCharactersList[i].CharacterMove.MoveTo(transform.position + Direction * (i + 1) + Offset);
+            }
         }
     }
     public void AddToWaitingLine(CharacterStateMachine character)
@@ -149,6 +156,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             character.ChangeState(character.BarManAtBar);
         }
         _waitingCharactersList.Add(character);
+        UpdatePositions();
     }
 
     void IQTEable.OnQTEStarted()
@@ -177,8 +185,24 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
         }
     }
 
+    public void PauseQTEForDrop(bool value)
+    {
+        IsInPause = value;
+        _qteHandler.PauseQTE(value);
+        if (value)
+        {
+            //_barmanController.ModifyQTE("");
+            _barmanController.EndQTE(_qteHandler.GetQTEString());
+        } else
+        {
+            //_barmanController.ModifyQTE(_qteHandler.GetQTEString());
+            _barmanController.StartQTE(_qteHandler.GetQTEString());
+        }
+    }
+
     public void OnQTEWrongInput()
     {
         OnInputChange();
     }
+    public void OnQTEMissedInput() {}
 }

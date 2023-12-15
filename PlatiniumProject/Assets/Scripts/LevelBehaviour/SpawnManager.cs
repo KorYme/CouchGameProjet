@@ -149,6 +149,7 @@ public class SpawnManager : MonoBehaviour
 
             CharacterAiPuller chara = _availableCharcters[0];
             _availableCharcters.Remove(chara);
+            chara.StateMachine.RandomiseSatisfaction = true;
             chara.PullCharacter(GetClientType(), chara.StateMachine.DancingState);
         }
 
@@ -235,7 +236,7 @@ public class SpawnManager : MonoBehaviour
                 timer = 0f;
                 PullACharacter();
             }
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
     }
 

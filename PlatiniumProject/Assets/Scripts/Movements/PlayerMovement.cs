@@ -15,12 +15,15 @@ public abstract class PlayerMovement : EntityMovement,IIsControllable
 
     protected CharacterAnimation _animation;
     protected SpriteRenderer _sp;
-    
+    protected DropManager _dropManager;
+
     protected virtual IEnumerator Start()
     {
         Globals.BeatManager.OnBeatEvent.AddListener(OnBeat);
         _sp = GetComponentInChildren<SpriteRenderer>();
         _animation = GetComponent<CharacterAnimation>();
+        _dropManager = Globals.DropManager;
+        SetUpEventsDrop();
         yield return new WaitUntil(() => Players.PlayersController[(int)PlayerRole] != null);
         _playerController = Players.PlayersController[(int)PlayerRole];
         Players.AddListenerPlayerController(this);
@@ -48,21 +51,25 @@ public abstract class PlayerMovement : EntityMovement,IIsControllable
         {
             _playerController.LeftJoystick.OnInputChange -= CheckJoystickValue;
             _timingable.OnBeatStartEvent.RemoveListener(AllowNewMovement);
-        }Globals.BeatManager.OnBeatEvent.RemoveListener(OnBeat);
+        }
+        Globals.BeatManager.OnBeatEvent.RemoveListener(OnBeat);
         Players.RemoveListenerPlayerController(this);
+        _dropManager.OnBeginBuildUp -= OnBeginDrop;
+        _dropManager.OnDropSuccess -= OnDropEnd;
+        _dropManager.OnDropFail -= OnDropEnd;
     }
 
     protected abstract void OnInputMove(Vector2 vector);
 
     protected void AllowNewMovement() => _hasAlreadyMovedThisBeat = false;
 
-    public bool MoveTo(Vector3 position)
+    public bool MoveTo(Vector3 position, ANIMATION_TYPE moveAnim = ANIMATION_TYPE.MOVE)
     {
         if (_hasAlreadyMovedThisBeat || !_timingable.IsInsideBeatWindow) {
             return false;
         }
 
-        if (MoveToPosition(position))
+        if (MoveToPosition(position, false,moveAnim))
         {
             _hasAlreadyMovedThisBeat = true;
             return true;
@@ -104,4 +111,15 @@ public abstract class PlayerMovement : EntityMovement,IIsControllable
         if (_playerController != null)
             _playerController.LeftJoystick.OnInputChange += CheckJoystickValue;
     }
+
+    private void SetUpEventsDrop()
+    {
+        _dropManager.OnBeginBuildUp += OnBeginDrop;
+        _dropManager.OnDropSuccess += OnDropEnd;
+        _dropManager.OnDropFail += OnDropEnd;
+    }
+
+    protected abstract void OnBeginDrop();
+    protected abstract void OnDropEnd();
+
 }

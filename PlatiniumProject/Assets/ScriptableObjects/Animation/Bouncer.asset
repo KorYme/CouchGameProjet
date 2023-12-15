@@ -12,14 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221e7a1d53d37874394b67d10fe9257d, type: 3}
   m_Name: Bouncer
   m_EditorClassIdentifier: 
-  selectedAnimationType: 9
+  selectedAnimationType: 12
   animationsList:
-  - animationSprites:
-    - {fileID: 21300000, guid: c139d2f4903dd1e4194e6d20234fc27f, type: 3}
-    - {fileID: 21300000, guid: 14045772c64df2149b2dac5880b47e42, type: 3}
-    - {fileID: 21300000, guid: 303a08ad74ceca846ba82ae8c8d3f680, type: 3}
-    - {fileID: 21300000, guid: c139d2f4903dd1e4194e6d20234fc27f, type: 3}
-    _animationType: 2
   - animationSprites:
     - {fileID: 21300000, guid: c139d2f4903dd1e4194e6d20234fc27f, type: 3}
     - {fileID: 21300000, guid: 893990e7da7876e4ea7af6a271b28e17, type: 3}
@@ -47,4 +41,14 @@ MonoBehaviour:
   - animationSprites:
     - {fileID: 21300000, guid: 168ae8424e55b874789bf0ad55be3ce6, type: 3}
     _animationType: 9
+  - animationSprites:
+    - {fileID: 21300000, guid: c139d2f4903dd1e4194e6d20234fc27f, type: 3}
+    - {fileID: 21300000, guid: 14045772c64df2149b2dac5880b47e42, type: 3}
+    - {fileID: 21300000, guid: c139d2f4903dd1e4194e6d20234fc27f, type: 3}
+    _animationType: 11
+  - animationSprites:
+    - {fileID: 21300000, guid: c139d2f4903dd1e4194e6d20234fc27f, type: 3}
+    - {fileID: 21300000, guid: 303a08ad74ceca846ba82ae8c8d3f680, type: 3}
+    - {fileID: 21300000, guid: c139d2f4903dd1e4194e6d20234fc27f, type: 3}
+    _animationType: 12
   animBpm: 120

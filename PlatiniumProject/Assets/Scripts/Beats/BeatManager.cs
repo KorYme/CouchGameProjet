@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
 
 public class BeatManager : MonoBehaviour, ITimingable
 {
@@ -14,6 +15,8 @@ public class BeatManager : MonoBehaviour, ITimingable
     [SerializeField] AK.Wwise.Event _mainMusicEvent;
     [SerializeField] AK.Wwise.Event _introMusicStateEvent;
     [SerializeField] AK.Wwise.Event _firstMusicStateEvent;
+    [SerializeField] AK.Wwise.Event _pauseMusicEvent;
+    [SerializeField] AK.Wwise.Event _resumeMusicEvent;
 
     [Header("Parameters"), Space]
     [SerializeField, Range(0f, .5f), Tooltip("Timing window before the beat which allows input")]
@@ -33,8 +36,10 @@ public class BeatManager : MonoBehaviour, ITimingable
 
     int _beatDurationInMilliseconds = 0;
     DateTime _lastBeatTime;
+    DateTime _lastPauseTime;
     Coroutine _beatCoroutine;
 
+    public event Action<int> OnBeatDurationChanged;
     public event Action OnNextBeatStart;
     public event Action OnNextBeat;
     public event Action OnNextBeatEnd;
@@ -44,16 +49,28 @@ public class BeatManager : MonoBehaviour, ITimingable
     #endregion
 
     #region PROPERTIES
-    public int BeatDurationInMilliseconds => _beatDurationInMilliseconds;
+    public bool IsPlaying { get; private set; }
     public UnityEvent OnBeatEvent => _onBeatEvent;
     public UnityEvent OnBeatStartEvent => _onBeatStartEvent;
     public UnityEvent OnBeatEndEvent => _onBeatEndEvent;
 
     public bool IsInsideBeatWindow => IsInBeatWindowBefore || IsInBeatWindowAfter;
-    public bool IsInBeatWindowBefore => (DateTime.Now - _lastBeatTime).TotalMilliseconds < (_timingAfterBeat * _beatDurationInMilliseconds);
-    public bool IsInBeatWindowAfter => (DateTime.Now - _lastBeatTime).TotalMilliseconds > _beatDurationInMilliseconds - (_timingBeforeBeat * _beatDurationInMilliseconds);
+    public bool IsInBeatWindowBefore => BeatDeltaTimeInMilliseconds < (_timingAfterBeat * _beatDurationInMilliseconds);
+    public bool IsInBeatWindowAfter => BeatDeltaTimeInMilliseconds > _beatDurationInMilliseconds - (_timingBeforeBeat * _beatDurationInMilliseconds);
 
-    public double BeatDeltaTime => (DateTime.Now - _lastBeatTime).TotalMilliseconds;
+    public int BeatDurationInMilliseconds
+    {
+        get => _beatDurationInMilliseconds;
+        set
+        {
+            if (_beatDurationInMilliseconds == value) return;
+            _beatDurationInMilliseconds = value;
+            OnBeatDurationChanged?.Invoke(value);
+        }
+    }
+    public double BeatDeltaTimeInMilliseconds => (DateTime.Now - _lastBeatTime).TotalMilliseconds - (IsPlaying ? 0 : (DateTime.Now - _lastPauseTime).TotalMilliseconds);
+    public float BeatDurationInSeconds => BeatDurationInMilliseconds / 1000f;
+    public double BeatDeltaTimeInSeconds => BeatDeltaTimeInMilliseconds / 1000f;
 
     #endregion
 
@@ -66,6 +83,7 @@ public class BeatManager : MonoBehaviour, ITimingable
             return;
         }
         Globals.BeatManager = this;
+        IsPlaying = false;
     }
 
     private IEnumerator Start()
@@ -87,31 +105,24 @@ public class BeatManager : MonoBehaviour, ITimingable
             OnNextBeatEnd = null;
         });
         yield return null;
+        Globals.MenuMusicPlayer?.StopMenuMusic();
+        IsPlaying = true;
         _mainMusicEvent?.Post(gameObject, 
             (uint)AkCallbackType.AK_MusicSyncGrid | (uint)AkCallbackType.AK_MusicSyncUserCue | (uint)AkCallbackType.AK_MusicSyncEntry | (uint)AkCallbackType.AK_MusicSyncExit, 
             BeatCallBack);
         (Globals.TutorialManager.UseTutorial ? _introMusicStateEvent : _firstMusicStateEvent)?.Post(gameObject);
     }
 
-    private void OnDestroy()
-    {
-        _onBeatEvent.RemoveAllListeners();
-        _onBeatStartEvent.RemoveAllListeners();
-        _onBeatEndEvent.RemoveAllListeners();
-        OnNextBeatStart = null;
-        OnNextBeat = null;
-        OnNextBeatEnd = null;
-    }
-
     private void BeatCallBack(object in_cookie, AkCallbackType in_type, AkCallbackInfo in_info)
     {
+        if (!Globals.DropManager.IsGamePlaying) return;
         AkMusicSyncCallbackInfo info = in_info as AkMusicSyncCallbackInfo;
         switch (in_type)
-        { 
+        {
             case AkCallbackType.AK_MusicSyncGrid:
                 _beatCoroutine ??= StartCoroutine(BeatCoroutine());
                 _lastBeatTime = DateTime.Now;
-                _beatDurationInMilliseconds = (int)((info?.segmentInfo_fGridDuration ?? 1) * 1000);
+                BeatDurationInMilliseconds = (int)((info?.segmentInfo_fGridDuration ?? 1) * 1000);
                 OnBeatEvent?.Invoke();
                 if (OnNextBeat != null)
                 {
@@ -137,6 +148,16 @@ public class BeatManager : MonoBehaviour, ITimingable
         }
     }
 
+    public void PauseOrResumeMainMusic(bool isGamePaused)
+    {
+        IsPlaying = !isGamePaused;
+        if (!IsPlaying)
+        {
+            _lastPauseTime = DateTime.Now;
+        }
+        (isGamePaused ? _pauseMusicEvent : _resumeMusicEvent)?.Post(gameObject);
+    }
+
     IEnumerator BeatCoroutine()
     {
         while (true)
@@ -149,5 +170,11 @@ public class BeatManager : MonoBehaviour, ITimingable
     }
 
     public void PlayFirstMusic() => _firstMusicStateEvent?.Post(gameObject);
+
+    public void StopBeat()
+    {
+        StopCoroutine(_beatCoroutine);
+        _lastBeatTime = DateTime.Now;
+    }
     #endregion
 }

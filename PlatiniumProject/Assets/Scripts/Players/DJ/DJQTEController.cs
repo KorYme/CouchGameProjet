@@ -16,7 +16,7 @@ public class DJQTEController : MonoBehaviour, IQTEable
     public event Action<string> OnDJQTEStarted;
     public event Action<string> OnDJQTEEnded;
     public event Action<string> OnDJQTEChanged;
-    [SerializeField] UnityEvent _onDJSuccess; 
+    [SerializeField] UnityEvent _onDJSuccess;
     [SerializeField] UnityEvent _onDJFail;
     #endregion
 
@@ -112,20 +112,39 @@ public class DJQTEController : MonoBehaviour, IQTEable
             }
         }
         OnDJQTEChanged?.Invoke(_qteHandler.GetQTEString());
+        _onDJSuccess?.Invoke();
         _characterAnimation.SetLatency(2);
         _characterArmAnimation.SetLatency(2);
         _characterAnimation.SetAnim(ANIMATION_TYPE.CORRECT_INPUT, false);
         _characterArmAnimation.SetAnim(ANIMATION_TYPE.CORRECT_INPUT, false);
         _characterArmAnimation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.ZWIP);
+        _characterArmAnimation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.ECLAIR);
     }
 
     public void OnQTEWrongInput()
     {
+        _onDJFail?.Invoke();
         OnDJQTEChanged?.Invoke(_qteHandler.GetQTEString());
         _characterAnimation.SetLatency(2);
         _characterArmAnimation.SetLatency(2);
         _characterAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT, false);
         _characterArmAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT, false);
     }
+
+    public void OnQTEMissedInput()
+    {
+
+    }
     #endregion
+    public void OnBeginDrop()
+    {
+        OnDJQTEEnded?.Invoke(_qteHandler.GetQTEString());
+        _qteHandler.PauseQTE(true);
+    }
+
+    public void OnDropEnd()
+    {
+        _qteHandler.PauseQTE(false);
+        OnDJQTEStarted?.Invoke(_qteHandler.GetQTEString());
+    }
 }

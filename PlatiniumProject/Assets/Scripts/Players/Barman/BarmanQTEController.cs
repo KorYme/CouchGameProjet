@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BarmanQTEController : MonoBehaviour
+public class BarmanQTEController : MonoBehaviour, IListenerBarmanActions
 {
     private BarmanMovement _barmanMovement;
     
@@ -11,18 +11,36 @@ public class BarmanQTEController : MonoBehaviour
     public event Action<string> OnBarmanQTEEnded;
     public event Action<string> OnBarmanQTEChanged;
 
-    public UnityEvent onDrinkComplete;
+    public UnityEvent OnStartQteAll;
+    public UnityEvent OnStopQteAll;
     #endregion
 
+    private WaitingLineBar[] _waitingLines;
     private void Awake()
     {
         _barmanMovement = GetComponent<BarmanMovement>();
+        _waitingLines = FindObjectsOfType<WaitingLineBar>();
+    }
+
+    private void Start()
+    {
+        foreach (var v in _waitingLines)
+        {
+            v.GetComponent<QTEHandler>().RegisterListener(this);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        foreach (var v in _waitingLines)
+        {
+            v.GetComponent<QTEHandler>().UnregisterListener(this);
+        }
     }
 
     public void StartQTE(string qteString)
     {
         OnBarmanQTEStarted?.Invoke(qteString);
-        _barmanMovement.IsInQte = true;
     }
 
     public void ModifyQTE(string qteString)
@@ -33,6 +51,17 @@ public class BarmanQTEController : MonoBehaviour
     public void EndQTE(string qteString)
     {
         OnBarmanQTEEnded?.Invoke(qteString);
-        _barmanMovement.IsInQte = false;
+    }
+
+    public void CallOnBarmanStartCorrectSequence()
+    {
+        _barmanMovement.IsPlayingFullQte = true;
+        OnStartQteAll?.Invoke();
+    }
+
+    public void CallOnBarmanEndCorrectSequence()
+    {
+        OnStopQteAll?.Invoke();
+        _barmanMovement.IsPlayingFullQte = false;
     }
 }

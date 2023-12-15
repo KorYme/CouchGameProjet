@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class BouncerMovement : PlayerMovement, IQTEable
 {
@@ -10,6 +12,12 @@ public class BouncerMovement : PlayerMovement, IQTEable
         MOVING,
         CHECKING,
         IDLE
+    }
+    public enum CHECKING_STATE
+    {
+        CHECKING,
+        QTE,
+        NONE
     }
 
     [Space, Header("Bouncer Parameters")]
@@ -23,7 +31,14 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     protected override PlayerRole PlayerRole => PlayerRole.Bouncer;
     private BouncerQTEController _qteController;
-
+    private bool _isInDrop = false;
+    private CHECKING_STATE _checkingState = CHECKING_STATE.NONE;
+    private ANIMATION_TYPE _moveAnim;
+    
+    [SerializeField] UnityEvent _onAccept;
+    [SerializeField] UnityEvent _onRefuse;
+    [SerializeField] UnityEvent _onCheck;
+    [SerializeField] UnityEvent _onMovement;
     private void Awake()
     {
         _qteController = GetComponent<BouncerQTEController>();
@@ -62,7 +77,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     protected override void OnInputMove(Vector2 vector)
     {
-        if (_currentState == BOUNCER_STATE.MOVING)
+        if (_currentState == BOUNCER_STATE.MOVING && !_isInDrop)
         {
             Move((int)GetClosestDirectionFromVector(vector));
         }
@@ -70,6 +85,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     public void CheckMode(CharacterStateMachine chara, CharacterCheckByBouncerState state)
     {
+        _onCheck?.Invoke();
         _currentClient = state;
         _currentState = BOUNCER_STATE.CHECKING;
         StartCoroutine(TestCheck(chara.transform.position));
@@ -81,8 +97,9 @@ public class BouncerMovement : PlayerMovement, IQTEable
         if (_currentSlot.Neighbours[index] == null)
             return;
 
-        if (MoveTo(_currentSlot.Neighbours[index].transform.position))
+        if (MoveTo(_currentSlot.Neighbours[index].transform.position, _moveAnim))
         {
+            _onMovement?.Invoke();
             _currentSlot.PlayerOccupant = null;
             _currentSlot = _currentSlot.Neighbours[index];
             _currentSlot.PlayerOccupant = this;
@@ -95,15 +112,18 @@ public class BouncerMovement : PlayerMovement, IQTEable
         {
             if (vector.x > 0)
             {
+                _moveAnim = ANIMATION_TYPE.MOVE_RIGHT;
                 return Direction.Right;
             }
             else
             {
+                _moveAnim = ANIMATION_TYPE.MOVE_LEFT;
                 return Direction.Left;
             }
         }
         else
         {
+            _moveAnim = _moveAnim == ANIMATION_TYPE.MOVE_RIGHT ? ANIMATION_TYPE.MOVE_LEFT : ANIMATION_TYPE.MOVE_RIGHT;
             if (vector.y > 0)
             {
                 return Direction.Up;
@@ -120,14 +140,16 @@ public class BouncerMovement : PlayerMovement, IQTEable
     {
         CorrectDestination(pos + new Vector3(_areaManager.BouncerBoard.HorizontalSpacing , 0, 0));
         _qteController?.OpenBubble();
+        _checkingState = CHECKING_STATE.CHECKING;
         while (true)
         {
-            if (_playerController.Action1.InputValue) //ACCEPT
+            if (!_isInDrop && _playerController.Action1.InputValue) //ACCEPT
             {
                 if ((_currentClient.StateMachine.CharacterDataObject.isTutorialNpc &&
                      _currentClient.StateMachine.TypeData.Evilness == Evilness.GOOD) ||
                     !_currentClient.StateMachine.CharacterDataObject.isTutorialNpc)
                 {
+                    _onAccept?.Invoke();
                     _animation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.YEAH);
                     LetCharacterEnterBox();
                     _qteController?.CloseBubble();
@@ -137,15 +159,19 @@ public class BouncerMovement : PlayerMovement, IQTEable
                 }
                 
             }
-            if (_playerController.Action3.InputValue)//REFUSE + evil character
+            if (!_isInDrop && _playerController.Action3.InputValue)//REFUSE + evil character
             {
                 if ((_currentClient.StateMachine.CharacterDataObject.isTutorialNpc &&
                      _currentClient.StateMachine.TypeData.Evilness == Evilness.EVIL) ||
                     !_currentClient.StateMachine.CharacterDataObject.isTutorialNpc)
                 {
+                    _onRefuse?.Invoke();
                     _animation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.NO);
+                    _currentClient.StateMachine.CharacterAnimation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.CHOC);
+                    _currentClient.StateMachine.CharacterAnimation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.EXCLAMATION);
                     if (_currentClient.StateMachine.TypeData.Evilness == Evilness.EVIL)
                     {
+                        _checkingState = CHECKING_STATE.QTE;
                         _qteController?.StartQTE(_currentClient.StateMachine.TypeData);
                     } else
                     {
@@ -157,12 +183,13 @@ public class BouncerMovement : PlayerMovement, IQTEable
                     yield break;
                 }
             }
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
     }
 
     public void LetCharacterEnterBox()
     {
+        _checkingState = CHECKING_STATE.NONE;
         _currentClient.BouncerAction(true);
         _currentState = BOUNCER_STATE.MOVING;
         //_animation.SetAnim(ANIMATION_TYPE.IDLE);
@@ -180,6 +207,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     private void RefuseCharacterEnterBox()
     {
+        _checkingState = CHECKING_STATE.NONE;
         if (_currentClient.StateMachine.CharacterDataObject.isTutorialNpc)
         {
             Globals.TutorialManager.HandledTutoCharacter++;
@@ -194,8 +222,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
 
     public void OnQTECorrectInput()
     {
-        _animation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.CHOC);
-        _animation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.ECLAIR, 3);
+        _currentClient.StateMachine.CharacterAnimation.VfxHandeler.PlayVfx( Random.Range(0,2) == 1 ? VfxHandeler.VFX_TYPE.BLUE_IMPACT : VfxHandeler.VFX_TYPE.RED_IMPACT);
     }
 
     public void OnQTEWrongInput()
@@ -204,5 +231,22 @@ public class BouncerMovement : PlayerMovement, IQTEable
         {
             LetCharacterEnterBox();
         }
+    }
+    public void OnQTEMissedInput()
+    {
+
+    }
+
+    protected override void OnBeginDrop()
+    {
+        _isInDrop = true;
+        _qteController.OnBeginDrop();
+    }
+
+    protected override void OnDropEnd()
+    {
+        _isInDrop = false;
+        
+        _qteController.OnDropEnd(_checkingState);
     }
 }

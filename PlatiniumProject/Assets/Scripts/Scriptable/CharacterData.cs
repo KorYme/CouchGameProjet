@@ -6,6 +6,7 @@ using UnityEngine.Serialization;
 [CreateAssetMenu()]
 public class CharacterData : ScriptableObject
 {
+    public int transitNeatAmountUnitlAction;
     public int beatAmountUnitlAction;
     public bool isTutorialNpc;
     

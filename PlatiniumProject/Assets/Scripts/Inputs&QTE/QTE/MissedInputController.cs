@@ -35,7 +35,6 @@ public class MissedInputController : MonoBehaviour,IMissedInputListener
     {
         if (_rumbleController != null)
         {
-            Debug.Log("RUMBLE");
             _rumbleController.PlayRumbles(_rumbleName);
         }
     }

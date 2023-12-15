@@ -28,14 +28,26 @@ public class RumbleController : MonoBehaviour
         {
             if (_holdCoroutine != null) return;
             if (_singlePressCoroutine != null) StopCoroutine(_singlePressCoroutine);
-            _singlePressCoroutine = rumble.isHolding ? StartCoroutine(Hold((int)_role, rumble)) : StartCoroutine(SinglePress((int)_role, rumble));
+            _singlePressCoroutine = StartCoroutine(_role == PlayerRole.None ? SinglePress(rumble) : SinglePress((int)_role, rumble));
         }
     }
 
     public void StopAllRumbles()
     {
         StopAllCoroutines();
-        Players.PlayersController[(int)_role].newPlayer.SetVibration(0, 0f);
+        _singlePressCoroutine = null;
+        _holdCoroutine = null;
+        if (_role != PlayerRole.None)
+        {
+            Players.PlayersController[(int)_role].newPlayer.SetVibration(0, 0f);
+        }
+        else
+        {
+            for (int i = 0; i < 3; ++i)
+            {
+                Players.PlayersController[i].newPlayer.SetVibration(0, 0f);
+            }
+        }
     }
 
     IEnumerator SinglePress(int role, RumbleValues rumbleValues)
@@ -45,9 +57,28 @@ public class RumbleController : MonoBehaviour
         {
             timer += Time.deltaTime / rumbleValues.time;
             Players.PlayersController[role].newPlayer.SetVibration(0, rumbleValues.rumbleCurve.Evaluate(timer));
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
         Players.PlayersController[role].newPlayer.SetVibration(0, 0f);
+        _singlePressCoroutine = null;
+    }
+    
+    IEnumerator SinglePress(RumbleValues rumbleValues)
+    {
+        float timer = 0;
+        while (timer <= 1)
+        {
+            timer += Time.deltaTime / rumbleValues.time;
+            for (int i = 0; i < 3; i++)
+            {
+                Players.PlayersController[i]?.newPlayer.SetVibration(0, rumbleValues.rumbleCurve.Evaluate(timer));
+            }
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            Players.PlayersController[i]?.newPlayer.SetVibration(0, 0f);
+        }
         _singlePressCoroutine = null;
     }
 
@@ -58,7 +89,7 @@ public class RumbleController : MonoBehaviour
         {
             timer += Time.deltaTime / rumbleValues.time;
             Players.PlayersController[role].newPlayer.SetVibration(0, rumbleValues.rumbleCurve.Evaluate(timer));
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
     }
 }

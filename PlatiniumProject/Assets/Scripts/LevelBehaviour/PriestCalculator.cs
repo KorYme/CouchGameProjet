@@ -22,12 +22,16 @@ public class PriestCalculator : MonoBehaviour
     [SerializeField] private CheckerBoard _danceFloor;
     public List<CharacterStateMachine> CurrentPriestList;
 
+    [Header("Lose")]
+    [SerializeField] private int _timeUntilDefeateScreen;
+    
     public EXORCIZE_STATE ExorcizeState { get; private set; } = EXORCIZE_STATE.NORMAL;
     
     public Action OnPriestNearToExorcize;
     public Action OnPriestExorcize;
 
     public UnityEvent OnLoose;
+    public UnityEvent OnDisplayLooseScreen;
 
     private void Awake()
     {
@@ -72,8 +76,10 @@ public class PriestCalculator : MonoBehaviour
             Debug.Log("GAME OVER");
             ExorcizeState = EXORCIZE_STATE.EXORCIZED;
             OnPriestExorcize?.Invoke();
-            Time.timeScale = 0f;
             OnLoose?.Invoke();
+            Invoke("CallGameOverScreen", _timeUntilDefeateScreen);
         }
     }
+
+    public void CallGameOverScreen() => OnDisplayLooseScreen?.Invoke();
 }

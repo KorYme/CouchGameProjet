@@ -1,7 +1,6 @@
 using Rewired;
 using System.Collections.Generic;
 using System.Text;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class QTEListSequences
@@ -73,30 +72,8 @@ public class QTEListSequences
                     str.Append("<sprite name=\"");
                     if (action != null)
                     {
-                        if (action.type == InputActionType.Axis)
-                        {
-                            if (sequence.Status == InputStatus.LONG && sequence.LongInputType == LongInputType.SHAKE)
-                            {
-                                str.Append("RS");
-                            }
-                            else
-                            {
-                                if (input.PositiveValue)
-                                {
-                                    str.Append(action.positiveDescriptiveName);
-                                }
-                                else
-                                {
-                                    str.Append(action.negativeDescriptiveName);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            str.Append(action.descriptiveName);
-                        }
+                        str.Append(GetInputStringFromActionType(action, i, j));
                         str.Append("\" ");
-                        //<sprite name="A" color=#FF0000>
                         if (_inputsSucceeded[index])
                         {
                             str.Append("color=#008600");
@@ -128,30 +105,89 @@ public class QTEListSequences
         if (indexOfSequence >= 0 && indexOfSequence < _sequences.Count &&
             indexInSequence >= 0 && indexInSequence < _sequences[indexOfSequence].ListSubHandlers.Count)
         {
-            //<sprite name = "A" tint = 0 color =#FF0000>
             str.Append("<sprite name=\"");
             InputAction action = ReInput.mapping.GetAction(_sequences[indexOfSequence].ListSubHandlers[indexInSequence].ActionIndex);
-            if (action.type == InputActionType.Axis)
-            {
-                if (_sequences[indexOfSequence].Status == InputStatus.LONG && _sequences[indexOfSequence].LongInputType == LongInputType.SHAKE)
-                {
-                    str.Append("RS");
-                } else
-                {
-                    if (_sequences[indexOfSequence].ListSubHandlers[indexInSequence].PositiveValue)
-                    {
-                        str.Append(action.positiveDescriptiveName);
-                    } else
-                    {
-                        str.Append(action.negativeDescriptiveName);
-                    }
-                }
-            } else
-            {
-                str.Append(action.descriptiveName);
-            }
+            str.Append(GetInputStringFromActionType(action, indexOfSequence, indexInSequence));
             str.Append("\">");
         }
         return str.ToString();
+    }
+    private string GetInputStringFromActionType(InputAction action, int indexOfSequence, int indexInSequence)
+    {
+        if (action.type == InputActionType.Button)
+        {
+            return action.descriptiveName; 
+        }
+        // Only Axis type
+        if (_sequences[indexOfSequence].Status == InputStatus.LONG && _sequences[indexOfSequence].LongInputType == LongInputType.SHAKE)
+        {
+            return "RS";
+        }
+        //Only Short input or hold (direction)
+        if (_sequences[indexOfSequence].ListSubHandlers[indexInSequence].PositiveValue)
+        {
+            return action.positiveDescriptiveName;
+        }
+        else
+        {
+            return action.negativeDescriptiveName;
+        }
+    }
+    
+    public Sprite[] ToSprites(InputDevice device)
+    {
+        Sprite[] sprites = new Sprite[TotalLengthInputs];
+        QTESequence sequence;
+        UnitInput input;
+        int index = 0;
+        for (int i = 0; i < _sequences.Count; i++)
+        {
+            sequence = _sequences[i];
+            for (int j = 0; j < sequence.ListSubHandlers.Count; j++)
+            {
+                input = sequence.ListSubHandlers[j];
+                InputAction action = ReInput.mapping.GetAction(input.ActionIndex);
+                sprites[index] = GetInputSpriteFromActionType(action, i, j, device);
+                index++;
+            }
+        }
+        return sprites;
+    }
+    private Sprite GetInputSpriteFromActionType(InputAction action, int indexOfSequence, int indexInSequence,InputDevice device)
+    {
+        InputDisplayed input = InputDisplayed.A;
+        if (action.type == InputActionType.Button)
+        {
+            Debug.Log("ACTION " + action.descriptiveName);
+            Globals.DatabaseActionSprites.DictionaryActionToInput.TryGetValue(action.id, out input);
+        }
+        // Only Axis type
+        if (_sequences[indexOfSequence].Status == InputStatus.LONG && _sequences[indexOfSequence].LongInputType == LongInputType.SHAKE)
+        {
+            input = InputDisplayed.ShakeJS;
+        }
+        //Only Short input or hold (direction)
+        if (action.id == RewiredConsts.Action.MOVE_HORIZONTAL)
+        {
+            if (_sequences[indexOfSequence].ListSubHandlers[indexInSequence].PositiveValue)
+            {
+                input = InputDisplayed.Right;
+            } else
+            {
+                input = InputDisplayed.Left;
+            }
+        }
+        else if (action.id == RewiredConsts.Action.MOVE_VERTICAL)
+        {
+            if (_sequences[indexOfSequence].ListSubHandlers[indexInSequence].PositiveValue)
+            {
+                input = InputDisplayed.Up;
+            }
+            else
+            {
+                input = InputDisplayed.Down;
+            }
+        }
+        return Globals.DatabaseActionSprites.GetInput(input, device);
     }
 }

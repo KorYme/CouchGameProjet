@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2475575777112969248}
   - component: {fileID: 1020801392736537925}
   - component: {fileID: 3001707074899246954}
+  - component: {fileID: 2423857602229449428}
   m_Layer: 0
   m_Name: BeatManager
   m_TagString: Untagged
@@ -82,6 +83,14 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 6e2d84f344115e044b8fbe8619a9d13d, type: 2}
+  _pauseMusicEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: a55ab3a1c1345bb4884b9189212fa7b8, type: 2}
+  _resumeMusicEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e405181aa40c1d04db87acc455f4ecdd, type: 2}
   _timingBeforeBeat: 0.35
   _timingAfterBeat: 0.35
   _onBeatEvent:
@@ -117,24 +126,18 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 37a9c8260cad227448ad92f855a06eca, type: 2}
-  _dropDefaultEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 7415c4ca0a279574cb6659b3b1fca53d, type: 2}
-  _dropSucceededEvent:
+  _dropSuccessEvent:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: b45f955cf7d7125488078ffe063510c2, type: 2}
-  _dropMissedEvent:
+  _dropMissEvent:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 3481fdce26412f947aacfbff5723db23, type: 2}
-  _buildUpTime: 1
-  _synchronizationTime: 0.76
-  _timeToReleaseAfterAnimation: 1
   _inputDeadZone: 0.8
-  _text: {fileID: 0}
-  _dropSuccess: {fileID: 0}
+  _pressingSynchronizationTime: 1
+  _pressingBuildUpTime: 12
+  _releasingBuildUpTime: 3
   _dropAnimationBehaviour: {fileID: 0}
   _onBeginBuildUp:
     m_PersistentCalls:
@@ -142,9 +145,52 @@ MonoBehaviour:
   _onDropTriggered:
     m_PersistentCalls:
       m_Calls: []
+  _onDropLaunched:
+    m_PersistentCalls:
+      m_Calls: []
   _onDropSuccess:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2423857602229449428}
+        m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
+        m_MethodName: PlayRumbles
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Drop_Success
+          m_BoolArgument: 0
+        m_CallState: 2
   _onDropFail:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2423857602229449428}
+        m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
+        m_MethodName: PlayRumbles
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Drop_Fail
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2423857602229449428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2994801982979645308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f314b23923af9248b4370310b319b4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _role: 3
+  _allRumbles:
+  - {fileID: 11400000, guid: 5acbf6a9b21b23b49aaecf0b7a6a4fc9, type: 2}
+  - {fileID: 11400000, guid: 176ac9614f7caa3469bdfe1b5a98dd7a, type: 2}
