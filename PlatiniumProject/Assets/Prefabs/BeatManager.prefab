@@ -83,6 +83,14 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 6e2d84f344115e044b8fbe8619a9d13d, type: 2}
+  _pauseMusicEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: a55ab3a1c1345bb4884b9189212fa7b8, type: 2}
+  _resumeMusicEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e405181aa40c1d04db87acc455f4ecdd, type: 2}
   _timingBeforeBeat: 0.35
   _timingAfterBeat: 0.35
   _onBeatEvent:
@@ -135,6 +143,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _onDropTriggered:
+    m_PersistentCalls:
+      m_Calls: []
+  _onDropLaunched:
     m_PersistentCalls:
       m_Calls: []
   _onDropSuccess:

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class Globals
 {
-    public static ITimingable BeatManager = null;
+    public static BeatManager BeatManager = null;
     public static DropManager DropManager = null;
     public static SpawnManager SpawnManager = null;
     public static PriestCalculator PriestCalculator = null;
@@ -13,5 +13,5 @@ public static class Globals
     public static PlayerInputsAssigner PlayerInputsAssigner = null;
     public static TutorialManager TutorialManager = null;
     public static GameManager GameManager = null;
-    public static MainMenuMusic MainMenuMusic = null;
+    public static MenuMusicPlayer MenuMusicPlayer = null;
 }
