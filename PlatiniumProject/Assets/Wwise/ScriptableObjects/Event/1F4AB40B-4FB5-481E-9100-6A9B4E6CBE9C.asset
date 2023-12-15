@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ab4bff603db7b8419e4e1e1bc98b8db, type: 3}
-  m_Name: C5E5E1C1-CD96-429B-BAC0-BB976F5D491A
+  m_Name: 1F4AB40B-4FB5-481E-9100-6A9B4E6CBE9C
   m_EditorClassIdentifier: 
-  objectName: Music_Crypt
-  id: 3058456287
-  guid: C5E5E1C1-CD96-429B-BAC0-BB976F5D491A
+  objectName: Pause_Main_Music
+  id: 2139815839
+  guid: 1F4AB40B-4FB5-481E-9100-6A9B4E6CBE9C

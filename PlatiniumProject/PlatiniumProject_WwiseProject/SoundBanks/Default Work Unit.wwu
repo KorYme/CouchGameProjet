@@ -14,7 +14,6 @@
 						<ObjectRef Name="Music" ID="{74E004F1-3593-4675-9F8D-0EA6E3091C36}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Master-Mixer Hierarchy" ID="{2388DAEA-9775-46C6-A2ED-C5222A397756}" WorkUnitID="{2388DAEA-9775-46C6-A2ED-C5222A397756}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Ambiance" ID="{16234DAC-407B-4728-83AC-53640D11B520}" WorkUnitID="{16234DAC-407B-4728-83AC-53640D11B520}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="PlaceHolder" ID="{8473C8E8-4D5D-484F-B123-40F0FD9E6F25}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Default Work Unit" ID="{C7CEF3A6-1C3C-48A0-AEBD-F4C120A62D79}" WorkUnitID="{C7CEF3A6-1C3C-48A0-AEBD-F4C120A62D79}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Ambiance" ID="{A9E4BA3A-5ACF-48FE-B5AB-BD8C8926CCF1}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Default Work Unit" ID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}" Origin="Manual" Filter="7"/>
