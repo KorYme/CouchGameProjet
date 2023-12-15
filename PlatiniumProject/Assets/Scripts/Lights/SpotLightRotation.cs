@@ -23,7 +23,7 @@ public class SpotLightRotation : MonoBehaviour
         {
             timer += Time.deltaTime * _Speed;
             transform.eulerAngles = new Vector3(0, 0, Mathf.LerpAngle(firstLocationRotation, secondLocationRotation, (Mathf.Cos(timer * Mathf.PI) + 1) / 2));
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
     }
 

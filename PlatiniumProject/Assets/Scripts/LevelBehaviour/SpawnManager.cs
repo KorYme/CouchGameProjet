@@ -236,7 +236,7 @@ public class SpawnManager : MonoBehaviour
                 timer = 0f;
                 PullACharacter();
             }
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
     }
 

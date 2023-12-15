@@ -26,7 +26,7 @@ public class LightMovementCircle : MonoBehaviour
         {
             timer += Time.deltaTime * Mathf.PI * 2f * _BeatSpeed * _speed;
             transform.position = _center + new Vector3(Mathf.Cos(timer), Mathf.Sin(timer)) * _circleRadius;
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
     }
 
