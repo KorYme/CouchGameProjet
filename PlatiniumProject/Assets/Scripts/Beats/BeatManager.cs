@@ -39,6 +39,7 @@ public class BeatManager : MonoBehaviour, ITimingable
     DateTime _lastPauseTime;
     Coroutine _beatCoroutine;
 
+    public event Action<int> OnBeatDurationChanged;
     public event Action OnNextBeatStart;
     public event Action OnNextBeat;
     public event Action OnNextBeatEnd;
@@ -49,16 +50,27 @@ public class BeatManager : MonoBehaviour, ITimingable
 
     #region PROPERTIES
     public bool IsPlaying { get; private set; }
-    public int BeatDurationInMilliseconds => _beatDurationInMilliseconds;
     public UnityEvent OnBeatEvent => _onBeatEvent;
     public UnityEvent OnBeatStartEvent => _onBeatStartEvent;
     public UnityEvent OnBeatEndEvent => _onBeatEndEvent;
 
     public bool IsInsideBeatWindow => IsInBeatWindowBefore || IsInBeatWindowAfter;
-    public bool IsInBeatWindowBefore => BeatDeltaTime < (_timingAfterBeat * _beatDurationInMilliseconds);
-    public bool IsInBeatWindowAfter => BeatDeltaTime > _beatDurationInMilliseconds - (_timingBeforeBeat * _beatDurationInMilliseconds);
+    public bool IsInBeatWindowBefore => BeatDeltaTimeInMilliseconds < (_timingAfterBeat * _beatDurationInMilliseconds);
+    public bool IsInBeatWindowAfter => BeatDeltaTimeInMilliseconds > _beatDurationInMilliseconds - (_timingBeforeBeat * _beatDurationInMilliseconds);
 
-    public double BeatDeltaTime => (DateTime.Now - _lastBeatTime).TotalMilliseconds - (IsPlaying ? 0 : (DateTime.Now - _lastPauseTime).TotalMilliseconds);
+    public int BeatDurationInMilliseconds
+    {
+        get => _beatDurationInMilliseconds;
+        set
+        {
+            if (_beatDurationInMilliseconds == value) return;
+            _beatDurationInMilliseconds = value;
+            OnBeatDurationChanged?.Invoke(value);
+        }
+    }
+    public double BeatDeltaTimeInMilliseconds => (DateTime.Now - _lastBeatTime).TotalMilliseconds - (IsPlaying ? 0 : (DateTime.Now - _lastPauseTime).TotalMilliseconds);
+    public float BeatDurationInSeconds => BeatDurationInMilliseconds / 1000f;
+    public double BeatDeltaTimeInSeconds => BeatDeltaTimeInMilliseconds / 1000f;
 
     #endregion
 
@@ -110,7 +122,7 @@ public class BeatManager : MonoBehaviour, ITimingable
             case AkCallbackType.AK_MusicSyncGrid:
                 _beatCoroutine ??= StartCoroutine(BeatCoroutine());
                 _lastBeatTime = DateTime.Now;
-                _beatDurationInMilliseconds = (int)((info?.segmentInfo_fGridDuration ?? 1) * 1000);
+                BeatDurationInMilliseconds = (int)((info?.segmentInfo_fGridDuration ?? 1) * 1000);
                 OnBeatEvent?.Invoke();
                 if (OnNextBeat != null)
                 {

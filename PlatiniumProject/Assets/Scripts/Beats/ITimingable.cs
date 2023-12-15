@@ -12,7 +12,9 @@ public interface ITimingable
     public bool IsInBeatWindowBefore { get; }
     public bool IsInBeatWindowAfter { get; }
     public int BeatDurationInMilliseconds { get; }
-    public double BeatDeltaTime { get; }
+    public double BeatDeltaTimeInMilliseconds { get; }
+    public float BeatDurationInSeconds { get; }
+    public double BeatDeltaTimeInSeconds { get; }
     public UnityEvent OnBeatEvent { get; }
     public UnityEvent OnBeatStartEvent { get; }
     public UnityEvent OnBeatEndEvent { get; }
