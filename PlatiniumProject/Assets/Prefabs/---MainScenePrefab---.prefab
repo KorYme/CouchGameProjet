@@ -34581,6 +34581,10 @@ PrefabInstance:
       propertyPath: _qteController
       value: 
       objectReference: {fileID: 7858617208034107881}
+    - target: {fileID: 2825653965656049019, guid: aff64b997f1cb184ab99b6540eb058a3, type: 3}
+      propertyPath: _checkingBubbleObject
+      value: 
+      objectReference: {fileID: 8616922870434830094}
     - target: {fileID: 3584156953017361331, guid: aff64b997f1cb184ab99b6540eb058a3, type: 3}
       propertyPath: m_Name
       value: ---UI---
@@ -37550,6 +37554,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e63bcc9ed2122084ab718789d0905f12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8616922870434830094 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1632020887485152342, guid: 4b54c6c7aba9b5846addc1958f6a7646, type: 3}
+  m_PrefabInstance: {fileID: 7004064902975646552}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7034475834326213700
 PrefabInstance:
   m_ObjectHideFlags: 0
