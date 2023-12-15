@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb1ca7b282e771c48b59a05dff5461ad, type: 3}
   m_Name: CharacterEnzo
   m_EditorClassIdentifier: 
+  transitNeatAmountUnitlAction: 3
   beatAmountUnitlAction: 3
   isTutorialNpc: 0
   movementAmountInQueue: 4
