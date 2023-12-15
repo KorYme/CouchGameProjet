@@ -238,12 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c2c931f466f39f44a44e03112854dc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _imageInputs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _imagesInput: []
   _darkeningValue: 0
   _darkeningImage: {fileID: 1698963839}
 --- !u!114 &151037895
@@ -359,6 +354,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 270416450}
   m_CullTransparentMesh: 1
+--- !u!1 &298498218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 298498219}
+  - component: {fileID: 298498220}
+  m_Layer: 0
+  m_Name: ---LibrarySpritesInput---
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &298498219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298498218}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &298498220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298498218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da17708bb9ed2849a14072a1b6bacaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _libraryActionSprites: {fileID: 11400000, guid: a6e327f2b5e3d7a4389c19444af1c602, type: 2}
 --- !u!1 &375782265
 GameObject:
   m_ObjectHideFlags: 0
@@ -2402,12 +2442,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9a085622a439e4c823a01fd3c66dea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _durationAnimation: 0.3
   _imagesInput:
   - {fileID: 512856357}
   - {fileID: 270416452}
   - {fileID: 1276292593}
   - {fileID: 1078130929}
+  _durationAnimation: 0.3
   _exampleChangeSprites:
   - {fileID: 21300000, guid: 2f607a4d96d9d2348b005b1d204aa61a, type: 3}
   - {fileID: 21300000, guid: 1811df7a894e7cd43a82f2e0254eebe9, type: 3}
@@ -2763,3 +2803,4 @@ SceneRoots:
   - {fileID: 761140473}
   - {fileID: 1166452505}
   - {fileID: 21952378}
+  - {fileID: 298498219}
