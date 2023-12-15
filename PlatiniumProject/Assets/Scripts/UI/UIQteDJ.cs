@@ -18,10 +18,9 @@ public class UIQteDJ : UIQte
     InputSprite[] _initialSpriteInfos;
 
     public Sprite NextSprite { get; set; } = null;
+    private bool _needRestart = false;
 
-    [SerializeField] Sprite[] _exampleChangeSprites;
-
-    private void Start()
+    private void Awake()
     {
         InitializeRenderers();
     }
@@ -31,7 +30,6 @@ public class UIQteDJ : UIQte
         {
             _initialSpriteInfos = new InputSprite[_imagesInput.Length];
             InitializeInfosFromRenderers();
-            SnapImagesToEndAnimation();
         }
     }
     private void InitializeInfosFromRenderers()
@@ -40,17 +38,18 @@ public class UIQteDJ : UIQte
         {
             _initialSpriteInfos[i].PositionSprite = _imagesInput[i].transform.localPosition;
             _initialSpriteInfos[i].ScaleSprite = _imagesInput[i].transform.localScale;
+            
             _initialSpriteInfos[i].ColorSprite = _imagesInput[i].color;
         }
     }
 
     private void SnapImagesToEndAnimation()
     {
-        for(int i = _imagesInput.Length - 1; i >= 0; i--)
+        for (int i = _imagesInput.Length - 1; i >= 0; i--)
         {
             if (i == 0)
             {
-                _imagesInput[i].color = new Color(1,1,1,0);
+                _imagesInput[i].color = new Color(1, 1, 1, 0);
                 _imagesInput[i].transform.localScale = Vector3.zero;
             }
             else
@@ -73,6 +72,7 @@ public class UIQteDJ : UIQte
             if (i == 0)
             {
                 _imagesInput[i].DOFade(0, _durationAnimation);
+
                 _imagesInput[i].transform.DOScale(0, _durationAnimation);
             }
             else
@@ -95,7 +95,10 @@ public class UIQteDJ : UIQte
             if (i != _imagesInput.Length - 1 && _imagesInput[i + 1].sprite != null)
             {
                 _imagesInput[i].color = _initialSpriteInfos[i].ColorSprite;
-                _imagesInput[i].sprite = _imagesInput[i + 1].sprite;
+                if (_needRestart)
+                {
+                    _imagesInput[i].sprite = _imagesInput[i + 1].sprite;
+                }
             }
             else
             {
@@ -105,15 +108,22 @@ public class UIQteDJ : UIQte
             _imagesInput[i].transform.localPosition = _initialSpriteInfos[i].PositionSprite;
             _imagesInput[i].transform.localScale = _initialSpriteInfos[i].ScaleSprite;
         }
-    }
-
-    public void ChangeSpritesTest()
-    {
-        ChangeSprites(_exampleChangeSprites);
+        if (!_needRestart)
+        {
+            _needRestart = true;
+        }
     }
 
     protected override void ResetDisplay()
     {
-        SnapImagesToEndAnimation();
+        _needRestart = false;
+        //SnapImagesToEndAnimation();
+    }
+    protected override void ModifyDisplay()
+    {
+        for (int i = 0; i < _imagesInput.Length; i++)
+        {
+            _imagesInput[i].color = _imagesInput[i].sprite == null ? Color.clear: _initialSpriteInfos[i].ColorSprite;
+        }
     }
 }

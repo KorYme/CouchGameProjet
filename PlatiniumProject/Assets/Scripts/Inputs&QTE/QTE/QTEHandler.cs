@@ -31,12 +31,14 @@ public class QTEHandler : MonoBehaviour, IIsControllable
     QTESequence _currentQTESequence;
     QTE_STATE[] _inputsSucceeded;
     List<InputClass> _inputsQTE;
+    public bool[] InputsSucceeded { get => _currentListSequences == null? null:_currentListSequences.InputsSucceeded; }
 
     int _indexOfSequence = 0;
     int _indexInSequence = 0;
     int _indexInListSequences = 0;
     bool _isSequenceComplete = false;
     int _durationHold = 0;
+    public float DurationValue { get => _currentQTESequence == null || _timingable == null ? 0 : _durationHold / (_currentQTESequence.DurationHold * _timingable.BeatDurationInMilliseconds); }
     bool _hasHoldStarted = false;
     [SerializeField] float _holdDelayAcceptance = 0.5f;
     float _holdDelayAcceptanceTimer;
