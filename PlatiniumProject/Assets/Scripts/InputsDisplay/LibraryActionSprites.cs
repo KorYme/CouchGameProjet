@@ -11,7 +11,16 @@ public class LibraryActionSprites : ScriptableObject
         _dictionaryActionSprites = new Dictionary<InputDisplayed, ActionSprites>();
         foreach(ActionSprites actionSprite in _listActionSprites)
         {
-            _dictionaryActionSprites[actionSprite.Device] = actionSprite;
+            _dictionaryActionSprites[actionSprite.Input] = actionSprite;
         }
+    }
+
+    public Sprite GetInput(InputDisplayed input,InputDevice device)
+    {
+        if (_dictionaryActionSprites.TryGetValue(input, out ActionSprites actionSprite))
+        {
+            return actionSprite.GetSpriteFromInputDevice(device);
+        }
+        return null;
     }
 }

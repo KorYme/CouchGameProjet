@@ -13,33 +13,81 @@ MonoBehaviour:
   m_Name: LibraryActionSprites
   m_EditorClassIdentifier: 
   _listActionSprites:
-  - Device: 0
+  - Input: 0
     XBoxSprite: {fileID: 21300000, guid: 5071fa03098d2434fa1134c9aa45657b, type: 3}
     PlaystationSprite: {fileID: 21300000, guid: 1811df7a894e7cd43a82f2e0254eebe9, type: 3}
     KB1Sprite: {fileID: 0}
     KB2Sprite: {fileID: 0}
     KB3Sprite: {fileID: 0}
-  - Device: 1
+  - Input: 1
     XBoxSprite: {fileID: 21300000, guid: 7ad1ae9841238104f9936f74348dc2a9, type: 3}
     PlaystationSprite: {fileID: 21300000, guid: 497111f457e18c54899186e053920baa, type: 3}
     KB1Sprite: {fileID: 0}
     KB2Sprite: {fileID: 0}
     KB3Sprite: {fileID: 0}
-  - Device: 2
+  - Input: 2
     XBoxSprite: {fileID: 21300000, guid: cc5ddf50f9ebc994e83c47d73cd18253, type: 3}
     PlaystationSprite: {fileID: 21300000, guid: 2f607a4d96d9d2348b005b1d204aa61a, type: 3}
     KB1Sprite: {fileID: 0}
     KB2Sprite: {fileID: 0}
     KB3Sprite: {fileID: 0}
-  - Device: 3
-    XBoxSprite: {fileID: 21300000, guid: 4a2f3986d20320c458a3a8b297509e32, type: 3}
-    PlaystationSprite: {fileID: 21300000, guid: 497111f457e18c54899186e053920baa, type: 3}
+  - Input: 3
+    XBoxSprite: {fileID: 21300000, guid: 2baad09a606a5374a824a338d227682d, type: 3}
+    PlaystationSprite: {fileID: 21300000, guid: 4a2f3986d20320c458a3a8b297509e32, type: 3}
     KB1Sprite: {fileID: 0}
     KB2Sprite: {fileID: 0}
     KB3Sprite: {fileID: 0}
-  - Device: 4
-    XBoxSprite: {fileID: 21300000, guid: 4a2f3986d20320c458a3a8b297509e32, type: 3}
-    PlaystationSprite: {fileID: 21300000, guid: 497111f457e18c54899186e053920baa, type: 3}
+  - Input: 4
+    XBoxSprite: {fileID: 21300000, guid: 883613cf90a5f064db9239df2c295f2d, type: 3}
+    PlaystationSprite: {fileID: 21300000, guid: 883613cf90a5f064db9239df2c295f2d, type: 3}
+    KB1Sprite: {fileID: 0}
+    KB2Sprite: {fileID: 0}
+    KB3Sprite: {fileID: 0}
+  - Input: 6
+    XBoxSprite: {fileID: 21300000, guid: 43c09aeda86eec24bbef95e99cce5f6e, type: 3}
+    PlaystationSprite: {fileID: 21300000, guid: 43c09aeda86eec24bbef95e99cce5f6e, type: 3}
+    KB1Sprite: {fileID: 0}
+    KB2Sprite: {fileID: 0}
+    KB3Sprite: {fileID: 0}
+  - Input: 5
+    XBoxSprite: {fileID: 21300000, guid: eed7d3ee6d8517a448f17be217e65b4b, type: 3}
+    PlaystationSprite: {fileID: 21300000, guid: eed7d3ee6d8517a448f17be217e65b4b, type: 3}
+    KB1Sprite: {fileID: 0}
+    KB2Sprite: {fileID: 0}
+    KB3Sprite: {fileID: 0}
+  - Input: 7
+    XBoxSprite: {fileID: 21300000, guid: 70f9dfd31a2dcbe4b8d4fe11e7ce74cb, type: 3}
+    PlaystationSprite: {fileID: 21300000, guid: 70f9dfd31a2dcbe4b8d4fe11e7ce74cb, type: 3}
+    KB1Sprite: {fileID: 0}
+    KB2Sprite: {fileID: 0}
+    KB3Sprite: {fileID: 0}
+  - Input: 8
+    XBoxSprite: {fileID: 21300000, guid: 7d398b0f448d29c418fec54335f4e8ec, type: 3}
+    PlaystationSprite: {fileID: 21300000, guid: c2412851059f86b4da86c02c99c41a4d, type: 3}
+    KB1Sprite: {fileID: 0}
+    KB2Sprite: {fileID: 0}
+    KB3Sprite: {fileID: 0}
+  - Input: 9
+    XBoxSprite: {fileID: 21300000, guid: 30e0d181734938348a5f53159d5bc7c5, type: 3}
+    PlaystationSprite: {fileID: 21300000, guid: d11d1841d67436d40b6a0a3ddb4e9442, type: 3}
+    KB1Sprite: {fileID: 0}
+    KB2Sprite: {fileID: 0}
+    KB3Sprite: {fileID: 0}
+  - Input: 10
+    XBoxSprite: {fileID: 21300000, guid: f0f3b24cb6923da45bb0d8bb5c01e5fa, type: 3}
+    PlaystationSprite: {fileID: 21300000, guid: f0f3b24cb6923da45bb0d8bb5c01e5fa, type: 3}
+    KB1Sprite: {fileID: 0}
+    KB2Sprite: {fileID: 0}
+    KB3Sprite: {fileID: 0}
+  - Input: 11
+    XBoxSprite: {fileID: 21300000, guid: 3093a1248348d8145af70b65ecc929b3, type: 3}
+    PlaystationSprite: {fileID: 21300000, guid: f174eceecc7d3da489f00c4bfdd61b59, type: 3}
+    KB1Sprite: {fileID: 0}
+    KB2Sprite: {fileID: 0}
+    KB3Sprite: {fileID: 0}
+  - Input: 12
+    XBoxSprite: {fileID: 21300000, guid: 195b13e2f78af314da950ce0f63020ce, type: 3}
+    PlaystationSprite: {fileID: 21300000, guid: 62cb4dd8135a73d4995b67a8277249b8, type: 3}
     KB1Sprite: {fileID: 0}
     KB2Sprite: {fileID: 0}
     KB3Sprite: {fileID: 0}

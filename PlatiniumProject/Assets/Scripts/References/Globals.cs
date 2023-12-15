@@ -14,4 +14,5 @@ public static class Globals
     public static TutorialManager TutorialManager = null;
     public static GameManager GameManager = null;
     public static MenuMusicPlayer MenuMusicPlayer = null;
+    public static DatabaseActionSprites DatabaseActionSprites = null;
 }
