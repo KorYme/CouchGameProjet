@@ -79,7 +79,6 @@ public class QTEHandlerEvents
 
     public void CallOnBarmanStartCorrectSequence()
     {
-        Debug.Log("START");
         foreach (IListenerBarmanActions reciever in _barmanListeners)
         {
             reciever.CallOnBarmanStartCorrectSequence();
@@ -88,7 +87,6 @@ public class QTEHandlerEvents
 
     public void CallOnBarmanEndCorrectSequence()
     {
-        Debug.Log("END");
         foreach (IListenerBarmanActions reciever in _barmanListeners)
         {
             reciever.CallOnBarmanEndCorrectSequence();

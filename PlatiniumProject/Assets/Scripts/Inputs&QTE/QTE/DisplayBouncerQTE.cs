@@ -10,13 +10,10 @@ public class DisplayBouncerQTE : MonoBehaviour
     [SerializeField] BouncerQTEController _qteController;
     [SerializeField] UIQteBouncer _qteDisplay;
 
-    private void Awake()
+    private void Start()
     {
         _qteBubbleObject.SetActive(false);
         _checkingBubbleObject.SetActive(false);
-    }
-    private void Start()
-    {
         _qteController.OnBouncerCheckingStarted += OnBouncerCheckingStarted;
         _qteController.OnBouncerQTEStarted += OnDJQTEStarted;
         _qteController.OnBouncerQTEEnded += OnDJQTEEnded;
@@ -33,13 +30,10 @@ public class DisplayBouncerQTE : MonoBehaviour
     private void OnDJQTEChanged(Sprite[] sprites)
     {
         _qteDisplay.MoveToNextInput();
-        //_qteDisplay.ChangeSprites(sprites);
-        //_qteDisplay.text = qteString;
     }
 
     private void OnDJQTEEnded(Sprite[] sprites)
     {
-        //_qteDisplay.text = qteString;
         _qteBubbleObject.SetActive(false);
         _checkingBubbleObject.SetActive(false);
     }
@@ -49,7 +43,6 @@ public class DisplayBouncerQTE : MonoBehaviour
         _qteBubbleObject.SetActive(true);
         _checkingBubbleObject.SetActive(false);
         _qteDisplay.ChangeSprites(sprites);
-        //_qteDisplay.text = qteString;
     }
     private void OnBouncerCheckingStarted()
     {
