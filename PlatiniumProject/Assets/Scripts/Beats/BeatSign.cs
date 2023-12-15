@@ -39,6 +39,27 @@ public class BeatSign : MonoBehaviour
     void Start()
     {
         Globals.BeatManager.OnBeatDurationChanged += StartBeat;
+        switch (_displayStyle)
+        {
+            case DISPLAY_STYLE.EDGE_TO_CENTER_INCREMENTAL:
+                _sliderRight.transform.localScale = new Vector3(-_sliderRight.transform.localScale.x,_sliderLeft.transform.localScale.y, _sliderLeft.transform.localScale.z);
+                break;
+            case DISPLAY_STYLE.EDGE_TO_CENTER_DECREMENTAL:
+                _sliderLeft.transform.localScale = new Vector3(-_sliderLeft.transform.localScale.x,_sliderLeft.transform.localScale.y, _sliderLeft.transform.localScale.z);
+                _fillLeft.localScale = new Vector3(-_fillLeft.localScale.x,_fillLeft.localScale.y, _fillLeft.localScale.z);
+                _fillRight.localScale = new Vector3(-_fillRight.localScale.x,_fillRight.localScale.y, _fillRight.localScale.z);
+                break;
+            case DISPLAY_STYLE.CENTER_TO_EDGE_INCREMENTAL:
+                _sliderLeft.transform.localScale = new Vector3(-_sliderLeft.transform.localScale.x,_sliderLeft.transform.localScale.y, _sliderLeft.transform.localScale.z);
+                _fillLeft.localScale = new Vector3(-_fillLeft.localScale.x,_fillLeft.localScale.y, _fillLeft.localScale.z);
+                _fillRight.localScale = new Vector3(-_fillRight.localScale.x,_fillRight.localScale.y, _fillRight.localScale.z);
+                break;
+            case DISPLAY_STYLE.CENTER_TO_EDGE_DECREMENTAL:
+                _sliderRight.transform.localScale = new Vector3(-_sliderRight.transform.localScale.x,_sliderLeft.transform.localScale.y, _sliderLeft.transform.localScale.z);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
     
     private void StartBeat(int beatDurationInMilliseconds)
@@ -53,23 +74,15 @@ public class BeatSign : MonoBehaviour
         switch (_displayStyle)
         {
             case DISPLAY_STYLE.EDGE_TO_CENTER_INCREMENTAL:
-                _sliderRight.transform.localScale = new Vector3(-_sliderRight.transform.localScale.x,_sliderLeft.transform.localScale.y, _sliderLeft.transform.localScale.z);
                 _beatSign = StartCoroutine(SliderIncrementalRoutine());
                 break;
             case DISPLAY_STYLE.EDGE_TO_CENTER_DECREMENTAL:
-                _sliderLeft.transform.localScale = new Vector3(-_sliderLeft.transform.localScale.x,_sliderLeft.transform.localScale.y, _sliderLeft.transform.localScale.z);
-                _fillLeft.localScale = new Vector3(-_fillLeft.localScale.x,_fillLeft.localScale.y, _fillLeft.localScale.z);
-                _fillRight.localScale = new Vector3(-_fillRight.localScale.x,_fillRight.localScale.y, _fillRight.localScale.z);
                 _beatSign = StartCoroutine(SliderDecrementalRoutine());
                 break;
             case DISPLAY_STYLE.CENTER_TO_EDGE_INCREMENTAL:
-                _sliderLeft.transform.localScale = new Vector3(-_sliderLeft.transform.localScale.x,_sliderLeft.transform.localScale.y, _sliderLeft.transform.localScale.z);
-                _fillLeft.localScale = new Vector3(-_fillLeft.localScale.x,_fillLeft.localScale.y, _fillLeft.localScale.z);
-                _fillRight.localScale = new Vector3(-_fillRight.localScale.x,_fillRight.localScale.y, _fillRight.localScale.z);
                 _beatSign = StartCoroutine(SliderIncrementalRoutine());
                 break;
             case DISPLAY_STYLE.CENTER_TO_EDGE_DECREMENTAL:
-                _sliderRight.transform.localScale = new Vector3(-_sliderRight.transform.localScale.x,_sliderLeft.transform.localScale.y, _sliderLeft.transform.localScale.z);
                 _beatSign = StartCoroutine(SliderDecrementalRoutine());
                 break;
             default:
