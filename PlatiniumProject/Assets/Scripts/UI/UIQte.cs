@@ -5,9 +5,14 @@ public class UIQte : MonoBehaviour
 {
     [SerializeField] protected Image[] _imagesInput;
 
-    public virtual void ChangeSprites(Sprite[] newSprites)
+    public void ChangeSprites(Sprite[] newSprites)
     {
         ResetDisplay();
+        if (newSprites == null)
+        {
+            Debug.LogWarning("List of sprites null");
+            return;
+        }
         int countSprites = newSprites.Length;
         for (int i = 0; i < _imagesInput.Length; i++)
         {

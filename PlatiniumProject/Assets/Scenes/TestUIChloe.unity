@@ -238,7 +238,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c2c931f466f39f44a44e03112854dc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _imagesInput: []
+  _imagesInput:
+  - {fileID: 565339643}
+  - {fileID: 450796876}
+  - {fileID: 637086245}
+  - {fileID: 1738830530}
+  - {fileID: 389385286}
+  - {fileID: 2026061201}
+  - {fileID: 1728824950}
   _darkeningValue: 0
   _darkeningImage: {fileID: 1698963839}
 --- !u!114 &151037895
@@ -1395,7 +1402,7 @@ GameObject:
   - component: {fileID: 957383043}
   - component: {fileID: 957383042}
   m_Layer: 5
-  m_Name: Input2 (1)
+  m_Name: Input3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

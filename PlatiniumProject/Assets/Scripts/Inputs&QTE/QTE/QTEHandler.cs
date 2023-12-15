@@ -22,6 +22,7 @@ public class QTEHandler : MonoBehaviour, IIsControllable
     [SerializeField] bool _includeRightJoystick = true;
 
     PlayerInputController _playerController;
+    InputDevice _deviceOfPlayer;
     ITimingable _timingable;
     QTEHandlerEvents _events = new();
 
@@ -46,22 +47,14 @@ public class QTEHandler : MonoBehaviour, IIsControllable
     #region Properties
     public bool WaitForCorrectInput {
         get => _waitForCorrectInput;
-        set
-        {
-            _waitForCorrectInput = value;
-        }
+        set => _waitForCorrectInput = value;
     }
 
     public int LengthInputs { get; private set; }
     public int NbInputsLeft {
-        get {
-            if(_currentListSequences == null || _currentListSequences.Length == 0)
-            {
-                return 0;
-            }
-            return _currentListSequences.TotalLengthInputs - _indexInListSequences;
-        }
+        get => _currentListSequences == null || _currentListSequences.Length == 0 ? 0 : _currentListSequences.TotalLengthInputs - _indexInListSequences;
     }
+    public int IndexInListSequences => _indexInListSequences;
     #endregion
     #region UnityEvents
     [SerializeField] UnityEvent _onMissedInput;
@@ -84,6 +77,8 @@ public class QTEHandler : MonoBehaviour, IIsControllable
         _inputsQTE = new List<InputClass>();
         CreateListInputsListened();
         StartCoroutine(RoutineResetInput());
+        yield return new WaitUntil(() => PlayerInputsAssigner.GetDeviceByRole(_role) != InputDevice.None);
+        _deviceOfPlayer = PlayerInputsAssigner.GetDeviceByRole(_role);
     }
     IEnumerator RoutineResetInput()
     {
@@ -204,15 +199,6 @@ public class QTEHandler : MonoBehaviour, IIsControllable
         }
         return total;
     }
-    /*public void ResetQTE()
-    {
-        if (_currentListSequences.Length > 0)
-        {
-            _indexOfSequence = 0;
-            _currentListSequences.SetUpList();
-            StartSequenceDependingOntype();
-        }
-    }*/
     private void StartSequenceDependingOntype()
     {
         _indexInSequence = 0;
@@ -314,6 +300,15 @@ public class QTEHandler : MonoBehaviour, IIsControllable
             return _currentListSequences.GetInputString(_indexOfSequence, _indexInSequence);
         }
         return String.Empty;
+    }
+
+    public Sprite[] GetQTESprites()
+    {
+        if (_currentListSequences != null && _currentListSequences.Length > 0)
+        {
+            return _currentListSequences.ToSprites(_deviceOfPlayer);
+        }
+        return null;
     }
     void CheckInputs(int expectedActionID) //SHORT
     {

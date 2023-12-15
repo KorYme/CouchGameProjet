@@ -6,5 +6,6 @@ public enum InputDevice
     Playstation,
     Keyboard1,
     Keyboard2,
-    Keyboard3
+    Keyboard3,
+    None
 }
