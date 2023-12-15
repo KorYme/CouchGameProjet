@@ -5,16 +5,19 @@ using UnityEngine;
 
 public class DisplayBouncerQTE : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI _qteDisplay;
-    [SerializeField] GameObject _bubbleObject;
+    [SerializeField] GameObject _qteBubbleObject;
+    [SerializeField] GameObject _checkingBubbleObject;
     [SerializeField] BouncerQTEController _qteController;
+    [SerializeField] UIQteBouncer _qteDisplay;
 
     private void Awake()
     {
-        _bubbleObject.SetActive(false);
+        _qteBubbleObject.SetActive(false);
+        _checkingBubbleObject.SetActive(false);
     }
     private void Start()
     {
+        _qteController.OnBouncerCheckingStarted += OnBouncerCheckingStarted;
         _qteController.OnBouncerQTEStarted += OnDJQTEStarted;
         _qteController.OnBouncerQTEEnded += OnDJQTEEnded;
         _qteController.OnBouncerQTEChanged += OnDJQTEChanged;
@@ -22,24 +25,35 @@ public class DisplayBouncerQTE : MonoBehaviour
 
     private void OnDestroy()
     {
+        _qteController.OnBouncerCheckingStarted -= OnBouncerCheckingStarted;
         _qteController.OnBouncerQTEStarted -= OnDJQTEStarted;
         _qteController.OnBouncerQTEEnded -= OnDJQTEEnded;
         _qteController.OnBouncerQTEChanged -= OnDJQTEChanged;
     }
-    private void OnDJQTEChanged(string qteString)
+    private void OnDJQTEChanged(Sprite[] sprites)
     {
-        _qteDisplay.text = qteString;
+        _qteDisplay.MoveToNextInput();
+        //_qteDisplay.ChangeSprites(sprites);
+        //_qteDisplay.text = qteString;
     }
 
-    private void OnDJQTEEnded(string qteString)
+    private void OnDJQTEEnded(Sprite[] sprites)
     {
-        _qteDisplay.text = qteString;
-        _bubbleObject.SetActive(false);
+        //_qteDisplay.text = qteString;
+        _qteBubbleObject.SetActive(false);
+        _checkingBubbleObject.SetActive(false);
     }
 
-    private void OnDJQTEStarted(string qteString)
+    private void OnDJQTEStarted(Sprite[] sprites)
     {
-        _bubbleObject.SetActive(true);
-        _qteDisplay.text = qteString;
+        _qteBubbleObject.SetActive(true);
+        _checkingBubbleObject.SetActive(false);
+        _qteDisplay.ChangeSprites(sprites);
+        //_qteDisplay.text = qteString;
+    }
+    private void OnBouncerCheckingStarted()
+    {
+        _qteBubbleObject.SetActive(false);
+        _checkingBubbleObject.SetActive(true);
     }
 }
