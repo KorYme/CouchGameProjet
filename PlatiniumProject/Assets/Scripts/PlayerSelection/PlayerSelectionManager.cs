@@ -77,8 +77,8 @@ public class PlayerSelectionManager : MonoBehaviour
     {
         foreach(PlayerMap playermap in _playersAssigner.PlayersMap)
         {
-            _playersAssigner.SetRoleOfPlayer(playermap.gamePlayerId, PlayerRole.None);
-            CreateInstancePlayerSelection(playermap.gamePlayerId);
+            _playersAssigner.SetRoleOfPlayer(playermap.GamePlayerId, PlayerRole.None);
+            CreateInstancePlayerSelection(playermap.GamePlayerId);
         }
         IsSetUp = true;
     }

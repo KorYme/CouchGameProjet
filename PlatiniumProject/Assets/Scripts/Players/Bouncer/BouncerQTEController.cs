@@ -14,9 +14,10 @@ public class BouncerQTEController : MonoBehaviour, IQTEable
     
     [FormerlySerializedAs("_onPunch")] [SerializeField] UnityEvent OnPunch;
     #region Events
-    public event Action<string> OnBouncerQTEStarted;
-    public event Action<string> OnBouncerQTEEnded; //Arg1 peut être enlevé
-    public event Action<string> OnBouncerQTEChanged;
+    public event Action OnBouncerCheckingStarted;
+    public event Action<Sprite[]> OnBouncerQTEStarted;
+    public event Action<Sprite[]> OnBouncerQTEEnded;
+    public event Action<Sprite[]> OnBouncerQTEChanged;
     [SerializeField] UnityEvent _onSucces;
     [SerializeField] UnityEvent _onFail;
     #endregion
@@ -38,24 +39,25 @@ public class BouncerQTEController : MonoBehaviour, IQTEable
     public void StartQTE(CharacterTypeData typeData)
     {
         _qteHandler.StartNewQTE(typeData);
+        //OnBouncerQTEStarted?.Invoke(null);
     }
 
     public void OpenBubble()
     {
-        OnBouncerQTEStarted?.Invoke("<color=green>A</color> : Accept\n<color=red>B</color> : Refuse");
+        OnBouncerCheckingStarted?.Invoke();
     }
     public void CloseBubble()
     {
-        OnBouncerQTEEnded?.Invoke("");
+        OnBouncerQTEEnded?.Invoke(null);
     }
     public void OnQTEComplete()
     {
-        OnBouncerQTEEnded?.Invoke(_qteHandler.GetCurrentInputString());
+        OnBouncerQTEEnded?.Invoke(null);
     }
 
     public void OnQTECorrectInput()
     {
-        OnBouncerQTEChanged?.Invoke(_qteHandler.GetCurrentInputString());
+        OnBouncerQTEChanged?.Invoke(_qteHandler.GetQTESprites());
         _characterAnimation.SetLatency(2);
         _characterAnimation.SetAnim(ANIMATION_TYPE.FIGHT, false);
         _onSucces?.Invoke();
@@ -66,7 +68,7 @@ public class BouncerQTEController : MonoBehaviour, IQTEable
     public void OnQTEStarted()
     {
         //OnBouncerQTEStarted?.Invoke(_qteHandler.GetCurrentInputString());
-        OnBouncerQTEChanged?.Invoke(_qteHandler.GetCurrentInputString());
+        OnBouncerQTEStarted?.Invoke(_qteHandler.GetQTESprites());
     }
 
     public void OnQTEWrongInput()
@@ -74,7 +76,7 @@ public class BouncerQTEController : MonoBehaviour, IQTEable
         if (!_bouncerMovement.CurrentClient.StateMachine.CharacterDataObject.isTutorialNpc)
         {
             _qteHandler.DeleteCurrentCoroutine();
-            OnBouncerQTEEnded?.Invoke(_qteHandler.GetCurrentInputString());
+            OnBouncerQTEEnded?.Invoke(_qteHandler.GetQTESprites());
             _onFail?.Invoke();
         }
         _characterAnimation.SetLatency(2);
@@ -97,11 +99,12 @@ public class BouncerQTEController : MonoBehaviour, IQTEable
         //INDICATION DE SI ON EST EN REFUSE/CHECKING
         if (checkingState == CHECKING_STATE.CHECKING)
         {
-            OnBouncerQTEStarted?.Invoke("<color=green>A</color> : Accept\n<color=red>B</color> : Refuse");
+            OnBouncerCheckingStarted?.Invoke();
+            OnBouncerQTEStarted?.Invoke(null);
         }
         else if (checkingState == CHECKING_STATE.QTE)
         {
-            OnBouncerQTEStarted?.Invoke(_qteHandler.GetCurrentInputString());
+            OnBouncerQTEStarted?.Invoke(_qteHandler.GetQTESprites());
         }
     }
 }
