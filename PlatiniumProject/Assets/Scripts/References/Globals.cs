@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public static class Globals
@@ -16,4 +17,5 @@ public static class Globals
     public static WinMenu WinMenu = null;
     public static MenuMusicPlayer MenuMusicPlayer = null;
     public static DatabaseActionSprites DatabaseActionSprites = null;
+    public static DataLoader DataLoader = null;
 }
