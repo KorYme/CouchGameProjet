@@ -1373,6 +1373,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2288985977262535328, guid: b448a7c7d5bbec949bb75699bb29f4bc, type: 3}
+      propertyPath: m_Transition
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2288985977262535328, guid: b448a7c7d5bbec949bb75699bb29f4bc, type: 3}
       propertyPath: m_Navigation.m_SelectOnUp
       value: 
       objectReference: {fileID: 1075345899}
@@ -6305,6 +6309,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1319738074}
     m_Modifications:
+    - target: {fileID: 693735322630658615, guid: 88ab937a09fe9b147baba765437ca15b, type: 3}
+      propertyPath: m_Transition
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 693735322630658615, guid: 88ab937a09fe9b147baba765437ca15b, type: 3}
       propertyPath: m_Navigation.m_SelectOnUp
       value: 
