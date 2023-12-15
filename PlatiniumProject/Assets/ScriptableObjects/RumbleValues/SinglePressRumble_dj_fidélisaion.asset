@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e34363c99762c408a85174f95cf067, type: 3}
+  m_Name: "SinglePressRumble_dj_fid\xE9lisaion"
+  m_EditorClassIdentifier: 
+  rumbleName: "dj_fid\xE9lisaion"
+  isHolding: 0
+  time: 1
+  rumbleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.19681308
+      value: 0.49802822
+      inSlope: 1.9312314
+      outSlope: 1.9312314
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.51808697
+      value: 0.3212573
+      inSlope: -2.8373692
+      outSlope: -2.8373692
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.80109286
+      value: 0.31425285
+      inSlope: 1.782847
+      outSlope: 1.782847
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9027748
+      value: 0.5007911
+      inSlope: 0.89597666
+      outSlope: 0.89597666
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.300354
+      value: 0.49641418
+      inSlope: -1.1170828
+      outSlope: -1.1170828
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.2581661
+    - serializedVersion: 3
+      time: 1.5044621
+      value: -0.0024445653
+      inSlope: -1.541995
+      outSlope: -1.541995
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

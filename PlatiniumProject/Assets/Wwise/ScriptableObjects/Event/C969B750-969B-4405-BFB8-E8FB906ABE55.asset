@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ab4bff603db7b8419e4e1e1bc98b8db, type: 3}
-  m_Name: AC5B2908-7457-4615-9A5A-A1D59EF44DB2
+  m_Name: C969B750-969B-4405-BFB8-E8FB906ABE55
   m_EditorClassIdentifier: 
-  objectName: Music_Mage
-  id: 1716433435
-  guid: AC5B2908-7457-4615-9A5A-A1D59EF44DB2
+  objectName: Resume_Main_Music
+  id: 4072670616
+  guid: C969B750-969B-4405-BFB8-E8FB906ABE55

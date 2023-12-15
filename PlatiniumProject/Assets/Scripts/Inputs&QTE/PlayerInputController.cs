@@ -18,6 +18,7 @@ public class PlayerInputController : MonoBehaviour
     public InputFloat LT { get; private set; } = new(RewiredConsts.Action.LT);
     public InputBool RB { get; private set; } = new(RewiredConsts.Action.RB);
     public InputBool LB { get; private set; } = new(RewiredConsts.Action.LB);
+    public InputBool Pause { get; private set; } = new(RewiredConsts.Action.PAUSE);
 
     //Axis Inputs
     public InputVector2 LeftJoystick { get; private set; } = new(RewiredConsts.Action.MOVE_HORIZONTAL, RewiredConsts.Action.MOVE_VERTICAL);
@@ -36,6 +37,7 @@ public class PlayerInputController : MonoBehaviour
         LB,
         LeftJoystick,
         RightJoystick,
+        Pause,
     };
     #endregion
 

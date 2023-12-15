@@ -566,7 +566,7 @@ MonoBehaviour:
       _userAssignable: 1
       _categoryId: 0
     - _id: 17
-      _name: ChangeRole
+      _name: Pause
       _type: 1
       _descriptiveName: Change
       _positiveDescriptiveName: 

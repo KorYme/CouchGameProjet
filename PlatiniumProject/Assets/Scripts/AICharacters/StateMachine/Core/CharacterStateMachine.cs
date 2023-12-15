@@ -87,7 +87,7 @@ public class CharacterStateMachine : MonoBehaviour
         CharacterAnimation = GetComponent<CharacterAnimation>();
         Puller = GetComponent<CharacterAiPuller>();
     }
-
+    
     public void PullCharacter(CharacterState startState = null)
     {
         CharacterAnimation.SetAnim(ANIMATION_TYPE.IDLE);

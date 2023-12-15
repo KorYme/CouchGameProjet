@@ -22,7 +22,7 @@ public class ChangeRoleInRuntime : MonoBehaviour
 
     void Update()
     {
-        if (_player != null && _player.GetButtonDown(RewiredConsts.Action.CHANGEROLE))
+        if (_player != null && _player.GetButtonDown(RewiredConsts.Action.PAUSE))
         {
             Debug.Log($"CHANGE ROLE");
             if (_playerMap.role != PlayerRole.None)
