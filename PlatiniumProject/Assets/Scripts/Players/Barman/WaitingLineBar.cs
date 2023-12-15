@@ -47,7 +47,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     {
         if (!IsInPause)
         {
-            _barmanController.ModifyQTE(_qteHandler.GetQTEString());
+            _barmanController.ModifyQTE(_qteHandler.GetQTESprites(),_qteHandler.InputsSucceeded,_qteHandler.DurationValue);
         }
     }
 
@@ -125,7 +125,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
             _waitingCharactersList[0].ChangeState(_waitingCharactersList[0].BarManAtBar);
         } else if (!IsInPause)
         {
-            _barmanController.EndQTE(_qteHandler.GetQTEString());
+            _barmanController.EndQTE(_qteHandler.GetQTESprites(), _qteHandler.InputsSucceeded);
         }
     }
 
@@ -161,7 +161,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
 
     void IQTEable.OnQTEStarted()
     {
-        _barmanController.StartQTE(_qteHandler.GetQTEString());
+        _barmanController.StartQTE(_qteHandler.GetQTESprites(), _qteHandler.InputsSucceeded);
     }
 
     void IQTEable.OnQTEComplete()
@@ -191,12 +191,10 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
         _qteHandler.PauseQTE(value);
         if (value)
         {
-            //_barmanController.ModifyQTE("");
-            _barmanController.EndQTE(_qteHandler.GetQTEString());
+            _barmanController.EndQTE(_qteHandler.GetQTESprites(), _qteHandler.InputsSucceeded);
         } else
         {
-            //_barmanController.ModifyQTE(_qteHandler.GetQTEString());
-            _barmanController.StartQTE(_qteHandler.GetQTEString());
+            _barmanController.StartQTE(_qteHandler.GetQTESprites(), _qteHandler.InputsSucceeded);
         }
     }
 
