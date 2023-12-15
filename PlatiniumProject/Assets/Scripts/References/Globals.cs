@@ -13,6 +13,7 @@ public static class Globals
     public static PlayerInputsAssigner PlayerInputsAssigner = null;
     public static TutorialManager TutorialManager = null;
     public static GameManager GameManager = null;
+    public static WinMenu WinMenu = null;
     public static MenuMusicPlayer MenuMusicPlayer = null;
     public static DatabaseActionSprites DatabaseActionSprites = null;
 }
