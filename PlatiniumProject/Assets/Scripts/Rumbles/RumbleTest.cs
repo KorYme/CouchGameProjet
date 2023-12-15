@@ -44,7 +44,7 @@ public class RumbleTest : MonoBehaviour
         {
             timer += Time.deltaTime / _singlePressRumble.time;
             Players.PlayersController[playerId].newPlayer.SetVibration(0, _singlePressRumble.rumbleCurve.Evaluate(timer));
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
         Players.PlayersController[playerId].newPlayer.SetVibration(0, 0f);
         _singlePressCoroutine = null;
@@ -57,7 +57,7 @@ public class RumbleTest : MonoBehaviour
         {
             timer += Time.deltaTime / _holdRumble.time;
             Players.PlayersController[playerId].newPlayer.SetVibration(0, _holdRumble.rumbleCurve.Evaluate(timer));
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
     }
 }

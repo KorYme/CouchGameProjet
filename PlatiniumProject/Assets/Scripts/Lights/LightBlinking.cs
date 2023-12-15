@@ -33,7 +33,7 @@ public class LightBlinking : MonoBehaviour
             timer += Time.deltaTime * _Speed;
             _light.pointLightOuterRadius = initialRadius + _radiusAddition * (Mathf.Sin(timer * Mathf.PI * 2f) + 1f) / 2f;
             _light.pointLightInnerRadius = _light.pointLightOuterRadius * radiusRatio;
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
     }
 }

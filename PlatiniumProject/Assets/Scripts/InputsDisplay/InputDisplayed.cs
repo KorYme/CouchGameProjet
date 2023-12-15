@@ -14,5 +14,7 @@ public enum InputDisplayed
     Down,
     LB,
     RB,
-    ShakeJS
+    ShakeJS,
+    LT,
+    RT
 }

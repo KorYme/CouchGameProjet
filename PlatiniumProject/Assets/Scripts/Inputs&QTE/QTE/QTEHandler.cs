@@ -89,9 +89,9 @@ public class QTEHandler : MonoBehaviour, IIsControllable
     {
         while (true)
         {
-            yield return new WaitUntil(() => _timingable.BeatDeltaTime > _timingable.BeatDurationInMilliseconds / 2f);
+            yield return new WaitUntil(() => _timingable.BeatDeltaTimeInMilliseconds > _timingable.BeatDurationInMilliseconds / 2f);
             _checkInputThisBeat.ResetInputThisBeat();
-            yield return new WaitUntil(() => _timingable.BeatDeltaTime < _timingable.BeatDurationInMilliseconds / 2f);
+            yield return new WaitUntil(() => _timingable.BeatDeltaTimeInMilliseconds < _timingable.BeatDurationInMilliseconds / 2f);
         }
     }
 
@@ -370,7 +370,7 @@ public class QTEHandler : MonoBehaviour, IIsControllable
             }
         } else //Input miss (not during timing)
         {
-            if (_timingable.BeatDeltaTime > _timingable.BeatDurationInMilliseconds / 2f)
+            if (_timingable.BeatDeltaTimeInMilliseconds > _timingable.BeatDurationInMilliseconds / 2f)
             {
                 _onMissedInputDisableNextBeat.Invoke();
             }
@@ -387,7 +387,7 @@ public class QTEHandler : MonoBehaviour, IIsControllable
         while (_indexInSequence < _currentQTESequence.ListSubHandlers.Count)
         {
             CheckInputs(_currentQTESequence.ListSubHandlers[_indexInSequence].ActionIndex);
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
         ClearRoutine();
     }
@@ -446,7 +446,7 @@ public class QTEHandler : MonoBehaviour, IIsControllable
                         break;
                 }
             }
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
             _isSequenceComplete = _inputsSucceeded.ToList().TrueForAll(x => x == QTE_STATE.IS_PRESSED);
             if (_currentQTESequence.Status == InputStatus.LONG)
             {
