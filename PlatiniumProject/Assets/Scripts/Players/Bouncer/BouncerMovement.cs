@@ -183,7 +183,7 @@ public class BouncerMovement : PlayerMovement, IQTEable
                     yield break;
                 }
             }
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
     }
 

@@ -33,7 +33,7 @@ public class LightBounce : MonoBehaviour
             timer += Time.deltaTime * _Speed;
             _light.pointLightOuterAngle = initialAngle + _angleAddition * (Mathf.Sin(timer * Mathf.PI * 2f) + 1f) / 2f;
             _light.pointLightInnerAngle = _light.pointLightOuterAngle * angleRatio;
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
     }
 }

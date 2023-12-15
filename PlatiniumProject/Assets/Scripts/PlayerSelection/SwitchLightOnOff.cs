@@ -43,7 +43,7 @@ public class SwitchLightOnOff : MonoBehaviour
         {
             timer = Mathf.Min(timer + Time.deltaTime, _timeToTransitionLight);
             _light.intensity = Mathf.Lerp(startIntensity, targetIntensity,timer/ _timeToTransitionLight);
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
         _light.intensity = targetIntensity;
     }

@@ -1,6 +1,7 @@
 using Rewired;
 using System.Collections.Generic;
 using System.Text;
+using UnityEngine;
 
 public class QTEListSequences
 {
@@ -111,7 +112,6 @@ public class QTEListSequences
         }
         return str.ToString();
     }
-
     private string GetInputStringFromActionType(InputAction action, int indexOfSequence, int indexInSequence)
     {
         if (action.type == InputActionType.Button)
@@ -132,5 +132,62 @@ public class QTEListSequences
         {
             return action.negativeDescriptiveName;
         }
+    }
+    
+    public Sprite[] ToSprites(InputDevice device)
+    {
+        Sprite[] sprites = new Sprite[TotalLengthInputs];
+        QTESequence sequence;
+        UnitInput input;
+        int index = 0;
+        for (int i = 0; i < _sequences.Count; i++)
+        {
+            sequence = _sequences[i];
+            for (int j = 0; j < sequence.ListSubHandlers.Count; j++)
+            {
+                input = sequence.ListSubHandlers[j];
+                InputAction action = ReInput.mapping.GetAction(input.ActionIndex);
+                sprites[index] = GetInputSpriteFromActionType(action, i, j, device);
+                index++;
+            }
+        }
+        return sprites;
+    }
+    private Sprite GetInputSpriteFromActionType(InputAction action, int indexOfSequence, int indexInSequence,InputDevice device)
+    {
+        InputDisplayed input = InputDisplayed.A;
+        if (action.type == InputActionType.Button)
+        {
+            Debug.Log("ACTION " + action.descriptiveName);
+            Globals.DatabaseActionSprites.DictionaryActionToInput.TryGetValue(action.id, out input);
+        }
+        // Only Axis type
+        if (_sequences[indexOfSequence].Status == InputStatus.LONG && _sequences[indexOfSequence].LongInputType == LongInputType.SHAKE)
+        {
+            input = InputDisplayed.ShakeJS;
+        }
+        //Only Short input or hold (direction)
+        if (action.id == RewiredConsts.Action.MOVE_HORIZONTAL)
+        {
+            if (_sequences[indexOfSequence].ListSubHandlers[indexInSequence].PositiveValue)
+            {
+                input = InputDisplayed.Right;
+            } else
+            {
+                input = InputDisplayed.Left;
+            }
+        }
+        else if (action.id == RewiredConsts.Action.MOVE_VERTICAL)
+        {
+            if (_sequences[indexOfSequence].ListSubHandlers[indexInSequence].PositiveValue)
+            {
+                input = InputDisplayed.Up;
+            }
+            else
+            {
+                input = InputDisplayed.Down;
+            }
+        }
+        return Globals.DatabaseActionSprites.GetInput(input, device);
     }
 }

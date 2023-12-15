@@ -36,7 +36,7 @@ public class FollowingLightRotation : MonoBehaviour
                 _light2D.pointLightInnerRadius = _light2D.pointLightOuterRadius * _outerInnerPercent;
             }
             //transform.eulerAngles = Vector3.SmoothDamp(transform.eulerAngles, new(0, 0, Mathf.Atan2((_target.position - transform.position).y, (_target.position - transform.position).x) * Mathf.Rad2Deg - 90), ref _velocity, _damping);
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
     }
 }
