@@ -114,7 +114,16 @@
 							<Position X="5" Y="3"/>
 						</Module>
 					</ModuleList>
-					<RTPCValueList ShowAll="true"/>
+					<RTPCValueList ShowAll="true">
+						<RTPCValue>
+							<GameParameterRef Name="SFXVolume" ID="{208A0C66-63A0-41FC-BD09-9A6DB7B27410}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="MasterVolume" ID="{7AB4A3D9-8CC4-4FED-90A7-7967FBD401B4}"/>
+							<Value>75</Value>
+						</RTPCValue>
+					</RTPCValueList>
 					<CurrentStateList ShowAll="true">
 						<CurrentStateRef Name="Music_Default" ID="{5D02A9DB-F961-4FC0-A66D-F257420C5EA0}"/>
 						<CurrentStateRef Name="No" ID="{1A95BD9C-2862-44A3-B66B-BE1300F23746}"/>

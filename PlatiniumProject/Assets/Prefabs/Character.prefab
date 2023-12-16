@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5186382758941170165}
   - component: {fileID: 9011843421239086831}
   - component: {fileID: 5667070652861212674}
+  - component: {fileID: 7453912239145049131}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -106,6 +107,24 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 5186382758941170165}
   _unselectedSprite: {fileID: 0}
   _selectedSprite: {fileID: 0}
+  _onCharacterSelected:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7453912239145049131}
+        m_TargetAssemblyTypeName: WwiseSFXPlayer, Assembly-CSharp
+        m_MethodName: PlaySFX
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Play_MenuValidChara
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onCharacterDeselected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5667070652861212674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,3 +143,37 @@ MonoBehaviour:
   _litSpriteColor: {r: 1, g: 1, b: 1, a: 1}
   _indexCharacter: 0
   _colorTransitionDuration: 0.2
+  _onPlayerMove:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7453912239145049131}
+        m_TargetAssemblyTypeName: WwiseSFXPlayer, Assembly-CSharp
+        m_MethodName: PlayFirstSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7453912239145049131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8194912065568779684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c0fff6976d0c424386246523e57de32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxEvent:
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 0c6b96531b4da3c499a5baa8349ed0cc, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 59f4f9c539c3eac45aae2d8f6070cc81, type: 2}

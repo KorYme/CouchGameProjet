@@ -1,12 +1,59 @@
 using KorYmeLibrary.SaveSystem;
 using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class DataLoader : MonoBehaviour, IDataSaveable<GameData>
 {
-    public float Volume {  get; set; }
-    public bool AreRumblesActivated {  get; set; }
+    [SerializeField] AK.Wwise.RTPC _masterVolumeRTPC, _musicVolumeRTPC, _sfxVolumeRTPC;
+
+    float _generalVolume;
+    event Action<float> _onGeneralVolumeChange;
+    public float GeneralVolume 
+    {
+        get => _generalVolume;
+        set
+        {
+            _generalVolume = value;
+            _onGeneralVolumeChange?.Invoke(value);
+        }
+    }
+
+    float _musicVolume;
+    event Action<float> _onMusicVolumeChange;
+    public float MusicVolume
+    {
+        get => _musicVolume;
+        set
+        {
+            _musicVolume = value;
+            _onMusicVolumeChange?.Invoke(value);
+        }
+    }
+
+    float _sfxVolume;
+    event Action<float> _onSFXVolumeChange;
+    public float SFXVolume
+    {
+        get => _sfxVolume;
+        set
+        {
+            _sfxVolume = value;
+            _onSFXVolumeChange?.Invoke(value);
+        }
+    }
+
+    bool _areRumbleActivated;
+    public event Action<bool> OnRumbleActivated;
+    public bool AreRumblesActivated
+    {
+        get => _areRumbleActivated;
+        set
+        {
+            _areRumbleActivated = value;
+            OnRumbleActivated?.Invoke(value);
+        }
+    }
 
     private void Awake()
     {
@@ -18,21 +65,38 @@ public class DataLoader : MonoBehaviour, IDataSaveable<GameData>
         Globals.DataLoader = this;
     }
 
+    private IEnumerator Start()
+    {
+        yield return null;
+        _onGeneralVolumeChange += _masterVolumeRTPC.SetGlobalValue;
+        _onMusicVolumeChange += _musicVolumeRTPC.SetGlobalValue;
+        _onSFXVolumeChange += _sfxVolumeRTPC.SetGlobalValue;
+        _onGeneralVolumeChange?.Invoke(GeneralVolume);
+        _onMusicVolumeChange?.Invoke(MusicVolume);
+        _onSFXVolumeChange?.Invoke(SFXVolume);
+    }
+
     public void InitializeData()
     {
-        Volume = 1.0f;
+        GeneralVolume = .5f;
+        MusicVolume = .5f;
+        SFXVolume = .5f;
         AreRumblesActivated = true;
     }
 
     public void LoadData(GameData gameData)
     {
-        Volume = gameData.Volume;
+        GeneralVolume = gameData.GeneralVolume;
+        MusicVolume = gameData.MusicVolume;
+        SFXVolume = gameData.SFXVolume;
         AreRumblesActivated = gameData.AreRumblesActivated;
     }
 
     public void SaveData(ref GameData gameData)
     {
-        gameData.Volume = Volume;
+        gameData.GeneralVolume = GeneralVolume;
+        gameData.MusicVolume = MusicVolume;
+        gameData.SFXVolume = SFXVolume;
         gameData.AreRumblesActivated = AreRumblesActivated;
     }
 }

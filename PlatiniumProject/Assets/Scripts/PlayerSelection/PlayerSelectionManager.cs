@@ -11,6 +11,7 @@ public class PlayerSelectionManager : MonoBehaviour
 {
     [SerializeField] LerpTargetLight[] _objectsSelectionable;
     [SerializeField] CharacterSelectionHandler[] _selectionHandlers;
+    [SerializeField] WwiseSFXPlayer _sfxPlayer;
     int[] _idPlayerSelected; // -1 if player not selected else index of player 
     public IList<int> IdPlayerSelected {
         get {
@@ -147,7 +148,8 @@ public class PlayerSelectionManager : MonoBehaviour
         if (CheckAllCharactersChosen() && indexPlayer == 0)
         {
             ChangeScene();
-        } else if (_idPlayerSelected[indexCurrentCharacter] == -1) //Check if character is not already chosen
+        } 
+        else if (_idPlayerSelected[indexCurrentCharacter] == -1) //Check if character is not already chosen
         {
             _idPlayerSelected[indexCurrentCharacter] = indexPlayer;
             _playersController[indexPlayer].CanAccept = false;
@@ -168,6 +170,6 @@ public class PlayerSelectionManager : MonoBehaviour
             _playersAssigner.SetRoleOfPlayer(_idPlayerSelected[i],_selectionHandlers[i].Role);
             _playersAssigner.ChangeMapUIToNormal(_idPlayerSelected[i]);
         }
-        OnChangeScene.Invoke();
+        _sfxPlayer.PlayFirstSFX(() => OnChangeScene?.Invoke());
     }
 }

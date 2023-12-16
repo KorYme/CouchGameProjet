@@ -75,3 +75,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e54fa72c1812743af701cbb6a70cdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _masterVolumeRTPC:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: f1bc072089bfa2f4aad4a7ce5d095a51, type: 2}
+  _musicVolumeRTPC:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: b7215a5e152739c469ad2ca9ae4440c7, type: 2}
+  _sfxVolumeRTPC:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: cd66d08620380b04a893e436647a5404, type: 2}
