@@ -26,14 +26,13 @@ public class DisplayBarmanQTE : MonoBehaviour
         _qteController.OnBarmanQTEChanged -= OnDJQTEChanged;
     }
 
-    private void OnDJQTEChanged(Sprite[] sprites, bool[] colors,float value)
+    private void OnDJQTEChanged(Sprite[] sprites, bool[] colors)
     {
         if (sprites == null || sprites.Length == 0)
         {
             OnDJQTEEnded(sprites,colors);
         } else
         {
-            _qteDisplay.ChangeDarkeningValue(value);
             _qteDisplay.ChangeColors(colors);
             //_qteDisplay.text = qteString;
         }
@@ -50,5 +49,10 @@ public class DisplayBarmanQTE : MonoBehaviour
         _bubbleObject.SetActive(true);
         _qteDisplay.ChangeSprites(sprites);
         _qteDisplay.ChangeColors(inputs);
+    }
+
+    private void Update()
+    {
+        _qteDisplay.ChangeDarkeningValue(_qteController.DurationValue);
     }
 }
