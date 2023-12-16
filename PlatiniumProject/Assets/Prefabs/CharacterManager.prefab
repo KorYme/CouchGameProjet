@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1707466153288651455}
   - component: {fileID: 4768211539129235414}
+  - component: {fileID: 1345191178532553293}
   m_Layer: 0
   m_Name: CharacterManager
   m_TagString: Untagged
@@ -72,13 +73,31 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _badClientRatio: {x: 2, y: 7}
-  _baseClientInBouncer: 5
+  _badClientRatio: {x: 2, y: 3}
+  _baseClientInBouncer: 4
   _baseClientInBarMan: 5
-  _baseClientInDj: 10
+  _baseClientInDj: 15
   _goodClients:
   - {fileID: 11400000, guid: b2efc327949abde40b9ce71559e38fca, type: 2}
   - {fileID: 11400000, guid: 2e5673b9a8fec3d4ba2d547ff90cb43c, type: 2}
   - {fileID: 11400000, guid: f34499c5ae44ea944bf758664c01d05a, type: 2}
   _badClients:
   - {fileID: 11400000, guid: 5d42f79c1b4fd6d45a9a5ee212036938, type: 2}
+  _tutoClients:
+  - {fileID: 11400000, guid: 2a7886928aeb2f443ba29c6ff4ccc8ab, type: 2}
+  - {fileID: 11400000, guid: 6f98fd871f9f3184ca472a31930f2549, type: 2}
+--- !u!114 &1345191178532553293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4683678858438232760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f314b23923af9248b4370310b319b4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _role: 3
+  _allRumbles:
+  - {fileID: 11400000, guid: 5acbf6a9b21b23b49aaecf0b7a6a4fc9, type: 2}

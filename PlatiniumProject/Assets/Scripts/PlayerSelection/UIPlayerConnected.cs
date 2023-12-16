@@ -7,23 +7,31 @@ public class UIPlayerConnected : MonoBehaviour
 {
     [SerializeField] int _indexPlayer;
     [SerializeField] TextMeshProUGUI _textDisplay;
-    PlayerSelectionManager _selectionManager;
+    [SerializeField] PlayerSelectionManager _selectionManager;
 
     private void Start()
     {
-        _selectionManager = FindObjectOfType<PlayerSelectionManager>();
-        if( _selectionManager != null)
+        if (PlayerInputsAssigner.GetRewiredPlayerById(_indexPlayer) != null)
+        {
+            ModifyText();
+        }
+        if (_selectionManager != null)
         {
             _selectionManager.OnPlayerJoined += ChangeDisplay;
         }
     }
 
-    void ChangeDisplay(int indexPlayer)
+    void ChangeDisplay(int indexPlayer,int indexCharacter)
     {
         if (indexPlayer == _indexPlayer )
         {
-            _textDisplay.text = "Player " + (_indexPlayer + 1) + " connected";
+            ModifyText();
         }
+    }
+
+    void ModifyText()
+    {
+        _textDisplay.text = "PLAYER " + (_indexPlayer + 1) + " CONNECTED";
     }
 
     private void OnDestroy()

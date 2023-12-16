@@ -10,15 +10,20 @@ public class UIPlayerTagSelection : MonoBehaviour
     [SerializeField] Image _image;
     [SerializeField] float _timeToAppear = 0.5f;
     [SerializeField]PlayerSelectionManager _selectionManager;
+    Vector3 _initialScale;
 
     private void OnValidate()
     {
         _indexCharacter = Mathf.Max(0, _indexCharacter);
     }
 
+    private void Awake()
+    {
+        _initialScale = transform.localScale;
+    }
+
     void Start()
     {
-        _selectionManager = FindObjectOfType<PlayerSelectionManager>();
         _selectionManager.OnPlayerChooseCharacter += OnPlayerChooseCharacter;
         _selectionManager.OnPlayerUnchooseCharacter += OnPlayerUnchooseCharacter;
         if (_image != null)
@@ -52,7 +57,7 @@ public class UIPlayerTagSelection : MonoBehaviour
             {
                 _image.transform.DOKill();
                 _image.sprite = _tagList.PlayerTagSprites[indexPlayer];
-                _image.transform.DOScale(1, _timeToAppear).SetEase(Ease.OutBack);
+                _image.transform.DOScale(_initialScale, _timeToAppear).SetEase(Ease.OutBack);
             } else
             {
                 Debug.LogWarning("Can't display player tag, sprite not found");

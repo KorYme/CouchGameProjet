@@ -10,37 +10,23 @@ public class CharacterStateRoam : CharacterState
     private Action OnAnim;
     public override void EnterState()
     {
+        StateMachine.CurrentBeatAmount = 0;
+        if (StateMachine.CharacterDataObject.isTutorialNpc)
+        {
+            Globals.CameraProfileManager.FindCamera(CAMERA_TYPE.BARMAN).SetShadowMaterial(false);
+        }
         base.EnterState();
         Vector2 destination = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * Random.Range(0f, StateMachine.AreaManager.CircleRadius);
-        StateMachine.CharacterMove.MoveTo(StateMachine.AreaManager.CircleOrigin.position + (Vector3) destination);
+        StateMachine.CharacterMove.MoveTo(StateMachine.AreaManager.CircleOrigin.position + (Vector3) destination, true);
         StateMachine.AreaManager.RoamQueue.Add(StateMachine);
         
     }
     public override void OnBeat()
     {
         base.OnBeat();
-        StateMachine.Animation.SetAnim(ANIMATION_TYPE.IDLE);
+        StateMachine.CharacterAnimation.SetAnim(ANIMATION_TYPE.IDLE);
     }
     
-    private void FindLine()
-    {
-        if (StateMachine.WaitingLines.Length > 0) 
-        {
-            int indexLine = 0;
-            int nbCharactersInLine = StateMachine.WaitingLines[0].NbCharactersWaiting;
-        
-            for (int i = 1; i < StateMachine.WaitingLines.Length; i++)
-            {
-                if (nbCharactersInLine > StateMachine.WaitingLines[i].NbCharactersWaiting) {
-                    nbCharactersInLine = StateMachine.WaitingLines[i].NbCharactersWaiting;
-                    indexLine = i;
-                }
-            }
-            StateMachine.WaitingLines[indexLine].AddToWaitingLine(StateMachine);
-            StateMachine.CurrentWaitingLine = StateMachine.WaitingLines[indexLine];
-        }
-    }
-
     public bool AreLinesFree()
     {
         foreach (var line in StateMachine.WaitingLines)

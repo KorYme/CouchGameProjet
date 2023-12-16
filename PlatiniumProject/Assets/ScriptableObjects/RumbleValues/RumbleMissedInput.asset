@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e34363c99762c408a85174f95cf067, type: 3}
+  m_Name: RumbleMissedInput
+  m_EditorClassIdentifier: 
+  rumbleName: MissedInput
+  isHolding: 0
+  time: 0.3
+  rumbleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.016666412
+      value: 0.5117912
+      inSlope: 1.3614192
+      outSlope: 1.3614192
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.15464824
+      value: 0.7450223
+      inSlope: -12.23356
+      outSlope: -12.23356
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.027132753
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.52497023
+      value: 0.50805396
+      inSlope: -6.3343596
+      outSlope: -6.3343596
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.060402963
+    - serializedVersion: 3
+      time: 0.8495413
+      value: 0.28417745
+      inSlope: -12.58824
+      outSlope: -12.58824
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.049936652
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.0083313
+      value: 0.5047188
+      inSlope: 1.3888868
+      outSlope: 1.3888868
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

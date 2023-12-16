@@ -12,16 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8333e8bf53b1c2409b30abd1787e784, type: 3}
   m_Name: QTE11
   m_EditorClassIdentifier: 
-  Index: 12
-  PlayerRole: 2
+  Index: 11
+  PlayerRole: 1
   SequenceType: 0
-  ClientType: 0
-  Evilness: 1
-  QTELevel: 1
+  ClientType: 2
+  Evilness: 0
+  QTELevel: 2
   Status: 0
   LongInputType: 0
   DurationHold: 1
   ListSubHandlers:
   - {fileID: 11400000, guid: d6b6c655fc3eb734ab587e7322220edd, type: 2}
   - {fileID: 11400000, guid: 39c954ad2fb556141929e46291a54cd5, type: 2}
-  - {fileID: 11400000, guid: c398cd10fab22cc4598c75b0e173e74a, type: 2}
+  - {fileID: 11400000, guid: 4ed9e60d6e05d3343b0cb6071e0b2333, type: 2}
+  - {fileID: 11400000, guid: e340d9a2980d20d4890d212aadadf768, type: 2}
+  - {fileID: 11400000, guid: 70264dbcfc48d3a4498da59f299142fd, type: 2}
+  - {fileID: 11400000, guid: 29b28522f11f3cc4cac955b3bdde12be, type: 2}

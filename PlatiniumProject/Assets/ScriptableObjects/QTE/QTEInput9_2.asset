@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: QTEInput9_2
   m_EditorClassIdentifier: 
   Index: 2
-  ActionIndex: 4
+  ActionIndex: 5
   UseforShake: 0
   PositiveValue: 1

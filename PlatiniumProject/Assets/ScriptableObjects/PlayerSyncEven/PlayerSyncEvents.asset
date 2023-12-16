@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 696f69a1a80a666418bf444701849e35, type: 3}
+  m_Name: PlayerSyncEvents
+  m_EditorClassIdentifier: 
+  _bouncerEvents:
+    isNotSyncEvent:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 11400000, guid: fe6099f78758b224b9d33e879246b37c, type: 2}
+    isSyncEvent:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 11400000, guid: 8387c446accac2546b4a31fe0b0cfe25, type: 2}
+  _barmanEvents:
+    isNotSyncEvent:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 11400000, guid: 44c295774aac78f46b2dab4270e6ec32, type: 2}
+    isSyncEvent:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 11400000, guid: ca69ef9d331b85447b6fdc1518b191a1, type: 2}
+  _djEvents:
+    isNotSyncEvent:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 11400000, guid: d556f4634247eb04fbfc2199056b431f, type: 2}
+    isSyncEvent:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 11400000, guid: bef23e2c87cbbcf47bc1f685f207b169, type: 2}

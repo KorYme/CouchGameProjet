@@ -5,16 +5,20 @@ using UnityEngine;
 
 public class DisplayDJQTE : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI _qteDisplay;
     [SerializeField] GameObject _bubbleObject;
     [SerializeField] DJQTEController _qteController;
+    [SerializeField] UIQteDJ _qteDisplay;
 
     private void Awake()
     {
-        _bubbleObject.SetActive(false);
+        
         _qteController.OnDJQTEStarted += OnDJQTEStarted;
         _qteController.OnDJQTEEnded += OnDJQTEEnded;
         _qteController.OnDJQTEChanged += OnDJQTEChanged;
+    }
+    private void Start()
+    {
+        _bubbleObject.SetActive(false);
     }
 
     private void OnDestroy()
@@ -23,20 +27,34 @@ public class DisplayDJQTE : MonoBehaviour
         _qteController.OnDJQTEEnded -= OnDJQTEEnded;
         _qteController.OnDJQTEChanged -= OnDJQTEChanged;
     }
-    private void OnDJQTEChanged(string qteString)
+    private void OnDJQTEChanged(Sprite[] sprites)
     {
-        _qteDisplay.text = qteString;
+
+        //_qteDisplay.text = qteString;
+        Sprite sprite = _qteController.IndexCurrentInput + 2 < sprites.Length ? sprites[_qteController.IndexCurrentInput + 2] : null;
+        _qteDisplay.NextSprite = sprite;
+        _qteDisplay.StartAnimation();
     }
 
-    private void OnDJQTEEnded(string qteString)
+    private void OnDJQTEEnded(Sprite[] sprites)
     {
-        _qteDisplay.text = qteString;
+        //_qteDisplay.text = qteString;
         _bubbleObject.SetActive(false);
     }
 
-    private void OnDJQTEStarted(string qteString)
+    private void OnDJQTEStarted(Sprite[] sprites)
     {
-        _bubbleObject.SetActive(true);
-        _qteDisplay.text = qteString;
+        if (sprites != null && sprites.Length > 0)
+        {
+            _bubbleObject.SetActive(true);
+            Sprite[] spritesFistInputs = new Sprite[4];
+            for (int i = 0; i < spritesFistInputs.Length; i++)
+            {
+                spritesFistInputs[i] = _qteController.IndexCurrentInput + i < sprites.Length ? sprites[_qteController.IndexCurrentInput + i]:null;
+            }
+            _qteDisplay.ChangeSprites(spritesFistInputs);
+            _qteDisplay.NextSprite = spritesFistInputs[3];
+            //_qteDisplay.text = qteString;
+        }
     }
 }

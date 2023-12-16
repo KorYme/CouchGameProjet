@@ -13,10 +13,20 @@ public class CheckerBoard : MonoBehaviour
     [SerializeField] protected float _verticalSpacing;
     [SerializeField] protected GameObject _slot;
     [SerializeField] private bool _useShader = false;
+    [SerializeField] private Sprite[] _slotsSprites;
     public Vector2Int BoardDimension => _boardDimension;
     public int BoardLength => _boardDimension.x * _boardDimension.y;
     int[] Directions => new int[4] { 1, -1, _boardDimension.x, -_boardDimension.x };
     public float HorizontalSpacing => _horizontalSpacing;
+
+    public Vector3 Center
+    {
+        get
+        {
+            return transform.position +
+                   new Vector3(_horizontalSpacing * _boardDimension.x / 2f, -(_verticalSpacing * _boardDimension.y / 2f));
+        }
+    }
     public List <SlotInformation> AvailableSlots { get; private set; } = new List<SlotInformation>();
     public List<SlotInformation> EntrySlots { get; private set; } = new List<SlotInformation>();
     
@@ -30,7 +40,7 @@ public class CheckerBoard : MonoBehaviour
 
     private void SetEnterySlots()
     {
-        for (int i = 0; i < _boardDimension.x; ++i)
+        for (int i = 0; i < BoardLength; ++i)
         {
             EntrySlots.Add(Board[i]);
         }
@@ -182,8 +192,40 @@ public class CheckerBoard : MonoBehaviour
                     name += x;
                 } });
             slot.gameObject.name = $"{name}: X: {i % _boardDimension.x}, Y: {j - 1}";
-
         }
+    }
+
+    public void RandomizeTilesSprites()
+    {
+        List<int> ids = ShuffleSprite();
+        int index = 0;
+        for (int i = 0; i < Board.Count; ++i)
+        {
+            if (ids.Count <= 0)
+                ids = ShuffleSprite();
             
+            index = ids[Random.Range(0, ids.Count)];
+            ids.Remove(index);
+            Board[i].GetComponent<SpriteRenderer>().sprite = _slotsSprites[index];
+        }
+    }
+
+    private List<int> ShuffleSprite()
+    {
+        List<int> ids = new List<int>();
+        List<int> result = new List<int>();
+        
+        for (int i = 0; i < _slotsSprites.Length; ++i)
+        {
+            ids.Add(i);
+        }
+        
+        for (int i = 0; i < ids.Count; ++i)
+        {
+            int index = Random.Range(0, ids.Count);
+            result.Add(ids[index]);
+            ids.Remove(index);
+        }
+        return result;
     }
 }

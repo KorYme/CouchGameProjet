@@ -18,6 +18,7 @@ public class PlayerInputController : MonoBehaviour
     public InputFloat LT { get; private set; } = new(RewiredConsts.Action.LT);
     public InputBool RB { get; private set; } = new(RewiredConsts.Action.RB);
     public InputBool LB { get; private set; } = new(RewiredConsts.Action.LB);
+    public InputBool Pause { get; private set; } = new(RewiredConsts.Action.PAUSE);
 
     //Axis Inputs
     public InputVector2 LeftJoystick { get; private set; } = new(RewiredConsts.Action.MOVE_HORIZONTAL, RewiredConsts.Action.MOVE_VERTICAL);
@@ -36,17 +37,23 @@ public class PlayerInputController : MonoBehaviour
         LB,
         LeftJoystick,
         RightJoystick,
+        Pause,
     };
     #endregion
 
     private IEnumerator Start()
     {
-        yield return new WaitUntil(() => ReInput.isReady && PlayerInputsAssigner.GetRewiredPlayerByRole((int)_gamePlayerRole) != null);
-        newPlayer = PlayerInputsAssigner.GetRewiredPlayerByRole((int)_gamePlayerRole);
-        Players.AddPlayerToList(this, (int) PlayerInputsAssigner.GetRolePlayer((int)_gamePlayerRole));
-        SetUpAllInputClasses();
+        yield return new WaitUntil(() => ReInput.isReady && PlayerInputsAssigner.GetRewiredPlayerByRole(_gamePlayerRole) != null);
+        SetPlayer();
+        Players.AddPlayerToList(this, (int)_gamePlayerRole);
     }
 
+    public void SetPlayer()
+    {
+        newPlayer = PlayerInputsAssigner.GetRewiredPlayerByRole(_gamePlayerRole);
+        if (newPlayer != null)
+            SetUpAllInputClasses();
+    }
     void SetUpAllInputClasses()
     {
         _allMainInputClasses.ForEach(inputClass =>

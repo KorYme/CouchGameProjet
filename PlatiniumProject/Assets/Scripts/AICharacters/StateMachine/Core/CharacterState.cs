@@ -17,7 +17,7 @@ public abstract class CharacterState
 
     public virtual void EnterState()
     {
-        StateMachine.Animation.ResetLastAnimation();
+        StateMachine.CharacterAnimation.ResetLastAnimation();
     }
     public virtual void UpdateState(){}
     public virtual void ExitState(){}

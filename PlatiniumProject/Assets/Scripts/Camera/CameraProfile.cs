@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public enum CAMERA_TYPE
@@ -17,6 +18,9 @@ public class CameraProfile : MonoBehaviour
 {
     [SerializeField] private CameraProfileData _profileData;
     [SerializeField] private CAMERA_TYPE _cameraType;
+    [SerializeField] private Image _renderTexture;
+    [SerializeField] private Material _baseMaterial;
+    [SerializeField] private Material _shadowMaterial;
 
     private bool canDezoom;
 
@@ -46,9 +50,13 @@ public class CameraProfile : MonoBehaviour
     private void Start()
     {
         StartCoroutine(FollowRoutine());
-        StartPulseZoom();
         _currentInitSize = _initSize;
         //StartShake();   
+    }
+
+    public void SetShadowMaterial(bool isShadowed)
+    {
+        _renderTexture.material = isShadowed ? _shadowMaterial : _baseMaterial;
     }
 
     private void LateUpdate()
@@ -114,7 +122,7 @@ public class CameraProfile : MonoBehaviour
 
     public void StartFocus(Transform target)
     {
-        _zoomRoutine = StartCoroutine(ZoomRoutine(_profileData.focusDuration, _profileData.focusPercentage, target));
+        _zoomRoutine = StartCoroutine(ZoomRoutine(_profileData.focusDuration, _profileData.focusPercentage));
         _target = target;
     }
 
@@ -123,7 +131,7 @@ public class CameraProfile : MonoBehaviour
         canDezoom = true;
     }
     
-    IEnumerator ZoomRoutine(float duration, float percentage, Transform target)
+    IEnumerator ZoomRoutine(float duration, float percentage)
     {
         float timer = 0;
         while (timer < duration)
@@ -163,7 +171,7 @@ public class CameraProfile : MonoBehaviour
             {
                 _followMoveRoutine = StartCoroutine(FollowMoveRoutine());
             }
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
     }
 
@@ -176,7 +184,7 @@ public class CameraProfile : MonoBehaviour
         
         while (timer < _profileData.snapDuration)
         {
-            target = _target != null ? _target.position : _initPos;
+            target = _target != null ? _target.position + _profileData.focusOffSet : _initPos;
             timer += Time.deltaTime; 
             float percentage = _profileData.snapCurve.Evaluate(timer / _profileData.snapDuration);
             transform.localPosition = Vector3.Lerp(pos, target, percentage);
@@ -192,13 +200,13 @@ public class CameraProfile : MonoBehaviour
 
     #region Pulse
 
-    public void StartPulseZoom()
+    public void StartPulseZoom(bool playOnce = false, float percentage = 0, float duration = 0)
     {
         if (_pulseRoutine != null)
         {
             StopPulseZoom();
         }
-        _pulseRoutine = StartCoroutine(BeatPulseZoom(_profileData.pulsePercentage));
+        _pulseRoutine = StartCoroutine(playOnce ? PulseZoomOnce(percentage, duration) : BeatPulseZoom(_profileData.pulsePercentage));
     }
     
     public void StopPulseZoom()
@@ -216,8 +224,23 @@ public class CameraProfile : MonoBehaviour
             pingPong = _profileData.pulseCurve.Evaluate(pingPong);
             _cam.orthographicSize = Mathf.Lerp(_currentInitSize, _currentInitSize * percentage, pingPong);
             yield return new WaitForEndOfFrame();
-            //yield return new WaitUntil(() => _zoomRoutine == null);
         }
+    }
+    
+    IEnumerator PulseZoomOnce(float percentage, float duration)
+    {
+        float pingPong;
+        float timer = 0;
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            pingPong = Mathf.PingPong(Time.time, (duration/2));
+            pingPong = _profileData.pulseCurve.Evaluate(pingPong);
+            _cam.orthographicSize = Mathf.Lerp(_currentInitSize, _currentInitSize * percentage, pingPong);
+            yield return new WaitForEndOfFrame();
+        }
+
+        _pulseRoutine = null;
     }
 
     #endregion

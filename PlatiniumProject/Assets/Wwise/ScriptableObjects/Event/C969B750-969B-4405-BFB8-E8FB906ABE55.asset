@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ab4bff603db7b8419e4e1e1bc98b8db, type: 3}
+  m_Name: C969B750-969B-4405-BFB8-E8FB906ABE55
+  m_EditorClassIdentifier: 
+  objectName: Resume_Main_Music
+  id: 4072670616
+  guid: C969B750-969B-4405-BFB8-E8FB906ABE55

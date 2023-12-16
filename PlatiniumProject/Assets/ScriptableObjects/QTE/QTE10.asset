@@ -13,16 +13,19 @@ MonoBehaviour:
   m_Name: QTE10
   m_EditorClassIdentifier: 
   Index: 10
-  PlayerRole: 2
+  PlayerRole: 1
   SequenceType: 0
-  ClientType: 0
-  Evilness: 1
+  ClientType: 2
+  Evilness: 0
   QTELevel: 1
   Status: 0
   LongInputType: 0
   DurationHold: 1
   ListSubHandlers:
   - {fileID: 11400000, guid: da865023d5c85c64cb318210ab9b56ed, type: 2}
-  - {fileID: 11400000, guid: 67e01fb5de3274f41b5a6d6fa614ec7a, type: 2}
-  - {fileID: 11400000, guid: d4053e3ddd7d6bb479dd15ed08e65d0a, type: 2}
-  - {fileID: 11400000, guid: f6ba414e65b752747884f435e0e997ca, type: 2}
+  - {fileID: 11400000, guid: 7e5fb0d9a2b8f074bbdd804ac8fbf49e, type: 2}
+  - {fileID: 11400000, guid: c95bffc9986d03b44813bb90d545a9ec, type: 2}
+  - {fileID: 11400000, guid: c8c361a0b1dfba94c950b63e93c6da08, type: 2}
+  - {fileID: 11400000, guid: cf03ff649e5a6884f863c88575d53c15, type: 2}
+  - {fileID: 11400000, guid: 000d056933510b14685c423cf4e6f31d, type: 2}
+  - {fileID: 11400000, guid: d4adf9747db7acb44b8dfa44bf2b1150, type: 2}

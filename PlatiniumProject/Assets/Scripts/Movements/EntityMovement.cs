@@ -14,24 +14,28 @@ public class EntityMovement : MonoBehaviour, IMovable
     [SerializeField] protected Transform _transformToModify;
 
     protected Coroutine _movementCoroutine;
-    private Coroutine _animRoutine;
-    protected Action OnMove;
+    [SerializeField] protected CharacterAnimation _characterAnimation;
     protected ITimingable _timingable => Globals.BeatManager;
     public bool IsMoving => _movementCoroutine != null;
 
     private Vector3 _destination;
 
-    protected virtual float _TimeBetweenMovements => _movementData.MovementDurationPercent * _timingable.BeatDurationInMilliseconds / 1000f;
+    private void Awake()
+    {
+        _characterAnimation = GetComponent<CharacterAnimation>();
+    }
+
+    protected virtual float _TimeBetweenMovements => _movementData.MovementDurationPercent * (_timingable.BeatDurationInMilliseconds / 1000f);
     public MovementData MovementData
     {
         get { return _movementData; }
         set { if(value != null) _movementData = value; }
     }
     
-    public virtual bool MoveToPosition(Vector3 position, int animationFrames)
+    public virtual bool MoveToPosition(Vector3 position, bool mustTeleport = false, ANIMATION_TYPE moveAnim = ANIMATION_TYPE.MOVE)
     {
         if (IsMoving) return false;
-        _movementCoroutine = StartCoroutine(MovementCoroutineAnimation(position, OnMove, animationFrames));
+        _movementCoroutine = StartCoroutine(mustTeleport ? MoveRoutineTP(position) : MovementCoroutineAnimation(position, moveAnim));
         return true;
     }
 
@@ -40,16 +44,14 @@ public class EntityMovement : MonoBehaviour, IMovable
         _destination = newDestination;
     }
     
-    protected virtual IEnumerator MovementCoroutineAnimation (Vector3 positionToGo, Action callBack, int animationsFrames)
+    protected virtual IEnumerator MovementCoroutineAnimation (Vector3 positionToGo, ANIMATION_TYPE moveAnim = ANIMATION_TYPE.MOVE)
     {
         float timer = 0;
-        animationsFrames++;
         Vector3 initialPosition = _transformToModify.position;
         Vector3 initialScale = _transformToModify.localScale;
         _destination = positionToGo;
 
-        _animRoutine =
-            StartCoroutine(AnimationRoutine(animationsFrames, _TimeBetweenMovements / animationsFrames, callBack));
+        _characterAnimation.SetFullAnim(moveAnim, _movementData.MovementDurationPercent * (Globals.BeatManager.BeatDurationInMilliseconds / 1000f));
         
         while (timer < _TimeBetweenMovements)
         {
@@ -62,24 +64,37 @@ public class EntityMovement : MonoBehaviour, IMovable
                 (new Vector3(initialScale.x * _movementData.BounceMultiplierX, initialScale.y * _movementData.BounceMultiplierY, 0)
                  * _movementData.BounceCurve.Evaluate(timer / _TimeBetweenMovements));
             
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
 
-        yield return new WaitUntil(() => _animRoutine == null);
-        
-        //OnMoveEnd?.Invoke();
+        yield return new WaitUntil(() => !_characterAnimation.IsAnimationPlaying);
         _transformToModify.localScale = initialScale;
         _transformToModify.position = _destination;
         _movementCoroutine = null;
     }
-
-    private IEnumerator AnimationRoutine(int loop, float duration, Action callBack)
+    
+    IEnumerator MoveRoutineTP(Vector3 newDestination)
     {
-        for (int i = 0; i < loop - 1; i++)
+        float timer = 0f;
+        float percentage = 0f;
+        while (timer < _TimeBetweenMovements)
         {
-            callBack?.Invoke();
-            yield return new WaitForSeconds(duration);
+            timer += Time.deltaTime;
+            percentage = _movementData.MovementCurve.Evaluate(timer / _TimeBetweenMovements);
+            _characterAnimation.Sp.material.SetFloat("_Fade", Mathf.Lerp(1,0, percentage));            
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
-        _animRoutine = null;
+        transform.position = newDestination;
+        
+        timer = 0;
+        percentage = 0;
+        while (timer < _TimeBetweenMovements)
+        {
+            timer += Time.deltaTime;
+            percentage = _movementData.MovementCurve.Evaluate(timer/ _TimeBetweenMovements);
+            _characterAnimation.Sp.material.SetFloat("_Fade", Mathf.Lerp(0,1, percentage));
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
+        }
+        _movementCoroutine = null;
     }
 }

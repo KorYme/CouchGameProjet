@@ -5,13 +5,7 @@ using Random = UnityEngine.Random;
 public class CharacterStateMachine : MonoBehaviour
 {
     [SerializeField] private CharacterData _characterData;
-    private SpawnManager _spawnManager;
-    private BeatManager _beatManager;
-    public Vector3 PullPos { get; set; }
-    public CharacterAIMovement CharacterMove { get; private set; }
-    public AreaManager AreaManager { get; private set; }
-    public WaitingLineBar[] WaitingLines { get; private set; }
-
+    
     #region States
     public CharacterState IdleTransitState { get; } = new CharacterStateIdleTransit();
     public CharacterState IdleBouncerState { get; } = new CharacterStateIdleBouncer();
@@ -23,6 +17,7 @@ public class CharacterStateMachine : MonoBehaviour
     public CharacterState BarManAtBar { get; } = new CharacterStateAtBar();
     public CharacterState DancingState { get; } = new CharacterStateDancing();
     public CharacterState ExorcizeState { get; } = new CharacterStateExorcize();
+    public CharacterState DancingOffFloor { get; } = new CharacterStateDancingValidate();
     #endregion
     private CharacterState[] _allState => new CharacterState[]
     {
@@ -35,11 +30,15 @@ public class CharacterStateMachine : MonoBehaviour
         BarManQueueState,
         BarManAtBar,
         DancingState,
-        ExorcizeState
+        ExorcizeState,
+        DancingOffFloor
     };
     
     #region Propreties
+    public Vector3 PullPos { get; set; }
+    public bool RandomiseSatisfaction { get; set; }
     private CharacterState StartState => IdleTransitState;
+    public bool UseTp { get; set; }
     public CharacterState CurrentState { get; private set; }
     public CharacterState PreviousState { get; private set; }
     public CharacterState NextState { get; set; }
@@ -61,11 +60,15 @@ public class CharacterStateMachine : MonoBehaviour
     #endregion
 
     #region References
-
+    private SpawnManager _spawnManager;
+    private BeatManager _beatManager;
     public CharacterAIStatisfaction Satisafaction { get; private set; }
-    public CharacterAnimation Animation { get; private set; }
+    public CharacterAnimation CharacterAnimation { get; private set; }
     public CharacterTypeData TypeData { get; set; }
     public CharacterAiPuller Puller { get; private set; }
+    public CharacterAIMovement CharacterMove { get; private set; }
+    public AreaManager AreaManager { get; private set; }
+    public WaitingLineBar[] WaitingLines { get; private set; }
     #endregion
 
     #region Events
@@ -81,13 +84,13 @@ public class CharacterStateMachine : MonoBehaviour
         WaitingLines = FindObjectsOfType<WaitingLineBar>();
         CharacterMove = GetComponent<CharacterAIMovement>();
         Satisafaction = GetComponent<CharacterAIStatisfaction>();
-        Animation = GetComponent<CharacterAnimation>();
+        CharacterAnimation = GetComponent<CharacterAnimation>();
         Puller = GetComponent<CharacterAiPuller>();
     }
-
+    
     public void PullCharacter(CharacterState startState = null)
     {
-        Animation.SetAnim(ANIMATION_TYPE.IDLE);
+        CharacterAnimation.SetAnim(ANIMATION_TYPE.IDLE);
         if (startState == null)
         {
             SlotInformation firstQueueSlot = AreaManager.BouncerTransit.Slots[0];
@@ -166,9 +169,11 @@ public class CharacterStateMachine : MonoBehaviour
         _spawnManager.ReInsertCharacterInPull(Puller);
         ChangeState(null);
         CurrentBeatAmount = 0;
+        CharacterAnimation.SetColor(Color.white);
         CurrentMovementInBouncer = 0;
         MoveToLocation = Vector3.zero;
         CurrentState = null;
         NextState = null;
+        RandomiseSatisfaction = false;
     }
 }

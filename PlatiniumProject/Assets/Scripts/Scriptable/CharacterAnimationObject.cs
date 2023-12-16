@@ -15,6 +15,11 @@ public enum ANIMATION_TYPE
     WRONG_INPUT,
     FIGHT,
     FIGHT_IDLE,
+    ACCEPT,
+    REFUSE,
+    DIE,
+    MOVE_LEFT,
+    MOVE_RIGHT
     
 }
 [System.Serializable]

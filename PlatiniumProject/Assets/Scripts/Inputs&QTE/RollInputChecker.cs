@@ -16,14 +16,16 @@ public class RollInputChecker
     public event Action TurnAntiClockWise;
 
     //Parameters
+    int _directionNeeded;
     float _inputDistance;
     InputVector2 _inputJoystick;
 
-    public RollInputChecker(InputVector2 inputController, float inputDistance)
+    public RollInputChecker(InputVector2 inputController, float inputDistance, int directionNeeded)
     {
         _inputJoystick = inputController;
         _inputDistance = inputDistance;
         _inputJoystick.OnInputChange += () => GetDirection();
+        _directionNeeded = directionNeeded;
     }
 
     ~RollInputChecker()
@@ -64,7 +66,7 @@ public class RollInputChecker
         }
         _lastDirection = closestPoint;
         _directionChecked++;
-        if (_directionChecked >= 4)
+        if (_directionChecked >= _directionNeeded)
         {
             switch (_rotationOrientation)
             {

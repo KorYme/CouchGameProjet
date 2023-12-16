@@ -22,7 +22,7 @@ public class PlayerSelectionController : MonoBehaviour
         yield return new WaitUntil(() => PlayerInputsAssigner.GetRewiredPlayerById(PlayerId) != null);
         _player = PlayerInputsAssigner.GetRewiredPlayerById(PlayerId);
     }
-
+    //XinputController
     private void Update()
     {
         if (_player != null)
@@ -33,17 +33,17 @@ public class PlayerSelectionController : MonoBehaviour
 
     private void CheckInputs()
     {
-        if (_player.GetButtonDown(RewiredConsts.Action.ACCEPT))
+        if (_player.GetButtonDown(RewiredConsts.Action.UISUBMIT))
         {
             OnAccept?.Invoke(PlayerId);
         }
-        if (_player.GetButtonDown(RewiredConsts.Action.RETURN))
+        if (_player.GetButtonDown(RewiredConsts.Action.UICANCEL))
         {
             OnReturn?.Invoke(PlayerId);
         }
-        if (_player.GetAxis(RewiredConsts.Action.MOVEMENUHORIZONTAL) != 0f)
+        if (_player.GetAxis(RewiredConsts.Action.UIHORIZONTAL) != 0f)
         {
-            int direction = _player.GetAxis(RewiredConsts.Action.MOVEMENUHORIZONTAL) > 0f ? 1 : -1;
+            int direction = _player.GetAxis(RewiredConsts.Action.UIHORIZONTAL) > 0f ? 1 : -1;
             if (_repeatDelay > 0f) {
                 if (_canMove)
                 {

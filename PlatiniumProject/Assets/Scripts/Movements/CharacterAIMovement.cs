@@ -9,22 +9,16 @@ public class CharacterAIMovement : EntityMovement
     private void Awake()
     {
         _stateMachine = GetComponent<CharacterStateMachine>();
-        OnMove += AnimationSetter;
-    }
-    
-    private void OnDisable()
-    {
-        OnMove -= AnimationSetter;
     }
 
-    public void MoveTo(Vector3 pos)
+    public void MoveTo(Vector3 pos, bool mustTp = false)
     {
-        MoveToPosition(pos, _stateMachine.Animation.CharacterAnimationObject.Animations[ANIMATION_TYPE.MOVE].AnimationLenght);
+        MoveToPosition(pos, mustTp);
     }
 
     private void AnimationSetter()
     {
-        _stateMachine.Animation.SetAnim(ANIMATION_TYPE.MOVE);
+        _stateMachine.CharacterAnimation.SetAnim(ANIMATION_TYPE.MOVE);
     }
 
 

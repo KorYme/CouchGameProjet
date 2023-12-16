@@ -84,7 +84,7 @@ public class QTEWindow : EditorWindow
             _listQTE.Clear();
         }
         string[] fileGuids = AssetDatabase.FindAssets("t:" + typeof(QTESequence));
-        int maxIndex = 0;
+        int maxIndex = -1;
         if (fileGuids.Length > 0)
         {
             for (int i = 0; i < fileGuids.Length; i++)
@@ -95,6 +95,7 @@ public class QTEWindow : EditorWindow
                 _listQTE.Add(sequence);
             }
         }
+        _listQTE.OrderBy(sequence => sequence.Index);
         _indexNewSequence = maxIndex + 1;
     }
 
@@ -112,7 +113,7 @@ public class QTEWindow : EditorWindow
                     GUI.backgroundColor = Color.white;
                 }
                 string name = Enum.GetName(typeof(PlayerRole), _listQTE[i].PlayerRole);
-                if (GUILayout.Button($"QTE {name}", GUILayout.MinHeight(30)))
+                if (GUILayout.Button($"QTE {i + 1} {name}", GUILayout.MinHeight(30)))
                 {
                     _selectedQTE = _listQTE[i];
                     _isATemporaryQTE = false;
@@ -158,7 +159,7 @@ public class QTEWindow : EditorWindow
         {
             if (AssetDatabase.DeleteAsset($"Assets/ScriptableObjects/QTE/QTEInput{_selectedQTE.Index}_{indexUnit}.asset"))
             {
-                Debug.Log("File of unit has been deleted.");
+                Debug.Log($"File of unit {_selectedQTE.Index}_{indexUnit} has been deleted.");
                 if (moveElements)
                     RenameUnits(indexUnit);
             }
@@ -175,6 +176,7 @@ public class QTEWindow : EditorWindow
         //TO DO change naming convention to guid
         for (int i = indexUnit + 1; i < _selectedQTE.ListSubHandlers.Count; i++)
         {
+            Debug.Log($"Rename INPUT {_selectedQTE.Index}_{i} into {_selectedQTE.Index}_{i - 1}");
             AssetDatabase.RenameAsset($"Assets/ScriptableObjects/QTE/QTEInput{_selectedQTE.Index}_{i}.asset", $"QTEInput{_selectedQTE.Index}_{i-1}.asset");
             _selectedQTE.ListSubHandlers[i].Index--; 
         }
@@ -186,14 +188,18 @@ public class QTEWindow : EditorWindow
     {
         for (int i = indexSequence + 1; i < _listQTE.Count; i++)
         {
+            Debug.Log($"Rename QTE {i} into {i - 1} with {_listQTE[i].ListSubHandlers.Count} {_listQTE.Count}");
             AssetDatabase.RenameAsset($"Assets/ScriptableObjects/QTE/QTE{i}.asset", $"QTE{i - 1}.asset");
             _listQTE[i].Index--;
             for (int j = 0; j < _listQTE[i].ListSubHandlers.Count; j++)
             {
-                AssetDatabase.RenameAsset($"Assets/ScriptableObjects/QTE/QTEInput{i}_{_listQTE[i].ListSubHandlers[j].Index}.asset", $"QTEInput{i - 1}_{_listQTE[i].ListSubHandlers[j].Index}.asset");
+                Debug.Log($"Rename INPUT {i}_{_listQTE[i].ListSubHandlers[j].Index} into {i - 1}_{_listQTE[i].ListSubHandlers[j].Index} TOTAL {_listQTE[i].ListSubHandlers.Count}");
+                Debug.Log(AssetDatabase.RenameAsset($"Assets/ScriptableObjects/QTE/QTEInput{i}_{_listQTE[i].ListSubHandlers[j].Index}.asset", $"QTEInput{i - 1}_{_listQTE[i].ListSubHandlers[j].Index}.asset"));
             }
+            //AssetDatabase.Refresh();
+            Debug.Log($"{i} {_listQTE[i].Index}");
+            EditorUtility.SetDirty(_listQTE[i]);
         }
-        AssetDatabase.Refresh();
     }
 
     void RemoveSelectedSequence()
@@ -208,6 +214,7 @@ public class QTEWindow : EditorWindow
             if (AssetDatabase.IsValidFolder("Assets/ScriptableObjects") && AssetDatabase.IsValidFolder("Assets/ScriptableObjects/QTE"))
             {
                 int index = _selectedQTE.Index;
+                Debug.Log($"Delete QTE {_selectedQTE.Index}");
                 if (AssetDatabase.DeleteAsset($"Assets/ScriptableObjects/QTE/QTE{_selectedQTE.Index}.asset"))
                 {
                     Debug.Log("File of QTE has been deleted.");
@@ -286,6 +293,13 @@ public class QTEWindow : EditorWindow
                         _selectedQTE.DurationHold = EditorGUILayout.IntField(_selectedQTE.DurationHold);
                     }
                 GUILayout.EndHorizontal();
+                GUILayout.BeginHorizontal();
+                if (_selectedQTE.Status == InputStatus.LONG)
+                {
+                    EditorGUILayout.LabelField("Long input type", GUILayout.Width(100));
+                    _selectedQTE.LongInputType = (LongInputType)EditorGUILayout.EnumPopup(_selectedQTE.LongInputType);
+                }
+                GUILayout.EndHorizontal();
                 EditorGUILayout.Space();
                 GUILayout.BeginHorizontal();
                     EditorGUILayout.LabelField("Role", GUILayout.Width(50));
@@ -353,14 +367,19 @@ public class QTEWindow : EditorWindow
             if (_rewiredInputManager != null)
             {
                 InputActionType rewiredInputType = ReInput.mapping.GetAction(input.ActionIndex).type;
-                if (rewiredInputType == InputActionType.Axis && _selectedQTE.Status == InputStatus.SHORT)
+                if (rewiredInputType == InputActionType.Axis)
                 {
-                    input.PositiveValue = EditorGUILayout.Toggle("Is a positive value",input.PositiveValue);
+                    if (_selectedQTE.Status == InputStatus.SHORT)
+                    {
+                        input.PositiveValue = EditorGUILayout.Toggle("Is a positive value",input.PositiveValue);
+                    } else if (_selectedQTE.LongInputType == LongInputType.SHAKE)
+                    {
+                        input.UseForShake = EditorGUILayout.Toggle("Use for shaking", input.UseForShake);
+                    }
                 }
             } else
             {
                 EditorGUILayout.LabelField("Rewired inputs not loaded. Please run Rewired Input Manager in edit mode.", new GUIStyle() { normal = new GUIStyleState() { textColor = Color.red } });
-
             }
         }
 

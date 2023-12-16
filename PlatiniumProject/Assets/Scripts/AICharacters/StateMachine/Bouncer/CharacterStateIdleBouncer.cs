@@ -11,7 +11,7 @@ public class CharacterStateIdleBouncer : CharacterState
     public override void OnBeat()
     {
         base.OnBeat();
-        StateMachine.Animation.SetAnim(ANIMATION_TYPE.IDLE);
+        StateMachine.CharacterAnimation.SetAnim(ANIMATION_TYPE.IDLE);
     }
 
     public override void UpdateState()
@@ -25,10 +25,24 @@ public class CharacterStateIdleBouncer : CharacterState
 
     public override void BeatAction()
     {
-
-        if (StateMachine.CurrentMovementInBouncer > StateMachine.CharacterDataObject.movementAmountInQueue)
+        
+        if (!StateMachine.CharacterDataObject.isTutorialNpc && StateMachine.CurrentMovementInBouncer >
+            (int)(StateMachine.CharacterDataObject.movementAmountInQueue * (2f / 3f)))
         {
+            StateMachine.CharacterAnimation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.ANGRY2);
+        }
+        else if (!StateMachine.CharacterDataObject.isTutorialNpc && StateMachine.CurrentMovementInBouncer >
+                 (int)(StateMachine.CharacterDataObject.movementAmountInQueue * (1f / 3f)))
+        {
+            StateMachine.CharacterAnimation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.ANGRY);
+        }
+
+        if (!StateMachine.CharacterDataObject.isTutorialNpc && StateMachine.CurrentMovementInBouncer > StateMachine.CharacterDataObject.movementAmountInQueue)
+        {
+            StateMachine.CharacterAnimation.VfxHandeler.StopVfx(VfxHandeler.VFX_TYPE.ANGRY);
+            StateMachine.CharacterAnimation.VfxHandeler.StopVfx(VfxHandeler.VFX_TYPE.ANGRY2);
             StateMachine.CurrentSlot.Occupant = null;
+            StateMachine.UseTp = true;
             StateMachine.ChangeState(StateMachine.RoamState);
             StateMachine.NextState = StateMachine.BarManQueueState;
         }
@@ -47,6 +61,6 @@ public class CharacterStateIdleBouncer : CharacterState
 
             StateMachine.ChangeState(StateMachine.MoveToState);
         }
-
     }
+
 }
