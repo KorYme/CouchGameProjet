@@ -18,6 +18,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     public int NbCharactersWaiting { get => _waitingCharactersList.Count; }
     public bool IsInPause = true;
     public bool IsFull => _waitingCharactersList == null ? true : _waitingCharactersList.Count >= _maxPlaces;
+    public float DurationValue => _qteHandler == null?0:_qteHandler.DurationValue;
 
     private void Awake()
     {
@@ -47,7 +48,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
     {
         if (!IsInPause)
         {
-            _barmanController.ModifyQTE(_qteHandler.GetQTESprites(),_qteHandler.InputsSucceeded,_qteHandler.DurationValue);
+            _barmanController.ModifyQTE(_qteHandler.GetQTESprites(),_qteHandler.InputsSucceeded);
         }
     }
 
