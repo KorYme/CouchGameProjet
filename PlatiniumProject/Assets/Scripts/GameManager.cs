@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
         IsGamePaused = false;
         OnGamePaused += Globals.MenuMusicPlayer.PauseOrResumeMusicMenu;
         OnGamePaused += Globals.BeatManager.PauseOrResumeMainMusic;
-        Globals.DropManager.OnGameEnd += DisplayWinMenu;
         Players.OnPlayerConnect += playerRole => Players.PlayersController[playerRole].Pause.OnInputStart += () => AssignPlayerToPauseMenu(playerRole);
         for (int i = 0; i < Players.MAXPLAYERS; i++)
         {

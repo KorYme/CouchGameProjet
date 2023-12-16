@@ -112,6 +112,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8257374125105678155}
+  - component: {fileID: 6710370208957210371}
   m_Layer: 5
   m_Name: QTE_Bouncer
   m_TagString: Untagged
@@ -140,6 +141,19 @@ RectTransform:
   m_AnchoredPosition: {x: -0.14, y: 1.79}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6710370208957210371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632020887485152342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4ad6102d4ee11469f2f1c8e1b0a843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data: {fileID: 11400000, guid: ec4fa8dd3f9114048ad7de583220f25f, type: 2}
 --- !u!1 &2173503902041675837
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,6 +577,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7056813333780234165}
   - component: {fileID: 7748299721026644492}
+  - component: {fileID: 62360086668383341}
   m_Layer: 0
   m_Name: GFX
   m_TagString: Untagged
@@ -637,6 +652,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!114 &62360086668383341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5977369144059799193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4ad6102d4ee11469f2f1c8e1b0a843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data: {fileID: 11400000, guid: c7c8cbd183a76004d975d9e1208e68ed, type: 2}
 --- !u!1 &7340047238265229073
 GameObject:
   m_ObjectHideFlags: 0

@@ -1415,6 +1415,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 20eb23038a57fbf4cbefcc31210217e1, type: 3}
+    - target: {fileID: 1394052326559831172, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1444588343972576046, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: Board.Array.size
       value: 16
@@ -1511,6 +1515,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 20eb23038a57fbf4cbefcc31210217e1, type: 3}
+    - target: {fileID: 1666047752426649388, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1876061551124879114, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_Name
       value: ---MainScenePrefab---
@@ -1563,6 +1571,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 8844f85d605b5994d983db51ff074af9, type: 2}
+    - target: {fileID: 2952962108564727160, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3015403998746890322, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1575,6 +1587,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 068577b8252d674419602d61519304c5, type: 3}
+    - target: {fileID: 3301320039491608240, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3340351866761215744, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1931,6 +1947,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 068577b8252d674419602d61519304c5, type: 3}
+    - target: {fileID: 6425196467126712501, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6555163243363039283, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -2021,7 +2041,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 20eb23038a57fbf4cbefcc31210217e1, type: 3}
     - target: {fileID: 8382539972124443938, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_text
-      value: YOU SACRIFICIED NANANA PEOPLES
+      value: YOU SACRIFICIED NANANA PEOPLE
       objectReference: {fileID: 0}
     - target: {fileID: 8382539972124443938, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_isRightToLeft
