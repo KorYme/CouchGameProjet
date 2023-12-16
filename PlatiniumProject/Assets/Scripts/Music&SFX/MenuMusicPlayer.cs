@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MenuMusicPlayer : MonoBehaviour
 {
-    [SerializeField] AK.Wwise.Event _playMenuMusicEvent, _stopMenuMusicEvent, _menuOpenEvent, _menuClosedEvent;
+    [SerializeField] AK.Wwise.Event _playMenuMusicEvent, _stopMenuMusicEvent;
+    [SerializeField] UnityEvent _onMenuOpen, _onMenuClose;
 
     public bool IsPlaying { get; private set; } 
 
@@ -48,7 +50,7 @@ public class MenuMusicPlayer : MonoBehaviour
         {
             StopMenuMusic();
         }
-        (IsPlaying && Globals.BeatManager != null ? _menuOpenEvent : _menuClosedEvent)?.Post(gameObject);
+        (IsPlaying && Globals.BeatManager != null ? _onMenuOpen : _onMenuClose)?.Invoke();
     }
 
     public void StopMenuMusic()

@@ -14,7 +14,7 @@ namespace KorYmeLibrary.SaveSystem
    public class GameData : GameDataTemplate
    {
         // Create the values you want to save here
-        public float Volume;
+        public float GeneralVolume, MusicVolume, SFXVolume;
         public bool AreRumblesActivated;
    }
 }

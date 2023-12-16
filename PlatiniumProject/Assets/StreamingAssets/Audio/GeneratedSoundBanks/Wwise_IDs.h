@@ -38,6 +38,7 @@ namespace AK
         static const AkUniqueID PLAY_NEWGAME = 1215962870U;
         static const AkUniqueID PLAY_VOLUMEBAR = 1570308127U;
         static const AkUniqueID RESUME_MAIN_MUSIC = 4072670616U;
+        static const AkUniqueID SET_BUS_VOLUME = 878501037U;
         static const AkUniqueID SET_STATE_MENU_CLOSE = 2333309968U;
         static const AkUniqueID SET_STATE_MENU_OPEN = 1622047140U;
         static const AkUniqueID SET_STATE_MUSIC_DEFAULT = 1828656719U;
@@ -136,6 +137,13 @@ namespace AK
         } // namespace PLAYER3_SYNC
 
     } // namespace STATES
+
+    namespace GAME_PARAMETERS
+    {
+        static const AkUniqueID MASTERVOLUME = 2918011349U;
+        static const AkUniqueID MUSICVOLUME = 2346531308U;
+        static const AkUniqueID SFXVOLUME = 988953028U;
+    } // namespace GAME_PARAMETERS
 
     namespace BANKS
     {

@@ -465,8 +465,8 @@ RectTransform:
   - {fileID: 2103884743}
   - {fileID: 677012304}
   - {fileID: 1319738074}
-  - {fileID: 201999392}
   - {fileID: 1556082554}
+  - {fileID: 201999392}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6339,7 +6339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 693735322630658615, guid: 88ab937a09fe9b147baba765437ca15b, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpdateVolumeValue
+      value: UpdateGeneralVolumeValue
       objectReference: {fileID: 0}
     - target: {fileID: 693735322630658615, guid: 88ab937a09fe9b147baba765437ca15b, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -6579,7 +6579,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd73ddd45ca4d54d8df0032123f9243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _volumeSlider: {fileID: 1075345899}
+  _generalVolumeSlider: {fileID: 0}
+  _musicVolumeSlider: {fileID: 0}
+  _sfxVolumeSlider: {fileID: 0}
   _rumbleToggle: {fileID: 755790515}
 --- !u!1001 &1428183408
 PrefabInstance:
@@ -6800,7 +6802,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1556082553}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
@@ -6809,7 +6811,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 962, y: 839}
+  m_AnchoredPosition: {x: 962.00006, y: 839.00006}
   m_SizeDelta: {x: 2048, y: 2048}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1556082555
