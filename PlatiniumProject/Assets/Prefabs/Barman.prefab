@@ -121,6 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7170959996196417593}
   - component: {fileID: 3216145741783483841}
+  - component: {fileID: 2497084612982666092}
   m_Layer: 0
   m_Name: GFX
   m_TagString: Untagged
@@ -195,6 +196,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2497084612982666092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5394240262935360196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4ad6102d4ee11469f2f1c8e1b0a843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data: {fileID: 11400000, guid: c7c8cbd183a76004d975d9e1208e68ed, type: 2}
 --- !u!1 &6110243176272634959
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,6 +369,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57cb009402bed774f809557f0576ee77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnStartQteAll:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStopQteAll:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3832343337607226648
 MonoBehaviour:
   m_ObjectHideFlags: 0
