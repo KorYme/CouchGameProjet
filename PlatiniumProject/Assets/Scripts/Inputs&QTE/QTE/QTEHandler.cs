@@ -348,24 +348,14 @@ public class QTEHandler : MonoBehaviour, IIsControllable
         _checkInputThisBeat.ChangeHadInputThisBeat();
         if (_timingable?.IsInsideBeatWindow ?? true || !_inputsAreOnBeat)
         {
-            if (currentActionID == expectedActionID)
-            {
-                _inputsSucceeded[_indexInSequence] = QTE_STATE.IS_PRESSED;
-                _currentListSequences.SetInputSucceeded(_indexInListSequences, QTE_STATE.IS_PRESSED);
-                _indexInSequence++;
-                _indexInListSequences++;
-                _events?.CallOnCorrectInput();
-            }
-            else
-            {
-                if (!_waitForCorrectInput)
-                {
-                    _indexInSequence++;
-                    _indexInListSequences++;
-                }
-                _events?.CallOnWrongInput();
-            }
-        } else //Input miss (not during timing)
+            Debug.Log("Input ok");
+            //_inputsSucceeded[_indexInSequence] = true;
+            //_currentListSequences.SetInputSucceeded(_indexInListSequences, true);
+            _indexInSequence++;
+            _indexInListSequences++;
+            _events?.CallOnCorrectInput();
+        }
+        else
         {
             if (_timingable.BeatDeltaTimeInMilliseconds > _timingable.BeatDurationInMilliseconds / 2f)
             {
@@ -441,59 +431,10 @@ public class QTEHandler : MonoBehaviour, IIsControllable
                         break;
                     default:
                         break;
-                }
-            }
-            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
-            _isSequenceComplete = _inputsSucceeded.ToList().TrueForAll(x => x == QTE_STATE.IS_PRESSED);
-            if (_currentQTESequence.Status == InputStatus.LONG)
-            {
-                if (_isSequenceComplete)
-                {
-                    if (!_hasHoldStarted)
-                    {
-                        _hasHoldStarted = true;
-                        _events?.CallOnBarmanStartCorrectSequence();
-                    }
-                    _durationHold += (int)(Time.deltaTime * 1000); //Convert in milliseconds
-                } else if (_hasHoldStarted)
-                {
-                    _holdDelayAcceptanceTimer = _holdDelayAcceptance;
-                    _hasHoldStarted = false;
-                    _events?.CallOnBarmanEndCorrectSequence();
-                }
-            }
-        }
-        ClearRoutine();
-    }
-
-    void ClearRoutine()
-    {
-        _indexOfSequence++;
-        _currentQTESequence = null;
-        _inputsSucceeded = null;
-        if (_hasHoldStarted)
-        {
-            _holdDelayAcceptanceTimer = _holdDelayAcceptance;
-            _hasHoldStarted = false;
-            _events?.CallOnBarmanEndCorrectSequence();
-        }
-        if (_indexOfSequence < _currentListSequences.Length) // There is a next sequence
-        {
-            StartSequenceDependingOntype();
-        } else // End of the list of sequences
-        {
-            _currentListSequences.Clear();
-            _events?.CallOnQTEComplete();
-        }
-    }
-    //USSED FOR DEBUG
-    public void ChangeController()
-    {
-        _playerController = Players.PlayersController[(int)_role];
-        if (_playerController == null)
-            DeleteCurrentCoroutine();
-
-    }
-    #endregion
+                }            }            yield return null;            //_isSequenceComplete = _inputsSucceeded.ToList().TrueForAll(x => x == QTE_STATE.IS_PRESSED);
+            if (_isSequenceComplete && _currentQTESequence.Status == InputStatus.LONG)            {                _durationHold += (int)(Time.deltaTime * 1000);            }        }        ClearRoutine();    }
+    void ClearRoutine()    {        _indexOfSequence++;        _currentQTESequence = null;
+        _inputsSucceeded = null;
+        if (_indexOfSequence < _currentListSequences.Length) // There is a next sequence        {            StartSequenceDependingOntype();        } else // End of the list of sequences        {            _currentListSequences.Clear();            _events?.CallOnQTEComplete();        }    }    #endregion
 }
 
