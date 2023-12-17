@@ -37,12 +37,12 @@ MonoBehaviour:
     m_PostInfinity: 0
     m_RotationOrder: 4
   phaseData:
+  - usedThisPhase: 0
+    maxScale: 1.1
+    beatPercentage: 0.2
   - usedThisPhase: 1
     maxScale: 1.1
     beatPercentage: 0.2
   - usedThisPhase: 1
-    maxScale: 1.2
-    beatPercentage: 0.2
-  - usedThisPhase: 1
-    maxScale: 1.3
+    maxScale: 1.25
     beatPercentage: 0.2

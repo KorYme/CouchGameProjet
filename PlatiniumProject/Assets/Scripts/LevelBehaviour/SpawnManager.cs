@@ -76,6 +76,7 @@ public class SpawnManager : MonoBehaviour
             go.transform.position += new Vector3(1f, 0f, 0f) * i;
             CharacterAiPuller puller = go.GetComponent<CharacterAiPuller>();
             puller.PullPos = go.transform.position += new Vector3(1f, 0f, 0f) * i;
+            puller.ID = i;
             _characterList[i] = puller;
             _availableCharcters.Add(puller);
         }
@@ -230,11 +231,13 @@ public class SpawnManager : MonoBehaviour
         while (true)
         {
             timer += Time.deltaTime;
+                Debug.Log("PRout2");
             if (timer >= _minMaxSpawnPerMinutes.x)
             {
                 yield return new WaitUntil(() => Globals.DropManager.CanYouLetMeMove && _areaManager.BouncerTransit.Slots[0].Occupant == null);
                 timer = 0f;
                 PullACharacter();
+                Debug.Log("PRout");
             }
             yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }

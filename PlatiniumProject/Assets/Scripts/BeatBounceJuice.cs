@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable]
@@ -14,22 +15,34 @@ public class BeatBounceJuice : MonoBehaviour
 
     private void Start()
     {
+        _initScale = transform.localScale;
+        LoadPhaseData();
         Globals.BeatManager.OnBeatEvent.AddListener(OnBeat);
         Globals.DropManager.OnDropSuccess += LoadPhaseData;
         Globals.DropManager.OnDropFail += LoadPhaseData;
-        _initScale = transform.localScale;
-        LoadPhaseData();
+    }
+
+    private void OnEnable()
+    {
+        Globals.BeatManager?.OnBeatEvent.AddListener(OnBeat);
+    }
+
+    private void OnDisable()
+    {
+        Globals.BeatManager.OnBeatEvent.RemoveListener(OnBeat);
     }
 
     private void LoadPhaseData()
     {
         _phaseIndex++;
-        _currentPhaseData = _data.phaseData[_phaseIndex];
+        if (_phaseIndex < _data.phaseData.Length)
+        {
+            _currentPhaseData = _data.phaseData[_phaseIndex];
+        }
     }
 
     private void OnDestroy()
     {
-        Globals.BeatManager.OnBeatEvent.RemoveListener(OnBeat);
         Globals.DropManager.OnDropSuccess -= LoadPhaseData;
         Globals.DropManager.OnDropFail -= LoadPhaseData;
     }
@@ -58,7 +71,7 @@ public class BeatBounceJuice : MonoBehaviour
             timer += Time.deltaTime;
             percentage = _data.bounceCurve.Evaluate(timer / duration);
             transform.localScale = Vector3.Lerp(_initScale, _initScale * _currentPhaseData.maxScale, percentage);
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
 
         transform.localScale = _initScale;
