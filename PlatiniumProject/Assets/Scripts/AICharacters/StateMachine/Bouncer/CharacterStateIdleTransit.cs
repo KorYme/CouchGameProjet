@@ -8,8 +8,16 @@ public class CharacterStateIdleTransit : CharacterState
 {
     public override void OnBeat()
     {
-        base.OnBeat();
         StateMachine.CharacterAnimation.SetAnim(ANIMATION_TYPE.IDLE);
+        if(!CanLetMeMove)
+            return;
+        
+        StateMachine.CurrentBeatAmount++;
+        if (StateMachine.CurrentBeatAmount >= StateMachine.CharacterDataObject.transitNeatAmountUnitlAction)
+        {
+            StateMachine.CurrentBeatAmount = 0;
+            BeatAction();
+        }
     }
 
     public override void BeatAction()

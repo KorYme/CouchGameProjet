@@ -21,7 +21,6 @@ public class DropManager : MonoBehaviour
     [Header("Wwise Event References"), Space]
     [SerializeField] AK.Wwise.Event _secondMusicStateEvent;
     [SerializeField] AK.Wwise.Event _thirdMusicStateEvent;
-    [SerializeField] AK.Wwise.Event _endMusicStateEvent;
     [SerializeField] AK.Wwise.Event _dropSuccessEvent;
     [SerializeField] AK.Wwise.Event _dropMissEvent;
     [Header("Drop Parameters"), Space]
@@ -144,7 +143,7 @@ public class DropManager : MonoBehaviour
                     {
                         case 1: _secondMusicStateEvent?.Post(gameObject); break;
                         case 2: _thirdMusicStateEvent?.Post(gameObject); break;
-                        case 3: default: OnGameEnd?.Invoke(); _endMusicStateEvent?.Post(gameObject); break;
+                        case 3: default: OnGameEnd?.Invoke(); break;
                     }
                 };
                 break;

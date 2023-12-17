@@ -276,6 +276,21 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="Set_Bus_Volume" ID="{E24821DF-ACB3-4F5D-856F-BB208ACBE661}">
+							<ChildrenList>
+								<Action Name="" ID="{A395CEEB-517A-4BC4-A2AF-627C4F69D65F}" ShortID="374915699">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{661F7AB4-4896-453E-922E-FFB9DCE73304}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Ambiance" ID="{A9E4BA3A-5ACF-48FE-B5AB-BD8C8926CCF1}" ShortID="902256128">
@@ -747,6 +762,17 @@
 											<ObjectRef Name="Music_DND" ID="{9CE00F95-AD7F-4C32-B167-08A7B26751A0}" WorkUnitID="{B2BF242D-98BA-4588-A491-BC6BB1F982B5}"/>
 										</Reference>
 									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Stop_All" ID="{613B77DD-A044-48E4-9706-A063BA1EE023}">
+							<ChildrenList>
+								<Action Name="" ID="{8B2A51A1-19FF-4A9B-A5D0-5A0C1CBC025C}" ShortID="1070360278">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="3"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList/>
 								</Action>
 							</ChildrenList>
 						</Event>

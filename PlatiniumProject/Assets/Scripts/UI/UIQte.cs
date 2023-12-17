@@ -17,10 +17,10 @@ public class UIQte : MonoBehaviour
         for (int i = 0; i < _imagesInput.Length; i++)
         {
             _imagesInput[i].sprite = i < countSprites ? newSprites[i] : null;
-            if (i >= countSprites)
-                _imagesInput[i].color = Color.clear;
         }
+        ModifyDisplay();
     }
 
     protected virtual void ResetDisplay() {}
+    protected virtual void ModifyDisplay() { }
 }

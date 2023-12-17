@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,14 +8,18 @@ public class BarmanQTEController : MonoBehaviour, IListenerBarmanActions
     private BarmanMovement _barmanMovement;
     
     #region Events
-    public event Action<string> OnBarmanQTEStarted;
-    public event Action<string> OnBarmanQTEEnded;
-    public event Action<string> OnBarmanQTEChanged;
+    public event Action<Sprite[], bool[]> OnBarmanQTEStarted;
+    public event Action<Sprite[], bool[]> OnBarmanQTEEnded;
+    public event Action<Sprite[], bool[]> OnBarmanQTEChanged;
+    public event Action<Sprite[], bool[]> OnStartQteAllInputs;
+    public event Action<Sprite[], bool[]> OnStopQteAllInputs;
 
     public UnityEvent OnStartQteAll;
     public UnityEvent OnStopQteAll;
     #endregion
 
+    public float DurationValue => _barmanMovement == null? 0:_barmanMovement.CurrentDuration;
+    private Coroutine _coroutineUpdateValue;
     private WaitingLineBar[] _waitingLines;
     private void Awake()
     {
@@ -38,19 +43,24 @@ public class BarmanQTEController : MonoBehaviour, IListenerBarmanActions
         }
     }
 
-    public void StartQTE(string qteString)
+    public void StartQTE(Sprite[] sprites, bool[] colors)
     {
-        OnBarmanQTEStarted?.Invoke(qteString);
+        OnBarmanQTEStarted?.Invoke(sprites,colors);
     }
 
-    public void ModifyQTE(string qteString)
+    public void ModifyQTE(Sprite[] sprites, bool[] colors)
     {
-        OnBarmanQTEChanged?.Invoke(qteString);
+        OnBarmanQTEChanged?.Invoke(sprites,colors);
     }
 
-    public void EndQTE(string qteString)
+    public void EndQTE(Sprite[] sprites, bool[] colors)
     {
-        OnBarmanQTEEnded?.Invoke(qteString);
+        OnBarmanQTEEnded?.Invoke(sprites, colors);
+        if (_coroutineUpdateValue != null)
+        {
+            StopCoroutine(_coroutineUpdateValue);
+            _coroutineUpdateValue = null;
+        }
     }
 
     public void CallOnBarmanStartCorrectSequence()

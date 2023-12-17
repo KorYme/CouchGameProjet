@@ -12,6 +12,7 @@ public class RumbleController : MonoBehaviour
 
     public void PlayRumbles(string rumbleName)
     {
+        if (!Globals.DataLoader?.AreRumblesActivated ?? true) return;
         RumbleValues rumble = _allRumbles.FirstOrDefault(x => x.rumbleName == rumbleName);
         if (rumble == default(RumbleValues)) return;
         if (rumble.isHolding)

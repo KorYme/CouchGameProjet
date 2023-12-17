@@ -156,7 +156,13 @@ public class CharacterStateMachine : MonoBehaviour
         }
         CurrentState?.EnterState();
     }
-    
+
+    private void OnDestroy()
+    {
+        if (CurrentState == null) return;
+        _beatManager?.OnBeatEvent.RemoveListener(CurrentState.OnBeat);
+    }
+
     private void InitAllState()
     {
         foreach (CharacterState cs in _allState)
