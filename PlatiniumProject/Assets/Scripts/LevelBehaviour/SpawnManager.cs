@@ -239,7 +239,7 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
     }
-
+#if UNITY_EDITOR
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))
@@ -247,4 +247,5 @@ public class SpawnManager : MonoBehaviour
             PullACharacter();
         }
     }
+#endif
 }

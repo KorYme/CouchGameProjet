@@ -483,6 +483,10 @@ PrefabInstance:
       propertyPath: _charaSM
       value: 
       objectReference: {fileID: 8168715017868783817}
+    - target: {fileID: 6377067355659012204, guid: 4c8d51c53f80b964985c228f8b14de22, type: 3}
+      propertyPath: _stateMachine
+      value: 
+      objectReference: {fileID: 8168715017868783817}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

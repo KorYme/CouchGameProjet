@@ -98,3 +98,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ebbf2a38dc9834aa9c0300678f5281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rewiredUIModule: {fileID: 1281966720329714701}
