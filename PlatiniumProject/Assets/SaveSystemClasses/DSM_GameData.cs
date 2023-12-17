@@ -15,6 +15,6 @@ namespace KorYmeLibrary.SaveSystem
    {
         // Create the values you want to save here
         public float GeneralVolume, MusicVolume, SFXVolume;
-        public bool AreRumblesActivated;
+        public bool AreRumblesActivated, IsTutoActivated;
    }
 }
