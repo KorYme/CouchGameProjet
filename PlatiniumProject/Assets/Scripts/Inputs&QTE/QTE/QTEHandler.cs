@@ -409,6 +409,7 @@ public class QTEHandler : MonoBehaviour, IIsControllable
         bool anyWrongInput;
         bool inputValue;
         int indexQteInput = -1;
+        _hasWrongInput = false;
         while ((!_isSequenceComplete && _currentQTESequence.Status == InputStatus.SHORT) || _durationHold < (_currentQTESequence.DurationHold * _timingable.BeatDurationInMilliseconds))
         {
             anyWrongInput = false;
@@ -451,11 +452,13 @@ public class QTEHandler : MonoBehaviour, IIsControllable
             if (anyWrongInput && !_hasWrongInput)
             {
                 _hasWrongInput = true;
+                Debug.Log("START WRONG");
                 //START
             }
             else if (!anyWrongInput && _hasWrongInput)
             {
                 _hasWrongInput = false;
+                Debug.Log("END WRONG");
                 //END
             }
         }
