@@ -89,6 +89,7 @@ public class DJQTEController : MonoBehaviour, IQTEable
     #region IQTEable
     public void OnQTEStarted()
     {
+        //Debug.Log(_qteHandler.GetQTEString());
         OnDJQTEStarted?.Invoke(_qteHandler.GetQTESprites());
     }
 

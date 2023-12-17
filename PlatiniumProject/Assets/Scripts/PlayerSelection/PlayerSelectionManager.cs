@@ -115,7 +115,6 @@ public class PlayerSelectionManager : MonoBehaviour
     private void CreateInstancePlayerSelection(int indexCharacterAtStart)
     {
         PlayerSelection instancePrefab = Instantiate(_prefabPlayerSelection, transform);
-        int indexPlayer = _playersController.Count;
         instancePrefab.SetUp(indexCharacterAtStart, _objectsSelectionable.Length);
         instancePrefab.OnAccept += OnAcceptPlayer;
         instancePrefab.OnReturn += OnReturnPlayer;

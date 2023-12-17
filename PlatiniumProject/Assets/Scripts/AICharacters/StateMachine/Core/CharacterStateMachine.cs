@@ -150,7 +150,6 @@ public class CharacterStateMachine : MonoBehaviour
         }
         PreviousState = CurrentState;
         CurrentState = state;
-        Debug.Log($"{Puller.ID} state: {PreviousState} to {CurrentState}");
         if (CurrentState != null)
         {
             _beatManager.OnBeatEvent.AddListener(CurrentState.OnBeat);
