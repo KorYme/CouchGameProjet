@@ -34,8 +34,12 @@ public class CSVLoader : MonoBehaviour
 
     private void Awake()
     {
-        if(Globals.DataControllerType == null) 
-            Globals.DataControllerType = this;
+        if (Globals.DataControllerType != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Globals.DataControllerType = this;
         if (_textAssetData != null)
             ReadCSV();
     }
