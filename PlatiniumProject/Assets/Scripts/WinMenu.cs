@@ -72,10 +72,18 @@ public class WinMenu : MonoBehaviour
             _flame.localPosition = new Vector3(0, Mathf.Lerp(_flameMinMaxPos.x, _flameMinMaxPos.y, Mathf.Clamp01((_actualScore / (float)_clientMaxAmountForFlames))), 0);
             yield return null;
         }
-
-        // yield return new WaitForSeconds(2f);
-        // sequence.Kill();
-        // _winMenu.gameObject.SetActive(false);
+        
+        yield return new WaitUntil(() =>
+        {
+            for (int i = 0; i < 3; ++i)
+            {
+                if (PlayerInputsAssigner.GetRewiredPlayerById(i)?.GetAnyButtonDown() ?? false)
+                    return true;
+            }
+            return false;
+        });
+        SceneManager.LoadScene("MainMenu");
+        sequence.Kill();
     }
 
     private void Update()
