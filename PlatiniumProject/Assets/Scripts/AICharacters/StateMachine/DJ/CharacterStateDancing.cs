@@ -32,6 +32,12 @@ public class CharacterStateDancing : CharacterState
         if(!Globals.DropManager.CanYouLetMeMove)
             return;
 
+        if (StateMachine.CharacterTypeData.Evilness == Evilness.EVIL)
+        {
+            StateMachine.CharacterAnimation.SetAnim(ANIMATION_TYPE.DANCING);
+            return;
+        }
+        
         switch (StateMachine.Satisafaction.CurrentState)
         {
             case CharacterAIStatisfaction.SATISFACTION_STATE.BORED:

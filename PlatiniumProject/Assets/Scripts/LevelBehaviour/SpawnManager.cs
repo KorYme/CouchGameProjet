@@ -76,6 +76,7 @@ public class SpawnManager : MonoBehaviour
             go.transform.position += new Vector3(1f, 0f, 0f) * i;
             CharacterAiPuller puller = go.GetComponent<CharacterAiPuller>();
             puller.PullPos = go.transform.position += new Vector3(1f, 0f, 0f) * i;
+            puller.ID = i;
             _characterList[i] = puller;
             _availableCharcters.Add(puller);
         }

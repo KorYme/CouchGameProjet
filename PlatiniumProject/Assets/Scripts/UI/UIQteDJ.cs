@@ -87,6 +87,17 @@ public class UIQteDJ : UIQte
                 _imagesInput[i].transform.DOScale(_initialSpriteInfos[i - 1].ScaleSprite, _durationAnimation);
             }
         }
+        /*for (int i = 0; i < _imagesInput.Length; i++)
+        {
+            if (i < _imagesInput.Length - 1)
+            {
+                _imagesInput[i].sprite = _imagesInput[i + 1].sprite;
+            } else
+            {
+                _imagesInput[i].sprite = NextSprite;
+            }
+            _imagesInput[i].color = _imagesInput[i].sprite == null ? Color.clear : _initialSpriteInfos[i].ColorSprite;
+        }*/
     }
     private void ResetInputs()
     {
@@ -117,6 +128,20 @@ public class UIQteDJ : UIQte
     protected override void ResetDisplay()
     {
         _needRestart = false;
+        for (int i = 0; i < _imagesInput.Length; i++)
+        {
+            if (i != _imagesInput.Length - 1)
+            {
+                _imagesInput[i].color = _initialSpriteInfos[i].ColorSprite;
+            }
+            else
+            {
+                _imagesInput[i].sprite = NextSprite;
+                _imagesInput[i].color = Color.clear;
+            }
+            _imagesInput[i].transform.localPosition = _initialSpriteInfos[i].PositionSprite;
+            _imagesInput[i].transform.localScale = _initialSpriteInfos[i].ScaleSprite;
+        }
         //SnapImagesToEndAnimation();
     }
     protected override void ModifyDisplay()

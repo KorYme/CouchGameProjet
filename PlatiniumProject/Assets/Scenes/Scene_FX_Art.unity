@@ -4696,8 +4696,36 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1903591641}
     m_Modifications:
+    - target: {fileID: 663879067481485866, guid: de242676073561645927a61b1c7621f9, type: 3}
+      propertyPath: simulationSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 663879067481485866, guid: de242676073561645927a61b1c7621f9, type: 3}
+      propertyPath: TrailModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 663879067481485866, guid: de242676073561645927a61b1c7621f9, type: 3}
+      propertyPath: LightsModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 663879067481485866, guid: de242676073561645927a61b1c7621f9, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 663879067481485866, guid: de242676073561645927a61b1c7621f9, type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 663879067481485866, guid: de242676073561645927a61b1c7621f9, type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2366956472899953712, guid: de242676073561645927a61b1c7621f9, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2366956472899953712, guid: de242676073561645927a61b1c7621f9, type: 3}
+      propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3088636832259683446, guid: de242676073561645927a61b1c7621f9, type: 3}
@@ -4706,11 +4734,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3088636832259683446, guid: de242676073561645927a61b1c7621f9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5983067201234542739, guid: de242676073561645927a61b1c7621f9, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8883795882005213814, guid: de242676073561645927a61b1c7621f9, type: 3}
       propertyPath: m_Pivot.x
@@ -4817,6 +4845,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Amen_popup
       objectReference: {fileID: 0}
+    - target: {fileID: 6266234662105815837, guid: 609f0ff5619a9944d930b11d884f3536, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7020306320696625900, guid: 609f0ff5619a9944d930b11d884f3536, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4896,6 +4928,10 @@ PrefabInstance:
     - target: {fileID: 7020306320696625900, guid: 609f0ff5619a9944d930b11d884f3536, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8823559496367897364, guid: 609f0ff5619a9944d930b11d884f3536, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
