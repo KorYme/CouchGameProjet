@@ -43,15 +43,27 @@ public class DataLoader : MonoBehaviour, IDataSaveable<GameData>
         }
     }
 
-    bool _areRumbleActivated;
+    bool _areRumblesActivated;
     public event Action<bool> OnRumbleActivated;
     public bool AreRumblesActivated
     {
-        get => _areRumbleActivated;
+        get => _areRumblesActivated;
         set
         {
-            _areRumbleActivated = value;
+            _areRumblesActivated = value;
             OnRumbleActivated?.Invoke(value);
+        }
+    }
+
+    bool _isTutoActivated;
+    public event Action<bool> OnTutoActivated;
+    public bool IsTutoActivated
+    {
+        get => _isTutoActivated;
+        set
+        {
+            _isTutoActivated = value;
+            OnTutoActivated?.Invoke(value);
         }
     }
 
@@ -82,6 +94,7 @@ public class DataLoader : MonoBehaviour, IDataSaveable<GameData>
         MusicVolume = .5f;
         SFXVolume = .5f;
         AreRumblesActivated = true;
+        IsTutoActivated = true;
     }
 
     public void LoadData(GameData gameData)
@@ -90,6 +103,7 @@ public class DataLoader : MonoBehaviour, IDataSaveable<GameData>
         MusicVolume = gameData.MusicVolume;
         SFXVolume = gameData.SFXVolume;
         AreRumblesActivated = gameData.AreRumblesActivated;
+        IsTutoActivated = gameData.IsTutoActivated;
     }
 
     public void SaveData(ref GameData gameData)
@@ -98,5 +112,6 @@ public class DataLoader : MonoBehaviour, IDataSaveable<GameData>
         gameData.MusicVolume = MusicVolume;
         gameData.SFXVolume = SFXVolume;
         gameData.AreRumblesActivated = AreRumblesActivated;
+        gameData.IsTutoActivated = IsTutoActivated;
     }
 }
