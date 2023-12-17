@@ -35,7 +35,6 @@ public class CharacterStateMachine : MonoBehaviour
     };
     
     #region Propreties
-    public Vector3 PullPos { get; set; }
     public bool RandomiseSatisfaction { get; set; }
     private CharacterState StartState => IdleTransitState;
     public bool UseTp { get; set; }
@@ -134,6 +133,7 @@ public class CharacterStateMachine : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException(nameof(startState));
         }
+
     }
 
     private void Update()
@@ -150,6 +150,7 @@ public class CharacterStateMachine : MonoBehaviour
         }
         PreviousState = CurrentState;
         CurrentState = state;
+        Debug.Log($"{Puller.ID} state: {PreviousState} to {CurrentState}");
         if (CurrentState != null)
         {
             _beatManager.OnBeatEvent.AddListener(CurrentState.OnBeat);
@@ -181,5 +182,8 @@ public class CharacterStateMachine : MonoBehaviour
         CurrentState = null;
         NextState = null;
         RandomiseSatisfaction = false;
+        CurrentWaitingLine = null;
+        UseTp = false;
+        CurrentSlot = null;
     }
 }
