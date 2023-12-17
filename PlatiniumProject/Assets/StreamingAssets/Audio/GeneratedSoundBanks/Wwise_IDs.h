@@ -55,6 +55,7 @@ namespace AK
         static const AkUniqueID SET_STATE_PHASE_1 = 2127083549U;
         static const AkUniqueID SET_STATE_PHASE_2 = 2127083550U;
         static const AkUniqueID SET_STATE_PHASE_3 = 2127083551U;
+        static const AkUniqueID STOP_ALL = 452547817U;
         static const AkUniqueID STOP_MUSIC_MENU = 106912753U;
     } // namespace EVENTS
 

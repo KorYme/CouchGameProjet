@@ -17,6 +17,8 @@ public class BeatManager : MonoBehaviour, ITimingable
     [SerializeField] AK.Wwise.Event _firstMusicStateEvent;
     [SerializeField] AK.Wwise.Event _pauseMusicEvent;
     [SerializeField] AK.Wwise.Event _resumeMusicEvent;
+    [SerializeField] AK.Wwise.Event _endMusicStateEvent;
+    [SerializeField] AK.Wwise.Event _gameOverSoundEvent;
 
     [Header("Parameters"), Space]
     [SerializeField, Range(0f, .5f), Tooltip("Timing window before the beat which allows input")]
@@ -111,6 +113,7 @@ public class BeatManager : MonoBehaviour, ITimingable
             (uint)AkCallbackType.AK_MusicSyncGrid | (uint)AkCallbackType.AK_MusicSyncUserCue | (uint)AkCallbackType.AK_MusicSyncEntry | (uint)AkCallbackType.AK_MusicSyncExit, 
             BeatCallBack);
         (Globals.TutorialManager.UseTutorial ? _introMusicStateEvent : _firstMusicStateEvent)?.Post(gameObject);
+        
     }
 
     private void BeatCallBack(object in_cookie, AkCallbackType in_type, AkCallbackInfo in_info)
@@ -173,8 +176,19 @@ public class BeatManager : MonoBehaviour, ITimingable
 
     public void StopBeat()
     {
+        OnNextEntryCue = null;
+        OnNextExitCue = null;
         StopCoroutine(_beatCoroutine);
         _lastBeatTime = DateTime.Now;
+        IsPlaying = false;
+        _pauseMusicEvent?.Post(gameObject);
+        _endMusicStateEvent?.Post(gameObject);
+        _gameOverSoundEvent?.Post(gameObject, (uint)AkCallbackType.AK_EndOfEvent, (x, y, z) =>
+        {
+            Debug.Log("Musique FINIE");
+        });
     }
+
+    public void ResumeMusicMenu() => _resumeMusicEvent?.Post(gameObject);
     #endregion
 }

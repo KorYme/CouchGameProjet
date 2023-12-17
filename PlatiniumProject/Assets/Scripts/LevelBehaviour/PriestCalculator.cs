@@ -21,9 +21,6 @@ public class PriestCalculator : MonoBehaviour
     [Header("References")]
     [SerializeField] private CheckerBoard _danceFloor;
     public List<CharacterStateMachine> CurrentPriestList;
-
-    [Header("Lose")]
-    [SerializeField] private int _timeUntilDefeateScreen;
     
     public EXORCIZE_STATE ExorcizeState { get; private set; } = EXORCIZE_STATE.NORMAL;
     
@@ -40,15 +37,16 @@ public class PriestCalculator : MonoBehaviour
 
     private void Start()
     {
-        Globals.DropManager.OnDropSuccess += DropSucced;
+        Globals.DropManager.OnDropSuccess += DropSucceed;
+        OnPriestExorcize += Globals.BeatManager.StopBeat;
     }
 
     private void OnDisable()
     {
-        Globals.DropManager.OnDropSuccess -= DropSucced;
+        Globals.DropManager.OnDropSuccess -= DropSucceed;
     }
 
-    public void DropSucced()
+    public void DropSucceed()
     {
         CleanPriests();
         ExorcizeState = EXORCIZE_STATE.NORMAL;
@@ -71,13 +69,12 @@ public class PriestCalculator : MonoBehaviour
             ExorcizeState = EXORCIZE_STATE.EXORCIZING;
             OnPriestNearToExorcize?.Invoke();
         }
-        else if (CurrentPriestList.Count == _priestAmountToExorcize)
+        if (CurrentPriestList.Count == _priestAmountToExorcize)
         {
             Debug.Log("GAME OVER");
             ExorcizeState = EXORCIZE_STATE.EXORCIZED;
             OnPriestExorcize?.Invoke();
             OnLoose?.Invoke();
-            Invoke("CallGameOverScreen", _timeUntilDefeateScreen);
         }
     }
 
