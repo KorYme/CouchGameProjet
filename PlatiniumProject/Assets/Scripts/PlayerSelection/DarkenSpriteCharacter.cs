@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DarkenSpriteCharacter : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class DarkenSpriteCharacter : MonoBehaviour
     int _nbPlayersOnCharacter = 0;
     [SerializeField] int _indexCharacter = 0;
     [SerializeField] float _colorTransitionDuration = 0.2f;
+    [SerializeField] UnityEvent _onPlayerMove;
     Color _targetColor;
     Coroutine _routineChangeLight;
 
@@ -47,6 +49,7 @@ public class DarkenSpriteCharacter : MonoBehaviour
 
     private void OnPlayerMove(int indexPlayer, int newCharacter,int lastCharacter)
     {
+        _onPlayerMove?.Invoke();
         if (newCharacter == _indexCharacter)
         {
             _nbPlayersOnCharacter++;

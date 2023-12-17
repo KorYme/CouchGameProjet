@@ -14,48 +14,50 @@ public enum QTE_STATE
 
 public class QTEHandler : MonoBehaviour, IIsControllable
 {
+    #region Variables
     [SerializeField] float thresholdDirectionJoystick = 0.9f;
     [SerializeField] PlayerRole _role;
     [SerializeField] bool _inputsAreOnBeat = true;
     [SerializeField] bool _includeLeftJoystick = true;
     [SerializeField] bool _includeRightJoystick = true;
 
-    protected PlayerInputController _playerController;
+    PlayerInputController _playerController;
+    InputDevice _deviceOfPlayer;
     ITimingable _timingable;
-    protected QTEHandlerEvents _events = new();
+    QTEHandlerEvents _events = new();
 
-    protected Coroutine _coroutineQTE;
-    protected QTEListSequences _currentListSequences;
-    protected QTESequence _currentQTESequence;
-    protected QTE_STATE[] _inputsSucceeded;
+    Coroutine _coroutineQTE;
+    QTEListSequences _currentListSequences;
+    QTESequence _currentQTESequence;
+    QTE_STATE[] _inputsSucceeded;
     List<InputClass> _inputsQTE;
+    public bool[] InputsSucceeded { get => _currentListSequences == null? null:_currentListSequences.InputsSucceeded; }
 
-    protected int _indexOfSequence = 0;
-    protected int _indexInSequence = 0;
-    protected int _indexInListSequences = 0;
-    protected bool _isSequenceComplete = false;
-    protected int _durationHold = 0;
+    int _indexOfSequence = 0;
+    int _indexInSequence = 0;
+    int _indexInListSequences = 0;
+    bool _isSequenceComplete = false;
+    int _durationHold = 0;
+    public float DurationValue { get => _currentQTESequence == null || _timingable == null ? 0 : _durationHold / (float)(_currentQTESequence.DurationHold * _timingable.BeatDurationInMilliseconds); }
+    bool _hasHoldStarted = false;
+    [SerializeField] float _holdDelayAcceptance = 0.5f;
+    float _holdDelayAcceptanceTimer;
 
     CheckHasInputThisBeat _checkInputThisBeat;
     bool _waitForCorrectInput = false;
+    #endregion
+    #region Properties
     public bool WaitForCorrectInput {
         get => _waitForCorrectInput;
-        set
-        {
-            _waitForCorrectInput = value;
-        }
+        set => _waitForCorrectInput = value;
     }
 
     public int LengthInputs { get; private set; }
     public int NbInputsLeft {
-        get {
-            if(_currentListSequences == null || _currentListSequences.Length == 0)
-            {
-                return 0;
-            }
-            return _currentListSequences.TotalLengthInputs - _indexInListSequences;
-        }
+        get => _currentListSequences == null || _currentListSequences.Length == 0 ? 0 : _currentListSequences.TotalLengthInputs - _indexInListSequences;
     }
+    public int IndexInListSequences => _indexInListSequences;
+    #endregion
     #region UnityEvents
     [SerializeField] UnityEvent _onMissedInput;
     [SerializeField] UnityEvent _onMissedInputDisableNextBeat;
@@ -64,6 +66,7 @@ public class QTEHandler : MonoBehaviour, IIsControllable
     private void Awake()
     {
         _currentListSequences = new QTEListSequences();
+        _holdDelayAcceptanceTimer = _holdDelayAcceptance;
     }
 
     private IEnumerator Start()
@@ -76,14 +79,16 @@ public class QTEHandler : MonoBehaviour, IIsControllable
         _inputsQTE = new List<InputClass>();
         CreateListInputsListened();
         StartCoroutine(RoutineResetInput());
+        yield return new WaitUntil(() => PlayerInputsAssigner.GetDeviceByRole(_role) != InputDevice.None);
+        _deviceOfPlayer = PlayerInputsAssigner.GetDeviceByRole(_role);
     }
     IEnumerator RoutineResetInput()
     {
         while (true)
         {
-            yield return new WaitUntil(() => _timingable.BeatDeltaTime > _timingable.BeatDurationInMilliseconds / 2f);
+            yield return new WaitUntil(() => _timingable.BeatDeltaTimeInMilliseconds > _timingable.BeatDurationInMilliseconds / 2f);
             _checkInputThisBeat.ResetInputThisBeat();
-            yield return new WaitUntil(() => _timingable.BeatDeltaTime < _timingable.BeatDurationInMilliseconds / 2f);
+            yield return new WaitUntil(() => _timingable.BeatDeltaTimeInMilliseconds < _timingable.BeatDurationInMilliseconds / 2f);
         }
     }
 
@@ -97,7 +102,6 @@ public class QTEHandler : MonoBehaviour, IIsControllable
     {
         _events?.RegisterQTEable(QTEable);
     }
-
     public void UnregisterListener(IQTEable QTEable)
     {
         _events?.UnregisterQTEable(QTEable);
@@ -106,10 +110,18 @@ public class QTEHandler : MonoBehaviour, IIsControllable
     {
         _events?.RegisterMissedInputListener(QTEable);
     }
-
     public void UnregisterListener(IMissedInputListener QTEable)
     {
         _events?.UnregisterMissedInputListener(QTEable);
+    }
+    
+    public void RegisterListener(IListenerBarmanActions QTEable)
+    {
+        _events?.RegisterBarmanListener(QTEable);
+    }
+    public void UnregisterListener(IListenerBarmanActions QTEable)
+    {
+        _events?.UnregisterBarmanListener(QTEable);
     }
     #endregion
 
@@ -189,16 +201,7 @@ public class QTEHandler : MonoBehaviour, IIsControllable
         }
         return total;
     }
-    public void ResetQTE()
-    {
-        if (_currentListSequences.Length > 0)
-        {
-            _indexOfSequence = 0;
-            _currentListSequences.SetUpList();
-            StartSequenceDependingOntype();
-        }
-    }
-    private void StartSequenceDependingOntype()
+    private void StartSequenceDependingOntype(bool isStarting = true)
     {
         _indexInSequence = 0;
         _currentQTESequence = _currentListSequences.GetSequence(_indexOfSequence);
@@ -207,7 +210,10 @@ public class QTEHandler : MonoBehaviour, IIsControllable
         {
             _inputsSucceeded[i] = QTE_STATE.NEED_RELEASE;
         }
-        _events?.CallOnQTEStarted();
+        if (isStarting)
+        {
+            _events?.CallOnQTEStarted();
+        }
         
         switch (_currentQTESequence.SequenceType)
         {
@@ -238,6 +244,11 @@ public class QTEHandler : MonoBehaviour, IIsControllable
         {
             StopCoroutine(_coroutineQTE);
             _coroutineQTE = null;
+        }
+        if (_hasHoldStarted)
+        {
+            _hasHoldStarted = false;
+            _events?.CallOnBarmanEndCorrectSequence();
         }
     }
 
@@ -295,6 +306,15 @@ public class QTEHandler : MonoBehaviour, IIsControllable
         }
         return String.Empty;
     }
+
+    public Sprite[] GetQTESprites()
+    {
+        if (_currentListSequences != null && _currentListSequences.Length > 0)
+        {
+            return _currentListSequences.ToSprites(_deviceOfPlayer);
+        }
+        return null;
+    }
     void CheckInputs(int expectedActionID) //SHORT
     {
         if (!_checkInputThisBeat.HadInputThisBeat)
@@ -350,9 +370,8 @@ public class QTEHandler : MonoBehaviour, IIsControllable
             }
         } else //Input miss (not during timing)
         {
-            if (_timingable.BeatDeltaTime > _timingable.BeatDurationInMilliseconds / 2f)
+            if (_timingable.BeatDeltaTimeInMilliseconds > _timingable.BeatDurationInMilliseconds / 2f)
             {
-                Debug.Log("DEACTIVATE BEAT");
                 _onMissedInputDisableNextBeat.Invoke();
             }
             _onMissedInput.Invoke();
@@ -368,7 +387,7 @@ public class QTEHandler : MonoBehaviour, IIsControllable
         while (_indexInSequence < _currentQTESequence.ListSubHandlers.Count)
         {
             CheckInputs(_currentQTESequence.ListSubHandlers[_indexInSequence].ActionIndex);
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
         ClearRoutine();
     }
@@ -391,12 +410,13 @@ public class QTEHandler : MonoBehaviour, IIsControllable
             for (int i = 0; i < _currentQTESequence.ListSubHandlers.Count; i++)
             {
                 if (inputs[i] == null) continue;
-                bool inputValue = _currentQTESequence.ListSubHandlers[i].UseForShake ? (inputs[i] as InputVector2)?.IsMoving ?? false : inputs[i].IsPerformed;
+                bool inputValue = _currentQTESequence.ListSubHandlers[i].UseForShake ? (inputs[i] as InputVector2)?.IsMoving ?? false: inputs[i].IsPerformed;
                 switch (_inputsSucceeded[i])
                 {
                     case QTE_STATE.NEED_PRESS:
                         if (inputValue)
                         {
+                            _holdDelayAcceptanceTimer = 0f;
                             _inputsSucceeded[i] = QTE_STATE.IS_PRESSED;
                             _currentListSequences.SetInputSucceeded(i, QTE_STATE.IS_PRESSED);
                             _events?.CallOnCorrectInput();
@@ -412,21 +432,38 @@ public class QTEHandler : MonoBehaviour, IIsControllable
                     case QTE_STATE.IS_PRESSED:
                         if (!inputValue)
                         {
-                            _inputsSucceeded[i] = QTE_STATE.NEED_PRESS;
-                            _currentListSequences.SetInputSucceeded(i, QTE_STATE.NEED_PRESS);
-                            _events?.CallOnWrongInput();
+                            if (_holdDelayAcceptanceTimer < _holdDelayAcceptance)
+                            {
+                                _holdDelayAcceptanceTimer += Time.deltaTime;
+                            } else {
+                                _inputsSucceeded[i] = QTE_STATE.NEED_PRESS;
+                                _currentListSequences.SetInputSucceeded(i, QTE_STATE.NEED_PRESS);
+                                _events?.CallOnWrongInput();
+                            }
                         }
                         break;
                     default:
                         break;
                 }
             }
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
             _isSequenceComplete = _inputsSucceeded.ToList().TrueForAll(x => x == QTE_STATE.IS_PRESSED);
-
-            if (_isSequenceComplete && _currentQTESequence.Status == InputStatus.LONG)
+            if (_currentQTESequence.Status == InputStatus.LONG)
             {
-                _durationHold += (int)(Time.deltaTime * 1000);
+                if (_isSequenceComplete)
+                {
+                    if (!_hasHoldStarted)
+                    {
+                        _hasHoldStarted = true;
+                        _events?.CallOnBarmanStartCorrectSequence();
+                    }
+                    _durationHold += (int)(Time.deltaTime * 1000); //Convert in milliseconds
+                } else if (_hasHoldStarted)
+                {
+                    _holdDelayAcceptanceTimer = _holdDelayAcceptance;
+                    _hasHoldStarted = false;
+                    _events?.CallOnBarmanEndCorrectSequence();
+                }
             }
         }
         ClearRoutine();
@@ -437,17 +474,22 @@ public class QTEHandler : MonoBehaviour, IIsControllable
         _indexOfSequence++;
         _currentQTESequence = null;
         _inputsSucceeded = null;
-
+        if (_hasHoldStarted)
+        {
+            _holdDelayAcceptanceTimer = _holdDelayAcceptance;
+            _hasHoldStarted = false;
+            _events?.CallOnBarmanEndCorrectSequence();
+        }
         if (_indexOfSequence < _currentListSequences.Length) // There is a next sequence
         {
-            StartSequenceDependingOntype();
+            StartSequenceDependingOntype(false);
         } else // End of the list of sequences
         {
             _currentListSequences.Clear();
             _events?.CallOnQTEComplete();
         }
     }
-
+    //USSED FOR DEBUG
     public void ChangeController()
     {
         _playerController = Players.PlayersController[(int)_role];

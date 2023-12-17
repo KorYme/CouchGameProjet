@@ -21,6 +21,7 @@ public class BeatSign : MonoBehaviour
     [SerializeField] private RectTransform _fillRight;
     private float _currenSliderValue;
     private float _pingPong;
+    Coroutine _beatSign;
     
     private float CurrentSliderValue
     {
@@ -37,36 +38,52 @@ public class BeatSign : MonoBehaviour
     }
     void Start()
     {
-        Globals.BeatManager.OnNextBeat += () => StartBeat();
-
-    }
-    
-    private void StartBeat()
-    {
-        _currentBeatDuration = Globals.BeatManager.BeatDurationInMilliseconds / 1000f;
-        _sliderLeft.maxValue = _currentBeatDuration;
-        _sliderRight.maxValue = _currentBeatDuration;
+        Globals.BeatManager.OnBeatDurationChanged += StartBeat;
         switch (_displayStyle)
         {
             case DISPLAY_STYLE.EDGE_TO_CENTER_INCREMENTAL:
                 _sliderRight.transform.localScale = new Vector3(-_sliderRight.transform.localScale.x,_sliderLeft.transform.localScale.y, _sliderLeft.transform.localScale.z);
-                StartCoroutine(SliderIncrementalRoutine());
                 break;
             case DISPLAY_STYLE.EDGE_TO_CENTER_DECREMENTAL:
                 _sliderLeft.transform.localScale = new Vector3(-_sliderLeft.transform.localScale.x,_sliderLeft.transform.localScale.y, _sliderLeft.transform.localScale.z);
                 _fillLeft.localScale = new Vector3(-_fillLeft.localScale.x,_fillLeft.localScale.y, _fillLeft.localScale.z);
                 _fillRight.localScale = new Vector3(-_fillRight.localScale.x,_fillRight.localScale.y, _fillRight.localScale.z);
-                StartCoroutine(SliderDecrementalRoutine());
                 break;
             case DISPLAY_STYLE.CENTER_TO_EDGE_INCREMENTAL:
                 _sliderLeft.transform.localScale = new Vector3(-_sliderLeft.transform.localScale.x,_sliderLeft.transform.localScale.y, _sliderLeft.transform.localScale.z);
                 _fillLeft.localScale = new Vector3(-_fillLeft.localScale.x,_fillLeft.localScale.y, _fillLeft.localScale.z);
                 _fillRight.localScale = new Vector3(-_fillRight.localScale.x,_fillRight.localScale.y, _fillRight.localScale.z);
-                StartCoroutine(SliderIncrementalRoutine());
                 break;
             case DISPLAY_STYLE.CENTER_TO_EDGE_DECREMENTAL:
                 _sliderRight.transform.localScale = new Vector3(-_sliderRight.transform.localScale.x,_sliderLeft.transform.localScale.y, _sliderLeft.transform.localScale.z);
-                StartCoroutine(SliderDecrementalRoutine());
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+    
+    private void StartBeat(int beatDurationInMilliseconds)
+    {
+        _currentBeatDuration = beatDurationInMilliseconds / 1000f;
+        _sliderLeft.maxValue = _currentBeatDuration;
+        _sliderRight.maxValue = _currentBeatDuration;
+        if (_beatSign != null)
+        {
+            StopCoroutine(_beatSign);
+        }
+        switch (_displayStyle)
+        {
+            case DISPLAY_STYLE.EDGE_TO_CENTER_INCREMENTAL:
+                _beatSign = StartCoroutine(SliderIncrementalRoutine());
+                break;
+            case DISPLAY_STYLE.EDGE_TO_CENTER_DECREMENTAL:
+                _beatSign = StartCoroutine(SliderDecrementalRoutine());
+                break;
+            case DISPLAY_STYLE.CENTER_TO_EDGE_INCREMENTAL:
+                _beatSign = StartCoroutine(SliderIncrementalRoutine());
+                break;
+            case DISPLAY_STYLE.CENTER_TO_EDGE_DECREMENTAL:
+                _beatSign = StartCoroutine(SliderDecrementalRoutine());
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -75,22 +92,29 @@ public class BeatSign : MonoBehaviour
 
     private IEnumerator SliderIncrementalRoutine()
     {
+        CurrentSliderValue = 0f;
+        _pingPong = 0f;
+        float timer = 0f;
         while (true)
         {
-            _pingPong = Mathf.Repeat( Time.time,_currentBeatDuration);
+            timer += Time.deltaTime;
+            _pingPong = Mathf.Repeat(timer, _currentBeatDuration);
             CurrentSliderValue = Mathf.Lerp(0f, _currentBeatDuration, _pingPong / _currentBeatDuration);
-            //Debug.Log();
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
     }
 
     private IEnumerator SliderDecrementalRoutine()
     {
+        CurrentSliderValue = 0f;
+        _pingPong = 0f;
+        float timer = 0f;
         while (true)
         {
-            _pingPong = Mathf.Repeat( Time.time, _currentBeatDuration);
+            timer += Time.deltaTime;
+            _pingPong = Mathf.Repeat(timer, _currentBeatDuration);
             CurrentSliderValue = _currentBeatDuration  - Mathf.Lerp(0f, _currentBeatDuration, _pingPong / _currentBeatDuration);
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
     }
 }

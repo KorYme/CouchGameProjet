@@ -18,9 +18,9 @@ public class FollowingLightPosition : MonoBehaviour
             while (true)
             {
                 transform.position = Vector3.SmoothDamp(transform.position, _target.position + (Vector3)_offset, ref _velocity, _timeToReachPosition);
-                yield return null;
+                yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
             }
         }
-        yield return null;
+        yield break;
     }
 }

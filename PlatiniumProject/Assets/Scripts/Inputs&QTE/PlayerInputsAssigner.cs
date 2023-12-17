@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using System.Collections.Generic;
 using Rewired;
@@ -14,16 +13,22 @@ public enum PlayerRole
 }
 public class PlayerMap
 {
-    public int rewiredPlayerId;
-    public int gamePlayerId;
-    public PlayerRole role;
-    public ControllerType type;
+    public int RewiredPlayerId;
+    public int GamePlayerId;
+    public PlayerRole Role;
+    public ControllerType Type;
+    public InputDevice Device = InputDevice.XBox;
     public PlayerMap(int rewiredPlayerId, int gamePlayerId, ControllerType type, PlayerRole role)
     {
-        this.rewiredPlayerId = rewiredPlayerId;
-        this.gamePlayerId = gamePlayerId;
-        this.type = type;
-        this.role = role;
+        RewiredPlayerId = rewiredPlayerId;
+        GamePlayerId = gamePlayerId;
+        Type = type;
+        Role = role;
+    }
+
+    public PlayerMap(int rewiredPlayerId, int gamePlayerId, ControllerType type, PlayerRole role,InputDevice device) : this (rewiredPlayerId, gamePlayerId, type, role)
+    {
+        Device = device;
     }
 }
 public class PlayerInputsAssigner : MonoBehaviour {
@@ -36,6 +41,8 @@ public class PlayerInputsAssigner : MonoBehaviour {
     public event Action OnPlayerJoined;
     private static PlayerInputsAssigner _instance;
     int _indexRoleKB = 0;
+    CSVLoader _csvLoader;
+
     #region GetPlayer
     public static Rewired.Player GetRewiredPlayerByRole(PlayerRole role) {
         if(!Rewired.ReInput.isReady) return null;
@@ -45,8 +52,8 @@ public class PlayerInputsAssigner : MonoBehaviour {
         }
         for(int i = 0; i < _instance._playerMap.Count; i++) {
             
-            if (_instance._playerMap[i].role == role) {
-                return ReInput.players.GetPlayer(_instance._playerMap[i].rewiredPlayerId); 
+            if (_instance._playerMap[i].Role == role) {
+                return ReInput.players.GetPlayer(_instance._playerMap[i].RewiredPlayerId); 
             }
         }
         return null;
@@ -61,12 +68,30 @@ public class PlayerInputsAssigner : MonoBehaviour {
         }
         for (int i = 0; i < _instance._playerMap.Count; i++)
         {
-            if (_instance._playerMap[i].gamePlayerId == playerId)
+            if (_instance._playerMap[i].GamePlayerId == playerId)
             {
-                return ReInput.players.GetPlayer(_instance._playerMap[i].rewiredPlayerId);
+                return ReInput.players.GetPlayer(_instance._playerMap[i].RewiredPlayerId);
             }
         }
         return null;
+    }
+
+    public static InputDevice GetDeviceByRole(PlayerRole role)
+    {
+        if (!Rewired.ReInput.isReady) return InputDevice.None;
+        if (_instance == null)
+        {
+            Debug.LogError("Not initialized.");
+            return InputDevice.None;
+        }
+        for (int i = 0; i < _instance._playerMap.Count; i++)
+        {
+            if (_instance._playerMap[i].Role == role)
+            {
+                return _instance._playerMap[i].Device;
+            }
+        }
+        return InputDevice.None;
     }
     #endregion
     private List<PlayerMap> _playerMap; // Maps Rewired Player ids to game player ids
@@ -83,7 +108,10 @@ public class PlayerInputsAssigner : MonoBehaviour {
         Globals.PlayerInputsAssigner ??= this;
         _instance = this;
     }
-
+    private void Start()
+    {
+        _csvLoader = Globals.DataControllerType;
+    }
     void Update() {
 
         if (_playerMap.Count < MAXPLAYERS)
@@ -93,7 +121,7 @@ public class PlayerInputsAssigner : MonoBehaviour {
             {
                 if (ReInput.players.GetPlayer(i).GetButtonDown("JoinGame"))
                 {
-                    AssignNextPlayer(i, ReInput.players.GetPlayer(i).controllers.GetLastActiveController().type);
+                    AssignNextPlayer(i, ReInput.players.GetPlayer(i).controllers.GetLastActiveController());
                     
                     switch (ReInput.players.GetPlayer(i).controllers.GetLastActiveController().type)
                     {
@@ -113,22 +141,23 @@ public class PlayerInputsAssigner : MonoBehaviour {
 
     public void SetRoleOfPlayer(int indexPlayer, PlayerRole role)
     {
-        _playerMap[indexPlayer].role = role;
+        _playerMap[indexPlayer].Role = role;
     }
-    void AssignNextPlayer(int rewiredPlayerId,ControllerType type) {
+    void AssignNextPlayer(int rewiredPlayerId,Controller controller) {
         if(_playerMap.Count >= MAXPLAYERS) {
             Debug.LogError("Max player limit already reached!");
             return;
         }
         int gamePlayerId = GetNextGamePlayerId();
 
+        InputDevice device = _csvLoader.GetInputDeviceFromGUID(controller.hardwareTypeGuid.ToString());
         // Add the Rewired Player as the next open game player slot
         if (_characterSelectionInGame)
         {
-            _playerMap.Add(new PlayerMap(rewiredPlayerId, gamePlayerId, type, PlayerRole.None));
+            _playerMap.Add(new PlayerMap(rewiredPlayerId, gamePlayerId, controller.type, PlayerRole.None, device));
         } else
         {
-            _playerMap.Add(new PlayerMap(rewiredPlayerId, gamePlayerId,type,(PlayerRole) gamePlayerId));
+            _playerMap.Add(new PlayerMap(rewiredPlayerId, gamePlayerId,controller.type,(PlayerRole) gamePlayerId, device));
         }
         Debug.Log("Added Rewired Player id " + rewiredPlayerId + " to game player " + gamePlayerId);
     }
@@ -170,12 +199,12 @@ public class PlayerInputsAssigner : MonoBehaviour {
     public void ChangeMapUIToNormal(int indexPlayer)
     {
         PlayerMap map = _playerMap[indexPlayer];
-        Player rewiredPlayer = ReInput.players.GetPlayer(map.rewiredPlayerId);
-        if (map.type == ControllerType.Keyboard) {
+        Player rewiredPlayer = ReInput.players.GetPlayer(map.RewiredPlayerId);
+        if (map.Type == ControllerType.Keyboard) {
             Debug.Log($"KB {indexPlayer} {_rolesKB[indexPlayer]}");
             rewiredPlayer.controllers.maps.SetMapsEnabled(false, ControllerType.Keyboard, RewiredConsts.Category.UI, _rolesKB[indexPlayer]);
             rewiredPlayer.controllers.maps.SetMapsEnabled(true, ControllerType.Keyboard, RewiredConsts.Category.DEFAULT, _rolesKB[indexPlayer]);
-        } else if (map.type == ControllerType.Joystick)
+        } else if (map.Type == ControllerType.Joystick)
         {
             Debug.Log($"JS {indexPlayer}");
             rewiredPlayer.controllers.maps.SetMapsEnabled(false, RewiredConsts.Category.UI);

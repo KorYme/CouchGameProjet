@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CharacterSelectionHandler : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class CharacterSelectionHandler : MonoBehaviour
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] Sprite _unselectedSprite;
     [SerializeField] Sprite _selectedSprite;
+    [Header("UnityEvents")]
+    [SerializeField] UnityEvent _onCharacterSelected;
+    [SerializeField] UnityEvent _onCharacterDeselected;
 
     public PlayerRole Role { get => _role;}
 
@@ -44,9 +48,11 @@ public class CharacterSelectionHandler : MonoBehaviour
     {
         if (_role == role)
         {
+            _onCharacterSelected?.Invoke();
             if (_spriteRenderer != null)
                 _spriteRenderer.sprite = _selectedSprite;
             transform.DOKill();
+            transform.localScale = _normalScale;
             transform.DOScale(_normalScale * (1 + _forceScale), _durationScale).SetEase(_curveScale).SetLoops(2,LoopType.Yoyo);
         }
     }
@@ -55,6 +61,7 @@ public class CharacterSelectionHandler : MonoBehaviour
     {
         if (_role == role) //Ce joueur est déselectionné
         {
+            _onCharacterDeselected?.Invoke();
             if (_spriteRenderer != null)
                 _spriteRenderer.sprite = _unselectedSprite;
         }

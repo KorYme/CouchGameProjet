@@ -7,7 +7,10 @@ using UnityEngine.Rendering.Universal;
 
 public class HolyCrossBehaviour : MonoBehaviour
 {
+    static bool _isAlreadyCalled;
+
     [SerializeField] Light2D _light;
+    [SerializeField] CharacterStateMachine _stateMachine;
 
     [Header("First Apperance Tween")]
     [SerializeField] AnimationCurve _fadeInCurve;
@@ -23,6 +26,7 @@ public class HolyCrossBehaviour : MonoBehaviour
     private void Start()
     {
         Globals.PriestCalculator.OnPriestExorcize += () => StartCoroutine(PlayAnim());
+        _isAlreadyCalled = false;
     }
 
     private void OnDestroy()
@@ -51,5 +55,10 @@ public class HolyCrossBehaviour : MonoBehaviour
             yield return null;
         }
         transform.localScale = Vector3.one * _scaleEndValue;
+        if (!_isAlreadyCalled)
+        {
+            Globals.PriestCalculator?.CallGameOverScreen();
+            _isAlreadyCalled = true;
+        }
     }
 }

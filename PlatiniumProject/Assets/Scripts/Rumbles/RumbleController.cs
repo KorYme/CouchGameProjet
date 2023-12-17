@@ -12,6 +12,7 @@ public class RumbleController : MonoBehaviour
 
     public void PlayRumbles(string rumbleName)
     {
+        if (!Globals.DataLoader?.AreRumblesActivated ?? true) return;
         RumbleValues rumble = _allRumbles.FirstOrDefault(x => x.rumbleName == rumbleName);
         if (rumble == default(RumbleValues)) return;
         if (rumble.isHolding)
@@ -57,7 +58,7 @@ public class RumbleController : MonoBehaviour
         {
             timer += Time.deltaTime / rumbleValues.time;
             Players.PlayersController[role].newPlayer.SetVibration(0, rumbleValues.rumbleCurve.Evaluate(timer));
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
         Players.PlayersController[role].newPlayer.SetVibration(0, 0f);
         _singlePressCoroutine = null;
@@ -73,7 +74,7 @@ public class RumbleController : MonoBehaviour
             {
                 Players.PlayersController[i]?.newPlayer.SetVibration(0, rumbleValues.rumbleCurve.Evaluate(timer));
             }
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
         for (int i = 0; i < 3; i++)
         {
@@ -89,7 +90,7 @@ public class RumbleController : MonoBehaviour
         {
             timer += Time.deltaTime / rumbleValues.time;
             Players.PlayersController[role].newPlayer.SetVibration(0, rumbleValues.rumbleCurve.Evaluate(timer));
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
     }
 }

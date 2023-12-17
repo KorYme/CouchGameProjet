@@ -64,7 +64,7 @@ public class EntityMovement : MonoBehaviour, IMovable
                 (new Vector3(initialScale.x * _movementData.BounceMultiplierX, initialScale.y * _movementData.BounceMultiplierY, 0)
                  * _movementData.BounceCurve.Evaluate(timer / _TimeBetweenMovements));
             
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
 
         yield return new WaitUntil(() => !_characterAnimation.IsAnimationPlaying);
@@ -82,10 +82,11 @@ public class EntityMovement : MonoBehaviour, IMovable
             timer += Time.deltaTime;
             percentage = _movementData.MovementCurve.Evaluate(timer / _TimeBetweenMovements);
             _characterAnimation.Sp.material.SetFloat("_Fade", Mathf.Lerp(1,0, percentage));            
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
         transform.position = newDestination;
         
+        _movementCoroutine = null;
         timer = 0;
         percentage = 0;
         while (timer < _TimeBetweenMovements)
@@ -93,8 +94,7 @@ public class EntityMovement : MonoBehaviour, IMovable
             timer += Time.deltaTime;
             percentage = _movementData.MovementCurve.Evaluate(timer/ _TimeBetweenMovements);
             _characterAnimation.Sp.material.SetFloat("_Fade", Mathf.Lerp(0,1, percentage));
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
-        _movementCoroutine = null;
     }
 }

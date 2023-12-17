@@ -12,6 +12,7 @@ public class CharacterAiPuller : MonoBehaviour
     public CharacterStateMachine StateMachine => _stateMachine;
     
     public Vector3 PullPos { get; set; }
+    public int ID { get; set; }
 
     private void Awake()
     {

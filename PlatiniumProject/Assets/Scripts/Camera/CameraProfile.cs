@@ -171,7 +171,7 @@ public class CameraProfile : MonoBehaviour
             {
                 _followMoveRoutine = StartCoroutine(FollowMoveRoutine());
             }
-            yield return null;
+            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
     }
 

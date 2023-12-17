@@ -29,7 +29,6 @@ public abstract class PlayerMovement : EntityMovement,IIsControllable
         Players.AddListenerPlayerController(this);
         _playerController.LeftJoystick.OnInputChange += CheckJoystickValue;
         _timingable.OnBeatStartEvent.AddListener(AllowNewMovement);
-        
     }
     
     protected virtual void OnBeat()

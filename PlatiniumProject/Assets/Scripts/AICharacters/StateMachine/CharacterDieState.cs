@@ -35,7 +35,7 @@ public class CharacterDieState : CharacterState
                 StateMachine.CharacterAnimation.Sp.material.SetFloat("_Fade", Mathf.Lerp(1,0,timer/ 1f));
                 StateMachine.CharacterAnimation.Sp.material.SetColor("_Color", Color.red);
 
-                yield return null;
+                yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
             }
             yield return new WaitUntil(() => !StateMachine.CharacterMove.IsMoving);
         }

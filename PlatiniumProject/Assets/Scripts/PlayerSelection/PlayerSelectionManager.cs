@@ -11,6 +11,7 @@ public class PlayerSelectionManager : MonoBehaviour
 {
     [SerializeField] LerpTargetLight[] _objectsSelectionable;
     [SerializeField] CharacterSelectionHandler[] _selectionHandlers;
+    [SerializeField] WwiseSFXPlayer _sfxPlayer;
     int[] _idPlayerSelected; // -1 if player not selected else index of player 
     public IList<int> IdPlayerSelected {
         get {
@@ -77,8 +78,8 @@ public class PlayerSelectionManager : MonoBehaviour
     {
         foreach(PlayerMap playermap in _playersAssigner.PlayersMap)
         {
-            _playersAssigner.SetRoleOfPlayer(playermap.gamePlayerId, PlayerRole.None);
-            CreateInstancePlayerSelection(playermap.gamePlayerId);
+            _playersAssigner.SetRoleOfPlayer(playermap.GamePlayerId, PlayerRole.None);
+            CreateInstancePlayerSelection(playermap.GamePlayerId);
         }
         IsSetUp = true;
     }
@@ -114,7 +115,6 @@ public class PlayerSelectionManager : MonoBehaviour
     private void CreateInstancePlayerSelection(int indexCharacterAtStart)
     {
         PlayerSelection instancePrefab = Instantiate(_prefabPlayerSelection, transform);
-        int indexPlayer = _playersController.Count;
         instancePrefab.SetUp(indexCharacterAtStart, _objectsSelectionable.Length);
         instancePrefab.OnAccept += OnAcceptPlayer;
         instancePrefab.OnReturn += OnReturnPlayer;
@@ -147,7 +147,8 @@ public class PlayerSelectionManager : MonoBehaviour
         if (CheckAllCharactersChosen() && indexPlayer == 0)
         {
             ChangeScene();
-        } else if (_idPlayerSelected[indexCurrentCharacter] == -1) //Check if character is not already chosen
+        } 
+        else if (_idPlayerSelected[indexCurrentCharacter] == -1) //Check if character is not already chosen
         {
             _idPlayerSelected[indexCurrentCharacter] = indexPlayer;
             _playersController[indexPlayer].CanAccept = false;
@@ -168,6 +169,6 @@ public class PlayerSelectionManager : MonoBehaviour
             _playersAssigner.SetRoleOfPlayer(_idPlayerSelected[i],_selectionHandlers[i].Role);
             _playersAssigner.ChangeMapUIToNormal(_idPlayerSelected[i]);
         }
-        OnChangeScene.Invoke();
+        _sfxPlayer.PlayFirstSFX(() => OnChangeScene?.Invoke());
     }
 }
