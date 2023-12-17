@@ -66,7 +66,7 @@ public class UIQteDJ : UIQte
     }
     public void StartAnimation()
     {
-        ResetInputs();
+        /*ResetInputs();
         for (int i = 0; i < _imagesInput.Length; i++)
         {
             if (i == 0)
@@ -85,6 +85,16 @@ public class UIQteDJ : UIQte
                 }
                 _imagesInput[i].transform.DOLocalMove(_initialSpriteInfos[i - 1].PositionSprite, _durationAnimation);
                 _imagesInput[i].transform.DOScale(_initialSpriteInfos[i - 1].ScaleSprite, _durationAnimation);
+            }
+        }*/
+        for (int i = 0; i < _imagesInput.Length; i++)
+        {
+            if (i < _imagesInput.Length - 1)
+            {
+                _imagesInput[i].sprite = _imagesInput[i + 1].sprite;
+            } else
+            {
+                _imagesInput[i].sprite = NextSprite;
             }
         }
     }
