@@ -96,6 +96,7 @@ public class UIQteDJ : UIQte
             {
                 _imagesInput[i].sprite = NextSprite;
             }
+            _imagesInput[i].color = _imagesInput[i].sprite == null ? Color.clear : _initialSpriteInfos[i].ColorSprite;
         }
     }
     private void ResetInputs()

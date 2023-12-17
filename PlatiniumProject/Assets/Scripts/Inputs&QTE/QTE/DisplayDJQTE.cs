@@ -29,9 +29,9 @@ public class DisplayDJQTE : MonoBehaviour
     }
     private void OnDJQTEChanged(Sprite[] sprites)
     {
-
+        Debug.Log("INDEX " + _qteController.IndexCurrentInput + " ");
         //_qteDisplay.text = qteString;
-        Sprite sprite = _qteController.IndexCurrentInput + 2 < sprites.Length ? sprites[_qteController.IndexCurrentInput + 2] : null;
+        Sprite sprite = _qteController.IndexCurrentInput + 3 < sprites.Length ? sprites[_qteController.IndexCurrentInput + 3] : null;
         _qteDisplay.NextSprite = sprite;
         _qteDisplay.StartAnimation();
     }
