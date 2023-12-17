@@ -86,6 +86,7 @@ public class EntityMovement : MonoBehaviour, IMovable
         }
         transform.position = newDestination;
         
+        _movementCoroutine = null;
         timer = 0;
         percentage = 0;
         while (timer < _TimeBetweenMovements)
@@ -95,6 +96,5 @@ public class EntityMovement : MonoBehaviour, IMovable
             _characterAnimation.Sp.material.SetFloat("_Fade", Mathf.Lerp(0,1, percentage));
             yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
-        _movementCoroutine = null;
     }
 }
