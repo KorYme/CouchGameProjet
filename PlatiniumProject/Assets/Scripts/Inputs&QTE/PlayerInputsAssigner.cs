@@ -25,6 +25,11 @@ public class PlayerMap
         Type = type;
         Role = role;
     }
+
+    public PlayerMap(int rewiredPlayerId, int gamePlayerId, ControllerType type, PlayerRole role,InputDevice device) : this (rewiredPlayerId, gamePlayerId, type, role)
+    {
+        Device = device;
+    }
 }
 public class PlayerInputsAssigner : MonoBehaviour {
 
@@ -36,6 +41,8 @@ public class PlayerInputsAssigner : MonoBehaviour {
     public event Action OnPlayerJoined;
     private static PlayerInputsAssigner _instance;
     int _indexRoleKB = 0;
+    CSVLoader _csvLoader;
+
     #region GetPlayer
     public static Rewired.Player GetRewiredPlayerByRole(PlayerRole role) {
         if(!Rewired.ReInput.isReady) return null;
@@ -101,7 +108,10 @@ public class PlayerInputsAssigner : MonoBehaviour {
         Globals.PlayerInputsAssigner ??= this;
         _instance = this;
     }
-
+    private void Start()
+    {
+        _csvLoader = Globals.DataControllerType;
+    }
     void Update() {
 
         if (_playerMap.Count < MAXPLAYERS)
@@ -111,7 +121,7 @@ public class PlayerInputsAssigner : MonoBehaviour {
             {
                 if (ReInput.players.GetPlayer(i).GetButtonDown("JoinGame"))
                 {
-                    AssignNextPlayer(i, ReInput.players.GetPlayer(i).controllers.GetLastActiveController().type);
+                    AssignNextPlayer(i, ReInput.players.GetPlayer(i).controllers.GetLastActiveController());
                     
                     switch (ReInput.players.GetPlayer(i).controllers.GetLastActiveController().type)
                     {
@@ -133,20 +143,21 @@ public class PlayerInputsAssigner : MonoBehaviour {
     {
         _playerMap[indexPlayer].Role = role;
     }
-    void AssignNextPlayer(int rewiredPlayerId,ControllerType type) {
+    void AssignNextPlayer(int rewiredPlayerId,Controller controller) {
         if(_playerMap.Count >= MAXPLAYERS) {
             Debug.LogError("Max player limit already reached!");
             return;
         }
         int gamePlayerId = GetNextGamePlayerId();
 
+        InputDevice device = _csvLoader.GetInputDeviceFromGUID(controller.hardwareTypeGuid.ToString());
         // Add the Rewired Player as the next open game player slot
         if (_characterSelectionInGame)
         {
-            _playerMap.Add(new PlayerMap(rewiredPlayerId, gamePlayerId, type, PlayerRole.None));
+            _playerMap.Add(new PlayerMap(rewiredPlayerId, gamePlayerId, controller.type, PlayerRole.None, device));
         } else
         {
-            _playerMap.Add(new PlayerMap(rewiredPlayerId, gamePlayerId,type,(PlayerRole) gamePlayerId));
+            _playerMap.Add(new PlayerMap(rewiredPlayerId, gamePlayerId,controller.type,(PlayerRole) gamePlayerId, device));
         }
         Debug.Log("Added Rewired Player id " + rewiredPlayerId + " to game player " + gamePlayerId);
     }

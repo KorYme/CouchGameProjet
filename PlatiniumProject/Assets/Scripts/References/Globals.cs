@@ -18,4 +18,5 @@ public static class Globals
     public static MenuMusicPlayer MenuMusicPlayer = null;
     public static DatabaseActionSprites DatabaseActionSprites = null;
     public static DataLoader DataLoader = null;
+    public static CSVLoader DataControllerType = null;
 }
