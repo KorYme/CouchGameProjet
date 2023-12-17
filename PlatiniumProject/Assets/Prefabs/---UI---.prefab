@@ -1035,7 +1035,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: YOU SACRIFICIED NANANA PEOPLES
+  m_text: YOU SACRIFICIED NANANA PEOPLE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 803a34e1cc897034c8c04979459e082d, type: 2}
   m_sharedMaterial: {fileID: 5965825190700038666, guid: 803a34e1cc897034c8c04979459e082d, type: 2}
@@ -4426,7 +4426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 8844f85d605b5994d983db51ff074af9, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -4434,7 +4434,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 118e2a1c44ae9cf40a783a80c03a4e0a, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

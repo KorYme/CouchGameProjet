@@ -201,7 +201,7 @@ public class QTEHandler : MonoBehaviour, IIsControllable
         }
         return total;
     }
-    private void StartSequenceDependingOntype()
+    private void StartSequenceDependingOntype(bool isStarting = true)
     {
         _indexInSequence = 0;
         _currentQTESequence = _currentListSequences.GetSequence(_indexOfSequence);
@@ -210,7 +210,10 @@ public class QTEHandler : MonoBehaviour, IIsControllable
         {
             _inputsSucceeded[i] = QTE_STATE.NEED_RELEASE;
         }
-        _events?.CallOnQTEStarted();
+        if (isStarting)
+        {
+            _events?.CallOnQTEStarted();
+        }
         
         switch (_currentQTESequence.SequenceType)
         {
@@ -479,7 +482,7 @@ public class QTEHandler : MonoBehaviour, IIsControllable
         }
         if (_indexOfSequence < _currentListSequences.Length) // There is a next sequence
         {
-            StartSequenceDependingOntype();
+            StartSequenceDependingOntype(false);
         } else // End of the list of sequences
         {
             _currentListSequences.Clear();

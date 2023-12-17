@@ -231,13 +231,11 @@ public class SpawnManager : MonoBehaviour
         while (true)
         {
             timer += Time.deltaTime;
-                Debug.Log("PRout2");
             if (timer >= _minMaxSpawnPerMinutes.x)
             {
                 yield return new WaitUntil(() => Globals.DropManager.CanYouLetMeMove && _areaManager.BouncerTransit.Slots[0].Occupant == null);
                 timer = 0f;
                 PullACharacter();
-                Debug.Log("PRout");
             }
             yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
         }
