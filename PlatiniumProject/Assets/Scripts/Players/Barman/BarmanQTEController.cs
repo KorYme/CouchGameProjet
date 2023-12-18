@@ -79,7 +79,6 @@ public class BarmanQTEController : MonoBehaviour, IListenerBarmanActions
 
     public void CallOnBarmanStartWrongSequence()
     {
-        Debug.Log("CALL");
         OnStartWrongQte?.Invoke();
     }
 
