@@ -116,7 +116,6 @@ public class QTEHandler : MonoBehaviour, IIsControllable
     {
         _events?.UnregisterMissedInputListener(QTEable);
     }
-    
     public void RegisterListener(IListenerBarmanActions QTEable)
     {
         _events?.RegisterBarmanListener(QTEable);
@@ -251,6 +250,10 @@ public class QTEHandler : MonoBehaviour, IIsControllable
         {
             _hasHoldStarted = false;
             _events?.CallOnBarmanEndCorrectSequence();
+        }
+        if (_hasWrongInput)
+        {
+            _events?.CallOnBarmanEndWrongSequence();
         }
     }
 
@@ -452,14 +455,12 @@ public class QTEHandler : MonoBehaviour, IIsControllable
             if (anyWrongInput && !_hasWrongInput)
             {
                 _hasWrongInput = true;
-                Debug.Log("START WRONG");
-                //START
+                _events.CallOnBarmanStartWrongSequence();
             }
             else if (!anyWrongInput && _hasWrongInput)
             {
                 _hasWrongInput = false;
-                Debug.Log("END WRONG");
-                //END
+                _events.CallOnBarmanEndWrongSequence();
             }
         }
         ClearRoutine();

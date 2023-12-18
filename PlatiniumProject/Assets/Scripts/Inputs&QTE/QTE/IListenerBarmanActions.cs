@@ -7,4 +7,6 @@ public interface IListenerBarmanActions
     void CallOnBarmanStartCorrectSequence();
 
     void CallOnBarmanEndCorrectSequence();
+    void CallOnBarmanStartWrongSequence();
+    void CallOnBarmanEndWrongSequence();
 }

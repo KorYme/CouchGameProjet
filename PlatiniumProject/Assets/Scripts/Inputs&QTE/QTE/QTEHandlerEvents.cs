@@ -92,4 +92,20 @@ public class QTEHandlerEvents
             reciever.CallOnBarmanEndCorrectSequence();
         }
     }
+
+    public void CallOnBarmanStartWrongSequence()
+    {
+        foreach (IListenerBarmanActions reciever in _barmanListeners)
+        {
+            reciever.CallOnBarmanStartWrongSequence();
+        }
+    }
+
+    public void CallOnBarmanEndWrongSequence()
+    {
+        foreach (IListenerBarmanActions reciever in _barmanListeners)
+        {
+            reciever.CallOnBarmanEndWrongSequence();
+        }
+    }
 }
