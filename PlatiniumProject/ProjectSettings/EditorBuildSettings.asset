@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CharacterSelectionMenu.unity
     guid: ba04ef56c24e432418bae8117e978e04
+  - enabled: 1
+    path: Assets/Scenes/BuildSceneDONTTOUCH.unity
+    guid: 4e53220330f7a8842adb63ae3af6277e
   m_configObjects: {}
