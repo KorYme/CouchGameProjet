@@ -16,6 +16,8 @@ public class BarmanQTEController : MonoBehaviour, IListenerBarmanActions
 
     public UnityEvent OnStartQteAll;
     public UnityEvent OnStopQteAll;
+    public UnityEvent OnStartWrongQte;
+    public UnityEvent OnStopWrongQte;
     #endregion
 
     public float DurationValue => _barmanMovement == null? 0:_barmanMovement.CurrentDuration;
@@ -73,5 +75,15 @@ public class BarmanQTEController : MonoBehaviour, IListenerBarmanActions
     {
         OnStopQteAll?.Invoke();
         _barmanMovement.IsPlayingFullQte = false;
+    }
+
+    public void CallOnBarmanStartWrongSequence()
+    {
+        OnStartWrongQte?.Invoke();
+    }
+
+    public void CallOnBarmanEndWrongSequence()
+    {
+        OnStopWrongQte?.Invoke();
     }
 }

@@ -411,6 +411,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnStartWrongQte:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3832343337607226648}
+        m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
+        m_MethodName: PlayRumbles
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Barman_Rumble_Wrong
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnStopWrongQte:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3832343337607226648}
+        m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
+        m_MethodName: StopAllRumbles
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3832343337607226648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,6 +457,7 @@ MonoBehaviour:
   _allRumbles:
   - {fileID: 11400000, guid: f3cc1a64abf5d5c4e85bd118ef04a379, type: 2}
   - {fileID: 11400000, guid: e0789219a029ce243aba6c4556337af5, type: 2}
+  - {fileID: 11400000, guid: 57da777f4f3167d45a19e85d383b0495, type: 2}
 --- !u!114 &3703407834551687810
 MonoBehaviour:
   m_ObjectHideFlags: 0
