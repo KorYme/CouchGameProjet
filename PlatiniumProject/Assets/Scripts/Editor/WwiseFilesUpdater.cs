@@ -79,16 +79,10 @@ public static class WwiseFilesUpdater
                 Debug.LogWarning("The request to look for files in drive ended in an error"); 
                 return;
             }
-            int fileRemaining = driveFileList.Files.Count;
             localFiles.ForEach(localFile =>
             {
                 if (Path.GetExtension(localFile) != ".wav")
                 {
-                    fileRemaining--;
-                    if (fileRemaining <= 0)
-                    {
-                        Debug.Log($"All files have been uploaded");
-                    }
                     return;
                 }
                 string driveFileId = driveFileList.Files.FirstOrDefault(x => Path.GetFileName(localFile) == x.Name)?.Id;
@@ -113,13 +107,7 @@ public static class WwiseFilesUpdater
                         {
                             Debug.Log($"Upload of {createdFile.Name} done");
                         }
-                        fileRemaining--;
-                        if (fileRemaining <= 0)
-                        {
-                            Debug.Log($"All files have been uploaded");
-                        }
                     };
-
                 }
                 else
                 {
@@ -157,11 +145,6 @@ public static class WwiseFilesUpdater
                     //    };
                     //};
                     #endregion
-                    fileRemaining--;
-                    if (fileRemaining <= 0)
-                    {
-                        Debug.Log($"All files have been uploaded");
-                    }
                 }
             });
         };

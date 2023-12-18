@@ -203,4 +203,4 @@ MonoBehaviour:
     m_RotationOrder: 4
   _scaleEndValue: 100
   _scaleDuration: 4
-  _timeBetween: 2
+  _timeBetween: 1

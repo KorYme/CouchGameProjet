@@ -50,12 +50,7 @@ public class DropManager : MonoBehaviour
     }
     public bool CanYouLetMeMove => _dropState == DROP_STATE.OUT_OF_DROP;
     public event Action<DROP_STATE> OnDropStateChange;
-    public event Action OnBeginBuildUp;
-    public event Action OnDropLoaded;
-    public event Action OnDropLaunched;
-    public event Action OnDropSuccess;
-    public event Action OnDropFail;
-    public event Action OnGameEnd;
+    public event Action OnBeginBuildUp, OnDropLoaded, OnDropLaunched, OnDropSuccess, OnDropFail, OnDropEnded, OnGameEnd;
     int _currentPhase;
     int _triggerPressedNumber;
     BeatManager _beatManager;
@@ -118,6 +113,9 @@ public class DropManager : MonoBehaviour
                 break;
             case DROP_STATE.ON_DROP_RELEASING:
                 OnDropLaunched?.Invoke();
+                break;
+            case DROP_STATE.OUT_OF_DROP:
+                OnDropEnded?.Invoke();
                 break;
             default:
                 break;

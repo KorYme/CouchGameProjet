@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(LightChangeColorOnBeat))]
+[CustomEditor(typeof(LightChangeColorOnBeat)), CanEditMultipleObjects]
 public class LightChangeColorOnBeatEditor : Editor
 {
     LightChangeColorOnBeat _lightChangeColorOnBeat;

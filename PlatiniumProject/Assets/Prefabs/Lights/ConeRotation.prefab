@@ -114,11 +114,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lights2D:
   - {fileID: 2553288626468390349}
-  - {fileID: 2553288626468390349}
+  - {fileID: 7623216301490928797}
   _colors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0.74597883, g: 0, b: 1, a: 1}
   - {r: 0.19106627, g: 0, b: 1, a: 1}
+  _lightColorData: {fileID: 11400000, guid: 9ec67629ae2205e42b3be19327b53b60, type: 2}
 --- !u!114 &1338077824162715092
 MonoBehaviour:
   m_ObjectHideFlags: 0

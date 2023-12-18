@@ -1,44 +1,62 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering.Universal;
 
 public class LightChangeColorOnBeat : MonoBehaviour
 {
-    [SerializeField] List<Light2D> _lights2D;
-    [SerializeField] List<Color> _colors = new List<Color>();
+    [SerializeField] Light2D[] _lights2D;
+    [SerializeField] LightColorData _lightColorData;
+    UnityAction _currentAction;
 
     private void Reset()
     {
         SetUpLights();
     }
+    public void SetUpLights() => _lights2D = GetComponentsInChildren<Light2D>(false);
 
-    public void SetUpLights()
-    {
-        _lights2D.Add(GetComponent<Light2D>());
-        foreach (var item in GetComponentsInChildren<Light2D>())
-        {
-            _lights2D.Add(item);
-        }
-    }
 
     private void Start()
     {
-        Globals.BeatManager.OnBeatEvent.AddListener(ChangeToRandomColor);
+        _currentAction = ChangeToRandomColor;
+        Globals.DropManager.OnDropSuccess += OnDropSuccessEffect;
+        Globals.DropManager.OnDropFail += OnDropFailEffect;
+        Globals.DropManager.OnDropEnded += () => _currentAction = ChangeToRandomColor;
+        if (_lightColorData.onBeatColorList.Count == 0 || _lights2D.Length == 0) return;
+        Globals.BeatManager.OnBeatEvent.AddListener(_currentAction);
     }
 
     private void OnDestroy()
     {
-        Globals.BeatManager.OnBeatEvent.RemoveListener(ChangeToRandomColor);
+        Globals.DropManager.OnDropSuccess -= OnDropSuccessEffect;
+        Globals.DropManager.OnDropFail -= OnDropFailEffect;
+        Globals.DropManager.OnDropEnded -= () => _currentAction = ChangeToRandomColor;
+        if (_lightColorData.onBeatColorList.Count == 0 || _lights2D.Length == 0) return;
+        Globals.BeatManager?.OnBeatEvent.RemoveListener(_currentAction);
     }
 
-    private void ChangeToRandomColor()
+    private void ChangeToRandomColor() => ChangeAllLightsColor(_lightColorData.onBeatColorList[UnityEngine.Random.Range(0, _lightColorData.onBeatColorList.Count)]);
+
+    private void OnDropSuccessEffect()
     {
-        if (_colors.Count == 0 || _lights2D.Count == 0) return;
-        Color color = _colors[Random.Range(0, _colors.Count)];
-        foreach (var item in _lights2D)
+        _currentAction = null;
+        ChangeAllLightsColor(_lightColorData.onDropSuccessColor);
+    }
+
+    private void OnDropFailEffect()
+    {
+        _currentAction = null;
+        ChangeAllLightsColor(_lightColorData.onDropFailedColor);
+    }
+
+    void ChangeAllLightsColor(Color color)
+    {
+        foreach (Light2D light in _lights2D)
         {
-            if (item == null) continue;
-            item.color = color;
+            if (light == null) continue;
+            light.color = color;
         }
     }
 }
