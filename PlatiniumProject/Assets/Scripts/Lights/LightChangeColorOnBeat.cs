@@ -34,7 +34,7 @@ public class LightChangeColorOnBeat : MonoBehaviour
     private void ChangeToRandomColor()
     {
         if (_colors.Count == 0 || _lights2D.Count == 0) return;
-        Color color = _colors[Random.Range(0, _colors.Count - 1)];
+        Color color = _colors[Random.Range(0, _colors.Count)];
         foreach (var item in _lights2D)
         {
             if (item == null) continue;

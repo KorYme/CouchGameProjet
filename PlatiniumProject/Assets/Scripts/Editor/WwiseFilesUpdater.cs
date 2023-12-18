@@ -25,7 +25,15 @@ public static class WwiseFilesUpdater
             int fileRemaining = driveFileList.Files.Count;
             driveFileList.Files.ForEach(driveFile =>
             {
-                if (Path.GetExtension(driveFile.Name) != ".wav") return;
+                if (Path.GetExtension(driveFile.Name) != ".wav")
+                {
+                    fileRemaining--;
+                    if (fileRemaining <= 0)
+                    {
+                        Debug.Log($"All files have been downloaded");
+                    }
+                    return;
+                }
                 if (localFiles.FirstOrDefault(localFile => Path.GetFileName(localFile) == driveFile.Name) == default)
                 {
                     Debug.Log($"Dowloading {driveFile.Name}");
@@ -46,6 +54,14 @@ public static class WwiseFilesUpdater
                         }
                     };
                 }
+                else
+                {
+                    fileRemaining--;
+                    if (fileRemaining <= 0)
+                    {
+                        Debug.Log($"All files have been downloaded");
+                    }
+                }
             });
         };
         Debug.Log("Download procedure launched");
@@ -63,9 +79,18 @@ public static class WwiseFilesUpdater
                 Debug.LogWarning("The request to look for files in drive ended in an error"); 
                 return;
             }
+            int fileRemaining = driveFileList.Files.Count;
             localFiles.ForEach(localFile =>
             {
-                if (Path.GetExtension(localFile) != ".wav") return;
+                if (Path.GetExtension(localFile) != ".wav")
+                {
+                    fileRemaining--;
+                    if (fileRemaining <= 0)
+                    {
+                        Debug.Log($"All files have been uploaded");
+                    }
+                    return;
+                }
                 string driveFileId = driveFileList.Files.FirstOrDefault(x => Path.GetFileName(localFile) == x.Name)?.Id;
                 if (driveFileId == default)
                 {
@@ -87,6 +112,11 @@ public static class WwiseFilesUpdater
                         else
                         {
                             Debug.Log($"Upload of {createdFile.Name} done");
+                        }
+                        fileRemaining--;
+                        if (fileRemaining <= 0)
+                        {
+                            Debug.Log($"All files have been uploaded");
                         }
                     };
 
@@ -127,7 +157,11 @@ public static class WwiseFilesUpdater
                     //    };
                     //};
                     #endregion
-                    Debug.Log($"A file with the name {Path.GetFileName(localFile)} is already on the drive");
+                    fileRemaining--;
+                    if (fileRemaining <= 0)
+                    {
+                        Debug.Log($"All files have been uploaded");
+                    }
                 }
             });
         };

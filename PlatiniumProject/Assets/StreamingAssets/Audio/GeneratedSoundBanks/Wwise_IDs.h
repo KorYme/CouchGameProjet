@@ -36,6 +36,10 @@ namespace AK
         static const AkUniqueID PLAY_MUSIC_DND = 3388161964U;
         static const AkUniqueID PLAY_MUSIC_MENU = 1699343283U;
         static const AkUniqueID PLAY_NEWGAME = 1215962870U;
+        static const AkUniqueID PLAY_PERSONAUI1 = 2701424265U;
+        static const AkUniqueID PLAY_PERSONAUI2 = 2701424266U;
+        static const AkUniqueID PLAY_PERSONAUI3 = 2701424267U;
+        static const AkUniqueID PLAY_PERSONAUI4 = 2701424268U;
         static const AkUniqueID PLAY_VOLUMEBAR = 1570308127U;
         static const AkUniqueID RESUME_MAIN_MUSIC = 4072670616U;
         static const AkUniqueID SET_BUS_VOLUME = 878501037U;
