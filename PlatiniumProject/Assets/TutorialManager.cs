@@ -18,6 +18,7 @@ public class TutorialManager : MonoBehaviour
     public int CharcterTutoAmount { get; set; }
 
     public bool UseTutorial => Globals.DataLoader?.IsTutoActivated ?? true;
+    //public bool UseTutorial => true;
     
     private void Awake()
     {

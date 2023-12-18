@@ -16,6 +16,7 @@ public class SlotInformation : MonoBehaviour
             }
         } }
     public BouncerMovement PlayerOccupant { get; set; }
+    public Sprite BaseSprite { get; private set; }
     public SlotInformation Next { get; set; }
     public int Id { get; set; }
     public SlotInformation[] Neighbours = new SlotInformation[4] {null, null,null, null};
@@ -37,6 +38,11 @@ public class SlotInformation : MonoBehaviour
     public SpriteRenderer SpriteRenderer => _spriteRenderer;
     public SlotRenderer SlotRenderer => _slotRenderer;
     public event Action OnOccupantChanges;
+
+    private void Awake()
+    {
+        BaseSprite = _spriteRenderer.sprite;
+    }
 
     private void Reset()
     {
