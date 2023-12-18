@@ -78,7 +78,7 @@ public class DropManager : MonoBehaviour
 
     private void Start()
     {
-        _beatManager = Globals.BeatManager as BeatManager;
+        _beatManager = Globals.BeatManager;
         _triggerPressedNumber = 0;
         _currentPhase = 0;
         DropState = DROP_STATE.OUT_OF_DROP;

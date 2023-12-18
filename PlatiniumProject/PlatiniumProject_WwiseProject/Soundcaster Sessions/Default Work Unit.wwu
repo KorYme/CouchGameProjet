@@ -129,8 +129,8 @@
 						<CurrentStateRef Name="No" ID="{1A95BD9C-2862-44A3-B66B-BE1300F23746}"/>
 						<CurrentStateRef Name="No" ID="{BB8A4A28-E909-4E78-84F8-DD7C69897827}"/>
 						<CurrentStateRef Name="No" ID="{FD76BA71-31F8-46AA-AB57-13A7589800A3}"/>
-						<CurrentStateRef Name="None" ID="{FD7EECE2-F8F4-45B8-B9CB-AAC92B501AAB}"/>
-						<CurrentStateRef Name="Phase_2" ID="{C8D0BD07-4F60-47A0-BB58-51A97EB8D52C}"/>
+						<CurrentStateRef Name="Menu_Open" ID="{6DD9BD10-F55E-4754-8AFC-0093589EC733}"/>
+						<CurrentStateRef Name="Musique_Intro" ID="{4672D8F4-C676-4695-8340-5A22B64A896C}"/>
 					</CurrentStateList>
 					<CurrentSwitchList ShowAll="true"/>
 				</SoundcasterSession>

@@ -492,6 +492,26 @@ PrefabInstance:
       propertyPath: _secondStateEvent.WwiseObjectReference
       value: 
       objectReference: {fileID: 11400000, guid: dc95b68d3af73f04091f8dccf3fa3e92, type: 2}
+    - target: {fileID: 4976499995342045857, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _onBeatEndEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976499995342045857, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _onBeatEndEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976499995342045857, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _onBeatEndEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976499995342045857, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _onBeatEndEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976499995342045857, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _onBeatEndEvent.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4987161715081281144, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_TagString
       value: Untagged
