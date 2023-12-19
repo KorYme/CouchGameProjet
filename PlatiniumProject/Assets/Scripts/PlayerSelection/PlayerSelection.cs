@@ -9,10 +9,12 @@ public class PlayerSelection : MonoBehaviour
     public event Action<int,int> OnAccept;
     public event Action<int,int> OnReturn;
     public event Action<int,int,int> OnMove; // id player, position, last position
+    public event Action<int,int> OnReturnUp;
     #endregion
     int _indexCharacter = 0;
     int _maxCharacterPlayable = 1;
     public bool CanAccept { get; set; } = true;
+    public bool HasStartedHolding { get; set; } = false;
 
     private void Awake()
     {
@@ -25,6 +27,7 @@ public class PlayerSelection : MonoBehaviour
             _controller.OnAccept += OnAcceptController;
             _controller.OnReturn += OnReturnController;
             _controller.OnMoveInput += OnMoveController;
+            _controller.OnReturnUp += OnReturnUpController;
         }
     }
 
@@ -56,6 +59,15 @@ public class PlayerSelection : MonoBehaviour
                 _indexCharacter = newIndex;
                 OnMove?.Invoke(indexPlayer, _indexCharacter, lastIndex);
             }
+        }
+    }
+
+    private void OnReturnUpController(int indexPlayer)
+    {
+        if (HasStartedHolding)
+        {
+            OnReturnUp?.Invoke(indexPlayer, _indexCharacter);
+            HasStartedHolding = false;
         }
     }
 }
