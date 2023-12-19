@@ -469,7 +469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d58b657a9d844043a4443d4db983f6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _materialTileEnlighten: {fileID: 2100000, guid: 3c818189b929ddc43991abb9772f953e, type: 2}
+  _materialTileEnlighten: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   _materialDanceFloorShared: {fileID: 2100000, guid: 3c818189b929ddc43991abb9772f953e, type: 2}
   _position: {x: 8, y: 7}
   _useShader: 1

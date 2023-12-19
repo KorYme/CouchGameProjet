@@ -96,26 +96,11 @@ public class DJController : MonoBehaviour, IIsControllable
                 slot.OnOccupantChanges -= DeactivateQTE;
             }
             slot.IsEnlighted = false;
-            if (slot.SlotRenderer != null)
-            {
-                slot.SlotRenderer.ChangeColor(slot.IsEnlighted);
-            } else
-            {
-                slot.SpriteRenderer.color = Color.green;
-            }
         }
         foreach (SlotInformation slot in newSlots)
         {
             slot.OnOccupantChanges += DeactivateQTE;
             slot.IsEnlighted = true;
-            if (slot.SlotRenderer != null)
-            {
-                slot.SlotRenderer.ChangeColor(slot.IsEnlighted);
-            }
-            else
-            {
-                slot.SpriteRenderer.color = Color.red;
-            }
         }
         _djQTEController.UpdateQTE(newSlots);
     }
