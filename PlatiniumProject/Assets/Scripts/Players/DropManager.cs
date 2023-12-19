@@ -21,7 +21,6 @@ public class DropManager : MonoBehaviour
     [Header("Wwise Event References"), Space]
     [SerializeField] AK.Wwise.Event _secondMusicStateEvent;
     [SerializeField] AK.Wwise.Event _thirdMusicStateEvent;
-    [SerializeField] AK.Wwise.Event _endMusicStateEvent;
     [SerializeField] AK.Wwise.Event _dropSuccessEvent;
     [SerializeField] AK.Wwise.Event _dropMissEvent;
     [Header("Drop Parameters"), Space]
@@ -51,12 +50,7 @@ public class DropManager : MonoBehaviour
     }
     public bool CanYouLetMeMove => _dropState == DROP_STATE.OUT_OF_DROP;
     public event Action<DROP_STATE> OnDropStateChange;
-    public event Action OnBeginBuildUp;
-    public event Action OnDropLoaded;
-    public event Action OnDropLaunched;
-    public event Action OnDropSuccess;
-    public event Action OnDropFail;
-    public event Action OnGameEnd;
+    public event Action OnBeginBuildUp, OnDropLoaded, OnDropLaunched, OnDropSuccess, OnDropFail, OnDropEnded, OnGameEnd;
     int _currentPhase;
     int _triggerPressedNumber;
     BeatManager _beatManager;
@@ -79,7 +73,7 @@ public class DropManager : MonoBehaviour
 
     private void Start()
     {
-        _beatManager = Globals.BeatManager as BeatManager;
+        _beatManager = Globals.BeatManager;
         _triggerPressedNumber = 0;
         _currentPhase = 0;
         DropState = DROP_STATE.OUT_OF_DROP;
@@ -120,6 +114,9 @@ public class DropManager : MonoBehaviour
             case DROP_STATE.ON_DROP_RELEASING:
                 OnDropLaunched?.Invoke();
                 break;
+            case DROP_STATE.OUT_OF_DROP:
+                OnDropEnded?.Invoke();
+                break;
             default:
                 break;
         }
@@ -144,7 +141,7 @@ public class DropManager : MonoBehaviour
                     {
                         case 1: _secondMusicStateEvent?.Post(gameObject); break;
                         case 2: _thirdMusicStateEvent?.Post(gameObject); break;
-                        case 3: default: OnGameEnd?.Invoke(); _endMusicStateEvent?.Post(gameObject); break;
+                        case 3: default: OnGameEnd?.Invoke(); break;
                     }
                 };
                 break;

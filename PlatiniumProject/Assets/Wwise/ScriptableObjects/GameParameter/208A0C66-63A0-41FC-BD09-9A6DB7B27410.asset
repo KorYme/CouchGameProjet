@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 202db50987dd5a2439f8ef405a5c63bc, type: 3}
+  m_Name: 208A0C66-63A0-41FC-BD09-9A6DB7B27410
+  m_EditorClassIdentifier: 
+  objectName: SFXVolume
+  id: 988953028
+  guid: 208A0C66-63A0-41FC-BD09-9A6DB7B27410

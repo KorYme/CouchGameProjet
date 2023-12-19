@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
-    [SerializeField] private bool _useTutorial;
     [SerializeField] private TMP_Text _timer;
     private int _timerValue = 3;
     [SerializeField] private float[] _zoomValues;
@@ -18,7 +17,8 @@ public class TutorialManager : MonoBehaviour
     public int HandledTutoCharacter { get; set; }
     public int CharcterTutoAmount { get; set; }
 
-    public bool UseTutorial => _useTutorial;
+    public bool UseTutorial => Globals.DataLoader?.IsTutoActivated ?? true;
+    //public bool UseTutorial => true;
     
     private void Awake()
     {
@@ -31,7 +31,7 @@ public class TutorialManager : MonoBehaviour
     {
         _beatManager = Globals.BeatManager as BeatManager;
         yield return null;
-        if (_useTutorial)
+        if (UseTutorial)
         {
             OnTutorialFinish += _beatManager.PlayFirstMusic;
             OnTutorial?.Invoke();

@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 6875555677433497078}
   - component: {fileID: 5653201513740092530}
   - component: {fileID: 2512290002944877076}
+  - component: {fileID: 4918806883482787210}
   m_Layer: 0
   m_Name: Slot
   m_TagString: Untagged
@@ -404,7 +405,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -472,6 +473,19 @@ MonoBehaviour:
   _materialDanceFloorShared: {fileID: 2100000, guid: 3c818189b929ddc43991abb9772f953e, type: 2}
   _position: {x: 8, y: 7}
   _useShader: 1
+--- !u!114 &4918806883482787210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8862334621018384566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4ad6102d4ee11469f2f1c8e1b0a843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data: {fileID: 11400000, guid: 609cd96e1ac10e24e9991c7205ce30e7, type: 2}
 --- !u!1 &9120113816435111747
 GameObject:
   m_ObjectHideFlags: 0

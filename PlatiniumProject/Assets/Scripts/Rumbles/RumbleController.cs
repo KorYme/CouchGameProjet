@@ -10,8 +10,14 @@ public class RumbleController : MonoBehaviour
     [SerializeField] List<RumbleValues> _allRumbles;
     Coroutine _singlePressCoroutine, _holdCoroutine;
 
+    private void Start()
+    {
+        Globals.DropManager.OnGameEnd += StopAllRumbles;
+    }
+
     public void PlayRumbles(string rumbleName)
     {
+        if (!Globals.DataLoader?.AreRumblesActivated ?? true) return;
         RumbleValues rumble = _allRumbles.FirstOrDefault(x => x.rumbleName == rumbleName);
         if (rumble == default(RumbleValues)) return;
         if (rumble.isHolding)

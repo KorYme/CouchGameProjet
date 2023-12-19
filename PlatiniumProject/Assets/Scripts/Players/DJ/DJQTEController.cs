@@ -11,11 +11,11 @@ public class DJQTEController : MonoBehaviour, IQTEable
     List<SlotInformation> _shapesLightCopy;
     [SerializeField] private CharacterAnimation _characterAnimation;
     [SerializeField] private CharacterAnimation _characterArmAnimation;
-
+    public int IndexCurrentInput => _qteHandler == null ? 0:_qteHandler.IndexInListSequences;
     #region Events
-    public event Action<string> OnDJQTEStarted;
-    public event Action<string> OnDJQTEEnded;
-    public event Action<string> OnDJQTEChanged;
+    public event Action<Sprite[]> OnDJQTEStarted;
+    public event Action<Sprite[]> OnDJQTEEnded;
+    public event Action<Sprite[]> OnDJQTEChanged;
     [SerializeField] UnityEvent _onDJSuccess;
     [SerializeField] UnityEvent _onDJFail;
     #endregion
@@ -25,7 +25,6 @@ public class DJQTEController : MonoBehaviour, IQTEable
         _qteHandler = GetComponent<QTEHandler>();
         if(_characterAnimation == null)
             _characterAnimation = GetComponent<CharacterAnimation>();
-        //_bubbleObject.SetActive(false);
     }
     private void Start()
     {
@@ -84,18 +83,19 @@ public class DJQTEController : MonoBehaviour, IQTEable
         else
         {
             _qteHandler.DeleteCurrentCoroutine();
-            OnDJQTEEnded?.Invoke(_qteHandler.GetQTEString());
+            OnDJQTEEnded?.Invoke(_qteHandler.GetQTESprites());
         }
     }
     #region IQTEable
     public void OnQTEStarted()
     {
-        OnDJQTEStarted?.Invoke(_qteHandler.GetQTEString());
+        //Debug.Log(_qteHandler.GetQTEString());
+        OnDJQTEStarted?.Invoke(_qteHandler.GetQTESprites());
     }
 
     public void OnQTEComplete()
     {
-        OnDJQTEEnded?.Invoke(_qteHandler.GetQTEString());
+        OnDJQTEEnded?.Invoke(_qteHandler.GetQTESprites());
     }
 
     public void OnQTECorrectInput()
@@ -111,7 +111,7 @@ public class DJQTEController : MonoBehaviour, IQTEable
                 }
             }
         }
-        OnDJQTEChanged?.Invoke(_qteHandler.GetQTEString());
+        OnDJQTEChanged?.Invoke(_qteHandler.GetQTESprites());
         _onDJSuccess?.Invoke();
         _characterAnimation.SetLatency(2);
         _characterArmAnimation.SetLatency(2);
@@ -124,7 +124,7 @@ public class DJQTEController : MonoBehaviour, IQTEable
     public void OnQTEWrongInput()
     {
         _onDJFail?.Invoke();
-        OnDJQTEChanged?.Invoke(_qteHandler.GetQTEString());
+        OnDJQTEChanged?.Invoke(_qteHandler.GetQTESprites());
         _characterAnimation.SetLatency(2);
         _characterArmAnimation.SetLatency(2);
         _characterAnimation.SetAnim(ANIMATION_TYPE.WRONG_INPUT, false);
@@ -138,13 +138,13 @@ public class DJQTEController : MonoBehaviour, IQTEable
     #endregion
     public void OnBeginDrop()
     {
-        OnDJQTEEnded?.Invoke(_qteHandler.GetQTEString());
+        OnDJQTEEnded?.Invoke(_qteHandler.GetQTESprites());
         _qteHandler.PauseQTE(true);
     }
 
     public void OnDropEnd()
     {
         _qteHandler.PauseQTE(false);
-        OnDJQTEStarted?.Invoke(_qteHandler.GetQTEString());
+        OnDJQTEStarted?.Invoke(_qteHandler.GetQTESprites());
     }
 }

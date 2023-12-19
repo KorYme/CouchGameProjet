@@ -1,0 +1,25 @@
+{
+  "name": "com.koryme.toolpackage",
+  "displayName": "KorYme Toolkit",
+  "version": "1.2.1",
+  "unity": "2021.3",
+  "description": "My own tool kit for Unity",
+  "author": "KorYme_NakXay",
+  "keywords": [
+    "unity",
+    "tools",
+    "utility",
+    "save-system"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KorYme/com.koryme.toolpackage.git"
+  },
+  "license": "MIT",
+  "type": "library",
+  "unityRelease": "10f1",
+  "dependencies": {
+
+    }
+  }
+}

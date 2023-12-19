@@ -34,6 +34,9 @@ public class QTEListSequences
     {
         get { return _sequences.Count; }
     }
+
+    public bool[] InputsSucceeded { get => _inputsSucceeded; }
+
     public QTEListSequences()
     {
         _sequences = new List<QTESequence>();
@@ -158,11 +161,11 @@ public class QTEListSequences
         InputDisplayed input = InputDisplayed.A;
         if (action.type == InputActionType.Button)
         {
-            Debug.Log("ACTION " + action.descriptiveName);
             Globals.DatabaseActionSprites.DictionaryActionToInput.TryGetValue(action.id, out input);
         }
         // Only Axis type
-        if (_sequences[indexOfSequence].Status == InputStatus.LONG && _sequences[indexOfSequence].LongInputType == LongInputType.SHAKE)
+        if (_sequences[indexOfSequence].Status == InputStatus.LONG && _sequences[indexOfSequence].LongInputType == LongInputType.SHAKE 
+            && (action.id == RewiredConsts.Action.AXISX || action.id == RewiredConsts.Action.AXISY))
         {
             input = InputDisplayed.ShakeJS;
         }

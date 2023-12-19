@@ -16,6 +16,14 @@ public class BarmanMovement : PlayerMovement
     
     public bool IsPlayingFullQte { get; set; }
     private bool _isInDrop = false;
+    public float CurrentDuration {
+        get
+        {
+            if (_barmanPositions == null || _indexPosition >= _barmanPositions.Length || _barmanPositions[_indexPosition].WaitingLine == null)
+                return 0f;
+            return _barmanPositions[_indexPosition].WaitingLine.DurationValue;
+        }
+    }
 
     private void Awake()
     {

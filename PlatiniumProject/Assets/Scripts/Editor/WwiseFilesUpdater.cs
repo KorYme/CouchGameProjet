@@ -9,7 +9,7 @@ using UnityEditor;
 public static class WwiseFilesUpdater
 {
     const string GOOGLE_DRIVE_FOLDER_ID = "1A6fu8iMUg3yF1vM0rJ04KBgT-MefGeF0";
-    static string WwiseSFXFilePath => Path.Combine(Application.dataPath, @"..\", Application.productName + "_WwiseProject", "Originals", "SFX");
+    static string WwiseSFXFilePath => Path.Combine(Application.dataPath, @"..\", "PlatiniumProject" + "_WwiseProject", "Originals", "SFX");
     [MenuItem("Tools/Wwise Google Update/Download")]
     public static void Download()
     {
@@ -22,9 +22,18 @@ public static class WwiseFilesUpdater
                 Debug.LogWarning("The request to look for files in drive ended in an error");
                 return;
             }
+            int fileRemaining = driveFileList.Files.Count;
             driveFileList.Files.ForEach(driveFile =>
             {
-                if (Path.GetExtension(driveFile.Name) != ".wav") return;
+                if (Path.GetExtension(driveFile.Name) != ".wav")
+                {
+                    fileRemaining--;
+                    if (fileRemaining <= 0)
+                    {
+                        Debug.Log($"All files have been downloaded");
+                    }
+                    return;
+                }
                 if (localFiles.FirstOrDefault(localFile => Path.GetFileName(localFile) == driveFile.Name) == default)
                 {
                     Debug.Log($"Dowloading {driveFile.Name}");
@@ -38,7 +47,20 @@ public static class WwiseFilesUpdater
                         }
                         File.WriteAllBytes(Path.Combine(WwiseSFXFilePath, driveFile.Name), dlFile.Content);
                         Debug.Log($"Download of {driveFile.Name} done, writing the new file in {WwiseSFXFilePath}");
+                        fileRemaining--;
+                        if (fileRemaining <= 0)
+                        {
+                            Debug.Log($"All files have been downloaded");
+                        }
                     };
+                }
+                else
+                {
+                    fileRemaining--;
+                    if (fileRemaining <= 0)
+                    {
+                        Debug.Log($"All files have been downloaded");
+                    }
                 }
             });
         };
@@ -59,7 +81,10 @@ public static class WwiseFilesUpdater
             }
             localFiles.ForEach(localFile =>
             {
-                if (Path.GetExtension(localFile) != ".wav") return;
+                if (Path.GetExtension(localFile) != ".wav")
+                {
+                    return;
+                }
                 string driveFileId = driveFileList.Files.FirstOrDefault(x => Path.GetFileName(localFile) == x.Name)?.Id;
                 if (driveFileId == default)
                 {
@@ -83,7 +108,6 @@ public static class WwiseFilesUpdater
                             Debug.Log($"Upload of {createdFile.Name} done");
                         }
                     };
-
                 }
                 else
                 {
@@ -121,7 +145,6 @@ public static class WwiseFilesUpdater
                     //    };
                     //};
                     #endregion
-                    Debug.Log($"A file with the name {Path.GetFileName(localFile)} is already on the drive");
                 }
             });
         };

@@ -73,7 +73,7 @@ public class CharacterAIStatisfaction : MonoBehaviour
         {
             _currentState = SATISFACTION_STATE.LOYAL;
             _stateMachine.CharacterAnimation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.SATISAFCTION);
-            Globals.GameManager.SacrifiedClient++;
+            Globals.WinMenu.SacrifiedClient++;
             if (_stateMachine.CharacterDataObject.isTutorialNpc)
             {
                 Globals.TutorialManager.HandledTutoCharacter++;

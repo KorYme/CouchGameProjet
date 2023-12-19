@@ -24,12 +24,12 @@ public class GameManager : MonoBehaviour
         OnGamePaused += Globals.MenuMusicPlayer.PauseOrResumeMusicMenu;
         OnGamePaused += Globals.BeatManager.PauseOrResumeMainMusic;
         Globals.DropManager.OnGameEnd += DisplayWinMenu;
-        Players.OnPlayerConnect += playerRole => Players.PlayersController[playerRole].Pause.OnInputStart += () => AssignPlayerToPauseMenu(playerRole);
+        Players.OnPlayerConnect += playerRole => Players.PlayersController[playerRole].Pause.OnInputStart += () => AssignPlayerToPauseMenuAndPause(playerRole);
         for (int i = 0; i < Players.MAXPLAYERS; i++)
         {
             if (Players.PlayersController[i] != null)
             {
-                Players.PlayersController[i].Pause.OnInputStart += () => AssignPlayerToPauseMenu(i);
+                Players.PlayersController[i].Pause.OnInputStart += () => AssignPlayerToPauseMenuAndPause(i);
             }
         }
     }
@@ -37,7 +37,14 @@ public class GameManager : MonoBehaviour
     private void OnDisable()
     {
         Globals.DropManager.OnGameEnd -= DisplayWinMenu;
-        Players.OnPlayerConnect -= playerRole => Players.PlayersController[playerRole].Pause.OnInputStart += () => AssignPlayerToPauseMenu(playerRole); 
+        Players.OnPlayerConnect -= playerRole => Players.PlayersController[playerRole].Pause.OnInputStart += () => AssignPlayerToPauseMenuAndPause(playerRole);
+        for (int i = 0; i < Players.MAXPLAYERS; i++)
+        {
+            if (Players.PlayersController[i] != null)
+            {
+                Players.PlayersController[i].Pause.OnInputStart -= () => AssignPlayerToPauseMenuAndPause(i);
+            }
+        }
     }
 
     private void DisplayWinMenu()
@@ -57,17 +64,32 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void AssignPlayerToPauseMenu(int playerRole)
+    void AssignPlayerToPauseMenuAndPause(int playerRole)
     {
-        Players.PlayersController[playerRole].newPlayer.controllers.maps.SetMapsEnabled(true, RewiredConsts.Category.UI);
-        for (int i = 0; i < Players.MAXPLAYERS ; i++)
-        {
-            Players.PlayersController[i]?.newPlayer.controllers.maps.SetMapsEnabled(false, "Default", "Default");
-        }
+        if (!Globals.DropManager?.IsGamePlaying ?? false) return;
+        AssignPlayerToPauseMenu(playerRole);
         PauseOrResumeGame();
     }
 
-    void UnAssignPlayerToPauseMenu()
+    public void AssignPlayerToPauseMenu(int playerRole)
+    {
+        Players.PlayersController[playerRole]?.newPlayer.controllers.maps.SetMapsEnabled(true, RewiredConsts.Category.UI);
+        for (int i = 0; i < Players.MAXPLAYERS; i++)
+        {
+            Players.PlayersController[i]?.newPlayer.controllers.maps.SetMapsEnabled(false, "Default", "Default");
+        }
+    }
+
+    public void SetAllPlayerToUIMode()
+    {
+        for (int i = 0; i < Players.MAXPLAYERS; i++)
+        {
+            Players.PlayersController[i]?.newPlayer.controllers.maps.SetMapsEnabled(true, RewiredConsts.Category.UI);
+            Players.PlayersController[i]?.newPlayer.controllers.maps.SetMapsEnabled(false, "Default", "Default");
+        }
+    }
+
+    public void UnAssignPlayerToPauseMenu()
     {
         for (int i = 0; i < Players.MAXPLAYERS; i++)
         {

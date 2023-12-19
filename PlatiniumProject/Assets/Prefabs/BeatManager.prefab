@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1020801392736537925}
   - component: {fileID: 3001707074899246954}
   - component: {fileID: 2423857602229449428}
+  - component: {fileID: 4773683169344211742}
   m_Layer: 0
   m_Name: BeatManager
   m_TagString: Untagged
@@ -91,6 +92,14 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: e405181aa40c1d04db87acc455f4ecdd, type: 2}
+  _endMusicStateEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 37a9c8260cad227448ad92f855a06eca, type: 2}
+  _gameOverSoundEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: b3892d2f7288c674b93ffe4519e540e7, type: 2}
   _timingBeforeBeat: 0.35
   _timingAfterBeat: 0.35
   _onBeatEvent:
@@ -122,10 +131,6 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 413bba000174b7f4e9fec2ca021f10bd, type: 2}
-  _endMusicStateEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 37a9c8260cad227448ad92f855a06eca, type: 2}
   _dropSuccessEvent:
     idInternal: 0
     valueGuidInternal: 
@@ -194,3 +199,19 @@ MonoBehaviour:
   _allRumbles:
   - {fileID: 11400000, guid: 5acbf6a9b21b23b49aaecf0b7a6a4fc9, type: 2}
   - {fileID: 11400000, guid: 176ac9614f7caa3469bdfe1b5a98dd7a, type: 2}
+--- !u!114 &4773683169344211742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2994801982979645308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c0fff6976d0c424386246523e57de32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxEvent:
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 2812b9de3b222e94897a91588e0bb5e5, type: 2}
