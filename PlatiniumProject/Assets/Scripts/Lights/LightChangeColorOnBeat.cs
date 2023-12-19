@@ -9,7 +9,6 @@ public class LightChangeColorOnBeat : MonoBehaviour
 {
     [SerializeField] Light2D[] _lights2D;
     [SerializeField] LightColorData _lightColorData;
-    UnityAction _currentAction;
 
     private void Reset()
     {
@@ -20,34 +19,33 @@ public class LightChangeColorOnBeat : MonoBehaviour
 
     private void Start()
     {
-        _currentAction = ChangeToRandomColor;
+        if (_lightColorData.onBeatColorList.Count == 0 || _lights2D.Length == 0) return;
+        Globals.BeatManager.OnBeatEvent.AddListener(ChangeToRandomColor);
         Globals.DropManager.OnDropSuccess += OnDropSuccessEffect;
         Globals.DropManager.OnDropFail += OnDropFailEffect;
-        Globals.DropManager.OnDropEnded += () => _currentAction = ChangeToRandomColor;
-        if (_lightColorData.onBeatColorList.Count == 0 || _lights2D.Length == 0) return;
-        Globals.BeatManager.OnBeatEvent.AddListener(_currentAction);
+        Globals.DropManager.OnDropEnded += () => Globals.BeatManager.OnBeatEvent.AddListener(ChangeToRandomColor);
     }
 
     private void OnDestroy()
     {
+        if (_lightColorData.onBeatColorList.Count == 0 || _lights2D.Length == 0) return;
+        Globals.BeatManager.OnBeatEvent.RemoveListener(ChangeToRandomColor);
         Globals.DropManager.OnDropSuccess -= OnDropSuccessEffect;
         Globals.DropManager.OnDropFail -= OnDropFailEffect;
-        Globals.DropManager.OnDropEnded -= () => _currentAction = ChangeToRandomColor;
-        if (_lightColorData.onBeatColorList.Count == 0 || _lights2D.Length == 0) return;
-        Globals.BeatManager?.OnBeatEvent.RemoveListener(_currentAction);
+        Globals.DropManager.OnDropEnded -= () => Globals.BeatManager.OnBeatEvent.AddListener(ChangeToRandomColor);
     }
 
     private void ChangeToRandomColor() => ChangeAllLightsColor(_lightColorData.onBeatColorList[UnityEngine.Random.Range(0, _lightColorData.onBeatColorList.Count)]);
 
     private void OnDropSuccessEffect()
     {
-        _currentAction = null;
+        Globals.BeatManager.OnBeatEvent.RemoveListener(ChangeToRandomColor);
         ChangeAllLightsColor(_lightColorData.onDropSuccessColor);
     }
 
     private void OnDropFailEffect()
     {
-        _currentAction = null;
+        Globals.BeatManager.OnBeatEvent.RemoveListener(ChangeToRandomColor);
         ChangeAllLightsColor(_lightColorData.onDropFailedColor);
     }
 

@@ -39,6 +39,7 @@ public class PriestCalculator : MonoBehaviour
     {
         Globals.DropManager.OnDropSuccess += DropSucceed;
         OnPriestExorcize += Globals.BeatManager.StopBeat;
+        OnPriestExorcize += Globals.BeatManager.PlayPriestMusic;
     }
 
     private void OnDisable()

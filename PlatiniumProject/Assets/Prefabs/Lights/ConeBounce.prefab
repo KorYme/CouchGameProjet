@@ -232,3 +232,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _light2D: {fileID: 6625357907445751567}
+  _dropSuccessData: {fileID: 11400000, guid: 46ff3adb322a19a4796fe184ca69bd8f, type: 2}
+  _dropFailedData: {fileID: 11400000, guid: a1817093c649426438816e5d40a4b23b, type: 2}
+  _lightReturnSpeed: 1

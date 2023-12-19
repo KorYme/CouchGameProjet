@@ -112,6 +112,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _light2D: {fileID: 3205818174946875287}
+  _dropSuccessData: {fileID: 0}
+  _dropFailedData: {fileID: 0}
+  _lightReturnSpeed: 1
 --- !u!1 &9062100294596992736
 GameObject:
   m_ObjectHideFlags: 0

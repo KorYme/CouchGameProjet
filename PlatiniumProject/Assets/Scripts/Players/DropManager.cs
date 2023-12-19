@@ -76,7 +76,7 @@ public class DropManager : MonoBehaviour
         _beatManager = Globals.BeatManager;
         _triggerPressedNumber = 0;
         _currentPhase = 0;
-        DropState = DROP_STATE.OUT_OF_DROP;
+        _dropState = DROP_STATE.OUT_OF_DROP;
         OnDropLoaded += () => _dropAnimationBehaviour.gameObject.SetActive(true);
         _beatManager.OnUserCueReceived += CheckUserCueName;
         _dropAnimationBehaviour.OnDropAnimationClimax += CheckAnimationClimax;

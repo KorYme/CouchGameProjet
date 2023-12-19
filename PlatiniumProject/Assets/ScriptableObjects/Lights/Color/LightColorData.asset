@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onBeatColorList:
   - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0.28956914, g: 1, b: 0, a: 1}
   - {r: 0.19106627, g: 0, b: 1, a: 1}
   - {r: 1, g: 0, b: 0.88663435, a: 1}
   onDropFailedColor: {r: 1, g: 1, b: 1, a: 1}
