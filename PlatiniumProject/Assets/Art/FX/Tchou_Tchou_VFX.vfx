@@ -31,7 +31,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4c867f6b72b714dbb5fd1780afe208, type: 3}
-  m_Name: NOVFX
+  m_Name: Tchou_Tchou_VFX
   m_EditorClassIdentifier: 
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 0}
@@ -951,7 +951,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"861397e5e05bad647b56991f8508476f","type":3}}'
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"9f59754ce33d27846948cf9c2100d5aa","type":3}}'
     m_Space: 2147483647
   m_Property:
     name: mainTexture
@@ -2414,7 +2414,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"861397e5e05bad647b56991f8508476f","type":3}}'
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"9f59754ce33d27846948cf9c2100d5aa","type":3}}'
     m_Space: 2147483647
   m_Property:
     name: mainTexture
