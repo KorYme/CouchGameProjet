@@ -4,33 +4,6 @@ using Rewired;
 using System;
 using Unity.VisualScripting;
 
-public enum PlayerRole
-{
-    Barman = 0,
-    DJ = 1,
-    Bouncer = 2,
-    None
-}
-public class PlayerMap
-{
-    public int RewiredPlayerId;
-    public int GamePlayerId;
-    public PlayerRole Role;
-    public ControllerType Type;
-    public InputDevice Device = InputDevice.XBox;
-    public PlayerMap(int rewiredPlayerId, int gamePlayerId, ControllerType type, PlayerRole role)
-    {
-        RewiredPlayerId = rewiredPlayerId;
-        GamePlayerId = gamePlayerId;
-        Type = type;
-        Role = role;
-    }
-
-    public PlayerMap(int rewiredPlayerId, int gamePlayerId, ControllerType type, PlayerRole role,InputDevice device) : this (rewiredPlayerId, gamePlayerId, type, role)
-    {
-        Device = device;
-    }
-}
 public class PlayerInputsAssigner : MonoBehaviour {
 
     const int MAXPLAYERS = 3;
@@ -44,7 +17,7 @@ public class PlayerInputsAssigner : MonoBehaviour {
     CSVLoader _csvLoader;
 
     #region GetPlayer
-    public static Rewired.Player GetRewiredPlayerByRole(PlayerRole role) {
+    public static Player GetRewiredPlayerByRole(PlayerRole role) {
         if(!Rewired.ReInput.isReady) return null;
         if(_instance == null) {
             Debug.LogError("Not initialized.");
@@ -58,9 +31,9 @@ public class PlayerInputsAssigner : MonoBehaviour {
         }
         return null;
     }
-    public static Rewired.Player GetRewiredPlayerById(int playerId)
+    public static Player GetRewiredPlayerById(int playerId)
     {
-        if (!Rewired.ReInput.isReady) return null;
+        if (!ReInput.isReady) return null;
         if (_instance == null)
         {
             Debug.LogError("Not initialized.");
@@ -75,7 +48,6 @@ public class PlayerInputsAssigner : MonoBehaviour {
         }
         return null;
     }
-
     public static InputDevice GetDeviceByRole(PlayerRole role)
     {
         if (!Rewired.ReInput.isReady) return InputDevice.None;
@@ -94,6 +66,7 @@ public class PlayerInputsAssigner : MonoBehaviour {
         return InputDevice.None;
     }
     #endregion
+
     private List<PlayerMap> _playerMap; // Maps Rewired Player ids to game player ids
     public IList<PlayerMap> PlayersMap => _playerMap.AsReadOnlyList();
     private int gamePlayerIdCounter = 0;
@@ -149,19 +122,22 @@ public class PlayerInputsAssigner : MonoBehaviour {
             return;
         }
         int gamePlayerId = GetNextGamePlayerId();
-
         InputDevice device = _csvLoader.GetInputDeviceFromGUID(controller.hardwareTypeGuid.ToString());
         // Add the Rewired Player as the next open game player slot
-        if (_characterSelectionInGame)
+        PlayerRole role = PlayerRole.None;
+        if (!_characterSelectionInGame)
         {
-            _playerMap.Add(new PlayerMap(rewiredPlayerId, gamePlayerId, controller.type, PlayerRole.None, device));
-        } else
-        {
-            _playerMap.Add(new PlayerMap(rewiredPlayerId, gamePlayerId,controller.type,(PlayerRole) gamePlayerId, device));
+            role = (PlayerRole)gamePlayerId;
         }
+        _playerMap.Add(new PlayerMap(rewiredPlayerId, gamePlayerId, controller.type, role, device,controller.id));
         Debug.Log("Added Rewired Player id " + rewiredPlayerId + " to game player " + gamePlayerId);
     }
 
+    public void RemovePlayer(int controllerId)
+    {
+        //_playerMap
+    }
+    #region ChangeMap
     void ChangeMapJoystick(int rewiredPlayerId)
     {
         Player rewiredPlayer = ReInput.players.GetPlayer(rewiredPlayerId);
@@ -223,5 +199,5 @@ public class PlayerInputsAssigner : MonoBehaviour {
         gamePlayerIdCounter++;
         return playerId;
     }
-
+    #endregion
 }
