@@ -4,8 +4,8 @@ using UnityEngine;
 public class UIBottomText : MonoBehaviour
 {
     [SerializeField] PlayerSelectionManager _selectionManager;
-    [SerializeField] TextMeshProUGUI _textStart;
-    [SerializeField] TextMeshProUGUI _textSelectCharacter;
+    [SerializeField] GameObject _textStart;
+    [SerializeField] GameObject _textSelectCharacter;
 
     private void Start()
     {
