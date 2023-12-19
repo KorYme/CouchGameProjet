@@ -27480,8 +27480,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7522a7d8fa7f6418e343f088b60fdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _priestAmountToStartExorcize: 8
-  _priestAmountToExorcize: 10
+  _priestAmountToStartExorcize: 3
+  _priestAmountToExorcize: 5
   _danceFloor: {fileID: 1447748216813016775}
   CurrentPriestList: []
   OnLoose:
@@ -43190,13 +43190,17 @@ PrefabInstance:
       value: QTELoader
       objectReference: {fileID: 0}
     - target: {fileID: 7029082207090183600, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
+      propertyPath: _listQTE.Array.size
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029082207090183600, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
       propertyPath: _listQTE.Array.data[13]
       value: 
       objectReference: {fileID: 11400000, guid: 77491eb419b1c564aab2f6957918a014, type: 2}
     - target: {fileID: 7029082207090183600, guid: 8071b678303fef04b93d41e483828b6f, type: 3}
       propertyPath: _listQTE.Array.data[22]
       value: 
-      objectReference: {fileID: 11400000, guid: 2f5964e71be30754faedd5914eefa41e, type: 2}
+      objectReference: {fileID: 11400000, guid: 2070372dd61a230488c174cc5182633d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
