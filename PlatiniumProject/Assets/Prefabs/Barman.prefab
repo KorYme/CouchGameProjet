@@ -830,7 +830,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3246958871936418717, guid: 61ff658090754db4ba104f2dd050d7dc, type: 3}
       propertyPath: _vfxs.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3246958871936418717, guid: 61ff658090754db4ba104f2dd050d7dc, type: 3}
       propertyPath: _vfxs.Array.data[0].vfx
@@ -841,12 +841,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 295997762428759901}
     - target: {fileID: 3246958871936418717, guid: 61ff658090754db4ba104f2dd050d7dc, type: 3}
+      propertyPath: _vfxs.Array.data[2].vfx
+      value: 
+      objectReference: {fileID: 2099567808376422408}
+    - target: {fileID: 3246958871936418717, guid: 61ff658090754db4ba104f2dd050d7dc, type: 3}
       propertyPath: _vfxs.Array.data[0].vfxType
       value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 3246958871936418717, guid: 61ff658090754db4ba104f2dd050d7dc, type: 3}
       propertyPath: _vfxs.Array.data[1].vfxType
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3246958871936418717, guid: 61ff658090754db4ba104f2dd050d7dc, type: 3}
+      propertyPath: _vfxs.Array.data[2].vfxType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7353512382884570658, guid: 61ff658090754db4ba104f2dd050d7dc, type: 3}
       propertyPath: m_Name
