@@ -15,13 +15,13 @@ public class DjUsher : MonoBehaviour
         if (NextSlot != null)
         {
             NextSlot.SpriteRenderer.color = Color.white;
-            NextSlot.SlotRenderer._useShader = true;
+            NextSlot.SlotRenderer.UseShader = true;
             NextSlot.SpriteRenderer.sprite = NextSlot.BaseSprite;
         }
         NextSlot = _dancefloor.GetRandomAvailableSlot();
         NextSlot.SpriteRenderer.color = Color.black;
         NextSlot.SpriteRenderer.sprite = _selectedSlot;
-        NextSlot.SlotRenderer._useShader = false;
+        NextSlot.SlotRenderer.UseShader = false;
         //EditorGUIUtility.PingObject(NextSlot);
     }
 }
