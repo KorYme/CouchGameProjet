@@ -30,7 +30,6 @@ public class SlotRenderer : MonoBehaviour
                 _nbColors = (int)_spriteRenderer.material.GetFloat("_NbColors");
             _materialDanceFloor = _spriteRenderer.material;
         }
-        ChangeColor(false);
     }
 
     private void Start()
