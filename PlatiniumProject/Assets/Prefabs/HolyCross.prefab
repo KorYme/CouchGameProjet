@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3402735554870746354}
   - component: {fileID: 6786547122548472935}
   - component: {fileID: 6377067355659012204}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HolyCross
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _light: {fileID: 6786547122548472935}
-  _stateMachine: {fileID: 0}
   _fadeInCurve:
     serializedVersion: 2
     m_Curve:

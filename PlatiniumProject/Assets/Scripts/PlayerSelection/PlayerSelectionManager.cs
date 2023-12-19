@@ -12,6 +12,7 @@ public class PlayerSelectionManager : MonoBehaviour
     [SerializeField] LerpTargetLight[] _objectsSelectionable;
     [SerializeField] CharacterSelectionHandler[] _selectionHandlers;
     [SerializeField] WwiseSFXPlayer _sfxPlayer;
+    [SerializeField] UIReturnButton _returnButton;
     int[] _idPlayerSelected; // -1 if player not selected else index of player 
     public IList<int> IdPlayerSelected {
         get {
@@ -119,8 +120,10 @@ public class PlayerSelectionManager : MonoBehaviour
         instancePrefab.OnAccept += OnAcceptPlayer;
         instancePrefab.OnReturn += OnReturnPlayer;
         instancePrefab.OnMove += OnMovePlayer;
+        instancePrefab.OnReturnUp += OnReturnUpPlayer;
         _playersController.Add(instancePrefab);
     }
+
     private void OnMovePlayer(int indexPlayer, int indexCurrentCharacter,int indexLastCharacter)
     {
         _objectsSelectionable[indexPlayer].MoveToIndex(indexCurrentCharacter);
@@ -139,6 +142,10 @@ public class PlayerSelectionManager : MonoBehaviour
             {
                 OnAllCharacterChosen?.Invoke(false);
             }
+        } else if (!_playersController[indexPlayer].HasStartedHolding)
+        {
+            _playersController[indexPlayer].HasStartedHolding = true;
+            _returnButton.IncrementNbPlayersHolding();
         }
     }
 
@@ -158,6 +165,11 @@ public class PlayerSelectionManager : MonoBehaviour
                 OnAllCharacterChosen?.Invoke(true);
             }
         }
+    }
+
+    private void OnReturnUpPlayer(int arg1, int arg2)
+    {
+        _returnButton.DecrementNbPlayersHolding();
     }
 
     private bool CheckAllCharactersChosen() => _idPlayerSelected.ToList().TrueForAll(value => value != -1);

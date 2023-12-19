@@ -60,7 +60,7 @@ public class PriestCalculator : MonoBehaviour
         CurrentPriestList.Clear();
     }
 
-    public void PriestOnDanceFloor(CharacterStateMachine chara)
+    public void AddPriestOnDanceFloor(CharacterStateMachine chara)
     {
         CurrentPriestList.Add(chara);
         if (CurrentPriestList.Count == _priestAmountToStartExorcize)
@@ -73,9 +73,15 @@ public class PriestCalculator : MonoBehaviour
         {
             Debug.Log("GAME OVER");
             ExorcizeState = EXORCIZE_STATE.EXORCIZED;
-            OnPriestExorcize?.Invoke();
-            OnLoose?.Invoke();
+            StartCoroutine(TriggerLose());
         }
+    }
+
+    IEnumerator TriggerLose()
+    {
+        yield return new WaitForSeconds(1f);
+        OnPriestExorcize?.Invoke();
+        OnLoose?.Invoke();
     }
 
     public void CallGameOverScreen() => OnDisplayLooseScreen?.Invoke();
