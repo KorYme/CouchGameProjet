@@ -439,6 +439,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HolyCross
       objectReference: {fileID: 0}
+    - target: {fileID: 979502465815607010, guid: 4c8d51c53f80b964985c228f8b14de22, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3402735554870746354, guid: 4c8d51c53f80b964985c228f8b14de22, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
