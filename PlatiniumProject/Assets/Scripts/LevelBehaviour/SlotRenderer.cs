@@ -48,14 +48,19 @@ public class SlotRenderer : MonoBehaviour
         _useShader = useShader;
     }
 
-    public void ChangeColor(bool isEnlighten)
+    public void ChangeColor(bool isToggle)
     {
-        if (_spriteRenderer != null && _useShader)
+        if (_spriteRenderer != null && _useShader && !isToggle)
         {
             _spriteRenderer.material = _materialDanceFloor;
             _spriteRenderer.color = Color.white;
         }
-        _isLit = isEnlighten;
+        else
+        {
+            _spriteRenderer.material = _materialTileEnlighten;
+            _spriteRenderer.color = Color.green;
+        }
+        _isLit = isToggle;
     }
 
     private void ChangeOnBeat()

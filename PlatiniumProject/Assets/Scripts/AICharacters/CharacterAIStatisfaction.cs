@@ -73,6 +73,7 @@ public class CharacterAIStatisfaction : MonoBehaviour
         {
             _currentState = SATISFACTION_STATE.LOYAL;
             _stateMachine.CharacterAnimation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.SATISAFCTION);
+            _stateMachine.CurrentSlot.SlotRenderer.ChangeColor(true);
             Globals.WinMenu.SacrifiedClient++;
             if (_stateMachine.CharacterDataObject.isTutorialNpc)
             {
