@@ -238,6 +238,18 @@ MonoBehaviour:
           m_StringArgument: MissedInput
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8844697411672879050}
+        m_TargetAssemblyTypeName: BeatSign, Assembly-CSharp
+        m_MethodName: SetUiMissedInput
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MissedInput
+          m_BoolArgument: 1
+        m_CallState: 2
   _onMissedInputDisableNextBeat:
     m_PersistentCalls:
       m_Calls: []
@@ -927,11 +939,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1067175882187492549, guid: 0c70f70542b6c384aa13fc02ba7b040f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.271
+      value: 0.265
       objectReference: {fileID: 0}
     - target: {fileID: 1067175882187492549, guid: 0c70f70542b6c384aa13fc02ba7b040f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.21
+      value: 1.825
       objectReference: {fileID: 0}
     - target: {fileID: 1067175882187492549, guid: 0c70f70542b6c384aa13fc02ba7b040f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -983,3 +995,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1067175882187492549, guid: 0c70f70542b6c384aa13fc02ba7b040f, type: 3}
   m_PrefabInstance: {fileID: 7844542955503584451}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8844697411672879050 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1613352095275133705, guid: 0c70f70542b6c384aa13fc02ba7b040f, type: 3}
+  m_PrefabInstance: {fileID: 7844542955503584451}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23ca3cf46d80e9a4cb8532422173b923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -199,6 +199,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1447748216813016775, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _isDanceFloor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1513887340520608405, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
@@ -625,7 +629,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8484154248070721880, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: _badClientRatio.x
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8516942252717919931, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_Materials.Array.data[0]
