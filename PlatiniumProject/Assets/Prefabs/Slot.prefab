@@ -472,7 +472,11 @@ MonoBehaviour:
   _materialTileEnlighten: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   _materialDanceFloorShared: {fileID: 2100000, guid: 3c818189b929ddc43991abb9772f953e, type: 2}
   _position: {x: 8, y: 7}
-  _useShader: 1
+  _useShader: 0
+  _shaderTextures:
+  - {fileID: 2800000, guid: 0e54fc5f8a4c00b45b9c62f9c7a25ef4, type: 3}
+  - {fileID: 2800000, guid: d0387c2b593d6364fade94098f35cb58, type: 3}
+  - {fileID: 2800000, guid: 8d99588d18042f74bace965d3875d2bf, type: 3}
 --- !u!114 &4918806883482787210
 MonoBehaviour:
   m_ObjectHideFlags: 0

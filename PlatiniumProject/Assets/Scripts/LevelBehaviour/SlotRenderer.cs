@@ -5,6 +5,7 @@ using UnityEngine;
 public class SlotRenderer : MonoBehaviour
 {
     ITimingable _beatManager;
+    DropManager _dropManager;
     SpriteRenderer _spriteRenderer;
     [Header("Lit")]
     [SerializeField] Material _materialTileEnlighten;
@@ -15,8 +16,13 @@ public class SlotRenderer : MonoBehaviour
     public Vector2 _position;
     int _nbColors = 0;
     int _index = 0;
-    public bool _useShader = false;
-    bool _isLit = false;
+    [SerializeField] bool _useShader = false;
+
+
+    [SerializeField] Texture[] _shaderTextures;
+    int _indexTexture = 0;
+
+    public bool UseShader { get => _useShader; set => _useShader = value; }
 
     private void Awake()
     {
@@ -35,12 +41,35 @@ public class SlotRenderer : MonoBehaviour
     private void Start()
     {
         _beatManager = Globals.BeatManager;
+        _dropManager = Globals.DropManager;
+
         if (_useShader)
         {
-            _beatManager.OnBeatEvent.AddListener(() => ChangeOnBeat()); 
+            _beatManager.OnBeatEvent.AddListener(() => ChangeOnBeat());
+            _dropManager.OnDropEnded += OnChangeTexture;
+            ChangeColor(false);
         }
-        
     }
+
+    private void OnDestroy()
+    {
+        if (_useShader)
+        {
+            _dropManager.OnDropEnded -= OnChangeTexture;
+        }
+    }
+    private void OnChangeTexture()
+    {
+        if (_useShader && _shaderTextures != null && _shaderTextures.Length > 0)
+        {
+            _indexTexture = (_indexTexture + 1) % _shaderTextures.Length;
+            if (_spriteRenderer.material.HasTexture("_Texture2D"))
+            {
+                _spriteRenderer.material.SetTexture("_Texture2D", _shaderTextures[_indexTexture]);
+            }
+        }
+    }
+
     public void SetUpMaterialDancefloor(int i,int j,bool useShader)
     {
         _position = new Vector2(i, j);
@@ -59,7 +88,6 @@ public class SlotRenderer : MonoBehaviour
             _spriteRenderer.material = _materialTileEnlighten;
             _spriteRenderer.color = Color.green;
         }
-        _isLit = isToggle;
     }
 
     private void ChangeOnBeat()
