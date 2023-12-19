@@ -49,6 +49,7 @@ public class BarmanMovement : PlayerMovement
             _animation.SetAnim(ANIMATION_TYPE.CORRECT_INPUT);
             _animation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.SHAKE);
             _animation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.SHAKE2);
+            _animation.VfxHandeler.PlayVfx(VfxHandeler.VFX_TYPE.SHAK);
         }
         else
         {

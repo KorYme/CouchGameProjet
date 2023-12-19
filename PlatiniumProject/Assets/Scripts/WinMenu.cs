@@ -5,6 +5,7 @@ using DG.Tweening;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using Sequence = Unity.VisualScripting.Sequence;
 
@@ -21,6 +22,8 @@ public class WinMenu : MonoBehaviour
     [SerializeField] private Transform _flame;
     [SerializeField] private Vector2 _flameMinMaxPos;
     [SerializeField] private int _clientMaxAmountForFlames;
+
+    public UnityEvent OnWinDisplay;
     public int DebugClient;
 
     private int _actualScore;
@@ -47,6 +50,7 @@ public class WinMenu : MonoBehaviour
     private void DisplayWinMenu()
     {
         _winMenu.gameObject.SetActive(true);
+        OnWinDisplay?.Invoke();
         _displayRoutine = StartCoroutine(DisplaySacrificeRoutine());
     }
 
