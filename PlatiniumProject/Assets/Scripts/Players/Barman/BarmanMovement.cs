@@ -126,6 +126,9 @@ public class BarmanMovement : PlayerMovement
     protected override void OnDropEnd()
     {
         _isInDrop = false;
-        _barmanPositions[_indexPosition].WaitingLine.PauseQTEForDrop(false);
+        if (_barmanPositions[_indexPosition].WaitingLine.NbCharactersWaiting > 0)
+        {
+            _barmanPositions[_indexPosition].WaitingLine.PauseQTEForDrop(false);
+        }
     }
 }
