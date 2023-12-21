@@ -8,7 +8,7 @@ public class OptionsHandler : MonoBehaviour
     [SerializeField] Slider _generalVolumeSlider, _musicVolumeSlider, _sfxVolumeSlider;
     [SerializeField] Toggle _rumbleToggle, _tutoToggle;
 
-    private void OnEnable()
+    private void Awake()
     {
         _rumbleToggle.isOn = Globals.DataLoader?.AreRumblesActivated ?? true;
         _tutoToggle.isOn = Globals.DataLoader?.IsTutoActivated ?? true;

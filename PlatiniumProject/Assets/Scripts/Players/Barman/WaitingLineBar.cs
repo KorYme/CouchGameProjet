@@ -91,7 +91,7 @@ public class WaitingLineBar : MonoBehaviour,IQTEable
              stateMachine.NextState = stateMachine.DancingState;
              stateMachine.UseTp = true;
              stateMachine.ChangeState(stateMachine.MoveToState);
-             _priestCalculator.PriestOnDanceFloor(stateMachine);
+             _priestCalculator.AddPriestOnDanceFloor(stateMachine);
          }
          GetNextCharacter();
          _djUsher.SetNextSlot();

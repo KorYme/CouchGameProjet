@@ -114,11 +114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lights2D:
   - {fileID: 2553288626468390349}
-  - {fileID: 2553288626468390349}
-  _colors:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0.74597883, g: 0, b: 1, a: 1}
-  - {r: 0.19106627, g: 0, b: 1, a: 1}
+  - {fileID: 7623216301490928797}
+  _lightColorData: {fileID: 11400000, guid: 9ec67629ae2205e42b3be19327b53b60, type: 2}
 --- !u!114 &1338077824162715092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,6 +129,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _light2D: {fileID: 2553288626468390349}
+  _dropSuccessData: {fileID: 11400000, guid: 46ff3adb322a19a4796fe184ca69bd8f, type: 2}
+  _dropFailedData: {fileID: 11400000, guid: a1817093c649426438816e5d40a4b23b, type: 2}
+  _lightReturnSpeed: 1
 --- !u!1 &1980358053771435230
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,3 +251,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _light2D: {fileID: 7623216301490928797}
+  _dropSuccessData: {fileID: 0}
+  _dropFailedData: {fileID: 0}
+  _lightReturnSpeed: 1

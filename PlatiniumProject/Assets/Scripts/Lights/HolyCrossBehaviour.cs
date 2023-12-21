@@ -10,7 +10,6 @@ public class HolyCrossBehaviour : MonoBehaviour
     static bool _isAlreadyCalled;
 
     [SerializeField] Light2D _light;
-    [SerializeField] CharacterStateMachine _stateMachine;
 
     [Header("First Apperance Tween")]
     [SerializeField] AnimationCurve _fadeInCurve;

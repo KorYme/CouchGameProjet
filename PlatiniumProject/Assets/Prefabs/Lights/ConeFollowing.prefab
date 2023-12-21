@@ -115,6 +115,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _light2D: {fileID: 2957558167643187989}
+  _dropSuccessData: {fileID: 11400000, guid: 46ff3adb322a19a4796fe184ca69bd8f, type: 2}
+  _dropFailedData: {fileID: 11400000, guid: a1817093c649426438816e5d40a4b23b, type: 2}
+  _lightReturnSpeed: 1
 --- !u!1 &4133355902977164017
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,3 +237,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _light2D: {fileID: 2410619976718045325}
+  _dropSuccessData: {fileID: 0}
+  _dropFailedData: {fileID: 0}
+  _lightReturnSpeed: 1

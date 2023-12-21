@@ -27,8 +27,8 @@ public class PriestCalculator : MonoBehaviour
     public Action OnPriestNearToExorcize;
     public Action OnPriestExorcize;
 
-    public UnityEvent OnLoose;
-    public UnityEvent OnDisplayLooseScreen;
+    public UnityEvent OnLose;
+    public UnityEvent OnDisplayLoseScreen;
 
     private void Awake()
     {
@@ -39,6 +39,7 @@ public class PriestCalculator : MonoBehaviour
     {
         Globals.DropManager.OnDropSuccess += DropSucceed;
         OnPriestExorcize += Globals.BeatManager.StopBeat;
+        OnPriestExorcize += Globals.BeatManager.PlayPriestMusic;
     }
 
     private void OnDisable()
@@ -60,7 +61,7 @@ public class PriestCalculator : MonoBehaviour
         CurrentPriestList.Clear();
     }
 
-    public void PriestOnDanceFloor(CharacterStateMachine chara)
+    public void AddPriestOnDanceFloor(CharacterStateMachine chara)
     {
         CurrentPriestList.Add(chara);
         if (CurrentPriestList.Count == _priestAmountToStartExorcize)
@@ -73,10 +74,16 @@ public class PriestCalculator : MonoBehaviour
         {
             Debug.Log("GAME OVER");
             ExorcizeState = EXORCIZE_STATE.EXORCIZED;
-            OnPriestExorcize?.Invoke();
-            OnLoose?.Invoke();
+            StartCoroutine(TriggerLose());
         }
     }
 
-    public void CallGameOverScreen() => OnDisplayLooseScreen?.Invoke();
+    IEnumerator TriggerLose()
+    {
+        yield return new WaitForSeconds(1f);
+        OnPriestExorcize?.Invoke();
+        OnLose?.Invoke();
+    }
+
+    public void CallGameOverScreen() => OnDisplayLoseScreen?.Invoke();
 }

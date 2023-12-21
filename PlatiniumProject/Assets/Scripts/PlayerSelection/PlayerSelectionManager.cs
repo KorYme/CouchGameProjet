@@ -12,6 +12,7 @@ public class PlayerSelectionManager : MonoBehaviour
     [SerializeField] LerpTargetLight[] _objectsSelectionable;
     [SerializeField] CharacterSelectionHandler[] _selectionHandlers;
     [SerializeField] WwiseSFXPlayer _sfxPlayer;
+    [SerializeField] UIReturnButton _returnButton;
     int[] _idPlayerSelected; // -1 if player not selected else index of player 
     public IList<int> IdPlayerSelected {
         get {
@@ -21,7 +22,7 @@ public class PlayerSelectionManager : MonoBehaviour
     PlayerInputsAssigner _playersAssigner;
     [SerializeField] PlayerSelection _prefabPlayerSelection;
     List<PlayerSelection> _playersController;
-    public ReadOnlyCollection<PlayerSelection> PlayersController => _playersController.AsReadOnly();
+    //public ReadOnlyCollection<PlayerSelection> PlayersController => _playersController.AsReadOnly();
     public bool IsSetUp { get; private set; } = false;
 
     #region Events
@@ -29,6 +30,7 @@ public class PlayerSelectionManager : MonoBehaviour
     /// Parameters : indexPlayer in order of connexion, indexCharacter
     /// </summary>
     public event Action<int,int> OnPlayerJoined;
+    public event Action<int,int> OnPlayerLeave;
     /// <summary>
     /// Parameters : indexPlayer, indexCharacterChosen (barman, dj, bouncer)
     /// </summary>
@@ -67,6 +69,7 @@ public class PlayerSelectionManager : MonoBehaviour
         {
             ReloadData();
             _playersAssigner.OnPlayerJoined += AddPlayerSelectionToList;
+            _playersAssigner.OnPlayerLeave += RemovePlayer;
         }
         if (_selectionHandlers.Length != _objectsSelectionable.Length)
         {
@@ -74,16 +77,26 @@ public class PlayerSelectionManager : MonoBehaviour
         }
     }
 
+    private void RemovePlayer(int index)
+    {
+        Debug.Log("TO DO");
+    }
+
     public void ReloadData()
     {
-        foreach(PlayerMap playermap in _playersAssigner.PlayersMap)
+        foreach(PlayerMap playermap in _playersAssigner.PlayersConnectedMap)
         {
+            Debug.Log($"Player map {playermap.GamePlayerId} {playermap.IndexDevice} {playermap.RewiredPlayerId}");
             _playersAssigner.SetRoleOfPlayer(playermap.GamePlayerId, PlayerRole.None);
             CreateInstancePlayerSelection(playermap.GamePlayerId);
         }
         IsSetUp = true;
     }
 
+    public bool IsPlayerConnected(int indexPlayer)
+    {
+        return _playersAssigner.PlayersConnectedMap.ToList().Exists(map => map.GamePlayerId == indexPlayer);
+    }
     public int NbPlayersHoverOnCharacter(int indexCharacter)
     {
         LerpTargetLight light;
@@ -119,8 +132,10 @@ public class PlayerSelectionManager : MonoBehaviour
         instancePrefab.OnAccept += OnAcceptPlayer;
         instancePrefab.OnReturn += OnReturnPlayer;
         instancePrefab.OnMove += OnMovePlayer;
+        instancePrefab.OnReturnUp += OnReturnUpPlayer;
         _playersController.Add(instancePrefab);
     }
+
     private void OnMovePlayer(int indexPlayer, int indexCurrentCharacter,int indexLastCharacter)
     {
         _objectsSelectionable[indexPlayer].MoveToIndex(indexCurrentCharacter);
@@ -139,6 +154,10 @@ public class PlayerSelectionManager : MonoBehaviour
             {
                 OnAllCharacterChosen?.Invoke(false);
             }
+        } else if (!_playersController[indexPlayer].HasStartedHolding)
+        {
+            _playersController[indexPlayer].HasStartedHolding = true;
+            _returnButton.IncrementNbPlayersHolding();
         }
     }
 
@@ -158,6 +177,11 @@ public class PlayerSelectionManager : MonoBehaviour
                 OnAllCharacterChosen?.Invoke(true);
             }
         }
+    }
+
+    private void OnReturnUpPlayer(int arg1, int arg2)
+    {
+        _returnButton.DecrementNbPlayersHolding();
     }
 
     private bool CheckAllCharactersChosen() => _idPlayerSelected.ToList().TrueForAll(value => value != -1);

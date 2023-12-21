@@ -36,6 +36,7 @@ public class CheckerBoard : MonoBehaviour
     {
         SetAvailableSlots();
         SetEnterySlots();
+        //Tom was here because of Chloé
     }
 
     private void SetEnterySlots()

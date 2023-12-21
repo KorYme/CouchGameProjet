@@ -13,7 +13,7 @@ public class UIAnimationBackground : MonoBehaviour
 
     private void Start()
     {
-        if (_spriteRenderer != null && _sprites != null && _sprites.Count > 0)
+        if (_sprites.Count > 0)
         {
             ChangeSprite();
             StartCoroutine(RoutineChangeSprite());

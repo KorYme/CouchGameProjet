@@ -10,6 +10,11 @@ public class RumbleController : MonoBehaviour
     [SerializeField] List<RumbleValues> _allRumbles;
     Coroutine _singlePressCoroutine, _holdCoroutine;
 
+    private void Start()
+    {
+        Globals.DropManager.OnGameWon += StopAllRumbles;
+    }
+
     public void PlayRumbles(string rumbleName)
     {
         if (!Globals.DataLoader?.AreRumblesActivated ?? true) return;
@@ -40,13 +45,13 @@ public class RumbleController : MonoBehaviour
         _holdCoroutine = null;
         if (_role != PlayerRole.None)
         {
-            Players.PlayersController[(int)_role].newPlayer.SetVibration(0, 0f);
+            Players.PlayersController[(int)_role]?.newPlayer.SetVibration(0, 0f);
         }
         else
         {
             for (int i = 0; i < 3; ++i)
             {
-                Players.PlayersController[i].newPlayer.SetVibration(0, 0f);
+                Players.PlayersController[i]?.newPlayer.SetVibration(0, 0f);
             }
         }
     }

@@ -5,6 +5,7 @@ using DG.Tweening;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using Sequence = Unity.VisualScripting.Sequence;
 
@@ -21,6 +22,9 @@ public class WinMenu : MonoBehaviour
     [SerializeField] private Transform _flame;
     [SerializeField] private Vector2 _flameMinMaxPos;
     [SerializeField] private int _clientMaxAmountForFlames;
+    [SerializeField] UnityEvent _onInputReceived;
+
+    public UnityEvent OnWinDisplay;
     public int DebugClient;
 
     private int _actualScore;
@@ -36,17 +40,18 @@ public class WinMenu : MonoBehaviour
 
     private void Start()
     {
-        Globals.DropManager.OnGameEnd += DisplayWinMenu;
+        Globals.DropManager.OnGameWon += DisplayWinMenu;
     }
 
     private void OnDisable()
     {
-        Globals.DropManager.OnGameEnd -= DisplayWinMenu;
+        Globals.DropManager.OnGameWon -= DisplayWinMenu;
     }
 
     private void DisplayWinMenu()
     {
         _winMenu.gameObject.SetActive(true);
+        OnWinDisplay?.Invoke();
         _displayRoutine = StartCoroutine(DisplaySacrificeRoutine());
     }
 
@@ -82,10 +87,11 @@ public class WinMenu : MonoBehaviour
             }
             return false;
         });
-        SceneManager.LoadScene("MainMenu");
+        _onInputReceived?.Invoke();
         sequence.Kill();
     }
 
+#if UNITY_EDITOR
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
@@ -95,4 +101,5 @@ public class WinMenu : MonoBehaviour
             DisplayWinMenu();
         }
     }
+#endif
 }

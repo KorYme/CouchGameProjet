@@ -48,7 +48,6 @@ public class CharacterStateDancing : CharacterState
                 break;
             case CharacterAIStatisfaction.SATISFACTION_STATE.LOYAL:
                 StateMachine.CharacterAnimation.SetAnim(ANIMATION_TYPE.DANCING);
-                StateMachine.CharacterAnimation.SetColor(Color.green);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -71,6 +70,7 @@ public class CharacterStateDancing : CharacterState
     {
         if (StateMachine.Satisafaction.CurrentState == CharacterAIStatisfaction.SATISFACTION_STATE.LOYAL)
         {
+            StateMachine.CurrentSlot.SlotRenderer.ChangeColor(false);
             StateMachine.MoveToLocation = StateMachine.AreaManager.DanceFloorSideArea.GetOffDanceFloorPostion(StateMachine.transform.position);
             StateMachine.CurrentSlot.Occupant = null;
             StateMachine.NextState = StateMachine.DancingOffFloor;

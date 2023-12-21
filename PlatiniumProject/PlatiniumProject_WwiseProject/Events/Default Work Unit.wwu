@@ -291,6 +291,50 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="Play_PersonaUI1" ID="{B8775992-1D16-456F-88F5-7F27F8AB3454}">
+							<ChildrenList>
+								<Action Name="" ID="{66DFB3C0-8557-434A-84D5-9222ABC1A52D}" ShortID="737739461">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PersonaUI1" ID="{B4FA4E36-B87C-4EB9-BBCD-21B456398986}" WorkUnitID="{D768933A-3A49-4F59-8040-626EAE6A38BE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_PersonaUI2" ID="{A1EC27CF-31E3-4BE7-8834-EC87B634687B}">
+							<ChildrenList>
+								<Action Name="" ID="{DB94492A-60F4-4B72-B168-D92195600973}" ShortID="849903809">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PersonaUI2" ID="{31693610-843F-4140-8713-3C0DE4F5D58A}" WorkUnitID="{D768933A-3A49-4F59-8040-626EAE6A38BE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_PersonaUI3" ID="{4F3347FB-8A31-4986-86B5-B0B20E724DDA}">
+							<ChildrenList>
+								<Action Name="" ID="{0566BD3C-D5B9-4573-9430-A6F129E5AD7B}" ShortID="748285303">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PersonaUI3" ID="{6CEE1D89-4E25-482C-9AA0-A747C47BA037}" WorkUnitID="{D768933A-3A49-4F59-8040-626EAE6A38BE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_PersonaUI4" ID="{F1C1D12F-C362-40DB-94EA-4EC5F788E43D}">
+							<ChildrenList>
+								<Action Name="" ID="{1971807C-A644-4820-8A90-0FE1B9A6F53A}" ShortID="980202035">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PersonaUI4" ID="{9EFDF8E8-9641-4E87-AAB7-A766B6F1387D}" WorkUnitID="{D768933A-3A49-4F59-8040-626EAE6A38BE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Ambiance" ID="{A9E4BA3A-5ACF-48FE-B5AB-BD8C8926CCF1}" ShortID="902256128">

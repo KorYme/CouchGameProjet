@@ -14,6 +14,7 @@ public class PlayerSelectionController : MonoBehaviour
     public event Action<int,int> OnMoveInput;
     public event Action<int> OnAccept;
     public event Action<int> OnReturn;
+    public event Action<int> OnReturnUp;
     #endregion
 
     public IEnumerator ChangePlayer(int playerId)
@@ -22,7 +23,6 @@ public class PlayerSelectionController : MonoBehaviour
         yield return new WaitUntil(() => PlayerInputsAssigner.GetRewiredPlayerById(PlayerId) != null);
         _player = PlayerInputsAssigner.GetRewiredPlayerById(PlayerId);
     }
-    //XinputController
     private void Update()
     {
         if (_player != null)
@@ -40,6 +40,10 @@ public class PlayerSelectionController : MonoBehaviour
         if (_player.GetButtonDown(RewiredConsts.Action.UICANCEL))
         {
             OnReturn?.Invoke(PlayerId);
+        }
+        if (_player.GetButtonUp(RewiredConsts.Action.UICANCEL))
+        {
+            OnReturnUp?.Invoke(PlayerId);
         }
         if (_player.GetAxis(RewiredConsts.Action.UIHORIZONTAL) != 0f)
         {
