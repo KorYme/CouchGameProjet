@@ -10,6 +10,7 @@ public class FollowingLightRotation : MonoBehaviour
     [SerializeField] Light2D _light2D;
     [SerializeField] bool _isResizable = true;
     [SerializeField, Range(0f, 10f)] float _radiusAdded = 0f;
+    [SerializeField] bool _isInGameplayScene = true;
 
     Vector3 _velocity;
     float _outerInnerPercent;
@@ -36,7 +37,13 @@ public class FollowingLightRotation : MonoBehaviour
                 _light2D.pointLightInnerRadius = _light2D.pointLightOuterRadius * _outerInnerPercent;
             }
             //transform.eulerAngles = Vector3.SmoothDamp(transform.eulerAngles, new(0, 0, Mathf.Atan2((_target.position - transform.position).y, (_target.position - transform.position).x) * Mathf.Rad2Deg - 90), ref _velocity, _damping);
-            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
+            if (_isInGameplayScene)
+            {
+                yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
+            } else
+            {
+                yield return null;
+            }
         }
     }
 }

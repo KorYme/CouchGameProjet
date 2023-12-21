@@ -13,6 +13,7 @@ public class SwitchLightOnOff : MonoBehaviour
     IEnumerator Start()
     {
         _normalIntensity = _light.intensity;
+
         SwitchOnOff(false);
         yield return new WaitUntil(() => _selectionManager.IsSetUp);
         if (_selectionManager.PlayersController.Count > _playerIndex)
@@ -43,7 +44,8 @@ public class SwitchLightOnOff : MonoBehaviour
         {
             timer = Mathf.Min(timer + Time.deltaTime, _timeToTransitionLight);
             _light.intensity = Mathf.Lerp(startIntensity, targetIntensity,timer/ _timeToTransitionLight);
-            yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
+            //yield return new WaitUntil(() => Globals.BeatManager?.IsPlaying ?? true);
+            yield return null;
         }
         _light.intensity = targetIntensity;
     }
