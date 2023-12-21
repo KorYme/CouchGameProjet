@@ -2003,36 +2003,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
       propertyPath: m_Color.r
       value: 0.73251724
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_Intensity
-      value: 1.29
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_BlendStyleIndex
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_FalloffIntensity
-      value: 0.457
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_OverlapOperation
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_PointLightInnerAngle
-      value: 19.71461
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_PointLightOuterAngle
-      value: 19.71461
       objectReference: {fileID: 0}
     - target: {fileID: 5447835380000561045, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
       propertyPath: _target
@@ -2046,6 +2018,10 @@ PrefabInstance:
       propertyPath: _target
       value: 
       objectReference: {fileID: 677341173}
+    - target: {fileID: 6570581404091659380, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
+      propertyPath: _isInGameplayScene
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2262,48 +2238,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 403438254}
     - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
       propertyPath: m_Color.g
       value: 0.44705883
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_Intensity
-      value: 1.29
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_BlendStyleIndex
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_ShadowIntensity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_FalloffIntensity
-      value: 0.457
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_OverlapOperation
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_PointLightInnerAngle
-      value: 19.71461
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_PointLightOuterAngle
-      value: 19.71461
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_ShadowIntensityEnabled
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5447835380000561045, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
       propertyPath: _target
@@ -2317,6 +2253,10 @@ PrefabInstance:
       propertyPath: _target
       value: 
       objectReference: {fileID: 1659604190}
+    - target: {fileID: 6570581404091659380, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
+      propertyPath: _isInGameplayScene
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9188,34 +9128,6 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_Intensity
-      value: 1.29
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_BlendStyleIndex
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_FalloffIntensity
-      value: 0.457
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_OverlapOperation
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_PointLightInnerAngle
-      value: 19.71461
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086531205451088201, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
-      propertyPath: m_PointLightOuterAngle
-      value: 19.714613
-      objectReference: {fileID: 0}
     - target: {fileID: 5447835380000561045, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
       propertyPath: _target
       value: 
@@ -9228,6 +9140,10 @@ PrefabInstance:
       propertyPath: _target
       value: 
       objectReference: {fileID: 1708482554}
+    - target: {fileID: 6570581404091659380, guid: 5a64c23552b85fd40977441a6159cd77, type: 3}
+      propertyPath: _isInGameplayScene
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
