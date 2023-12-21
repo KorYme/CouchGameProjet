@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4714637834579531949}
   - component: {fileID: 8925105499494906979}
   - component: {fileID: 1363639169495967926}
+  - component: {fileID: 4638177216848243505}
   m_Layer: 0
   m_Name: Rewired Input Manager
   m_TagString: Untagged
@@ -1354,6 +1355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerRoles: 020000000000000001000000
   _characterSelectionInGame: 0
+  _csvLoader: {fileID: 1363639169495967926}
 --- !u!114 &8925105499494906979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1379,3 +1381,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textAssetData: {fileID: 4900000, guid: 87cab4abadf36364fafeb14f26fa96ce, type: 3}
+--- !u!114 &4638177216848243505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059430416358908833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c281f2eea04b94f45b91b5fb249131ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerAssigner: {fileID: 4714637834579531949}

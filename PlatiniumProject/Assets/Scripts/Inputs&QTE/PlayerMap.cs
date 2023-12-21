@@ -8,23 +8,41 @@ public enum PlayerRole
 }
 public class PlayerMap
 {
-    public int RewiredPlayerId;
+    public int RewiredPlayerId = -1;
     public int GamePlayerId;
-    public PlayerRole Role;
+    public PlayerRole Role = PlayerRole.None;
     public ControllerType Type;
-    public InputDevice Device = InputDevice.XBox;
-    public int IndexDevice;
-    public PlayerMap(int rewiredPlayerId, int gamePlayerId, ControllerType type, PlayerRole role, int indexDevice)
+    public InputDevice Device = InputDevice.None; //A VERIFIER AVEC L'AFFICHAGE DES QTE
+    public int IndexDevice = -1; // Pour retrouver la bonne manette lors d'une déconnexion
+
+    public PlayerMap(int rewiredPlayerId, int gamePlayerId, ControllerType type, PlayerRole role, InputDevice device, int indexDevice)
     {
         RewiredPlayerId = rewiredPlayerId;
         GamePlayerId = gamePlayerId;
         Type = type;
         Role = role;
+        Device = device;
         IndexDevice = indexDevice;
     }
 
-    public PlayerMap(int rewiredPlayerId, int gamePlayerId, ControllerType type, PlayerRole role, InputDevice device, int indexDevice) : this(rewiredPlayerId, gamePlayerId, type, role,indexDevice)
+    public PlayerMap(int gamePlayerId, PlayerRole role)
     {
+        GamePlayerId = gamePlayerId;
+        Role = role;
+    }
+
+    public void AddController(int rewiredPlayerId, ControllerType type, InputDevice device, int indexDevice)
+    {
+        RewiredPlayerId = rewiredPlayerId;
+        Type = type;
         Device = device;
+        IndexDevice = indexDevice;
+    }
+
+    public void RemoveController()
+    {
+        RewiredPlayerId = -1;
+        IndexDevice = -1;
+        Device = InputDevice.None;
     }
 }

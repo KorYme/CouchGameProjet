@@ -77,8 +77,9 @@ public class PlayerSelectionManager : MonoBehaviour
 
     public void ReloadData()
     {
-        foreach(PlayerMap playermap in _playersAssigner.PlayersMap)
+        foreach(PlayerMap playermap in _playersAssigner.PlayersConnectedMap)
         {
+            Debug.Log($"Player map {playermap.GamePlayerId} {playermap.IndexDevice} {playermap.RewiredPlayerId}");
             _playersAssigner.SetRoleOfPlayer(playermap.GamePlayerId, PlayerRole.None);
             CreateInstancePlayerSelection(playermap.GamePlayerId);
         }
