@@ -27,8 +27,8 @@ public class PriestCalculator : MonoBehaviour
     public Action OnPriestNearToExorcize;
     public Action OnPriestExorcize;
 
-    public UnityEvent OnLoose;
-    public UnityEvent OnDisplayLooseScreen;
+    public UnityEvent OnLose;
+    public UnityEvent OnDisplayLoseScreen;
 
     private void Awake()
     {
@@ -82,8 +82,8 @@ public class PriestCalculator : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         OnPriestExorcize?.Invoke();
-        OnLoose?.Invoke();
+        OnLose?.Invoke();
     }
 
-    public void CallGameOverScreen() => OnDisplayLooseScreen?.Invoke();
+    public void CallGameOverScreen() => OnDisplayLoseScreen?.Invoke();
 }

@@ -7771,6 +7771,7 @@ GameObject:
   - component: {fileID: 3137807226876965194}
   - component: {fileID: 7135990484138675109}
   - component: {fileID: 6420760332849476117}
+  - component: {fileID: 3450920758824232668}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -7890,6 +7891,45 @@ MonoBehaviour:
   _flame: {fileID: 1489706128003279057}
   _flameMinMaxPos: {x: -45.8, y: -27.3}
   _clientMaxAmountForFlames: 50
+  _onInputReceived:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 649941770248144122}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: PlayFirstSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7135990484138675109}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: SetAllPlayerToUIMode
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3450920758824232668}
+        m_TargetAssemblyTypeName: WwiseSFXPlayer, Assembly-CSharp
+        m_MethodName: OpenSceneSync
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnWinDisplay:
     m_PersistentCalls:
       m_Calls:
@@ -7906,6 +7946,18 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   DebugClient: 50
+--- !u!114 &3450920758824232668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4193509490728906080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6934fdaa65b24164a81ad605594b714f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4301678053050481744
 GameObject:
   m_ObjectHideFlags: 0
@@ -32505,17 +32557,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1707466153288651455, guid: 6ed701891eef683438621f6642697cb5, type: 3}
   m_PrefabInstance: {fileID: 4004212955814495886}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2682674541586220227 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1345191178532553293, guid: 6ed701891eef683438621f6642697cb5, type: 3}
-  m_PrefabInstance: {fileID: 4004212955814495886}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8605841693048097846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f314b23923af9248b4370310b319b4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8605841693048097846 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4683678858438232760, guid: 6ed701891eef683438621f6642697cb5, type: 3}
@@ -32537,34 +32578,10 @@ MonoBehaviour:
   _priestAmountToExorcize: 5
   _danceFloor: {fileID: 1447748216813016775}
   CurrentPriestList: []
-  OnLoose:
+  OnLose:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2682674541586220227}
-        m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
-        m_MethodName: PlayRumbles
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Game_Over
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 5171300843765388243}
-        m_TargetAssemblyTypeName: UnityEngine.VFX.VisualEffect, UnityEngine
-        m_MethodName: SendEvent
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: CustomPlay
-          m_BoolArgument: 1
-        m_CallState: 2
-  OnDisplayLooseScreen:
+      m_Calls: []
+  OnDisplayLoseScreen:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4485807349705820686}
@@ -32581,20 +32598,8 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 4976499995342045857}
         m_TargetAssemblyTypeName: BeatManager, Assembly-CSharp
-        m_MethodName: ResumeMusicMenu
+        m_MethodName: ResumeMainMusic
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 8105859890976280223}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -40468,6 +40473,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 8336445525593557907, guid: aff64b997f1cb184ab99b6540eb058a3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7135990484138675109}
     - target: {fileID: 8345375648091457431, guid: aff64b997f1cb184ab99b6540eb058a3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

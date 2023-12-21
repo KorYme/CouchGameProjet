@@ -18,12 +18,14 @@ public class SetUpNeonLight : MonoBehaviour
     {
         _parentLineRenderer.material.color = _parentLineColor;
         _childLineRenderer.material.color = _childLineColor;
+        Globals.PriestCalculator.OnPriestExorcize += () => gameObject.SetActive(false);
     }
 
     private void OnDestroy()
     {
         Destroy(_parentLineRenderer.material);
         Destroy(_childLineRenderer.material);
+        Globals.PriestCalculator.OnPriestExorcize -= () => gameObject.SetActive(false);
     }
 
     public void SetMaterialColor()

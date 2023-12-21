@@ -50,7 +50,7 @@ public class DropManager : MonoBehaviour
     }
     public bool CanYouLetMeMove => _dropState == DROP_STATE.OUT_OF_DROP;
     public event Action<DROP_STATE> OnDropStateChange;
-    public event Action OnBeginBuildUp, OnDropLoaded, OnDropLaunched, OnDropSuccess, OnDropFail, OnDropEnded, OnGameEnd;
+    public event Action OnBeginBuildUp, OnDropLoaded, OnDropLaunched, OnDropSuccess, OnDropFail, OnDropEnded, OnGameWon;
     int _currentPhase;
     int _triggerPressedNumber;
     BeatManager _beatManager;
@@ -80,7 +80,7 @@ public class DropManager : MonoBehaviour
         OnDropLoaded += () => _dropAnimationBehaviour.gameObject.SetActive(true);
         _beatManager.OnUserCueReceived += CheckUserCueName;
         _dropAnimationBehaviour.OnDropAnimationClimax += CheckAnimationClimax;
-        OnGameEnd += () =>
+        OnGameWon += () =>
         {
             IsGamePlaying = false;
             _beatManager.StopBeat();
@@ -141,7 +141,7 @@ public class DropManager : MonoBehaviour
                     {
                         case 1: _secondMusicStateEvent?.Post(gameObject); break;
                         case 2: _thirdMusicStateEvent?.Post(gameObject); break;
-                        case 3: default: OnGameEnd?.Invoke(); break;
+                        case 3: default: OnGameWon?.Invoke(); break;
                     }
                 };
                 break;

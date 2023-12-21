@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         IsGamePaused = false;
         OnGamePaused += Globals.MenuMusicPlayer.PauseOrResumeMusicMenu;
         OnGamePaused += Globals.BeatManager.PauseOrResumeMainMusic;
-        Globals.DropManager.OnGameEnd += DisplayWinMenu;
+        Globals.DropManager.OnGameWon += DisplayWinMenu;
         Players.OnPlayerConnect += playerRole => Players.PlayersController[playerRole].Pause.OnInputStart += () => AssignPlayerToPauseMenuAndPause(playerRole);
         for (int i = 0; i < Players.MAXPLAYERS; i++)
         {
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     private void OnDisable()
     {
-        Globals.DropManager.OnGameEnd -= DisplayWinMenu;
+        Globals.DropManager.OnGameWon -= DisplayWinMenu;
         Players.OnPlayerConnect -= playerRole => Players.PlayersController[playerRole].Pause.OnInputStart += () => AssignPlayerToPauseMenuAndPause(playerRole);
         for (int i = 0; i < Players.MAXPLAYERS; i++)
         {

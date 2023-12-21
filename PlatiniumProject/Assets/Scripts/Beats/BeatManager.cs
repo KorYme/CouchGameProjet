@@ -187,6 +187,6 @@ public class BeatManager : MonoBehaviour, ITimingable
 
     public void PlayPriestMusic() => _gameOverSoundEvent?.Post(gameObject, (uint)AkCallbackType.AK_EndOfEvent, (x, y, z) => Debug.Log("Priest Music ENDED"));
 
-    public void ResumeMusicMenu() => _resumeMusicEvent?.Post(gameObject);
+    public void ResumeMainMusic() => _resumeMusicEvent?.Post(gameObject);
     #endregion
 }

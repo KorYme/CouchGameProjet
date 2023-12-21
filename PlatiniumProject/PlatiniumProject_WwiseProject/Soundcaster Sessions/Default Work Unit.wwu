@@ -30,15 +30,15 @@
 							<Position X="0" Y="5"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="Play_BarmanFail" ID="{B03EE6B6-6126-4000-8508-153A6448F016}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
+							<ObjectRef Name="Play_GameOver" ID="{7F055B11-9476-4AB2-84A1-4126E107D637}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
 							<Position X="1" Y="0"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="Play_BouncerDecline" ID="{7BBFB273-0053-4DE3-A586-BDD09B8D38C4}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
+							<ObjectRef Name="Play_NewGame" ID="{3E899D97-B405-4DC5-BDCE-7551C96F532A}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
 							<Position X="1" Y="1"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="Play_DJMovement" ID="{29E63C5F-0527-46CE-AE55-4C101A3700DD}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
+							<ObjectRef Name="Set_State_Musique_End" ID="{4900C373-7698-4D81-A34C-322BAAD43294}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
 							<Position X="1" Y="2"/>
 						</Module>
 						<Module>
@@ -50,16 +50,8 @@
 							<Position X="1" Y="4"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="Play_BarmanMovement" ID="{A05052C4-E982-4960-B944-1F19AFA1BD0E}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
-							<Position X="2" Y="0"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="Play_BouncerFail" ID="{7D3C8AA8-7D8C-46D8-A798-69D23B34D58C}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
-							<Position X="2" Y="1"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="Play_DJSuccess" ID="{8D457245-DAF2-4925-8B0A-E919B60C84E6}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
-							<Position X="2" Y="2"/>
+							<ObjectRef Name="Play_MenuHover" ID="{EA58C4A5-21B2-4F9E-9163-4451B4704144}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
+							<Position X="1" Y="5"/>
 						</Module>
 						<Module>
 							<ObjectRef Name="Play_MenuChooseChara" ID="{BB92EB88-BE1C-458A-A080-17CD646A26C4}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
@@ -70,14 +62,6 @@
 							<Position X="2" Y="4"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="Play_BarmanSuccess" ID="{AFCD4C9B-3C9D-4E6C-8B60-CEEEAC2BDE76}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
-							<Position X="3" Y="0"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="Play_BouncerMovement" ID="{1AF9CBA8-9024-49D4-9304-D0045B34D517}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
-							<Position X="3" Y="1"/>
-						</Module>
-						<Module>
 							<ObjectRef Name="Play_MenuClick" ID="{A77FFA2C-221E-46DC-94B8-EE97AE48019F}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
 							<Position X="3" Y="3"/>
 						</Module>
@@ -86,32 +70,12 @@
 							<Position X="3" Y="4"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="Play_BouncerAccept" ID="{9ABC14D6-0D02-4D32-BC73-F9F152BE9444}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
-							<Position X="4" Y="0"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="Play_BouncerSuccess" ID="{3BF66418-9A1C-43A3-AF4A-8607E44FCA74}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
-							<Position X="4" Y="1"/>
-						</Module>
-						<Module>
 							<ObjectRef Name="Play_MenuClose" ID="{E8B7B11B-1362-447E-BB7E-1096B96CD4B3}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
 							<Position X="4" Y="3"/>
 						</Module>
 						<Module>
 							<ObjectRef Name="Play_VolumeBar" ID="{FC47DD7A-F92B-4E54-8623-6AD345D8E40E}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
 							<Position X="4" Y="4"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="Play_BouncerCheck" ID="{46EBD7B7-6FCD-4D00-8F2A-99C03EB1FE54}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
-							<Position X="5" Y="0"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="Play_DJFail" ID="{51FA72CB-9EF4-41C7-8FEA-086C5D6898AB}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
-							<Position X="5" Y="1"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="Play_MenuHover" ID="{EA58C4A5-21B2-4F9E-9163-4451B4704144}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
-							<Position X="5" Y="3"/>
 						</Module>
 					</ModuleList>
 					<RTPCValueList ShowAll="true">
@@ -130,7 +94,7 @@
 						<CurrentStateRef Name="No" ID="{BB8A4A28-E909-4E78-84F8-DD7C69897827}"/>
 						<CurrentStateRef Name="No" ID="{FD76BA71-31F8-46AA-AB57-13A7589800A3}"/>
 						<CurrentStateRef Name="Menu_Open" ID="{6DD9BD10-F55E-4754-8AFC-0093589EC733}"/>
-						<CurrentStateRef Name="Musique_Intro" ID="{4672D8F4-C676-4695-8340-5A22B64A896C}"/>
+						<CurrentStateRef Name="Musique_End" ID="{48AA7F08-7329-4227-A759-7946187CEB0B}"/>
 					</CurrentStateList>
 					<CurrentSwitchList ShowAll="true"/>
 				</SoundcasterSession>

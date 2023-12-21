@@ -12,7 +12,7 @@ public class RumbleController : MonoBehaviour
 
     private void Start()
     {
-        Globals.DropManager.OnGameEnd += StopAllRumbles;
+        Globals.DropManager.OnGameWon += StopAllRumbles;
     }
 
     public void PlayRumbles(string rumbleName)
