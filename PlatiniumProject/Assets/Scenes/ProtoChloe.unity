@@ -203,6 +203,26 @@ PrefabInstance:
       propertyPath: _isDanceFloor
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1504233151816792137, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _userData.players.Array.data[2]._defaultJoystickMaps.Array.data[0]._enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504233151816792137, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _userData.players.Array.data[2]._defaultJoystickMaps.Array.data[1]._enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504233151816792137, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _userData.players.Array.data[2]._defaultJoystickMaps.Array.data[2]._enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504233151816792137, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _userData.players.Array.data[4]._defaultJoystickMaps.Array.data[2]._enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504233151816792137, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
+      propertyPath: _userData.players.Array.data[6]._defaultJoystickMaps.Array.data[2]._enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1513887340520608405, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0

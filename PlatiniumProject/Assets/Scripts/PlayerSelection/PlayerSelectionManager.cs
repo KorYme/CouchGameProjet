@@ -86,7 +86,7 @@ public class PlayerSelectionManager : MonoBehaviour
     {
         foreach(PlayerMap playermap in _playersAssigner.PlayersConnectedMap)
         {
-            Debug.Log($"Player map {playermap.GamePlayerId} {playermap.IndexDevice} {playermap.RewiredPlayerId}");
+            //Debug.Log($"Player map {playermap.GamePlayerId} {playermap.IndexDevice} {playermap.RewiredPlayerId}");
             _playersAssigner.SetRoleOfPlayer(playermap.GamePlayerId, PlayerRole.None);
             CreateInstancePlayerSelection(playermap.GamePlayerId);
         }
@@ -163,7 +163,7 @@ public class PlayerSelectionManager : MonoBehaviour
 
     private void OnAcceptPlayer(int indexPlayer,int indexCurrentCharacter)
     {
-        if (CheckAllCharactersChosen() && indexPlayer == 0)
+        if (CheckAllCharactersChosen()) //&& indexPlayer == 0)
         {
             ChangeScene();
         } 
