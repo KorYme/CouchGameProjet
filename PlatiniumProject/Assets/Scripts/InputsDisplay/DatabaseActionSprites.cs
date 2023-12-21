@@ -20,7 +20,7 @@ public class DatabaseActionSprites : MonoBehaviour
 
     private void Awake()
     {
-        Globals.DatabaseActionSprites ??= this;
+        Globals.DatabaseActionSprites = this;
         DictionaryActionToInput = new Dictionary<int, InputDisplayed>();
         foreach (IdActionToInputDisplayed converter in _listActionToInput)
         {

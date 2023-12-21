@@ -7088,7 +7088,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7392376079075455449, guid: c1ac6846bb0f1884096e05422fc13c18, type: 3}
       propertyPath: m_Name
-      value: EventUIManaeger
+      value: EventUIManager
       objectReference: {fileID: 0}
     - target: {fileID: 8877598966579501695, guid: c1ac6846bb0f1884096e05422fc13c18, type: 3}
       propertyPath: m_FirstSelected

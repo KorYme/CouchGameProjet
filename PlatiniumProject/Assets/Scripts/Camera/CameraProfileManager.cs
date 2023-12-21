@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class CameraProfileManager : MonoBehaviour
 {
-    [SerializeField] private CameraProfile[] _cameraProfiles;
+    [SerializeField] private CameraProfile[] _cameraProfiles; 
     private Dictionary<CAMERA_TYPE, CameraProfile> _cameraProfilesDict = new Dictionary<CAMERA_TYPE, CameraProfile>();
     private void Awake()
     {
-        Globals.CameraProfileManager ??= this;
+        Globals.CameraProfileManager = this;
+        _cameraProfilesDict.Clear();
         foreach (var v in _cameraProfiles)
         {
             _cameraProfilesDict[v.CameraType] = v;

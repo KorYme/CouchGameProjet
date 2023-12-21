@@ -46,6 +46,12 @@ public class PlayerInputController : MonoBehaviour
         yield return new WaitUntil(() => ReInput.isReady && PlayerInputsAssigner.GetRewiredPlayerByRole(_gamePlayerRole) != null);
         SetPlayer();
         Players.AddPlayerToList(this, (int)_gamePlayerRole);
+        Pause.OnInputStart += () => Globals.GameManager.AssignPlayerToPauseMenuAndPause((int)_gamePlayerRole);
+    }
+
+    private void OnDestroy()
+    {
+        Pause.OnInputStart = null;
     }
 
     public void SetPlayer()

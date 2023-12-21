@@ -61,7 +61,7 @@ public class DropManager : MonoBehaviour
 
     private void Awake()
     {
-        Globals.DropManager ??= this;
+        Globals.DropManager = this;
         OnDropSuccess += () => _onDropSuccess?.Invoke();
         OnDropFail += () => _onDropFail?.Invoke();
         OnBeginBuildUp += () => _onBeginBuildUp?.Invoke();

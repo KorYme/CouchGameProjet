@@ -86,7 +86,7 @@ public class PlayerInputsAssigner : MonoBehaviour {
             Destroy(gameObject);
             return;
         }
-        Globals.PlayerInputsAssigner ??= this;
+        Globals.PlayerInputsAssigner = this;
         _instance = this;
     }
     void Update() {

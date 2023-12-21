@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Globals.GameManager ??= this;
+        Globals.GameManager = this;
     }
 
     private void Start()
@@ -24,27 +24,13 @@ public class GameManager : MonoBehaviour
         OnGamePaused += Globals.MenuMusicPlayer.PauseOrResumeMusicMenu;
         OnGamePaused += Globals.BeatManager.PauseOrResumeMainMusic;
         Globals.DropManager.OnGameWon += DisplayWinMenu;
-        Players.OnPlayerConnect += playerRole => Players.PlayersController[playerRole].Pause.OnInputStart += () => AssignPlayerToPauseMenuAndPause(playerRole);
-        for (int i = 0; i < Players.MAXPLAYERS; i++)
-        {
-            if (Players.PlayersController[i] != null)
-            {
-                Players.PlayersController[i].Pause.OnInputStart += () => AssignPlayerToPauseMenuAndPause(i);
-            }
-        }
     }
 
     private void OnDisable()
     {
+        OnGamePaused -= Globals.MenuMusicPlayer.PauseOrResumeMusicMenu;
+        OnGamePaused -= Globals.BeatManager.PauseOrResumeMainMusic;
         Globals.DropManager.OnGameWon -= DisplayWinMenu;
-        Players.OnPlayerConnect -= playerRole => Players.PlayersController[playerRole].Pause.OnInputStart += () => AssignPlayerToPauseMenuAndPause(playerRole);
-        for (int i = 0; i < Players.MAXPLAYERS; i++)
-        {
-            if (Players.PlayersController[i] != null)
-            {
-                Players.PlayersController[i].Pause.OnInputStart -= () => AssignPlayerToPauseMenuAndPause(i);
-            }
-        }
     }
 
     private void DisplayWinMenu()
@@ -60,11 +46,11 @@ public class GameManager : MonoBehaviour
         _pauseMenu.SetActive(IsGamePaused);
         if (!IsGamePaused)
         {
-            UnAssignPlayerToPauseMenu();
+            UnAssignPlayersToPauseMenu();
         }
     }
 
-    void AssignPlayerToPauseMenuAndPause(int playerRole)
+    public void AssignPlayerToPauseMenuAndPause(int playerRole)
     {
         if (!Globals.DropManager?.IsGamePlaying ?? false) return;
         AssignPlayerToPauseMenu(playerRole);
@@ -89,7 +75,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void UnAssignPlayerToPauseMenu()
+    public void UnAssignPlayersToPauseMenu()
     {
         for (int i = 0; i < Players.MAXPLAYERS; i++)
         {

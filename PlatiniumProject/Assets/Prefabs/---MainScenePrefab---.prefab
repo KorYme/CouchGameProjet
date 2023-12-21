@@ -7772,6 +7772,7 @@ GameObject:
   - component: {fileID: 7135990484138675109}
   - component: {fileID: 6420760332849476117}
   - component: {fileID: 3450920758824232668}
+  - component: {fileID: 6320260832116378276}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -7895,7 +7896,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 649941770248144122}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: WwiseSFXPlayer, Assembly-CSharp
         m_MethodName: PlayFirstSFX
         m_Mode: 1
         m_Arguments:
@@ -7907,9 +7908,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 7135990484138675109}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: SetAllPlayerToUIMode
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7918,10 +7919,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 3450920758824232668}
+      - m_Target: {fileID: 6320260832116378276}
         m_TargetAssemblyTypeName: WwiseSFXPlayer, Assembly-CSharp
+        m_MethodName: PlaySFX
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Set_State_Menu_Close
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3450920758824232668}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
         m_MethodName: OpenSceneSync
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7958,6 +7971,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6934fdaa65b24164a81ad605594b714f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6320260832116378276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4193509490728906080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c0fff6976d0c424386246523e57de32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxEvent:
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 431ba4545f3dd16478251c7fe2ec4175, type: 2}
 --- !u!1 &4301678053050481744
 GameObject:
   m_ObjectHideFlags: 0
@@ -40086,16 +40115,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 393588402790029129, guid: aff64b997f1cb184ab99b6540eb058a3, type: 3}
-      propertyPath: _onInputReceived.m_PersistentCalls.m_Calls.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 393588402790029129, guid: aff64b997f1cb184ab99b6540eb058a3, type: 3}
       propertyPath: _onInputReceived.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 393588402790029129, guid: aff64b997f1cb184ab99b6540eb058a3, type: 3}
-      propertyPath: _onInputReceived.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 393588402790029129, guid: aff64b997f1cb184ab99b6540eb058a3, type: 3}
       propertyPath: _onInputReceived.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -40106,10 +40127,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7135990484138675109}
     - target: {fileID: 393588402790029129, guid: aff64b997f1cb184ab99b6540eb058a3, type: 3}
-      propertyPath: _onInputReceived.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 6290106782598336716}
-    - target: {fileID: 393588402790029129, guid: aff64b997f1cb184ab99b6540eb058a3, type: 3}
       propertyPath: _onInputReceived.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -40118,16 +40135,8 @@ PrefabInstance:
       value: SetAllPlayerToUIMode
       objectReference: {fileID: 0}
     - target: {fileID: 393588402790029129, guid: aff64b997f1cb184ab99b6540eb058a3, type: 3}
-      propertyPath: _onInputReceived.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: OpenSceneSync
-      objectReference: {fileID: 0}
-    - target: {fileID: 393588402790029129, guid: aff64b997f1cb184ab99b6540eb058a3, type: 3}
       propertyPath: _onInputReceived.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: GameManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 393588402790029129, guid: aff64b997f1cb184ab99b6540eb058a3, type: 3}
-      propertyPath: _onInputReceived.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: SceneLoader, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 393588402790029129, guid: aff64b997f1cb184ab99b6540eb058a3, type: 3}
       propertyPath: _onInputReceived.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -40640,17 +40649,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6290106782598336716 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1138481923202205442, guid: aff64b997f1cb184ab99b6540eb058a3, type: 3}
-  m_PrefabInstance: {fileID: 6378857992567609294}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4485807349705820686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6934fdaa65b24164a81ad605594b714f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6345698341593979840 stripped

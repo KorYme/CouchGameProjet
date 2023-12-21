@@ -53,7 +53,7 @@ public class SpawnManager : MonoBehaviour
     private void Awake()
     {
 
-        Globals.SpawnManager ??= this;
+        Globals.SpawnManager = this;
         foreach (var g in _goodClients)
         {
             g.animation.Init();
