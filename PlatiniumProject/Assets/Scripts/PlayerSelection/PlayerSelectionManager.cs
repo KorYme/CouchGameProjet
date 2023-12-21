@@ -22,7 +22,7 @@ public class PlayerSelectionManager : MonoBehaviour
     PlayerInputsAssigner _playersAssigner;
     [SerializeField] PlayerSelection _prefabPlayerSelection;
     List<PlayerSelection> _playersController;
-    public ReadOnlyCollection<PlayerSelection> PlayersController => _playersController.AsReadOnly();
+    //public ReadOnlyCollection<PlayerSelection> PlayersController => _playersController.AsReadOnly();
     public bool IsSetUp { get; private set; } = false;
 
     #region Events
@@ -30,6 +30,7 @@ public class PlayerSelectionManager : MonoBehaviour
     /// Parameters : indexPlayer in order of connexion, indexCharacter
     /// </summary>
     public event Action<int,int> OnPlayerJoined;
+    public event Action<int,int> OnPlayerLeave;
     /// <summary>
     /// Parameters : indexPlayer, indexCharacterChosen (barman, dj, bouncer)
     /// </summary>
@@ -68,11 +69,17 @@ public class PlayerSelectionManager : MonoBehaviour
         {
             ReloadData();
             _playersAssigner.OnPlayerJoined += AddPlayerSelectionToList;
+            _playersAssigner.OnPlayerLeave += RemovePlayer;
         }
         if (_selectionHandlers.Length != _objectsSelectionable.Length)
         {
             Debug.LogWarning("List of character roles (handlers) is not matching selectables");
         }
+    }
+
+    private void RemovePlayer(int index)
+    {
+        Debug.Log("TO DO");
     }
 
     public void ReloadData()
@@ -86,6 +93,10 @@ public class PlayerSelectionManager : MonoBehaviour
         IsSetUp = true;
     }
 
+    public bool IsPlayerConnected(int indexPlayer)
+    {
+        return _playersAssigner.PlayersConnectedMap.ToList().Exists(map => map.GamePlayerId == indexPlayer);
+    }
     public int NbPlayersHoverOnCharacter(int indexCharacter)
     {
         LerpTargetLight light;

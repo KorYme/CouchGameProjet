@@ -22,9 +22,7 @@ public class PlayerSelectionController : MonoBehaviour
         PlayerId = playerId;
         yield return new WaitUntil(() => PlayerInputsAssigner.GetRewiredPlayerById(PlayerId) != null);
         _player = PlayerInputsAssigner.GetRewiredPlayerById(PlayerId);
-        Debug.Log($"Player ID {PlayerId} {_player.name}");
     }
-    //XinputController
     private void Update()
     {
         if (_player != null)

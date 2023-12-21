@@ -13,6 +13,7 @@ public class PlayerInputsAssigner : MonoBehaviour {
     [SerializeField] PlayerRole[] _playerRoles = new PlayerRole[MAXPLAYERS];
     [SerializeField] bool _characterSelectionInGame = false;
     public event Action OnPlayerJoined;
+    public event Action<int> OnPlayerLeave;
     private static PlayerInputsAssigner _instance;
     int _indexRoleKB = 0;
     [SerializeField] CSVLoader _csvLoader;
@@ -167,26 +168,10 @@ public class PlayerInputsAssigner : MonoBehaviour {
         Debug.Log($"Controller {controllerId} removed {playerId}");
         CurrentNbOfPlayersConnected--;
         Debug.Log($"Nb Players connected {CurrentNbOfPlayersConnected}");
+        OnPlayerLeave?.Invoke(playerId);
         return playerId;
     }
-    #region ChangeMap
-    void ChangeMapJoystick(int rewiredPlayerId)
-    {
-        Player rewiredPlayer = ReInput.players.GetPlayer(rewiredPlayerId);
-
-        // Disable the Assignment map category in Player so no more JoinGame Actions return
-        rewiredPlayer.controllers.maps.SetMapsEnabled(false, RewiredConsts.Category.ASSIGNMENT);
-
-        // Enable UI control for this Player now that he has joined
-        if (_characterSelectionInGame)
-        {
-            rewiredPlayer.controllers.maps.SetMapsEnabled(true, RewiredConsts.Category.UI);
-        } else
-        {
-            rewiredPlayer.controllers.maps.SetMapsEnabled(true, "Default", "Default");
-        }
-    }    
-    
+    #region ChangeMap  
     void ChangeMapKeyboard(int rewiredPlayerId)
     {
         Player rewiredPlayer = ReInput.players.GetPlayer(rewiredPlayerId);
