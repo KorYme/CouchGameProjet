@@ -16,7 +16,7 @@ public class SwitchLightOnOff : MonoBehaviour
 
         SwitchOnOff(false);
         yield return new WaitUntil(() => _selectionManager.IsSetUp);
-        if (_selectionManager.PlayersController.Count > _playerIndex)
+        if (_selectionManager.IsPlayerConnected(_playerIndex))
         {
             //SwitchOnOff(true);
             StartCoroutine(RoutineSwitchOnOff(true));

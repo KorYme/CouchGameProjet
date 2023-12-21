@@ -1,5 +1,4 @@
 using Rewired;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,21 +6,25 @@ public class TestConnectDisconnect : MonoBehaviour
 {
     [SerializeField] PlayerInputsAssigner _playerAssigner;
     Dictionary<int,bool> _indexPlayers = new Dictionary<int, bool> 
-    { [2] = false,
-      [4] = false,
-      [6] = false
+    { [1] = false,
+      [3] = false,
+      [5] = false
     };
     void Awake()
     {
         // Subscribe to events
         ReInput.ControllerConnectedEvent += OnControllerConnected;
         ReInput.ControllerDisconnectedEvent += OnControllerDisconnected;
+       
+    }
+
+    private void Start()
+    {
         foreach (Joystick j in ReInput.controllers.Joysticks)
         {
             if (ReInput.controllers.IsJoystickAssigned(j)) continue; // Joystick is already assigned
-
             // Assign Joystick to first Player that doesn't have any assigned
-            AssignJoystickToNextOpenPlayer(j);
+            AssignJoystickToNextOpenPlayer(j,false);
         }
     }
 
@@ -41,7 +44,12 @@ public class TestConnectDisconnect : MonoBehaviour
     void OnControllerDisconnected(ControllerStatusChangedEventArgs args)
     {
         Debug.Log("A controller was disconnected! Name = " + args.name + " Id = " + args.controllerId + " Type = " + args.controllerType);
-        
+        ReInput.controllers.RemoveControllerFromAllPlayers(args.controller);
+        int playerId = _playerAssigner.RemovePlayer(args.controllerId);
+        if (playerId != -1)
+        {
+            _indexPlayers[playerId] = false;
+        }
     }
 
     // This function will be called when a controller is about to be disconnected
@@ -51,14 +59,16 @@ public class TestConnectDisconnect : MonoBehaviour
     {
         Debug.Log("A controller is being disconnected! Name = " + args.name + " Id = " + args.controllerId + " Type = " + args.controllerType);
     }*/
-    void AssignJoystickToNextOpenPlayer(Joystick j)
+    void AssignJoystickToNextOpenPlayer(Joystick j, bool callEvent = true)
     {
         foreach (Player p in ReInput.players.Players)
         {
             if (p.controllers.joystickCount > 0) continue; // player already has a joystick
-            if (!_indexPlayers.ContainsKey(p.id)) continue;
+            if (!_indexPlayers.ContainsKey(p.id) || _indexPlayers[p.id]) continue;
+            Debug.Log($"ASSIGNED to {p.id} {p.name}");
             p.controllers.AddController(j, true); // assign joystick to player
             _indexPlayers[p.id] = true;
+            _playerAssigner.AssignNextPlayer(p.id, j, callEvent);
             return;
         }
     }
