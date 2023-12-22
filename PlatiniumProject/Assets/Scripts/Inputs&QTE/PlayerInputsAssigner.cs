@@ -147,9 +147,9 @@ public class PlayerInputsAssigner : MonoBehaviour {
             InputDevice device = _csvLoader.GetInputDeviceFromGUID(controller.hardwareTypeGuid.ToString());
             ControllerType type = controller.type;
             _playerMap[indexPlayer].AddController(rewiredIndex, type, device,controller.id);
-            Debug.Log("Added Rewired Player id " + rewiredIndex + " to game player " + indexPlayer);
+            //Debug.Log("Added Rewired Player id " + rewiredIndex + " to game player " + indexPlayer);
             CurrentNbOfPlayersConnected++;
-            Debug.Log($"Nb Players connected {CurrentNbOfPlayersConnected}");
+            //Debug.Log($"Nb Players connected {CurrentNbOfPlayersConnected}");
         }
     }
 
@@ -165,9 +165,9 @@ public class PlayerInputsAssigner : MonoBehaviour {
         }
         int playerId = _playerMap[indexMap].RewiredPlayerId;
         _playerMap[indexMap].RemoveController();
-        Debug.Log($"Controller {controllerId} removed {playerId}");
+        //Debug.Log($"Controller {controllerId} removed {playerId}");
         CurrentNbOfPlayersConnected--;
-        Debug.Log($"Nb Players connected {CurrentNbOfPlayersConnected}");
+        //Debug.Log($"Nb Players connected {CurrentNbOfPlayersConnected}");
         OnPlayerLeave?.Invoke(playerId);
         return playerId;
     }
@@ -194,12 +194,12 @@ public class PlayerInputsAssigner : MonoBehaviour {
         PlayerMap map = _playerMap[indexPlayer];
         Player rewiredPlayer = ReInput.players.GetPlayer(map.RewiredPlayerId);
         if (map.Type == ControllerType.Keyboard) {
-            Debug.Log($"KB {indexPlayer} {_rolesKB[indexPlayer]}");
+            //Debug.Log($"KB {indexPlayer} {_rolesKB[indexPlayer]}");
             rewiredPlayer.controllers.maps.SetMapsEnabled(false, ControllerType.Keyboard, RewiredConsts.Category.UI, _rolesKB[indexPlayer]);
             rewiredPlayer.controllers.maps.SetMapsEnabled(true, ControllerType.Keyboard, RewiredConsts.Category.DEFAULT, _rolesKB[indexPlayer]);
         } else if (map.Type == ControllerType.Joystick)
         {
-            Debug.Log($"JS {indexPlayer}");
+            //Debug.Log($"JS {indexPlayer}");
             rewiredPlayer.controllers.maps.SetMapsEnabled(false, RewiredConsts.Category.UI);
             rewiredPlayer.controllers.maps.SetMapsEnabled(true, "Default", "Default");
         }
