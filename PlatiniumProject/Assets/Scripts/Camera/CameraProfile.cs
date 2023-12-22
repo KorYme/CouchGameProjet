@@ -50,7 +50,8 @@ public class CameraProfile : MonoBehaviour
     }
     private void Start()
     {
-        _followMoveRoutine = StartCoroutine(FollowRoutine());
+        //_followMoveRoutine = 
+        StartCoroutine(FollowRoutine());
         _currentInitSize = _initSize;
         //StartShake();   
     }
@@ -142,8 +143,6 @@ public class CameraProfile : MonoBehaviour
             _currentInitSize = Mathf.Lerp(_initSize, _initSize * percentage, timer / duration);
             yield return new WaitForEndOfFrame();
         }
-        
-
         yield return new WaitUntil(() => canDezoom);
 
         _target = null;
@@ -181,8 +180,6 @@ public class CameraProfile : MonoBehaviour
         float timer = 0;
         Vector3 pos = transform.localPosition;
         Vector3 target;
-        
-        
         while (timer < _profileData.snapDuration)
         {
             target = _target != null ? _target.position + _profileData.focusOffSet : _initPos;
@@ -192,7 +189,6 @@ public class CameraProfile : MonoBehaviour
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -10);
             yield return new WaitForEndOfFrame();
         }
-
         _followMoveRoutine = null;
     }
     
