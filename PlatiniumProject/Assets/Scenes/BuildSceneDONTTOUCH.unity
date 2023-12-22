@@ -6194,10 +6194,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 1842797435}
-    - target: {fileID: 8484154248070721880, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
-      propertyPath: _badClientRatio.x
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8516942252717919931, guid: a51f05a9d2bf8d644b40b7f613797197, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
