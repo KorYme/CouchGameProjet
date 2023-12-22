@@ -18,6 +18,7 @@ public class MessageDisplay : MonoBehaviour
     [SerializeField] private float _delayBetweenTween;
 
     [SerializeField] private Image _messageBackGround;
+    Color _initialColor;
 
     private void Reset()
     {
@@ -32,6 +33,7 @@ public class MessageDisplay : MonoBehaviour
     {
         Globals.DropManager.OnBeginBuildUp += () => DisplayMessage(_pressingMessage);
         Globals.DropManager.OnDropLaunched += () => DisplayMessage(_releasingMessage);
+        _initialColor = _text.color;
     }
 
     private void OnDisable()
@@ -60,11 +62,11 @@ public class MessageDisplay : MonoBehaviour
         for (int i = animator.textInfo.characterCount - 1 ; i >= 0; --i)
         {
             sequence.Join(animator.DOOffsetChar(i, Vector3.one * _offSetValue, .25f)).SetEase(Ease.InCubic).SetDelay(_delayBetweenTween);
-            sequence.Join(animator.DOColorChar(i, Color.red, .1f)).SetEase(Ease.InCubic).SetDelay(_delayBetweenTween);
+            sequence.Join(animator.DOColorChar(i, _initialColor, .1f)).SetEase(Ease.InCubic).SetDelay(_delayBetweenTween);
         }
 
         sequence.Append(animator.DOOffsetChar(animator.textInfo.characterCount - 1, Vector3.one * _offSetValue, 0f).SetDelay(.25f));
-        sequence.Append(animator.DOColorChar(animator.textInfo.characterCount - 1, Color.red, .1f));
+        sequence.Append(animator.DOColorChar(animator.textInfo.characterCount - 1, _initialColor, .1f));
         sequence.Append(animator.DOScaleChar(animator.textInfo.characterCount - 1, Vector3.one * 2, .5f));
         sequence.Join(animator.DOScaleChar(animator.textInfo.characterCount - 1, Vector3.one *2.5f, .5f).SetEase(Ease.InOutFlash).SetLoops(2, LoopType.Yoyo)).onComplete += () =>
         {

@@ -53,9 +53,6 @@ public abstract class PlayerMovement : EntityMovement,IIsControllable
         }
         Globals.BeatManager.OnBeatEvent.RemoveListener(OnBeat);
         Players.RemoveListenerPlayerController(this);
-        _dropManager.OnBeginBuildUp -= OnBeginDrop;
-        _dropManager.OnDropSuccess -= OnDropEnd;
-        _dropManager.OnDropFail -= OnDropEnd;
     }
 
     protected abstract void OnInputMove(Vector2 vector);

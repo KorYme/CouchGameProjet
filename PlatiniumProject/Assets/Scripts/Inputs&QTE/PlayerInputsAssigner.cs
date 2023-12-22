@@ -89,6 +89,7 @@ public class PlayerInputsAssigner : MonoBehaviour {
         Globals.PlayerInputsAssigner = this;
         _instance = this;
     }
+#if UNITY_EDITOR
     void Update() {
 
         if (CurrentNbOfPlayersConnected < MAXPLAYERS)
@@ -115,6 +116,8 @@ public class PlayerInputsAssigner : MonoBehaviour {
             }
         }
     }
+
+#endif
 
     public void SetRoleOfPlayer(int indexPlayer, PlayerRole role)
     {

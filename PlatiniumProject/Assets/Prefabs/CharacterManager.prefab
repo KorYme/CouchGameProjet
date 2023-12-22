@@ -73,7 +73,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _badClientRatio: {x: 2, y: 3}
+  _badClientRatio: {x: 4, y: 3}
   _baseClientInBouncer: 4
   _baseClientInBarMan: 5
   _baseClientInDj: 15
