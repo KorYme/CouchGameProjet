@@ -22,7 +22,7 @@ public class TutorialManager : MonoBehaviour
     
     private void Awake()
     {
-        Globals.TutorialManager ??= this;
+        Globals.TutorialManager = this;
         OnTutorial += () => StartCoroutine(TutoRoutine());
         OnTutorialFinish += () => StartCoroutine(EndTutorialRoutine());
     }

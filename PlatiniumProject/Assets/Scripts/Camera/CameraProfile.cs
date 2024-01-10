@@ -46,9 +46,11 @@ public class CameraProfile : MonoBehaviour
         _cam = GetComponent<Camera>();
         _initPos = transform.position;
         _initSize = _cam.orthographicSize;
+        _pulseRoutine = null;
     }
     private void Start()
     {
+        //_followMoveRoutine = 
         StartCoroutine(FollowRoutine());
         _currentInitSize = _initSize;
         //StartShake();   
@@ -141,12 +143,10 @@ public class CameraProfile : MonoBehaviour
             _currentInitSize = Mathf.Lerp(_initSize, _initSize * percentage, timer / duration);
             yield return new WaitForEndOfFrame();
         }
-        
-
         yield return new WaitUntil(() => canDezoom);
 
         _target = null;
-        StartCoroutine(FollowMoveRoutine());
+        _followMoveRoutine = StartCoroutine(FollowMoveRoutine());
         canDezoom = false;
         timer = 0;
         float size = _cam.orthographicSize;
@@ -180,8 +180,6 @@ public class CameraProfile : MonoBehaviour
         float timer = 0;
         Vector3 pos = transform.localPosition;
         Vector3 target;
-        
-        
         while (timer < _profileData.snapDuration)
         {
             target = _target != null ? _target.position + _profileData.focusOffSet : _initPos;
@@ -191,7 +189,6 @@ public class CameraProfile : MonoBehaviour
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -10);
             yield return new WaitForEndOfFrame();
         }
-
         _followMoveRoutine = null;
     }
     
@@ -202,6 +199,7 @@ public class CameraProfile : MonoBehaviour
 
     public void StartPulseZoom(bool playOnce = false, float percentage = 0, float duration = 0)
     {
+        if (this == null) return;
         if (_pulseRoutine != null)
         {
             StopPulseZoom();

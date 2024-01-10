@@ -52,7 +52,7 @@ public class DropController : MonoBehaviour, IIsControllable
 
     void CheckTriggerState(TriggerInputCheck trigger, bool value)
     {
-        if(Globals.DropManager.DropState == DropManager.DROP_STATE.OUT_OF_DROP)
+        if (Globals.DropManager.DropState == DropManager.DROP_STATE.OUT_OF_DROP)
             return;
         
         Globals.DropManager.UpdateTriggerValue(value);

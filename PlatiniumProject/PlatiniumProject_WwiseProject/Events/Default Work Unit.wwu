@@ -358,6 +358,46 @@
 										</Reference>
 									</ReferenceList>
 								</Action>
+								<Action Name="" ID="{49E4902D-AE7A-411C-8E2C-BB3D67E0626E}" ShortID="119574288">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="41"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Set_State_Music_Default" ID="{74FEB492-2655-4211-B6EC-20366242308B}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{8BDA9030-C528-4000-952B-FB3F58E366B0}" ShortID="662997997">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="41"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Set_State_P1_No" ID="{7902A23E-C0DD-47A5-8876-D941E24B1AF1}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{1AE2333E-97BA-458A-ACB1-09ADE99026A9}" ShortID="314308637">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="41"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Set_State_P2_No" ID="{1C0C83ED-8B0C-43B8-B939-E42C7DC40E6A}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{E2B2019E-B56B-4C2F-8B27-3262239AA0ED}" ShortID="215926287">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="41"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Set_State_P3_No" ID="{70367210-644C-49F7-AC8C-BFA3D297AF49}" WorkUnitID="{FA8CA112-742D-4A02-AB56-1723C2CAF146}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
 							</ChildrenList>
 						</Event>
 						<Event Name="Set_State_Musique_Intro" ID="{18CCAA0D-977C-46B6-A647-7C634F31F811}">

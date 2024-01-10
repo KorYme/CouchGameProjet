@@ -6,7 +6,6 @@ using UnityEngine.Events;
 
 public class PriestCalculator : MonoBehaviour
 {
-
     public enum EXORCIZE_STATE
     {
         NORMAL,
@@ -32,7 +31,7 @@ public class PriestCalculator : MonoBehaviour
 
     private void Awake()
     {
-        Globals.PriestCalculator ??= this;
+        Globals.PriestCalculator = this;
     }
 
     private void Start()

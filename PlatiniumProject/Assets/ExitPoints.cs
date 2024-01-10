@@ -9,7 +9,7 @@ public class ExitPoints : MonoBehaviour
 
     private void Awake()
     {
-        Globals.ExitPoints ??= this;
+        Globals.ExitPoints = this;
     }
 
     public Vector3 FindClosestExitPoint(Vector3 position)

@@ -35,7 +35,7 @@ public class WinMenu : MonoBehaviour
 
     private void Awake()
     {
-        Globals.WinMenu ??= this;
+        Globals.WinMenu = this;
     }
 
     private void Start()

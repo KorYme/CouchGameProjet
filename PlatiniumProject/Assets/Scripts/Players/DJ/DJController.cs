@@ -67,9 +67,6 @@ public class DJController : MonoBehaviour, IIsControllable
             _rollRightJoystick.TurnAntiClockWise -= () => MoveLightShape(_rightJoystickAntiClockwise);
         }
         Players.RemoveListenerPlayerController(this);
-        _dropManager.OnBeginBuildUp -= OnBeginDrop;
-        _dropManager.OnDropSuccess -= OnDropEnd;
-        _dropManager.OnDropFail -= OnDropEnd;
     }
 
     //DONE

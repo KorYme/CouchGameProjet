@@ -61,7 +61,7 @@ public class DropManager : MonoBehaviour
 
     private void Awake()
     {
-        Globals.DropManager ??= this;
+        Globals.DropManager = this;
         OnDropSuccess += () => _onDropSuccess?.Invoke();
         OnDropFail += () => _onDropFail?.Invoke();
         OnBeginBuildUp += () => _onBeginBuildUp?.Invoke();
@@ -89,7 +89,6 @@ public class DropManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        _beatManager.OnUserCueReceived -= CheckUserCueName;
         _dropAnimationBehaviour.OnDropAnimationClimax -= CheckAnimationClimax;
     }
 
@@ -157,7 +156,7 @@ public class DropManager : MonoBehaviour
             case DROP_STATE.ON_DROP_PRESSING:
                 if (!triggerPressed) break;
                 _triggerPressedNumber = _allDropControllers.Sum(x => x.TriggerPressed);
-                if (_triggerPressedNumber == Players.PlayerConnected * 2)
+                if (_triggerPressedNumber == Players.MAXPLAYERS * 2)
                     DropState = DROP_STATE.ON_DROP_ALL_PRESSED;
                 break;
             case DROP_STATE.ON_DROP_ALL_PRESSED:
@@ -184,7 +183,7 @@ public class DropManager : MonoBehaviour
         DropState = DROP_STATE.ON_DROP_PRESSING;
         OnBeginBuildUp?.Invoke();
         yield return new WaitForSeconds(_pressingBuildUpTime);
-        if (_triggerPressedNumber >= Players.PlayerConnected * 2)
+        if (_triggerPressedNumber >= Players.MAXPLAYERS * 2)
         {
             OnDropLoaded?.Invoke();
             DropState = DROP_STATE.ON_DROP_WAIT_FOR_RELEASE;

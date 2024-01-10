@@ -51,13 +51,6 @@ public class SlotRenderer : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        if (_useShader)
-        {
-            _dropManager.OnDropEnded -= OnChangeTexture;
-        }
-    }
     private void OnChangeTexture()
     {
         if (_useShader && _shaderTextures != null && _shaderTextures.Length > 0)
