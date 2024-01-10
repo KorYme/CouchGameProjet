@@ -19,9 +19,7 @@ public class DjUsher : MonoBehaviour
             NextSlot.SpriteRenderer.sprite = NextSlot.BaseSprite;
         }
         NextSlot = _dancefloor.GetRandomAvailableSlot();
-        NextSlot.SpriteRenderer.color = Color.black;
         NextSlot.SpriteRenderer.sprite = _selectedSlot;
-        NextSlot.SlotRenderer.UseShader = false;
         //EditorGUIUtility.PingObject(NextSlot);
     }
 }
